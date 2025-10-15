@@ -1,0 +1,38 @@
+<!-- START OF LANGUAGE CHANGES -->
+
+<!--
+%%[
+    VAR @MATHS, @COUNTRY, @DATE, @DATEau, @DATEnz, @DATEuk, @DATEny, @DATEcg, @DATEla,
+    SET @MATHS = "maths"
+    SET @COUNTRY = AttributeValue("Country")
+    IF EMPTY (@COUNTRY) THEN
+        SET @MATHS = "maths"
+        SET @DATE = "8th of March"
+        SET @DATEau = "8th of March"
+        SET @DATEnz = "8th of March"
+        SET @DATEuk = "7th of March"
+        SET @DATEny = "7th of March"
+        SET @DATEcg = "7th of March"
+        SET @DATEla = "7th of March"
+    ELSEIF @COUNTRY == "United States" OR @COUNTRY == "Canada" THEN
+        SET @MATHS = "math"
+        SET @DATE = "March 7th"
+        SET @DATEau = "March 8th"
+        SET @DATEnz = "March 8th"
+        SET @DATEuk = "March 7th"
+        SET @DATEny = "March 7th"
+        SET @DATEcg = "March 7th"
+        SET @DATEla = "March 7th"
+    ELSEIF @COUNTRY == "Australia" OR @COUNTRY == "New Zealand" OR @COUNTRY == "Malaysia" OR @COUNTRY == "China" OR @COUNTRY == "Singapore" OR @COUNTRY == "Japan" OR @COUNTRY == "Thailand" @COUNTRY == "Philipines" THEN
+        SET @DATE = "8th of March"
+        SET @MATHS = "maths"
+        SET @DATE = "8th of March"
+        SET @DATEau = "8th of March"
+        SET @DATEnz = "8th of March"
+        SET @DATEuk = "7th of March"
+        SET @DATEny = "7th of March"
+        SET @DATEcg = "7th of March"
+        SET @DATEla = "7th of March"
+    ENDIF
+]%%
+-->

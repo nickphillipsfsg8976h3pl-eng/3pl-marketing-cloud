@@ -1,0 +1,94 @@
+<!-- START OF LANGUAGE CHANGES -->
+
+<!--
+%%[
+    VAR @program, @region, @currency, @hero1, @hero2, @phone, @emailLink, @maths, @customis, @Math, @ADDRESS, @headline, @videolink, @coupon, @saving, @rrp, @price, @personalise, @image1, @image2,
+    SET @COUNTRY = AttributeValue("Country")
+    set @currency_data = LookupRows("B2C_Country2Currency", "MailingCountry", @COUNTRY)
+    SET @rowCount = rowcount(@currency_data)
+    IF @rowCount > 0 THEN
+        FOR @i = 1 TO @rowCount DO
+            VAR @curr_data
+            SET @row = row(@currency_data, @i)
+            /* get row based on counter */
+            set @curr_data = trim(field(@row, "CurrencyIsoCode"))
+        NEXT @i
+    ENDIF
+    /* Default*/
+    SET @program = "program"
+    SET @region = "national"
+    SET @currency = "GBP"
+    SET @phone = "0117 3600248"
+    SET @emailLink = "customerservice@mathletics.co.uk"
+    SET @personalise = "personalise"
+    SET @maths = "maths"
+    SET @Math = "maths"
+    SET @coupon = "BTSAG01"
+    SET @price = "£51.00"
+    SET @rrp = "£143.40"
+    SET @saving = "£92.00"
+    SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+    SET @ADDRESS = "33 Colston Avenue, Bristol, BS1 4UA"
+    SET @headline = "great news: your child is about to enjoy learning maths even more!"
+    SET @image1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/03fec056-0d5d-410b-8d9e-89159b714593.png"
+    SET @image2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/58b370fa-ddce-48f9-8fe1-5a72e5ffd043.png"
+    /* UK */
+    IF @COUNTRY ==  "United Kingdom" OR @COUNTRY == "UK" THEN
+        SET @program = "program"
+        SET @region = "national"
+        SET @currency = "GBP"
+        SET @phone = "0117 3600248"
+        SET @emailLink = "customerservice@mathletics.co.uk"
+        SET @personalise = "personalise"
+        SET @maths = "maths"
+        SET @Math = "maths"
+        SET @coupon = "BTSAG01"
+        SET @price = "£51.00"
+        SET @rrp = "£143.40"
+        SET @saving = "£92.00"
+        SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+        SET @ADDRESS = "33 Colston Avenue, Bristol, BS1 4UA"
+        SET @headline = "great news: your child is about to enjoy learning maths even more!"
+        SET @image1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/03fec056-0d5d-410b-8d9e-89159b714593.png"
+        SET @image2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/58b370fa-ddce-48f9-8fe1-5a72e5ffd043.png"
+        /* Europe*/
+    ELSEIF @curr_data == "EUR" THEN
+        SET @program = "program"
+        SET @region = "national"
+        SET @currency = "euro"
+        SET @phone = "0117 3600248"
+        SET @emailLink = "customerservice@mathletics.co.uk"
+        SET @personalise = "personalise"
+        SET @maths = "maths"
+        SET @Math = "maths"
+        SET @coupon = "BTSAG02"
+        SET @price = "€51.00"
+        SET @rrp = "€143.40"
+        SET @saving = "€92.00"
+        SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+        SET @ADDRESS = "33 Colston Avenue, Bristol, BS1 4UA"
+        SET @headline = "great news: your child is about to enjoy learning maths even more!"
+        SET @image1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/186b0fe6-dcc1-4bea-918b-76ae0cbe918c.png"
+        SET @image2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/7c258ce0-c500-4161-90b0-a2f447b988b4.png"
+        /* South Africa*/
+    ELSEIF @COUNTRY == "South Africa" OR @curr_data == "ZAR" THEN
+        SET @program = "program"
+        SET @region = "national"
+        SET @currency = "ZAR"
+        SET @phone = "0117 3600248"
+        SET @emailLink = "customerservice@mathletics.co.uk"
+        SET @personalise = "personalise"
+        SET @maths = "maths"
+        SET @Math = "maths"
+        SET @coupon = "BTSAG03"
+        SET @price = "R636.00"
+        SET @rrp = "R1,788.00"
+        SET @saving = "R1,150"
+        SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+        SET @ADDRESS = "33 Colston Avenue, Bristol, BS1 4UA"
+        SET @headline = "great news: your child is about to enjoy learning maths even more!"
+        SET @image1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/bc4738b6-72df-4f31-b1d0-5514771a26ac.png"
+        SET @image2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/aabb1dda-3cca-4228-a565-3986694781da.png"
+    ENDIF
+]%%
+-->

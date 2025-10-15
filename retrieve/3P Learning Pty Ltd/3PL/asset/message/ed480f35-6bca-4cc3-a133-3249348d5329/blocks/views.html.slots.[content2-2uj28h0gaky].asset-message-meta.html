@@ -1,0 +1,278 @@
+<table
+    role="presentation"
+    style="min-width: 100%; "
+    class="stylingblock-content-wrapper"
+    width="100%"
+    cellspacing="0"
+    cellpadding="0"
+>
+    <tr>
+        <td class="stylingblock-content-wrapper camarker-inner">
+            <!---
+%%[
+    VAR @Licence, @Student
+    SET @Licence = requestParameter("Licence")  %%=IIF(@Licence == 1, 'student', 'students')=%%
+]%%
+---->
+            <meta
+                http-equiv="Content-Type"
+                content="text/html; charset=UTF-8"
+            />
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1"
+            />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+            <center>
+                <table
+                    width="100%"
+                    cellspacing="0"
+                    cellpadding="0"
+                    border="0"
+                    bgcolor="#F2F2F2"
+                >
+                    <tr>
+                        <td
+                            width="100%"
+                            valign="top"
+                            height="100%"
+                            align="center"
+                        >
+                            <!--[if (gte mso 9)|(IE)]>
+     <table align="center" border="0" cellspacing="0" cellpadding="0" width="620">
+     <tr>
+     <td align="center" valign="top" width="620">
+     <![endif]-->
+                            <table
+                                style="max-width:620px;"
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                                border="0"
+                                bgcolor="#ffffff"
+                                align="center"
+                            >
+                                <tr>
+                                    <td>
+                                        <table
+                                            width="100%"
+                                            cellspacing="0"
+                                            cellpadding="0"
+                                            border="0"
+                                        >
+                                            <tr>
+                                                <td
+                                                    colspan="3"
+                                                    style="font-size:10px; line-height:10px;"
+                                                    height="10"
+                                                >
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+
+                                            <!-- Content Group -->
+                                            <tr>
+                                                <td
+                                                    style="width: 20px;"
+                                                    width="20"
+                                                >
+                                                    &nbsp;
+                                                </td>
+
+                                                <td valign="top" align="center">
+                                                    <table
+                                                        width="100%"
+                                                        cellspacing="0"
+                                                        cellpadding="0"
+                                                        border="0"
+                                                    >
+                                                        <!-- Spacing -->
+                                                        <tr>
+                                                            <td
+                                                                style="font-size:10px; line-height:10px;"
+                                                                height="10"
+                                                            >
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+
+                                                        <!-- Heading -->
+                                                        <tr>
+                                                            <td
+                                                                valign="middle"
+                                                                align="left"
+                                                            >
+                                                                <h2>
+                                                                    Your quote
+                                                                    is on its
+                                                                    way!
+                                                                </h2>
+                                                            </td>
+                                                        </tr>
+
+                                                        <!-- Spacing -->
+                                                        <tr>
+                                                            <td
+                                                                style="font-size:10px; line-height:10px;"
+                                                                height="10"
+                                                            >
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+%%[ IF @License >= 1 THEN ]%%
+<!-- Paragraph -->
+                                                        <tr>
+                                                            <td
+                                                                valign="middle"
+                                                                align="justify"
+                                                            >
+                                                                <p>
+                                                                    Here's a
+                                                                    quick recap
+                                                                    of what you
+                                                                    asked for:
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+
+                                                        <!-- Spacing -->
+                                                        <tr>
+                                                            <td
+                                                                style="font-size:10px; line-height:10px;"
+                                                                height="10"
+                                                            >
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+
+                                                        <!-- Paragraph -->
+                                                        <tr>
+                                                            <td
+                                                                valign="middle"
+                                                                align="justify"
+                                                            >
+                                                                <p>
+                                                                    A quote for
+                                                                    %%=v(@Licence)=%% %%=v(@Student)=%%.
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+
+                                                        <!-- Spacing -->
+                                                        <tr>
+                                                            <td
+                                                                style="font-size:10px; line-height:10px;"
+                                                                height="10"
+                                                            >
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+
+                                                        <!-- Paragraph -->
+                                                        <tr>
+                                                            <td
+                                                                valign="middle"
+                                                                align="justify"
+                                                            >
+                                                                <p>
+                                                                    We'll crunch
+                                                                    the numbers
+                                                                    and get back
+                                                                    to you as
+                                                                    soon as we
+                                                                    can.
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Spacing -->
+                                                        <tr>
+                                                            <td
+                                                                style="font-size:10px; line-height:10px;"
+                                                                height="10"
+                                                            >
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+    %%[ ELSE ]%%
+<!-- Paragraph -->
+                                                        <tr>
+                                                            <td
+                                                                valign="middle"
+                                                                align="justify"
+                                                            >
+                                                                <p>
+                                                                    Thank you
+                                                                    for your
+                                                                    request, one
+                                                                    of our
+                                                                    customer
+                                                                    representatives
+                                                                    will reach
+                                                                    out to you
+                                                                    shortly to
+                                                                    assist.
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+
+                                                        <!-- Spacing -->
+                                                        <tr>
+                                                            <td
+                                                                style="font-size:10px; line-height:10px;"
+                                                                height="10"
+                                                            >
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+    %%[ENDIF]%%
+<!-- Paragraph -->
+                                                        <tr>
+                                                            <td
+                                                                valign="middle"
+                                                                align="justify"
+                                                            >
+                                                                <p>
+                                                                    Thanks, from
+                                                                    your new
+                                                                    friends at
+                                                                    3P Learning.
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Spacing -->
+                                                        <tr>
+                                                            <td
+                                                                style="font-size:20px; line-height:20px;"
+                                                                height="20"
+                                                            >
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+
+                                                <td
+                                                    style="width: 20px;"
+                                                    width="20"
+                                                >
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+
+                                            <!--[if (gte mso 9)|(IE)]>
+     </td>
+     </tr>
+     </table>
+     <![endif]-->
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </td>
+    </tr>
+</table>
