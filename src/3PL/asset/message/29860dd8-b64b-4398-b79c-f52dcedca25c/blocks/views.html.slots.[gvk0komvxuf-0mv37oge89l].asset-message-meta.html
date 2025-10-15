@@ -1,0 +1,138 @@
+<!-- START OF LANGUAGE CHANGES --> 
+
+<!-- %%[ var @program, @region, @currency, @phone, @emailLink, @maths, @personalised, @customis, @Lnik, @Cprogram, @Math, @standardised, @ADDRESS, @heroImage1, @heroImage2, @countryID
+
+   SET @COUNTRY = AttributeValue("Country")
+   SET @currency_data = LookupRows("B2C_Country2Currency","MailingCountry", @COUNTRY)
+   SET @rowCount = rowcount(@currency_data)
+
+if @rowCount > 0 then
+
+  for @i = 1 to @rowCount do
+    var @curr_data
+    SET @row = row(@currency_data, @i) /* get row based on counter */
+    SET @curr_data = trim(field(@row,"CurrencyIsoCode"))
+
+
+next @i
+endif
+   
+     /* Default */
+      SET @program = "program"
+      SET @region = "Australian"
+      SET @currency = "AUD"
+      SET @phone = "1300 457 271"
+      SET @emailLink = "customerservice@mathletics.com.au"
+      SET @personalised = "ersonalised"
+      SET @customis = "customis"
+      SET @maths = "maths"
+      SET @Math = "Maths"
+      SET @Cprogram = "Program"
+      SET @standardised = "standardised"
+      SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+      SET @Link = "https://www.mathletics.com/au/for-home/free-trial/"
+      SET @heroImage1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/4b7d2e6a-15dc-4977-bffd-b1fd1b4ee79a.jpg"
+      SET @heroImage2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/63b78383-7506-40c6-8e2b-44b05bf7f28e.jpg"
+      
+      
+       /* US */
+         IF @COUNTRY ==  "United States" OR @countryID == "233" THEN
+         SET @program = "program"
+         SET @region = "United States"
+         SET @currency = "USD"
+         SET @phone = "1-877-661-4898"
+         SET @emailLink = "customerservice@mathletics.com"
+         SET @personalised = "ersonalized"
+         SET @customis = "customiz"
+         SET @maths = "math"
+         SET @Math = "Math"
+         SET @Cprogram = "Program"
+         SET @standardised = "standardized"
+         SET @ADDRESS = "37 West 26th Street Suite 408, New York, NY 10010, United States"
+         SET @Link = "https://www.mathletics.com/us/for-home/free-trial/"
+         SET @heroImage1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/b7eb6741-5834-494f-b46f-b9ec1d63db76.jpg"
+         SET @heroImage2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/b614d77c-b0b7-4aed-b684-1fcf724d6e8f.jpg" 
+         
+          ENDIF
+                  
+         /* CA */
+         ELSEIF @COUNTRY ==  "Canada" OR @countryID == "39" THEN
+         SET @program = "program"
+         SET @region = "Canadian"
+         SET @currency = "CAD"
+         SET @phone = "1-877-661-4898"
+         SET @emailLink = "customerservice@mathletics.com"
+         SET @personalised = "ersonalized"
+         SET @customis = "customiz"
+         SET @maths = "math"
+         SET @Math = "Math"
+         SET @Cprogram = "Program"
+         SET @standardised = "standardized"
+         SET @ADDRESS = "37 West 26th Street Suite 408, New York, NY 10010, United States"
+         SET @Link = "https://www.mathletics.com/ca/for-home/free-trial/"
+         SET @heroImage1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/b7eb6741-5834-494f-b46f-b9ec1d63db76.jpg"
+         SET @heroImage2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/b614d77c-b0b7-4aed-b684-1fcf724d6e8f.jpg" 
+         
+
+      /* AU */
+      ELSEIF @COUNTRY == "Australia" OR @countryID == 14 THEN
+       SET @program = "program"
+       SET @region = "Australian"
+       SET @currency = "AUD"
+       SET @phone = "1300 457 271"
+       SET @emailLink = "customerservice@mathletics.com.au"
+       SET @personalised = "ersonalised"
+       SET @customis = "customis"
+       SET @maths = "maths"
+       SET @Math = "Maths"
+       SET @Cprogram = "Program"
+       SET @standardised = "standardised"
+       SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+       SET @Link = "https://www.mathletics.com/au/for-home/free-trial/"
+       SET @heroImage1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/4b7d2e6a-15dc-4977-bffd-b1fd1b4ee79a.jpg"
+       SET @heroImage2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/63b78383-7506-40c6-8e2b-44b05bf7f28e.jpg" 
+
+       
+        /* NZ */
+         ELSEIF @COUNTRY =="New Zealand" OR @countryID == 159  THEN
+         SET @program = "programme"
+         SET @region = "New Zealand"
+         SET @currency = "NZD"
+         SET @phone = "0800 643 080 "
+         SET @emailLink = "customerservice@mathletics.com.au"
+        SET @personalised = "ersonalised"
+        SET @customis = "customis"
+        SET @maths = "maths"
+        SET @Math = "Maths"
+        SET @Cprogram = "Programme"
+        SET @standardised = "standardised"
+        SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+        SET @Link = "https://www.mathletics.com/nz/for-home/free-trial/"
+        SET @heroImage1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/4b7d2e6a-15dc-4977-bffd-b1fd1b4ee79a.jpg"
+         SET @heroImage2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/63b78383-7506-40c6-8e2b-44b05bf7f28e.jpg" 
+
+
+         
+         /* UK EUROPE AND SOUTH AFRICA/
+         ELSEIF @COUNTRY ==  "United Kingdom" OR  ELSEIF @countryID == 3 OR @countryID == 6 OR @countryID == 12 OR @countryID == 15 OR @countryID == 16 OR @countryID == 18 OR @countryID == 21 OR @countryID == 22 OR @countryID == 28 OR @countryID == 34 OR @countryID == 55 OR @countryID == 57 OR @countryID == 58 OR @countryID == 59 OR @countryID == 64 OR @countryID == 68 OR @countryID == 70 OR @countryID == 71 OR @countryID == 73 OR @countryID == 74 OR @countryID == 80 OR @countryID == 81 OR @countryID == 83 OR @countryID == 85 OR @countryID == 86 OR @countryID == 88 OR @countryID == 91 OR @countryID == 97 OR @countryID == 100 OR @countryID == 101 OR @countryID == 104 OR @countryID == 105 OR @countryID == 106 OR @countryID == 107 OR @countryID == 108 OR @countryID == 109 OR @countryID == 112 OR @countryID == 113 OR @countryID == 114 OR @countryID == 119 OR @countryID == 120 OR @countryID == 122 OR @countryID == 123 OR @countryID == 127 OR @countryID == 128 OR @countryID == 129 OR @countryID == 131 OR @countryID == 137 OR @countryID == 145 OR @countryID == 146 OR @countryID == 148 OR @countryID == 150 OR @countryID == 156 OR @countryID == 166 OR @countryID == 167 OR @countryID == 170 OR @countryID == 177 OR @countryID == 178 OR @countryID == 180 OR @countryID == 182 OR @countryID == 183 OR @countryID == 192 OR @countryID == 194 OR @countryID == 196 OR @countryID == 200 OR @countryID == 201 OR @countryID == 206 OR @countryID == 210 OR @countryID == 212 OR @countryID == 213 OR @countryID == 214 OR @countryID == 224 OR @countryID == 225 OR @countryID == 230 OR @countryID == 231 OR @countryID == 232 OR @countryID == 235 OR @countryID == 204  THEN
+         SET @program = "programme"
+         SET @region = "United Kingdom"
+         SET @currency = "GBP"
+         SET @phone = "0117 3600248 "
+         SET @emailLink = "customerservice@mathletics.co.uk"
+         SET @personalised = "ersonalised"
+         SET @customis = "customis"
+         SET @maths = "maths"
+         SET @Math = "Maths"
+         SET @Cprogram = "Programme"
+         SET @standardised = "standardised"
+         SET @ADDRESS = "33 Colston Avenue, Bristol, BS1 4UA"
+         SET @Link = "https://www.mathletics.com/uk/for-home/free-trial/"
+         SET @heroImage1 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/4b7d2e6a-15dc-4977-bffd-b1fd1b4ee79a.jpg"
+         SET @heroImage2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/2/63b78383-7506-40c6-8e2b-44b05bf7f28e.jpg" 
+
+        
+
+    
+     ENDIF
+  ]%% -->

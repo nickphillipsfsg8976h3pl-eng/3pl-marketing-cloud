@@ -1,0 +1,652 @@
+{
+    "key": "0f57b6bb-a6ad-66fb-d79a-0c49cb648fba",
+    "name": "Writing Legends Product Update - EME",
+    "lastPublishedDate": "0001-01-01T00:00:00",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2024-07-10T06:40:04.803",
+    "modifiedDate": "2024-07-10T14:12:21.703",
+    "activities": [
+        {
+            "key": "ABNTEST-1",
+            "name": "",
+            "description": "",
+            "type": "ABNTEST",
+            "outcomes": [
+                {
+                    "key": "68b47bc7-d158-474c-9e23-cbbc7f56e36e",
+                    "next": "EMAILV2-1",
+                    "arguments": {
+                        "percentage": 50,
+                        "branchResult": "branchResult-1"
+                    },
+                    "metaData": {
+                        "label": "50%",
+                        "pathName": "Path 1",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "710a17af-7058-49b8-8adf-11f4b1cc05f5",
+                    "next": "EMAILV2-2",
+                    "arguments": {
+                        "percentage": 50,
+                        "branchResult": "branchResult-2"
+                    },
+                    "metaData": {
+                        "label": "50%",
+                        "pathName": "Path 2",
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "holdBackPercentage": 0,
+                "winnerEvaluationType": "Engagement",
+                "engagementPeriod": 2,
+                "engagementPeriodUnits": "Days",
+                "engagementWinnerMetric": "Opens",
+                "applicationExtensionKey": "E6F9C82E-D5AD-43AD-93BE-E8E7E3732531"
+            },
+            "metaData": {
+                "capsule": {
+                    "id": "CAPSULE-1",
+                    "startId": "ABNTEST-1",
+                    "endId": "ABNTESTSTOP-1"
+                },
+                "sections": {},
+                "isConfigured": true,
+                "name": "",
+                "configured": true,
+                "invalidOutcomes": []
+            },
+            "schema": {
+                "arguments": {
+                    "randomNumber": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "asyncDiscardDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "requestObjectId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "ABNTESTSTOP-1",
+            "name": "",
+            "description": "",
+            "type": "ABNTESTSTOP",
+            "outcomes": [
+                {
+                    "key": "aa12b393-0b04-422f-a7a6-96060a66fd5b",
+                    "next": "WAITBYDURATION-1",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "winnerEvaluationType": "Engagement",
+                "engagementPeriod": 2,
+                "engagementPeriodUnits": "Days",
+                "engagementWinnerMetric": "Opens",
+                "holdbackPercentage": "0",
+                "aBnStartActivityKey": "ABNTEST-1",
+                "applicationExtensionKey": "721633C6-6CE0-46E7-B15E-DF1391C98D5F"
+            },
+            "metaData": {
+                "icon": "/extensions/activities/abn-test-stop/images/finishline-flag.svg",
+                "iconSmall": "/extensions/activities/abn-test-stop/images/finishline-flag.svg",
+                "category": "flow",
+                "shapeOverride": "dot",
+                "original_icon": "/extensions/activities/abn-test-stop/images/finishline-flag.svg",
+                "original_iconSmall": "/extensions/activities/abn-test-stop/images/finishline-flag.svg",
+                "original_statsContactIcon": null,
+                "statsContactIcon": null,
+                "capsule": {
+                    "id": "CAPSULE-1",
+                    "startId": "ABNTEST-1",
+                    "endId": "ABNTESTSTOP-1"
+                },
+                "isConfigured": true
+            }
+        },
+        {
+            "key": "EMAILV2-1",
+            "name": "WL Product Update",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "28dabfb7-939d-4d4c-bb26-ffa8572dd989",
+                    "next": "ABNTESTSTOP-1",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false,
+                        "joinLabel": ""
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "isModified": true,
+                "googleAnalyticsCampaignName": "",
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {},
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Save Time and Motivate Your Students with Writing Legends’ Latest Updates!",
+                    "emailSubject": "Save Time and Motivate Your Students with Writing Legends’ Latest Updates!",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": true,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {},
+                    "preHeader": "Explore Magical Realms, Use Pre-Built Writing Maps and Track Spelling Progress Effortlessly",
+                    "publicationListId": 187,
+                    "r__asset_key": "2a804f3a-10d4-4afa-8708-6c3a6e209c44",
+                    "r__asset_name_readOnly": "WL Product Update",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2430,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleOpens": "1/1/0001 12:00:00 AM"
+                },
+                "applicationExtensionKey": "jb-email-activity"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true,
+                "capsuleData": {
+                    "id": "CAPSULE-1",
+                    "startId": "ABNTEST-1",
+                    "endId": "ABNTESTSTOP-1"
+                }
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-2",
+            "name": "WL Product Update",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "4634b0b4-e10a-47c4-b224-9db82b9363a9",
+                    "next": "ABNTESTSTOP-1",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false,
+                        "joinLabel": ""
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "isModified": true,
+                "googleAnalyticsCampaignName": "",
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Motivate Your Students with Writing Legends’ Latest Updates!",
+                    "emailSubject": "Motivate Your Students with Writing Legends’ Latest Updates!",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": false,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "preHeader": "Explore Magical Realms, Use Pre-Built Writing Maps and Track Spelling Progress Effortlessly",
+                    "publicationListId": 187,
+                    "r__asset_key": "2a804f3a-10d4-4afa-8708-6c3a6e209c44",
+                    "r__asset_name_readOnly": "WL Product Update",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2430,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleOpens": "1/1/0001 12:00:00 AM"
+                },
+                "applicationExtensionKey": "jb-email-activity"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true,
+                "capsuleData": {
+                    "id": "CAPSULE-1",
+                    "startId": "ABNTEST-1",
+                    "endId": "ABNTESTSTOP-1"
+                }
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-1",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "c94b6b3c-0c64-4b00-b818-9bda52727552",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "Writing Legends Product Update - EMEA",
+            "description": "",
+            "type": "EmailAudience",
+            "outcomes": [],
+            "arguments": {
+                "serializedObjectType": 3,
+                "dataExtensionId": "fec91485-4feb-ee11-a5c3-5cba2c6ff268",
+                "r__event_key": "DEAudience-543bc4c5-7524-056b-3ca5-79bcba0faef2"
+            },
+            "configurationArguments": {},
+            "metaData": {
+                "scheduleState": "No Schedule",
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/images/icon-data-extension.svg",
+                "title": "Data Extension",
+                "category": "Audience",
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
+                "r__event_key": "DEAudience-543bc4c5-7524-056b-3ca5-79bcba0faef2"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "NotSet",
+    "definitionType": "Multistep",
+    "channel": "",
+    "defaults": {
+        "email": [
+            "{{Event.DEAudience-baf214b8-d35b-9af9-8dcd-c6a8562b55d6.\"ContactEmail\"}}"
+        ],
+        "mobileNumber": [
+            "{{Event.DEAudience-543bc4c5-7524-056b-3ca5-79bcba0faef2.\"ContactMobilePhone\"}}"
+        ],
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "dataSource": "ContactsModel",
+        "highThroughputSending": {
+            "email": false
+        }
+    },
+    "executionMode": "Production",
+    "status": "Draft",
+    "scheduledStatus": "Draft",
+    "r__folder_Path": "my journeys"
+}

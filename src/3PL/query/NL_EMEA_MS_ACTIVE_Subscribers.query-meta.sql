@@ -1,0 +1,1 @@
+SELECT * FROM [EMEA_B2B_MS_Full&Ext_ACTIVE_Subscribers] WHERE AccountBillingCountryCode = 'NL'

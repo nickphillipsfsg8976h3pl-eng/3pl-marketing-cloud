@@ -1,0 +1,243 @@
+
+
+%%[
+SET @subscriberkey = RequestParameter('id')
+SET @JobID = RequestParameter('jid')
+SET @listid = RequestParameter('lid')
+SET @batchid = RequestParameter('bid')
+SET @reason = "One click unsubscribe"
+
+/* Is this a lead or a contact*/
+ IF Substring(@subscriberkey,1,3) == '003' THEN
+     SET @updatetype = "Contact"
+    ELSEIF Substring(@subscriberkey,1,3) == '00Q' THEN
+   SET @updatetype = "Lead"
+ ELSE Redirect(CloudPagesURL(2572))
+ ENDIF
+
+ SET @unsuball = 1
+
+/* Has opted out of email */
+IF @unsuball == 1 THEN 
+ SET @unsub = 1
+ SET @statusforsubs = "Unsubscribed"
+ELSE 
+   SET @unsub = 0
+ SET @statusforsubs = "Active" 
+ENDIF
+
+/*Log unsub event*/
+   SET @lue = CreateObject("ExecuteRequest")
+   SetObjectProperty(@lue,"Name","LogUnsubEvent")
+
+    SET @lue_prop = CreateObject("APIProperty")                
+    SetObjectProperty(@lue_prop, "Name", "SubscriberKey")
+    SetObjectProperty(@lue_prop, "Value", @SubscriberKey)
+    AddObjectArrayItem(@lue, "Parameters", @lue_prop)
+
+    SET @lue_prop = CreateObject("APIProperty")
+    SetObjectProperty(@lue_prop, "Name", "JobID")
+    SetObjectProperty(@lue_prop, "Value", @JobID)
+    AddObjectArrayItem(@lue, "Parameters", @lue_prop)
+
+    SET @lue_prop = CreateObject("APIProperty")
+    SetObjectProperty(@lue_prop, "Name", "ListID")
+    SetObjectProperty(@lue_prop, "Value", @listid)
+    AddObjectArrayItem(@lue, "Parameters", @lue_prop)
+
+    SET @lue_prop = CreateObject("APIProperty")
+    SetObjectProperty(@lue_prop, "Name", "BatchID")
+    SetObjectProperty(@lue_prop, "Value", @batchid)
+    AddObjectArrayItem(@lue, "Parameters", @lue_prop)
+    
+SET @lue_prop = CreateObject("APIProperty")
+    SetObjectProperty(@lue_prop, "Name", "Reason")
+    SetObjectProperty(@lue_prop, "Value", @reason)
+    AddObjectArrayItem(@lue, "Parameters", @lue_prop)
+
+    SET @lue_statusCode = InvokeExecute(@lue, @overallStatus, @requestId)
+
+    SET @Response = Row(@lue_statusCode, 1)
+    SET @Status = Field(@Response,"StatusMessage")
+    SET @Error = Field(@Response,"ErrorCode")
+
+/* Lets update consent in All Subs */
+SET @actsub = CreateObject("Subscriber")
+SetObjectProperty(@actsub,"SubscriberKey", @SubscriberKey)
+SetObjectProperty(@actsub,"Status",@statusforsubs)
+
+Set @options = CreateObject("UpdateOptions")
+Set @save = CreateObject("SaveOption")
+SetObjectProperty(@save,"SaveAction","UpdateAdd")
+SetObjectProperty(@save,"PropertyName","*")
+AddObjectArrayItem(@options,"SaveOptions", @save)
+
+SET @updateStatusCode = InvokeUpdate(@actsub, @updateStatusMessage, @updateErrorCode, @options)
+SET @message = 1
+
+SET @updaterecord = UpdateSingleSalesforceObject(@updatetype,
+    @subscriberkey,
+    'HasOptedOutOfEmail',@unsub
+
+    )
+
+
+]%%
+
+<html><head></head><body class="">
+
+
+    
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="https://cloud.my.3plearning.com/preferencescss" media="screen,projection">
+  <script src="https://marketing-cdn.3plearning.com/uploads/dev/assets/jquery.min.js"></script>
+     <script src="https://marketing-cdn.3plearning.com/uploads/dev/assets/owl.carousel.js"></script>
+    <link rel="stylesheet" href="https://marketing-cdn.3plearning.com/uploads/dev/assets/owl.carousel.min.css">
+     <link rel="stylesheet" href="https://marketing-cdn.3plearning.com/uploads/dev/assets/owl.theme.default.min.css">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+.owl-stage {
+display: -webkit-box;
+display: -moz-box;
+display: -ms-box;
+display: box;
+}
+ owl nav */
+.owl-prev span, .owl-next span {
+ color: #FFFFFF;
+}
+
+.owl-prev span:hover, 
+.owl-next span:hover {
+ color: #8199A3;
+}
+
+.owl-prev, .owl-next {
+ position: absolute;
+ top: 0;
+ height: 100%;
+}
+
+.owl-prev {
+ left: 0px;
+}
+
+   .fa, .fas {
+    font-weight: 900;
+    color: #b3b2b2;}
+.owl-next {
+ right: 10px;
+}
+
+        @media only screen and (max-width:480px){
+/* MOBILE GLOBAL STYLES - DO NOT CHANGE */
+body, .tb_properties{font-family: Arial !important; font-size: 16px !important; color: #808080 !important; line-height: 1 !important; padding: 0px !important; }.buttonstyles{font-family: Arial !important; font-size: 16px !important; color: #FFFFFF !important; padding: 0px !important; }h1{font-family: Arial !important; font-size: 22px !important; color: #202020 !important; line-height: 1 !important; }h2{font-family: Arial !important; font-size: 20px !important; color: #202020 !important; line-height: 1 !important; }h3{font-family: Arial !important; font-size: 18px !important; color: #202020 !important; line-height: 1 !important; }a:not(.buttonstyles){line-height: 1 !important; }.mobile-hidden{display: none !important; }.responsive-td {width: 100% !important; display: block !important; padding: 0 !important;}
+/* END OF MOBILE GLOBAL STYLES - DO NOT CHANGE */
+}</style>
+      
+    
+
+    
+        <nav class="" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/055af50d-722b-450e-a34d-88cb191a2384.png"></a>
+            </div>
+        </nav>
+         
+   <div style="min-height: -webkit-fill-available;" class="container">
+                <div class="row">
+<div style="width: 100%; margin-top: 50px;" class="col xs12">
+       
+          <div class="owl-carousel">
+            <div class="item">
+              <img src="https://cdn.3plearning.com/wp-content/uploads/2012/10/Math-logo_1.png"/>
+            </div>
+            <div class="item">
+             <img src="https://cdn.3plearning.com/wp-content/uploads/2012/10/Reading-Eggs-logo_2.png"/>
+            </div>
+            <div class="item">
+             <img src="https://cdn.3plearning.com/wp-content/uploads/2012/10/Mathseeds-logo_2.png"/>
+            </div>
+
+         
+          </div>
+        </div>
+     </div>    
+    <div class="row">
+    <div  class="col m8 offset-m2 center">
+     <h1>
+  Sorry to see you go!
+     
+     </h1>
+     
+     <p style="font-size: 20px;">We’ve removed you from our mailing list, but we’ll always be happy to see you again.</p>
+     
+     <p style="margin-bottom: 40px;"> <em>Accidentally hit unsubscribe? You can resubscribe to receive the best 3P Learning news, resources, blogs and product updated by clicking the button below.</em></p>
+       <a class="btn waves-effect waves-light" href="https://preferences.my.3plearning.com/3PL_1ClickRe-Subscribe?id=%%=v(@subscriberkey)=%%">Re-subscribe me</a>
+     </div>
+      </div>
+    <div  class="col m8 offset-m2 center">
+    <img style="width: 100%; max-width: 596px;" src="https://marketing-cdn.3plearning.com/uploads/dev/assets/cryingpeas_v2.gif"/>
+     </div>
+      </div>
+  
+    
+
+    <script>
+      var owl = $('.owl-carousel');
+      owl.owlCarousel({
+        margin: 10,
+        loop: false,
+    nav:true,
+    dots: false,
+ navText: ['<span class="fas fa-chevron-left fa-2x"></span>','<span class="fas fa-chevron-right fa-2x"></span>'],
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 3
+          },
+          1000: {
+            items: 7
+          }
+        }
+      })
+    </script>
+    
+    
+    
+    <!--END FORM-->
+            </div><!--END CONTAINER-->
+            <footer class="page-footer">
+                <div class="footer-copyright">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l6 m12 s12 left-align copyright-left">
+                                <p class="">Copyright %%=Format(Now(), "yyyy")=%%. <a href="https://www.3plearning.com/">3P Learning</a> - Transforming lives through a love of learning.</p>
+                            </div>
+                            <div class="col l6 m12 s12 right-align copyright-right">
+                                <p class="grey-text darken-3">
+                                    <a class="" href="http://www.3plearning.com/hello/">About Us</a>&nbsp;&nbsp;|&nbsp;
+                                    <a class="" href="http://www.3plearning.com/careers/">Careers</a>&nbsp;&nbsp;|&nbsp;
+                                    <a class="" href="http://www.3plearning.com/contact/">Contact Us</a>&nbsp;&nbsp;|&nbsp;
+                                    <a class="" href="http://www.3plearning.com/privacy/">Privacy Policy</a>&nbsp;&nbsp;|&nbsp;
+                                    <a class="" href="http://www.3plearning.com/terms/">Terms &amp; Conditions</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div><!--END CONTAINER-->
+                </div><!--END FOOTER-->
+            </footer>
+        
+
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="https://cloud.my.3plearning.com/preferences_js"></script>
+    
+
+
+
+</body></html>

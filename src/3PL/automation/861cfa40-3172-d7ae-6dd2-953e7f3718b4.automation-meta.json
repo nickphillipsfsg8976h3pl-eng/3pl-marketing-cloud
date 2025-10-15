@@ -1,0 +1,98 @@
+{
+    "name": "GLOBAL_B2C_BASE-DATA_SOURCES",
+    "description": "",
+    "key": "861cfa40-3172-d7ae-6dd2-953e7f3718b4",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2023-04-29T08:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=HOURLY;UNTIL=20790606T160000;INTERVAL=6",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_B2C_MXTRIALIST",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "EMEA_B2C_MXTRIALIST-FILTER",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "AMER_B2C_MXTRIALIST- SYNC 2",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_B2C_MXPURCHASE",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_B2C_MX-PREVIOUSTRIALIST",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_B2C_MX-PREVIOUSPURCHASE-FILTER",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_B2C_MX0001_ONBOARDING (Copy)",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "EMEA_B2C_MX0002_ONBOARDING ",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "AMER_B2C_MX0002_ONBOARDING  (Copy)",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        }
+    ],
+    "createdName": "Stephan Peniguel",
+    "createdDate": "2023-03-05T23:30:47.357Z",
+    "modifiedName": "Barbara Rivera",
+    "modifiedDate": "2023-05-31T02:24:11.653Z",
+    "r__folder_Path": "my automations/B2C/02_Filters/0001_Main_DataFilters"
+}

@@ -1,0 +1,58 @@
+%%[
+
+
+SET @firstname = RequestParameter('First-Name')
+SET @lastname = RequestParameter('Last-Name')
+SET @email = RequestParameter('Email')
+SET @jobtitle = RequestParameter('job-title')
+SET @country = RequestParameter('country') 
+SET @activesubscription = RequestParameter('active-subscription')
+SET @optin = RequestParameter('sub-opt-in')
+SET @tcagree = RequestParameter('tc-agree')
+SET @company = 'Not Set- Gated Content Campaign'
+SET @updatemarketinginterest = 'Promotions;Product Information;'
+SET @countrycode = RequestParameter('country')
+SET @leadowner = '00528000001opmf'
+SET @leadsource = 'Marketing Cloud'
+SET @LeadStatus = 'Marketing Prospect'
+SET @description = CONCAT(' Active subscription:  ', @activesubscription)
+
+IF empty(@optin) THEN
+SET @updatemarketinginterest = ""
+ELSE
+SET @updatemarketinginterest = 'Promotions;Product information;'
+ENDIF
+
+
+ SET @Id = CreateSalesforceObject('lead',
+           14,  /* Number of fields specified to add in the Lead record */ 
+           "Title", @jobTitle,
+           "Product_Interest__c", 'Mathletics',
+           "FirstName", @firstName,
+           "LastName", @lastName,   
+           "Email", @email,
+           "Company", @company,
+           "Country__c", @countryName,
+           "CountryCode", @countryCode,
+         "Marketing_Product_Interest__c", 'Mathletics', 
+         "Marketing_Interest__c",@updatemarketinginterest,
+     "OwnerID", @leadowner,
+     "LeadSource", @leadsource,
+           "Description", @description,
+           "Status", @LeadStatus
+
+          )  
+
+SET @campaignMemberId = CreateSalesforceObject('CampaignMember', 3, 'CampaignId', '7010I000000NcJl', 'LeadId', @Id,'Status','Sent')
+
+IF @leadId == '' THEN
+
+Redirect('https://cloud.mc1.3plearning.com/ohno')
+
+ELSE
+Redirect('https://www.mathletics.com/au/resources/back-to-school-icebreakers/success')
+
+ENDIF
+
+]%%
+

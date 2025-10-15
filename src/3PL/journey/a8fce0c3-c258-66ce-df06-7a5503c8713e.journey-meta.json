@@ -1,0 +1,259 @@
+{
+    "key": "a8fce0c3-c258-66ce-df06-7a5503c8713e",
+    "name": "RE and MS_APAC_3P0019CSM_MidYear_Celebration_Pack_FY24",
+    "lastPublishedDate": "2024-06-11T16:12:01",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2024-06-11T16:11:33.563",
+    "modifiedDate": "2024-06-11T16:12:01.503",
+    "activities": [
+        {
+            "key": "EMAILV2-7",
+            "name": "RE and MS_APAC_CSM_MidYear_Celebration_Pack ",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "b55fe350-23e8-4093-9510-ec4e4d3b54e7",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "%%ContactFirstName%%, your %%Product Name%% mid-year Celebration Pack!",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {},
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "%%ContactFirstName%%, your %%Product Name%% mid-year Celebration Pack!",
+                    "emailSubject": "%%ContactFirstName%%, your %%Product Name%% mid-year Celebration Pack!",
+                    "exclusionFilter": "ROWCOUNT(LOOKUPROWS(\"\tRE and MS_APAC_CSM_CELEBRATION_PACK_JUNE11-2024\",\"EmailAddress\", EMAILADDR))>0",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": true,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {},
+                    "publicationListId": 187,
+                    "r__asset_key": "112e7e4b-1552-4ccd-8df7-6da125ea97df",
+                    "r__asset_name_readOnly": "RE and MS_APAC_CSM_MidYear_Celebration_Pack ",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2466,
+                    "r__triggeredSend_key": "240484",
+                    "suppressTracking": false,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleLimit": 0,
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "240484"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": "",
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "TRIGGER",
+            "description": "",
+            "type": "EmailAudience",
+            "outcomes": [],
+            "arguments": {
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "true"
+            },
+            "configurationArguments": {
+                "schemaVersionId": 0,
+                "criteria": ""
+            },
+            "metaData": {
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/images/icon-data-extension.svg",
+                "title": "Data Extension",
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "r__event_key": "DEAudience-49326118-b4ce-0a0a-51af-310c2e75ce5b"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "MultipleEntries",
+    "definitionType": "Quicksend",
+    "channel": "email",
+    "defaults": {
+        "email": [
+            "{{Event.DEAudience-49326118-b4ce-0a0a-51af-310c2e75ce5b.\"EmailAddress\"}}"
+        ],
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "dataSource": "ContactsModel",
+        "isScheduleSet": true,
+        "highThroughputSending": {
+            "email": false
+        }
+    },
+    "executionMode": "Production",
+    "status": "Published",
+    "scheduledStatus": "Sent",
+    "lastSendDate": "2024-06-11T22:01:06",
+    "r__folder_Path": "my journeys"
+}

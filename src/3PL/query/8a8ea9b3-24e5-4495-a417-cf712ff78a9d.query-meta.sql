@@ -1,0 +1,30 @@
+SELECT 
+LeadID, 
+[Auto Trial],
+FirstName,
+LastName,
+Date_Time,
+[Job Title],
+Email, 
+Country,
+State,
+[Creation Date to today _Days_],
+[Lead Status],
+[Lead Stage],
+[Product Code],
+[Marketing Interest],
+UserID,
+[Full Name],
+[First Name],
+[Last Name],
+Email_Seller, 
+[Unread By Owner],
+cid,
+Title,
+Phone,
+[Last Modified Date],
+[Last Modified By: Full Name],
+datename(weekday, Date_Time) as Date
+FROM [AT_Lead_SellerProfiles]
+WHERE Country = 'United Kingdom'
+OR Country LIKE '%Ireland%'

@@ -1,0 +1,352 @@
+{
+    "type": "SalesforceObjectTriggerV2",
+    "name": "AMER.MS Nurture Resource Journey ",
+    "description": "",
+    "createdDate": "2024-08-23T02:47:27.76",
+    "createdBy": "Vijay Kapadam",
+    "modifiedDate": "2024-08-28T10:08:47.83",
+    "modifiedBy": "Brittany Strachan",
+    "eventDefinitionKey": "SalesforceObj9d1c087ae259213c46249fc1ace89b67",
+    "schema": {
+        "fields": [
+            {
+                "name": "CampaignMember:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Country",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:CampaignId",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Title",
+                "dataType": "Text",
+                "maxLength": "128",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Email",
+                "dataType": "EmailAddress",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:HasOptedOutOfEmail",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:FirstName",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:LastName",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Campaign:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Campaign:Name",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "MemberRecordType",
+                "dataType": "Text",
+                "maxLength": "20",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            }
+        ],
+        "sendableCustomObjectField": "CampaignMember:Common:Id",
+        "sendableSubscriberField": "_SubscriberKey"
+    },
+    "sourceApplicationExtensionId": "90f5eca5-08bf-4006-a484-a2b32e4ecb80",
+    "filterDefinitionTemplate": "",
+    "iconUrl": "/jbint-events/events/CampaignMember/images/SF-Event-Icon.svg",
+    "arguments": {
+        "serializedObjectType": 0,
+        "criteria": "",
+        "useHighWatermark": false,
+        "automationId": "00000000-0000-0000-0000-000000000000"
+    },
+    "configurationArguments": {
+        "applicationExtensionKey": "SalesforceObjectTriggerV2",
+        "contactKey": {
+            "relationshipIdName": "Id",
+            "relationshipName": "Common",
+            "isPolymorphic": false,
+            "referenceObjectName": "Common"
+        },
+        "contactPersonType": "CampaignMember",
+        "evaluationCriteriaSummary": "Created;",
+        "eventDataConfig": {
+            "objects": [
+                {
+                    "dePrefix": "CampaignMember:",
+                    "isPolymorphic": false,
+                    "relationshipName": "",
+                    "referenceObject": "",
+                    "relationshipIdName": "",
+                    "fields": [
+                        "Id",
+                        "Country",
+                        "CampaignId",
+                        "Title"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Common:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Contacts and Leads",
+                    "relationshipName": "Common",
+                    "fields": [
+                        "Id",
+                        "Email",
+                        "HasOptedOutOfEmail",
+                        "FirstName",
+                        "LastName"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Campaign:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Campaign",
+                    "relationshipName": "Campaign",
+                    "fields": [
+                        "Id",
+                        "Name"
+                    ]
+                }
+            ]
+        },
+        "eventDataSummary": [
+            "CampaignMember:Campaign:Id",
+            "CampaignMember:Campaign:Name",
+            "CampaignMember:CampaignId",
+            "CampaignMember:Common:Email",
+            "CampaignMember:Common:FirstName",
+            "CampaignMember:Common:HasOptedOutOfEmail",
+            "CampaignMember:Common:Id",
+            "CampaignMember:Common:LastName",
+            "CampaignMember:Country",
+            "CampaignMember:Id",
+            "CampaignMember:Title"
+        ],
+        "objectAPIName": "CampaignMember",
+        "passThroughArgument": {
+            "fields": {
+                "ContactKey": "CampaignMember:Common:Id",
+                "Email": "CampaignMember:Common:Email",
+                "HasOptedOutOfEmail": "CampaignMember:Common:HasOptedOutOfEmail"
+            }
+        },
+        "primaryObjectFilterCriteria": {
+            "operand": "OR",
+            "conditions": [
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000M4awHIAR"
+                },
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000M4axtIAB"
+                },
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000M4HH8IAN"
+                },
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000M4ZtmIAF"
+                },
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000M4WBDIA3"
+                },
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000M4USiIAN"
+                },
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000M4ZaVIAV"
+                },
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000M4ZoyIAF"
+                }
+            ]
+        },
+        "primaryObjectFilterSummary": "CampaignMember:CampaignId = \"AMER_MS0049_EOYEngagementPack\" (701Mp00000M4awHIAR) or CampaignMember:CampaignId = \"AMER_MS0050_MSNJ_MS_BTSActivitiesPack\" (701Mp00000M4axtIAB) or CampaignMember:CampaignId = \"AMER_MS0051_MSNJ_TensFrames\" (701Mp00000M4HH8IAN) or CampaignMember:CampaignId = \"AMER_MS0052_MSNJ_GeoPrintables\" (701Mp00000M4ZtmIAF) or CampaignMember:CampaignId = \"AMER_MS0053_MSNJ_PotPlanProjectKit\" (701Mp00000M4WBDIA3) or CampaignMember:CampaignId = \"AMER_MS0054_MSNJ_FluencyActivities\" (701Mp00000M4USiIAN) or CampaignMember:CampaignId = \"AMER_MS0055_MSNJ_ProblemSolvingAndCriticalThinkingActivities\" (701Mp00000M4ZaVIAV) or CampaignMember:CampaignId = \"AMER_MS0056_MSNJ_NumberGames\" (701Mp00000M4ZoyIAF)",
+        "relatedObjectFilterCriteria": {
+            "operand": "AND",
+            "conditions": []
+        },
+        "relatedObjectFilterSummary": "",
+        "salesforceTriggerCriteria": "Created",
+        "version": "3.0",
+        "whoToInject": "Contact ID/Lead ID (Contacts and Leads)"
+    },
+    "metaData": {
+        "scheduleState": "No Schedule",
+        "criteriaDescription": ""
+    },
+    "interactionCount": 3,
+    "isVisibleInPicker": false,
+    "category": "Event",
+    "publishedInteractionCount": 1,
+    "disableDEDataLogging": false
+}

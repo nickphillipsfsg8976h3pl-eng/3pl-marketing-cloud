@@ -1,0 +1,42 @@
+{
+    "name": "Adhoc Imports Match CRM 18 Digit IDs from Staging",
+    "description": "",
+    "key": "960e4119-df6d-29f4-5c57-f181005fadd5",
+    "type": "scheduled",
+    "status": "Ready",
+    "schedule": {},
+    "steps": [
+        {
+            "name": "Find if there is an existing Contact",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "64F42FDB-B208-4F12-A359-8EC616B97719"
+                }
+            ]
+        },
+        {
+            "name": "Find if there is an existing Lead",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "AF53E493-0F95-494F-84DD-A0306109ED39"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "45B8C03E-5230-4E7A-B250-DE5D94FFD099"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2023-12-06T04:25:02.11Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2024-05-06T12:03:30.383Z",
+    "r__folder_Path": "my automations/BAU"
+}

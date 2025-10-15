@@ -1,0 +1,259 @@
+{
+    "key": "33820691-70ba-e6b9-880d-f004b734b34d",
+    "name": "test_exclusion_DE_Charlotte",
+    "lastPublishedDate": "2024-08-22T09:18:28",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2024-08-22T09:16:10.423",
+    "modifiedDate": "2024-08-22T09:18:28.127",
+    "activities": [
+        {
+            "key": "EMAILV2-2",
+            "name": "AMER_MX0073_RolloverFY25_CA_E1",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "1d313bcf-31e0-4251-be78-044f05604fbb",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "%%ContactFirstName%%, Confirm your Mathletics Subscription Coordinator.",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {},
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "%%ContactFirstName%%, Confirm your Mathletics Subscription Coordinator.",
+                    "emailSubject": "%%ContactFirstName%%, Confirm your Mathletics Subscription Coordinator.",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": true,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {},
+                    "preHeader": "Start the school year with ease, with Mathletics.",
+                    "publicationListId": 187,
+                    "r__asset_key": "ca546e55-99e7-45ed-b0c7-71e12bbdc70c",
+                    "r__asset_name_readOnly": "AMER_MX0073_RolloverFY25_CA_E1",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2455,
+                    "r__triggeredSend_key": "244764",
+                    "suppressTracking": false,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "244764"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": "",
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "TRIGGER",
+            "description": "ContactEmail does not contain @gmail.com",
+            "type": "EmailAudience",
+            "outcomes": [],
+            "arguments": {
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "{{Contact.FilterId.d856faf3-e3bc-4884-8585-f06e4a6ae154}}"
+            },
+            "configurationArguments": {
+                "schemaVersionId": 249,
+                "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"ContactsWithSubscriptions.ContactEmail\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;e1a843ef-0117-ee11-ba48-d4f5ef424921&quot;}\"><Value><![CDATA[@gmail.com]]></Value></Condition></ConditionSet></FilterDefinition>"
+            },
+            "metaData": {
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/images/icon-data-extension.svg",
+                "title": "Data Extension",
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
+                "r__event_key": "DEAudience-015428c7-66d9-26d8-7630-8160adb3aa36"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "MultipleEntries",
+    "definitionType": "Quicksend",
+    "channel": "email",
+    "defaults": {
+        "email": [
+            "{{Event.DEAudience-015428c7-66d9-26d8-7630-8160adb3aa36.\"ContactEmail\"}}"
+        ],
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "dataSource": "ContactsModel",
+        "isScheduleSet": true,
+        "highThroughputSending": {
+            "email": false
+        }
+    },
+    "executionMode": "Production",
+    "status": "Published",
+    "scheduledStatus": "Sent",
+    "lastSendDate": "2024-08-22T09:18:28",
+    "r__folder_Path": "my journeys"
+}

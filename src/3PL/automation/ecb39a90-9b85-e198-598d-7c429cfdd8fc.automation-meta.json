@@ -1,0 +1,145 @@
+{
+    "name": "B2C_AbandonedParentSignups_0005",
+    "description": "",
+    "key": "ecb39a90-9b85-e198-598d-7c429cfdd8fc",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2024-11-30T00:15:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "E. Australia Standard Time"
+    },
+    "steps": [
+        {
+            "name": "Source Data Extension",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "461D9211-527D-43FE-BAEA-EC4B258C9126"
+                }
+            ]
+        },
+        {
+            "name": "7 Day DE",
+            "activities": [
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_7Days",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "1 Month DE&amp;amp;#x27;s",
+            "activities": [
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_1Month",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_1Month_AMER",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_1Month_APAC",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_1Month_EMEA",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "3 Month DE&amp;amp;#x27;s",
+            "activities": [
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_3Months",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_3Months_AMER",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_3Months_APAC",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_3Months_EMEA",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "6 Month DE&amp;amp;#x27;s",
+            "activities": [
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_6Months",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_6Months_AMER",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_6Months_APAC",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_6Months_EMEA",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "12 Month DE&amp;amp;#x27;s",
+            "activities": [
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_12Months",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_12Months_AMER",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_12Months_APAC",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_12Months_EMEA",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "2 Years DE&amp;amp;#x27;s",
+            "activities": [
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_2Years",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_2Years_AMER",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_2Years_APAC",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "B2C_AbandonedParentSignups_0005_2Years_EMEA",
+                    "r__type": "filter"
+                }
+            ]
+        }
+    ],
+    "createdName": "Megan Fraser",
+    "createdDate": "2024-11-29T02:04:13.57Z",
+    "modifiedName": "Megan Fraser",
+    "modifiedDate": "2025-04-14T10:07:31.517Z",
+    "pausedName": "Megan Fraser",
+    "pausedDate": "2025-04-14T09:56:39.307Z",
+    "r__folder_Path": "my automations/B2C/Abandons"
+}

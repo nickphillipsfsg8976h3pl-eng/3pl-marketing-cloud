@@ -1,0 +1,235 @@
+{
+    "type": "SalesforceObjectTriggerV2",
+    "name": "JourneyBuilder_QA",
+    "description": "",
+    "createdDate": "2022-02-22T00:54:00.923",
+    "createdBy": "Stephan Peniguel",
+    "modifiedDate": "2022-02-22T01:08:05.033",
+    "modifiedBy": "Stephan Peniguel",
+    "eventDefinitionKey": "SalesforceObj055a4f6c4e90cc6c44c3d76ca55b90e7",
+    "schema": {
+        "fields": [
+            {
+                "name": "CampaignMember:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Country",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:ContactId",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:LeadId",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:FirstName",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Email",
+                "dataType": "EmailAddress",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:HasOptedOutOfEmail",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:UTM_Campaign__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:CampaignId",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Email",
+                "dataType": "EmailAddress",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:HasOptedOutOfEmail",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "MemberRecordType",
+                "dataType": "Text",
+                "maxLength": "20",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            }
+        ],
+        "sendableCustomObjectField": "CampaignMember:Common:Id",
+        "sendableSubscriberField": "_SubscriberKey"
+    },
+    "sourceApplicationExtensionId": "90f5eca5-08bf-4006-a484-a2b32e4ecb80",
+    "filterDefinitionTemplate": "",
+    "iconUrl": "https://sales-cloud-jbint-events.s7.marketingcloudapps.com/events/CampaignMember/images/SF-Event-Icon.svg",
+    "arguments": {
+        "serializedObjectType": 0,
+        "useHighWatermark": false,
+        "automationId": "00000000-0000-0000-0000-000000000000",
+        "criteria": ""
+    },
+    "configurationArguments": {
+        "applicationExtensionKey": "SalesforceObjectTriggerV2",
+        "contactKey": {
+            "relationshipIdName": "Id",
+            "relationshipName": "Common",
+            "isPolymorphic": false,
+            "referenceObjectName": "Common"
+        },
+        "contactPersonType": "CampaignMember",
+        "evaluationCriteriaSummary": "Created;",
+        "eventDataConfig": {
+            "objects": [
+                {
+                    "dePrefix": "CampaignMember:",
+                    "isPolymorphic": false,
+                    "relationshipName": "",
+                    "referenceObject": "",
+                    "relationshipIdName": "",
+                    "fields": [
+                        "Id",
+                        "Country",
+                        "ContactId",
+                        "LeadId",
+                        "FirstName",
+                        "Email",
+                        "HasOptedOutOfEmail",
+                        "UTM_Campaign__c",
+                        "CampaignId"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Common:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Contacts and Leads",
+                    "relationshipName": "Common",
+                    "fields": [
+                        "Id",
+                        "Email",
+                        "HasOptedOutOfEmail"
+                    ]
+                }
+            ]
+        },
+        "eventDataSummary": [
+            "CampaignMember:CampaignId",
+            "CampaignMember:Common:Email",
+            "CampaignMember:Common:HasOptedOutOfEmail",
+            "CampaignMember:Common:Id",
+            "CampaignMember:ContactId",
+            "CampaignMember:Country",
+            "CampaignMember:Email",
+            "CampaignMember:FirstName",
+            "CampaignMember:HasOptedOutOfEmail",
+            "CampaignMember:Id",
+            "CampaignMember:LeadId",
+            "CampaignMember:UTM_Campaign__c"
+        ],
+        "objectAPIName": "CampaignMember",
+        "passThroughArgument": {
+            "fields": {
+                "ContactKey": "CampaignMember:Common:Id",
+                "Email": "CampaignMember:Common:Email",
+                "HasOptedOutOfEmail": "CampaignMember:Common:HasOptedOutOfEmail"
+            }
+        },
+        "primaryObjectFilterCriteria": {
+            "operand": "OR",
+            "conditions": [
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "7012y000000YMRsAAO"
+                }
+            ]
+        },
+        "primaryObjectFilterSummary": "CampaignMember:CampaignId = \"WMD-2022\" (7012y000000YMRsAAO)",
+        "relatedObjectFilterCriteria": {
+            "operand": "AND",
+            "conditions": []
+        },
+        "relatedObjectFilterSummary": "",
+        "salesforceTriggerCriteria": "Created",
+        "version": "3.0",
+        "whoToInject": "Contact ID/Lead ID (Contacts and Leads)"
+    },
+    "metaData": {
+        "scheduleState": "No Schedule",
+        "criteriaDescription": ""
+    },
+    "interactionCount": 1,
+    "isVisibleInPicker": false,
+    "category": "Event",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false
+}

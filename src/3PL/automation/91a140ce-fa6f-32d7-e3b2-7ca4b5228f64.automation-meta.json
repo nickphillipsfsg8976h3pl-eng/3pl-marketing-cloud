@@ -1,0 +1,43 @@
+{
+    "name": "PostPurchase_Journey_AL",
+    "description": "",
+    "key": "91a140ce-fa6f-32d7-e3b2-7ca4b5228f64",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2024-08-29T03:15:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "64EDC7C1-0E11-4611-8599-F4B5D71F6DD1"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "0E0F44BE-8FE6-414C-AF71-B6E8CE8C8CA5"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "50D23BFC-4EE5-4FF6-98A0-65649B19318F"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "09067BE5-CB6E-4C57-84B2-22CF78DCCABA"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2024-08-28T11:33:25.67Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2024-08-28T12:02:40.59Z",
+    "pausedName": "Unknown",
+    "pausedDate": "2024-10-18T16:15:37.747Z",
+    "r__folder_Path": "my automations"
+}

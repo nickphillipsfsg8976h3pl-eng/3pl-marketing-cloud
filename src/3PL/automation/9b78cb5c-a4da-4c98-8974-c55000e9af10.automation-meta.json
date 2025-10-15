@@ -1,0 +1,85 @@
+{
+    "name": "Suppress Opt-Out and Inactive Contacts",
+    "description": "",
+    "key": "9b78cb5c-a4da-4c98-8974-c55000e9af10",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2024-03-06T17:15:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "826A60FE-0ED6-4614-BA79-60FCFC25B8A5"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "verification",
+                    "r__key": "9b78cb5c-a4da-4c98-8974-c55000e9af10__s2.1"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "dataExtract",
+                    "r__key": "C5DE3E8C-AECD-4CE4-826C-BC75989A8FCE"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "fileTransfer",
+                    "r__key": "d0d6b9ce-c850-42de-80fd-ca3a6bd9a73d"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "importFile",
+                    "r__key": "C3BDE6FF-3639-4360-B979-A9213CB73E6E"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "B6D1E451-54CE-411E-8C6A-D20C4DE6B267"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2024-03-06T03:26:57.987Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2024-03-06T06:01:04.857Z",
+    "pausedName": "Unknown",
+    "pausedDate": "2024-05-13T07:16:36.64Z",
+    "notifications": [
+        {
+            "email": [
+                "vijay.raghava@partners.3plearning.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/Adhoc"
+}

@@ -1,0 +1,1085 @@
+{
+    "key": "94da66d7-313f-d87e-2136-0ef1c6b3a24b",
+    "name": "APAC_MS0050_BTS_Onboarding_2023",
+    "lastPublishedDate": "0001-01-01T00:00:00",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2023-03-07T23:12:47.323",
+    "modifiedDate": "2023-03-07T23:12:47.323",
+    "activities": [
+        {
+            "key": "EMAILV2-1",
+            "name": "APAC_BTS_2023_MS_Email 1_V2",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "65f55aca-c132-4bc8-8cb2-36f231431a7b",
+                    "next": "WAITBYDURATION-1",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": true,
+                "googleAnalyticsCampaignName": "APAC_MS0050_BTS_Onboarding_2023",
+                "triggeredSend": {
+                    "analyticsTrackingRequest": {
+                        "campaignName": "APAC_MS0050_BTS_Onboarding_2023"
+                    },
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {},
+                    "description": "Welcome & Logins",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "A new year of success with Mathseeds!  ",
+                    "emailSubject": "A new year of success with Mathseeds!  ",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": true,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {},
+                    "preHeader": "Welcome to your 2023 school year. ",
+                    "publicationListId": 187,
+                    "r__asset_key": "4d9a915a-d460-4d17-9d9e-17af9603221a",
+                    "r__asset_name_readOnly": "APAC_BTS_2023_MS_Email 1_V2",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2119,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleLimit": 0,
+                    "throttleOpens": "1/1/0001 12:00:00 AM"
+                }
+            },
+            "metaData": {
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "category": "message",
+                "version": "1.0",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-2",
+            "name": "APAC_BTS_2023_MS_Email 2_V2",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "058f94a3-168a-44c6-99be-24ce441e3ee6",
+                    "next": "WAITBYDURATION-2",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": true,
+                "googleAnalyticsCampaignName": "APAC_MS0050_BTS_Onboarding_2023",
+                "triggeredSend": {
+                    "analyticsTrackingRequest": {
+                        "campaignName": "APAC_MS0050_BTS_Onboarding_2023"
+                    },
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "description": "Printables",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Start the new year strong with Mathseeds",
+                    "emailSubject": "Start the new year strong with Mathseeds",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": false,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "preHeader": "Printable resources and kick-start video!",
+                    "publicationListId": 187,
+                    "r__asset_key": "d4401d46-675b-4f5b-b1ae-0efdbc8e536c",
+                    "r__asset_name_readOnly": "APAC_BTS_2023_MS_Email 2_V2",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2119,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleLimit": 0,
+                    "throttleOpens": "1/1/0001 12:00:00 AM"
+                }
+            },
+            "metaData": {
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "category": "message",
+                "version": "1.0",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-3",
+            "name": "APAC_BTS_2023_MS_Email 3_V2",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "616a05b5-ccdb-4949-add7-13190d710bc9",
+                    "next": "WAITBYDURATION-3",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": true,
+                "googleAnalyticsCampaignName": "APAC_MS0050_BTS_Onboarding_2023",
+                "triggeredSend": {
+                    "analyticsTrackingRequest": {
+                        "campaignName": "APAC_MS0050_BTS_Onboarding_2023"
+                    },
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {},
+                    "description": "Mathseeds Resources ",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Discover Mathseeds resources to make your day! ",
+                    "emailSubject": "Discover Mathseeds resources to make your day! ",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": true,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {},
+                    "preHeader": "Find all your resources here.",
+                    "publicationListId": 187,
+                    "r__asset_key": "f3cc5b0c-1bc3-45da-99f5-305756a9fb84",
+                    "r__asset_name_readOnly": "APAC_BTS_2023_MS_Email 3_V2",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2119,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleLimit": 0,
+                    "throttleOpens": "1/1/0001 12:00:00 AM"
+                }
+            },
+            "metaData": {
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "category": "message",
+                "version": "1.0",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-4",
+            "name": "APAC_BTS_2023_MS_Email 4_V2",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "55bcfd22-8583-4dd3-8562-0d19fdf474c8",
+                    "next": "WAITBYDURATION-4",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": true,
+                "googleAnalyticsCampaignName": "APAC_MS0050_BTS_Onboarding_2023",
+                "triggeredSend": {
+                    "analyticsTrackingRequest": {
+                        "campaignName": "APAC_MS0050_BTS_Onboarding_2023"
+                    },
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {},
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Celebrate students success and foster a love of maths! ",
+                    "emailSubject": "Celebrate students success and foster a love of maths! ",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": true,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {},
+                    "preHeader": "Check them out",
+                    "publicationListId": 187,
+                    "r__asset_key": "9aac3d00-20cd-490c-9df8-33a33c0d32a2",
+                    "r__asset_name_readOnly": "APAC_BTS_2023_MS_Email 4_V2",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2119,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleLimit": 0,
+                    "throttleOpens": "1/1/0001 12:00:00 AM"
+                }
+            },
+            "metaData": {
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "category": "message",
+                "version": "1.0",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-1",
+            "name": "3 days",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "d706fa7c-188c-4930-b2fc-0739ca8e721f",
+                    "next": "EMAILV2-2",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": "3",
+                "waitUnit": "DAYS",
+                "timeZone": "AUS Eastern Standard Time",
+                "specifiedTime": "00:00"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-2",
+            "name": "3 days",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "21a692e4-9a72-4d7f-a67f-c08cf65c9075",
+                    "next": "EMAILV2-3",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": "3",
+                "waitUnit": "DAYS",
+                "timeZone": "AUS Eastern Standard Time",
+                "specifiedTime": "00:00"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-3",
+            "name": "3 days",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "98c11638-e7d3-4ded-9075-89e0ac0c4a54",
+                    "next": "EMAILV2-4",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": "3",
+                "waitUnit": "DAYS",
+                "timeZone": "AUS Eastern Standard Time",
+                "specifiedTime": "00:00"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-4",
+            "name": "3 days",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "28007552-bede-4f21-bb37-472905747b7c",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": "3",
+                "waitUnit": "DAYS",
+                "timeZone": "AUS Eastern Standard Time",
+                "specifiedTime": "00:00"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "TRIGGER",
+            "description": "",
+            "type": "Audience",
+            "outcomes": [],
+            "arguments": {},
+            "configurationArguments": {},
+            "metaData": {
+                "chainType": "none",
+                "configurationRequired": true,
+                "iconUrl": "/images/icon-data-extension.svg",
+                "title": "Data Extension",
+                "category": "Audience",
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "NotSet",
+    "definitionType": "Multistep",
+    "channel": "",
+    "defaults": {
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "dataSource": "ContactsModel"
+    },
+    "executionMode": "Production",
+    "status": "Draft",
+    "scheduledStatus": "Draft",
+    "r__folder_Path": "my journeys"
+}

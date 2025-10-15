@@ -1,0 +1,33 @@
+<!-- START OF LANGUAGE CHANGES --> 
+
+<!-- %%[ var @program, @region, @currency, @hero1, @hero2
+
+   SET @program = "program"
+   SET @COUNTRY = AttributeValue("Country")
+   
+   
+      IF EMPTY (@COUNTRY) THEN
+      SET @program = "program"
+      SET @region = "national"
+      SET @currency = "AUD"
+      SET @hero1= "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/4920573f-8ae1-4e98-9c43-e077f5c684fc.jpg"
+      SET @hero2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/af8c0d27-9355-4377-bf58-80849a131505.jpg"
+      
+      
+      ELSEIF @COUNTRY == "Australia" THEN
+       SET @program = "program"
+       SET @region = "Australian"
+       SET @currency = "AUD"
+       SET @hero1= "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/4920573f-8ae1-4e98-9c43-e077f5c684fc.jpg"
+      SET @hero2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/af8c0d27-9355-4377-bf58-80849a131505.jpg"
+
+         ELSEIF @COUNTRY ==  "New Zealand" THEN
+         SET @program = "programme"
+         SET @region = "national"
+         SET @currency = "NZD"
+         SET @hero1= "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/1c3ba2f0-3e19-48bf-b2cd-c1a540e1f9bf.jpg"
+      SET @hero2 = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/e872d612-08a0-46e2-b3d7-c18f5248ddbc.jpg"
+         
+    
+     ENDIF
+  ]%% -->

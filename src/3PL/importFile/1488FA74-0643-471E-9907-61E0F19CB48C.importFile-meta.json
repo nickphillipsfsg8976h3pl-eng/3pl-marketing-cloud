@@ -1,0 +1,37 @@
+{
+    "allowErrors": true,
+    "customerKey": "1488FA74-0643-471E-9907-61E0F19CB48C",
+    "createdDate": "2025-10-13T04:46:11.36",
+    "modifiedDate": "2025-10-13T05:38:58.18",
+    "dateFormatLocale": "en-US",
+    "deleteFile": false,
+    "destinationObjectId": "4c16ec68-1ea8-f011-a5db-5cba2c705458",
+    "fieldMappings": [],
+    "fieldMappingType": "InferFromColumnHeadings",
+    "fileNamingPattern": "%%FILENAME_FROM_TRIGGER%%",
+    "fileSpec": "",
+    "fileType": "CSV",
+    "filter": "",
+    "hasColumnHeader": true,
+    "isOrderedImport": true,
+    "isSequential": true,
+    "maxFileAgeHours": 0,
+    "maxImportFrequencyHours": 0,
+    "maxFileAgeScheduleOffsetHours": 0,
+    "name": "Lead_Data_Import_to_CRM_STAGING",
+    "notificationEmailAddress": "vijay.kapadam@partners.3plearning.com",
+    "sendEmailNotification": true,
+    "standardQuotedStrings": true,
+    "encodingName": "utf-8",
+    "sourceCustomObjectId": "",
+    "destination": {
+        "c__type": "DataExtension"
+    },
+    "source": {
+        "c__type": "File Location",
+        "r__fileLocation_name": "CRM_IMPORT"
+    },
+    "c__blankFileProcessing": "Fail",
+    "c__subscriberImportType": "DataExtension",
+    "c__dataAction": "Overwrite"
+}

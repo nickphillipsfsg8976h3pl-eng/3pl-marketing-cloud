@@ -1,0 +1,56 @@
+{
+    "name": "B2C_SF_SEGMENTATION",
+    "description": "",
+    "key": "7a18b474-e061-84f5-05c0-9098db14bd1b",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2023-02-10T06:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "0cd74cbf-25ab-4738-92cd-127d412d627e"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "Purchased a Home subscription"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "6904063e-52e4-4d74-a8e8-dc4932996aaf"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "c6d8c1f2-7e1d-42d7-9f38-c8e20e273752"
+                }
+            ]
+        }
+    ],
+    "createdName": "Stephan Peniguel",
+    "createdDate": "2023-02-01T06:15:13.49Z",
+    "modifiedName": "Andrew McLeod",
+    "modifiedDate": "2023-05-19T07:31:23.78Z",
+    "r__folder_Path": "my automations/0003_StaggingTables/0001_SalesforceDataSync"
+}

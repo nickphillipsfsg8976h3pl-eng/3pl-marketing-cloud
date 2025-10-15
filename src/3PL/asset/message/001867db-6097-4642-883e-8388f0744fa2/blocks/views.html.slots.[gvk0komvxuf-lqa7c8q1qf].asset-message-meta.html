@@ -1,0 +1,78 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+
+
+<!-- START OF PRODUCT STYLING SELECTION --> 
+
+
+
+<!-- %%[
+
+VAR @FN, @NAME, @TEMPLATE
+set @lookupValue = AttributeValue("FirstName") /* value from attribute or DE column in send context */
+set @RowCount_prof = RowCount(LookupRows("01_Profanity-Check", "Name", @lookupValue))
+
+IF @RowCount_prof == 0 THEN
+SET @FN = AttributeValue("FirstName")
+ELSE
+SET @FN = "there"
+ENDIF
+
+/* START NAMING CONVENTION */
+
+IF ( NOT(Empty(@FN)) AND Length(@FN) >= 1 ) THEN
+SET @Name = Concat("Hi ", ProperCase(Trim(@FN)), ", ")
+ELSE
+SET @Name = "Hi there, "
+ENDIF
+
+/* END NAMING CONVENTION */
+
+
+]%% 
+
+
+%%[
+
+
+
+
+SET @repEmail = "wendy.hilton@3plearning.com"
+SET @rep_FullName = "Wendy Hilton"
+SET @repPhone = "(315) 238-5119"
+set @rep_FName = "Wendy"
+
+
+
+SET @productInterest = AttributeValue("Product Interest")
+SET @p1 = "Mathletics"
+SET @p2 = "ReadingEggs"
+SET @p3 = "Mathseeds"
+
+IF @productInterest == "Mathletics" THEN
+SET @print = "Mathletics trial"
+
+ELSEIF @productInterest == "ReadingEggs" THEN
+SET @print = "Reading Eggs trial"
+
+ELSEIF @productInterest == "Mathseeds" THEN
+SET @print = "Mathseeds trial"
+
+
+/* Reading Eggs and Mathseeds only */
+
+ELSEIF IndexOf(@productInterest,@p2) > 0 AND IndexOf(@productInterest,@p3) > 0 AND IndexOf(@productInterest,@p1) < 0 THEN
+SET @print = "Reading Eggs and Mathseeds trials"
+
+/* Mathletics, Reading Eggs, and Mathseeds */
+
+ELSEIF IndexOf(@productInterest,@p1) > 0 AND IndexOf(@productInterest,@p2) > 0 AND  IndexOf(@productInterest,@p3) > 0 THEN
+SET @print = "Mathletics, Reading Eggs, and Mathseeds trials"
+
+ELSE
+SET @print = "trial"
+
+ENDIF
+
+]%%
+
+--></td></tr></table>

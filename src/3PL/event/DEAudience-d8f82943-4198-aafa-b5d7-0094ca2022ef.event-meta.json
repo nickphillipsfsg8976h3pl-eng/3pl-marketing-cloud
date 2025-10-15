@@ -1,0 +1,32 @@
+{
+    "type": "EmailAudience",
+    "name": "TEST-exclusion data by email address",
+    "description": "",
+    "createdDate": "2024-06-26T09:47:51.19",
+    "createdBy": "Charlotte Dillabough",
+    "modifiedDate": "2024-06-26T09:47:51.19",
+    "modifiedBy": "Charlotte Dillabough",
+    "eventDefinitionKey": "DEAudience-d8f82943-4198-aafa-b5d7-0094ca2022ef",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "e24cfd80-c957-42e5-a005-0a9484a98ac4",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"Email Addresses.Email Address\" Operator=\"NotEqual\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;698e06b8-1b4b-ec11-b838-48df37d68272&quot;}\"><Value><![CDATA[jody.bean@3plearning.com]]></Value></Condition><Condition Key=\"Email Addresses.Email Address\" Operator=\"NotEqual\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;698e06b8-1b4b-ec11-b838-48df37d68272&quot;}\"><Value><![CDATA[elizabeth.carlson@3plearning.com]]></Value></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 3,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"Email Addresses.Email Address\" Operator=\"NotEqual\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;698e06b8-1b4b-ec11-b838-48df37d68272&quot;}\"><Value><![CDATA[jody.bean@3plearning.com]]></Value></Condition><Condition Key=\"Email Addresses.Email Address\" Operator=\"NotEqual\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;698e06b8-1b4b-ec11-b838-48df37d68272&quot;}\"><Value><![CDATA[elizabeth.carlson@3plearning.com]]></Value></Condition></ConditionSet></FilterDefinition>",
+        "useHighWatermark": false
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "criteriaDescription": "Email Address is not equal jody.bean@3plearning.com AND Email Address is not equal elizabeth.carlson@3plearning.com",
+        "scheduleFlowMode": "runOnce",
+        "runOnceScheduleMode": "onPublish",
+        "scheduleState": "No Schedule"
+    },
+    "interactionCount": 1,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 1,
+    "disableDEDataLogging": false,
+    "r__automation_key": "a0d7f7f5-c7f0-4d12-aad7-132803beda8c"
+}

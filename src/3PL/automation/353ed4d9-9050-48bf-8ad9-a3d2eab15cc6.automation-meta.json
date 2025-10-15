@@ -1,0 +1,58 @@
+{
+    "name": "RE3P_Automated_Teacher_Trials_TargetData",
+    "description": "",
+    "key": "353ed4d9-9050-48bf-8ad9-a3d2eab15cc6",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2024-11-25T11:43:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=HOURLY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "importFile",
+                    "r__key": "890075A9-1117-4B97-AB9B-9CC537F34157"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "2F902B6B-FEEE-4793-A3E7-9C56606862A3"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "AMER_RE0114_AT_Nurture_V1",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2024-11-20T13:09:07.48Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2025-10-13T11:19:19.167Z",
+    "pausedName": "Vijay Kapadam",
+    "pausedDate": "2025-10-13T11:18:59.593Z",
+    "notifications": [
+        {
+            "email": [
+                "vijay.kapadam@partners.3plearning.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations"
+}

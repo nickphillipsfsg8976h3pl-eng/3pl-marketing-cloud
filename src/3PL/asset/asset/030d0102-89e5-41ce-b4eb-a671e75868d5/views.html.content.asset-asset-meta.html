@@ -1,0 +1,141 @@
+%%[
+SET @id = RequestParameter('id')
+Set @rs= RetrieveSalesforceObjects('Contact', 'Marketing_Interest__c, Email, FirstName','Id', '=', @id)
+Set @Email = Field(ROW(@rs,1), 'Email')
+Set @FirstName = Field(ROW(@rs,1), 'FirstName')
+Set @Marketing_Interest__c = Field(ROW(@rs,1), 'Marketing_Interest__c')
+Set @match= "Newsletter" 
+
+if IndexOf(@Marketing_Interest__c ,@match) > 0 then 
+    
+else 
+   Set @Marketing_Interest__c = CONCAT(@Marketing_Interest__c,';','Newsletter;')
+   SET @updaterecord = UpdateSingleSalesforceObject('Contact',@id,'Marketing_Interest__c',@Marketing_Interest__c)
+
+/* Trigger Send Object Creation */
+            SET @ts = CreateObject("TriggeredSend")
+            SET @tsDef = CreateObject("TriggeredSendDefinition")
+            SET @ts_subkey = @id
+
+/* Set the External Key of the Trigger Send Definition */
+            SetObjectProperty(@tsDef, "CustomerKey", "55718")
+            SetObjectProperty(@ts, "TriggeredSendDefinition", @tsDef)
+
+/* Create the Subscriber Object */
+            SET @ts_sub = CreateObject("Subscriber")
+            SetObjectProperty(@ts_sub, "EmailAddress", @Email)
+
+
+/* Set SubscriberKey to EmailAddress */
+                SetObjectProperty(@ts_sub, "SubscriberKey", @ts_subkey)
+
+
+/* Create and Set Attributes */
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "SubscriberKey")
+            SetObjectProperty(@attr, "Value",  @ts_subkey)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "EmailAddress")
+            SetObjectProperty(@attr, "Value", @Email)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "FirstName")
+            SetObjectProperty(@attr, "Value", @FirstName)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+   
+/* Add all Attributes into Array */
+            AddObjectArrayItem(@ts, "Subscribers", @ts_sub)
+
+/*Complete the Web API call to trigger send */
+            SET @ts_statusCode = InvokeCreate(@ts, @ts_statusMsg, @errorCode)
+
+/* Raise Error if Trigger fails */
+            IF @ts_statusCode != "OK" THEN
+               RaiseError(@ts_statusMsg, 0, @ts_statusCode, @errorCode)
+            ENDIF 
+
+
+
+endif 
+
+
+
+
+]%%
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="https://cloud.mc3.3plearning.com/prefcentrecss"  media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+        </style>
+      
+    </head>
+
+    <body class="">
+        <nav class="" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img src="http://image.mc3.3plearning.com/lib/fe9413737461017874/m/1/89df9399-8e0e-4ec7-a372-ad9f86ff4b8b.png"/></a>
+            </div>
+        </nav>
+        <body> 
+   <div style="min-height:-webkit-fill-available;" class="container">
+                
+    <div class="row">
+    <div  class="col m8 offset-m2 center">
+     <h1>
+     Thank you for subscribing!
+     
+     </h1>
+     
+     <p style="font-size: 20px;">Your first newsletter is on its way 📧</p>
+    
+     </div>
+    
+
+    </div>
+    
+     <div  class="col m8 offset-m2 center">
+    <img style="width: 100%; max-width: 596px;" src="https://marketing-cdn.3plearning.com/uploads/dev/assets/happypeas_v1.gif"/>
+     </div>
+    
+    
+    
+    
+    <!--END FORM-->
+            </div><!--END CONTAINER-->
+            <footer class="page-footer">
+                <div class="footer-copyright">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l6 m12 s12 left-align copyright-left">
+                                <p class="">Copyright %%=Format(Now(), "yyyy")=%%. <a href="https://www.3plearning.com/">3P Learning</a> - Transforming lives through a love of learning.</p>
+                            </div>
+                            <div class="col l6 m12 s12 right-align copyright-right">
+                                <p class="grey-text darken-3">
+                                    <a class="" href="http://www.3plearning.com/hello/">About Us</a>&nbsp;&nbsp;&#124;&nbsp;
+                                    <a class="" href="http://www.3plearning.com/careers/">Careers</a>&nbsp;&nbsp;&#124;&nbsp;
+                                    <a class="" href="http://www.3plearning.com/contact/">Contact Us</a>&nbsp;&nbsp;&#124;&nbsp;
+                                    <a class="" href="http://www.3plearning.com/privacy/">Privacy Policy</a>&nbsp;&nbsp;&#124;&nbsp;
+                                    <a class="" href="http://www.3plearning.com/terms/">Terms &amp; Conditions</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div><!--END CONTAINER-->
+                </div><!--END FOOTER-->
+            </footer>
+        </body>
+
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="https://cloud.mc3.3plearning.com/prefcentrejs"></script>
+    </body>
+</html>

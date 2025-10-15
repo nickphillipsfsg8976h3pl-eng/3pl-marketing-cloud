@@ -1,0 +1,1051 @@
+
+<!--
+/**************************
+GET PREFRENCE CENTRE v2
+**************************/
+-->
+
+
+%%[/*
+==============================================================================
+
+
+
+Welcome to the prefernece centre! 
+
+This page is the main ui that a customer would see after clicking the 'preference centre' link at the bottom of their emails.
+
+As of December 2021, we collect 3 types of informatioon on a customer:
+
+- personal (email, mobile number, birthdate), 
+- subscriptions/marketing interests (product updates, newsletter, promotions), 
+- and product interests (mathletics, mathseeds, reading eggs). 
+
+On submit this information is updated in 3 places:
+(Please see the accompanying 'submit' script)
+
+- profile/preference attribtutes in marketing cloud,
+- publication lists in marketing cloud
+- & in the Lead Object in the SFDC CRM
+
+
+TODO:
+- bug fix: profile/preference attributes are not updated if status is unsubscribed (normal internal MC feature)
+- turn on mobile number
+- click on card not checkbox
+- add semantic html and aria attributes
+- add favicon
+- add a "snooze" dropdown instead of unsubscribe
+- add "How often would you like to hear from us" dropdown
+
+LOG:
+- 10/01/22: added GA gtag.js in the <head>
+
+
+NOTES:
+- Currently @reggs is pulling data from SF and will determine if the toggle is t/f as we are not currently extracting change on the subscription preferneces in SF as a sales rep can make an update and MC needs to accomodate in the eventual future by creating an automation to update the preference data
+    %%=IIF(@reggs, 'checked', '')=%%
+    %%=IIF(@READING_EGGS, 'checked', '')=%% 
+
+
+==============================================================================
+*/]%%
+
+<!--
+/**************************
+PREFRENCES FROM SF
+**************************/
+-->
+
+<!-- ================== SERVER-SIDE ================== -->
+
+
+<script runat="server">
+  Platform.Load("Core", "1")
+
+
+  /***********************************************
+    -- GET SUBSCRIBER
+    ************************************************/  
+  //var _subscriberKey = _SubscriberKey? _SubscriberKey: "test.account.26.03.22";
+
+
+    var sub = Attribute.GetValue("_subscriberkey");
+    var _subscriberKey = sub? sub : "00Q9D0000032nnvUAA";  
+    var batch = Attribute.GetValue("_JobSubscriberBatchID");
+    var job = Attribute.GetValue('jobid');
+ // var _subscriberKey = _SubscriberKey? _SubscriberKey: "00Q9D0000032GE7UAM";
+
+  var subscriber = Subscriber.Retrieve({Property:"SubscriberKey",SimpleOperator:"equals",Value: _subscriberKey});
+  var subscriberKey = subscriber[0].SubscriberKey;
+  var subscriberID = subscriber[0].ID;
+  var emailAddress = subscriber[0].EmailAddress;
+  var status = subscriber[0].Status;
+  Variable.SetValue("@sub", sub);
+  Variable.SetValue("@SUBSCRIBER_KEY", subscriberKey);
+  Variable.SetValue('@EMAIL_ADDRESS', emailAddress);
+  Variable.SetValue('@STATUS', status == "Unsubscribed"? true: false);
+
+
+
+  /***********************************************
+    -- GET PROFILE/PREFERNCES ATTRIBUTES
+    ************************************************/
+
+
+  var attributes = Subscriber.Init(subscriberKey).Attributes.Retrieve();
+
+  var profile={};
+
+  for(var i=0; i<attributes.length; i++) {
+
+    if (attributes[i].Name==='GUID') { profile.GUID = attributes[i].Value };
+    if (attributes[i].Name==='MID') { profile.MID = attributes[i].Value };
+    if (attributes[i].Name==='Birthdate') { profile.birthdate = attributes[i].Value };
+    //if (attributes[i].Name==='Mobile Number') { profile.mobileNumber = attributes[i].Value };
+
+    if (attributes[i].Name==='3PL_Mathletics') { profile.mathletics = attributes[i].Value };
+    if (attributes[i].Name==='3PL_ReadingEggs') { profile.readingEggs = attributes[i].Value };
+    if (attributes[i].Name==='3PL_Mathseeds') { profile.mathseeds = attributes[i].Value };
+    if (attributes[i].Name==='3PL_Newsletter') { profile.newsletter = attributes[i].Value };
+    if (attributes[i].Name==='3PL_ProductInformation') { profile.productInformation = attributes[i].Value };
+    if (attributes[i].Name==='3PL_Promotions') { profile.promotions = attributes[i].Value };
+
+  }//for
+
+
+  Variable.SetValue('@BIRTHDATE', profile.birthdate);
+  Variable.SetValue('@MOBILE_NUMBER', profile.mobileNumber);
+
+  Variable.SetValue('@MATHLETICS', profile.mathletics);
+  Variable.SetValue('@READING_EGGS', profile.readingEggs);
+  Variable.SetValue('@MATHSEEDS', profile.mathseeds);
+  Variable.SetValue('@NEWSLETTER', profile.newsletter);
+  Variable.SetValue('@PRODUCT_INFORMATION', profile.productInformation);
+  Variable.SetValue('@PROMOTIONS', profile.promotions);
+
+
+
+  /*****************************************************************
+    -- GET ALL RELATED RECORD SUBSCRIBER KEYS (BASED ON EMAIL ADDRESS)
+    ******************************************************************/
+
+
+  var relatedSubscribers = DataExtension.Init("ent._Subscribers").Rows.Lookup(["EmailAddress"], [emailAddress]);
+
+  var subscriberKeys = [];
+  for (var i=0; i<relatedSubscribers.length; i++) {
+    subscriberKeys.push(relatedSubscribers[i].SubscriberKey);
+  }//for
+
+  Variable.SetValue('@SUBSCRIBER_KEYS', subscriberKeys.toString())
+
+
+
+  /*****************************************************************
+    -- GET ALL RELATED RECORD SUBSCRIBER KEYS (BASED ON GUID)
+    ******************************************************************/
+
+
+  //  var entAttributeDE = DataExtension.Init("ent._EnterpriseAttribute")
+  //  var GUID = entAttributeDE.Rows.Lookup(["_SubscriberID"], [subscriberID])[0].GUID;
+  //  var relatedAttributes = entAttributeDE.Rows.Lookup(["GUID"], [GUID]);
+
+  //  var subscriberKeys = [];
+
+  //     for (var i=0; i<relatedAttributes.length; i++) {
+  //       subscriberKeys.push(entSubscribersDE.Rows.Lookup(["SubscriberID"], [relatedAttributes[i]._SubscriberID])[0].SubscriberKey)
+  //     }//for
+
+  //     Variable.SetValue('@SUBSCRIBER_KEYS', subscriberKeys.toString())
+
+
+
+  /***********************************************
+    -- GENERAL PARAMETERS
+    ************************************************/
+
+
+  Variable.SetValue("@JOB_ID", jobID);
+  Variable.SetValue("@LIST_ID", listID);
+  Variable.SetValue("@BATCH_ID", _JobSubscriberBatchID);
+
+
+
+  /***********************************************
+    -- HEADERS
+    ************************************************/
+
+
+  //no cache
+  Platform.Response.SetResponseHeader("Cache-Control","no-store, must-revalidate");
+  Platform.Response.SetResponseHeader("Pragma","no-cache");
+  Platform.Response.SetResponseHeader("Expires","0");
+
+  //security
+  Platform.Response.SetResponseHeader("Strict-Transport-Security","max-age=200");
+  Platform.Response.SetResponseHeader("X-XSS-Protection","1; mode=block");
+  Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+  Platform.Response.SetResponseHeader("X-Content-Type-Options","nosniff");
+  Platform.Response.SetResponseHeader("Referrer-Policy","strict-origin-when-cross-origin");
+  //Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+
+
+</script>
+
+
+
+
+%%=Concat('<', 'script>')=%%
+
+
+/**********************************
+-- DEBUG SCRIPT - BROWSER
+
+(open the console tab in your
+
+browser inspector to see the values
+that are populating when this page 
+loads)
+
+***********************************/
+
+console.log("\nsub:\n\n//%%=V(@sub)=%%")
+console.log("\nSUBSCRIBER_KEY:\n\n//%%=V(@SUBSCRIBER_KEY)=%%")
+console.log("\nSUBSCRIBER_KEYS(ALL):\n\n//%%=V(@SUBSCRIBER_KEYS)=%%")
+
+console.log("\nEMAIL_ADDRESS:\n\n//%%=V(@EMAIL_ADDRESS)=%%")
+console.log("\nSTATUS (SUBSCRIBED):\n\n//%%=V(@STATUS)=%%")
+
+console.log("\nBIRTHDATE:\n\n//%%=V(@BIRTHDATE)=%%")
+//console.log("\nMOBILE_NUMBER:\n\n//%%=V(@MOBILE_NUMBER)=%%")
+console.log("\nMATHLETICS:\n\n//%%=V(@MATHLETICS)=%%")
+console.log("\nREADING_EGGS:\n\n//%%=V(@READING_EGGS)=%%")
+console.log("\nMATHSEEDS:\n\n//%%=V(@MATHSEEDS)=%%")
+console.log("\nNEWSLETTER:\n\n//%%=V(@NEWSLETTER)=%%")
+console.log("\nPRODUCT_INFORMATION:\n\n//%%=V(@PRODUCT_INFORMATION)=%%")
+console.log("\nPROMOTIONS:\n\n//%%=V(@PROMOTIONS)=%%")
+
+
+%%=Concat('</', 'script>')=%%
+
+
+
+
+
+
+
+
+<!-- ====================================================== HEAD ====================================================== -->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- META -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>3PLearning - Email Preferences</title>
+
+    <!-- Google Analytics - Global Site Tag (https://developers.google.com/analytics/devguides/collection/gtagjs) -->
+    %%=Concat('<', 'script async src="https://www.googletagmanager.com/gtag/js?id=G-S1F8V332SB"></script>')=%%
+    %%=Concat('<', 'script>')=%%
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S1F8V332SB');
+    %%=Concat('</', 'script>')=%%
+
+    <!-- Materialize (https://materializecss.com/) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    %%=Concat('<', 'script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>')=%%
+
+    %%[/*
+    <!-- Toastify (https://www.npmjs.com/package/toastify-js) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    %%=Concat('<', 'script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>')=%%
+    */]%%
+
+    <!-- Axios (https://github.com/axios/axios) -->
+    %%=Concat('<', 'script src="https://cdn.jsdelivr.net/npm/axios@0.26.1/dist/axios.min.js"></script>')=%%
+
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" href="https://preferences.my.3plearning.com/test-preference-centre-css">
+
+  </head>
+
+
+
+  <!-- ====================================================== BODY ====================================================== -->
+
+
+
+  <body class="custom-background">
+
+
+
+
+    <!-- LOADING INDICATOR -->
+    <div id="dom-loading-indicator">
+      <div class="custom-loading-backdrop">
+        <div class=custom-loading-spinner-position>
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-green-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+              <div class="circle"></div>
+              </div><div class="circle-clipper right">
+              <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- NAV/LOGO -->
+    <div class="custom-nav">
+      <div class="container">
+        <a href="https://3plearning.com">
+          <img class="custom-mobile-center"
+               src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/055af50d-722b-450e-a34d-88cb191a2384.png" />
+        </a>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- FORM -->
+    <form id="dom-preferences-form" 
+          method="POST"
+          action="/submit-preferences-v2-13-12-2021" >
+
+
+
+
+
+      <!-- HIDDEN -->
+      <input type="hidden" name="job_id" value="%%=v(@JOB_ID)=%%">
+      <input type="hidden" name="list_id" value="%%=v(@LIST_ID)=%%">
+      <input type="hidden" name="batch_id" value="%%=v(@BATCH_ID)=%%">
+
+      <input type="hidden" name="subscriber_key" value="%%=v(@SUBSCRIBER_KEY)=%%" />
+      <input type="hidden" name="subscriber_keys" value="%%=v(@SUBSCRIBER_KEYS)=%%">
+      <input type="hidden" name="email_address" value="%%=v(@EMAIL_ADDRESS)=%%">
+
+      <input type="hidden" name="previous_mobile_number" value="%%=v(@MOBILE_NUMBER)=%%">
+      <input type="hidden" name="previous_birthdate" value="%%=v(@BIRTHDATE)=%%">
+
+      %%=IIF(@MATHLETICS, '<input type="hidden" name="previous_mathletics" value="true">', '')=%%
+      %%=IIF(@MATHSEEDS, '<input type="hidden" name="previous_mathseeds" value="true">', '')=%%
+      %%=IIF(@READING_EGGS, '<input type="hidden" name="previous_reading_eggs" value="true">', '')=%%
+      %%=IIF(@PRODUCT_INFORMATION, '<input type="hidden" name="previous_product_information" value="true">', '')=%%
+      %%=IIF(@NEWSLETTER, '<input type="hidden" name="previous_newsletter" value="true">', '')=%%
+      %%=IIF(@PROMOTIONS, '<input type="hidden" name="previous_promotions" value="true">', '')=%%
+
+      %%=IIF(@STATUS, '', '<input type="hidden" name="previous_status" value="true">')=%%
+
+
+
+
+
+
+      <!-- CONTENT WRAPPER -->
+      <div class="container">
+
+%%[
+==============================================================================
+
+/* Is this a lead or a contact*/
+
+ SET @contactId = "00Q9D0000032nnvUAA"
+
+ IF Substring(@contactId,1,3) == '003' THEN
+     SET @subscriberRows = RetrieveSalesforceObjects(
+   "contact",
+   "FirstName,LastName,Email,Marketing_Product_Interest__c,Marketing_Interest__c,HasOptedOutOfEmail",
+   "Id", "=", @contactId )
+    ELSEIF Substring(@contactId,1,3) == '00Q' THEN
+   SET @subscriberRows = RetrieveSalesforceObjects(
+   "lead",
+   "FirstName,LastName,Email,Marketing_Product_Interest__c,Marketing_Interest__c,HasOptedOutOfEmail",
+   "Id", "=", @contactId )
+ ELSE Redirect(CloudPagesURL(4670))
+ ENDIF
+
+ 
+ 
+ /* var @subscriberRows
+
+set @subscriberRows = RetrieveSalesforceObjects(
+   "lead",
+   "FirstName,LastName,Email,Marketing_Product_Interest__c",
+   "Id", "=", @contactId ) */
+   
+
+if RowCount(@subscriberRows) == 1 then /* there should only be one row */
+  var @subscriberRow, @firstName, @lastName, @email
+  set @subscriberRow = Row(@subscriberRows, 1)
+  set @firstName = Field(@subscriberRow, "FirstName")
+  set @lastName = Field(@subscriberRow, "LastName")
+  set @email = Field(@subscriberRow, "Email")
+  SET @marketingproductinterest = Field(@subscriberRow, "Marketing_Product_Interest__c")
+  SET @marketinginterest = Field(@subscriberRow, "Marketing_Interest__c")
+  SET @HasOptedOutOfEmail = Field(@subscriberRow, "HasOptedOutOfEmail")
+endif
+ 
+
+ Output(Concat(" lastName: ", @lastName, " firstName: ", @firstName, " ContactID: ", @contactId, " marketingproductinterest: ", @marketingproductinterest, " unsub in MC: ", @STATUS)) 
+
+
+/* 
+var  @e, @arrPos, @count, @lastVal
+
+set @e = BuildRowsetFromString(@marketingproductinterest,";")
+set @count = rowcount(@e)
+
+if indexOf(@marketingproductinterest, "Mathletics") > 0 then
+  set @mx ="mx=true"
+    outputline(concat("<br>output: ",@mx))
+
+elseif indexOf(@marketingproductinterest, "ReadingEggs") > 0 then
+  set @re ="re=true"
+   outputline(concat("<br>output: ", @re, @ms, @mx))  
+elseif indexOf(@marketingproductinterest, "Mathseeds") > 0 then
+  set @ms ="ms=true"
+    outputline(concat("<br>output: ",@ms))    
+endif */
+
+  SET @prods = @marketingproductinterest
+  SET @minterest = @marketinginterest
+
+    IF IndexOf(@prods,"ReadingEggs") > 0 THEN 
+      set @reggs = "true"
+      else
+      set @reggs = "false"
+      endif
+    IF IndexOf(@prods,"Mathseeds") > 0 THEN 
+     set @mseeds = "true"  
+      endif
+    IF IndexOf(@prods,"Mathletics") > 0 THEN 
+     set @mxs = "true"
+     endif   
+    IF IndexOf(@minterest,"Newsletter") > 0 THEN 
+     set @newsL = "true"  
+      endif
+   IF IndexOf(@minterest,"Product information") > 0 THEN 
+     set @proInfo = "true"  
+      endif
+    IF IndexOf(@minterest,"Promotions") > 0 THEN 
+     set @promo = "true"  
+      endif
+    outputline(concat("<br>MS: ", @mseeds, "<br>RE: ", @reggs, "<br>MX: ", @mxs, "<br>Product Info: ", @proInfo))
+
+
+
+
+]%%
+
+        <div class="custom-spacing-40px"></div>
+
+
+        <!-- TITLE -->
+        <div class="row">
+          <div class="col s12">
+            <h3>Update your preferences</h3>
+          </div>
+        </div>
+
+
+
+
+        <div class="custom-spacing-40px"></div>
+
+
+
+
+        <!-- EMAIL ADDRESS -->
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input disabled value="%%=v(@EMAIL_ADDRESS)=%%" id="disabled" type="text" class="validate">
+            <label for="disabled">Email</label>
+          </div>
+        </div>
+
+
+
+
+        <!-- MOBILE NUMBER 
+
+<div class="row">
+<div class="input-field col s12">
+<i class="material-icons prefix">smartphone</i>
+<input type="tel" id="next_mobile_number" name="next_mobile_number" placeholder="Can we message you?">
+<label for="icon_telephone">Mobile</label>
+</div>
+</div>
+
+-->
+
+
+
+        <!-- BIRTHDATE -->
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">card_giftcard</i>
+            <input type="text" id="next_birthdate" name="next_birthdate" placeholder="When is your birthday?" class="datepicker">
+            <label for="email">Birthdate</label>
+          </div>
+        </div>
+
+
+        <div class="custom-spacing-20px"></div>
+
+
+        <!-- INTRO -->
+        <div class="row">
+          <div class="col s12">
+            <p class="custom-intro-text">
+              Choose what communications you’d like to receive from 3P Learning. We’re always
+              trying to provide you with the most relevant information, ideas, tips and news – if you have
+              any feedback, we’d love to hear it – reach out to <a href="https://support.3plearning.com">support@3plearning.com</a> with your thoughts!
+            </p>
+          </div>
+        </div>
+
+
+
+
+        <div class="row">
+          <div class="col s12 xl6">
+
+
+
+
+            <!-- MARKETING INTERESTS TITLE -->
+            <div class="custom-spacing-20px"></div>
+            <h6>Subscriptions:</h6>
+            <div class="divider"></div>
+            <div class="custom-spacing-20px"></div>            
+
+
+
+            <!-- PRODUCT INFORMATION -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s10">
+                        <h5>Product Updates</h5>
+                        <p>What’s new with 3P Learning products you’re following, like new features,
+                          games
+                          and activities, as well as bug-fixes, troubleshooting and upcoming
+                          upgrades.
+                        </p>
+                      </div>
+                      <div class="col s2">
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="next_product_information" name="next_product_information" value="true" 
+                                   %%=IIF(@PRODUCT_INFORMATION, 'checked', '')=%%
+
+                                   >
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- NEWSLETTER -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s10">
+                        <h5>Newsletter</h5>
+                        <p>Get regular updates from the Team at 3P Learning, with insights, blogs,
+                          resources, and what’s happening in the wonderful world of Edtech!</p>
+                      </div>
+                      <div class="col s2">
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="next_newsletter" name="next_newsletter" value="true"
+                                   %%=IIF(@NEWSLETTER, 'checked', '')=%%
+
+                                   >
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- PROMOTIONS -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s10">
+                        <h5>Features and Promotions</h5>
+                        <p>See how the range of 3P Learning products can complement your students or
+                          kids’ education, from maths, to spelling, to STEM and literacy
+                          development.</p>
+                      </div>
+                      <div class="col s2">
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="next_promotions" name="next_promotions" value="true"
+                                   %%=IIF(@PROMOTIONS, 'checked', '')=%%
+
+                                   >
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+          <!-- DESKTOP RESPONSIVE -->
+          <div class="col s12 xl6">
+
+
+
+
+            <!-- PRODUCT INTERESTS TITLE -->
+            <div class="custom-spacing-20px"></div>
+            <h6>Product Interests:</h6>
+            <div class="divider"></div>
+            <div class="custom-spacing-20px"></div>
+
+
+
+
+            <!-- MATHLETICS -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s2 hide-on-small-and-down"> 
+                        <img
+                             src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/fd97c9c3-c2bb-4c06-9f5a-131e1634d8d1.png"
+                             alt="Mathletics Logo" class="responsive-img circle grey lighten-3">
+                      </div>
+                      <div class="col s8">
+                        <h5>Mathletics</h5>
+                        <p>
+                          Our world-famous mathematics program created by specialist educators to
+                          support in-school or at-home learning.
+                      </div>
+                      <div class="col s2">
+                        <!-- Switch -->
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="next_mathletics" name="next_mathletics" value="true"
+                                   %%=IIF(@MATHLETICS, 'checked', '')=%%
+                                   >
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- MATHSEEDS -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s2 hide-on-small-and-down"> 
+                        <img
+                             src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/8a685bfd-ed3a-4d1e-8db4-805a8125fd95.png"
+                             alt="Mathseeds Logo" class="responsive-img circle grey lighten-3">
+                      </div>
+                      <div class="col s8">
+                        <h5>Mathseeds</h5>
+                        <p>The engaging mathematics program designed to introduce numeracy and basic
+                          mathematics to early learners..</p>
+                      </div>
+                      <div class="col s2">
+                        <!-- Switch -->
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="next_mathseeds" name="next_mathseeds" value="true"
+                                   %%=IIF(@MATHSEEDS, 'checked', '')=%%
+                                   >
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- READING EGGS -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s2 hide-on-small-and-down">
+                        <img src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/96651f9c-b1d1-4a21-b40e-1fd0c9f38db9.png"
+                             alt="Reading Eggs Logo" class="responsive-img circle grey lighten-3">
+                      </div>
+                      <div class="col s8">
+                        <h5>Reading Eggs</h5>
+                        <p>The reading program packed with resources designed to entertain and
+                          engage
+                          young minds with reading and literacy. </p>
+                      </div>
+                      <div class="col s2">
+                        <!-- Switch -->
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="next_reading_eggs" name="next_reading_eggs" value="true"
+                                   %%=IIF(@READING_EGGS, 'checked', '')=%%
+
+                                   >
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+        <!-- //responsive desktop-->
+
+
+
+
+
+        <!-- UNSUBSCRIBE -->
+        <div class="row">
+          <div class="col s12">
+            <div class="custom-unsubscribe-panel">
+              <div class="row">
+                <div class="valign-wrapper custom-min-height">
+                  <div class="col s10">
+                    <h5>%%=IIF(@STATUS, 'You are currently unsubscribed', 'You are currently subscribed')=%%</h5>
+                    <p>%%=IIF(@STATUS, 'Click here to subscribe to our news, articles, ideas, inspirations, 
+                      promotional offers, and more from 3P Learning', 'Click here to unsubscribe from our news, articles, ideas, inspirations,
+                      promotional offers, and more from 3P Learning')=%%.</p>
+                  </div>
+                  <div class="col s2">
+                    <div class="switch">
+                      <label>
+                        <input type="checkbox" id="next_status" name="next_status" value="true"
+
+                                %%=IIF(@STATUS == 'true', '', 'checked')=%%
+                               >
+                        <span class="lever custom-remove-margin"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- spacing -->
+        <div class="custom-spacing-80px"></div>
+
+
+
+
+        <!-- SAVE PREFERENCES -->
+        <div class="row ">
+          <div class="col s12">
+            <button class="custom-submit-button right" type="submit">
+              Save Preferences
+            </button>
+          </div>
+        </div>
+
+
+
+
+      </div>
+      <!-- //content wrapper -->
+    </form>
+
+
+
+
+    <!-- spacing -->
+    <div class="custom-spacing-100px"></div>
+
+
+
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="custom-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <p>
+                <a href="http://www.3plearning.com/hello/">About Us</a>&nbsp;&nbsp;&#124;&nbsp;&nbsp;
+                <a href="http://www.3plearning.com/careers/">Careers</a>&nbsp;&nbsp;&#124;&nbsp;
+                <a href="http://www.3plearning.com/contact/">Contact Us</a>&nbsp;&nbsp;&#124;&nbsp;
+                <a href="http://www.3plearning.com/privacy/">Privacy Policy</a>&nbsp;&nbsp;&#124;&nbsp;
+                <a href="http://www.3plearning.com/terms/">Terms &amp; Conditions</a>
+              </p>
+              <div class="custom-spacing-20px"></div>
+              <p>
+                Copyright %%=Format(Now(), "yyyy")=%%.
+                <a href="https://www.3plearning.com/">3P Learning</a>
+                - Transforming lives through a love of learning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+
+    <!-- =================== CUSTOM JAVASCRIPT =================== -->
+
+
+
+
+    %%=Concat('<', 'script>')=%%
+    //START SCRIPT
+
+
+
+    /****************************************
+    -- LOADING INDICATOR
+    *****************************************/
+
+    //dom
+    let loadingIndicator = document.querySelector('#dom-loading-indicator')    
+
+    let isLoading = {
+    show: () => loadingIndicator.style.display = "block",
+    hide: () => loadingIndicator.style.display = "none"
+    }
+
+    //events
+    window.addEventListener("load", () => {
+    isLoading.hide()
+    })
+
+
+
+
+
+    /****************************************
+    -- DATE PICKER
+    *****************************************/
+
+    //dom
+    var datePickers = document.querySelectorAll('.datepicker');
+
+    //config
+    options = {
+    autoClose: true,
+    showClearBtn: true,
+    format: 'dd mmmm yyyy',
+    yearRange: 150,
+    showDaysInNextAndPreviousMonths: true,
+    defaultDate: new Date('%%=v(@BIRTHDATE)=%%'),
+    setDefaultDate: true
+    }
+
+    //events
+    window.addEventListener("load", () => {
+    var instances = M.Datepicker.init(datePickers, options);
+    })
+
+
+
+
+    /****************************************
+    -- ON SUBMIT
+    *****************************************/
+
+    //dom
+    let preferencesForm = document.querySelector('#dom-preferences-form')
+
+    
+    //events
+    
+    //////////////////////////////////////
+    //ON SUBMIT
+    //////////////////////////////////////
+    
+    let redirectAfterSubmit = 'https://preferences.my.3plearning.com/preferenceCentre_thank-you'
+    
+    preferencesForm.addEventListener("submit", (e)=> {
+    e.preventDefault();
+    isLoading.show();
+    Promise.all([
+    
+    updateProfileRequest(),
+    notifySalesRequest()
+ // updateSubscriptionsRequest()
+    
+    ])
+    .then(() => {
+    isLoading.hide()
+    M.toast({html: 'Thank you. Redirecting you now...'})
+    window.location.href = redirectAfterSubmit;
+    })
+    
+    
+    //.catch(()=> {
+    //redirect to error page on any failure
+    //})
+    
+    
+    });//onsubmit
+
+    
+
+    //helper functions
+
+    //////////////////////////////////////
+    //SFMC Subscriber Profile
+    //////////////////////////////////////
+
+    function updateProfileRequest () {
+    M.toast({html: 'Update Profile: WORKING...'})
+    
+    let preferenceFormData = new FormData(preferencesForm);
+    
+    return axios("https://preferences.my.3plearning.com/3PL_jsFunctions-preferenceCenter",{
+    method: "post",
+    data: preferenceFormData
+    })
+    .then(response => {
+    M.toast({html: 'Update Profile: SUCCESS!'})
+    })
+    .catch(e => {
+    M.toast({html: 'Update Profile: FAILED'})
+    });
+    }//request
+    
+
+    //////////////////////////////////////
+    //SFDC CRM Objects
+    //////////////////////////////////////
+
+    function notifySalesRequest() {
+    M.toast({html: 'Notify Sales: WORKING...'})
+    let preferenceFormData = new FormData(preferencesForm);
+    return axios("https://preferences.my.3plearning.com/3PL_sfFunctions-preferenceCenter",{
+    method: "post",
+    data: preferenceFormData
+    })
+    .then(response => {
+    M.toast({html: 'Notify Sales: SUCCESS!'});
+    })
+    .catch(e => {
+    M.toast({html: 'Notify Sales: FAILED'});
+    });
+    }//request
+
+    //////////////////////////////////////
+    //SFMC Publication Lists
+    //////////////////////////////////////
+
+    function updateSubscriptionsRequest () {
+    
+    M.toast({html: 'Update Subscriptions: WORKING...'})
+    
+    let preferenceFormData = new FormData(preferencesForm);
+    
+    return axios("https://preferences.my.3plearning.com/test-on-submiit-update-publication-lists",{
+    method: "post",
+    data: preferenceFormData
+    })
+    .then(response => {
+    M.toast({html: 'Update Subscriptions: SUCCESS!'});
+    })
+    .catch(e => {
+    M.toast({html: 'Update Subscriptions: FAILED'});
+    });
+    }//request
+
+
+
+    //END SCRIPT
+    %%=Concat('</', 'script>')=%%
+
+
+
+
+  </body>
+</html>
+
+
+
+
+

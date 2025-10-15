@@ -1,0 +1,56 @@
+<!-- %%[
+/* Get location and preferred first name */
+SET @location = AttributeValue("Location")
+SET @lookupValue = AttributeValue("PreferredFirstName")
+
+/* Profanity check */
+SET @RowCount_prof = RowCount(LookupRows("01_Profanity-Check", "Name", @lookupValue))
+
+IF @RowCount_prof == 0 THEN
+  SET @FN = @lookupValue
+ELSE
+  SET @FN = ""
+ENDIF
+
+/* Greeting logic */
+IF @location == "New Zealand" THEN
+  SET @greeting = "Kia ora"
+ELSE
+  SET @greeting = "Dear"
+ENDIF
+
+/* Generate name variations */
+IF NOT EMPTY(@FN) AND Length(@FN) >= 1 THEN
+  SET @ProperName = ProperCase(Trim(@FN))
+  SET @NAME = Concat(@greeting, " ", @ProperName,", ")
+  SET @NAME_Y = Concat(@ProperName, ", y")
+  SET @NAME_D = Concat(@ProperName, ", d")
+  SET @NAME_G = Concat(@ProperName, ", g")
+  SET @NAME_P = Concat(@ProperName, ", p")
+  SET @NAME_H = Concat(@ProperName, ", h")
+  SET @NAME_A = Concat(@ProperName, ", a")
+  SET @NAME_E = Concat(@ProperName, ", e")
+  SET @NAME_T = Concat(@ProperName, ", t")
+  SET @NAME_I = Concat(@ProperName, ", i")
+  SET @NAME_S = Concat(@ProperName, ", s")
+  SET @NAME_J = Concat(@ProperName, ", j")
+  SET @NAME_O = Concat(@ProperName, ", o")
+  SET @NONAME = Concat(@ProperName, ",")
+ELSE
+  SET @NAME = Concat(@greeting, ", ")
+  SET @NAME_Y = "Y"
+  SET @NAME_D = "D"
+  SET @NAME_G = "G"
+  SET @NAME_P = "P"
+  SET @NAME_H = "H"
+  SET @NAME_A = "A"
+  SET @NAME_E = "E"
+  SET @NAME_T = "T"
+  SET @NAME_I = "I"
+  SET @NAME_S = "S"
+  SET @NAME_J = "J"
+  SET @NAME_O = "O"
+  SET @NONAME = ""
+ENDIF
+]%% -->
+

@@ -1,0 +1,56 @@
+{
+    "name": "MXB2C_MX0008_PostTrial-Nurture1651299350271",
+    "description": "",
+    "key": "3ccdbe7e-120a-4f46-8366-d0cb926eab4c",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2021-06-12T19:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=HOURLY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "122e03ea-5a98-406b-a939-039808b91177"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "10 Minutes",
+                    "r__type": "wait"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "06a11118-2758-4ba8-8861-9b36119e9e4e"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "30 Minutes",
+                    "r__type": "wait"
+                }
+            ]
+        }
+    ],
+    "createdName": "Stephan Peniguel",
+    "createdDate": "2022-04-30T06:15:53.26Z",
+    "modifiedName": "Stephan Peniguel",
+    "modifiedDate": "2022-04-30T06:16:00.09Z",
+    "r__folder_Path": "my automations/B2C/01_Ongoing/B2C_MX0008"
+}

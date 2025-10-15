@@ -1,0 +1,476 @@
+{
+    "type": "SalesforceObjectTriggerV2",
+    "name": "GLOBAL_MX0025_TrialRequestConfirmation",
+    "description": "",
+    "createdDate": "2023-08-08T12:02:11.483",
+    "createdBy": "Brittany Strachan",
+    "modifiedDate": "2023-08-08T12:02:11.483",
+    "modifiedBy": "Brittany Strachan",
+    "eventDefinitionKey": "SalesforceObj781b85a054243c61c3ddff5a5f0432e6",
+    "schema": {
+        "fields": [
+            {
+                "name": "Lead:Email",
+                "dataType": "EmailAddress",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:HasOptedOutOfEmail",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Campaign_Code__c",
+                "dataType": "Text",
+                "maxLength": "100",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Campaign_Name__c",
+                "dataType": "Text",
+                "maxLength": "150",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Country",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Country__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:CreatedDate",
+                "dataType": "Date",
+                "maxLength": "0",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Enquiry_Type__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:FirstName",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:LastName",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Lead_Country__c",
+                "dataType": "Text",
+                "maxLength": "1300",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:LeadReferenceId__c",
+                "dataType": "Text",
+                "maxLength": "1300",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Marketing_Interest__c",
+                "dataType": "multipicklist",
+                "maxLength": "4099",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Marketing_Product_Interest__c",
+                "dataType": "multipicklist",
+                "maxLength": "4099",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Marketing_Cloud_MQL_Id__c",
+                "dataType": "Text",
+                "maxLength": "100",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Marketing_Cloud_Purchase_Id__c",
+                "dataType": "Text",
+                "maxLength": "100",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:User_Company_Name__c",
+                "dataType": "Text",
+                "maxLength": "1300",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:State__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:State",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Sync_to_Marketing_Cloud__c",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Sync_Lead_2_MC__c",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:UTM_Campaign__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:UTM_Content__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:UTM_Medium__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:UTM_Source__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Tech_GUID__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:UTM_Term__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Zip_Code__c",
+                "dataType": "Text",
+                "maxLength": "8",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:PostalCode",
+                "dataType": "Text",
+                "maxLength": "20",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            }
+        ],
+        "sendableCustomObjectField": "Lead:Id",
+        "sendableSubscriberField": "_SubscriberKey"
+    },
+    "sourceApplicationExtensionId": "597d9e4a-1c0d-4225-86b2-0a1e864b7ca3",
+    "filterDefinitionTemplate": "",
+    "iconUrl": "/jbint-events/events/SalesforceData/images/SF-Event-Icon.svg",
+    "arguments": {
+        "serializedObjectType": 0,
+        "useHighWatermark": false,
+        "criteria": ""
+    },
+    "configurationArguments": {
+        "applicationExtensionKey": "SalesforceObjectTriggerV2",
+        "contactKey": {
+            "relationshipIdName": "Id",
+            "relationshipName": "",
+            "isPolymorphic": false,
+            "referenceObjectName": "Lead"
+        },
+        "contactPersonType": "Lead",
+        "evaluationCriteriaSummary": "Created;",
+        "eventDataConfig": {
+            "objects": [
+                {
+                    "dePrefix": "Lead:",
+                    "isPolymorphic": false,
+                    "relationshipName": "",
+                    "referenceObject": "",
+                    "relationshipIdName": "",
+                    "fields": [
+                        "Email",
+                        "HasOptedOutOfEmail",
+                        "Id",
+                        "Campaign_Code__c",
+                        "Campaign_Name__c",
+                        "Country",
+                        "Country__c",
+                        "CreatedDate",
+                        "Enquiry_Type__c",
+                        "FirstName",
+                        "LastName",
+                        "Lead_Country__c",
+                        "LeadReferenceId__c",
+                        "Marketing_Interest__c",
+                        "Marketing_Product_Interest__c",
+                        "Marketing_Cloud_MQL_Id__c",
+                        "Marketing_Cloud_Purchase_Id__c",
+                        "User_Company_Name__c",
+                        "State__c",
+                        "State",
+                        "Sync_to_Marketing_Cloud__c",
+                        "Sync_Lead_2_MC__c",
+                        "UTM_Campaign__c",
+                        "UTM_Content__c",
+                        "UTM_Medium__c",
+                        "UTM_Source__c",
+                        "Tech_GUID__c",
+                        "UTM_Term__c",
+                        "Zip_Code__c",
+                        "PostalCode"
+                    ]
+                }
+            ]
+        },
+        "eventDataSummary": [
+            "Lead:Campaign_Code__c",
+            "Lead:Campaign_Name__c",
+            "Lead:Country",
+            "Lead:Country__c",
+            "Lead:CreatedDate",
+            "Lead:Email",
+            "Lead:Enquiry_Type__c",
+            "Lead:FirstName",
+            "Lead:HasOptedOutOfEmail",
+            "Lead:Id",
+            "Lead:LastName",
+            "Lead:LeadReferenceId__c",
+            "Lead:Lead_Country__c",
+            "Lead:Marketing_Cloud_MQL_Id__c",
+            "Lead:Marketing_Cloud_Purchase_Id__c",
+            "Lead:Marketing_Interest__c",
+            "Lead:Marketing_Product_Interest__c",
+            "Lead:PostalCode",
+            "Lead:State",
+            "Lead:State__c",
+            "Lead:Sync_Lead_2_MC__c",
+            "Lead:Sync_to_Marketing_Cloud__c",
+            "Lead:Tech_GUID__c",
+            "Lead:UTM_Campaign__c",
+            "Lead:UTM_Content__c",
+            "Lead:UTM_Medium__c",
+            "Lead:UTM_Source__c",
+            "Lead:UTM_Term__c",
+            "Lead:User_Company_Name__c",
+            "Lead:Zip_Code__c"
+        ],
+        "objectAPIName": "Lead",
+        "passThroughArgument": {
+            "fields": {
+                "ContactKey": "Lead:Id",
+                "Email": "Lead:Email",
+                "HasOptedOutOfEmail": "Lead:HasOptedOutOfEmail"
+            }
+        },
+        "primaryObjectFilterCriteria": {
+            "operand": "AND",
+            "conditions": [
+                {
+                    "operand": "OR",
+                    "conditions": [
+                        {
+                            "_length": 255,
+                            "dataType": "picklist",
+                            "fieldName": "Enquiry_Type__c",
+                            "folderId": "Lead-Lead",
+                            "id": "Lead-Lead-Enquiry_Type__c",
+                            "isPolymorphic": false,
+                            "name": "Enquiry Type",
+                            "operator": "EQUALS",
+                            "precision": 0,
+                            "referenceObjectName": "Lead",
+                            "relationshipIdName": "",
+                            "relationshipName": "",
+                            "scale": 0,
+                            "text": "Enquiry Type",
+                            "value": "Class Trial"
+                        },
+                        {
+                            "_length": 255,
+                            "dataType": "picklist",
+                            "fieldName": "Enquiry_Type__c",
+                            "folderId": "Lead-Lead",
+                            "id": "Lead-Lead-Enquiry_Type__c",
+                            "isPolymorphic": false,
+                            "name": "Enquiry Type",
+                            "operator": "EQUALS",
+                            "precision": 0,
+                            "referenceObjectName": "Lead",
+                            "relationshipIdName": "",
+                            "relationshipName": "",
+                            "scale": 0,
+                            "text": "Enquiry Type",
+                            "value": "School Trial"
+                        },
+                        {
+                            "_length": 255,
+                            "dataType": "picklist",
+                            "fieldName": "Enquiry_Type__c",
+                            "folderId": "Lead-Lead",
+                            "id": "Lead-Lead-Enquiry_Type__c",
+                            "isPolymorphic": false,
+                            "name": "Enquiry Type",
+                            "operator": "EQUALS",
+                            "precision": 0,
+                            "referenceObjectName": "Lead",
+                            "relationshipIdName": "",
+                            "relationshipName": "",
+                            "scale": 0,
+                            "text": "Enquiry Type",
+                            "value": "Trial"
+                        }
+                    ]
+                },
+                {
+                    "operand": "OR",
+                    "conditions": [
+                        {
+                            "_length": 4099,
+                            "dataType": "multipicklist",
+                            "fieldName": "Marketing_Product_Interest__c",
+                            "folderId": "Lead-Lead",
+                            "id": "Lead-Lead-Marketing_Product_Interest__c",
+                            "isPolymorphic": false,
+                            "name": "Marketing Product Interest",
+                            "operator": "EQUALS",
+                            "precision": 4,
+                            "referenceObjectName": "Lead",
+                            "relationshipIdName": "",
+                            "relationshipName": "",
+                            "scale": 0,
+                            "text": "Marketing Product Interest",
+                            "value": "Mathletics"
+                        },
+                        {
+                            "_length": 4099,
+                            "dataType": "multipicklist",
+                            "fieldName": "Product_Interest__c",
+                            "folderId": "Lead-Lead",
+                            "id": "Lead-Lead-Product_Interest__c",
+                            "isPolymorphic": false,
+                            "name": "Product Interest",
+                            "operator": "EQUALS",
+                            "precision": 4,
+                            "referenceObjectName": "Lead",
+                            "relationshipIdName": "",
+                            "relationshipName": "",
+                            "scale": 0,
+                            "text": "Product Interest",
+                            "value": "Mathletics"
+                        }
+                    ]
+                }
+            ]
+        },
+        "primaryObjectFilterSummary": "Lead:Enquiry_Type__c EQUALS Class Trial OR  Lead:Enquiry_Type__c EQUALS School Trial OR  Lead:Enquiry_Type__c EQUALS Trial AND  Lead:Marketing_Product_Interest__c EQUALS Mathletics OR  Lead:Product_Interest__c EQUALS Mathletics",
+        "relatedObjectFilterCriteria": {
+            "operand": "AND",
+            "conditions": []
+        },
+        "relatedObjectFilterSummary": "",
+        "salesforceTriggerCriteria": "Created",
+        "version": "3.0",
+        "whoToInject": "Lead ID (Lead)"
+    },
+    "metaData": {
+        "criteriaDescription": "",
+        "scheduleState": "No Schedule"
+    },
+    "interactionCount": 3,
+    "isVisibleInPicker": false,
+    "category": "Event",
+    "publishedInteractionCount": 1,
+    "disableDEDataLogging": false
+}

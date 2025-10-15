@@ -1,0 +1,293 @@
+%%[
+
+  
+  /* Const for Salesforce Lead */
+
+  SET @LeadSource = "Marketing Cloud"
+  SET @LeadStatus = "Marketing Prospect"
+  SET @LeadCustomerLeadTypeId = "0120I0000019a2jQAA"
+  SET @RedirectId = RequestParameter('rid')
+   
+  /* Get all form fields value */
+  SET @firstName = TRIM(RequestParameter("first-name"))
+  SET @lastName = TRIM(RequestParameter("last-name"))
+  SET @email = TRIM(RequestParameter("email"))
+  SET @jobTitle = RequestParameter("job-title")
+  SET @countryCode = RequestParameter("country")
+  SET @countryName = RequestParameter("selectedCountryName")
+  SET @stateCode = RequestParameter("state")
+  SET @stateName = RequestParameter("selectedStateName")
+  SET @postcode = RequestParameter("postcode")
+  SET @schoolName = TRIM(RequestParameter("school-name"))
+  SET @schoolEnquiryQuestionId = RequestParameter("enquiry-select-school-user")
+  SET @homeEnquiryQuestionId = RequestParameter("enquiry-select-home-user")
+  SET @yearGroup = RequestParameter("year-select")
+  SET @isTermAgree = RequestParameter("tc-agree")
+  SET @isReceiveEmail = RequestParameter("sub-opt-in")
+  SET @Campaign = RequestParameter("cid")
+  SET @UTMcontent = RequestParameter("utmcontent")
+  SET @UTMcampaign = RequestParameter("utmcampaign")
+  SET @UTMmedium = RequestParameter("utmmedium")
+  SET @UTMsource = RequestParameter("utmsource")
+  SET @UTMterm = RequestParameter("utmterm")
+  SET @enquiry = RequestParameter("eid")
+  SET @Product = RequestParameter("pid")
+  SET @productCode = RequestParameter("pid")
+  SET @products = RequestParameter("products")
+  
+    /* Confirm the Marketing Product Interest values*/ 
+    SET @updatemarketingproduct1 = ''
+    IF indexOf(@products , 'grade1') > 0 THEN 
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'grade1;') 
+    SET @grade1 = true
+    ELSE
+    SET @grade1 = false
+    ENDIF 
+    IF indexOf(@products , 'grade2') > 0 THEN 
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'grade2;') 
+    SET @grade2 = true
+        ELSE
+    SET @grade2 = false
+    ENDIF 
+    IF indexOf(@products , 'grade3') > 0 THEN
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'grade3;')
+    SET @grade3 = true
+        ELSE
+    SET @grade3 = false
+    ENDIF     
+    IF indexOf(@products , 'grade4') > 0 THEN
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'grade4;') 
+    SET @grade4 = true    ELSE
+    SET @grade4 = false
+    ENDIF    
+    IF indexOf(@products , 'grade5') > 0 THEN
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'grade5;') 
+    SET @grade5 = true    ELSE
+    SET @grade5 = false
+    ENDIF     
+    IF indexOf(@products , 'grade6') > 0 THEN
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'grade6;') 
+    SET @grade6 = true    ELSE
+    SET @grade6 = false
+    ENDIF    
+    IF indexOf(@products , 'grade7') > 0 THEN
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'grade7;') 
+    SET @grade7 = true    ELSE
+    SET @grade7 = false
+    ENDIF
+    IF indexOf(@products , 'grade8') > 0 THEN
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'grade8;') 
+    SET @grade8 = true    ELSE
+    SET @grade8 = false
+    ENDIF
+    IF indexOf(@products , 'kindergarten') > 0 THEN
+    SET @updatemarketingproduct1 = CONCAT(@updatemarketingproduct1, 'kindergarten;')
+    SET @kinder = true    ELSE
+    SET @kinder = false
+    ENDIF
+    SET @Description = Concat('Customer has requested to download worksheets for ', @updatemarketingproduct1)
+    SET @resource = CONCAT('Requested ', @updatemarketingproduct1, ' worksheet')
+
+
+  IF @Product == "Readiwriter"
+   THEN 
+   SET @Product = "Readiwriter Spelling"
+  ENDIF
+
+    /* Terms and Conditions section*/ 
+  IF @isTermAgree == "agree" THEN
+    SET @isTermAgree = "true"
+  ELSE 
+    SET @isTermAgree = "false"
+  ENDIF
+  IF @isReceiveEmail == "receive" THEN
+    SET @isReceiveEmail = "true"
+  ELSE 
+    SET @isReceiveEmail = "false"
+  ENDIF
+  IF empty(@productCode) THEN
+    SET @productCode = "NULL"
+  ENDIF
+  IF empty(@resource) THEN
+    SET @resource = ""
+  ENDIF
+
+ SET @updatemarketinginterest = 'Promotions;Product information;'
+
+
+IF @isReceiveEmail == 'true' THEN
+ SET @updatemarketinginterest = CONCAT(@updatemarketinginterest, 'Newsletter;')
+ENDIF
+
+    /* Identfing Home or School users*/ 
+
+If @jobTitle == 'Parent' OR 'Home schooling parent' THEN
+SET @customerType = 'Home' 
+ELSE
+SET @customerType = 'School' 
+ENDIF 
+  
+
+  /* create Free Trial Lead in Salesforce */
+   
+    SET @leadId = CreateSalesforceObject("Lead",
+           29,  /* Number of fields specified to add in the Lead record */ 
+           "LeadSource", @LeadSource, 
+           "Campaign_Name__c", '',
+           "UTM_Content__c", @UTMContent,
+           "UTM_Campaign__c", @UTMcampaign,
+           "UTM_Medium__c", @UTMmedium,
+           "UTM_Source__c", @UTMsource,
+           "UTM_Term__c", @UTMterm,
+           "Status", @LeadStatus,
+           "RecordTypeId", @LeadCustomerLeadTypeId,
+           "Enquiry_Type__c", @enquiry,
+           "FirstName", @firstName,
+           "LastName", @lastName,
+           "Company", "NA",
+           "Title", @jobTitle,
+           "Email", @email,
+           "PostalCode", @postcode,
+           "Marketing_Product_Interest__c", @Product,
+           "Country__c", @countryName,
+           "CountryCode", @countryCode,
+           "State__c", @stateName,
+           "StateCode", @stateCode,
+           "Marketing_Interest__c",@updatemarketinginterest,
+           "Job_Function__c", @salesforceJobFunction,
+           "Grade_Level__c", @yearGroup,
+           "Marketing_Cloud_MQL_Id__c", @trialId,
+           "Product_family__c", @Product,
+           "Product_Interest__c", @Product,
+           "Resource__c", @resource,
+           "Description", @Description
+           
+ 
+          )
+ENDIF
+
+      set @campaignMemberId = CreateSalesforceObject('CampaignMember', 
+           3,  /* Number of fields specified to add in the Lead record */ 
+            
+           'CampaignId', @Campaign, 
+           'LeadId', @leadId,
+           'Status','Sent'
+           
+           )
+
+IF @Product == "Mathletics" THEN
+/* if RequestParameter("submitted") == "submitted" then */
+/* Trigger Send Object Creation */
+            SET @ts = CreateObject("TriggeredSend")
+            SET @tsDef = CreateObject("TriggeredSendDefinition")
+            SET @ts_subkey = @leadId
+
+/* Set the External Key of the Trigger Send Definition */
+            SetObjectProperty(@tsDef, "CustomerKey", "117284")
+            SetObjectProperty(@ts, "TriggeredSendDefinition", @tsDef)
+
+/* Create the Subscriber Object */
+            SET @ts_sub = CreateObject("Subscriber")
+            SetObjectProperty(@ts_sub, "EmailAddress", @email)
+
+
+/* Set SubscriberKey to EmailAddress */
+            SetObjectProperty(@ts_sub, "SubscriberKey", @ts_subkey)
+
+
+/* Create and Set Attributes */
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "SubscriberKey")
+            SetObjectProperty(@attr, "Value",  @ts_subkey)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "EmailAddress")
+            SetObjectProperty(@attr, "Value", @email)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "FirstName")
+            SetObjectProperty(@attr, "Value", @firstName)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "kindergarten")
+            SetObjectProperty(@attr, "Value", @kinder)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr) 
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "grade1")
+            SetObjectProperty(@attr, "Value", @grade1)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "grade2")
+            SetObjectProperty(@attr, "Value", @grade2)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "grade3")
+            SetObjectProperty(@attr, "Value", @grade3)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "grade4")
+            SetObjectProperty(@attr, "Value", @grade4)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "grade5")
+            SetObjectProperty(@attr, "Value", @grade5)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "grade6")
+            SetObjectProperty(@attr, "Value", @grade6)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "grade7")
+            SetObjectProperty(@attr, "Value", @grade7)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "grade8")
+            SetObjectProperty(@attr, "Value", @grade8)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr) 
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "country")
+            SetObjectProperty(@attr, "Value", @countryCode)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr) 
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "job-title")
+            SetObjectProperty(@attr, "Value", @jobTitle)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+      
+/* Add all Attributes into Array */
+            AddObjectArrayItem(@ts, "Subscribers", @ts_sub)
+
+/*Complete the Web API call to trigger send */
+            SET @ts_statusCode = InvokeCreate(@ts, @ts_statusMsg, @errorCode)
+
+/* Raise Error if Trigger fails */
+            IF @ts_statusCode != "OK" THEN
+               RaiseError(@ts_statusMsg, 0, @ts_statusCode, @errorCode)
+            ENDIF 
+ELSE
+ENDIF
+
+  IF @jobTitle == "Parent" 
+  OR @jobTitle == "Home schooling parent" 
+  OR @jobTitle == "Student"
+  OR @jobTitle == "Other"
+  THEN
+  Redirect('https://www.mathletics.com/us/resources/math-worksheets/success-for-parents/')
+  ELSE
+  Redirect('https://www.mathletics.com/us/resources/math-worksheets/success/')
+  ENDIF
+SET @redirectURL = Lookup('TOF-URLRedirect','URL','Id',@RedirectId)
+
+
+
+IF @leadId == '' THEN
+Redirect('https://cloud.my.3plearning.com/trialerror')
+
+/* ELSE
+Redirect(@redirectURL) */
+
+ENDIF
+
+]%%

@@ -1,0 +1,37 @@
+{
+    "allowErrors": true,
+    "customerKey": "AC3100DC-49CC-4C78-B8C0-D03E7FE7710C",
+    "createdDate": "2025-09-24T00:32:47.99",
+    "modifiedDate": "2025-09-24T00:32:47.99",
+    "dateFormatLocale": "en-US",
+    "deleteFile": false,
+    "description": "DE Location\nData Extensions--System--SubscriberExtract",
+    "destinationObjectId": "2ab825e7-0f99-f011-a5db-5cba2c705458",
+    "fieldMappings": [],
+    "fieldMappingType": "InferFromColumnHeadings",
+    "fileNamingPattern": "NotSent.csv",
+    "fileSpec": "",
+    "fileType": "CSV",
+    "filter": "",
+    "hasColumnHeader": true,
+    "isOrderedImport": true,
+    "isSequential": true,
+    "maxFileAgeHours": 0,
+    "maxImportFrequencyHours": 0,
+    "maxFileAgeScheduleOffsetHours": 0,
+    "name": "Import Not Sent Extract to DE",
+    "sendEmailNotification": false,
+    "standardQuotedStrings": true,
+    "encodingName": "utf-8",
+    "sourceCustomObjectId": "",
+    "destination": {
+        "c__type": "DataExtension"
+    },
+    "source": {
+        "c__type": "File Location",
+        "r__fileLocation_name": "ExactTarget Enhanced FTP"
+    },
+    "c__blankFileProcessing": "Fail",
+    "c__subscriberImportType": "DataExtension",
+    "c__dataAction": "Overwrite"
+}

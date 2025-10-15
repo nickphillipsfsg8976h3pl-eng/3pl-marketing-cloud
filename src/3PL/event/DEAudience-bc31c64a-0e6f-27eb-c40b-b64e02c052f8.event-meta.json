@@ -1,0 +1,42 @@
+{
+    "type": "EmailAudience",
+    "name": "APAC_B2C_MX0001_ONBOARDING",
+    "description": "",
+    "createdDate": "2023-04-18T23:29:59.18",
+    "createdBy": "Barbara Rivera",
+    "modifiedDate": "2023-04-25T23:32:13.013",
+    "modifiedBy": "Barbara Rivera",
+    "eventDefinitionKey": "DEAudience-bc31c64a-0e6f-27eb-c40b-b64e02c052f8",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "8786dd49-08ab-4489-b494-aae9e60fc3d7",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Subscription_Created_At__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;ada2d760-22db-ec11-b840-48df37d1dce3&quot;}\"><AttributePath RelationshipID=\"f168bdef-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;+;0;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 3,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Subscription_Created_At__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;ada2d760-22db-ec11-b840-48df37d1dce3&quot;}\"><AttributePath RelationshipID=\"f168bdef-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;+;0;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+        "useHighWatermark": true,
+        "resetHighWatermark": false
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "scheduleState": "No Schedule",
+        "criteriaDescription": "chargebeeapps__Subscription_Created_At__c equal Today",
+        "scheduleFlowMode": "recurring"
+    },
+    "schedule": {
+        "startDateTime": "2023-04-27T08:00:00",
+        "endDateTime": "2073-04-27T08:00:00",
+        "timeZone": "GMT Standard Time",
+        "occurrences": 73053,
+        "endType": "EndDate",
+        "frequency": "Hourly",
+        "recurrencePattern": "Interval",
+        "interval": 6
+    },
+    "interactionCount": 1,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false,
+    "r__automation_key": "d2287b0b-2d18-4c35-aa21-2300dbee7de9"
+}

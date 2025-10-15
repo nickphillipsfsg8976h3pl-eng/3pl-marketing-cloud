@@ -1,0 +1,27 @@
+<script runat="server">
+Platform.Load("core", "1.1");
+
+try {
+    var prox = new Script.Util.WSProxy();
+    var cols = ["ID", "Name", "ParentFolder.ID", "ParentFolder.Name", "ContentType"];
+    var filter = {
+        Property: "ContentType",
+        SimpleOperator: "equals",
+        Value: "queryactivity" // Look for folders specific to filter activities
+    };
+
+    var data = prox.retrieve("DataFolder", cols, filter);
+
+    if (data && data.Results.length > 0) {
+        Write("<strong>Query Activity Folders:</strong><br>");
+        for (var i = 0; i < data.Results.length; i++) {
+            var folder = data.Results[i];
+            Write("Folder Name: " + folder.Name + ", Folder ID: " + folder.ID + "<br>");
+        }
+    } else {
+        Write("No query activity folders found.<br>");
+    }
+} catch (e) {
+    Write("Error: " + e.message + "<br>");
+}
+</script>

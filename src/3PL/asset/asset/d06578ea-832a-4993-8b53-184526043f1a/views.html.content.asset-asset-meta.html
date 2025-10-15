@@ -1,0 +1,69 @@
+%%[
+    /* 
+     * Form Processing Page
+     * Purpose: Process form submissions and handle lead creation, campaign membership, and redirection logic.
+     * Description: This script handles the form submissions, processes the request parameters, and manages campaign and lead creation. It also includes debugging information and redirection logic.
+     */
+
+    set @form               = lowercase(RequestParameter('form')) 
+    set @_Campaign_Name     = RequestParameter("campaign-name")
+    set @_Triggered_Send_Key= RequestParameter("triggered-send-key")
+    set @_Redirect_To_Page  = RequestParameter("redirect-to-page")
+    set @RedirectId         = RequestParameter('rid') 
+    set @pid                = RequestParameter('pid') 
+    set @cid                = RequestParameter('cid') 
+    set @_UTM_Campaign      = RequestParameter("utm-campaign")
+    set @_UTM_Content       = RequestParameter("utm-content")
+    set @_UTM_Medium        = RequestParameter("utm-medium")
+    set @_UTM_Source        = RequestParameter("utm-source")
+    set @_UTM_Term          = RequestParameter("utm-term")
+    set @gclid              = RequestParameter("gclid")
+    set @referrer           = RequestParameter("referrer")
+    set @http_referrer      = HTTPRequestHeader("referer")
+    set @debug              = RequestParameter('debug')
+    
+    set @_RE_Subscriber    = RequestParameter("re-subscriber")
+    set @_Product_Interest    = RequestParameter("product-interest")
+    set @_First_Name          = RequestParameter("first-name")
+    set @_Last_Name           = RequestParameter("last-name")
+    set @_Email_Address       = RequestParameter("email-address")
+    set @_Phone_Number        = RequestParameter("phone-number")
+    set @_Grade_Level         = RequestParameter("grade-level")
+    set @_Job_Title           = RequestParameter("job_title_select")
+    set @_Country_Name        = RequestParameter("country-name")
+    set @_State_Name          = RequestParameter("state-name")
+    set @_Postal_Code         = RequestParameter("postal-code")
+    set @_School_Name         = RequestParameter("school-name")
+    set @_No_Of_Licences      = RequestParameter("no-of-licences")
+    set @_Terms_And_Conditions= RequestParameter("terms-and-conditions")
+    set @_Subscriber_Opt_In   = RequestParameter("subscriber-opt-in")
+    set @_Subject             = RequestParameter("subject_select")
+    set @formattedSubjects    = ""
+
+    /* Campaign Pre processing : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("campaign_pre_process")))
+
+    /* Lead Pre processing : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("lead_pre_process")))
+
+    /* Debug Information : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("debug_form_stage1")))
+    
+    if @_Campaign_Name == '701Mp00000S4EijIAF' then
+       SET @Description = Concat(@Description, ';Does your class have an existing Reading Eggs subscription? Response: ', @_RE_Subscriber)
+    endif
+    /* Processing Logic */
+    IF @debug != true THEN
+        /* Create Lead and Campaign Member */
+        output(concat(ContentBlockByKey("upsert_lead")))
+        output(concat(ContentBlockByKey("create_campaign_mem_cc_absent")))
+    ENDIF
+
+    /* Redirection Logic : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("redirection_logic")))
+
+    /* Additional Debug Information : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("debug_form_stage2")))
+    
+]%%
+

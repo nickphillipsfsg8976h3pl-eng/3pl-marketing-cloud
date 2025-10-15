@@ -1,0 +1,421 @@
+
+
+
+<!-- 
+/******************************
+----- GLOBAL FORM SCRIPT ------
+*******************************/
+-->
+
+
+
+
+%%[/*
+=====================================================================================
+
+Todo:
+
+- replace & pass through cid/rid/eid/pid 
+as campaign_name, redirect_page, enquiry_type, product_name
+
+-add in 'debug' request parameter to cancel actions and show debug info
+
+-add in a automatic create data extension function (if exists dont create)
+
+LOGIC
+======
+1. if lead and contact exist
+-> update contact
+2. if lead exists and no contact
+-> update lead
+3. otherwise if none exist
+-> create a lead 
+
+
+=====================================================================================
+*/]%%
+
+
+
+
+
+
+
+
+%%[ 
+
+        /*************************************************************
+        -- GET REQUEST PARAMETERS
+        **************************************************************/
+
+
+        /* HIDDEN FIELDS
+        *****************/
+
+        Set @_Debug = RequestParameter("debug")
+
+        set @form = lowercase(RequestParameter('form')) 
+        Set @_Campaign_Name = RequestParameter("campaign-name")
+        Set @_Triggered_Send_Key = RequestParameter("triggered-send-key")
+        Set @_Redirect_To_Page = RequestParameter("redirect-to-page")
+        set @RedirectId = RequestParameter('rid') 
+        set @pid = RequestParameter('pid') 
+        set @cid = RequestParameter('cid') 
+        Set @_UTM_Campaign = RequestParameter("utm-campaign")
+        Set @_UTM_Content = RequestParameter("utm-content")
+        Set @_UTM_Medium = RequestParameter("utm-medium")
+        Set @_UTM_Source = RequestParameter("utm-source")
+        Set @_UTM_Term = RequestParameter("utm-term")
+        Set @gclid = RequestParameter("gclid")
+        Set @referrer = RequestParameter("referrer")
+
+
+        set @_UTM_Campaign_entry = IIF(Not Empty(@_UTM_Campaign), @_UTM_Campaign, "NA")
+
+        /* FORM FIELDS
+        *****************/
+
+        Set @_Product_Interest = RequestParameter("product-interest")
+        Set @_First_Name = RequestParameter("first-name")
+        Set @_Last_Name = RequestParameter("last-name")
+        Set @_Email_Address = RequestParameter("email-address")
+        Set @_Phone_Number = RequestParameter("phone-number")
+        Set @_Grade_Level = RequestParameter("grade-level")
+        Set @_Job_Title = RequestParameter("job_title_select")
+        Set @_Country_Name = RequestParameter("country-name")
+        Set @_State_Name = RequestParameter("state-name")
+        Set @_Postal_Code = RequestParameter("postal-code")
+        Set @_School_Name = RequestParameter("school-name")
+        Set @_No_Of_Licences = RequestParameter("no-of-licences")
+        Set @_Terms_And_Conditions = RequestParameter("terms-and-conditions")
+        Set @_Subscriber_Opt_In = RequestParameter("subscriber-opt-in")
+
+
+        /*********************************************************************
+        -- Assign Product description on Lead Object in bio for Sales Support
+        **********************************************************************/
+        
+        /* THIS NEEDS TO BE UPDATED TO THE VARIABLE @FORM */
+
+            IF @_No_Of_Licences > 1 THEN
+            SET @license_pluralisation = IIF(Not Empty(@_No_Of_Licences), 'licenses', 'license') 
+            SET @Description = Concat('Customer has requested a quote for ', @_No_Of_Licences, " ", @license_pluralisation, ". In relation to campaign: ", @_UTM_Campaign_entry)
+            Elseif @form == "quote" THEN
+            SET @Description = Concat('Customer has requested a quote for ', @_No_Of_Licences, " ", @license_pluralisation, ". In relation to the campaign: ", @_UTM_Campaign_entry)
+            ELSEIF @form == "trial" THEN
+            SET @Description = Concat('Customer has requested a Trial. In relation to the campaign: ', @_UTM_Campaign_entry)
+            ELSEIF @form == "demo" THEN
+            SET @Description = Concat('Customer has requested a demo. In relation to the campaign: ', @_UTM_Campaign_entry)
+            ELSE
+            SET @Description = Concat('Customer has requested a resource. In relation to the campaign: ', @_UTM_Campaign_entry)
+            ENDIF
+
+
+
+        /* set @form = lowercase(RequestParameter('form')) */
+/* if @form indexOf(@form, 'trial') then
+set @enquiry == 'Trial'
+else
+set @enquiry
+endif */
+/* MQL = BOF, QUOTE, TRIAL, DEMO
+MARKETING PROSPECT = TOF */
+/* IF @enquiry == "Trial" OR @enquiry == "trial" OR @enquiry == "Demo" OR @enquiry == "" THEN  */
+        /*************************************************************
+        -- CREATE SALESFORCE LEAD OBJECT
+        **************************************************************/
+if @form == 'tof' then
+ SET @LeadStatus = "Marketing Prospect"
+ else
+ set @LeadStatus = "MQL"
+ endif
+ SET @LeadSource = "Marketing Cloud"
+
+ if @form == 'quote' then 
+ set @enquiry = 'Quote' 
+ Elseif @form == 'trial' then
+ set @enquiry = 'Trial' 
+ Elseif @form == 'demo' then
+set @enquiry = 'Demo' 
+else
+set @enquiry = ''
+endif
+
+        /* Specifying State and Country Variables
+        *****************/
+
+set @countrycode = Lookup("Country_DE","CountryCode","CountryName", @_Country_Name)
+
+set @rows = LookupRows("state","State Code", @_State_Name,"Country Code", @countrycode)
+set @rowCount = rowcount(@rows)
+
+if @rowCount > 0 then
+
+  for @i = 1 to @rowCount do
+
+    var @stateName
+    set @row = row(@rows, @i) /* get row based on counter */
+    set @stateName = field(@row,"State Name")
+     next @i 
+endif
+        /* Create Lead
+        *****************/
+        set @LEAD__New_Id = CreateSalesforceObject("Lead", 25,
+             
+              "Marketing_Product_Interest__c", IIF(Not Empty(@_Product_Interest), Replace(@_Product_Interest,",",";"),@pid), 
+              "FirstName", IIF(Not Empty(@_First_Name), @_First_Name, ""),  
+              "LastName", IIF(Not Empty(@_Last_Name), @_Last_Name, ""),  
+              "Email", IIF(Not Empty(@_Email_Address), @_Email_Address, "xxxx@xxxx.com"), 
+              "Phone", IIF(Not Empty(@_Phone_Number), @_Phone_Number, 0000000000),  
+              "Grade_Level__c", IIF(Not Empty(@_Grade_Level), @_Grade_Level, "Not Mentioned"),  
+              "Title", IIF(Not Empty(@_Job_Title), @_Job_Title, 'Unknown'),  
+              "Country", IIF(Not Empty(@_Country_Name), @_Country_Name, "Australia"),  
+              "State__c", IIF(Not Empty(@stateName),@stateName, ""),   
+              "State", IIF(Not Empty(@stateName),@stateName, ""),   
+              "PostalCode", IIF(Not Empty(@_Postal_Code), @_Postal_Code, "0000"), 
+              "Company", IIF(Not Empty(@_School_Name), @_School_Name, "NA Currently"),
+              "No_of_licences__c",  IIF(Not Empty(@_No_Of_Licences), @_No_Of_Licences, 0), 
+              "Marketing_Interest__c", IIF(@_Subscriber_Opt_In, "Promotions;Product Information;Newsletter", "Promotions;Product Information;"),
+              "LeadSource", @LeadSource,
+              "Status", @LeadStatus,
+              "Enquiry_Type__c", @enquiry,
+              'UTM_Source__c', IIF(Not Empty(@_UTM_Source), @_UTM_Source, @referrer),
+              'UTM_Medium__c', IIF(Not Empty(@_UTM_Medium), @_UTM_Medium, 'Unknown'),
+              'UTM_Campaign__c', IIF(Not Empty(@_UTM_Campaign), @_UTM_Campaign, 'Organic'),
+              'UTM_Content__c', IIF(Not Empty(@_UTM_Content), @_UTM_Content, 'Unknown'),
+              'UTM_Term__c', IIF(Not Empty(@_UTM_Term), @_UTM_Term, 'Unknown'),
+              'Description', IIF(Not Empty(@Description), @Description, 'Unknown'),
+              'GCLID__c', IIF(Not Empty(@gclid), @gclid, 'Unknown'),
+              'Product_Interest__c', IIF(Not Empty(@pid), @pid, Replace(@_Product_Interest,",",";")) 
+
+          )
+                        
+        /* DEFAULTS
+        *************/
+
+
+
+        /*************************************************************
+        -- CREATE SALESFORCE CAMPAIGN MEMBER OBJECT
+        **************************************************************/
+
+
+        /* DEFAULTS
+        *************/
+
+        Set @CAMPAIGN_MEMBER__Campaign_Name = IIF(Not Empty(@_Campaign_Name), @_Campaign_Name, '')
+        Set @CAMPAIGN_MEMBER__Status = 'Sent'
+        Set @CAMPAIGN_MEMBER__Lead_Id = @LEAD__New_Id
+
+
+        /* ACTION
+        ************/
+
+        If ((Not Empty(@CAMPAIGN_MEMBER__Campaign_Name)) AND (Not Empty(@CAMPAIGN_MEMBER__Lead_Id))) Then
+
+            Set @_Campaign_Objects = RetrieveSalesforceObjects("Campaign", "Id", "Id", "=", @CAMPAIGN_MEMBER__Campaign_Name)
+            
+            If (RowCount(@_Campaign_Objects)>0) then
+            
+                Set @CAMPAIGN_MEMBER__CampaignId = Field(Row(@_Campaign_Objects, 1), "Id")
+
+                Set @CAMPAIGN_MEMBER__New_Id = CreateSalesforceObject("CampaignMember", 2,
+                        "CampaignId", @CAMPAIGN_MEMBER__CampaignId,
+                        "LeadId", @CAMPAIGN_MEMBER__Lead_Id
+                        )
+                        
+            EndIf
+
+        EndIf
+
+
+
+
+      /*************************************************************
+      -- CREATE MARKETING CLOUD TRIGGERED SEND 
+      **************************************************************/
+
+
+      /* DEFAULTS
+      *****************/
+
+      SET @TRIGGERED_SEND__Customer_Key = IIF(Not Empty(@_Triggered_Send_Key), @_Triggered_Send_Key, '') 
+      SET @TRIGGERED_SEND__Email_Address = IIF(Not Empty(@_Email_Address), @_Email_Address, '') 
+      SET @TRIGGERED_SEND__Subscriber_Key = IIF(Not Empty(@LEAD__New_Id), @LEAD__New_Id, '') 
+      SET @FName = IIF(Not Empty(@_First_Name), @_First_Name, "")
+      SET @License = IIF(Not Empty(@_No_Of_Licences), @_No_Of_Licences, "")
+      SET @cidType = IIF(Not Empty(@_Campaign_Name), @_Campaign_Name, "")
+      SET @pidType = IIF(Not Empty(@pid), @pid, "")
+
+
+      /* ACTION
+      *****************/
+
+
+      If ((Not Empty(@TRIGGERED_SEND__Customer_Key)) AND (Not Empty(@TRIGGERED_SEND__Email_Address)) AND (Not Empty(@TRIGGERED_SEND__Subscriber_Key))) Then
+
+          SET @Triggered_Send_Definition_Object = CreateObject("TriggeredSendDefinition")
+          SetObjectProperty(@Triggered_Send_Definition_Object, "CustomerKey", @TRIGGERED_SEND__Customer_Key)
+
+          SET @Triggered_Send_Object = CreateObject("TriggeredSend")
+          SetObjectProperty(@Triggered_Send_Object, "TriggeredSendDefinition", @Triggered_Send_Definition_Object)
+
+          SET @Subscriber_Object = CreateObject("Subscriber")
+          SetObjectProperty(@Subscriber_Object, "EmailAddress", @TRIGGERED_SEND__Email_Address)
+          SetObjectProperty(@Subscriber_Object, "SubscriberKey", @TRIGGERED_SEND__Subscriber_Key)
+
+   
+          /* SetObjectProperty(@Subscriber_Object, "FirstName", @_First_Name) */
+          /* SetObjectProperty(@Subscriber_Object, "License", @_No_Of_Licences)
+          SetObjectProperty(@Subscriber_Object, "cid",  @cidType)
+          SetObjectProperty(@Subscriber_Object, "pid", @pidType) */
+            /* SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "FirstName")
+            SetObjectProperty(@attr, "Value", @FName)
+            AddObjectArrayItem(@Subscriber_Object, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "License")
+            SetObjectProperty(@attr, "Value", @_No_Of_Licences)
+            AddObjectArrayItem(@Subscriber_Object, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "cid")
+            SetObjectProperty(@attr, "Value", @cidType)
+            AddObjectArrayItem(@Subscriber_Object, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "pid")
+            SetObjectProperty(@attr, "Value", @pidType)
+            AddObjectArrayItem(@Subscriber_Object, "Attributes", @attr) */
+
+          AddObjectArrayItem(@Triggered_Send_Object, "Subscribers", @Subscriber_Object)
+
+          VAR @Status_Message, @Error_Code
+          SET @TRIGGERED_SEND__Status_Code = InvokeCreate(@Triggered_Send_Object, @Status_Message, @Error_Code)
+
+      EndIf
+
+
+
+    /*************************************************************
+    -- REDIRECT TO PAGE
+    **************************************************************/
+
+
+      /* DEFAULTS
+      *****************/
+
+      /* VAR @REDIRECT__Page_URL
+
+      If (@_Redirect_To_Page == "home-page") Then 
+        SET @REDIRECT__Page_URL = "https://www.3plearning.com"
+      ElseIf (@_Redirect_To_Page == "hello") Then
+        SET @REDIRECT__Page_URL = "https://www.3plearning.com/hello"
+      Else 
+        SET @REDIRECT__Page_URL = "https://www.3plearning.com/thank-you"
+      EndIf
+
+     */
+        SET @redirectURL_tof = Lookup('TOF-URLRedirect','URL','Id',@RedirectId)
+        SET @redirectURL_bof = Lookup('BOF_URL_Redirect','URL','Id',@RedirectId)
+
+        if @RedirectId > 0 AND indexOf(@form, "tof") then
+        Redirect(@redirectURL_tof)
+        else
+        Redirect(@redirectURL_bof)
+        EndIf
+      /* ACTION
+      *****************/
+      
+      IF (@_Debug != true) Then
+        Redirect(@REDIRECT__Page_URL)
+
+      EndIf
+
+
+]%%
+
+
+
+<!-- ============================================================================================= -->
+
+
+<h3>
+  DEBUG INFO
+</h3>
+
+<br/><u>HIDDEN FIELDS</u>
+
+<br>
+
+<br/>_Debug == %%=v(@_Debug)=%%
+
+<br/>
+
+<br/>_Campaign_Name == %%=v(@_Campaign_Name)=%%
+<br/>_Triggered_Send_Key == %%=v(@_Triggered_Send_Key)=%%
+<br/>_Redirect_To_Page == %%=v(@_Redirect_To_Page)=%%
+
+<br/>
+
+<br/>_UTM_Campaign == %%=v(@_UTM_Campaign)=%%
+<br/>_UTM_Content == %%=v(@_UTM_Content)=%%
+<br/>_UTM_Medium == %%=v(@_UTM_Medium)=%%
+<br/>_UTM_Medium == %%=v(@_UTM_Medium)=%%
+<br/>_UTM_Source == %%=v(@_UTM_Source)=%%
+
+<br/>pid == %%=v(@pidType)=%%
+<br/>cid == %%=v(@cidType)=%%
+<br/>licences == %%=v(@_No_Of_Licences)=%%
+<br/>FName == %%=v(@_First_Name)=%%
+
+<br/>
+
+<br/><u>FORM FIELDS</u>
+
+<br/>
+
+<br/>_Product_Interest = %%=v(@_Product_Interest)=%%
+<br/>_First_Name = %%=v(@_First_Name)=%%
+<br/>_Last_Name = %%=v(@_Last_Name)=%%
+<br/>_Email_Address = %%=v(@_Email_Address)=%%
+<br/>_Phone_Number = %%=v(@_Phone_Number)=%%
+<br/>_Grade_Level = %%=v(@_Grade_Level)=%%
+<br/>_Job_Title = %%=v(@_Job_Title)=%%
+<br/>_Country_Name = %%=v(@_Country_Name)=%%
+<br/>_Country_Code = %%=v(@countrycode)=%%
+<br/>_State_Name_Code = %%=v(@_State_Name)=%%
+<br/>_state_FullName = %%=v(@stateName)=%%
+<br/>_Postal_Code = %%=v(@_Postal_Code)=%%
+<br/>_School_Name = %%=v(@_School_Name)=%%
+<br/>_No_Of_Licences = %%=v(@_No_Of_Licences)=%%
+<br/>_Terms_And_Conditions = %%=v(@_Terms_And_Conditions)=%%
+<br/>_Subscriber_Opt_In = %%=v(@_Subscriber_Opt_In)=%%
+
+<br/>
+
+<br/><u>AMPSCRIPT VARIABLES</u>
+
+<br/>
+
+<br/>LEAD__New_Id == %%=v(@LEAD__New_Id)=%%
+
+<br>
+
+<br/>TRIGGERED_SEND__Subscriber_Key == %%=v(@TRIGGERED_SEND__Subscriber_Key)=%%
+<br/>TRIGGERED_SEND__Email_Address == %%=v(@TRIGGERED_SEND__Email_Address)=%%
+<br/>TRIGGERED_SEND__CustomerKey == %%=v(@TRIGGERED_SEND__Customer_Key)=%%
+<br/>TRIGGERED_SEND__Status_Code == %%=v(@TRIGGERED_SEND__Status_Code)=%%
+
+<br>
+
+<br/>CAMPAIGN_MEMBER__Campaign_Name == %%=v(@CAMPAIGN_MEMBER__Campaign_Name)=%%
+<br/>CAMPAIGN_MEMBER__CampaignId == %%=v(@CAMPAIGN_MEMBER__CampaignId)=%%
+<br/>CAMPAIGN_MEMBER__New_Id == %%=v(@CAMPAIGN_MEMBER__New_Id)=%%
+<br/>enquiry == %%=v(@enquiry)=%%
+<br/>LeadStatus == %%=v(@LeadStatus)=%%
+
+<br>
+
+<br/>REDIRECT__Page_URL == %%=v(@REDIRECT__Page_URL)=%%

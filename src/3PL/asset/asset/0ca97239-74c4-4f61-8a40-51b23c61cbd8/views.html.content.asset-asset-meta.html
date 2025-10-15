@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<!-- %%[ 
+
+SET @UTMcontent = Requestparameter('utm_content')
+SET @UTMcampaign = Requestparameter('utm_campaign')
+SET @UTMmedium = Requestparameter('utm_medium')
+SET @UTMsource = Requestparameter('utm_source')
+SET @UTMterm = Requestparameter('utm_term')
+SET @cid = RequestParameter('cid')
+SET @Product = RequestParameter('pid')
+SET @enquiry = RequestParameter('eid')
+SET @Redirect = RequestParameter('rid')
+SET @products = RequestParameter('pid')
+SET @prod = RequestParameter('pid')
+SET @source = RequestParameter("source")
+
+/* Identify multliselector if pre-set in url */
+IF @prod == "mathletics" THEN
+SET @selected_mx = "selected" 
+ELSEIF @prod == "mathseeds" THEN
+SET @selected_ms = "selected" 
+ELSEIF @prod == "readingeggs" THEN
+SET @selected_re = "selected" 
+
+
+ENDIF
+
+ ]%% -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="description" content="Form">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <link rel="shortcut icon"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png"
+        type="image/x-icon" />
+    <!-- For iPhone -->
+    <link rel="apple-touch-icon-precomposed"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
+    <!-- For iPhone 4 Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
+    <!-- For iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
+    <!-- For iPad Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+
+    <!-- 3PL CDN CSS -->
+
+    <link rel="stylesheet" href="https://cloud.my.3plearning.com/01_3PQuote_CSS" />
+
+    <title>GLOBAL FORM</title>
+    <style>
+        .btn-light {
+            background-color: white;
+            border: solid 0.5px;
+        }
+
+        .butt {
+            width: 50px;
+            height: 50px;
+            padding: 7px 10px;
+            border-radius: 25px;
+            font-size: 10px;
+            text-align: center;
+            background-color: #015F4E;
+        }
+
+        .initHidden {
+            display: none;
+        }
+
+        /* The container */
+        .custom-checkbox {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 5px;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .custom-checkbox:hover input~.checkmark {
+            background-color: pink;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .custom-checkbox input:checked~.checkmark {
+            background-color: #015F4E;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .custom-checkbox input:checked~.checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .custom-checkbox .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 7px;
+            height: 15px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-group">
+        <div class=" container my-2 w-100" style="width: 40%;">
+
+
+            <form id="registerQuote" action="https://cloud.my.3plearning.com/GLOBAL_DYNAMICFORM-AMPSCRIPT" method="POST"
+                onsubmit="myButton.disabled = true; return true;" target="_parent">
+                <input type="hidden" id="selectedCountryName" name="selectedCountryName" value="">
+                <input type="hidden" id="CountryName" name="CountryName" value="%%=v(@Country)=%%">
+                <input type="hidden" id="selectedStateName" name="selectedStateName" value="">
+                <input type="hidden" id="Product" name="Product" value="%%=v(@Product)=%%">
+                <input type="hidden" id="utmcontent" name="utmcontent" value="%%=v(@UTMcontent)=%%">
+                <input type="hidden" id="utmcampaign" name="utmcampaign" value="%%=v(@UTMcampaign)=%%">
+                <input type="hidden" id="utmmedium" name="utmmedium" value="%%=v(@UTMmedium)=%%">
+                <input type="hidden" id="utmsource" name="utmsource" value="%%=v(@UTMsource)=%%">
+                <input type="hidden" id="utmterm" name="utmterm" value="%%=v(@UTMterm)=%%">
+                <input type="hidden" id="mathletics" name="mathletics" value="%%=v(@selected_mx)=%%">
+                <input type="hidden" id="pid" name="pid" value="%%=v(@pid)=%%">
+                <input type="hidden" id="cid" name="cid" value="%%=v(@cid)=%%">
+                <input type="hidden" id="eid" name="eid" value="%%=v(@enquiry)=%%">
+                <input type="hidden" id="rid" name="rid" value="%%=v(@Redirect)=%%">
+                <input type="hidden" id="source" name="source" value="%%=v(@Source)=%%">
+
+                <div class="form-group">
+                    <div class="row mb-3">
+                        <div class="col-md-10 col-sm-12 " style="font-weight: bold; ">
+                            *All fields are required.
+                        </div>
+                    </div>
+
+                    <label for="products" style="text-transform: uppercase; font-weight: bold; ">Product</label>
+                    <select class="selectpicker show-menu-arrow btn-color form-control" id="btn-color products"
+                        name="produc" multiple="multiple" data-actions-box="true" data-width="100%" name="selectpicker">
+
+                        <option value="Mathletics" name="mathletics" %%=v(@selected_mx)=%%>Mathletics</option>
+                        <option value="Mathseeds" name="mathseeds" %%=v(@selected_ms)=%%>Mathseeds</option>
+                        <option value="ReadingEggs" name="readingeggs" %%=v(@selected_re)=%%>Reading Eggs</option>
+
+
+
+                    </select>
+                </div>
+
+                <div class="form-group ">
+                    <label for="first-name" style="text-transform: uppercase; font-weight: bold; ">First
+                        Name</label>
+                    <input type="text" name="first-name" id="first-name" class="form-control" placeholder="First Name"
+                        required="required" maxlength="40">
+
+                </div>
+                <div class="form-group ">
+                    <label for="last-name" style="text-transform: uppercase; font-weight: bold; ">Last Name</label>
+                    <input type="text" name="last-name" id="last-name" class="form-control" placeholder="Last Name"
+                        required="required" maxlength="80">
+
+                </div>
+                <div class="form-group ">
+                    <label for="exampleFormControlInput1 " style="text-transform: uppercase; font-weight: bold; ">Email
+                    </label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                        name="email" oninput="this.setCustomValidity('')" required="required">
+                </div>
+                <div class="form-group ">
+                    <label for="phone" style="text-transform: uppercase; font-weight: bold;">Phone Number</label>
+                    <input type="number" name="phone" id="phone" class="form-control"
+                        placeholder="Mobile/Work Phone Number" required="required">
+                </div>
+                <div class="form-group ">
+                    <label for="year-select" style="text-transform: uppercase; font-weight: bold;">Year Level</label>
+                    <input type="text" name="year-select" id="year-select" class="form-control" placeholder="Year Level"
+                        required="required">
+                </div>
+
+                <div class="form-group">
+                    <label for="job-title" style="text-transform: uppercase; font-weight: bold; ">Job Title</label>
+                    <select class="custom-select" id="job-title" name="job-title" onchange="jobTitleChanged()"
+                        required="required">
+                        <option value="" selected="true" disabled="disabled">Select Job Title</option>
+
+                        %%[
+                        SET @JobTitleRowset = LookupRows("Trial Job Title", "Active", "1")
+                        SET @JobTitleRowsetCount = RowCount(@JobTitleRowset)
+                        IF @JobTitleRowsetCount > 0 THEN
+                        FOR @i = 1 TO @JobTitleRowsetCount DO
+                        SET @JobTitleName = Field(Row(@JobTitleRowset, @i), "Job Title")
+                        ]%%
+                        <option value="%%=v(@JobTitleName)=%%">%%=v(@JobTitleName)=%%</option>
+                        %%[
+                        NEXT @i
+                        ENDIF
+                        ]%%
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="country" style="text-transform: uppercase; font-weight: bold; ">Country</label>
+                    <select id="country" class="custom-select" name="country" onchange="countryChanged()"
+                        required="required">
+                        <option value="" selected="true" disabled="disabled">Select Country</option>
+                        %%[
+                        var @CountryRowset, @row, @CountryRowsetCount, @numRowsToReturnCountry, @boolen, @i
+                        set @boolenTRUE = 1 /* or a literal value */
+                        set @boolenFALSE = 0 /* or a literal value */
+                        SET @numRowsToReturnCountry = 0 /* 0 means all, max 2000 */
+                        SET @CountryRowset = LookupOrderedRows("Country", @numRowsToReturnCountry, "IsMainCountry desc,
+                        CountryName
+                        asc", "Active", @boolenTRUE, "IsMainCountry", @boolenTRUE)
+                        SET @CountryRowsetCount = RowCount(@CountryRowset)
+                        IF @CountryRowsetCount > 0 THEN
+                        for @i = 1 to @CountryRowsetCount do
+                        var @CountryName, @IsMainCountry, @CountryCode
+                        set @row = row(@CountryRowset, @i) /* get row based on counter */
+                        set @CountryName = field(@row,"CountryName")
+                        set @CountryCode = field(@row,"CountryCode")
+                        ]%%
+                        <option value="%%=v(@CountryCode)=%%">%%=v(@CountryName)=%%</option>
+                        %%[
+                        NEXT @i
+                        ENDIF
+                        ]%%
+                        <option disabled="disabled" value="Line">------------------------------------------------------
+                        </option>
+                        %%[
+                        var @CountryRowset, @row, @CountryRowsetCount, @numRowsToReturnCountry, @boolen, @i
+                        set @boolenTRUE = 1 /* or a literal value */
+                        set @boolenFALSE = 0 /* or a literal value */
+                        SET @numRowsToReturnCountry = 0 /* 0 means all, max 2000 */
+                        SET @CountryRowsetRest = LookupOrderedRows("Country", @numRowsToReturnCountry, "CountryName
+                        asc",
+                        "IsMainCountry", @boolenFALSE, "Active", @boolenTRUE)
+                        SET @CountryRowsetCount = RowCount(@CountryRowsetRest)
+                        IF @CountryRowsetCount > 0 THEN
+                        for @i = 1 to @CountryRowsetCount do
+                        var @CountryName, @IsMainCountry, @CountryCode
+                        set @row = row(@CountryRowsetRest, @i) /* get row based on counter */
+                        set @CountryName = field(@row,"CountryName")
+                        set @CountryCode = field(@row,"CountryCode")
+                        ]%%
+                        <option value="%%=v(@CountryCode)=%%">%%=v(@CountryName)=%%</option>
+                        %%[
+                        NEXT @i
+                        ENDIF
+                        ]%%
+
+
+
+                    </select>
+                </div>
+
+
+                <div id="divState" class="form-group initHidden">
+                    <label for="state" style="text-transform: uppercase; font-weight: bold; ">State</label>
+                    <select id="state" name="state" onchange="stateChanged()" class="custom-select" required="required">
+                        <option value="" default="true" selected="true" disabled="disabled">Select Region</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="postcode" style="text-transform: uppercase; font-weight: bold;">Postcode/Zipcode
+                    </label>
+                    <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Postcode/Zipcode"
+                        required="required" title="Postcode/Zipcode is 4 digits with no spaces">
+                </div>
+
+                <div id="divSchoolName" class="form-group initHidden">
+                    <label for="school-name" style="text-transform: uppercase; font-weight: bold;">School Name</label>
+                    <input type="text" id="school-name" class="form-control" name="school-name"
+                        placeholder="School Name" required="required">
+                </div>
+
+                %%[
+                SET @enq = RequestParameter('eid')
+                IF @enq == "quote" THEN
+                ]%%
+                <div class="form-group">
+                    <label for="license" style="text-transform: uppercase; font-weight: bold; ">Student License
+                        Required</label>
+                    <input type="number" name="licenseno" id="license number" class="form-control" required="required"
+                        placeholder="Number of Student Licenses Required">
+                </div>
+                %%[
+                ELSE
+                ENDIF
+                ]%%
+
+                <!------------- Checkbox 1  ----------------->
+
+                <label class="custom-checkbox" for="tc-agree">I agree to 3PLearning's terms and conditions.
+                    <input type="checkbox" value="agree" required id="tc-agree" name="tc-agree"
+                        aria-label="I agree to 3PLearning's terms and conditions.">
+                    <span class="checkmark"></span>
+                </label>
+
+                <!------------- Checkbox 2  ----------------->
+
+                <label class="custom-checkbox" for="sub-opt-in">YES! Sign me upfor monthly newsletters, educational
+                    content, resources
+                    and occasional
+                    promotional material.
+                    <input type="checkbox" value="receive" id="sub-opt-in" name="sub-opt-in"
+                        aria-label="YES! Sign me upfor monthly newsletters, educational content, resources and occasional promotional material.">
+                    <span class="checkmark"></span>
+                </label>
+
+                <div class="row mb-5 ">
+                    <div class="col-md-10 col-sm-12 pt-md-2 my-md-2" style="font-weight: bold; ">
+                        <div class="form-group">
+                            <label id="term-warning" style="color: red;" class="initHidden">Please read and agree to
+                                3PLearning's terms and
+                                conditions before submiting</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" name="myButton" value="Submit"
+                        class="btn btn-success btn-md buttonR col-md-2 col-sm-12 col-12 my-4 my-sm-4 butt"
+                        style="font-size: large;">Submit</button>
+
+
+                    <div class="form-group">
+                        <label id="term-warning" style="color: red;" class="initHidden">Please read and agree to
+                            3PLearning's terms and
+                            conditions before submiting</label>
+                    </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- CLOUDPAGES -->
+    <script type="text/javascript" src="https://cloud.my.3plearning.com/GLOBAL_DYNAMICFORM-JS"></script>
+    <!-- <script type="text/javascript" src="https://pages.my.3plearning.com/bof_js/"></script>
+    <script type="text/javascript" src="https://cloud.my.3plearning.com/trialjsfinal"></script> -->
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js "></script>
+
+    <!-- JS, Popper.js, and jQuery -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js "></script>
+
+</body>
+
+</html>

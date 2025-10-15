@@ -1,0 +1,22 @@
+%%[
+IF @debug THEN
+
+    SET @debugVarStr = "LEAD__New_Id,CAMPAIGN_MEMBER__Campaign_Name,CAMPAIGN_MEMBER__CampaignId,CAMPAIGN_MEMBER__New_Id,RedirectURL"
+    SET @varRowSet = BuildRowsetFromString(@debugVarStr,',')
+    SET @finalStr = '';
+
+    FOR @i = 1 TO Rowcount(@varRowSet) DO
+
+       SET @row = Row(@varRowSet,@i)
+       SET @tempName = Field(@row,1,0)
+       SET @attrName = @tempName
+
+       SET @FieldName = CONCAT('@',@attrName)
+       
+       SET @FieldValue = TreatAsContent(CONCAT('%','%=v(',CONCAT('@',@attrName),')=%','%'))
+       insertdata("DebugVariables","VariableName",@FieldName, "VariableValue", @FieldValue)
+    
+    NEXT @i
+
+ENDIF
+]%%

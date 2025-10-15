@@ -1,0 +1,593 @@
+{
+    "key": "85bd894b-4102-38d4-0cfc-8570b6d79791",
+    "name": "GLOBAL_MX0030 MoreInformation_Request_MQL",
+    "lastPublishedDate": "0001-01-01T00:00:00",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2023-11-23T14:17:54.433",
+    "modifiedDate": "2023-11-23T15:38:19.567",
+    "activities": [
+        {
+            "key": "MULTICRITERIADECISIONV2-1",
+            "name": "",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "WAITBYDURATION-2",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "AMER",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "Lead:Country equal United States OR Lead:Country equal USA OR Lead:Country equal US OR Lead:Country equal Canada OR Lead:Country equal CA OR Lead:Country__c equal US OR Lead:Country__c equal USA OR Lead:Country__c equal United States OR Lead:Country__c equal CA OR Lead:Country__c equal Canada"
+                    }
+                },
+                {
+                    "key": "bc618e37-4b2e-d676-75f4-2ed4bccffe72",
+                    "next": "WAITBYDURATION-4",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "EMEA",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "Lead:Country equal UK OR Lead:Country equal United Kingdom OR Lead:Country__c equal UK OR Lead:Country__c equal United Kingdom OR Lead:Country equal Ireland OR Lead:Country equal IE OR Lead:Country__c equal Ireland OR Lead:Country__c equal IE OR Lead:Country equal Albania OR Lead:Country__c equal Albania OR Lead:Country equal Andorra OR Lead:Country__c equal Andorra OR Lead:Country equal Austria OR Lead:Country__c equal Austria OR Lead:Country equal Belgium OR Lead:Country__c equal Belgium OR Lead:Country equal Bosnia and Herzegovina OR Lead:Country__c equal Bosnia and Herzegovina OR Lead:Country equal Bulgaria OR Lead:Country__c equal Bulgaria OR Lead:Country equal Croatia OR Lead:Country__c equal Croatia OR Lead:Country equal Czech Republic OR Lead:Country__c equal Czech Republic OR Lead:Country equal Denmark OR Lead:Country__c equal Denmark OR Lead:Country equal Estonia OR Lead:Country__c equal Estonia OR Lead:Country equal Finland OR Lead:Country__c equal Finland OR Lead:Country equal France OR Lead:Country__c equal France OR Lead:Country equal Germany OR Lead:Country__c equal Germany OR Lead:Country equal Greece OR Lead:Country__c equal Greece OR Lead:Country equal Hungary OR Lead:Country__c equal Hungary OR Lead:Country equal Iceland OR Lead:Country__c equal Iceland OR Lead:Country equal Italy OR Lead:Country__c equal Italy OR Lead:Country equal Latvia OR Lead:Country__c equal Latvia OR Lead:Country equal Leichtenstein OR Lead:Country__c equal Leichtenstein OR Lead:Country equal Lithuania OR Lead:Country__c equal Lithuania OR Lead:Country equal Luxembourg OR Lead:Country__c equal Luxembourg OR Lead:Country equal Malta OR Lead:Country__c equal Malta OR Lead:Country equal Moldova OR Lead:Country__c equal Moldova OR Lead:Country equal Montenegro OR Lead:Country__c equal Montenegro OR Lead:Country equal Netherlands OR Lead:Country__c equal Netherlands OR Lead:Country equal Norway OR Lead:Country__c equal Norway OR Lead:Country equal Romania OR Lead:Country__c equal Romania OR Lead:Country equal San Marino OR Lead:Country__c equal San Marino OR Lead:Country equal Serbia OR Lead:Country__c equal Serbia OR Lead:Country equal Slovakia OR Lead:Country__c equal Slovakia OR Lead:Country equal Slovenia OR Lead:Country__c equal Slovenia OR Lead:Country equal Spain OR Lead:Country__c equal Spain OR Lead:Country equal Sweden OR Lead:Country__c equal Sweden OR Lead:Country equal Switzerland OR Lead:Country__c equal Switzerland OR Lead:Country equal Ukraine OR Lead:Country__c equal Ukraine OR Lead:Country equal Egypt OR Lead:Country__c equal Egypt OR Lead:Country equal Turkey OR Lead:Country__c equal Turkey OR Lead:Country equal Yemen OR Lead:Country__c equal Yemen OR Lead:Country equal United Arab Emirates OR Lead:Country__c equal United Arab Emirates OR Lead:Country equal Israel OR Lead:Country__c equal Israel OR Lead:Country equal Jordan OR Lead:Country__c equal Jordan OR Lead:Country equal Lebanon OR Lead:Country__c equal Lebanon OR Lead:Country equal Oman OR Lead:Country__c equal Oman OR Lead:Country equal Kuwait OR Lead:Country__c equal Kuwait OR Lead:Country equal Qatar OR Lead:Country__c equal Qatar OR Lead:Country equal Bahrain OR Lead:Country__c equal Bahrain OR Lead:Country equal Cyprus OR Lead:Country__c equal Cyprus OR Lead:Country equal Saudi Arabia OR Lead:Country__c equal Saudi Arabia"
+                    }
+                },
+                {
+                    "key": "ee8d2098-a219-9002-14ff-6cbf93404439",
+                    "next": "WAITBYDURATION-5",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "APAC",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "Lead:Country equal Australia OR Lead:Country__c equal Australia OR Lead:Country equal New Zealand OR Lead:Country__c equal New Zealand OR Lead:Country equal Africa OR Lead:Country__c equal Africa"
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-3",
+                    "arguments": {},
+                    "metaData": {
+                        "label": null
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United States]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[USA]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[US]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Canada]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[CA]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[US]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[USA]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United States]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[CA]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Canada]]></Value></Condition></ConditionSet></FilterDefinition>",
+                    "bc618e37-4b2e-d676-75f4-2ed4bccffe72": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[UK]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United Kingdom]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[UK]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United Kingdom]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Ireland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[IE]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Ireland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[IE]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Albania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Albania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Andorra]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Andorra]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Austria]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Austria]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Belgium]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Belgium]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bosnia and Herzegovina]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bosnia and Herzegovina]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bulgaria]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bulgaria]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Croatia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Croatia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Czech Republic]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Czech Republic]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Denmark]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Denmark]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Estonia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Estonia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Finland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Finland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[France]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[France]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Germany]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Germany]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Greece]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Greece]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Hungary]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Hungary]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Iceland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Iceland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Italy]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Italy]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Latvia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Latvia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Leichtenstein]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Leichtenstein]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Lithuania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Lithuania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Luxembourg]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Luxembourg]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Malta]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Malta]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Moldova]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Moldova]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Montenegro]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Montenegro]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Netherlands]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Netherlands]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Norway]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Norway]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Romania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Romania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[San Marino]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[San Marino]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Serbia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Serbia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Slovakia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Slovakia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Slovenia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Slovenia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Spain]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Spain]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Sweden]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Sweden]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Switzerland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Switzerland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Ukraine]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Ukraine]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Egypt]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Egypt]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Turkey]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Turkey]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Yemen]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Yemen]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United Arab Emirates]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United Arab Emirates]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Israel]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Israel]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Jordan]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Jordan]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Lebanon]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Lebanon]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Oman]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Oman]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Kuwait]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Kuwait]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Qatar]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Qatar]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bahrain]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bahrain]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Cyprus]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Cyprus]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Saudi Arabia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Saudi Arabia]]></Value></Condition></ConditionSet></FilterDefinition>",
+                    "ee8d2098-a219-9002-14ff-6cbf93404439": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Australia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Australia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[New Zealand]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[New Zealand]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Africa]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Africa]]></Value></Condition></ConditionSet></FilterDefinition>"
+                },
+                "schemaVersionId": "252"
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-2",
+            "name": "",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "45ec6694-1eec-4be0-bcaa-c74da5393d15",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-3",
+            "name": "",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "62c6f100-6834-4e14-ba61-c1f56ff1c76b",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-4",
+            "name": "",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "6817a3df-ac26-43f4-a91f-70a2d2ff56e6",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-5",
+            "name": "",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "766d3e2f-6c8c-4a73-a701-e66358beefe8",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "GLOBAL_MX0030 MoreInformation_Request",
+            "description": "",
+            "type": "SalesforceObjectTriggerV2",
+            "outcomes": [],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "SalesforceObjectTriggerV2",
+                "contactKey": {
+                    "relationshipIdName": "Id",
+                    "relationshipName": "",
+                    "isPolymorphic": false,
+                    "referenceObjectName": "Lead"
+                },
+                "contactPersonType": "Lead",
+                "evaluationCriteriaSummary": "Created;",
+                "eventDataConfig": {
+                    "objects": [
+                        {
+                            "dePrefix": "Lead:",
+                            "isPolymorphic": false,
+                            "relationshipName": "",
+                            "referenceObject": "",
+                            "relationshipIdName": "",
+                            "fields": [
+                                "Campaign_Code__c",
+                                "Campaign_Name__c",
+                                "Country",
+                                "Country__c",
+                                "CreatedDate",
+                                "Email",
+                                "HasOptedOutOfEmail",
+                                "Enquiry_Type__c",
+                                "FirstName",
+                                "IndividualId",
+                                "LastName",
+                                "Lead_Country__c",
+                                "Id",
+                                "LeadReferenceId__c",
+                                "Marketing_Cloud_MQL_Id__c",
+                                "Marketing_Cloud_Purchase_Id__c",
+                                "Marketing_Interest__c",
+                                "Marketing_Product_Interest__c",
+                                "State__c",
+                                "State",
+                                "StateCode",
+                                "Sync_to_Marketing_Cloud__c",
+                                "Sync_Lead_2_MC__c",
+                                "Tech_GUID_Populate_DateTime__c",
+                                "Tech_GUID_Result_Message__c",
+                                "Tech_GUID_Sync_Status__c",
+                                "User_Company_Name__c",
+                                "UTM_Campaign__c",
+                                "UTM_Content__c",
+                                "UTM_Medium__c",
+                                "UTM_Source__c",
+                                "UTM_Term__c",
+                                "Zip_Code__c",
+                                "PostalCode"
+                            ]
+                        }
+                    ]
+                },
+                "eventDataSummary": [
+                    "Lead:Campaign_Code__c",
+                    "Lead:Campaign_Name__c",
+                    "Lead:Country",
+                    "Lead:Country__c",
+                    "Lead:CreatedDate",
+                    "Lead:Email",
+                    "Lead:Enquiry_Type__c",
+                    "Lead:FirstName",
+                    "Lead:HasOptedOutOfEmail",
+                    "Lead:Id",
+                    "Lead:IndividualId",
+                    "Lead:LastName",
+                    "Lead:LeadReferenceId__c",
+                    "Lead:Lead_Country__c",
+                    "Lead:Marketing_Cloud_MQL_Id__c",
+                    "Lead:Marketing_Cloud_Purchase_Id__c",
+                    "Lead:Marketing_Interest__c",
+                    "Lead:Marketing_Product_Interest__c",
+                    "Lead:PostalCode",
+                    "Lead:State",
+                    "Lead:StateCode",
+                    "Lead:State__c",
+                    "Lead:Sync_Lead_2_MC__c",
+                    "Lead:Sync_to_Marketing_Cloud__c",
+                    "Lead:Tech_GUID_Populate_DateTime__c",
+                    "Lead:Tech_GUID_Result_Message__c",
+                    "Lead:Tech_GUID_Sync_Status__c",
+                    "Lead:UTM_Campaign__c",
+                    "Lead:UTM_Content__c",
+                    "Lead:UTM_Medium__c",
+                    "Lead:UTM_Source__c",
+                    "Lead:UTM_Term__c",
+                    "Lead:User_Company_Name__c",
+                    "Lead:Zip_Code__c"
+                ],
+                "objectAPIName": "Lead",
+                "passThroughArgument": {
+                    "fields": {
+                        "ContactKey": "Lead:Id",
+                        "Email": "Lead:Email",
+                        "HasOptedOutOfEmail": "Lead:HasOptedOutOfEmail"
+                    }
+                },
+                "primaryObjectFilterCriteria": {
+                    "operand": "AND",
+                    "conditions": [
+                        {
+                            "_length": 255,
+                            "dataType": "picklist",
+                            "fieldName": "Enquiry_Type__c",
+                            "folderId": "Lead-Lead",
+                            "id": "Lead-Lead-Enquiry_Type__c",
+                            "isPolymorphic": false,
+                            "name": "Enquiry Type",
+                            "operator": "EQUALS",
+                            "precision": 0,
+                            "referenceObjectName": "Lead",
+                            "relationshipIdName": "",
+                            "relationshipName": "",
+                            "scale": 0,
+                            "text": "Enquiry Type",
+                            "value": "Information"
+                        },
+                        {
+                            "_length": 4099,
+                            "dataType": "multipicklist",
+                            "fieldName": "Marketing_Product_Interest__c",
+                            "folderId": "Lead-Lead",
+                            "id": "Lead-Lead-Marketing_Product_Interest__c",
+                            "isPolymorphic": false,
+                            "name": "Marketing Product Interest",
+                            "operator": "EQUALS",
+                            "precision": 4,
+                            "referenceObjectName": "Lead",
+                            "relationshipIdName": "",
+                            "relationshipName": "",
+                            "scale": 0,
+                            "text": "Marketing Product Interest",
+                            "value": "Mathletics"
+                        }
+                    ]
+                },
+                "primaryObjectFilterSummary": "Lead:Enquiry_Type__c EQUALS Information AND  Lead:Marketing_Product_Interest__c EQUALS Mathletics",
+                "relatedObjectFilterCriteria": {
+                    "operand": "AND",
+                    "conditions": []
+                },
+                "relatedObjectFilterSummary": "",
+                "salesforceTriggerCriteria": "Created",
+                "version": "3.0",
+                "whoToInject": "Lead ID (Lead)"
+            },
+            "metaData": {
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/jbint-events/events/SalesforceData/images/SF-Event-Icon.svg",
+                "title": "",
+                "entrySourceGroupConfigUrl": "https://jbinteractions.s7.marketingcloudapps.com/jbint-events/entrysourcegroupconfig.json",
+                "r__event_key": "SalesforceObj7d5f01fa068e7b01e51f6880d371f20e"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "NotSet",
+    "definitionType": "Multistep",
+    "channel": "",
+    "defaults": {
+        "email": [
+            "{{Event.SalesforceObj7d5f01fa068e7b01e51f6880d371f20e.\"Lead:Email\"}}"
+        ],
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "dataSource": "ContactsModel"
+    },
+    "executionMode": "Production",
+    "status": "Draft",
+    "scheduledStatus": "Draft",
+    "r__folder_Path": "my journeys"
+}

@@ -1,0 +1,88 @@
+{
+    "name": "EMEA_Products_Trial_Nurture_Automation",
+    "description": "",
+    "key": "ec3f344d-13ed-00df-8187-7195a902dbb9",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2025-09-02T08:07:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T070000;INTERVAL=1",
+        "timezoneName": "GMT Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "AE643A43-A831-4FEB-846A-F3064EA45305"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "F4651FBB-A979-492A-A99A-F3A6710D58A1"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "99E0775D-14EA-4BBD-B1D3-26CAFAFDA12F"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "EB33AB82-8F37-460B-AE31-7739C937B2B8"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "E0805CD7-0354-4ED4-B2F4-E4E94E2B27E0"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "EMEA_MS0043_Trial_Nurture",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "EMEA_MX0072_Trial_Nurture",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "EMEA_RE0078_Trial_Nurture",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "EMEA_WL0015_Trial_Nurture",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2025-06-17T12:45:45.803Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2025-09-08T09:34:01.677Z",
+    "pausedName": "Vijay Kapadam",
+    "pausedDate": "2025-09-08T09:34:28.05Z",
+    "r__folder_Path": "my automations/Journeys/EME"
+}

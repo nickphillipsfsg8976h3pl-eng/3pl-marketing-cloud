@@ -1,0 +1,320 @@
+{
+    "name": "Refresh B2B Segments",
+    "description": "",
+    "key": "2d379c90-cc0a-c0bd-16e5-3c66b2271c4d",
+    "type": "scheduled",
+    "status": "Ready",
+    "schedule": {
+        "startDate": "2025-07-16T12:15:00",
+        "endDate": "2025-07-16T12:15:00",
+        "icalRecur": "FREQ=DAILY;COUNT=1;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "Global Segments Refresh",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "496F4C53-00FB-4755-B9B9-033BDB723854"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "A10A52FD-BB39-4D04-8A69-C8D665E89AB9"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "79BE976D-03F0-4E27-9686-2AC72A1153ED"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "C975707C-1E8B-4E58-B2EB-25D6CDBC07AE"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "A51D7314-AA3B-47DB-B8BF-2FA862D33DFB"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "6D5A0779-58A8-43D6-A5DF-8BCC7F984925"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "F4B069D3-F7DD-4492-AB83-4F50E3E03DD2"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "C1590A5D-910D-44DB-9230-DEC6F61DD9F4"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "1C3C3DBD-BB39-481C-95D7-9929B6919E86"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "78AB753B-2A78-452F-A7F6-648049AEB157"
+                }
+            ]
+        },
+        {
+            "name": "APAC Segments Refresh",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "FCFB1034-08D3-462E-A1FA-BB12A492156A"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "5CB59825-CFF6-4107-A566-9C7C4A27F43C"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "8F093500-C894-472D-A5D3-907454D1CAF4"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "D3F381BA-CFA5-43C2-8575-D09A0C8A6520"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "D575CB72-9B32-4A55-9D37-4166ABE59A07"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "0C6A7CE1-BD7D-4D84-A7D0-7B615A852617"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "9640BEC7-FFC7-4F39-92B4-CC5576BBB57E"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "8A38C89C-6334-421B-9476-59AF6A012912"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "F4CAFDDC-0CE9-4103-AC02-B7D6369D0D3C"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "439A752E-EBF0-4460-AC27-9D453822E009"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "E18F8424-25EA-4D2E-8BF8-AD2FE7D5B20D"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "FF7F785B-6B1C-473E-805A-B0817B2D200C"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "2BBD4B5E-DAD7-4A6F-A86D-07EE70F27CAB"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "15275C7B-59FD-4B71-B344-17E0C33F6DB3"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "DDFA4851-B180-4E7B-AF0D-77B29FFFFFCB"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "BF74A558-F4EB-4B37-AD62-0C896FB4367A"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "0EE5ADAA-4DE0-4D10-8D49-5263DEFE1994"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "A7AA824B-4452-48A7-81BD-C0F00B782932"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "03A74C84-A2E1-40B2-B207-74BE83ECA22B"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "FA6B0972-EEF9-44DF-B04C-DF127204F125"
+                }
+            ]
+        },
+        {
+            "name": "AMER Segments Refresh",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "D16C3BAB-FE34-4ED7-9B74-03F9F0F1D20B"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "C9AD27DD-8BE0-46CA-9D08-10A8445EDEDC"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "28F5CCAD-2FDE-46FE-853A-7DC1A6C63628"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "7A65559C-B56E-4D01-AAF8-4F77A37AFF51"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "27595E19-E7F8-4181-ABD9-1A35CF1FDEA0"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "808D93F4-4030-4562-AA22-27619E79B3B8"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "9F56EA82-02FF-4E41-8A2C-DB16759468F7"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "5AB4ADF0-0612-49F1-8275-BD8117D13070"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "3AE104FA-0910-4F71-95C3-D96F28C575F8"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "75FB1CA1-19CE-4D4D-8462-4A7FF606A124"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "668496D6-AED1-4F93-97D8-4108C9DBC738"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "B59254CF-45A4-4A71-A1C6-F28020317A0E"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "109114AC-D0AC-4AA8-B408-71DF4645C66B"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "7D42218C-6322-4FCD-B34B-41CE82B96478"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "47B6C3BC-5BAA-467B-92E4-98A96079B004"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "60F51E27-3F2E-4BDC-9C16-70F8838F96AE"
+                }
+            ]
+        },
+        {
+            "name": "AMER Segments Refresh",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "787B16CA-C34E-4417-9CCE-4A264755F25A"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "70B24E9E-B332-47FF-B916-142F06F7DF5D"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "25AC6169-0B51-4B97-A5B3-14C1CD86CF33"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "85935DE9-83CC-4F1C-A19F-6714B028F9B9"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "6E5AB702-B7AE-4670-B062-A58EAA9FA372"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "BB966BF1-6F30-4B42-9FEF-60165FA0B9BC"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "FC4DACF0-252B-4D32-BFDE-ED08B9CA753F"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "E34DC393-E022-4A85-8C9A-BFE56622219A"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "8286ADBA-44FB-4FF4-BADB-70E1BD46B743"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "4293A2EB-22D2-492B-AE49-05E49CBCF4B5"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "8608F1C3-00A7-42FB-948A-6B5344C6C53E"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "BF8552CD-F4F9-439A-B32D-16C07C7EF918"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "C74CC2B4-689C-4D67-93A8-685B7CCD8A6E"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "3F024E31-BCE9-462A-B694-866BAB1B4E2E"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "2B07F33F-9424-4803-B895-1FE2DD05460D"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "9BB8B8DB-5BEC-46E3-BF81-435E44C3ABE0"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "E4E2F707-28C1-4934-9508-ECB9F39CC660"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "B13C1059-4785-4C30-B058-0E306043BC1D"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "D2055985-EB0A-4B06-838C-05BEB68FAB93"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "18BA5E78-31D7-48BD-B362-E5A8C8A331C5"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2023-09-26T07:13:25.307Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2025-07-16T02:12:34.56Z",
+    "pausedName": "Vijay Kapadam",
+    "pausedDate": "2025-07-16T02:12:31.54Z",
+    "notifications": [
+        {
+            "email": [
+                "vijay.kapadam@partners.3plearning.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations"
+}

@@ -1,0 +1,42 @@
+{
+    "type": "AutomationAudience",
+    "name": "EMEA_B2C_MX0002_ONBOARDING ",
+    "description": "",
+    "createdDate": "2023-05-02T19:29:15.28",
+    "createdBy": "Barbara Rivera",
+    "modifiedDate": "2023-05-02T19:29:15.28",
+    "modifiedBy": "Barbara Rivera",
+    "eventDefinitionKey": "AutomationAud-7f892e4d-052e-9cdc-2844-a88f74e8cce8",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "f9d6e87a-5209-42f7-bdc5-5d9723027ca6",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Trial_Start__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d0855237-d21d-ed11-b846-48df37d68272&quot;}\"><AttributePath RelationshipID=\"1ba98de9-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;+;0;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 3,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Trial_Start__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d0855237-d21d-ed11-b846-48df37d68272&quot;}\"><AttributePath RelationshipID=\"1ba98de9-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;+;0;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+        "useHighWatermark": true,
+        "resetHighWatermark": true
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "scheduleState": "No Schedule",
+        "criteriaDescription": "",
+        "scheduleFlowMode": "automation"
+    },
+    "schedule": {
+        "startDateTime": "2023-04-29T08:00:00",
+        "endDateTime": "2079-06-06T00:00:00",
+        "timeZone": "AUS Eastern Standard Time",
+        "occurrences": 81967,
+        "endType": "EndDate",
+        "frequency": "Hourly",
+        "recurrencePattern": "Interval",
+        "interval": 6
+    },
+    "interactionCount": 0,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false,
+    "r__automation_key": "861cfa40-3172-d7ae-6dd2-953e7f3718b4"
+}

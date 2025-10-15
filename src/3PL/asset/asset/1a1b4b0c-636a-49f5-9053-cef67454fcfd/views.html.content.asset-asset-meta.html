@@ -1,0 +1,1383 @@
+<!-- 
+=========================================
+----------- GLOBAL FORM HTML ------------
+=========================================
+
+NOTES:
+- clean up
+- refine job titles and coutries ampscript
+- add bootstrap validation
+- clean up 3p js
+- add in request parameter logic (?type=BOF/TOF -> BOF=2346 etc.)
+- discuss multiple select box alternatives (simple checkboxes, selectable icons, no multiple, multiple options instead of multiple select, other pre-mades, bootstrap standard)
+- dicuss hidden parametres to pass through
+- redirectTO form
+- XSRF Token
+- add custom validation (joi.js)
+- remove custom hides, change to d-none's
+-->
+
+
+
+<script runat="server" >
+  Platform.Load("core","1");
+
+
+
+
+  /************************* 
+  --------- FORMS ----------
+  **************************/
+
+
+  var FORM_TEMPLATES = {
+
+    //?form=master
+    master: [
+      "PRODUCT_INTEREST",
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "PHONE_NUMBER",
+      "GRADE_LEVEL",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "SCHOOL_NAME",
+      "NO_OF_LICENCES",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=basic
+    required: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "SCHOOL_NAME",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=tof
+    tof: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "JOB_TITLE",
+      "SCHOOL_NAME",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=bof
+    bof: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "PHONE_NUMBER",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "SCHOOL_NAME",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=quote
+    quote: [
+      "3E_Interest",
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "SCHOOL_NAME",
+      "PHONE_NUMBER",
+      "JOB_TITLE",
+      "NO_OF_LICENCES",
+      "WHOLE_SHCOOL_CHECKBOX",
+      "NO_OF_STUDENTS",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=trial
+    trial: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "PHONE_NUMBER",
+      "SCHOOL_NAME",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+    //?form=info
+    info: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "PHONE_NUMBER",
+      "SCHOOL_NAME",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+    
+    demo: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "SCHOOL_NAME",
+      "PHONE_NUMBER",
+      "JOB_TITLE",
+      "NO_OF_LICENCES",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ]
+    
+  }//FORM_TEMPLATE
+
+
+
+  /*******************************
+  ----- CHOOSE FORM TEMPLATE -----
+  ********************************/
+
+
+  //?form=( master | tof | bof )...etc
+  var _form = Request.GetQueryStringParameter("form")
+  _form = _form && _form.toLowerCase();
+  if (_form) {
+    var formFields = FORM_TEMPLATES[_form]
+    for (var i=0; i<formFields.length; i++) {
+      Variable.SetValue(formFields[i], "true");
+    }//for
+  }//if
+
+
+
+
+  /************************************
+  ----- &/OR CHOOSE SINGLE FIELDS -----
+  *************************************/
+
+
+  //?fields=etc,etc,etc
+  var _fields = Request.GetQueryStringParameter("fields")
+  _fields = _fields && _fields.toUpperCase().split(',');
+  if (_fields) {
+    for(var i=0; i<_fields.length; i++) {
+      var _fields_field = _fields[i]
+      Variable.SetValue(_fields_field, "true") 
+    }//for    
+  }//if
+
+
+
+
+  /*******************************
+  -- GENERAL REQUEST PARAMETER ---
+  ********************************/
+
+
+  Variable.SetValue('_Debug', Request.GetQueryStringParameter("debug")) 
+
+  Variable.SetValue('_Campaign_Name', Request.GetQueryStringParameter("cid")) 
+  Variable.SetValue('_Triggered_Send_Key', Request.GetQueryStringParameter("triggered_send_key")) 
+  Variable.SetValue('_Redirect_To_Page', Request.GetQueryStringParameter("redirect_to_page")) 
+
+  Variable.SetValue('_UTM_Source', Request.GetQueryStringParameter("utm_source")) 
+  Variable.SetValue('_UTM_Medium', Request.GetQueryStringParameter("utm_medium")) 
+  Variable.SetValue('_UTM_Campaign', Request.GetQueryStringParameter("utm_campaign")) 
+  Variable.SetValue('_UTM_Content', Request.GetQueryStringParameter("utm_content")) 
+  Variable.SetValue('_UTM_Term', Request.GetQueryStringParameter("utm_term")) 
+  Variable.SetValue('gclid', Request.GetQueryStringParameter("gclid"))
+
+
+
+
+
+
+  /*******************************
+  ----------- SECURITY -----------
+  ********************************/
+
+
+  Platform.Response.SetResponseHeader("Strict-Transport-Security","max-age=200");
+  Platform.Response.SetResponseHeader("X-XSS-Protection","1; mode=block");
+ // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+  Platform.Response.SetResponseHeader("X-Content-Type-Options","nosniff");
+  Platform.Response.SetResponseHeader("Referrer-Policy","strict-origin-when-cross-origin");
+  //Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+
+
+</script>
+
+
+<!-- =============================== HTML =============================== -->
+%%[
+
+SET @Redirect = RequestParameter('rid')
+SET @pid = ProperCase(RequestParameter('pid'))
+SET @Product = LowerCase(RequestParameter('pid'))
+set @fields = queryparameter('fields') 
+set @form = queryparameter('form')
+
+
+set @FormSubmit = RequestParameter('FormSubmit')
+/*OutputLine(Concat('<pre style="background-color:#ccc;"><code>@FormSubmit: ', @FormSubmit, '</code></pre>'))*/
+if @FormSubmit == 'true' then
+
+    set @FormSubmit = 'completed'
+    set @contentBlockKey = "APAC_3_Essentials_V01" 
+    set @content = ContentBlockByKey(@contentBlockKey)
+    output(concat(@content))
+
+endif
+/*OutputLine(Concat('<pre style="background-color:#ccc;"><code>@FormSubmit: ', @FormSubmit, '</code></pre>'))*/
+]%%
+
+<!doctype html>
+<html lang="en">
+  <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T97DM2H');</script>
+<!-- End Google Tag Manager -->
+
+
+    <!-- Meta/SEO -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Form">
+
+
+
+    <!-- Title & Favicons -->
+    <title> 3PLearning | Global APAC 3 Essentials Form </title>
+    <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+
+
+    <!-- Styles -->
+    <style>
+      /* font & colors
+      ******************/
+      :root {
+        font-size: 15px;
+        /*font-family: ;*/
+        /*font-weight: ;*/
+
+        --submit_button__rest--backgroundColor: #015F4E;
+        --submit_button__rest--color :whitesmoke;
+        --submit_button__hover--backgroundColor: #00473b;
+        --submit_button__hover--color: white;
+        --checkbox__rest--backgroundColor: lightgrey;
+        --checkbox__hover--backgroundColor: #00473b;
+        --checkbox__checked--backgroundColor: #015f4e ;
+        --valid_input--color: green;
+        --invalid_input--color: red;
+        --invalid_label--color: red;
+      }
+      /*
+      custom submit button
+      *********************/
+      .custom_submit_button {
+        background-color: var(--submit_button__rest--backgroundColor);
+        border-radius: 25px;
+        padding: 15px 50px;
+        text-align: center;
+        color: var(--submit_button__rest--color);
+        font-weight: 600;
+        font-size: 1rem;
+        width: 100%;
+      }
+      .custom_submit_button:hover {
+        background-color: var(--submit_button__hover--backgroundColor);
+        color: var(--submit_button__hover--color);
+      }
+      .custom_submit_button:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+      }
+      
+      .form-control {
+  display: flex;
+  height: 60px !important; 
+  align-items: center;
+  border-radius: 12px !important;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid #D3D3D3;
+  background: #FFF;
+  box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.06) inset;
+}
+
+
+.custom_submit_button{
+  border-radius: 32.4px;
+  background: linear-gradient(90deg, #06F 0%, #0873FF 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.81) 0%, rgba(255, 255, 255, 0.54) 100%);
+  box-shadow: 0px 2px 6px 0px rgba(0, 47, 102, 0.60);
+  border: none;
+  font-size: 1.5rem !important;
+  color: #FFF;
+  text-align: center;
+  font-family: "Proxima Nova";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16.2px; /* 81% */
+  letter-spacing: 0.44px;
+}
+
+#SuccessForm{
+  text-align: center;
+  font-size: 24px;
+}
+
+label{
+  font-size: 18px;
+  font-weight: regular;
+}
+      @media screen and (min-width: 767px) {
+        .custom_submit_button {
+          width: auto;
+          float: right;
+        }
+      }
+      /*
+      custom check boxes
+      *******************/
+      .custom-checkbox {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 16px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      .checkmark {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: var(--checkbox__rest--backgroundColor);
+        border-radius: 5px;
+
+      }
+      .custom-checkbox:hover input~.checkmark {
+        background-color: var(--checkbox__hover--backgroundColor);
+      }
+      .custom-checkbox input:checked~.checkmark {
+        background-color: var(--checkbox__checked--backgroundColor);
+      }
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      .custom-checkbox input:checked~.checkmark:after {
+        display: block;
+      }
+      .custom-checkbox .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 7px;
+        height: 15px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      /* Fields
+      ****************/
+      .custom-field-label {
+        font-weight: bold;
+      }
+      .custom-field-terms {
+        font-weight: lighter;
+        color: #495057;
+      }
+      /* Utility
+      ****************/
+      .custom-hide { display: none; }
+      .custom-valid-input { border: 3px solid var(--valid_input--color) !important; }
+      .custom-invalid-input { border: 3px solid var(--invalid_input--color) !important; }
+      .custom-invalid-label { color: var(--invalid_label--color) !important; }
+/* Make the wrapper occupy space and match your inputs */
+  .bootstrap-select{display:block!important;width:100%!important;margin-bottom:16px;}
+  .bootstrap-select>.dropdown-toggle{width:100%;min-height:48px;border:1px solid #e5e5e5;border-radius:8px;box-shadow:none!important;}
+  .bootstrap-select .filter-option{padding-top:6px;padding-bottom:6px;}
+
+  /* Tidy the menu look and shadows */
+  .bootstrap-select .dropdown-menu{border:1px solid #e5e5e5;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.08)!important;}
+  .bootstrap-select .bs-actionsbox .btn{box-shadow:none!important;}
+
+  /* Ensure the open menu stacks above cards/modals if needed */
+  .bootstrap-select.open{z-index:2000;}
+  .bootstrap-select .dropdown-menu.inner{max-height:240px;overflow:auto;}
+    </style>
+    
+    
+    
+
+  </head>
+
+
+
+
+  <!-- =============================== BODY =========================== -->  
+  <body>
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T97DM2H"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <!--%%[if @FormSubmit != 'completed' then]%%-->
+    <form id="globalForm3E"
+          action="%%=RequestParameter('PAGEURL')=%%" 
+          method="POST" 
+          onsubmit="return checkForm(this);"
+          >
+      <input type="hidden" name="FormSubmit" value="true">
+
+
+
+
+
+
+      <!------------- Hidden ----------------->
+
+      <input type="hidden" name="debug" value="%%=v(@_Debug)=%%">
+
+      <input type="hidden" name="campaign-name" value="%%=v(@_Campaign_Name)=%%">
+      <input type="hidden" name="triggered-send-key" value="%%=v(@_Triggered_Send_Key)=%%">
+      <input type="hidden" id="pid" name="pid" value="%%=v(@Product)=%%">
+      <input type="hidden" id="eid" name="eid" value="%%=v(@enquiry)=%%">
+      <input type="hidden" id="rid" name="rid" value="%%=v(@Redirect)=%%">
+      <input type="hidden" name="redirect-to-page" value="%%=v(@_Redirect_To_Page)=%%">
+      <input type="hidden" id="form" name="form" value="%%=v(@form)=%%">
+      <input type="hidden" id="utm-source" name="utm-source" value="%%=v(@_UTM_Source)=%%">
+      <input type="hidden" id="utm-medium" name="utm-medium" value="%%=v(@_UTM_Medium)=%%">
+      <input type="hidden" id="utm-campaign" name="utm-campaign" value="%%=v(@_UTM_Campaign)=%%">
+      <input type="hidden" id="utm-content" name="utm-content" value="%%=v(@_UTM_Content)=%%">
+      <input type="hidden" id="utm-term" name="utm-term" value="%%=v(@_UTM_Term)=%%">
+      <input type="hidden" id="countrycode" name="countrycode" value="%%=v(@Country_Code)=%%">
+      <input type="hidden" id="gclid" name="gclid" value="%%=v(@gclid)=%%">
+      <input type="hidden" id="referrer" name="referrer" value="">
+
+
+
+
+
+
+
+
+
+      <!-- Wrapper -->
+      <div class=" container my-5">
+        <div class="row">
+          <div class="col">
+
+
+
+
+   %%[
+if indexOf(@product, "mathletics") > 0 then
+  set @mathletics = 1
+endif
+if indexOf(@product, "mathseeds") > 0 then
+  set @mathseeds = 1
+endif
+if indexOf(@product, "readingeggs") > 0 then
+  set @readingeggs = 1
+endif
+]%%  
+
+
+
+
+            <!------------- Product Interest ----------------->
+
+            %%[If @PRODUCT_INTEREST Then]%%
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="product_interest_select" class="custom-field-label">
+                  PRODUCT INTERESTS 
+                  </label>
+                  <select class="form-control selectpicker show-tick" 
+                          id="product_interest_select"
+                          name="product-interest" 
+                          multiple 
+                          title="Select Your Product Interests"
+                          data-selected-text-format="values"
+                          data-actions-box="true" 
+                          required
+                          style="color:#495057c7; font-weight: 400;"
+                          >
+
+                    <option value="mathletics" %%=IIF(not empty(@mathletics), "Selected", "")=%% >Mathletics</option>
+                    <option value="mathseeds" %%=IIF(not empty(@mathseeds), "Selected", "")=%% >Mathseeds</option>
+                    <option value="readingeggs" %%=IIF(not empty(@readingeggs), "Selected", "")=%% >Reading Eggs</option>
+
+                  </select>
+                  <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+<!------------- 3 Essentials — Interest ----------------->
+%%[ If @3E_INTEREST Then ]%%
+<div class="row">
+  <div class="col">
+    <div class="form-group" style="margin-bottom:30px;">
+
+      <label for="3e_interest_select" class="custom-field-label">
+        Would you like a quote, demo or both?
+      </label>
+
+      <select class="form-control selectpicker show-tick"
+  id="3e_interest_select"
+  name="3e_interest"
+  multiple
+  title="Select Quote and/or Demo"
+  data-selected-text-format="values"
+  data-actions-box="true"
+  data-container="body" 
+  data-dropup-auto="false"        
+  required
+  aria-describedby="3e_interest_invalid"
+  style="color:#495057c7; font-weight:400;">
+ <option value="demo"  %%=IIF(IndexOf(Lowercase(RequestParameter("3e_interest")), "demo")  > 0,"selected","")=%%>Demo</option>
+  <option value="quote" %%=IIF(IndexOf(Lowercase(RequestParameter("3e_interest")), "quote") > 0,"selected","")=%%>Quote</option>
+      </select>
+
+      <div id="3e_interest_invalid"
+           class="custom-invalid-label custom-hide text-right">
+        Select Quote and/or Demo
+      </div>
+
+    </div>
+  </div>
+</div>
+%%[ EndIf ]%%
+
+
+
+            <!------------- First Name ----------------->
+
+            %%[If @FIRST_NAME Then]%%
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <input type="text"
+                         class="form-control" 
+                         id="first_name_input" 
+                         name="first-name" 
+                         placeholder="First Name"
+                         autofocus
+                         required>
+                  <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First name is required</div>
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+
+            <!------------- Last Name ----------------->
+
+            %%[If @LAST_NAME Then]%%            
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <input type="text"
+                         class="form-control"
+                         id="last_name_input" 
+                         name="last-name" 
+                         placeholder="Last Name"
+                         required>
+                  <div id="last_name_invalid" class="custom-invalid-label custom-hide text-right">Last name is required</div>
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+
+            <!------------- Email Addres----------------->
+
+            %%[If @EMAIL_ADDRESS Then]%%            
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <input type="email"
+                         class="form-control" 
+                         id="email_address_input" 
+                         name="email-address" 
+                         placeholder="Email Address"
+                         required>
+                  <div id="email_address_invalid" class="custom-invalid-label custom-hide text-right">A valid email address is required</div>                  
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+
+            <!------------- Phone Number ----------------->
+
+            %%[If @PHONE_NUMBER Then]%%                        
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <input type="text"
+                         class="form-control"
+                         id="phone_number_input" 
+                         name="phone-number" 
+                         placeholder="Mobile / Work Phone" 
+                         required>
+                  <div id="phone_number_invalid" class="custom-invalid-label custom-hide text-right">Phone number is required</div>                  
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+
+            <!------------- Grade Level ----------------->
+
+            %%[If @GRADE_LEVEL Then]%%            
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <select class="form-control" 
+                          id="grade_level_select" 
+                          name="grade-level"
+                          required
+                          style="color:#495057c7; font-weight: 400;">
+                    <option disabled selected>Select Grade Level</option>
+                    <option value="K/R">K/R</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="I do not teach specific grades">I do not teach specific grades</option>
+                  </select>
+                  <div id="grade_level_invalid" class="custom-invalid-label custom-hide text-right">Grade level is required</div>                  
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+
+            <!------------- Job Title ----------------->
+
+            %%[If @JOB_TITLE Then]%%            
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <select class="form-control" 
+                          id="job_title_select" 
+                          name="job_title_select" 
+                          required
+                          style="color:#495057c7; font-weight: 400;" > 
+                    <option value="" selected disabled>Select Job Title</option>
+
+                    %%[
+
+                        /* Populate Job Title Options and Redirect
+                        ********************************/
+
+                        Set @Job_Titles = LookupRows("jobTitle_ENG_APAC3E", "Active", "1")
+                        For @i = 1 TO RowCount(@Job_Titles) DO
+                          Set @Job_Title = Field(Row(@Job_Titles, @i), "Job Title")
+                          OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
+                        Next @i
+                        
+                    ]%%
+
+                    
+
+
+                  </select>
+                  <div id="job_title_invalid" class="custom-invalid-label custom-hide text-right">Job title is required</div>                  
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+
+           <!------------- Country ----------------->
+
+            %%[If @COUNTRY_NAME Then]%%            
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <select class="form-control" 
+                          id="country_name_select" 
+                          name="country-name" 
+                          required
+                          style="color:#495057c7; font-weight: 400;">                
+                    <option value="" selected disabled>Select Country</option>
+                    %%[
+
+                        /* Populate Country Options
+                        ******************************/
+
+                        Set @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                        For @i = 1 to RowCount(@Countries_Main) Do
+                            Set @Country_Name = field(row(@Countries_Main, @i),"CountryName")
+                            Set @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
+                            OutputLine(Concat('<option value="', @Country_Name,'" data-code="',@Country_Code,'">',@Country_Name,'</option>'))
+                        Next @i
+
+                        OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
+
+                        Set @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
+                        For @i = 1 to RowCount(@Countries_All) Do
+                            Set @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            Set @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            OutputLine(Concat('<option value="', @Country_Name,'" data-code="',@Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
+                    ]%%
+
+                  </select>
+                  <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>       
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+
+            <!------------- State ----------------->
+
+            %%[If @STATE_NAME Then]%%            
+            <div class="row">
+              <div class="col">
+                <div class="form-group" id="state_name_form_group">
+
+                  <select class="form-control" 
+                          id="state_name_select" 
+                          name="state-name"
+                          onchange= jobTitleChanged()
+                          required
+                          style="color:#495057c7; font-weight: 400;">
+                    <option disabled selected>Select State <small>&nbsp;(Please select a country first.)</small></option>
+                  </select>
+                  <div id="state_invalid" class="custom-invalid-label custom-hide text-right">State is required</div>                     
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+            <!------------- Postal Code ----------------->
+
+            %%[If @POSTAL_CODE Then]%%                        
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <input class="form-control"
+                         type="text"  
+                         id="postal_code_input" 
+                         name="postal-code" 
+                         placeholder="Postcode / Zipcode"
+                         title="Postcode/Zipcode is 4 digits with no spaces"
+                         required>
+                  <div id="postcode_invalid" class="custom-invalid-label custom-hide text-right">Postcode is required</div>  
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+
+            <!------------- School Name ----------------->
+
+            %%[If @SCHOOL_NAME Then]%%                        
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <input type="text" 
+                         class="form-control"
+                         id="school_name_input"  
+                         name="school-name"
+                         placeholder="School Name" 
+                         required>
+                  <div id="school_name_invalid" class="custom-invalid-label custom-hide text-right">School name is required</div>                    
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+            <!------------- No Of Licences  ----------------->
+
+            %%[
+            If @NO_OF_LICENCES Then
+            ]%%                        
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+
+                  <input type="number" 
+                         class="form-control"
+                         id="no_of_licences_input" 
+                         name="no-of-licences" 
+                         placeholder="How many students are you looking to support?"
+                         required
+                         min="20" 
+                         max="1000">
+                  <div id="no_of_licences_invalid" class="custom-invalid-label custom-hide text-right">Number of student licences required</div>                   
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+                        <!------------- WHOLE_SHCOOL_CHECKBOX ----------------->
+
+            %%[If @WHOLE_SHCOOL_CHECKBOX Then]%%                        
+            <div class="row mt-0">
+              <div class="col">
+                <div class="form-group">
+
+                    <input 
+                           type="checkbox" 
+                           id="whole_school_checkbox_input" 
+                           name="whole_school_checkbox"
+                           value="true" 
+                           tabindex="-1"
+                           onchange="toggleNumberOfStudentsField()" />
+                  <label for="whole_school_checkbox_input" class="custom-field-terms form-check-label" >
+                    Please provide a whole school option on my quote</label>
+                                  
+                <br>
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+         <!------------- No Of Students  ----------------->
+
+            %%[
+            If indexOf(@fields, "NO_OF_STUDENTS") > 0 OR @form == 'quote' Then
+            ]%%              
+
+            <div class="row" id="no_of_students_row" style="display: none;">
+              <div class="col">
+                <div class="form-group">
+
+                  <input type="number" 
+                         class="form-control"
+                         id="no_of_students_input" 
+                         name="no_of_students" 
+                         placeholder="Number of students in school"
+                         min="20" 
+                         max="1000">
+                  <div id="no_of_students_invalid" class="custom-invalid-label custom-hide text-right">Number of student required</div>                   
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+              <!------------- Terms & Conditions ----------------->
+
+            <!------------- Terms & Conditions ----------------->
+
+%%[If @TERMS_AND_CONDITIONS Then]%%                        
+<div id="emea_terms" class="row mt-0">
+  <div class="col">
+    <div class="form-group d-flex align-items-center">
+      <input 
+        type="checkbox" 
+        id="terms_and_conditions_input" 
+        name="terms-and-conditions"
+        value="true" 
+        class="mr-2" 
+        required
+        style="margin-top: 0; margin-bottom: 5px;" />
+
+      <label for="terms_and_conditions_input" class="custom-field-terms form-check-label mb-0" style="margin-top: 0;">
+        I agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms of Use</a> and I have read and accept the <a target="_parent" href="https://www.3plearning.com/privacy" style="text-decoration: underline;">Privacy Policy*</a>
+      </label>
+    </div>
+
+    3Essentials and 3P Learning may process your personal information for its legitimate business purposes, including to enable us to provide, personalise and enhance our services for the benefit of our customers. Please see our <a target="_parent" href="https://www.3plearning.com/privacy" style="text-decoration: underline;">Privacy Policy</a> and <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms</a> to learn more. <br><br>
+    
+    <div id="terms_and_conditions_invalid" class="custom-invalid-label custom-hide text-right">
+      Please agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">terms and conditions</a>.
+    </div>
+  </div>
+</div>
+
+
+%%[EndIf]%%
+
+
+
+            <!------------- Subscriber Opt In ----------------->
+
+            %%[If @SUBSCRIBER_OPT_IN Then]%%                        
+            <div class="row mt-0">
+              <div class="col">
+                <div class="form-group">
+                    <input type="checkbox"
+                           id="subscriber_opt_in_input" 
+                           name="subscriber-opt-in"
+                           value="true"                           
+                           tabindex="-1" />
+                  <label for="subscriber_opt_in_input" class="custom-field-terms form-check-label" style="display: inline;">
+                    YES! Sign me up for monthly newsletters, educational content, resources and occasional promotional material.
+                  </label>
+                  <!-- <div id="subscriber_opt_in_invalid" class="custom-invalid-label custom-hide text-right">...</div> -->   
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+
+
+            <!------------- Submit Button ----------------->
+
+            %%[If @SUBMIT_BUTTON Then]%%                        
+            <div class="row mt-4">
+              <div class="col">
+                <div class="form-group">
+                  <button class="custom_submit_button"
+                          type="submit"
+                          name="myButton"
+                          id="submit_button"
+                          value="Submit"
+                          >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+            %%[EndIf]%%
+
+           
+
+          </div>
+        </div>
+      </div>
+      <!-- //wrapper -->
+    </form>
+<!--%%[elseif @FormSubmit == 'completed'  then
+            set @EME_Country   = 'false'
+            set @is_EME_Country = LookupRows("EME countries","Country",@_Country_Name)
+            set @brochureLinkEME = 'https://pppmarketingcdn.blob.core.windows.net/uploads/assets/3E/3_Essentials_EMEA_by_3P_Learning_Brochure.pdf'
+            if (rowcount(@is_EME_Country) > 0 ) then 
+              set @EME_Country   = 'true' 
+            endif
+            
+    ]%%-->
+<!--%%[if @_Country_Name == 'Australia' or @_Country_Name == 'New Zealand'  then
+          set @brochureLinkAU = 'https://pppmarketingcdn.blob.core.windows.net/uploads/assets/3E/3Essentials_Brochure-AU_Jan2025.pdf'
+          set @brochureLinkNZ = 'https://pppmarketingcdn.blob.core.windows.net/uploads/assets/3E/3Essentials_Brochure-NZ_Jan2025.pdf'
+          set @brochureLink   = IIf(@_Country_Name == 'Australia',@brochureLinkAU, @brochureLinkNZ)          
+      ]%%-->
+    <div id="SuccessForm" class="flw">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="sec_form flw">
+                        <br /><br/><p>Thank you for submitting a quote request. <br><br>An Education Consultant from 3P Learning will get in touch within the next 24 hours, Monday through Friday, to secure the very best value for your school with our 3 Essentials offer.</p>
+                      <br>
+                      <br>
+                      In the meantime, you can access our 3 Essentials brochure <a target="_blank" href="%%=RedirectTo(@brochureLink)=%%" style="text-decoration: underline;">here</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--%%[elseif @EME_Country == 'true' then ]%%-->
+    <div id="SuccessForm" class="flw">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="sec_form flw">
+                        <br /><br/><p>Thank you for submitting a quote request. <br><br>An Education Consultant from 3P Learning will get in touch within the next 24 hours, Monday through Friday, to secure the very best value for your school with our 3 Essentials offer.</p>
+                      <br>
+                      <br>
+                      In the meantime, you can access our 3 Essentials brochure <a target="_blank" href="%%=RedirectTo(@brochureLinkEME)=%%" style="text-decoration: underline;">here</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--%%[else]%%-->
+     <div id="SuccessForm" class="flw">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="sec_form flw">
+                        <br /><br/><p>Thank you for your submitting your quote request. <br><br>We don’t currently offer the 3 Essentials in your region. However, an Education Consultant from 3P Learning will get in touch within the next 24 hours, Monday through Friday, to secure the best value package for your school.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--%%[endif]%%-->
+<!--%%[endif]%%-->
+
+
+    <!-- ===========================  JAVASCRIPT  =========================== -->
+
+
+    %%=Concat('<','script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>')=%%
+    %%=Concat('<','script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>')=%%
+    %%=Concat('<','script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js "></script>')=%%
+    %%=Concat('<','script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>')=%%
+    %%=Concat('<','script src="https://web.my.3plearning.com/formFieldFunctions"></script>')=%%
+
+
+
+    <!-- Custom Javascript -->
+
+    %%=Concat('<','script>')=%%
+    
+    /**************************************************
+    ----- Parse Cookie Data to hidden form fields -----
+    ***************************************************/
+    
+// Parse the Cookie
+  var cname = "setURLParamsCookie"
+function getCookie(cname) {
+ var name = cname + "=";
+ var decodedCookie = decodeURIComponent(document.cookie);
+ var ca = decodedCookie.split(';');
+ for(var i = 0; i <ca.length; i++) {
+  var c = ca[i];
+  while (c.charAt(0) == ' ') {
+   c = c.substring(1);
+  }
+  if (c.indexOf(name) == 0) {
+   return c.substring(name.length, c.length);
+  }
+ }
+ return "";
+}
+var referrer = getCookie("__gtm_referrer");
+// Parse the URL inside Cookie
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+
+    results = regex.exec(getCookie("setURLParamsCookie"));
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+// Pass the values to hidden field 
+var cookieCheck = document.cookie.indexOf('setURLParamsCookie')                               
+if (cookieCheck > 0) {
+document.querySelector("#utm-source").value = getParameterByName('utm_source');   
+document.querySelector("#utm-medium").value = getParameterByName('utm_medium');   
+document.querySelector("#utm-campaign").value = getParameterByName('utm_campaign');   
+document.querySelector("#utm-content").value = getParameterByName('utm_content');
+document.querySelector("#utm-term").value = getParameterByName('utm_term');
+document.querySelector("#gclid").value = getParameterByName('gclid');
+document.querySelector("#referrer").value = referrer;
+  };
+
+    %%=Concat('<','/script>')=%%
+    
+    %%=Concat('<','script>')=%%
+
+    /****************************
+    ----- On Submit -----
+    *****************************/
+
+  function checkForm(form) // Submit button clicked
+  {
+    //
+    // check form input values
+    //
+    let x = document.getElementById("submit_button");
+    setTimeout(function(){ x.innerHTML="Processing..." }, 2000);
+    form.myButton.innerHTML = "Please wait...";
+    form.myButton.disabled = true;
+    form.myButton.value = "Please wait...";
+    return true;
+  }
+
+
+    /****************************
+    ----- On Country Change -----
+    *****************************/
+
+
+    //CONSTANTS
+    let allStateNameData;
+
+    //DOM ELEMENTS
+    const thisDocument = $(document);
+    const countryNameSelect = $('#country_name_select');
+    const stateNameFormGroup = $('#state_name_form_group');
+    const stateNameSelect = $('#state_name_select');
+
+
+    //EVENTS
+    thisDocument.on('ready', getStateNameData)
+    countryNameSelect.on('change', handleChangeCountryName);
+
+
+    //HANDLERS
+
+        function getStateNameData() {
+        let allStatesURLPath = "/gf_states"
+        axios.get(allStatesURLPath)
+        .then(response => {
+        allStateNameData = response.data
+        }).catch(console.error)
+        }//
+
+        function handleChangeCountryName(e) {
+        //choose states
+        let countryCode = e.target[e.target.selectedIndex].dataset.countrycode
+        let countryStateData = allStateNameData.filter((option) => option["Country Code"] == countryCode)
+
+    //reset options
+    stateNameSelect.val('')
+    stateNameSelect.find("option").remove();
+    stateNameSelect.append(`<option disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
+
+    //populate options or hide select
+    if (countryStateData.length > 0) {
+    //states found
+    stateNameFormGroup.show();
+    stateNameSelect.attr("required", "true");
+    countryStateData.forEach((state) => {
+    stateNameSelect.append(`<option value="${state['State Code']}">${state['State Name']}</option>`)
+    })//forEach
+    } else {
+    //no states found
+    stateNameFormGroup.hide();
+    stateNameSelect.removeAttr("required");
+    }//if
+
+    }//handleChange()
+
+
+
+    %%=Concat('<','/script>')=%%
+
+<script>
+  function toggleNumberOfStudentsField() {
+    var checkbox = document.getElementById('whole_school_checkbox_input');
+    var numberOfStudentsRow = document.getElementById('no_of_students_row');
+    if (checkbox.checked) {
+      numberOfStudentsRow.style.display = 'block';
+    } else {
+      numberOfStudentsRow.style.display = 'none';
+    }
+  }
+  
+// Self-executing function that checks for form success
+(function checkSuccessForm() {
+    // Check if element with ID "SuccessForm" exists in the DOM
+    if (document.getElementById("SuccessForm")) {
+        // If found, send a message to the parent window (the page hosting the iframe)
+        window.parent.postMessage(
+            // Message data object
+            {
+                type: 'formSuccess',  // Message type identifier
+                fromForm: true        // Additional flag confirming source
+            },
+            // Target origin - only this domain can receive the message
+            'https://www.3plearning.com'
+        );
+        return; // Stop checking once success is found
+    }
+    // If SuccessForm not found, check again in 500ms
+    setTimeout(checkSuccessForm, 500);
+})();
+  
+
+</script>
+
+<script>
+  (function () {
+    function init3E() {
+      var $ = window.jQuery;
+      if (!$ || !$.fn || typeof $.fn.selectpicker !== 'function') return;
+
+      var $el = $('#3e_interest_select');
+
+      // Prevent body-append overriding our layout behavior
+      $el.removeAttr('data-container');
+
+      // Clean re-init
+      try { $el.selectpicker('destroy'); } catch (e) {}
+
+      $el.selectpicker({
+        container: false,            // keep menu within wrapper (not on <body>)
+        width: '100%',
+        actionsBox: true,
+        selectedTextFormat: 'values',
+        dropupAuto: false,
+        size: 'auto'
+      });
+
+      // Keep open while picking; close on "Select All" / "Deselect All" / All or None selected
+      $el.off('changed.bs.select all.bs.select deselectAll.bs.select deselectall.bs.select');
+
+      $el.on('all.bs.select', function () {
+        $(this).selectpicker('toggle');
+      });
+
+      $el.on('deselectAll.bs.select deselectall.bs.select', function () {
+        var el = $(this);
+        setTimeout(function () { el.selectpicker('toggle'); }, 0);
+      });
+
+      $el.on('changed.bs.select', function () {
+        var total = $('option', this).not(':disabled').length;
+        var selected = $('option:selected', this).not(':disabled').length;
+        if (selected === 0 || (total > 0 && selected === total)) {
+          $(this).selectpicker('toggle');
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init3E);
+    } else {
+      init3E();
+    }
+  })();
+</script>
+
+
+<style>
+  /* Keep picker within layout row */
+  .bootstrap-select { 
+    display: block; 
+    overflow: visible !important;   /* prevent parent clipping */
+    position: relative;             /* create a predictable stacking context */
+  }
+
+  /* Full-width menu aligned to the control */
+  .bootstrap-select .dropdown-menu {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* CRITICAL: keep menu in flow but on TOP of neighbors */
+  .bootstrap-select .dropdown-menu.show {
+    position: relative !important;  /* stays in flow (no absolute) */
+    transform: none !important;     /* kill translate3d */
+    float: none !important;
+    margin-top: 6px;
+    max-height: 240px;
+    overflow: auto;
+    z-index: 2000 !important;       /* ABOVE inputs below */
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  }
+
+  /* Ensure surrounding form groups don’t create higher stacks or clip the menu */
+  .form-group {
+    position: relative;
+    z-index: auto;                  /* don’t stack above the menu */
+    overflow: visible;              /* don’t clip children */
+  }
+</style>
+
+
+
+
+
+
+
+
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,663 @@
+<!-- 
+=========================================
+----------- GLOBAL FORM HTML ------------
+=========================================
+
+NOTES:
+- clean up
+- refine job titles and coutries ampscript
+- add bootstrap validation
+- clean up 3p js
+- add in request parameter logic (?type=BOF/TOF -> BOF=2346 etc.)
+- discuss multiple select box alternatives (simple checkboxes, selectable icons, no multiple, multiple options instead of multiple select, other pre-mades, bootstrap standard)
+- dicuss hidden parametres to pass through
+- redirectTO form
+- XSRF Token
+- add custom validation (joi.js)
+- remove custom hides, change to d-none's
+-->
+
+
+
+<script runat="server" >
+  Platform.Load("core","1");
+
+
+
+
+  /************************* 
+  --------- FORMS ----------
+  **************************/
+
+
+  var FORM_TEMPLATES = {
+
+    //?form=master
+    master: [
+      "PRODUCT_INTEREST",
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "PHONE_NUMBER",
+      "GRADE_LEVEL",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "SCHOOL_NAME",
+      "NO_OF_LICENCES",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=basic
+    required: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "SCHOOL_NAME",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=tof
+    tof: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=bof
+    bof: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "PHONE_NUMBER",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "SCHOOL_NAME",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=quote
+    quote: [
+      "PRODUCT_INTEREST",
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "SCHOOL_NAME",
+      "PHONE_NUMBER",
+      "JOB_TITLE",
+      "GRADE_LEVEL",
+      "NO_OF_LICENCES",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+
+    //?form=trial
+    trial: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "PHONE_NUMBER",
+      "SCHOOL_NAME",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ],
+    
+    demo: [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL_ADDRESS",
+      "PHONE_NUMBER",
+      "SCHOOL_NAME",
+      "JOB_TITLE",
+      "COUNTRY_NAME",
+      "STATE_NAME",
+      "POSTAL_CODE",
+      "NO_OF_LICENCES",
+      "TERMS_AND_CONDITIONS",
+      "SUBSCRIBER_OPT_IN",
+      "SUBMIT_BUTTON"
+    ]
+    
+  }//FORM_TEMPLATE
+
+
+
+  /*******************************
+  ----- CHOOSE FORM TEMPLATE -----
+  ********************************/
+
+
+  //?form=( master | tof | bof )...etc
+  var _form = Request.GetQueryStringParameter("form")
+  _form = _form && _form.toLowerCase();
+  if (_form) {
+    var formFields = FORM_TEMPLATES[_form]
+    for (var i=0; i<formFields.length; i++) {
+      Variable.SetValue(formFields[i], "true");
+    }//for
+  }//if
+
+
+
+
+  /************************************
+  ----- &/OR CHOOSE SINGLE FIELDS -----
+  *************************************/
+
+
+  //?fields=etc,etc,etc
+  var _fields = Request.GetQueryStringParameter("fields")
+  _fields = _fields && _fields.toUpperCase().split(',');
+  if (_fields) {
+    for(var i=0; i<_fields.length; i++) {
+      var _fields_field = _fields[i]
+      Variable.SetValue(_fields_field, "true") 
+    }//for    
+  }//if
+
+
+
+
+  /*******************************
+  -- GENERAL REQUEST PARAMETER ---
+  ********************************/
+
+
+  Variable.SetValue('_Debug', Request.GetQueryStringParameter("debug")) 
+
+  Variable.SetValue('_Campaign_Name', Request.GetQueryStringParameter("cid")) 
+  Variable.SetValue('_Triggered_Send_Key', Request.GetQueryStringParameter("triggered_send_key")) 
+  Variable.SetValue('_Redirect_To_Page', Request.GetQueryStringParameter("redirect_to_page")) 
+
+  Variable.SetValue('_UTM_Source', Request.GetQueryStringParameter("utm_source")) 
+  Variable.SetValue('_UTM_Medium', Request.GetQueryStringParameter("utm_medium")) 
+  Variable.SetValue('_UTM_Campaign', Request.GetQueryStringParameter("utm_campaign")) 
+  Variable.SetValue('_UTM_Content', Request.GetQueryStringParameter("utm_content")) 
+  Variable.SetValue('_UTM_Term', Request.GetQueryStringParameter("utm_term")) 
+
+
+
+
+
+
+
+  /*******************************
+  ----------- SECURITY -----------
+  ********************************/
+
+
+  Platform.Response.SetResponseHeader("Strict-Transport-Security","max-age=200");
+  Platform.Response.SetResponseHeader("X-XSS-Protection","1; mode=block");
+ // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+  Platform.Response.SetResponseHeader("X-Content-Type-Options","nosniff");
+  Platform.Response.SetResponseHeader("Referrer-Policy","strict-origin-when-cross-origin");
+  //Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+
+
+</script>
+
+
+
+
+<!-- GET url.com/cloudpage with form field "firstname" -->
+<script runat="server" language="JavaScript">
+Platform.Load("core", "1.1.1");
+
+var param = Platform.Request.GetFormField("URL");
+// param now has the value "firstname"
+var upDateURL = DataExtension.Init("test_UpdateTOFBOF");
+upDateURL.Rows.Add({Id:"121",URL:"param"});
+</script>
+
+
+
+<!-- =============================== HTML =============================== -->
+%%[
+
+SET @Redirect = RequestParameter('rid')
+SET @pid = ProperCase(RequestParameter('pid'))
+SET @Product = LowerCase(RequestParameter('pid'))
+set @fields = queryparameter('fields') 
+set @form = queryparameter('form')
+]%%
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+
+<!-- End Google Tag Manager -->
+
+
+    <!-- Meta/SEO -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Form">
+
+
+
+    <!-- Title & Favicons -->
+    <title> 3PLearning | Global Form </title>
+    <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+
+
+    <!-- Styles -->
+    <style>
+      /* font & colors
+      ******************/
+      :root {
+        font-size: 15px;
+        /*font-family: ;*/
+        /*font-weight: ;*/
+
+        --submit_button__rest--backgroundColor: #015F4E;
+        --submit_button__rest--color :whitesmoke;
+        --submit_button__hover--backgroundColor: #00473b;
+        --submit_button__hover--color: white;
+        --checkbox__rest--backgroundColor: lightgrey;
+        --checkbox__hover--backgroundColor: #00473b;
+        --checkbox__checked--backgroundColor: #015f4e ;
+        --valid_input--color: green;
+        --invalid_input--color: red;
+        --invalid_label--color: red;
+      }
+      /*
+      custom submit button
+      *********************/
+      .custom_submit_button {
+        background-color: var(--submit_button__rest--backgroundColor);
+        border-radius: 25px;
+        padding: 15px 50px;
+        text-align: center;
+        color: var(--submit_button__rest--color);
+        font-weight: 600;
+        font-size: 1rem;
+        width: 100%;
+      }
+      .custom_submit_button:hover {
+        background-color: var(--submit_button__hover--backgroundColor);
+        color: var(--submit_button__hover--color);
+      }
+      .custom_submit_button:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+      }
+      @media screen and (min-width: 767px) {
+        .custom_submit_button {
+          width: auto;
+          float: right;
+        }
+      }
+      /*
+      custom check boxes
+      *******************/
+      .custom-checkbox {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 16px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      .checkmark {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: var(--checkbox__rest--backgroundColor);
+        border-radius: 5px;
+
+      }
+      .custom-checkbox:hover input~.checkmark {
+        background-color: var(--checkbox__hover--backgroundColor);
+      }
+      .custom-checkbox input:checked~.checkmark {
+        background-color: var(--checkbox__checked--backgroundColor);
+      }
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      .custom-checkbox input:checked~.checkmark:after {
+        display: block;
+      }
+      .custom-checkbox .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 7px;
+        height: 15px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      /* Fields
+      ****************/
+      .custom-field-label {
+        font-weight: bold;
+      }
+      /* Utility
+      ****************/
+      .custom-hide { display: none; }
+      .custom-valid-input { border: 3px solid var(--valid_input--color) !important; }
+      .custom-invalid-input { border: 3px solid var(--invalid_input--color) !important; }
+      .custom-invalid-label { color: var(--invalid_label--color) !important; }
+
+
+    </style>
+    
+    
+    
+
+  </head>
+
+
+
+
+  <!-- =============================== BODY =========================== -->  
+  <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ3778B"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <form id=""
+          action="https://webform.my.3plearning.com" 
+          method="POST" 
+          target="_parent"
+          onsubmit="return checkForm(this);"
+          >
+
+
+
+
+
+
+      <!------------- Hidden ----------------->
+
+      <input type="hidden" name="debug" value="%%=v(@_Debug)=%%">
+      <input type="hidden" id="urlName" name="urlName" value="%%=v(@urlName)=%%">
+
+      <input type="hidden" name="campaign-name" value="%%=v(@_Campaign_Name)=%%">
+      <input type="hidden" name="triggered-send-key" value="%%=v(@_Triggered_Send_Key)=%%">
+      <input type="hidden" id="pid" name="pid" value="%%=v(@Product)=%%">
+      <input type="hidden" id="eid" name="eid" value="%%=v(@enquiry)=%%">
+      <input type="hidden" id="rid" name="rid" value="%%=v(@Redirect)=%%">
+      <input type="hidden" name="redirect-to-page" value="%%=v(@_Redirect_To_Page)=%%">
+      <input type="hidden" id="form" name="form" value="%%=v(@form)=%%">
+      <input type="hidden" name="utm-source" value="%%=v(@_UTM_Source)=%%">
+      <input type="hidden" name="utm-medium" value="%%=v(@_UTM_Medium)=%%">
+      <input type="hidden" name="utm-campaign" value="%%=v(@_UTM_Campaign)=%%">
+      <input type="hidden" name="utm-content" value="%%=v(@_UTM_Content)=%%">
+      <input type="hidden" name="utm-term" value="%%=v(@_UTM_Term)=%%">
+      <input type="hidden" id="countrycode" name="countrycode" value="%%=v(@Country_Code)=%%">
+
+
+
+
+
+
+
+
+      <!-- Wrapper -->
+      <div class=" container my-5">
+        <div class="row">
+          <div class="col">
+
+
+
+
+
+
+            <!------------- All Fields Required ----------------->
+
+            <div class="row mb-2">
+              <div class="col">
+                <div class="form-group">
+                  <span style="font-weight: bold; text-align: center;">
+                    *Create, Read, or Update.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+            <!------------- Product Interest ----------------->
+
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="product_interest_select" class="custom-field-label">
+                  Data Extension to update.
+                  </label>
+                  <select class="form-control selectpicker show-tick" 
+                          id="urlName"
+                          name="urlName" 
+                          multiple 
+                          title="Select a Data Extension"
+                          data-selected-text-format="values"
+                          data-actions-box="true" 
+                          required>
+
+                    <option value="tof" >Top Of Funnel</option>
+                    <option value="bof" >Bottom Of Funnel</option>
+
+                  </select>
+                  <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select Data Extension</div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+            <!------------- First Name ----------------->
+
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="first_name_input" class="custom-field-label">
+                    URL:
+                  </label>
+                  <input type="text"
+                         class="form-control" 
+                         id="URL_input" 
+                         name="URL" 
+                         placeholder="URL"
+                         autofocus
+                         required>
+                  <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">URL is required</div>
+                </div>
+              </div>
+            </div>
+
+            <!------------- Submit Button ----------------->
+                      
+            <div class="row mt-4">
+              <div class="col">
+                <div class="form-group">
+                  <button class="custom_submit_button"
+                          type="submit"
+                          name="myButton"
+                          id="submit_button"
+                          value="Submit"
+                          >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- //wrapper -->
+    </form>
+
+
+
+    <!-- ===========================  JAVASCRIPT  =========================== -->
+
+
+    %%=Concat('<','script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>')=%%
+    %%=Concat('<','script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>')=%%
+    %%=Concat('<','script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js "></script>')=%%
+    %%=Concat('<','script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>')=%%
+    %%=Concat('<','script src="https://web.my.3plearning.com/formFieldFunctions"></script>')=%%
+
+
+
+    <!-- Custom Javascript -->
+
+    %%=Concat('<','script>')=%%
+
+    /****************************
+    ----- On Submit -----
+    *****************************/
+
+  function checkForm(form) // Submit button clicked
+  {
+    //
+    // check form input values
+    //
+    let x = document.getElementById("submit_button");
+    setTimeout(function(){ x.innerHTML="Processing..." }, 2000);
+    form.myButton.innerHTML = "Please wait...";
+    form.myButton.disabled = true;
+    form.myButton.value = "Please wait...";
+    return true;
+  }
+
+
+    /****************************
+    ----- On Country Change -----
+    *****************************/
+
+
+    //CONSTANTS
+    let allStateNameData;
+
+    //DOM ELEMENTS
+    const thisDocument = $(document);
+    const countryNameSelect = $('#country_name_select');
+    const stateNameFormGroup = $('#state_name_form_group');
+    const stateNameSelect = $('#state_name_select');
+
+
+    //EVENTS
+    thisDocument.on('ready', getStateNameData)
+    countryNameSelect.on('change', handleChangeCountryName);
+
+
+    //HANDLERS
+
+        function getStateNameData() {
+        let allStatesURLPath = "/gf_states"
+        axios.get(allStatesURLPath)
+        .then(response => {
+        allStateNameData = response.data
+        }).catch(console.error)
+        }//
+
+        function handleChangeCountryName(e) {
+        //choose states
+        let countryCode = e.target[e.target.selectedIndex].dataset.countrycode
+        let countryStateData = allStateNameData.filter((option) => option["Country Code"] == countryCode)
+
+    //reset options
+    stateNameSelect.val('')
+    stateNameSelect.find("option").remove();
+    stateNameSelect.append(`<option disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
+
+    //populate options or hide select
+    if (countryStateData.length > 0) {
+    //states found
+    stateNameFormGroup.show();
+    stateNameSelect.attr("required", "true");
+    countryStateData.forEach((state) => {
+    stateNameSelect.append(`<option value="${state['State Code']}">${state['State Name']}</option>`)
+    })//forEach
+    } else {
+    //no states found
+    stateNameFormGroup.hide();
+    stateNameSelect.removeAttr("required");
+    }//if
+
+    }//handleChange()
+
+
+
+    %%=Concat('<','/script>')=%%
+
+
+
+
+  </body>
+</html>
+
+
+
+

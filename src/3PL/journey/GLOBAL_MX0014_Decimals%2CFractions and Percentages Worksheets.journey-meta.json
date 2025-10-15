@@ -1,0 +1,1807 @@
+{
+    "key": "GLOBAL_MX0014_Decimals,Fractions and Percentages Worksheets",
+    "name": "GLOBAL_MX0014_Decimals,Fractions and Percentages Worksheets",
+    "lastPublishedDate": "0001-01-01T00:00:00",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2021-12-20T23:25:52.013",
+    "modifiedDate": "2021-12-20T23:25:52.013",
+    "activities": [
+        {
+            "key": "EMAILV2-5",
+            "name": "GLOBAL_MX0014_Email1",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "1f558cf1-920e-4298-b6ef-85c9a9ef539d",
+                    "next": "MULTICRITERIADECISIONV2-6",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "jb-email-activity"
+            },
+            "metaData": {
+                "isConfigured": false
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-6",
+            "name": "GLOBAL_MX0014_Email2",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "c50021a6-4e50-46c3-b72c-8db50f6a9758",
+                    "next": "WAITBYDURATION-20",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "jb-email-activity"
+            },
+            "metaData": {
+                "isConfigured": false
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-7",
+            "name": "GLOBAL_MX0014_Email3",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "0227c0f8-986c-4055-8fae-7fea5f24bace",
+                    "next": "WAITBYDURATION-21",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "jb-email-activity"
+            },
+            "metaData": {
+                "isConfigured": false
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-8",
+            "name": "GLOBAL_MX0014_Email4",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "e1a18233-eae9-47d5-9e57-71415ccb9b33",
+                    "next": "WAITBYDURATION-23",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "jb-email-activity"
+            },
+            "metaData": {
+                "isConfigured": false
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "MULTICRITERIADECISIONV2-10",
+            "name": "MQL/AT/Opp",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "EMAILV2-8",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "MQL/AT/Opp",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "CampaignMember:Lead:Status is not equal Fake OR CampaignMember:Lead:Status is not equal Converted OR CampaignMember:Lead:Status is not equal MQL OR CampaignMember:Lead:Status is not equal SQL OR CampaignMember:Lead:Status is not equal True",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-24",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Remainder",
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[Fake]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[Converted]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[MQL]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[SQL]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[True]]></Value></Condition></ConditionSet></FilterDefinition>"
+                },
+                "schemaVersionId": "252"
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "MULTICRITERIADECISIONV2-6",
+            "name": "AU, NZ or ZA",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "MULTICRITERIADECISIONV2-7",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "AU, NZ or ZA",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "CampaignMember:Lead:Country equal Australia OR CampaignMember:Lead:Country equal AU OR CampaignMember:Lead:Country equal New Zealand OR CampaignMember:Lead:Country equal NZ OR CampaignMember:Lead:Country equal South Africa OR CampaignMember:Lead:Country__c equal Australia OR CampaignMember:Lead:Country__c equal AU OR CampaignMember:Lead:Country__c equal New Zealand OR CampaignMember:Lead:Country__c equal NZ OR CampaignMember:Lead:Country__c equal South Africa",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-12",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Remainder",
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Australia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[AU]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[New Zealand]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[NZ]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[South Africa]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Australia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[AU]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[New Zealand]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[NZ]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[South Africa]]></Value></Condition></ConditionSet></FilterDefinition>"
+                },
+                "schemaVersionId": "252"
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "MULTICRITERIADECISIONV2-7",
+            "name": "Teacher or Parent",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "WAITBYDURATION-11",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Teacher",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "CampaignMember:Common:Title equal Teacher/Educator OR CampaignMember:Common:Title equal Principal OR CampaignMember:Common:Title equal Head Teacher OR CampaignMember:Common:Title equal Head of Support OR CampaignMember:Common:Title equal Head of Mathematics OR CampaignMember:Common:Title equal Head of ICT OR CampaignMember:Common:Title equal School district employee OR CampaignMember:Common:Title equal Head of English/Literacy",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "0b473f29-786c-2796-44d6-108c4f16fbcf",
+                    "next": "WAITBYDURATION-16",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Parent",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "CampaignMember:Common:Title equal Parent OR CampaignMember:Common:Title equal Home schooling parent",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-17",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Remainder",
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Teacher/Educator]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Principal]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Head Teacher]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Head of Support]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Head of Mathematics]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Head of ICT]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[School district employee]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Head of English/Literacy]]></Value></Condition></ConditionSet></FilterDefinition>",
+                    "0b473f29-786c-2796-44d6-108c4f16fbcf": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Parent]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Common:Title\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Home schooling parent]]></Value></Condition></ConditionSet></FilterDefinition>"
+                },
+                "schemaVersionId": "252"
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "MULTICRITERIADECISIONV2-8",
+            "name": "MQL/AT/Opp",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "EMAILV2-6",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "MQL/AT/Opp",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "CampaignMember:Lead:Status is not equal Fake OR CampaignMember:Lead:Status is not equal Converted OR CampaignMember:Lead:Status is not equal MQL OR CampaignMember:Lead:Status is not equal SQL OR CampaignMember:Lead:Status is not equal True",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-14",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Remainder",
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[Fake]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[Converted]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[MQL]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[SQL]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[True]]></Value></Condition></ConditionSet></FilterDefinition>"
+                },
+                "schemaVersionId": "252"
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "MULTICRITERIADECISIONV2-9",
+            "name": "MQL/AT/Opp",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "EMAILV2-7",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "MQL/AT/Opp",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "CampaignMember:Lead:Status is not equal Fake OR CampaignMember:Lead:Status is not equal Converted OR CampaignMember:Lead:Status is not equal MQL OR CampaignMember:Lead:Status is not equal SQL OR CampaignMember:Lead:Status is not equal True",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-22",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Remainder",
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[Fake]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[Converted]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[MQL]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[SQL]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.eventDef1640064351440.CampaignMember:Lead:Status\" Operator=\"NotEqual\" UiMetaData=\"{}\"><Value><![CDATA[True]]></Value></Condition></ConditionSet></FilterDefinition>"
+                },
+                "schemaVersionId": "252"
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-11",
+            "name": "2 days",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "620543bd-534d-4e64-a78b-d3e052a90949",
+                    "next": "MULTICRITERIADECISIONV2-8",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": "2",
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-12",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "0607fc6c-14f2-48d0-abe8-22956b3a7a8e",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-14",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "2ba25896-066c-400c-968d-12a012ce58ae",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-16",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "f4b86212-39be-4acd-9a82-1cec04a4e0dd",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-17",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "56251a41-2911-4963-abf4-54de0e66165d",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-20",
+            "name": "3 days",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "742f826f-10b0-4868-9801-15e579c0ccb5",
+                    "next": "MULTICRITERIADECISIONV2-9",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": "3",
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-21",
+            "name": "2 days",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "7a477b49-dde0-49d1-8059-a4bc4ad7ef7a",
+                    "next": "MULTICRITERIADECISIONV2-10",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": "2",
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-22",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "5da18d40-cda1-4133-933e-a728de18917a",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-23",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "96b5463c-2212-4dc7-9851-e002942d802c",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-24",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "1b2aa7eb-262c-416c-ab6a-54ed93c166d5",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "TRIGGER",
+            "description": "",
+            "type": "SalesforceObjectTriggerV2",
+            "outcomes": [],
+            "arguments": {},
+            "configurationArguments": {
+                "applicationExtensionKey": "SalesforceObjectTriggerV2",
+                "contactKey": {
+                    "relationshipIdName": "Id",
+                    "relationshipName": "Common",
+                    "isPolymorphic": false,
+                    "referenceObjectName": "Common"
+                },
+                "contactPersonType": "CampaignMember",
+                "evaluationCriteriaSummary": "Created;",
+                "eventDataConfig": {
+                    "objects": [
+                        {
+                            "dePrefix": "CampaignMember:",
+                            "isPolymorphic": false,
+                            "relationshipName": "",
+                            "referenceObject": "",
+                            "relationshipIdName": "",
+                            "fields": [
+                                "Id"
+                            ]
+                        },
+                        {
+                            "dePrefix": "CampaignMember:Common:",
+                            "isPolymorphic": false,
+                            "referenceObject": "Contacts and Leads",
+                            "relationshipName": "Common",
+                            "fields": [
+                                "Id",
+                                "Email",
+                                "HasOptedOutOfEmail",
+                                "FirstName",
+                                "LastName",
+                                "Title",
+                                "Job_Function__c",
+                                "Marketing_Interest__c",
+                                "Marketing_Product_Interest__c",
+                                "UTM_Campaign__c",
+                                "UTM_Content__c",
+                                "UTM_Medium__c",
+                                "UTM_Source__c",
+                                "UTM_Term__c"
+                            ]
+                        },
+                        {
+                            "dePrefix": "CampaignMember:Lead:",
+                            "isPolymorphic": false,
+                            "referenceObject": "Lead",
+                            "relationshipName": "Lead",
+                            "fields": [
+                                "Campaign_Code__c",
+                                "Campaign_Name__c",
+                                "Created_Date_Time__c",
+                                "School__c",
+                                "Company",
+                                "State__c",
+                                "Status",
+                                "Lead_Country__c",
+                                "Country",
+                                "Country__c",
+                                "LeadID_18__c",
+                                "Lead_Stage__c",
+                                "Create_Sandbox__c",
+                                "Opt_in_to_Email_Marketing__c"
+                            ]
+                        },
+                        {
+                            "dePrefix": "CampaignMember:Campaign:",
+                            "isPolymorphic": false,
+                            "referenceObject": "Campaign",
+                            "relationshipName": "Campaign",
+                            "fields": [
+                                "Id",
+                                "Campaign_Code__c"
+                            ]
+                        }
+                    ]
+                },
+                "eventDataSummary": [
+                    "CampaignMember:Campaign:Campaign_Code__c",
+                    "CampaignMember:Campaign:Id",
+                    "CampaignMember:Common:Email",
+                    "CampaignMember:Common:FirstName",
+                    "CampaignMember:Common:HasOptedOutOfEmail",
+                    "CampaignMember:Common:Id",
+                    "CampaignMember:Common:Job_Function__c",
+                    "CampaignMember:Common:LastName",
+                    "CampaignMember:Common:Marketing_Interest__c",
+                    "CampaignMember:Common:Marketing_Product_Interest__c",
+                    "CampaignMember:Common:Title",
+                    "CampaignMember:Common:UTM_Campaign__c",
+                    "CampaignMember:Common:UTM_Content__c",
+                    "CampaignMember:Common:UTM_Medium__c",
+                    "CampaignMember:Common:UTM_Source__c",
+                    "CampaignMember:Common:UTM_Term__c",
+                    "CampaignMember:Id",
+                    "CampaignMember:Lead:Campaign_Code__c",
+                    "CampaignMember:Lead:Campaign_Name__c",
+                    "CampaignMember:Lead:Company",
+                    "CampaignMember:Lead:Country",
+                    "CampaignMember:Lead:Country__c",
+                    "CampaignMember:Lead:Create_Sandbox__c",
+                    "CampaignMember:Lead:Created_Date_Time__c",
+                    "CampaignMember:Lead:LeadID_18__c",
+                    "CampaignMember:Lead:Lead_Country__c",
+                    "CampaignMember:Lead:Lead_Stage__c",
+                    "CampaignMember:Lead:Opt_in_to_Email_Marketing__c",
+                    "CampaignMember:Lead:School__c",
+                    "CampaignMember:Lead:State__c",
+                    "CampaignMember:Lead:Status"
+                ],
+                "objectAPIName": "CampaignMember",
+                "passThroughArgument": {
+                    "fields": {
+                        "ContactKey": "CampaignMember:Common:Id",
+                        "Email": "CampaignMember:Common:Email",
+                        "HasOptedOutOfEmail": "CampaignMember:Common:HasOptedOutOfEmail"
+                    }
+                },
+                "primaryObjectFilterCriteria": {
+                    "operand": "OR",
+                    "conditions": [
+                        {
+                            "_length": 18,
+                            "dataType": "reference",
+                            "fieldName": "CampaignId",
+                            "folderId": "CampaignMember-CampaignMember",
+                            "id": "CampaignMember-CampaignId",
+                            "isPolymorphic": false,
+                            "name": "Campaign ID",
+                            "operator": "EQUALS",
+                            "precision": 0,
+                            "referenceObjectName": "CampaignMember",
+                            "relationshipIdName": "",
+                            "relationshipName": "CampaignMember",
+                            "scale": 0,
+                            "text": "Campaign ID",
+                            "value": "7012y000000YBlJAAW"
+                        }
+                    ]
+                },
+                "primaryObjectFilterSummary": "CampaignMember:CampaignId = \"GLOBAL_MX0014_DecimalsFractions_TOF\" (7012y000000YBlJAAW)",
+                "relatedObjectFilterCriteria": {
+                    "operand": "AND",
+                    "conditions": []
+                },
+                "relatedObjectFilterSummary": "",
+                "salesforceTriggerCriteria": "Created",
+                "version": "3.0",
+                "whoToInject": "Contact ID/Lead ID (Contacts and Leads)"
+            },
+            "metaData": {
+                "chainType": "None",
+                "configurationRequired": false,
+                "entrySourceGroupConfigUrl": "https://sales-cloud-jbint-events.s7.marketingcloudapps.com/entrysourcegroupconfig.json",
+                "iconUrl": "https://sales-cloud-jbint-events.s7.marketingcloudapps.com/events/CampaignMember/images/SF-Event-Icon.svg",
+                "title": "",
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "r__event_key": "eventDef1640064351440"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "OnceAndDone",
+    "definitionType": "Multistep",
+    "channel": "",
+    "defaults": {
+        "email": [
+            "{{Event.eventDef1640064351440.\"CampaignMember:Common:Email\"}}"
+        ],
+        "properties": {}
+    },
+    "metaData": {},
+    "executionMode": "Production",
+    "status": "Draft",
+    "scheduledStatus": "Draft",
+    "r__folder_Path": "my journeys/GLOBAL_MX0014_Decimals,Fractions and Percentages Worksheets"
+}

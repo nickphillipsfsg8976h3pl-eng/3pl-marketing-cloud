@@ -28,10 +28,7 @@
             },
             "targetBranchBuMapping": {
                 "release/*": "MySandbox/QA-DE",
-                "master": [
-                    "MyProduction/PROD-DE",
-                    "MyProduction/PROD-NL"
-                ]
+                "master": ["MyProduction/PROD-DE", "MyProduction/PROD-NL"]
             }
         },
         "validation": {
@@ -51,9 +48,7 @@
                 "noRootFolder": "warn",
                 "overrides": [
                     {
-                        "type": [
-                            "journey"
-                        ],
+                        "type": ["journey"],
                         "options": {
                             "noGuidKeys": "warn"
                         }
@@ -73,10 +68,7 @@
         "docs": "docs/",
         "retrieve": "retrieve/",
         "template": "template/",
-        "templateBuilds": [
-            "retrieve/",
-            "deploy/"
-        ]
+        "templateBuilds": ["retrieve/", "deploy/"]
     },
     "markets": {
         "3PL": {
@@ -93,12 +85,7 @@
         }
     },
     "metaDataTypes": {
-        "documentOnRetrieve": [
-            "user",
-            "automation",
-            "dataExtension",
-            "role"
-        ],
+        "documentOnRetrieve": ["user", "automation", "dataExtension", "role"],
         "retrieve": [
             "asset",
             "attributeGroup",
