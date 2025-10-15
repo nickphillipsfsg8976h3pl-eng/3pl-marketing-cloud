@@ -1,0 +1,42 @@
+{
+    "CustomerKey": "CBBE448A-AF39-40FC-98F9-1F581CAD21BF",
+    "Name": "BrochureTest",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "Email"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "First Name",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Last Name",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/01_AMER/06_SANDBOX/Britt Test DE",
+    "c__retentionPolicy": "none"
+}

@@ -1,0 +1,81 @@
+{
+    "CustomerKey": "FEAA3BD1-6EFB-452F-ACF0-3AD66969B746",
+    "Name": "EMEA_MS0098_CoreNumberSkills_ThankYouEmail - 2024-03-07T210213924",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "CampaignMember:Common:Id"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "CampaignMember:Id",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:CampaignId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:Id",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:Email",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "CampaignMember:Common:HasOptedOutOfEmail",
+            "DefaultValue": "False",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "CampaignMember:Common:FirstName",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:LastName",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "MemberRecordType",
+            "DefaultValue": "",
+            "MaxLength": 20,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions",
+    "c__retentionPolicy": "none"
+}

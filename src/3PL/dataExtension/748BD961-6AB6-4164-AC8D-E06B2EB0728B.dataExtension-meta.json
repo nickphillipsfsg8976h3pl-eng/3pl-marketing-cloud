@@ -1,0 +1,42 @@
+{
+    "CustomerKey": "748BD961-6AB6-4164-AC8D-E06B2EB0728B",
+    "Name": "DebugVariables",
+    "Description": "",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "VariableName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "VariableValue",
+            "DefaultValue": "",
+            "MaxLength": 500,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ClearDe",
+            "DefaultValue": true,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "LogDate",
+            "DefaultValue": "GetDate()",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/System/Forms",
+    "c__retentionPolicy": "none"
+}

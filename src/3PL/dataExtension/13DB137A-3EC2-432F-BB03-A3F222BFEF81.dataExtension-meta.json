@@ -1,0 +1,66 @@
+{
+    "CustomerKey": "13DB137A-3EC2-432F-BB03-A3F222BFEF81",
+    "Name": "EMEA_BP_Webinar Promo_MX_AprilFY24",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "Contact 18 ID"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "Email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "Contact 18 ID",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "FirstName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "LastName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OrgName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Country",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/03_EMEA/01_BAU/00_B2B/04_Brightpath/Webinars",
+    "c__retentionPolicy": "none"
+}

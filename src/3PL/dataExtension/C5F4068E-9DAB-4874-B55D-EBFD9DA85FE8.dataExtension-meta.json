@@ -1,0 +1,90 @@
+{
+    "CustomerKey": "C5F4068E-9DAB-4874-B55D-EBFD9DA85FE8",
+    "Name": "final_Blake_products_DIY_Rollover_Feb12_2025",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "CID18"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "OpportunityOwner",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ProductName",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactFirstName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactLastName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "RenewalLink",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "owneremailaddress",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "loginlink",
+            "DefaultValue": "",
+            "MaxLength": 500,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CID18",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/04_GLOBAL/Adhoc Lists/FY25/APAC_Rollover_Fy25",
+    "c__retentionPolicy": "none"
+}

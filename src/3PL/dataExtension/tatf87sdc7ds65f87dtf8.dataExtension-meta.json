@@ -1,0 +1,57 @@
+{
+    "CustomerKey": "tatf87sdc7ds65f87dtf8",
+    "Name": "3P Test Users - 920957292",
+    "Description": "Used by MC developers and testers to test new Journeys",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "Id"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "Id",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Name",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Region",
+            "DefaultValue": "",
+            "MaxLength": 10,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "Has Clicked Email Link",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/Test",
+    "c__retentionPolicy": "none"
+}

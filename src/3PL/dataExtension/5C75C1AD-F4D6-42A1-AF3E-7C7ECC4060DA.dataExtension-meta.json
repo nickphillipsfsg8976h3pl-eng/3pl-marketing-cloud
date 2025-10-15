@@ -1,0 +1,66 @@
+{
+    "CustomerKey": "5C75C1AD-F4D6-42A1-AF3E-7C7ECC4060DA",
+    "Name": "Non_EBS_WebinarInvite_SendList_AU_ONLY",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "ContactID"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "AccountBillingCountry",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactFirstName",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactLastName",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "account",
+            "DefaultValue": "",
+            "MaxLength": 200,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "EmailAddress",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "ContactID",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/02_APAC/00_IMPORT/AdHoc- APAC/APAC_3P0034_3Essentials_T4_Webinar",
+    "c__retentionPolicy": "none"
+}

@@ -1,0 +1,42 @@
+{
+    "CustomerKey": "8ED3E302-798A-4D0B-881F-2BE05FA463BD",
+    "Name": "RE_RT_ZOHO_Feb2024",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "email"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "firstname",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "Country",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/03_EMEA/01_BAU/00_B2B/02_ReadingEggs",
+    "c__retentionPolicy": "none"
+}

@@ -1,0 +1,82 @@
+{
+    "CustomerKey": "1251C857-7B07-4060-9C21-D2EE196E1B5D",
+    "Name": "March Math Mania 2024",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "ContactID18"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "Country",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactID18",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "FirstName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "LastName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "JobTitle",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountName",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "C3ID",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/01_AMER/00_IMPORT/04_Adhoc Lists/AMER_MX0065_MarchMathMania_2024",
+    "c__retentionPolicy": "none"
+}

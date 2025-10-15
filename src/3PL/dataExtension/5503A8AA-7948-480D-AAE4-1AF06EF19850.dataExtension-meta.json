@@ -1,0 +1,146 @@
+{
+    "CustomerKey": "5503A8AA-7948-480D-AAE4-1AF06EF19850",
+    "Name": "Lead_Duplicate_Log",
+    "Description": "",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "SubmissionId",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "ExistingLeadId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "LoggedDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "AllLeadIds",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "existing_Status",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "new_Status",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "statusToUpdate",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "existing_MarketingInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "new_MarketingInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "merged_MarketingInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "existing_ProductInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "new_ProductInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "merged_ProductInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "existing_MktProductInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "new_MktProductInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "merged_MktProductInterest",
+            "DefaultValue": "",
+            "MaxLength": 1000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/System/Forms/FormProcessing2025",
+    "c__retentionPolicy": "none"
+}

@@ -1,0 +1,106 @@
+{
+    "CustomerKey": "A58DC102-9C84-406A-A7DD-958CA206B73E",
+    "Name": "ML_USA_PLUS_LATAM",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "Contact ID 18"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "Contact ID 18",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "firstname",
+            "DefaultValue": "",
+            "MaxLength": 150,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "lastname",
+            "DefaultValue": "",
+            "MaxLength": 150,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "teacher_crmid",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "schoolname",
+            "DefaultValue": "",
+            "MaxLength": 150,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "licence_type",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "class_year_levels",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "salesforce_id",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "account_manager_full_name",
+            "DefaultValue": "",
+            "MaxLength": 150,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Country",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/04_GLOBAL/Adhoc Lists",
+    "c__retentionPolicy": "none"
+}

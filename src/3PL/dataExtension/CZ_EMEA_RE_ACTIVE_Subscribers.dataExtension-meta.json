@@ -1,0 +1,549 @@
+{
+    "CustomerKey": "CZ_EMEA_RE_ACTIVE_Subscribers",
+    "Name": "CZ_EMEA_RE_ACTIVE_Subscribers",
+    "Description": "Data Extension for country Czech Republic",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "ContactKey"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "ContactKey",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "SubscriptionProduct",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "SubscriptionRecordType",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "SubscriptionEndDate",
+            "DefaultValue": "",
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "SubscriptionId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactTitle",
+            "DefaultValue": "",
+            "MaxLength": 126,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactFirstName",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactLastName",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactEmail",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "ContactMobilePhone",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Phone"
+        },
+        {
+            "Name": "ContactLocale",
+            "DefaultValue": "",
+            "MaxLength": 5,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Locale"
+        },
+        {
+            "Name": "HasOptedOutOfEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "ContactCreateDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "ContactLastModifiedDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "ContactJobFunction",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactStatus",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactRoles",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactTerritory",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactSalutation",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactProductInfluencer",
+            "DefaultValue": "",
+            "MaxLength": 150,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactMarketingInterest",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactMarketingProductInterest",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactRecordTypeID",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactType",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountName",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountNumber",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountGlobalSchoolCategory",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountLocalAuthority",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountCleverMSDSSync",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "AccountOwnerId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountBillingStreet",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountBillingCity",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountBillingState",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountBillingStateCode",
+            "DefaultValue": "",
+            "MaxLength": 10,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountBillingPostalCode",
+            "DefaultValue": "",
+            "MaxLength": 20,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountBillingCountry",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountBillingCountryCode",
+            "DefaultValue": "",
+            "MaxLength": 10,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountStatus",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContractId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContractStartDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "ContractEndDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "ContractMultiYearExpiration",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "ContractNumber",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "QuoteId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "RenewalOpportunityId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityType",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityStage",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityOwnerId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityOwnerRole",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityConverted",
+            "DefaultValue": "",
+            "MaxLength": 10,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityWonLostReason",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityOppStageBeforeLost",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OpportunityIsClosed",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "OpportunityIsWon",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "OwnerEmail",
+            "DefaultValue": "",
+            "MaxLength": 128,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OwnerFirstName",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "OwnerLastName",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "SubscriptionStartDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "SubscriptionCapacity",
+            "DefaultValue": "",
+            "MaxLength": 12,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Decimal"
+        },
+        {
+            "Name": "SubscriptionExpired",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "SubscriptionStatus",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "SubscriptionTerritory",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "SubscriptionQuantity",
+            "DefaultValue": "",
+            "MaxLength": 12,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Decimal"
+        },
+        {
+            "Name": "SubscriptionType",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ExistingAccount",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "ActiveFullSubscriptions",
+            "DefaultValue": "",
+            "MaxLength": 95,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/1000_SegmentedAudiences/Data Views/03_EMEA segments/ReadingEggs",
+    "c__retentionPolicy": "none"
+}

@@ -1,0 +1,42 @@
+{
+    "CustomerKey": "4F0A41AB-981D-4775-A900-81C502AB864E",
+    "Name": "3Essential_Survey_Teachers_Sub_AllProduct",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "Teacher Email"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "First Name",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Teacher Email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "School Name",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/02_APAC/00_IMPORT/AdHoc- APAC",
+    "c__retentionPolicy": "none"
+}

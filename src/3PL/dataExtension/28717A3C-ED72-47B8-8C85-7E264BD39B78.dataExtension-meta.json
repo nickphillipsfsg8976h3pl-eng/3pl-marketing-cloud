@@ -1,0 +1,50 @@
+{
+    "CustomerKey": "28717A3C-ED72-47B8-8C85-7E264BD39B78",
+    "Name": "3Essentials_Survey_Maths_DIDNOTCLICK",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "EmailAddress"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "First Name",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Last Name",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "EmailAddress",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "School Name",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/02_APAC/00_IMPORT/AdHoc- APAC",
+    "c__retentionPolicy": "none"
+}

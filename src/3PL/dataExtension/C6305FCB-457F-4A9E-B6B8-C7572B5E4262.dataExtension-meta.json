@@ -1,0 +1,27 @@
+{
+    "CustomerKey": "C6305FCB-457F-4A9E-B6B8-C7572B5E4262",
+    "Name": "MailChimp Unsubscribes Auto-suppression List - Staging",
+    "Description": "",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "Email Address",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "Date",
+            "DefaultValue": "GetDate()",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/System/Supression Lists",
+    "c__retentionPolicy": "none"
+}

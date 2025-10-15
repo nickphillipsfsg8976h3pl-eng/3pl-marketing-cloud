@@ -1,0 +1,34 @@
+{
+    "CustomerKey": "09462234-C98D-404A-8EFA-5C833D2E879D",
+    "Name": "APAC_MX0165_NAPLAN_Cross-sell_E1_Principal_Opens",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "Subscriber Key"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "Subscriber Key",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Email Address",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        }
+    ],
+    "r__folder_ContentType": "salesforcedataextension",
+    "r__folder_Path": "Salesforce Data Extensions/B2B/APAC/BAU/APAC_MX0165_NAPLAN_Cross-sell",
+    "c__retentionPolicy": "none"
+}

@@ -1,0 +1,456 @@
+{
+    "CustomerKey": "A6066812-A0D0-400E-AB8B-DEB0A31F1A8C",
+    "Name": "User_Salesforce_Query",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "_ContactKey"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "_ContactKey",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CallCenterId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Country",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CountryCode",
+            "DefaultValue": "",
+            "MaxLength": 10,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CreatedById",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CreatedDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "DelegatedApproverId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Department",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Email",
+            "DefaultValue": "",
+            "MaxLength": 128,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "FirstName",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Id",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "IndividualId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "IsActive",
+            "DefaultValue": "",
+            "MaxLength": 0,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "IsProfilePhotoActive",
+            "DefaultValue": "",
+            "MaxLength": 0,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "LanguageLocaleKey",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "LastLoginDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "LastModifiedById",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "LastModifiedDate",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "LastName",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ManagerId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "MobilePhone",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Phone"
+        },
+        {
+            "Name": "Name",
+            "DefaultValue": "",
+            "MaxLength": 121,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "PostalCode",
+            "DefaultValue": "",
+            "MaxLength": 20,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ProfileId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "senior_manager__c",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Signature",
+            "DefaultValue": "",
+            "MaxLength": 1333,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "State",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "StateCode",
+            "DefaultValue": "",
+            "MaxLength": 10,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Sync_User_To_MC__c",
+            "DefaultValue": "",
+            "MaxLength": 0,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "Username",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "UserRoleId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "UserType",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ReceivesAdminInfoEmails",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesContentEmailAsAndWhen",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesContentNoEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableAllFeedsEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableBookmarkEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableChangeCommentEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableEndorsementEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableFollowersEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableLaterCommentEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableLikeEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableMentionsPostEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableMessageEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableProfilePostEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisableSharePostEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisCommentAfterLikeEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisMentionsCommentEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesDisProfPostCommentEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesExcludeMailAppAttachments",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesHasSentWarningEmail",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesHasSentWarningEmail238",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "UserPreferencesHasSentWarningEmail240",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "ReceivesInfoEmails",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "Phone",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Phone"
+        },
+        {
+            "Name": "EmailPreferencesStayInTouchReminder",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        }
+    ],
+    "r__folder_ContentType": "salesforcedataextension",
+    "r__folder_Path": "Salesforce Data Extensions",
+    "c__retentionPolicy": "none"
+}

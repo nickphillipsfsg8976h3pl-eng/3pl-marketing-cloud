@@ -1,0 +1,30 @@
+## C7E3BFE1-54E7-4BCA-ABCB-78B37C0FBC50
+
+**Name** (not equal to External Key)**:** AMER_RE0034_OTD Admin Nurture_Oklahoma
+
+**Description:** n/a
+
+**Folder:** Data Extensions/01_B2B/01_AMER/00_IMPORT/04_Adhoc Lists/
+
+**Fields in table:** 12
+
+**Sendable:** Yes (`ContactID` to `Subscriber Key`)
+
+**Testable:** Yes
+
+**Retention Policy:** none
+
+| Name | FieldType | MaxLength | IsPrimaryKey | IsNullable | DefaultValue |
+| --- | --- | --- | --- | --- | --- |
+| Email | EmailAddress | 254 | - | - |  |
+| First Name | Text | 100 | - | - |  |
+| Last Name | Text | 100 | - | + |  |
+| Title | Text | 250 | - | + |  |
+| Country | Text | 100 | - | + |  |
+| School | Text | 250 | - | + |  |
+| ContactID | Text | 254 | + | - |  |
+| SDRName | Text | 100 | - | + |  |
+| SDRTitle | Text | 100 | - | + |  |
+| SDREmail | Text | 100 | - | + |  |
+| SDR | Text | 100 | - | + |  |
+| UserName | Text | 100 | - | + |  |

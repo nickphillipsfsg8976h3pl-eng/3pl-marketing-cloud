@@ -1,0 +1,37 @@
+{
+    "CustomerKey": "EBE788D4-5A78-4DD9-B807-45200CB85661",
+    "Name": "DomainExclusion",
+    "Description": "Domain Exclusion Data Extension Template",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "Company",
+            "DefaultValue": "",
+            "MaxLength": 256,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Domain",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Website",
+            "DefaultValue": "",
+            "MaxLength": 256,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/05_Global-References/01_Domain-Exclusion",
+    "r__dataExtensionTemplate_name": "DomainExclusion",
+    "c__retentionPolicy": "none"
+}

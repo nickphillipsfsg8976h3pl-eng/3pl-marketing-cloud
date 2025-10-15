@@ -1,0 +1,106 @@
+{
+    "CustomerKey": "2A74DD8C-5A7C-4E8B-99DC-8ACAA62229E0",
+    "Name": "June-August_Renewal_RE_V2",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "EmailAddress"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "account",
+            "DefaultValue": "",
+            "MaxLength": 200,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountBillingCountry",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "AccountOwner",
+            "DefaultValue": "",
+            "MaxLength": 200,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactFirstName",
+            "DefaultValue": "",
+            "MaxLength": 200,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactLastName",
+            "DefaultValue": "",
+            "MaxLength": 200,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "EmailAddress",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "P1",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "RenewalLink1",
+            "DefaultValue": "",
+            "MaxLength": 500,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactID",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Phone",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "UserName",
+            "DefaultValue": "",
+            "MaxLength": 500,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/02_APAC/00_IMPORT/AdHoc- APAC/APAC_3P0040_June-Aug_WinbackCampaign",
+    "c__retentionPolicy": "none"
+}

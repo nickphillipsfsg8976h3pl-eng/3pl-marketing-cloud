@@ -1,0 +1,78 @@
+{
+    "CustomerKey": "C13F5405-53C6-45EC-8CAA-A85E3BBB4684",
+    "Name": "jobTitle_ENG",
+    "Description": "List of job titles in trial svrvey form",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "Job Title",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Customer Type",
+            "DefaultValue": "",
+            "MaxLength": 10,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "SF Job Function",
+            "DefaultValue": "",
+            "MaxLength": 100,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Lead Point",
+            "DefaultValue": 0,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Number"
+        },
+        {
+            "Name": "Active",
+            "DefaultValue": false,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "Literacy",
+            "DefaultValue": false,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "Mathematics",
+            "DefaultValue": false,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "Science",
+            "DefaultValue": false,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "All Subjects",
+            "DefaultValue": "False",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/05_Global-References/03_Lookup tables/07_Form_InputFields",
+    "c__retentionPolicy": "none"
+}

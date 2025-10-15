@@ -1,0 +1,93 @@
+{
+    "CustomerKey": "25F9C1AD-E568-4953-9658-EC26C58CD7A7",
+    "Name": "Not_Sent_1276403",
+    "Description": "",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "ClientID",
+            "DefaultValue": "",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Number"
+        },
+        {
+            "Name": "SendID",
+            "DefaultValue": "",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Number"
+        },
+        {
+            "Name": "SubscriberKey",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "EmailAddress",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "SubscriberID",
+            "DefaultValue": "",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Number"
+        },
+        {
+            "Name": "ListID",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Number"
+        },
+        {
+            "Name": "EventDate",
+            "DefaultValue": "",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "EventType",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "BatchID",
+            "DefaultValue": "",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Number"
+        },
+        {
+            "Name": "TriggeredSendExternalKey",
+            "DefaultValue": "",
+            "MaxLength": 250,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Reason",
+            "DefaultValue": "",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/System/SubscriberExtract",
+    "c__retentionPolicy": "none"
+}

@@ -1,0 +1,48 @@
+{
+    "CustomerKey": "6EBE5139-F203-43FA-BDDE-F3D09A02DF96",
+    "Name": "TEMPLATE-Email-Engagement-by-Opens",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": true,
+    "SendableDataExtensionField": {
+        "Name": "SubscriberKey"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "SubscriberKey",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "JobID",
+            "DefaultValue": "",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Number"
+        },
+        {
+            "Name": "OpenDate",
+            "DefaultValue": "",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "Email",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/1000_SegmentedAudiences/001_B2C/Email Engagement",
+    "c__retentionPolicy": "none"
+}

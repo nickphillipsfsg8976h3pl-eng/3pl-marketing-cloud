@@ -1,0 +1,58 @@
+{
+    "CustomerKey": "147D74FE-ACA8-45B4-A4C7-2CBF091291D5",
+    "Name": "TriggeredSendDE-FormErrorNotification",
+    "Description": "Triggered Send Source Data Extension Template",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "SubscriberKey"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "SubscriberKey",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "EmailAddress",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "Time_Stamp",
+            "DefaultValue": "GetDate()",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "Http_Referrer",
+            "DefaultValue": "",
+            "MaxLength": 500,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Error_Message",
+            "DefaultValue": "",
+            "MaxLength": 2000,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/System/Forms",
+    "r__dataExtensionTemplate_name": "TriggeredSendDataExtension",
+    "c__retentionPolicy": "none"
+}

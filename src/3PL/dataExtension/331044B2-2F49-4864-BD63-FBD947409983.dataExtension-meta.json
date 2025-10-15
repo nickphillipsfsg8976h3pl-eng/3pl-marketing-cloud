@@ -1,0 +1,185 @@
+{
+    "CustomerKey": "331044B2-2F49-4864-BD63-FBD947409983",
+    "Name": "01_AutoTrial-Onboarding-V1 - 2020-07-26T211802919",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "CampaignMember:Common:Id"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "CampaignMember:Id",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:CampaignId",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Country",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Title",
+            "DefaultValue": "",
+            "MaxLength": 128,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:UTM_Campaign__c",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:UTM_Content__c",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:UTM_Medium__c",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:UTM_Source__c",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:UTM_Term__c",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Status",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:State",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:PostalCode",
+            "DefaultValue": "",
+            "MaxLength": 20,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:Id",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:Email",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "CampaignMember:Common:HasOptedOutOfEmail",
+            "DefaultValue": false,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "CampaignMember:Common:FirstName",
+            "DefaultValue": "",
+            "MaxLength": 40,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:Marketing_Interest__c",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:Marketing_Product_Interest__c",
+            "DefaultValue": "",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Lead:School__c",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "MemberRecordType",
+            "DefaultValue": "",
+            "MaxLength": 20,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "cid",
+            "DefaultValue": "AT_0000",
+            "MaxLength": 255,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions",
+    "c__retentionPolicy": "none"
+}

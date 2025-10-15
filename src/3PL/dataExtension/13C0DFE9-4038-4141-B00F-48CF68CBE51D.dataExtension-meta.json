@@ -1,0 +1,57 @@
+{
+    "CustomerKey": "13C0DFE9-4038-4141-B00F-48CF68CBE51D",
+    "Name": "MXMathletics - Travis Test Campaign - 2019-07-16T1130093461651297796952",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "CampaignMember:Common:Id"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "CampaignMember:Id",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:Id",
+            "DefaultValue": "",
+            "MaxLength": 18,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "CampaignMember:Common:Email",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "CampaignMember:Common:HasOptedOutOfEmail",
+            "DefaultValue": "False",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "MemberRecordType",
+            "DefaultValue": "",
+            "MaxLength": 20,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/02_B2C",
+    "c__retentionPolicy": "none"
+}

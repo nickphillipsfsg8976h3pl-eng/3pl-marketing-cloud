@@ -1,0 +1,29 @@
+## DE9DC71B-BB22-4FAA-8DC7-B3A1AED14213
+
+**Name** (not equal to External Key)**:** RE CA BTS FY25
+
+**Description:** n/a
+
+**Folder:** Data Extensions/01_B2B/01_AMER/00_IMPORT/04_Adhoc Lists/AMER FY25 BTS Lists/
+
+**Fields in table:** 11
+
+**Sendable:** Yes (`ContactID` to `Subscriber Key`)
+
+**Testable:** Yes
+
+**Retention Policy:** none
+
+| Name | FieldType | MaxLength | IsPrimaryKey | IsNullable | DefaultValue |
+| --- | --- | --- | --- | --- | --- |
+| Email | EmailAddress | 254 | - | + |  |
+| First Name | Text | 500 | - | + |  |
+| Last Name | Text | 500 | - | + |  |
+| Title | Text | 500 | - | + |  |
+| Country | Text | 500 | - | + |  |
+| District | Text | 500 | - | + |  |
+| ContactID | Text | 500 | + | - |  |
+| SDRName | Text | 500 | - | + |  |
+| SDRTitle | Text | 500 | - | + |  |
+| SDREmail | Text | 500 | - | + |  |
+| State | Text | 500 | - | + |  |

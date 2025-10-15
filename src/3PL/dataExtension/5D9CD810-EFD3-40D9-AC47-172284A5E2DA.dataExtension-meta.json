@@ -1,0 +1,41 @@
+{
+    "CustomerKey": "5D9CD810-EFD3-40D9-AC47-172284A5E2DA",
+    "Name": "Lead SF journey test - 2019-01-23T051031465",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "Lead:Id"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "Lead:HasOptedOutOfEmail",
+            "DefaultValue": "False",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Boolean"
+        },
+        {
+            "Name": "Lead:Email",
+            "DefaultValue": "",
+            "MaxLength": 80,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "Lead:Id",
+            "DefaultValue": "",
+            "MaxLength": 256,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/00_BAU/00_GLOBAL/GLOBAL_3P0034_ClosedLost",
+    "c__retentionPolicy": "none"
+}

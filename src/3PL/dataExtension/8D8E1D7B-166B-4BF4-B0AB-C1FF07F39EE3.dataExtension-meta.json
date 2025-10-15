@@ -1,0 +1,34 @@
+{
+    "CustomerKey": "8D8E1D7B-166B-4BF4-B0AB-C1FF07F39EE3",
+    "Name": "N_Hem_Referral_Wave_1",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "EmailAddress"
+    },
+    "SendableSubscriberField": {
+        "Name": "Subscriber Key"
+    },
+    "Fields": [
+        {
+            "Name": "Name",
+            "DefaultValue": "",
+            "MaxLength": 120,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "EmailAddress",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/01_B2B/04_GLOBAL/Adhoc Lists/FY24/POD usage/Northern Hem Referral Campaign",
+    "c__retentionPolicy": "none"
+}
