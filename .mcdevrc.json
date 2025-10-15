@@ -8,7 +8,7 @@
         }
     },
     "options": {
-        "formatOnSave": true,
+        "formatOnSave": false,
         "formatErrorLog": false,
         "deployment": {
             "commitHistory": 10,
@@ -106,6 +106,7 @@
             "automation",
             "dataExtension",
             "dataExtract",
+            "domainVerification",
             "emailSend",
             "event",
             "fileLocation",
@@ -126,7 +127,29 @@
             "transactionalSMS",
             "verification"
         ],
-        "createDeltaPkg": []
+        "createDeltaPkg": [
+            "asset",
+            "automation",
+            "dataExtension",
+            "dataExtract",
+            "domainVerification",
+            "emailSend",
+            "event",
+            "fileTransfer",
+            "filter",
+            "importFile",
+            "journey",
+            "mobileCode",
+            "mobileKeyword",
+            "mobileMessage",
+            "query",
+            "script",
+            "sendClassification",
+            "senderProfile",
+            "transactionalPush",
+            "transactionalSMS",
+            "verification"
+        ]
     },
     "version": "8.1.0"
 }
