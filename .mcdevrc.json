@@ -28,7 +28,10 @@
             },
             "targetBranchBuMapping": {
                 "release/*": "MySandbox/QA-DE",
-                "master": ["MyProduction/PROD-DE", "MyProduction/PROD-NL"]
+                "master": [
+                    "MyProduction/PROD-DE",
+                    "MyProduction/PROD-NL"
+                ]
             }
         },
         "validation": {
@@ -48,7 +51,9 @@
                 "noRootFolder": "warn",
                 "overrides": [
                     {
-                        "type": ["journey"],
+                        "type": [
+                            "journey"
+                        ],
                         "options": {
                             "noGuidKeys": "warn"
                         }
@@ -68,7 +73,10 @@
         "docs": "docs/",
         "retrieve": "retrieve/",
         "template": "template/",
-        "templateBuilds": ["retrieve/", "deploy/"]
+        "templateBuilds": [
+            "retrieve/",
+            "deploy/"
+        ]
     },
     "markets": {
         "3PL": {
@@ -85,27 +93,65 @@
         }
     },
     "metaDataTypes": {
-        "documentOnRetrieve": ["user", "automation", "dataExtension", "role"],
+        "documentOnRetrieve": [
+            "user",
+            "automation",
+            "dataExtension",
+            "role"
+        ],
         "retrieve": [
             "asset-archive",
+            "asset-asset",
             "asset-audio",
+            "asset-block",
             "asset-cloudpage",
+            "asset-code",
+            "asset-coderesource",
             "asset-document",
             "asset-image",
+            "asset-message",
+            "asset-other",
             "asset-rawimage",
+            "asset-template",
+            "asset-textfile",
             "asset-video",
+            "attributeGroup",
+            "attributeSet",
+            "automation",
             "campaign",
             "contentArea",
+            "dataExtension",
             "dataExtensionField",
             "dataExtensionTemplate",
+            "dataExtract",
             "dataExtractType",
             "deliveryProfile",
             "discovery",
+            "domainVerification",
             "email",
+            "emailSend",
+            "event",
+            "fileLocation",
+            "fileTransfer",
             "filter",
             "folder",
+            "importFile",
+            "journey",
+            "list",
+            "mobileCode",
+            "mobileKeyword",
+            "mobileMessage",
+            "query",
+            "role",
+            "script",
+            "sendClassification",
+            "senderProfile",
+            "transactionalEmail",
+            "transactionalPush",
+            "transactionalSMS",
             "triggeredSend",
-            "user"
+            "user",
+            "verification"
         ],
         "createDeltaPkg": []
     },
