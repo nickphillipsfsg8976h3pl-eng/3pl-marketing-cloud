@@ -1,33 +1,44 @@
 {
-    "key": "4c044cfc-2525-cf79-a637-a007c1385a13",
-    "name": "EMEA.MX_LostRenewals - 9 Months",
-    "lastPublishedDate": "0001-01-01T00:00:00",
+    "key": "04f6f974-4036-80c5-b43d-d0cc17133783",
+    "name": "BLOG 2 - AMER_3P0093_Blog_Stage_for_K2_Math",
+    "lastPublishedDate": "2025-07-24T09:31:09",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2023-11-22T06:37:02.677",
-    "modifiedDate": "2023-12-08T05:13:06.19",
+    "createdDate": "2025-07-08T10:42:44.693",
+    "modifiedDate": "2025-07-24T09:31:09.103",
     "activities": [
         {
-            "key": "EMAILV2-1",
-            "name": "EMEA.MX_Winback_LostRenewals_E1",
+            "key": "EMAILV2-3",
+            "name": "AMER_3P0093_Blog_Stage for K–2 Math -- Blog 2 (EM1)",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "0915de78-3849-439a-b3ac-c3e851358e67",
-                    "next": "WAITBYDURATION-2",
+                    "key": "fbf58b9b-2eee-4587-b2b7-67afc7589fed",
+                    "next": "WAITUNTILSPECIFICDATE-2",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Early Math, Big Impact: What District Leaders Need to Know",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
             "configurationArguments": {
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": true,
-                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -39,10 +50,11 @@
                         "date": ""
                     },
                     "domainExclusions": [],
-                    "dynamicEmailSubject": "%%=v(@NAME)=%% rediscover Mathletics to reignite engagement!! ",
-                    "emailSubject": "%%=v(@NAME)=%% rediscover Mathletics to reignite engagement!! ",
+                    "dynamicEmailSubject": "Early Math, Big Impact: What District Leaders Need to Know",
+                    "emailSubject": "Early Math, Big Impact: What District Leaders Need to Know",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
                     "isSendLogging": false,
                     "isStoppedOnJobError": false,
@@ -51,23 +63,35 @@
                         "name": "",
                         "date": ""
                     },
-                    "preHeader": "Time-limited offer to boost student maths results!",
+                    "preHeader": "Early math isn’t just about numbers. It’s about thinking",
                     "publicationListId": 187,
-                    "r__asset_key": "62f196cd-e7b1-4a4f-8afa-17177043d2b9",
-                    "r__asset_name_readOnly": "EMEA.MX_Winback_LostRenewals_E1",
+                    "r__asset_key": "5e5183d7-569b-4df1-b107-5f72e67d0102",
+                    "r__asset_name_readOnly": "AMER_3P0093_Blog_Stage for K–2 Math -- Blog 2 (EM1)",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__senderProfile_key": 2529,
+                    "r__triggeredSend_key": "260449",
+                    "recExpTimeInHours": null,
+                    "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleOpens": "1/1/0001 12:00:00 AM"
-                }
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "isReconcilable": false,
+                "r__triggeredSend_key": "260449"
             },
             "metaData": {
                 "category": "message",
                 "version": "1.0",
                 "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "statsContactIcon": null,
+                "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
                 "sections": {},
@@ -184,25 +208,36 @@
             }
         },
         {
-            "key": "EMAILV2-2",
-            "name": "EMEA.MX_Winback_LostRenewals_E2",
+            "key": "EMAILV2-4",
+            "name": "AMER_3P0093_Blog_Stage for K–2 Math -- Blog 2 (EM2)",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "d0e85be3-fce4-4f57-a1f7-b30ef784cea3",
-                    "next": "WAITBYDURATION-3",
+                    "key": "6708a37d-61fa-47f6-923d-5af9db033405",
+                    "next": "WAITBYDURATION-7",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Are Your Students Just Counting—or Truly Thinking?",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
             "configurationArguments": {
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": true,
-                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -214,10 +249,11 @@
                         "date": ""
                     },
                     "domainExclusions": [],
-                    "dynamicEmailSubject": "%%=v(@NAME)=%%are you looking for ways to drive better student results? ",
-                    "emailSubject": "%%=v(@NAME)=%%are you looking for ways to drive better student results? ",
+                    "dynamicEmailSubject": "Are Your Students Just Counting—or Truly Thinking?",
+                    "emailSubject": "Are Your Students Just Counting—or Truly Thinking?",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
                     "isSendLogging": false,
                     "isStoppedOnJobError": false,
@@ -226,23 +262,35 @@
                         "name": "",
                         "date": ""
                     },
-                    "preHeader": "Last chance to make maths results great again!",
+                    "preHeader": "It’s time to move beyond memorization.",
                     "publicationListId": 187,
-                    "r__asset_key": "7872839f-04bf-47df-a36f-32187b81fb3d",
-                    "r__asset_name_readOnly": "EMEA.MX_Winback_LostRenewals_E2",
+                    "r__asset_key": "d7017f4e-2723-4dc7-81dc-9d6faef47e27",
+                    "r__asset_name_readOnly": "AMER_3P0093_Blog_Stage for K–2 Math -- Blog 2 (EM2)",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__senderProfile_key": 2529,
+                    "r__triggeredSend_key": "260450",
+                    "recExpTimeInHours": null,
+                    "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleOpens": "1/1/0001 12:00:00 AM"
-                }
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "isReconcilable": false,
+                "r__triggeredSend_key": "260450"
             },
             "metaData": {
                 "category": "message",
                 "version": "1.0",
                 "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "statsContactIcon": null,
+                "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
                 "sections": {},
@@ -359,75 +407,94 @@
             }
         },
         {
-            "key": "WAITBYDURATION-1",
-            "name": "1 day",
+            "key": "ENGAGEMENTSPLITV2-2",
+            "name": "Open AMER_3P0093_Blog_Stage for K–2 Math -- Blog 2 (EM1)",
             "description": "",
-            "type": "WAIT",
+            "type": "ENGAGEMENTDECISION",
             "outcomes": [
                 {
-                    "key": "baea0ad3-3d63-4fee-82ca-9e8b0bc5b7d5",
-                    "next": "EMAILV2-1",
-                    "arguments": {},
+                    "key": "branchResult-1",
+                    "next": "WAITBYDURATION-5",
+                    "arguments": {
+                        "when": true
+                    },
                     "metaData": {
+                        "label": "Yes",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "branchResult-2",
+                    "next": "EMAILV2-4",
+                    "arguments": {
+                        "when": false
+                    },
+                    "metaData": {
+                        "label": "No",
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "definitionId": "{{Context.DefinitionId}}",
+                "contactKey": "{{Context.ContactKey}}",
+                "statsKey": "2f012267-5270-44ba-90cf-fc82ef1f05c7",
+                "requestId": "{{Interaction.EMAILV2-3.RequestID}}",
+                "messageKey": "{{Interaction.EMAILV2-3.MessageKey}}"
+            },
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "engagementUrls": {
+                    "urls": []
+                },
+                "statsTypeId": 2,
+                "refActivityCustomerKey": "EMAILV2-3",
+                "triggeredSendId": "c29ba130-a368-f011-a5d6-5cba2c705458",
+                "statsUrlId": 0
             },
             "metaData": {
                 "isConfigured": true,
-                "uiType": "WAITBYDURATION"
+                "guidanceCardKey": "",
+                "refActivityName": "AMER_3P0093_Blog_Stage for K–2 Math -- Blog 2 (EM1)"
             },
             "schema": {
                 "arguments": {
-                    "endDate": {
-                        "dataType": "Date",
+                    "conditionOutcome": {
+                        "dataType": "Boolean",
                         "isNullable": false,
                         "direction": "Out",
                         "readOnly": false,
                         "access": "Hidden"
                     },
-                    "waitEndDateAttributeDataBound": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitDefinitionId": {
+                    "definitionId": {
                         "dataType": "Text",
                         "isNullable": false,
                         "direction": "In",
                         "readOnly": false,
                         "access": "Hidden"
                     },
-                    "waitForEventId": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "executionMode": {
+                    "contactKey": {
                         "dataType": "Text",
                         "isNullable": false,
                         "direction": "In",
                         "readOnly": false,
                         "access": "Hidden"
                     },
-                    "startActivityKey": {
+                    "statsKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "requestId": {
                         "dataType": "Text",
                         "isNullable": true,
                         "direction": "In",
                         "readOnly": false,
                         "access": "Hidden"
                     },
-                    "waitQueueId": {
-                        "dataType": "LongNumber",
+                    "messageKey": {
+                        "dataType": "Text",
                         "isNullable": true,
                         "direction": "In",
                         "readOnly": false,
@@ -437,32 +504,41 @@
             }
         },
         {
-            "key": "WAITBYDURATION-2",
-            "name": "7 days",
+            "key": "WAITBYDURATION-5",
+            "name": "5 minutes",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "4e00be63-b803-413c-81fa-1c94a894cfd6",
-                    "next": "EMAILV2-2",
+                    "key": "69c271b9-8319-463e-b9f3-845d6162e2b0",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
-                "waitDuration": "7",
-                "waitUnit": "DAYS",
-                "timeZone": "GMT Standard Time",
-                "specifiedTime": "00:00"
+                "waitDuration": 5,
+                "waitUnit": "MINUTES",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
                 "isExtended": false,
                 "waitType": "duration",
-                "guidanceCardKey": null,
+                "guidanceCardKey": "",
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -520,27 +596,134 @@
             }
         },
         {
-            "key": "WAITBYDURATION-3",
-            "name": "1 day",
+            "key": "WAITBYDURATION-7",
+            "name": "5 minutes",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "d8c362d5-af00-44dd-a2b3-be13a8a53671",
+                    "key": "57f2fa5f-98a2-4c20-bf2d-6faf517a0f44",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitDuration": 5,
+                "waitUnit": "MINUTES",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
                 "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITUNTILSPECIFICDATE-2",
+            "name": "5 August 2025 12:00 PM",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "31ca089a-6fbe-437b-9098-7a491020e599",
+                    "next": "ENGAGEMENTSPLITV2-2",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
+            "configurationArguments": {
+                "waitDuration": 0,
+                "waitUnit": "",
+                "specifiedTime": "12:00",
+                "timeZone": "Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "2025-08-05",
+                "waitForEventKey": ""
+            },
+            "metaData": {
+                "isConfigured": true,
+                "waitType": "specifiedDate",
+                "attribute": "",
+                "uiType": "WAITUNTILSPECIFICDATE"
             },
             "schema": {
                 "arguments": {
@@ -600,55 +783,70 @@
     "triggers": [
         {
             "key": "TRIGGER",
-            "name": "EMEA.MX_LostRenewals - 9 Months",
+            "name": "TRIGGER",
             "description": "",
-            "type": "AutomationAudience",
+            "type": "EmailAudience",
             "outcomes": [],
             "arguments": {
-                "serializedObjectType": 3,
-                "r__event_key": "DEAudience-06289c66-f609-d4af-cf14-98e140d3e3db",
-                "r__dataExtension_key": "A31B92B4-00B1-457D-9996-2D92AA2DC547"
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "true"
             },
-            "configurationArguments": {},
+            "configurationArguments": {
+                "schemaVersionId": 0,
+                "criteria": ""
+            },
             "metaData": {
-                "scheduleState": "No Schedule",
                 "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
                 "chainType": "None",
                 "configurationRequired": false,
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
-                "category": "Audience",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "AutomationAud-e6c713d2-0777-f70c-ef95-aa8d9669da5f"
+                "r__event_key": "DEAudience-4214f0f2-6c34-dea8-a6a4-8af92841d672"
             }
         }
     ],
     "goals": [],
     "exits": [],
     "notifiers": [],
-    "entryMode": "SingleEntryAcrossAllVersions",
+    "entryMode": "OnceAndDone",
     "definitionType": "Multistep",
     "channel": "",
     "defaults": {
         "email": [
-            "{{Event.AutomationAud-e6c713d2-0777-f70c-ef95-aa8d9669da5f.\"ContactEmail\"}}"
-        ],
-        "mobileNumber": [
-            "{{Event.DEAudience-06289c66-f609-d4af-cf14-98e140d3e3db.\"ContactMobilePhone\"}}"
+            "{{Event.DEAudience-4214f0f2-6c34-dea8-a6a4-8af92841d672.\"Email\"}}"
         ],
         "properties": {
             "analyticsTracking": {
-                "enabled": true,
+                "enabled": false,
                 "analyticsType": "google",
                 "urlDomainsToTrack": []
             }
         }
     },
     "metaData": {
-        "dataSource": "ContactsModel"
+        "dataSource": "ContactsModel",
+        "disableEndWait": true,
+        "simulation.id": 4693,
+        "simulation.isClone": false,
+        "simulation.isSource": true,
+        "simulation.config": {
+            "SelectedCustomObjectKeys": [
+                557,
+                238,
+                157
+            ],
+            "DoSends": true,
+            "SimulationOverrideEmail": "kelly.sykes@3plearning.com"
+        },
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
-    "status": "Draft",
+    "status": "Published",
     "scheduledStatus": "Draft",
     "r__folder_Path": "my journeys"
 }

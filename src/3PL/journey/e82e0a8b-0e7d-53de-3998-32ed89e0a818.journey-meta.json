@@ -1,21 +1,21 @@
 {
-    "key": "a41b35cd-60f5-8840-9dc4-df229c492609",
-    "name": "New Journey - March 23 2022 4.39 PM",
-    "lastPublishedDate": "2022-03-23T01:09:48",
+    "key": "e82e0a8b-0e7d-53de-3998-32ed89e0a818",
+    "name": "Brightpath_FY26_Newsletter_T3",
+    "lastPublishedDate": "2025-07-22T21:52:45",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2022-03-23T01:08:45.827",
-    "modifiedDate": "2022-03-23T01:09:48.71",
+    "createdDate": "2025-07-22T21:51:44.9",
+    "modifiedDate": "2025-07-22T21:52:45.823",
     "activities": [
         {
             "key": "EMAILV2-1",
-            "name": "QA_EMAIL",
+            "name": "APAC_BP_FY26_Newsletter_T3",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "37b2ec61-b98f-437a-8eea-7dc6f7cc23ca",
+                    "key": "c7f14944-52bb-41b3-ae00-b2a12394adee",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -25,7 +25,7 @@
             "arguments": {
                 "activityId": "{{Activity.Id}}",
                 "definitionId": "{{Context.DefinitionId}}",
-                "emailSubjectDataBound": "Your Curriculum Catch-Up Pack is here!",
+                "emailSubjectDataBound": "Welcome to Term 3 – Brightpath Updates, Webinars & Professional Learning Opportunities",
                 "contactId": "{{Contact.Id}}",
                 "contactKey": "{{Contact.Key}}",
                 "emailAddress": "{{InteractionDefaults.Email}}",
@@ -44,29 +44,32 @@
                     "bccEmail": [],
                     "c__priority": "Medium",
                     "ccEmail": [],
-                    "created": {},
-                    "dynamicEmailSubject": "Your Curriculum Catch-Up Pack is here!",
-                    "emailSubject": "Your Curriculum Catch-Up Pack is here!",
+                    "created": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Welcome to Term 3 – Brightpath Updates, Webinars & Professional Learning Opportunities",
+                    "emailSubject": "Welcome to Term 3 – Brightpath Updates, Webinars & Professional Learning Opportunities",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
-                    "isSendLogging": true,
+                    "isSendLogging": false,
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
-                    "modified": {},
-                    "preHeader": "Workbooks and review sheets this way. ",
-                    "publicationListId": 187,
-                    "r__asset_key": "e25b4d5e-fad5-4a1d-8225-48cc22574674",
-                    "r__asset_name_readOnly": "QA_EMAIL",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
+                    "modified": {
+                        "name": "",
+                        "date": ""
                     },
+                    "publicationListId": 187,
+                    "r__asset_key": "820de48d-559b-4045-b5bf-660489e17616",
+                    "r__asset_name_readOnly": "APAC_BP_FY26_Newsletter_T3",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2066,
-                    "r__triggeredSend_key": "173925",
+                    "r__senderProfile_key": 2597,
+                    "r__triggeredSend_key": "260398",
+                    "recExpTimeInHours": null,
                     "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
                     "throttleLimit": 0,
@@ -78,14 +81,15 @@
                 "isSimulation": false,
                 "googleAnalyticsCampaignName": "",
                 "useLLTS": false,
-                "fuelAgentRequested": false,
-                "r__triggeredSend_key": "173925"
+                "fuelAgentRequested": true,
+                "isReconcilable": false,
+                "r__triggeredSend_key": "260398"
             },
             "metaData": {
-                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "category": "message",
                 "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
@@ -227,7 +231,7 @@
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b"
+                "r__event_key": "DEAudience-79b1a33f-535f-5c10-57f4-c46177ea7246"
             }
         }
     ],
@@ -239,22 +243,27 @@
     "channel": "email",
     "defaults": {
         "email": [
-            "{{Event.DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b.\"CampaignMember:Common:Email\"}}"
+            "{{Event.DEAudience-79b1a33f-535f-5c10-57f4-c46177ea7246.\"EmailAddress\"}}"
         ],
         "properties": {
             "analyticsTracking": {
-                "enabled": false,
+                "enabled": true,
                 "analyticsType": "google",
                 "urlDomainsToTrack": []
             }
         }
     },
     "metaData": {
-        "isScheduleSet": true
+        "disableEndWait": true,
+        "dataSource": "ContactsModel",
+        "isScheduleSet": true,
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
     "status": "Published",
     "scheduledStatus": "Sent",
-    "lastSendDate": "2022-03-23T01:10:16",
+    "lastSendDate": "2025-07-22T21:53:00",
     "r__folder_Path": "my journeys"
 }

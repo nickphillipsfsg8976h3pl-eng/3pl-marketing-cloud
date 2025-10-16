@@ -1,21 +1,21 @@
 {
-    "key": "a41b35cd-60f5-8840-9dc4-df229c492609",
-    "name": "New Journey - March 23 2022 4.39 PM",
-    "lastPublishedDate": "2022-03-23T01:09:48",
+    "key": "5c5b2a73-2d77-57c1-0e7b-a6ac6f84b508",
+    "name": "APAC_referral challenge_email1_June_FY25",
+    "lastPublishedDate": "2025-06-18T15:56:48",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2022-03-23T01:08:45.827",
-    "modifiedDate": "2022-03-23T01:09:48.71",
+    "createdDate": "2025-06-18T15:54:26.483",
+    "modifiedDate": "2025-06-18T15:56:48.4",
     "activities": [
         {
             "key": "EMAILV2-1",
-            "name": "QA_EMAIL",
+            "name": "APAC_referral challenge_email1_June_FY25",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "37b2ec61-b98f-437a-8eea-7dc6f7cc23ca",
+                    "key": "e6628c05-28f6-4e49-8a0c-e3a1f5fc628b",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -25,7 +25,7 @@
             "arguments": {
                 "activityId": "{{Activity.Id}}",
                 "definitionId": "{{Context.DefinitionId}}",
-                "emailSubjectDataBound": "Your Curriculum Catch-Up Pack is here!",
+                "emailSubjectDataBound": " Make a difference—and treat yourself too",
                 "contactId": "{{Contact.Id}}",
                 "contactKey": "{{Contact.Key}}",
                 "emailAddress": "{{InteractionDefaults.Email}}",
@@ -45,8 +45,9 @@
                     "c__priority": "Medium",
                     "ccEmail": [],
                     "created": {},
-                    "dynamicEmailSubject": "Your Curriculum Catch-Up Pack is here!",
-                    "emailSubject": "Your Curriculum Catch-Up Pack is here!",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Make a difference—and treat yourself too",
+                    "emailSubject": "Make a difference—and treat yourself too",
                     "exclusionFilter": "",
                     "isMultipart": true,
                     "isSalesforceTracking": true,
@@ -54,22 +55,16 @@
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
                     "modified": {},
-                    "preHeader": "Workbooks and review sheets this way. ",
+                    "preHeader": "Just one referral = $50 Amazon card + VIP status in The POD. It takes less than a minute!",
                     "publicationListId": 187,
-                    "r__asset_key": "e25b4d5e-fad5-4a1d-8225-48cc22574674",
-                    "r__asset_name_readOnly": "QA_EMAIL",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
+                    "r__asset_key": "b2e6cfd9-683d-445e-b960-ea1d80bdf184",
+                    "r__asset_name_readOnly": "APAC_referral challenge_email1_June_FY25",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2066,
-                    "r__triggeredSend_key": "173925",
+                    "r__senderProfile_key": 2544,
+                    "r__triggeredSend_key": "258512",
                     "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleLimit": 0,
                     "throttleOpens": "1/1/0001 12:00:00 AM",
                     "triggeredSendStatus": "Active"
                 },
@@ -78,19 +73,12 @@
                 "isSimulation": false,
                 "googleAnalyticsCampaignName": "",
                 "useLLTS": false,
-                "fuelAgentRequested": false,
-                "r__triggeredSend_key": "173925"
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "258512"
             },
             "metaData": {
-                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "category": "message",
-                "version": "1.0",
-                "statsContactIcon": "",
-                "original_icon": "/img/email-icon.svg",
-                "original_iconSmall": "/img/email-icon.svg",
-                "sections": {},
-                "isConfigured": true
+                "isConfigured": true,
+                "sections": {}
             },
             "schema": {
                 "arguments": {
@@ -221,13 +209,13 @@
                 "criteria": ""
             },
             "metaData": {
-                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
                 "chainType": "None",
                 "configurationRequired": false,
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b"
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "r__event_key": "DEAudience-8caf2d5d-8530-5e5a-7f29-ba36c4d839f0"
             }
         }
     ],
@@ -239,22 +227,26 @@
     "channel": "email",
     "defaults": {
         "email": [
-            "{{Event.DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b.\"CampaignMember:Common:Email\"}}"
+            "{{Event.DEAudience-8caf2d5d-8530-5e5a-7f29-ba36c4d839f0.\"Email\"}}"
         ],
         "properties": {
             "analyticsTracking": {
-                "enabled": false,
+                "enabled": true,
                 "analyticsType": "google",
                 "urlDomainsToTrack": []
             }
         }
     },
     "metaData": {
-        "isScheduleSet": true
+        "dataSource": "ContactsModel",
+        "isScheduleSet": true,
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
     "status": "Published",
     "scheduledStatus": "Sent",
-    "lastSendDate": "2022-03-23T01:10:16",
+    "lastSendDate": "2025-06-18T17:00:40",
     "r__folder_Path": "my journeys"
 }

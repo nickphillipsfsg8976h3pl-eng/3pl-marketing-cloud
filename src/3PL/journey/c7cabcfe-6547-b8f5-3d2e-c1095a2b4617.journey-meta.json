@@ -1,33 +1,44 @@
 {
-    "key": "4c044cfc-2525-cf79-a637-a007c1385a13",
-    "name": "EMEA.MX_LostRenewals - 9 Months",
-    "lastPublishedDate": "0001-01-01T00:00:00",
+    "key": "c7cabcfe-6547-b8f5-3d2e-c1095a2b4617",
+    "name": "AMER_MX0096_WMD2025_MSCX_Sign Up for Updates",
+    "lastPublishedDate": "2025-02-26T09:00:38",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2023-11-22T06:37:02.677",
-    "modifiedDate": "2023-12-08T05:13:06.19",
+    "createdDate": "2025-02-26T08:52:22.377",
+    "modifiedDate": "2025-02-26T09:00:38.497",
     "activities": [
         {
             "key": "EMAILV2-1",
-            "name": "EMEA.MX_Winback_LostRenewals_E1",
+            "name": "AMER_MX0097_WMD2025_MSCX_EM1",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "0915de78-3849-439a-b3ac-c3e851358e67",
-                    "next": "WAITBYDURATION-2",
+                    "key": "45bdb7d3-d47e-4929-8c79-7e2a5eb83dcd",
+                    "next": "WAITUNTILSPECIFICDATE-1",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Get ready for World Math Day 2025 – join the celebration! 🎉",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
             "configurationArguments": {
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": true,
-                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -39,9 +50,9 @@
                         "date": ""
                     },
                     "domainExclusions": [],
-                    "dynamicEmailSubject": "%%=v(@NAME)=%% rediscover Mathletics to reignite engagement!! ",
-                    "emailSubject": "%%=v(@NAME)=%% rediscover Mathletics to reignite engagement!! ",
-                    "exclusionFilter": "",
+                    "dynamicEmailSubject": "Get ready for World Math Day 2025 – join the celebration! 🎉",
+                    "emailSubject": "Get ready for World Math Day 2025 – join the celebration! 🎉",
+                    "exclusionFilter": "(\n (ROWCOUNT(LOOKUPROWS(\"AMER_MX0096_WMD2025_NB_Sign Up For Updates_CAN\", \"Email\", EMAILADDR)) > 0) OR \n (ROWCOUNT(LOOKUPROWS(\"AMER_MX0096_WMD2025_NB_Sign Up For Updates_US\", \"Email\", EMAILADDR)) > 0) OR \n (RowCount(LookupRows(\"Contacts_With_Open_Opportunities\",\"Email\",EMAILADDR)) > 0)\n)",
                     "isMultipart": true,
                     "isSalesforceTracking": true,
                     "isSendLogging": false,
@@ -51,23 +62,34 @@
                         "name": "",
                         "date": ""
                     },
-                    "preHeader": "Time-limited offer to boost student maths results!",
+                    "preHeader": "🔔 Sign up for updates now",
                     "publicationListId": 187,
-                    "r__asset_key": "62f196cd-e7b1-4a4f-8afa-17177043d2b9",
-                    "r__asset_name_readOnly": "EMEA.MX_Winback_LostRenewals_E1",
+                    "r__asset_key": "f8d1c705-6cec-4d3e-994c-4adb9b8e4061",
+                    "r__asset_name_readOnly": "AMER_MX0097_WMD2025_MSCX_EM1",
                     "r__deliveryProfile_key": "Default",
-                    "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__sendClassification_key": 1078,
+                    "r__senderProfile_key": 2455,
+                    "r__triggeredSend_key": "254353",
+                    "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleOpens": "1/1/0001 12:00:00 AM"
-                }
+                    "throttleLimit": 0,
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "254353"
             },
             "metaData": {
                 "category": "message",
                 "version": "1.0",
                 "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "statsContactIcon": null,
+                "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
                 "sections": {},
@@ -185,24 +207,35 @@
         },
         {
             "key": "EMAILV2-2",
-            "name": "EMEA.MX_Winback_LostRenewals_E2",
+            "name": "AMER_MX0097_WMD2025_MSCX_EM2_Updates",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "d0e85be3-fce4-4f57-a1f7-b30ef784cea3",
-                    "next": "WAITBYDURATION-3",
+                    "key": "dca6ffa4-c9b9-4b94-96f5-da19738133f0",
+                    "next": "WAITBYDURATION-2",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Help your students shine on World Math Day 👏",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
             "configurationArguments": {
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": true,
-                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -214,9 +247,9 @@
                         "date": ""
                     },
                     "domainExclusions": [],
-                    "dynamicEmailSubject": "%%=v(@NAME)=%%are you looking for ways to drive better student results? ",
-                    "emailSubject": "%%=v(@NAME)=%%are you looking for ways to drive better student results? ",
-                    "exclusionFilter": "",
+                    "dynamicEmailSubject": "Help your students shine on World Math Day 👏",
+                    "emailSubject": "Help your students shine on World Math Day 👏",
+                    "exclusionFilter": "(\n (ROWCOUNT(LOOKUPROWS(\"AMER_MX0096_WMD2025_NB_Sign Up For Updates_CAN\", \"Email\", EMAILADDR)) > 0) OR \n (ROWCOUNT(LOOKUPROWS(\"AMER_MX0096_WMD2025_NB_Sign Up For Updates_US\", \"Email\", EMAILADDR)) > 0) OR \n (RowCount(LookupRows(\"Contacts_With_Open_Opportunities\",\"Email\",EMAILADDR)) > 0)\n)",
                     "isMultipart": true,
                     "isSalesforceTracking": true,
                     "isSendLogging": false,
@@ -226,23 +259,34 @@
                         "name": "",
                         "date": ""
                     },
-                    "preHeader": "Last chance to make maths results great again!",
+                    "preHeader": "Don’t miss out – World Math Day is coming this March!",
                     "publicationListId": 187,
-                    "r__asset_key": "7872839f-04bf-47df-a36f-32187b81fb3d",
-                    "r__asset_name_readOnly": "EMEA.MX_Winback_LostRenewals_E2",
+                    "r__asset_key": "3cfb4233-a94b-4e0a-97d8-b3522e7385cb",
+                    "r__asset_name_readOnly": "AMER_MX0097_WMD2025_MSCX_EM2_Updates",
                     "r__deliveryProfile_key": "Default",
-                    "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__sendClassification_key": 1078,
+                    "r__senderProfile_key": 2455,
+                    "r__triggeredSend_key": "254354",
+                    "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleOpens": "1/1/0001 12:00:00 AM"
-                }
+                    "throttleLimit": 0,
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "254354"
             },
             "metaData": {
                 "category": "message",
                 "version": "1.0",
                 "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "statsContactIcon": null,
+                "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
                 "sections": {},
@@ -359,24 +403,35 @@
             }
         },
         {
-            "key": "WAITBYDURATION-1",
+            "key": "WAITBYDURATION-2",
             "name": "1 day",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "baea0ad3-3d63-4fee-82ca-9e8b0bc5b7d5",
-                    "next": "EMAILV2-1",
+                    "key": "c935ce5e-ddb4-46fb-bda3-86a484c64fe4",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
                 "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitUnit": "DAYS",
+                "specifiedTime": "",
+                "timeZone": "",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
@@ -437,13 +492,13 @@
             }
         },
         {
-            "key": "WAITBYDURATION-2",
-            "name": "7 days",
+            "key": "WAITUNTILSPECIFICDATE-1",
+            "name": "28 February 2025 9:00 AM",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "4e00be63-b803-413c-81fa-1c94a894cfd6",
+                    "key": "1bee4031-55c6-43c9-9771-e27090056962",
                     "next": "EMAILV2-2",
                     "arguments": {},
                     "metaData": {
@@ -451,96 +506,28 @@
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
-                "waitDuration": "7",
-                "waitUnit": "DAYS",
-                "timeZone": "GMT Standard Time",
-                "specifiedTime": "00:00"
+                "waitDuration": 0,
+                "waitUnit": "",
+                "specifiedTime": "09:00",
+                "timeZone": "Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "2025-02-28",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
-                "isExtended": false,
-                "waitType": "duration",
-                "guidanceCardKey": null,
-                "uiType": "WAITBYDURATION"
-            },
-            "schema": {
-                "arguments": {
-                    "endDate": {
-                        "dataType": "Date",
-                        "isNullable": false,
-                        "direction": "Out",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitEndDateAttributeDataBound": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitDefinitionId": {
-                        "dataType": "Text",
-                        "isNullable": false,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitForEventId": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "executionMode": {
-                        "dataType": "Text",
-                        "isNullable": false,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "startActivityKey": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitQueueId": {
-                        "dataType": "LongNumber",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    }
-                }
-            }
-        },
-        {
-            "key": "WAITBYDURATION-3",
-            "name": "1 day",
-            "description": "",
-            "type": "WAIT",
-            "outcomes": [
-                {
-                    "key": "d8c362d5-af00-44dd-a2b3-be13a8a53671",
-                    "arguments": {},
-                    "metaData": {
-                        "invalid": false
-                    }
-                }
-            ],
-            "arguments": {},
-            "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
-            },
-            "metaData": {
-                "isConfigured": true,
-                "uiType": "WAITBYDURATION"
+                "waitType": "specifiedDate",
+                "attribute": "",
+                "uiType": "WAITUNTILSPECIFICDATE"
             },
             "schema": {
                 "arguments": {
@@ -600,41 +587,40 @@
     "triggers": [
         {
             "key": "TRIGGER",
-            "name": "EMEA.MX_LostRenewals - 9 Months",
+            "name": "TRIGGER",
             "description": "",
-            "type": "AutomationAudience",
+            "type": "EmailAudience",
             "outcomes": [],
             "arguments": {
-                "serializedObjectType": 3,
-                "r__event_key": "DEAudience-06289c66-f609-d4af-cf14-98e140d3e3db",
-                "r__dataExtension_key": "A31B92B4-00B1-457D-9996-2D92AA2DC547"
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "true"
             },
-            "configurationArguments": {},
+            "configurationArguments": {
+                "schemaVersionId": 0,
+                "criteria": ""
+            },
             "metaData": {
-                "scheduleState": "No Schedule",
                 "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
                 "chainType": "None",
                 "configurationRequired": false,
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
-                "category": "Audience",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "AutomationAud-e6c713d2-0777-f70c-ef95-aa8d9669da5f"
+                "r__event_key": "DEAudience-f5d15ade-c656-73bb-9ce1-fc043703993a"
             }
         }
     ],
     "goals": [],
     "exits": [],
     "notifiers": [],
-    "entryMode": "SingleEntryAcrossAllVersions",
+    "entryMode": "OnceAndDone",
     "definitionType": "Multistep",
     "channel": "",
     "defaults": {
         "email": [
-            "{{Event.AutomationAud-e6c713d2-0777-f70c-ef95-aa8d9669da5f.\"ContactEmail\"}}"
-        ],
-        "mobileNumber": [
-            "{{Event.DEAudience-06289c66-f609-d4af-cf14-98e140d3e3db.\"ContactMobilePhone\"}}"
+            "{{Event.DEAudience-f5d15ade-c656-73bb-9ce1-fc043703993a.\"Email\"}}"
         ],
         "properties": {
             "analyticsTracking": {
@@ -645,10 +631,23 @@
         }
     },
     "metaData": {
-        "dataSource": "ContactsModel"
+        "dataSource": "ContactsModel",
+        "simulation.id": 4614,
+        "simulation.isClone": false,
+        "simulation.isSource": true,
+        "simulation.config": {
+            "SelectedCustomObjectKeys": [
+                145
+            ],
+            "DoSends": true,
+            "SimulationOverrideEmail": "kelly.sykes@3plearning.com"
+        },
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
-    "status": "Draft",
+    "status": "Published",
     "scheduledStatus": "Draft",
     "r__folder_Path": "my journeys"
 }

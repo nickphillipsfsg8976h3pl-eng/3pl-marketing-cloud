@@ -1,248 +1,98 @@
 {
-    "key": "4c044cfc-2525-cf79-a637-a007c1385a13",
-    "name": "EMEA.MX_LostRenewals - 9 Months",
-    "lastPublishedDate": "0001-01-01T00:00:00",
+    "key": "98528104-34ce-1a3b-1588-94f25be4690d",
+    "name": "APAC_3P0073_EdChatCampaign_Q4_FY25_Pre_Event_Journey_V2",
+    "lastPublishedDate": "2025-05-21T23:09:52",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2023-11-22T06:37:02.677",
-    "modifiedDate": "2023-12-08T05:13:06.19",
+    "createdDate": "2025-05-21T22:09:43.03",
+    "modifiedDate": "2025-06-30T19:24:38.993",
     "activities": [
         {
-            "key": "EMAILV2-1",
-            "name": "EMEA.MX_Winback_LostRenewals_E1",
-            "description": "",
-            "type": "EMAILV2",
-            "outcomes": [
-                {
-                    "key": "0915de78-3849-439a-b3ac-c3e851358e67",
-                    "next": "WAITBYDURATION-2",
-                    "arguments": {},
-                    "metaData": {
-                        "invalid": false
-                    }
-                }
-            ],
-            "arguments": {},
-            "configurationArguments": {
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": true,
-                "googleAnalyticsCampaignName": "",
-                "triggeredSend": {
-                    "autoAddSubscribers": true,
-                    "autoUpdateSubscribers": true,
-                    "bccEmail": [],
-                    "c__priority": "Medium",
-                    "ccEmail": [],
-                    "created": {
-                        "name": "",
-                        "date": ""
-                    },
-                    "domainExclusions": [],
-                    "dynamicEmailSubject": "%%=v(@NAME)=%% rediscover Mathletics to reignite engagement!! ",
-                    "emailSubject": "%%=v(@NAME)=%% rediscover Mathletics to reignite engagement!! ",
-                    "exclusionFilter": "",
-                    "isMultipart": true,
-                    "isSalesforceTracking": true,
-                    "isSendLogging": false,
-                    "isStoppedOnJobError": false,
-                    "isTrackingClicks": true,
-                    "modified": {
-                        "name": "",
-                        "date": ""
-                    },
-                    "preHeader": "Time-limited offer to boost student maths results!",
-                    "publicationListId": 187,
-                    "r__asset_key": "62f196cd-e7b1-4a4f-8afa-17177043d2b9",
-                    "r__asset_name_readOnly": "EMEA.MX_Winback_LostRenewals_E1",
-                    "r__deliveryProfile_key": "Default",
-                    "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
-                    "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleOpens": "1/1/0001 12:00:00 AM"
-                }
-            },
-            "metaData": {
-                "category": "message",
-                "version": "1.0",
-                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "statsContactIcon": null,
-                "original_icon": "/img/email-icon.svg",
-                "original_iconSmall": "/img/email-icon.svg",
-                "sections": {},
-                "isConfigured": true
-            },
-            "schema": {
-                "arguments": {
-                    "requestID": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "Out",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "messageKey": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "Out",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "activityId": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "definitionId": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": true,
-                        "access": "Hidden"
-                    },
-                    "emailSubjectDataBound": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": true,
-                        "access": "Hidden"
-                    },
-                    "contactId": {
-                        "dataType": "Number",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "contactKey": {
-                        "dataType": "Text",
-                        "isNullable": false,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "emailAddress": {
-                        "dataType": "Text",
-                        "isNullable": false,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "sourceCustomObjectId": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "sourceCustomObjectKey": {
-                        "dataType": "LongNumber",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "fieldType": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "eventData": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "obfuscationProperties": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "customObjectKey": {
-                        "dataType": "LongNumber",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": true,
-                        "access": "Hidden"
-                    },
-                    "definitionInstanceId": {
-                        "dataType": "Text",
-                        "isNullable": false,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    }
-                }
-            }
-        },
-        {
             "key": "EMAILV2-2",
-            "name": "EMEA.MX_Winback_LostRenewals_E2",
+            "name": "APAC_3P0073_EdChatCampaign_Q4_FY25_E4",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "d0e85be3-fce4-4f57-a1f7-b30ef784cea3",
-                    "next": "WAITBYDURATION-3",
+                    "key": "58d71c46-cb82-487d-89f2-513870db50cd",
+                    "next": "WAITUNTILSPECIFICDATE-5",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Join Us Tomorrow! Leadership Insights You Can Use Immediately",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
             "configurationArguments": {
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": true,
-                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
                     "bccEmail": [],
                     "c__priority": "Medium",
+                    "campaigns": [],
                     "ccEmail": [],
                     "created": {
                         "name": "",
                         "date": ""
                     },
+                    "description": "APAC_3P0073_EdChatCampaign_Q4 - 073578d054f44d4a89345a5f5130c0b4",
                     "domainExclusions": [],
-                    "dynamicEmailSubject": "%%=v(@NAME)=%%are you looking for ways to drive better student results? ",
-                    "emailSubject": "%%=v(@NAME)=%%are you looking for ways to drive better student results? ",
+                    "dynamicEmailSubject": "Join Us Tomorrow! Leadership Insights You Can Use Immediately",
+                    "emailSubject": "Join Us Tomorrow! Leadership Insights You Can Use Immediately",
                     "exclusionFilter": "",
                     "isMultipart": true,
                     "isSalesforceTracking": true,
                     "isSendLogging": false,
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
+                    "keyword": "",
                     "modified": {
                         "name": "",
                         "date": ""
                     },
-                    "preHeader": "Last chance to make maths results great again!",
+                    "name": "APAC_3P0073_EdChatCampaign_Q4 - 073578d054f44d4a89345a5f5130c0b4",
+                    "preHeader": "Learn how to make school culture your 'one job’",
                     "publicationListId": 187,
-                    "r__asset_key": "7872839f-04bf-47df-a36f-32187b81fb3d",
-                    "r__asset_name_readOnly": "EMEA.MX_Winback_LostRenewals_E2",
+                    "r__asset_key": "d1e3269d-4d96-4286-8f2d-ac6a6cf513b9",
+                    "r__asset_name_readOnly": "APAC_3P0073_EdChatCampaign_Q4_FY25_E4",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
-                    "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleOpens": "1/1/0001 12:00:00 AM"
-                }
+                    "r__senderProfile_key": 2066,
+                    "r__triggeredSend_key": "257619",
+                    "suppressTracking": false,
+                    "suppressionLists": [],
+                    "throttleLimit": 0,
+                    "triggeredSendStatus": "Inactive"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "257619"
             },
             "metaData": {
                 "category": "message",
                 "version": "1.0",
                 "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "statsContactIcon": null,
+                "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
                 "sections": {},
@@ -359,27 +209,241 @@
             }
         },
         {
-            "key": "WAITBYDURATION-1",
-            "name": "1 day",
+            "key": "EMAILV2-3",
+            "name": "APAC_3P0073_EdChatCampaign_Q4_FY25_E5",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "6b9c244a-cf83-43cc-91ab-35567d2cd2c7",
+                    "next": "WAITBYDURATION-6",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Last Chance! Join Adam Voigt's EdChat Today",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "campaigns": [],
+                    "ccEmail": [],
+                    "created": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "description": "APAC_3P0073_EdChatCampaign_Q4 - 271742fa71de468c8e10ef15c9ebc4e1",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Last Chance! Join Adam Voigt's EdChat Today",
+                    "emailSubject": "Last Chance! Join Adam Voigt's EdChat Today",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": false,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "keyword": "",
+                    "modified": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "name": "APAC_3P0073_EdChatCampaign_Q4 - 271742fa71de468c8e10ef15c9ebc4e1",
+                    "preHeader": "Register now for immediate access at 3:45 PM AEST",
+                    "publicationListId": 187,
+                    "r__asset_key": "72cb097c-7420-40c3-8b68-9ef2368d06c5",
+                    "r__asset_name_readOnly": "APAC_3P0073_EdChatCampaign_Q4_FY25_E5",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2066,
+                    "r__triggeredSend_key": "257620",
+                    "suppressTracking": false,
+                    "suppressionLists": [],
+                    "throttleLimit": 0,
+                    "triggeredSendStatus": "Inactive"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "257620"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": "",
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-6",
+            "name": "2 minutes",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "baea0ad3-3d63-4fee-82ca-9e8b0bc5b7d5",
-                    "next": "EMAILV2-1",
+                    "key": "9be276bd-9752-47ce-8d53-0febd5aee369",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitDuration": 2,
+                "waitUnit": "MINUTES",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -437,13 +501,13 @@
             }
         },
         {
-            "key": "WAITBYDURATION-2",
-            "name": "7 days",
+            "key": "WAITUNTILSPECIFICDATE-4",
+            "name": "17 June 2025 12:15 PM",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "4e00be63-b803-413c-81fa-1c94a894cfd6",
+                    "key": "e779a336-c672-42c0-9ee9-5ae8fc2abd81",
                     "next": "EMAILV2-2",
                     "arguments": {},
                     "metaData": {
@@ -451,19 +515,28 @@
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
-                "waitDuration": "7",
-                "waitUnit": "DAYS",
-                "timeZone": "GMT Standard Time",
-                "specifiedTime": "00:00"
+                "waitDuration": 0,
+                "waitUnit": "",
+                "specifiedTime": "12:15",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "2025-06-17",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
-                "isExtended": false,
-                "waitType": "duration",
-                "guidanceCardKey": null,
-                "uiType": "WAITBYDURATION"
+                "waitType": "specifiedDate",
+                "attribute": "",
+                "uiType": "WAITUNTILSPECIFICDATE"
             },
             "schema": {
                 "arguments": {
@@ -520,27 +593,42 @@
             }
         },
         {
-            "key": "WAITBYDURATION-3",
-            "name": "1 day",
+            "key": "WAITUNTILSPECIFICDATE-5",
+            "name": "18 June 2025 9:35 AM",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "d8c362d5-af00-44dd-a2b3-be13a8a53671",
+                    "key": "255ddcf3-0251-40f0-994f-3556b47dd9f6",
+                    "next": "EMAILV2-3",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitDuration": 0,
+                "waitUnit": "",
+                "specifiedTime": "09:35",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "2025-06-18",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
-                "uiType": "WAITBYDURATION"
+                "waitType": "specifiedDate",
+                "attribute": "",
+                "uiType": "WAITUNTILSPECIFICDATE"
             },
             "schema": {
                 "arguments": {
@@ -600,16 +688,20 @@
     "triggers": [
         {
             "key": "TRIGGER",
-            "name": "EMEA.MX_LostRenewals - 9 Months",
+            "name": "APAC_3P0073_EdChatCampaign_Q4_FY25_Pre_Event_Journey_V2",
             "description": "",
-            "type": "AutomationAudience",
+            "type": "EmailAudience",
             "outcomes": [],
             "arguments": {
-                "serializedObjectType": 3,
-                "r__event_key": "DEAudience-06289c66-f609-d4af-cf14-98e140d3e3db",
-                "r__dataExtension_key": "A31B92B4-00B1-457D-9996-2D92AA2DC547"
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "true"
             },
-            "configurationArguments": {},
+            "configurationArguments": {
+                "schemaVersionId": 0,
+                "criteria": ""
+            },
             "metaData": {
                 "scheduleState": "No Schedule",
                 "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
@@ -619,22 +711,19 @@
                 "title": "Data Extension",
                 "category": "Audience",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "AutomationAud-e6c713d2-0777-f70c-ef95-aa8d9669da5f"
+                "r__event_key": "DEAudience-439a3b50-8603-80d3-6aba-e9b9a3492b34"
             }
         }
     ],
     "goals": [],
     "exits": [],
     "notifiers": [],
-    "entryMode": "SingleEntryAcrossAllVersions",
+    "entryMode": "OnceAndDone",
     "definitionType": "Multistep",
     "channel": "",
     "defaults": {
         "email": [
-            "{{Event.AutomationAud-e6c713d2-0777-f70c-ef95-aa8d9669da5f.\"ContactEmail\"}}"
-        ],
-        "mobileNumber": [
-            "{{Event.DEAudience-06289c66-f609-d4af-cf14-98e140d3e3db.\"ContactMobilePhone\"}}"
+            "{{Event.DEAudience-439a3b50-8603-80d3-6aba-e9b9a3492b34.\"ContactEmail\"}}"
         ],
         "properties": {
             "analyticsTracking": {
@@ -645,10 +734,13 @@
         }
     },
     "metaData": {
-        "dataSource": "ContactsModel"
+        "dataSource": "ContactsModel",
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
-    "status": "Draft",
+    "status": "Stopped",
     "scheduledStatus": "Draft",
     "r__folder_Path": "my journeys"
 }

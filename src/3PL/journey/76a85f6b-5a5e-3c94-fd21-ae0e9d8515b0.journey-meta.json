@@ -1,21 +1,21 @@
 {
-    "key": "a41b35cd-60f5-8840-9dc4-df229c492609",
-    "name": "New Journey - March 23 2022 4.39 PM",
-    "lastPublishedDate": "2022-03-23T01:09:48",
+    "key": "76a85f6b-5a5e-3c94-fd21-ae0e9d8515b0",
+    "name": "GLOBAL_3P0051_Yellow_Usage_FY25_UKI_EDM3",
+    "lastPublishedDate": "2025-05-09T14:34:01",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2022-03-23T01:08:45.827",
-    "modifiedDate": "2022-03-23T01:09:48.71",
+    "createdDate": "2025-05-09T14:33:44.08",
+    "modifiedDate": "2025-05-09T14:34:01.92",
     "activities": [
         {
-            "key": "EMAILV2-1",
-            "name": "QA_EMAIL",
+            "key": "EMAILV2-2",
+            "name": "GLOBAL_3P0051_Yellow_Usage_FY25_UKI_EDM3",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "37b2ec61-b98f-437a-8eea-7dc6f7cc23ca",
+                    "key": "40ad46e3-fc13-4159-a084-ffd4e0d231e5",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -25,7 +25,7 @@
             "arguments": {
                 "activityId": "{{Activity.Id}}",
                 "definitionId": "{{Context.DefinitionId}}",
-                "emailSubjectDataBound": "Your Curriculum Catch-Up Pack is here!",
+                "emailSubjectDataBound": "Quick Tip #3 is Here—Support Independent Practice with Ease",
                 "contactId": "{{Contact.Id}}",
                 "contactKey": "{{Contact.Key}}",
                 "emailAddress": "{{InteractionDefaults.Email}}",
@@ -45,8 +45,9 @@
                     "c__priority": "Medium",
                     "ccEmail": [],
                     "created": {},
-                    "dynamicEmailSubject": "Your Curriculum Catch-Up Pack is here!",
-                    "emailSubject": "Your Curriculum Catch-Up Pack is here!",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Quick Tip #3 is Here—Support Independent Practice with Ease",
+                    "emailSubject": "Quick Tip #3 is Here—Support Independent Practice with Ease",
                     "exclusionFilter": "",
                     "isMultipart": true,
                     "isSalesforceTracking": true,
@@ -54,22 +55,16 @@
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
                     "modified": {},
-                    "preHeader": "Workbooks and review sheets this way. ",
+                    "preHeader": "Log in now to explore bite-sized resources that make planning easier and learning more fun.",
                     "publicationListId": 187,
-                    "r__asset_key": "e25b4d5e-fad5-4a1d-8225-48cc22574674",
-                    "r__asset_name_readOnly": "QA_EMAIL",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
+                    "r__asset_key": "076f01c4-2a2e-4a43-98c4-e1619081f76b",
+                    "r__asset_name_readOnly": "GLOBAL_3P0051_Yellow_Usage_FY25_UKI_EDM3",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2066,
-                    "r__triggeredSend_key": "173925",
+                    "r__senderProfile_key": 2483,
+                    "r__triggeredSend_key": "257358",
                     "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleLimit": 0,
                     "throttleOpens": "1/1/0001 12:00:00 AM",
                     "triggeredSendStatus": "Active"
                 },
@@ -78,14 +73,14 @@
                 "isSimulation": false,
                 "googleAnalyticsCampaignName": "",
                 "useLLTS": false,
-                "fuelAgentRequested": false,
-                "r__triggeredSend_key": "173925"
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "257358"
             },
             "metaData": {
-                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "category": "message",
                 "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
@@ -221,13 +216,13 @@
                 "criteria": ""
             },
             "metaData": {
-                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
                 "chainType": "None",
                 "configurationRequired": false,
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b"
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "r__event_key": "DEAudience-96f4c17a-cb6c-cd26-0486-8b96e6883398"
             }
         }
     ],
@@ -239,22 +234,26 @@
     "channel": "email",
     "defaults": {
         "email": [
-            "{{Event.DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b.\"CampaignMember:Common:Email\"}}"
+            "{{Event.DEAudience-96f4c17a-cb6c-cd26-0486-8b96e6883398.\"Email\"}}"
         ],
         "properties": {
             "analyticsTracking": {
-                "enabled": false,
+                "enabled": true,
                 "analyticsType": "google",
                 "urlDomainsToTrack": []
             }
         }
     },
     "metaData": {
-        "isScheduleSet": true
+        "dataSource": "ContactsModel",
+        "isScheduleSet": true,
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
     "status": "Published",
     "scheduledStatus": "Sent",
-    "lastSendDate": "2022-03-23T01:10:16",
+    "lastSendDate": "2025-05-12T02:30:02",
     "r__folder_Path": "my journeys"
 }

@@ -1,22 +1,22 @@
 {
-    "key": "b7b43690-5f9f-a0ac-b497-cdbd7bb11d08",
-    "name": "B2C_MX0008_Post-Trial-Nurture",
+    "key": "1a0bca2e-d272-64ce-b680-fdeb17e8f6f0",
+    "name": "AMER FY26 MX Trial Nurture Refresh",
     "lastPublishedDate": "0001-01-01T00:00:00",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2022-04-30T01:07:44.6",
-    "modifiedDate": "2022-04-30T01:16:24.66",
+    "createdDate": "2025-08-28T11:29:55.08",
+    "modifiedDate": "2025-09-04T10:12:52.117",
     "activities": [
         {
             "key": "EMAILV2-1",
-            "name": "MXB2C_MX0008_PT-NUTURE_E11651297796952",
+            "name": "AMER_MX0100_Trial_Nurture_E1",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "a525620c-5439-4ba2-92d8-060846465f7c",
-                    "next": "WAITBYDURATION-4",
+                    "key": "c7e8d882-72af-449d-ad96-62313f8fc290",
+                    "next": "WAITBYDURATION-1",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -26,6 +26,7 @@
             "arguments": {},
             "configurationArguments": {
                 "isModified": true,
+                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -33,27 +34,25 @@
                     "c__priority": "Medium",
                     "ccEmail": [],
                     "created": {},
-                    "dynamicEmailSubject": "11,324 mathematics activities to keep your child engaged",
-                    "emailSubject": "11,324 mathematics activities to keep your child engaged",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Quick Guide: Welcome to Mathletics! ",
+                    "emailSubject": "Quick Guide: Welcome to Mathletics! ",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
                     "isSendLogging": true,
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
                     "modified": {},
-                    "preHeader": "Give your child access to thousands of resources",
+                    "preHeader": "👉 Email 1 of 5: Get ready to explore Mathletics and kickstart your trial journey!",
                     "publicationListId": 187,
-                    "r__asset_key": "64eb6311-675f-4c4c-a1ff-23ba9e1086b5",
-                    "r__asset_name_readOnly": "MXB2C_MX0008_PT-NUTURE_E11651297796952",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
+                    "r__asset_key": "4ff9c61f-0bf8-4e54-b0c7-8cf04b1665e6",
+                    "r__asset_name_readOnly": "AMER_MX0100_Trial_Nurture_E1",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__senderProfile_key": 2455,
+                    "reconciliationExpiryHours": null,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
                     "throttleLimit": 0,
                     "throttleOpens": "1/1/0001 12:00:00 AM"
@@ -61,13 +60,13 @@
                 "applicationExtensionKey": "jb-email-activity"
             },
             "metaData": {
-                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "category": "message",
                 "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "statsContactIcon": null,
-                "original_iconSmall": "/img/email-icon.svg",
                 "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
                 "sections": {},
                 "isConfigured": true
             },
@@ -183,13 +182,13 @@
         },
         {
             "key": "EMAILV2-2",
-            "name": "MXB2C_MX0008_PT-NUTURE_E21651297796952",
+            "name": "AMER_MX0100_Trial_Nurture_E2",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "7d1474ed-4a31-456d-a5da-0a005684769e",
-                    "next": "WAITBYDURATION-6",
+                    "key": "2c987831-4cfa-4d94-8158-3084285a8ec2",
+                    "next": "WAITBYDURATION-2",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -199,6 +198,7 @@
             "arguments": {},
             "configurationArguments": {
                 "isModified": true,
+                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -206,27 +206,25 @@
                     "c__priority": "Medium",
                     "ccEmail": [],
                     "created": {},
-                    "dynamicEmailSubject": "Save 58% when you sign up annually",
-                    "emailSubject": "Save 58% when you sign up annually",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Guided Tutorial: Set Up Engaging Mathletics Activities",
+                    "emailSubject": "Guided Tutorial: Set Up Engaging Mathletics Activities",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
                     "isSendLogging": true,
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
                     "modified": {},
-                    "preHeader": "Build Your Child's confidence in Mathematics",
+                    "preHeader": "Your interactive guide for maximizing student engagement (Email 2 of 5)",
                     "publicationListId": 187,
-                    "r__asset_key": "862a0a6f-0946-43dd-9abe-7ded65369078",
-                    "r__asset_name_readOnly": "MXB2C_MX0008_PT-NUTURE_E21651297796952",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
+                    "r__asset_key": "aae7dbe1-e262-41ca-9906-d11637230b41",
+                    "r__asset_name_readOnly": "AMER_MX0100_Trial_Nurture_E2",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__senderProfile_key": 2455,
+                    "reconciliationExpiryHours": null,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
                     "throttleLimit": 0,
                     "throttleOpens": "1/1/0001 12:00:00 AM"
@@ -234,8 +232,15 @@
                 "applicationExtensionKey": "jb-email-activity"
             },
             "metaData": {
-                "isConfigured": true,
-                "sections": {}
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
             },
             "schema": {
                 "arguments": {
@@ -349,13 +354,13 @@
         },
         {
             "key": "EMAILV2-3",
-            "name": "MXB2C_MX0008_PT-NUTURE_E31651297796952",
+            "name": "AMER_MX0100_Trial_Nurture_E3",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "c7bf759e-b6fb-4485-ae6f-3b82b26763ce",
-                    "next": "WAITBYDURATION-7",
+                    "key": "da1d6ca8-fba2-4189-8d14-c00f70b5ef12",
+                    "next": "WAITBYDURATION-3",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -365,6 +370,7 @@
             "arguments": {},
             "configurationArguments": {
                 "isModified": true,
+                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -372,36 +378,40 @@
                     "c__priority": "Medium",
                     "ccEmail": [],
                     "created": {},
-                    "dynamicEmailSubject": "Tutors are expensive",
-                    "emailSubject": "Tutors are expensive",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Quick Guide: Create Your First Mathletics Assignment  ",
+                    "emailSubject": "Quick Guide: Create Your First Mathletics Assignment  ",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
                     "isSendLogging": true,
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
                     "modified": {},
-                    "preHeader": "Mathletics is used by thousands of teachers",
+                    "preHeader": "Part 3/5 of your quick-start series: Boost achievement through personalized assignments   ",
                     "publicationListId": 187,
-                    "r__asset_key": "83d61783-03a3-4122-bd73-a5d5c427866a",
-                    "r__asset_name_readOnly": "MXB2C_MX0008_PT-NUTURE_E31651297796952",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
+                    "r__asset_key": "47dae8a0-60dc-48ef-b42f-8d968aa55872",
+                    "r__asset_name_readOnly": "AMER_MX0100_Trial_Nurture_E3",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__senderProfile_key": 2456,
+                    "reconciliationExpiryHours": null,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleLimit": 0,
                     "throttleOpens": "1/1/0001 12:00:00 AM"
                 },
                 "applicationExtensionKey": "jb-email-activity"
             },
             "metaData": {
-                "isConfigured": true,
-                "sections": {}
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
             },
             "schema": {
                 "arguments": {
@@ -515,13 +525,13 @@
         },
         {
             "key": "EMAILV2-4",
-            "name": "MXB2C_MX0008_PT-NUTURE_E41651297796952",
+            "name": "AMER_MX0100_Trial_Nurture_E4",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "b36bddc8-19eb-49fd-bd9c-a689855d6958",
-                    "next": "WAITBYDURATION-8",
+                    "key": "44fa821f-88a5-44aa-acf9-8d81ecce6bcb",
+                    "next": "WAITBYDURATION-4",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -531,6 +541,7 @@
             "arguments": {},
             "configurationArguments": {
                 "isModified": true,
+                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -538,27 +549,25 @@
                     "c__priority": "Medium",
                     "ccEmail": [],
                     "created": {},
-                    "dynamicEmailSubject": "Start improving your childs' grades today",
-                    "emailSubject": "Start improving your childs' grades today",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Make Data-Driven Decisions with Mathletics ",
+                    "emailSubject": "Make Data-Driven Decisions with Mathletics ",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
                     "isSendLogging": true,
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
                     "modified": {},
-                    "preHeader": "See what other parents have to say",
+                    "preHeader": "Part 4 of your 5 part series: Everything you need to track student progress ",
                     "publicationListId": 187,
-                    "r__asset_key": "689397ca-0523-4be8-8c10-3a56889dab55",
-                    "r__asset_name_readOnly": "MXB2C_MX0008_PT-NUTURE_E41651297796952",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
+                    "r__asset_key": "2d271bdd-1d31-4765-9cc3-c412b03889d2",
+                    "r__asset_name_readOnly": "AMER_MX0100_Trial_Nurture_E4",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__senderProfile_key": 2455,
+                    "reconciliationExpiryHours": null,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
                     "throttleLimit": 0,
                     "throttleOpens": "1/1/0001 12:00:00 AM"
@@ -566,8 +575,15 @@
                 "applicationExtensionKey": "jb-email-activity"
             },
             "metaData": {
-                "isConfigured": true,
-                "sections": {}
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
             },
             "schema": {
                 "arguments": {
@@ -681,13 +697,13 @@
         },
         {
             "key": "EMAILV2-5",
-            "name": "MXB2C_MX0008_PT-NUTURE_E51651297796952",
+            "name": "AMER_MX0100_Trial_Nurture_E5 ",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "9841f29b-4ed9-41c3-b6f0-809c86a2d14d",
-                    "next": "WAITBYDURATION-9",
+                    "key": "5ffb644b-28e7-4990-afa9-49cc021bfc5f",
+                    "next": "WAITBYDURATION-5",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -697,6 +713,7 @@
             "arguments": {},
             "configurationArguments": {
                 "isModified": true,
+                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -704,36 +721,40 @@
                     "c__priority": "Medium",
                     "ccEmail": [],
                     "created": {},
-                    "dynamicEmailSubject": "Your Exclusive Offer",
-                    "emailSubject": "Your Exclusive Offer",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Quick Guide: Celebrate Student Achievement! ",
+                    "emailSubject": "Quick Guide: Celebrate Student Achievement! ",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
                     "isSendLogging": true,
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
                     "modified": {},
-                    "preHeader": "Support your child's mathematics development",
+                    "preHeader": "Part 5: Rewards that keep students practicing ",
                     "publicationListId": 187,
-                    "r__asset_key": "4f40b298-a961-48a8-ba02-d97f7893b6b0",
-                    "r__asset_name_readOnly": "MXB2C_MX0008_PT-NUTURE_E51651297796952",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
+                    "r__asset_key": "bf5a7525-8cbc-42dc-9fab-10fede5d0b1b",
+                    "r__asset_name_readOnly": "AMER_MX0100_Trial_Nurture_E5 ",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__senderProfile_key": 2066,
+                    "reconciliationExpiryHours": null,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleLimit": 0,
                     "throttleOpens": "1/1/0001 12:00:00 AM"
                 },
                 "applicationExtensionKey": "jb-email-activity"
             },
             "metaData": {
-                "isConfigured": true,
-                "sections": {}
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": null,
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
             },
             "schema": {
                 "arguments": {
@@ -846,13 +867,13 @@
             }
         },
         {
-            "key": "WAITBYDURATION-4",
-            "name": "1 day",
+            "key": "WAITBYDURATION-1",
+            "name": "6 days",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "cd9f897e-4144-447c-b3a4-c49a5aead25e",
+                    "key": "d5dc471a-e2e9-4b94-8623-ad68a959e2ea",
                     "next": "EMAILV2-2",
                     "arguments": {},
                     "metaData": {
@@ -862,85 +883,7 @@
             ],
             "arguments": {},
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
-            },
-            "metaData": {
-                "isConfigured": true,
-                "uiType": "WAITBYDURATION"
-            },
-            "schema": {
-                "arguments": {
-                    "endDate": {
-                        "dataType": "Date",
-                        "isNullable": false,
-                        "direction": "Out",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitEndDateAttributeDataBound": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitDefinitionId": {
-                        "dataType": "Text",
-                        "isNullable": false,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitForEventId": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "executionMode": {
-                        "dataType": "Text",
-                        "isNullable": false,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "startActivityKey": {
-                        "dataType": "Text",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    },
-                    "waitQueueId": {
-                        "dataType": "LongNumber",
-                        "isNullable": true,
-                        "direction": "In",
-                        "readOnly": false,
-                        "access": "Hidden"
-                    }
-                }
-            }
-        },
-        {
-            "key": "WAITBYDURATION-5",
-            "name": "7 days",
-            "description": "",
-            "type": "WAIT",
-            "outcomes": [
-                {
-                    "key": "8782689c-a738-450b-89f7-7c3da258d3cd",
-                    "next": "EMAILV2-1",
-                    "arguments": {},
-                    "metaData": {
-                        "invalid": false
-                    }
-                }
-            ],
-            "arguments": {},
-            "configurationArguments": {
-                "waitDuration": "7",
+                "waitDuration": "6",
                 "waitUnit": "DAYS",
                 "timeZone": "AUS Eastern Standard Time",
                 "specifiedTime": "00:00"
@@ -1007,13 +950,13 @@
             }
         },
         {
-            "key": "WAITBYDURATION-6",
-            "name": "1 day",
+            "key": "WAITBYDURATION-2",
+            "name": "6 days",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "f84829a4-25e4-4440-8713-587fd7c94d6e",
+                    "key": "03a1bbe2-00b6-479a-bc9f-ad085727f2b7",
                     "next": "EMAILV2-3",
                     "arguments": {},
                     "metaData": {
@@ -1023,11 +966,16 @@
             ],
             "arguments": {},
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitDuration": "6",
+                "waitUnit": "DAYS",
+                "timeZone": "AUS Eastern Standard Time",
+                "specifiedTime": "00:00"
             },
             "metaData": {
                 "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -1085,13 +1033,13 @@
             }
         },
         {
-            "key": "WAITBYDURATION-7",
-            "name": "1 day",
+            "key": "WAITBYDURATION-3",
+            "name": "6 days",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "38731d2c-c5fe-4db0-9a0d-2512a35a455a",
+                    "key": "de363630-3411-436a-9967-ceca8b037aa3",
                     "next": "EMAILV2-4",
                     "arguments": {},
                     "metaData": {
@@ -1101,11 +1049,16 @@
             ],
             "arguments": {},
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitDuration": "6",
+                "waitUnit": "DAYS",
+                "timeZone": "AUS Eastern Standard Time",
+                "specifiedTime": "00:00"
             },
             "metaData": {
                 "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -1163,13 +1116,13 @@
             }
         },
         {
-            "key": "WAITBYDURATION-8",
-            "name": "1 day",
+            "key": "WAITBYDURATION-4",
+            "name": "6 days",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "c4366a8a-b3b9-42ff-a2b3-dca94820a8d4",
+                    "key": "31bef05a-311d-4132-bf15-10033f274316",
                     "next": "EMAILV2-5",
                     "arguments": {},
                     "metaData": {
@@ -1179,11 +1132,16 @@
             ],
             "arguments": {},
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitDuration": "6",
+                "waitUnit": "DAYS",
+                "timeZone": "AUS Eastern Standard Time",
+                "specifiedTime": "00:00"
             },
             "metaData": {
                 "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -1241,13 +1199,13 @@
             }
         },
         {
-            "key": "WAITBYDURATION-9",
-            "name": "1 day",
+            "key": "WAITBYDURATION-5",
+            "name": "2 minutes",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "01e93179-3913-4aa3-952a-a2d8e2dfea06",
+                    "key": "b8db45f2-c7bd-4971-855e-f50f37ae18cf",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -1256,11 +1214,16 @@
             ],
             "arguments": {},
             "configurationArguments": {
-                "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitDuration": "2",
+                "waitUnit": "MINUTES",
+                "timeZone": "AUS Eastern Standard Time",
+                "specifiedTime": "00:00"
             },
             "metaData": {
                 "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -1334,19 +1297,22 @@
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "DEAudience-f437952b-e050-4d00-c5c8-266f5d82d4bc"
+                "r__event_key": "DEAudience-cb740e86-6652-1e44-a0da-fd0ec2db638d"
             }
         }
     ],
     "goals": [],
     "exits": [],
     "notifiers": [],
-    "entryMode": "NotSet",
+    "entryMode": "SingleEntryAcrossAllVersions",
     "definitionType": "Multistep",
     "channel": "",
     "defaults": {
         "email": [
-            "{{Event.DEAudience-f437952b-e050-4d00-c5c8-266f5d82d4bc.\"Email\"}}"
+            "{{Event.DEAudience-cb740e86-6652-1e44-a0da-fd0ec2db638d.\"ContactEmail\"}}"
+        ],
+        "mobileNumber": [
+            "{{Event.DEAudience-cb740e86-6652-1e44-a0da-fd0ec2db638d.\"ContactMobilePhone\"}}"
         ],
         "properties": {
             "analyticsTracking": {
@@ -1356,7 +1322,13 @@
             }
         }
     },
-    "metaData": {},
+    "metaData": {
+        "disableEndWait": true,
+        "dataSource": "ContactsModel",
+        "highThroughputSending": {
+            "email": false
+        }
+    },
     "executionMode": "Production",
     "status": "Draft",
     "scheduledStatus": "Draft",

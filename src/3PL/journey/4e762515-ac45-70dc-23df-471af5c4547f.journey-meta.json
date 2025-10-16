@@ -1,21 +1,21 @@
 {
-    "key": "a41b35cd-60f5-8840-9dc4-df229c492609",
-    "name": "New Journey - March 23 2022 4.39 PM",
-    "lastPublishedDate": "2022-03-23T01:09:48",
+    "key": "4e762515-ac45-70dc-23df-471af5c4547f",
+    "name": "MX-RE-APAC_MX0161_T3_July-FY26-Engagement-AUS-HV",
+    "lastPublishedDate": "2025-07-28T19:28:13",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2022-03-23T01:08:45.827",
-    "modifiedDate": "2022-03-23T01:09:48.71",
+    "createdDate": "2025-07-28T19:27:14.537",
+    "modifiedDate": "2025-07-28T19:28:13.74",
     "activities": [
         {
-            "key": "EMAILV2-1",
-            "name": "QA_EMAIL",
+            "key": "EMAILV2-5",
+            "name": "APAC_MX0161_T3_July-FY26-Engagement-NZ-MV",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "37b2ec61-b98f-437a-8eea-7dc6f7cc23ca",
+                    "key": "03f8cb35-76cb-4e84-a8ba-ecc45fe73d69",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -25,7 +25,7 @@
             "arguments": {
                 "activityId": "{{Activity.Id}}",
                 "definitionId": "{{Context.DefinitionId}}",
-                "emailSubjectDataBound": "Your Curriculum Catch-Up Pack is here!",
+                "emailSubjectDataBound": "2026 budgets are coming – plan early, save time later",
                 "contactId": "{{Contact.Id}}",
                 "contactKey": "{{Contact.Key}}",
                 "emailAddress": "{{InteractionDefaults.Email}}",
@@ -43,49 +43,61 @@
                     "autoUpdateSubscribers": true,
                     "bccEmail": [],
                     "c__priority": "Medium",
+                    "campaigns": [],
+                    "categoryId": 466502,
                     "ccEmail": [],
-                    "created": {},
-                    "dynamicEmailSubject": "Your Curriculum Catch-Up Pack is here!",
-                    "emailSubject": "Your Curriculum Catch-Up Pack is here!",
+                    "created": {
+                        "name": "5fdc029c-8f64-44f0-b64e-596e6dc1d4a8 app user",
+                        "date": "2025-07-29T01:25:00Z"
+                    },
+                    "description": "APAC_RE0148_T3_July-FY26-Enga - 9ead68fa110f4f549e8d12a9d5247ecb",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "2026 budgets are coming – plan early, save time later",
+                    "emailSubject": "2026 budgets are coming – plan early, save time later",
                     "exclusionFilter": "",
                     "isMultipart": true,
+                    "isReconcilable": null,
                     "isSalesforceTracking": true,
-                    "isSendLogging": true,
+                    "isSendLogging": false,
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
-                    "modified": {},
-                    "preHeader": "Workbooks and review sheets this way. ",
-                    "publicationListId": 187,
-                    "r__asset_key": "e25b4d5e-fad5-4a1d-8225-48cc22574674",
-                    "r__asset_name_readOnly": "QA_EMAIL",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
+                    "keyword": "",
+                    "modified": {
+                        "name": "Charlotte Dillabough",
+                        "date": "2025-07-29T01:25:00Z"
                     },
+                    "name": "APAC_MX0161_T3_July-FY26-Enga - 1e40c7958daa44efb615b1e1ba8126f1",
+                    "preHeader": "Plus, lock in your student licences early",
+                    "publicationListId": 187,
+                    "r__asset_key": "116b44f2-6fed-4b06-b4a8-4a44eba7f67b",
+                    "r__asset_name_readOnly": "APAC_MX0161_T3_July-FY26-Engagement-AUS-HV",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2066,
-                    "r__triggeredSend_key": "173925",
+                    "r__senderProfile_key": 2466,
+                    "r__triggeredSend_key": "260540",
+                    "recExpTimeInHours": null,
+                    "replyToAddress": "",
+                    "replyToDisplayName": "",
                     "suppressTracking": false,
-                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "suppressionLists": [],
                     "throttleLimit": 0,
-                    "throttleOpens": "1/1/0001 12:00:00 AM",
-                    "triggeredSendStatus": "Active"
+                    "triggeredSendStatus": "Active",
+                    "version": 2
                 },
                 "applicationExtensionKey": "jb-email-activity",
                 "isModified": false,
                 "isSimulation": false,
                 "googleAnalyticsCampaignName": "",
                 "useLLTS": false,
-                "fuelAgentRequested": false,
-                "r__triggeredSend_key": "173925"
+                "fuelAgentRequested": true,
+                "isReconcilable": false,
+                "r__triggeredSend_key": "260540"
             },
             "metaData": {
-                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "category": "message",
                 "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
@@ -206,7 +218,7 @@
     "triggers": [
         {
             "key": "TRIGGER",
-            "name": "TRIGGER",
+            "name": "MX-RE-APAC_MX0161_T3_July-FY26-Engagement-AUS-HV",
             "description": "",
             "type": "EmailAudience",
             "outcomes": [],
@@ -221,13 +233,15 @@
                 "criteria": ""
             },
             "metaData": {
-                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "scheduleState": "No Schedule",
                 "chainType": "None",
                 "configurationRequired": false,
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
+                "category": "Audience",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b"
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "r__event_key": "DEAudience-9d173104-bf95-fc0a-49a8-fb95b160b2e6"
             }
         }
     ],
@@ -239,22 +253,27 @@
     "channel": "email",
     "defaults": {
         "email": [
-            "{{Event.DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b.\"CampaignMember:Common:Email\"}}"
+            "{{Event.DEAudience-9d173104-bf95-fc0a-49a8-fb95b160b2e6.\"Email\"}}"
         ],
         "properties": {
             "analyticsTracking": {
-                "enabled": false,
+                "enabled": true,
                 "analyticsType": "google",
                 "urlDomainsToTrack": []
             }
         }
     },
     "metaData": {
-        "isScheduleSet": true
+        "dataSource": "ContactsModel",
+        "disableEndWait": true,
+        "isScheduleSet": true,
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
     "status": "Published",
     "scheduledStatus": "Sent",
-    "lastSendDate": "2022-03-23T01:10:16",
+    "lastSendDate": "2025-07-28T20:01:52",
     "r__folder_Path": "my journeys"
 }

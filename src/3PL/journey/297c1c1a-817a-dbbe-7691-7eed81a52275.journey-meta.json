@@ -1,96 +1,33 @@
 {
-    "key": "a41b35cd-60f5-8840-9dc4-df229c492609",
-    "name": "New Journey - March 23 2022 4.39 PM",
-    "lastPublishedDate": "2022-03-23T01:09:48",
+    "key": "297c1c1a-817a-dbbe-7691-7eed81a52275",
+    "name": "FOR SELLERS -- EMEA_3P0024_Early_Commit_UKI_FY25_single-product-clients-June-2025",
+    "lastPublishedDate": "0001-01-01T00:00:00",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2022-03-23T01:08:45.827",
-    "modifiedDate": "2022-03-23T01:09:48.71",
+    "createdDate": "2025-06-19T18:18:02.263",
+    "modifiedDate": "2025-06-19T18:18:02.263",
     "activities": [
         {
             "key": "EMAILV2-1",
-            "name": "QA_EMAIL",
+            "name": "Email",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "37b2ec61-b98f-437a-8eea-7dc6f7cc23ca",
+                    "key": "6098adcf-5972-4ccb-80d1-17e82dfd586b",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {
-                "activityId": "{{Activity.Id}}",
-                "definitionId": "{{Context.DefinitionId}}",
-                "emailSubjectDataBound": "Your Curriculum Catch-Up Pack is here!",
-                "contactId": "{{Contact.Id}}",
-                "contactKey": "{{Contact.Key}}",
-                "emailAddress": "{{InteractionDefaults.Email}}",
-                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
-                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
-                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
-                "eventData": "{{Event}}",
-                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
-                "customObjectKey": "",
-                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
-            },
+            "arguments": {},
             "configurationArguments": {
-                "triggeredSend": {
-                    "autoAddSubscribers": true,
-                    "autoUpdateSubscribers": true,
-                    "bccEmail": [],
-                    "c__priority": "Medium",
-                    "ccEmail": [],
-                    "created": {},
-                    "dynamicEmailSubject": "Your Curriculum Catch-Up Pack is here!",
-                    "emailSubject": "Your Curriculum Catch-Up Pack is here!",
-                    "exclusionFilter": "",
-                    "isMultipart": true,
-                    "isSalesforceTracking": true,
-                    "isSendLogging": true,
-                    "isStoppedOnJobError": false,
-                    "isTrackingClicks": true,
-                    "modified": {},
-                    "preHeader": "Workbooks and review sheets this way. ",
-                    "publicationListId": 187,
-                    "r__asset_key": "e25b4d5e-fad5-4a1d-8225-48cc22574674",
-                    "r__asset_name_readOnly": "QA_EMAIL",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
-                    "r__deliveryProfile_key": "Default",
-                    "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2066,
-                    "r__triggeredSend_key": "173925",
-                    "suppressTracking": false,
-                    "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleLimit": 0,
-                    "throttleOpens": "1/1/0001 12:00:00 AM",
-                    "triggeredSendStatus": "Active"
-                },
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": false,
-                "isSimulation": false,
-                "googleAnalyticsCampaignName": "",
-                "useLLTS": false,
-                "fuelAgentRequested": false,
-                "r__triggeredSend_key": "173925"
+                "applicationExtensionKey": "jb-email-activity"
             },
             "metaData": {
-                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "category": "message",
-                "version": "1.0",
-                "statsContactIcon": "",
-                "original_icon": "/img/email-icon.svg",
-                "original_iconSmall": "/img/email-icon.svg",
-                "sections": {},
-                "isConfigured": true
+                "isConfigured": false
             },
             "schema": {
                 "arguments": {
@@ -210,24 +147,16 @@
             "description": "",
             "type": "EmailAudience",
             "outcomes": [],
-            "arguments": {
-                "startActivityKey": "{{Context.StartActivityKey}}",
-                "dequeueReason": "{{Context.DequeueReason}}",
-                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
-                "filterResult": "true"
-            },
-            "configurationArguments": {
-                "schemaVersionId": 0,
-                "criteria": ""
-            },
+            "arguments": {},
+            "configurationArguments": {},
             "metaData": {
-                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
                 "chainType": "None",
                 "configurationRequired": false,
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b"
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "r__event_key": "DEAudience-4b6827a8-2d70-4282-7767-e6bcb3db4455"
             }
         }
     ],
@@ -238,23 +167,22 @@
     "definitionType": "Quicksend",
     "channel": "email",
     "defaults": {
-        "email": [
-            "{{Event.DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b.\"CampaignMember:Common:Email\"}}"
-        ],
         "properties": {
             "analyticsTracking": {
-                "enabled": false,
+                "enabled": true,
                 "analyticsType": "google",
                 "urlDomainsToTrack": []
             }
         }
     },
     "metaData": {
-        "isScheduleSet": true
+        "dataSource": "ContactsModel",
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
-    "status": "Published",
-    "scheduledStatus": "Sent",
-    "lastSendDate": "2022-03-23T01:10:16",
+    "status": "Draft",
+    "scheduledStatus": "Draft",
     "r__folder_Path": "my journeys"
 }

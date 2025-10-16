@@ -1,21 +1,21 @@
 {
-    "key": "a41b35cd-60f5-8840-9dc4-df229c492609",
-    "name": "New Journey - March 23 2022 4.39 PM",
-    "lastPublishedDate": "2022-03-23T01:09:48",
+    "key": "cebe4862-2558-0903-9f45-f80b1546953e",
+    "name": "EMEA_3P0024_Early_Commit_UKI_FY25_single-product-clients-June-2025-formerly missing renewal links-june 20 2025",
+    "lastPublishedDate": "2025-06-19T17:53:05",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2022-03-23T01:08:45.827",
-    "modifiedDate": "2022-03-23T01:09:48.71",
+    "createdDate": "2025-06-19T17:52:51.23",
+    "modifiedDate": "2025-06-19T17:53:33.377",
     "activities": [
         {
-            "key": "EMAILV2-1",
-            "name": "QA_EMAIL",
+            "key": "EMAILV2-2",
+            "name": "EMEA_3P0024_Early_Commit_UKI_FY25_single-product-clients-June-2025",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "37b2ec61-b98f-437a-8eea-7dc6f7cc23ca",
+                    "key": "af46fb44-8b17-4784-a620-1776f5faebbc",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
@@ -25,7 +25,7 @@
             "arguments": {
                 "activityId": "{{Activity.Id}}",
                 "definitionId": "{{Context.DefinitionId}}",
-                "emailSubjectDataBound": "Your Curriculum Catch-Up Pack is here!",
+                "emailSubjectDataBound": "%%ContactFirstName%%, Still Time to Lock In Your Current Pricing",
                 "contactId": "{{Contact.Id}}",
                 "contactKey": "{{Contact.Key}}",
                 "emailAddress": "{{InteractionDefaults.Email}}",
@@ -45,8 +45,9 @@
                     "c__priority": "Medium",
                     "ccEmail": [],
                     "created": {},
-                    "dynamicEmailSubject": "Your Curriculum Catch-Up Pack is here!",
-                    "emailSubject": "Your Curriculum Catch-Up Pack is here!",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "%%ContactFirstName%%, Still Time to Lock In Your Current Pricing",
+                    "emailSubject": "%%ContactFirstName%%, Still Time to Lock In Your Current Pricing",
                     "exclusionFilter": "",
                     "isMultipart": true,
                     "isSalesforceTracking": true,
@@ -54,38 +55,32 @@
                     "isStoppedOnJobError": false,
                     "isTrackingClicks": true,
                     "modified": {},
-                    "preHeader": "Workbooks and review sheets this way. ",
+                    "preHeader": "Renew Now or Secure a 2-Year Rate – Act by Mid-July",
                     "publicationListId": 187,
-                    "r__asset_key": "e25b4d5e-fad5-4a1d-8225-48cc22574674",
-                    "r__asset_name_readOnly": "QA_EMAIL",
-                    "r__dataExtension_key": {
-                        "domainExclusions": [
-                            "EBE788D4-5A78-4DD9-B807-45200CB85661"
-                        ]
-                    },
+                    "r__asset_key": "1de1c295-915b-455a-a52a-93f579548f76",
+                    "r__asset_name_readOnly": "EMEA_3P0024_Early_Commit_UKI_FY25_single-product-clients-June-2025",
                     "r__deliveryProfile_key": "Default",
                     "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2066,
-                    "r__triggeredSend_key": "173925",
+                    "r__senderProfile_key": 2466,
+                    "r__triggeredSend_key": "258536",
                     "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleLimit": 0,
                     "throttleOpens": "1/1/0001 12:00:00 AM",
-                    "triggeredSendStatus": "Active"
+                    "triggeredSendStatus": "Inactive"
                 },
                 "applicationExtensionKey": "jb-email-activity",
                 "isModified": false,
                 "isSimulation": false,
                 "googleAnalyticsCampaignName": "",
                 "useLLTS": false,
-                "fuelAgentRequested": false,
-                "r__triggeredSend_key": "173925"
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "258536"
             },
             "metaData": {
-                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "category": "message",
                 "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
@@ -221,13 +216,13 @@
                 "criteria": ""
             },
             "metaData": {
-                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
                 "chainType": "None",
                 "configurationRequired": false,
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b"
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "r__event_key": "DEAudience-955a7f1c-2033-94da-abaf-db84a0698214"
             }
         }
     ],
@@ -239,22 +234,26 @@
     "channel": "email",
     "defaults": {
         "email": [
-            "{{Event.DEAudience-e4c7969d-8565-3e08-3bd7-e9f1c52f953b.\"CampaignMember:Common:Email\"}}"
+            "{{Event.DEAudience-955a7f1c-2033-94da-abaf-db84a0698214.\"Email\"}}"
         ],
         "properties": {
             "analyticsTracking": {
-                "enabled": false,
+                "enabled": true,
                 "analyticsType": "google",
                 "urlDomainsToTrack": []
             }
         }
     },
     "metaData": {
-        "isScheduleSet": true
+        "dataSource": "ContactsModel",
+        "isScheduleSet": true,
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
-    "status": "Published",
-    "scheduledStatus": "Sent",
-    "lastSendDate": "2022-03-23T01:10:16",
+    "status": "Stopped",
+    "scheduledStatus": "ScheduledToSend",
+    "nextSendDate": "2025-06-20T00:30:00",
     "r__folder_Path": "my journeys"
 }

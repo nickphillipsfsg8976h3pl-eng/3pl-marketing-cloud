@@ -1,33 +1,44 @@
 {
-    "key": "4c044cfc-2525-cf79-a637-a007c1385a13",
-    "name": "EMEA.MX_LostRenewals - 9 Months",
-    "lastPublishedDate": "0001-01-01T00:00:00",
+    "key": "d4c10c54-e8b7-3762-a248-8858abd6b8a3",
+    "name": "AMER_MX0067_WMD2025_J4_EM3_WINNERS_USCAN_EB",
+    "lastPublishedDate": "2025-04-03T08:16:59",
     "description": "",
     "version": 1,
     "workflowApiVersion": 1,
-    "createdDate": "2023-11-22T06:37:02.677",
-    "modifiedDate": "2023-12-08T05:13:06.19",
+    "createdDate": "2025-04-02T09:04:20.997",
+    "modifiedDate": "2025-04-03T08:16:59.473",
     "activities": [
         {
             "key": "EMAILV2-1",
-            "name": "EMEA.MX_Winback_LostRenewals_E1",
+            "name": "AMER_MX0067_WMD2025_J4_EDM3_EBNB_US",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "0915de78-3849-439a-b3ac-c3e851358e67",
-                    "next": "WAITBYDURATION-2",
+                    "key": "e6b8a3bb-502b-4737-83b6-162d493c8b9a",
+                    "next": "WAITBYDURATION-1",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "🎉 Congratulations to the World Math Day winners! ",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
             "configurationArguments": {
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": true,
-                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -39,8 +50,8 @@
                         "date": ""
                     },
                     "domainExclusions": [],
-                    "dynamicEmailSubject": "%%=v(@NAME)=%% rediscover Mathletics to reignite engagement!! ",
-                    "emailSubject": "%%=v(@NAME)=%% rediscover Mathletics to reignite engagement!! ",
+                    "dynamicEmailSubject": "🎉 Congratulations to the World Math Day winners!",
+                    "emailSubject": "🎉 Congratulations to the World Math Day winners!",
                     "exclusionFilter": "",
                     "isMultipart": true,
                     "isSalesforceTracking": true,
@@ -51,23 +62,33 @@
                         "name": "",
                         "date": ""
                     },
-                    "preHeader": "Time-limited offer to boost student maths results!",
+                    "preHeader": "🏅 The results are in! See who crushed World Math Day 2025 ",
                     "publicationListId": 187,
-                    "r__asset_key": "62f196cd-e7b1-4a4f-8afa-17177043d2b9",
-                    "r__asset_name_readOnly": "EMEA.MX_Winback_LostRenewals_E1",
+                    "r__asset_key": "47d84372-acdd-4056-9d6a-e8e0efa579c4",
+                    "r__asset_name_readOnly": "AMER_MX0067_WMD2025_J4_EDM3_EBNB_US",
                     "r__deliveryProfile_key": "Default",
-                    "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__sendClassification_key": 1078,
+                    "r__senderProfile_key": 2455,
+                    "r__triggeredSend_key": "256767",
+                    "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleOpens": "1/1/0001 12:00:00 AM"
-                }
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "256767"
             },
             "metaData": {
                 "category": "message",
                 "version": "1.0",
                 "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "statsContactIcon": null,
+                "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
                 "sections": {},
@@ -185,12 +206,12 @@
         },
         {
             "key": "EMAILV2-2",
-            "name": "EMEA.MX_Winback_LostRenewals_E2",
+            "name": "AMER_MX0067_WMD2025_J4_EDM3_EBNB_CAN",
             "description": "",
             "type": "EMAILV2",
             "outcomes": [
                 {
-                    "key": "d0e85be3-fce4-4f57-a1f7-b30ef784cea3",
+                    "key": "2299d4db-915c-4a39-a7a5-f3846b88cef3",
                     "next": "WAITBYDURATION-3",
                     "arguments": {},
                     "metaData": {
@@ -198,11 +219,22 @@
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "🎉 Congratulations to the World Math Day winners! ",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
             "configurationArguments": {
-                "applicationExtensionKey": "jb-email-activity",
-                "isModified": true,
-                "googleAnalyticsCampaignName": "",
                 "triggeredSend": {
                     "autoAddSubscribers": true,
                     "autoUpdateSubscribers": true,
@@ -214,8 +246,8 @@
                         "date": ""
                     },
                     "domainExclusions": [],
-                    "dynamicEmailSubject": "%%=v(@NAME)=%%are you looking for ways to drive better student results? ",
-                    "emailSubject": "%%=v(@NAME)=%%are you looking for ways to drive better student results? ",
+                    "dynamicEmailSubject": "🎉 Congratulations to the World Math Day winners!",
+                    "emailSubject": "🎉 Congratulations to the World Math Day winners!",
                     "exclusionFilter": "",
                     "isMultipart": true,
                     "isSalesforceTracking": true,
@@ -226,23 +258,33 @@
                         "name": "",
                         "date": ""
                     },
-                    "preHeader": "Last chance to make maths results great again!",
+                    "preHeader": "🏅 The results are in! See who crushed World Math Day 2025 ",
                     "publicationListId": 187,
-                    "r__asset_key": "7872839f-04bf-47df-a36f-32187b81fb3d",
-                    "r__asset_name_readOnly": "EMEA.MX_Winback_LostRenewals_E2",
+                    "r__asset_key": "a96b5966-7ab6-4f31-b07d-a1e0d87d82a6",
+                    "r__asset_name_readOnly": "AMER_MX0067_WMD2025_J4_EDM3_EBNB_CAN",
                     "r__deliveryProfile_key": "Default",
-                    "r__sendClassification_key": "Default Commercial",
-                    "r__senderProfile_key": 2117,
+                    "r__sendClassification_key": 1078,
+                    "r__senderProfile_key": 2455,
+                    "r__triggeredSend_key": "256768",
+                    "suppressTracking": false,
                     "throttleCloses": "1/1/0001 12:00:00 AM",
-                    "throttleOpens": "1/1/0001 12:00:00 AM"
-                }
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "256768"
             },
             "metaData": {
                 "category": "message",
                 "version": "1.0",
                 "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
                 "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
-                "statsContactIcon": null,
+                "statsContactIcon": "",
                 "original_icon": "/img/email-icon.svg",
                 "original_iconSmall": "/img/email-icon.svg",
                 "sections": {},
@@ -359,27 +401,115 @@
             }
         },
         {
+            "key": "MULTICRITERIADECISIONV2-1",
+            "name": "",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "EMAILV2-1",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "United States EB",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "AccountBillingCountry equal United States OR AccountBillingCountryCode equal US",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "0e03c880-7680-9a8f-2322-3cf0eb49f58f",
+                    "next": "EMAILV2-2",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Canada EB",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "AccountBillingCountry equal Canada OR AccountBillingCountryCode equal CA",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-2",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Remainder",
+                        "skipI18n": null,
+                        "isLabelFromConversion": false,
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "filterResult": "default_path_1={{Contact.FilterId.95d118b2-99d0-41f2-9a31-09b5977b4d2f}},0e03c880-7680-9a8f-2322-3cf0eb49f58f={{Contact.FilterId.2c3baabe-4277-4261-86b7-9a0639d7536e}},remainder_path=False"
+            },
+            "configurationArguments": {
+                "schemaVersionId": 252,
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.DEAudience-a84f0352-37a7-42f5-c21d-fe4ed78adc6b.AccountBillingCountry\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United States]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.DEAudience-a84f0352-37a7-42f5-c21d-fe4ed78adc6b.AccountBillingCountryCode\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[US]]></Value></Condition></ConditionSet></FilterDefinition>",
+                    "0e03c880-7680-9a8f-2322-3cf0eb49f58f": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.DEAudience-a84f0352-37a7-42f5-c21d-fe4ed78adc6b.AccountBillingCountry\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Canada]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.DEAudience-a84f0352-37a7-42f5-c21d-fe4ed78adc6b.AccountBillingCountryCode\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[CA]]></Value></Condition></ConditionSet></FilterDefinition>"
+                }
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
             "key": "WAITBYDURATION-1",
-            "name": "1 day",
+            "name": "1 minute",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "baea0ad3-3d63-4fee-82ca-9e8b0bc5b7d5",
-                    "next": "EMAILV2-1",
+                    "key": "7cdc6acc-09bd-499c-b21c-8b6ae277dcc0",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
                 "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitUnit": "MINUTES",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -438,31 +568,40 @@
         },
         {
             "key": "WAITBYDURATION-2",
-            "name": "7 days",
+            "name": "1 minute",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "4e00be63-b803-413c-81fa-1c94a894cfd6",
-                    "next": "EMAILV2-2",
+                    "key": "c951e028-1530-4246-9132-d053e076d173",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
-                "waitDuration": "7",
-                "waitUnit": "DAYS",
-                "timeZone": "GMT Standard Time",
-                "specifiedTime": "00:00"
+                "waitDuration": 1,
+                "waitUnit": "MINUTES",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
                 "isExtended": false,
                 "waitType": "duration",
-                "guidanceCardKey": null,
+                "guidanceCardKey": "",
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -521,25 +660,40 @@
         },
         {
             "key": "WAITBYDURATION-3",
-            "name": "1 day",
+            "name": "1 minute",
             "description": "",
             "type": "WAIT",
             "outcomes": [
                 {
-                    "key": "d8c362d5-af00-44dd-a2b3-be13a8a53671",
+                    "key": "b661ab29-232c-4e5c-a501-0e16ca3a5614",
                     "arguments": {},
                     "metaData": {
                         "invalid": false
                     }
                 }
             ],
-            "arguments": {},
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
             "configurationArguments": {
                 "waitDuration": 1,
-                "waitUnit": "DAYS"
+                "waitUnit": "MINUTES",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
             },
             "metaData": {
                 "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
                 "uiType": "WAITBYDURATION"
             },
             "schema": {
@@ -600,55 +754,71 @@
     "triggers": [
         {
             "key": "TRIGGER",
-            "name": "EMEA.MX_LostRenewals - 9 Months",
+            "name": "TRIGGER",
             "description": "",
-            "type": "AutomationAudience",
+            "type": "EmailAudience",
             "outcomes": [],
             "arguments": {
-                "serializedObjectType": 3,
-                "r__event_key": "DEAudience-06289c66-f609-d4af-cf14-98e140d3e3db",
-                "r__dataExtension_key": "A31B92B4-00B1-457D-9996-2D92AA2DC547"
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "true"
             },
-            "configurationArguments": {},
+            "configurationArguments": {
+                "schemaVersionId": 0,
+                "criteria": ""
+            },
             "metaData": {
-                "scheduleState": "No Schedule",
                 "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
                 "chainType": "None",
                 "configurationRequired": false,
                 "iconUrl": "/images/icon-data-extension.svg",
                 "title": "Data Extension",
-                "category": "Audience",
                 "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
-                "r__event_key": "AutomationAud-e6c713d2-0777-f70c-ef95-aa8d9669da5f"
+                "r__event_key": "DEAudience-a84f0352-37a7-42f5-c21d-fe4ed78adc6b"
             }
         }
     ],
     "goals": [],
     "exits": [],
     "notifiers": [],
-    "entryMode": "SingleEntryAcrossAllVersions",
+    "entryMode": "OnceAndDone",
     "definitionType": "Multistep",
     "channel": "",
     "defaults": {
         "email": [
-            "{{Event.AutomationAud-e6c713d2-0777-f70c-ef95-aa8d9669da5f.\"ContactEmail\"}}"
+            "{{Event.DEAudience-a84f0352-37a7-42f5-c21d-fe4ed78adc6b.\"ContactEmail\"}}"
         ],
         "mobileNumber": [
-            "{{Event.DEAudience-06289c66-f609-d4af-cf14-98e140d3e3db.\"ContactMobilePhone\"}}"
+            "{{Event.DEAudience-a84f0352-37a7-42f5-c21d-fe4ed78adc6b.\"ContactMobilePhone\"}}"
         ],
         "properties": {
             "analyticsTracking": {
-                "enabled": true,
+                "enabled": false,
                 "analyticsType": "google",
                 "urlDomainsToTrack": []
             }
         }
     },
     "metaData": {
-        "dataSource": "ContactsModel"
+        "dataSource": "ContactsModel",
+        "simulation.id": 4658,
+        "simulation.isClone": false,
+        "simulation.isSource": true,
+        "simulation.config": {
+            "SelectedCustomObjectKeys": [
+                85827,
+                85913
+            ],
+            "DoSends": true,
+            "SimulationOverrideEmail": "kelly.sykes@3plearning.com"
+        },
+        "highThroughputSending": {
+            "email": false
+        }
     },
     "executionMode": "Production",
-    "status": "Draft",
+    "status": "Published",
     "scheduledStatus": "Draft",
     "r__folder_Path": "my journeys"
 }
