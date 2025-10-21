@@ -1,0 +1,529 @@
+<script runat="server">
+    Platform.Load("core", "1");
+
+    Variable.SetValue('_Debug', Request.GetQueryStringParameter("First Name"))
+
+
+
+</script>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-T97DM2H');
+    </script>
+    <!-- End Google Tag Manager -->
+
+
+    <!-- Meta/SEO -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Form">
+
+
+
+    <!-- Title & Favicons -->
+    <title> 3PLearning | Global Form </title>
+    <link rel="shortcut icon"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png"
+        type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+
+
+    <!-- Styles -->
+    <style>
+        /* font & colors
+      ******************/
+        :root {
+            font-size: 15px;
+            /*font-family: ;*/
+            /*font-weight: ;*/
+
+            --submit_button__rest--backgroundColor: #015F4E;
+            --submit_button__rest--color: whitesmoke;
+            --submit_button__hover--backgroundColor: #00473b;
+            --submit_button__hover--color: white;
+            --checkbox__rest--backgroundColor: lightgrey;
+            --checkbox__hover--backgroundColor: #00473b;
+            --checkbox__checked--backgroundColor: #015f4e;
+            --valid_input--color: green;
+            --invalid_input--color: red;
+            --invalid_label--color: red;
+        }
+
+        /*
+      custom submit button
+      *********************/
+        .custom_submit_button {
+            background-color: var(--submit_button__rest--backgroundColor);
+            border-radius: 25px;
+            padding: 15px 50px;
+            text-align: center;
+            color: var(--submit_button__rest--color);
+            font-weight: 600;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .custom_submit_button:hover {
+            background-color: var(--submit_button__hover--backgroundColor);
+            color: var(--submit_button__hover--color);
+        }
+
+        .custom_submit_button:focus {
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+        }
+
+        @media screen and (min-width: 767px) {
+            .custom_submit_button {
+                width: auto;
+                float: right;
+            }
+        }
+
+        /*
+      custom check boxes
+      *******************/
+        .custom-checkbox {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 5px;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: var(--checkbox__rest--backgroundColor);
+            border-radius: 5px;
+
+        }
+
+        .custom-checkbox:hover input~.checkmark {
+            background-color: var(--checkbox__hover--backgroundColor);
+        }
+
+        .custom-checkbox input:checked~.checkmark {
+            background-color: var(--checkbox__checked--backgroundColor);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .custom-checkbox input:checked~.checkmark:after {
+            display: block;
+        }
+
+        .custom-checkbox .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 7px;
+            height: 15px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        /* Fields
+      ****************/
+        .custom-field-label {
+            font-weight: bold;
+        }
+
+        .custom-field-terms {
+            font-weight: lighter;
+            color: #495057;
+        }
+
+        /* Utility
+      ****************/
+        .custom-hide {
+            display: none;
+        }
+
+        .custom-valid-input {
+            border: 3px solid var(--valid_input--color) !important;
+        }
+
+        .custom-invalid-input {
+            border: 3px solid var(--invalid_input--color) !important;
+        }
+
+        .custom-invalid-label {
+            color: var(--invalid_label--color) !important;
+        }
+    </style>
+
+</head>
+
+
+<!-- =============================== BODY =========================== -->
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T97DM2H" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <form method="POST" action="%%=CloudPagesURL(6372, 'submitted', 'true')=%%">
+
+
+
+
+        <!-- Wrapper -->
+        <div class=" container my-5">
+            <div class="row">
+                <div class="col">
+
+                    <!-- first name -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="first_name_input" name="first-name"
+                                    placeholder="First Name" autofocus required>
+                                <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First
+                                    name is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- last name -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="last_name_input" name="last-name"
+                                    placeholder="Last Name" required>
+                                <div id="last_name_invalid" class="custom-invalid-label custom-hide text-right">Last
+                                    name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+                    <!-- email -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <input type="email" class="form-control" id="email_address_input" name="email-address"
+                                    placeholder="Email Address" required>
+                                <div id="email_address_invalid" class="custom-invalid-label custom-hide text-right">A
+                                    valid email address is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- phone -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="phone_number_input" name="phone-number"
+                                    placeholder="Mobile / Work Phone" required>
+                                <div id="phone_number_invalid" class="custom-invalid-label custom-hide text-right">Phone
+                                    number is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- job title -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <select class="form-control" id="job_title_select" name="job_title_select" required
+                                    style="color:#495057c7; font-weight: 400;">
+                                    <option value="" selected disabled>Select Job Title</option>
+
+                                    <option value="" selected>Select Job Title</option>
+
+
+                                </select>
+                                <div id="job_title_invalid" class="custom-invalid-label custom-hide text-right">Job
+                                    title is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+                    <!-- country -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <select class="form-control" id="country_name_select" name="country-name" required
+                                    style="color:#495057c7; font-weight: 400;">
+                                    <option value="" selected disabled>Select Country</option>
+                                    %%[
+
+                                    /* Populate Country Options
+                                    ******************************/
+
+                                    Set @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc,
+                                    CountryName asc", "Active", "True", "IsMainCountry", "True")
+                                    For @i = 1 to RowCount(@Countries_Main) Do
+                                    Set @Country_Name = field(row(@Countries_Main, @i),"CountryName")
+                                    Set @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
+                                    OutputLine(Concat('<option value="', @Country_Name,'"','
+                                        data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
+                                    Next @i
+
+                                    OutputLine(Concat('<option disabled>
+                                        ------------------------------------------------------</option>'))
+
+                                    Set @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active",
+                                    "True")
+                                    For @i = 1 to RowCount(@Countries_All) Do
+                                    Set @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                                    Set @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                                    OutputLine(Concat('<option value="', @Country_Name,'"','
+                                        data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
+                                    NEXT @i
+                                    ]%%
+
+                                </select>
+                                <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+
+
+                    <!------------- State ----------------->
+
+                    %%[If @STATE_NAME Then]%%
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" id="state_name_form_group">
+
+                                <select class="form-control" id="state_name_select" name="state-name"
+                                    onchange=jobTitleChanged() required style="color:#495057c7; font-weight: 400;">
+                                    <option disabled selected>Select State <small>&nbsp;(Please select a country
+                                            first.)</small></option>
+                                </select>
+                                <div id="state_invalid" class="custom-invalid-label custom-hide text-right">State is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+                    <!------------- Postal Code ----------------->
+
+                    %%[If @POSTAL_CODE Then]%%
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <input class="form-control" type="text" id="postal_code_input" name="postal-code"
+                                    placeholder="Postcode / Zipcode" title="Postcode/Zipcode is 4 digits with no spaces"
+                                    required>
+                                <div id="postcode_invalid" class="custom-invalid-label custom-hide text-right">Postcode
+                                    is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+
+
+                    <!------------- School Name ----------------->
+
+                    %%[If @SCHOOL_NAME Then]%%
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="school_name_input" name="school-name"
+                                    placeholder="School or District Name" required>
+                                <div id="school_name_invalid" class="custom-invalid-label custom-hide text-right">School
+                                    name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+
+                    <!------------- No Of Licences  ----------------->
+
+                    %%[
+                    If @NO_OF_LICENCES OR @form == 'quote' Then
+                    ]%%
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <input type="number" class="form-control" id="no_of_licences_input"
+                                    name="no-of-licences" placeholder="Number of Student Licenses" required min="20"
+                                    max="1000">
+                                <div id="no_of_licences_invalid" class="custom-invalid-label custom-hide text-right">
+                                    Number of student licences required</div>
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+
+                    <!------------- Terms & Conditions ----------------->
+
+                    %%[If @TERMS_AND_CONDITIONS Then]%%
+                    <div class="row mt-0">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <input type="checkbox" id="terms_and_conditions_input" name="terms-and-conditions"
+                                    value="true" required tabindex="-1" />
+                                <label for="terms_and_conditions_input" class="custom-field-terms form-check-label">
+                                    I agree to the 3P Learning <a target="_parent"
+                                        href="https://www.3plearning.com/terms/"
+                                        style="text-decoration: underline;">terms and
+                                        conditions</a>.</label>
+
+                                <div id="terms_and_conditions_invalid"
+                                    class="custom-invalid-label custom-hide text-right">Please agree to the <a
+                                        target="_parent" href="https://www.3plearning.com/terms/"
+                                        style="text-decoration: underline;">terms and
+                                        conditions</a>.</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+
+                    <!------------- Subscriber Opt In ----------------->
+
+                    %%[If @SUBSCRIBER_OPT_IN Then]%%
+                    <div class="row mt-0">
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="checkbox" id="subscriber_opt_in_input" name="subscriber-opt-in"
+                                    value="true" tabindex="-1" />
+                                <label for="subscriber_opt_in_input" class="custom-field-terms form-check-label"
+                                    style="display: inline;">
+                                    YES! Sign me up for monthly newsletters, educational content, resources and
+                                    occasional promotional material.
+                                </label>
+                                <!-- <div id="subscriber_opt_in_invalid" class="custom-invalid-label custom-hide text-right">...</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+
+                    <!------------- Submit Button ----------------->
+
+                    %%[If @SUBMIT_BUTTON Then]%%
+                    <div class="row mt-4">
+                        <div class="col">
+                            <div class="form-group">
+                                <button class="custom_submit_button" type="submit" name="myButton" id="submit_button"
+                                    value="Submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    %%[EndIf]%%
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- //wrapper -->
+    </form>
+
+
+
+    <!-- ===========================  JAVASCRIPT  =========================== -->
+
+
+    %%=Concat('<','script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js ">
+        </script>')=%%
+        %%=Concat('<','script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js">
+            </script>')=%%
+            %%=Concat('<','script
+                src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js ">
+                </script>')=%%
+                %%=Concat('<','script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js">
+                    </script>')=%%
+                    %%=Concat('<','script src="https://web.my.3plearning.com/formFieldFunctions">
+                        </script>')=%%
+
+
+                        <!-- Custom Javascript -->
+
+                        %%=Concat('<','script>')=%%
+
+
+                            %%=Concat('<',' /script>')=%%
+
+</body>
+
+</html>
