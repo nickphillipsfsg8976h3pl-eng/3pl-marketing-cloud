@@ -1,1 +1,0 @@
-SELECT * FROM [EMEA_B2B_RE_Full&Ext_ACTIVE_Subscribers] WHERE AccountBillingCountryCode = 'OM'

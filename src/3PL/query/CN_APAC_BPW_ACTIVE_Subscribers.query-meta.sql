@@ -1,1 +1,0 @@
-SELECT * FROM [APAC_B2B_BPW_Full&Ext_ACTIVE_Subscribers] WHERE AccountBillingCountryCode = 'CN'

@@ -1,2 +1,0 @@
-SELECT *
-FROM [APAC_B2B_ALL_Full&Ext_ACTIVE_Subscribers]
