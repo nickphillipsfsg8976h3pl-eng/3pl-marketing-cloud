@@ -1,12 +1,16 @@
 select
-    top 10 SubmittedDate,
-    FirstName,
-    LastName,
-    Email,
-    SubmittedData
+    top 10 formname,
+    firstname,
+    lastname,
+    email,
+    submitteddata,
+    submitteddate,
+    isprocessed,
+    leadidcreated,
+    leadidupdated,
+    resultstatus,
+    errordetails
 from
-    Lead_Submission_Queue
-where
-    FirstName like '%Nick%'
+    lead_submission_queue
 order by
-    SubmittedDate desc
+    submitteddate desc
