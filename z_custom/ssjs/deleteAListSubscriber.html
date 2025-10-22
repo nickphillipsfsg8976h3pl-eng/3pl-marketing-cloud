@@ -1,0 +1,52 @@
+<!--
+//
+//
+//
+-->
+<script runAt="server">
+    var SUBMITTED = Request.GetQueryStringParameter('SUBMITTED');
+    var LIST_NAME = Request.GetQueryStringParameter('LIST_NAME');
+    var EMAIL_ADDRESS = Request.GetQueryStringParameter('EMAIL_ADDRESS');
+</script>
+
+
+<h2>Delete A List Subscriber</h2>
+
+<!-- enter subcriber to delete form -->
+<form action="%%=CloudPagesUrl(6477, 'SUBMITTED', 'true')=%%" method="post">
+
+    <div>
+        <label for="LIST_NAME">List Name:</label>
+        <input type="text" id="LIST_NAME" name="LIST_NAME" required />
+    </div>
+
+    <br>
+
+    <div>
+        <label for="EMAIL_ADDRESS">Email Address:</label>
+        <input type="text" id="EMAIL_ADDRESS" name="EMAIL_ADDRESS" required />
+    </div>
+
+    <br>
+
+    <input type="submit" value="DELETE" />
+</form>
+
+<!-- run delete action on sumbit -->
+<script runAt="server">
+
+    try {
+        if (SUBMITTED) {
+            var data = Platform.Function.DeleteData(LIST_NAME, ['Email Address'], [EMAIL_ADDRESS]);
+
+            Write('Number of records deleted: ' + data)
+            Write('<br>');
+            Write('List Name: ' + LIST_NAME)
+            Write('<br>');
+            Write('Email Address: ' + EMAIL_ADDRESS);
+        }
+    } catch (e) {
+        Write('ERROR: ' + e.message)
+    }
+
+</script>
