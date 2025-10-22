@@ -1,0 +1,47 @@
+%%[
+
+SET @firstname = RequestParameter('first-name')
+SET @lastname = RequestParameter('last-name')
+SET @email = RequestParameter('email')
+SET @jobtitle = RequestParameter('job-title')
+SET @country = RequestParameter('selectedCountryName') 
+SET @activesubscription = RequestParameter('active-subscription')
+SET @optin = RequestParameter('sub-opt-in')
+SET @tcagree = RequestParameter('tc-agree')
+SET @company = 'Not Set - Content download only'
+SET @updatemarketinginterest = 'Promotions;Product Information;'
+SET @countrycode = RequestParameter('country')
+SET @leadowner = '00528000001opmf'
+SET @leadsource = 'Marketing Cloud'
+SET @description = CONCAT(' Active subscription -  ', @activesubscription)
+
+
+ SET @Id = CreateSalesforceObject('lead',
+           13,  /* Number of fields specified to add in the Lead record */ 
+           "Title", @jobTitle,
+           "Product_Interest__c", 'Mathletics',
+           "FirstName", @firstName,
+           "LastName", @lastName,   
+           "Email", @email,
+           "Company", @company,
+           "Country__c", @country,
+           "CountryCode", @countryCode,
+         "Marketing_Product_Interest__c", 'Mathletics', 
+         "Marketing_Interest__c",@updatemarketinginterest,
+           "OwnerID", @leadowner,
+           "LeadSource", @leadsource,
+           "Description",@description
+          )  
+
+SET @campaignMemberId = CreateSalesforceObject('CampaignMember', 3, 'CampaignId', '7010I000000TmYKQA0', 'LeadId', @Id,'Status','Sent')
+
+IF @leadId == '' THEN
+
+Redirect('https://cloud.mc1.3plearning.com/ohno')
+
+ELSE
+Redirect('https://au.mathletics.com/busting-maths-brain-myth-ebook-download')
+
+ENDIF
+
+]%%

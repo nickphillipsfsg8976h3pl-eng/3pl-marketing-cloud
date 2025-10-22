@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>School Lookup Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body>
+  <div class="container mt-5">
+    <form id="supportForm">
+      <!-- Request Type -->
+      <div class="form-group">
+        <label for="requestType">Request Type</label>
+        <select id="requestType" class="form-control" name="RequestType">
+          <option value="">Select Type</option>
+          <option value="Trial">Trial</option>
+          <option value="Quote">Quote</option>
+          <option value="Support">Support</option>
+        </select>
+      </div>
+
+      <!-- Country & State -->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="countryCode">Country</label>
+          <input type="text" id="countryCode" class="form-control" placeholder="e.g. US">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="stateCode">State</label>
+          <input type="text" id="stateCode" class="form-control" placeholder="e.g. NY">
+        </div>
+      </div>
+
+      <!-- School Name -->
+      <div class="form-group" id="schoolFieldWrapper">
+        <label for="schoolSearch">School or District Name</label>
+        <input type="text" 
+               class="form-control" 
+               id="schoolSearch" 
+               name="school-name" 
+               placeholder="Start typing school name..." 
+               autocomplete="off" />
+        <ul id="suggestions" class="list-group mt-1"></ul>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  function fetchSuggestions(query, country, state) {
+    console.log(`🔍 Fetching suggestions for: q="${query}", country="${country}", state="${state}"`);
+    return $.ajax({
+      url: "https://web.my.3plearning.com/3p_schools",
+      data: { q: query, country: country, state: state },
+      dataType: "text" // Handle plain text response
+    }).then(function (rawResponse) {
+      const jsonText = rawResponse.replace(/^[\s\S]*?<td[^>]*>/, '').replace(/<\/td>[\s\S]*$/, '').trim();
+      return JSON.parse(jsonText);
+    });
+  }
+
+  function setupAutocomplete() {
+    const $input = $('#schoolSearch');
+    const $suggestions = $('#suggestions');
+
+    $input.off('input').on('input', function () {
+      const query = $(this).val().trim();
+      const country = $('#countryCode').val().trim();
+      const state = $('#stateCode').val().trim();
+
+      if (query.length >= 2) {
+        fetchSuggestions(query, country, state).then(function (data) {
+          console.log("✅ Suggestions received:", data);
+          $suggestions.empty();
+
+          data
+            .filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()))
+            .forEach(item => {
+              $suggestions.append(`<li class="list-group-item list-group-item-action">${item.label}</li>`);
+            });
+
+          $suggestions.find('li').on('click', function () {
+            const selected = $(this).text().split(' – ')[0];
+            $input.val(selected);
+            $suggestions.empty();
+            console.log("🖱️ Selected:", selected);
+          });
+        }).catch(err => {
+          console.error("❌ Fetch failed:", err);
+          $suggestions.empty();
+        });
+      } else {
+        $suggestions.empty();
+      }
+    });
+  }
+
+  $(document).ready(function () {
+    setupAutocomplete(); // Always active
+  });
+</script>
+</body>
+</html>

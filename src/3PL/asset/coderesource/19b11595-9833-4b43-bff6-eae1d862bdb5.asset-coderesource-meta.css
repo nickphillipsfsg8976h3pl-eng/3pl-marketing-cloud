@@ -1,0 +1,179 @@
+
+/*Brand Colors*/
+
+:root {
+--custom-green: #015f4e;
+--custom-dark-green: #00473b;
+--custom-white: #ffffff;
+--custom-grey-switch: rgb(0,0,0,0.38);
+--custom-grey-unsubscribe-panel: rgb(231,231,231);
+}
+
+/*Custom Elements*/
+.egg-shape {
+  width: 94px; /* Set the desired width */
+  height: 79px; /* Set the desired height */
+  border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%; /* Create an egg shape */
+  overflow: hidden; /* Hide the parts outside of the egg shape */
+}
+
+.custom-background {
+background: url(https://image.my.3plearning.com/lib/fe9413737461017874/m/3/144947cc-210d-4c26-b9f7-7dc688d4ccf4.png);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: 70% 0;
+}
+@media screen and (max-width: 800px) {
+}
+.custom-nav {
+background-color: white;
+box-shadow: 0px 1px 4px 0px lightgrey;
+padding: 25px 0px;
+}
+@media screen and (max-width: 480px) {
+.custom-mobile-center {
+display: block;
+margin: auto;
+}
+}
+.custom-footer {
+background-color: var(--custom-dark-green);
+color: white;
+padding-top: 60px;
+padding-bottom: 60px;
+}
+.custom-intro-text {
+font-size: 1.2rem
+}
+
+.custom-unsubscribe-panel {
+background-color: var(--custom-grey-unsubscribe-panel);
+padding: 24px;
+}
+
+.custom-min-height {
+min-height: 170px;
+}
+
+.custom-panel-content-position {
+display: flex;
+flex-flow: row nowrap;
+}
+
+.custom-submit-button {
+display: inline-block;
+background-color: var(--custom-green);
+border: 2px solid var(--custom-green);
+border-radius: 2em;
+padding: 1.5rem;
+font-size: 1.5rem;
+color: #fff;
+text-align: center;
+line-height: 1;
+cursor: pointer;
+}
+
+.custom-submit-button:hover {
+background-color: var(--custom-dark-green);
+border: 2px solid var(--custom-dark-green);
+
+}
+
+.custom-spacing-20px {
+padding-top: 20px;
+}
+
+.custom-spacing-40px {
+padding-top: 40px;
+}
+
+.custom-spacing-60px {
+padding-top: 60px;
+}
+
+.custom-spacing-80px {
+padding-top: 80px;
+}
+
+.custom-spacing-100px {
+padding-top: 100px;
+}
+
+.custom-remove-margin {
+margin: 0 !important;
+}
+.custom-loading-backdrop {
+background-color: rgb(0,0,0,0.3);
+position: fixed;
+top: 0; 
+bottom: 0;
+left: 0;
+right: 0;
+}
+.custom-loading-spinner-position {
+position: fixed;
+top: calc(50% - 70px);
+left: calc(50% - 35px);
+}
+
+
+/*Materialize CSS Overrides*/
+
+input.valid:not([type]), input.valid:not([type]):focus, input.valid[type=text]:not(.browser-default), input.valid[type=text]:not(.browser-default):focus, 
+input.valid[type=password]:not(.browser-default), input.valid[type=password]:not(.browser-default):focus, input.valid[type=email]:not(.browser-default), 
+input.valid[type=email]:not(.browser-default):focus, input.valid[type=url]:not(.browser-default), input.valid[type=url]:not(.browser-default):focus, 
+input.valid[type=time]:not(.browser-default), input.valid[type=time]:not(.browser-default):focus, input.valid[type=date]:not(.browser-default), 
+input.valid[type=date]:not(.browser-default):focus, input.valid[type=datetime]:not(.browser-default), input.valid[type=datetime]:not(.browser-default):focus, 
+input.valid[type=datetime-local]:not(.browser-default), input.valid[type=datetime-local]:not(.browser-default):focus, input.valid[type=tel]:not(.browser-default), 
+input.valid[type=tel]:not(.browser-default):focus, input.valid[type=number]:not(.browser-default), input.valid[type=number]:not(.browser-default):focus, 
+input.valid[type=search]:not(.browser-default), input.valid[type=search]:not(.browser-default):focus, textarea.materialize-textarea.valid, 
+textarea.materialize-textarea.valid:focus, .select-wrapper.valid>input.select-dropdown {
+border-bottom: 1px solid var(--custom-dark-green);
+-webkit-box-shadow: 0 1px 0 0 var(--custom-dark-green);
+box-shadow: 0 1px 0 0 var(--custom-dark-green);
+}
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), 
+input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), 
+input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), 
+input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), 
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), 
+input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), 
+textarea.materialize-textarea:focus:not([readonly]) {
+border-bottom: 1px solid var(--custom-dark-green);
+-webkit-box-shadow: 0 1px 0 0 var(--custom-dark-green);
+box-shadow: 0 1px 0 0 var(--custom-dark-green);
+}
+.input-field .prefix.active {
+color: var(--custom-dark-green);
+}
+.switch label input[type=checkbox]:checked+.lever {
+background-color: var(--custom-grey-switch);
+}
+.switch label input[type=checkbox]:checked+.lever:after {
+background-color: var(--custom-green);
+}
+.datepicker-date-display {
+-webkit-box-flex: 1;
+-webkit-flex: 1 auto;
+-ms-flex: 1 auto;
+flex: 1 auto;
+background-color: var(--custom-green);
+color: #fff;
+padding: 20px 22px;
+font-weight: 500;
+}
+.datepicker-table td.is-selected {
+background-color: var(--custom-green);
+color: #fff;
+}
+.datepicker-cancel, .datepicker-done {
+color: var(--custom-green);
+padding: 0 1rem;
+}
+#toast-container {
+top: auto !important;
+right: auto !important;
+bottom: 35%;
+left: 7%;  
+}
+

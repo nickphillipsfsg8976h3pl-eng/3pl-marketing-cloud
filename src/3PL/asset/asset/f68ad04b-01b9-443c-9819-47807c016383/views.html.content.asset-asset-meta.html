@@ -1,0 +1,114 @@
+%%[
+
+  
+  /* Const for Salesforce Lead */
+
+  SET @LeadSource = "Marketing Cloud"
+  SET @LeadStatus = "MQL"
+  SET @LeadTerritory = "APAC"
+  SET @LeadCustomerLeadTypeId = "0120I0000019a2jQAA"
+   
+  /* Get all form fields value */
+  SET @firstName = TRIM(RequestParameter("first-name"))
+  SET @lastName = TRIM(RequestParameter("last-name"))
+  SET @email = TRIM(RequestParameter("email"))
+  SET @phone = TRIM(RequestParameter("phone"))
+  SET @jobTitle = RequestParameter("job-title")
+  SET @countryCode = RequestParameter("country")
+  SET @countryName = RequestParameter("selectedCountryName")
+  SET @stateCode = RequestParameter("state")
+  SET @stateName = RequestParameter("selectedStateName")
+  SET @postcode = RequestParameter("postcode")
+  SET @schoolName = TRIM(RequestParameter("school-name"))
+  SET @schoolEnquiryQuestionId = RequestParameter("enquiry-select-school-user")
+  SET @homeEnquiryQuestionId = RequestParameter("enquiry-select-home-user")
+  SET @yearGroup = RequestParameter("year-select")
+  SET @isTermAgree = RequestParameter("tc-agree")
+  SET @isReceiveEmail = RequestParameter("sub-opt-in")
+  SET @productCode = "WordFlyers"
+ SET @utm_source = RequestParameter("utm_source")
+ SET @Campaign = RequestParameter("Campaign")
+   SET @Product = RequestParameter("Product")
+  SET @resource = RequestParameter("resource")
+  SET @enquiry = 'Trial'
+  IF @isTermAgree == "agree" THEN
+    SET @isTermAgree = "true"
+  ELSE 
+    SET @isTermAgree = "false"
+  ENDIF
+  IF @isReceiveEmail == "receive" THEN
+    SET @isReceiveEmail = "true"
+  ELSE 
+    SET @isReceiveEmail = "false"
+  ENDIF
+  IF empty(@productCode) THEN
+    SET @productCode = "WordFlyers"
+  ENDIF
+  IF empty(@resource) THEN
+    SET @resource = ""
+  ENDIF
+
+ SET @updatemarketinginterest = 'Promotions;Product information;'
+
+
+IF @isReceiveEmail == 'true' THEN
+ SET @updatemarketinginterest = CONCAT(@updatemarketinginterest, 'Newsletter;')
+ENDIF
+
+
+
+
+IF @schoolName == '' THEN
+SET @schoolName = 'Free Trial'
+ENDIF
+
+If @jobTitle == 'Parent' OR 'Home schooling parent' THEN
+SET @customerType = 'Home' 
+ELSE
+SET @customerType = 'School' 
+ENDIF 
+  
+  
+  /* create Lead in Salesforce */
+   
+    SET @leadId = CreateSalesforceObject("Lead",
+           24,  /* Number of fields specified to add in the Lead record */ 
+           
+           "LeadSource", @LeadSource, 
+           "Status", @LeadStatus,
+           "RecordTypeId", @LeadCustomerLeadTypeId,
+           "Territory__c", @LeadTerritory, 
+            "Enquiry_Type__c", @enquiry,
+           "FirstName", @firstName,
+           "LastName", @lastName,
+           "Company", @schoolName,
+           "Phone", @phone,
+      "Title", @jobTitle,
+           "Email", @email,
+           "PostalCode", @postcode,
+           "Marketing_Product_Interest__c", 'WordFlyers',
+           "Country__c", @countryName,
+           "CountryCode", @countryCode,
+           "State__c", @stateName,
+           "StateCode", @stateCode,
+           "Marketing_Interest__c",@updatemarketinginterest,
+           "Job_Function__c", @salesforceJobFunction,
+           "Grade_Level__c", @yearGroup,
+           "Marketing_Cloud_MQL_Id__c", @trialId,
+           "Product_family__c", @productCode,
+           "Product_Interest__c", @productCode,
+           "Resource__c", @resource
+          )
+ set @campaignMemberId = CreateSalesforceObject('CampaignMember', 3, 'CampaignId', @Campaign, 'LeadId', @leadId,'Status','Sent')
+ 
+IF @leadId == '' THEN
+
+Redirect('https://cloud.my.3plearning.com/trialerror')
+
+ELSE
+Redirect('http://www.3plearning.com/au/wordflyers/thank-you/')
+
+ENDIF
+
+]%%
+

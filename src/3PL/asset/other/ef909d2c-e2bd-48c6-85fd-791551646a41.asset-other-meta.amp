@@ -1,0 +1,271 @@
+
+
+
+<!--
+/*****************************************
+UPDATE PREFERENCES (MARKETING CLOUD)
+*****************************************/
+-->
+
+<script runat="server">
+  Platform.Load("Core", "1")
+
+
+
+  /*************************************
+   GET REQUEST FIELDS
+  *************************************/
+
+  //Hidden Values
+  var jobID = Request.GetFormField("hidden_job_id");
+  var listID = Request.GetFormField("hidden_list_id");
+  var batchID = Request.GetFormField("hidden_batch_id");
+
+  var subscriberKey = Request.GetFormField("hidden_subscriber_key");
+  var emailAddress = Request.GetFormField("hidden_email_address");
+  var relatedSubscriberKeys = Request.GetFormField("hidden_related_subscriber_keys").split(",");
+
+  var currentProductUpdatesStatus =  Request.GetFormField("hidden_current_product_updates_status")? "Active": "Unsubscribed";
+  var currentNewsletterStatus =  Request.GetFormField("hidden_current_newsletter_status")? "Active": "Unsubscribed";
+  var currentFeaturesAndPromotionsStatus =  Request.GetFormField("hidden_current_features_and_promotions_status")? "Active": "Unsubscribed";
+  var currentMathleticsStatus =  Request.GetFormField("hidden_current_mathletics_status")? "Active": "Unsubscribed";
+  var currentMathseedsStatus =  Request.GetFormField("hidden_current_mathseeds_status")? "Active": "Unsubscribed";
+  var currentReadingEggsStatus =  Request.GetFormField("hidden_current_reading_eggs_status")? "Active": "Unsubscribed";
+  var currentAllSubscriberStatus =  Request.GetFormField("hidden_current_all_subscriber_status")? "Active": "Unsubscribed";
+
+  //Form Values
+  var newProductUpdatesStatus =  Request.GetFormField("new_product_updates_status")? "Active": "Unsubscribed";
+  var newNewsletterStatus =  Request.GetFormField("new_newsletter_status")? "Active": "Unsubscribed";
+  var newFeaturesAndPromotionsStatus =  Request.GetFormField("new_features_and_promotions_status")? "Active": "Unsubscribed";
+  var newMathleticsStatus =  Request.GetFormField("new_mathletics_status")? "Active": "Unsubscribed";
+  var newMathseedsStatus =  Request.GetFormField("new_mathseeds_status")? "Active": "Unsubscribed";
+  var newReadingEggsStatus =  Request.GetFormField("new_reading_eggs_status")? "Active": "Unsubscribed";
+  var newAllSubscriberStatus =  Request.GetFormField("new_all_subscriber_status")? "Unsubscribed": "Active";
+
+
+  /*************************************
+   CALCULATE PREFERENCES
+  *************************************/  
+
+  //changes
+  var isProductUpdatesStatusChanged = currentProductUpdatesStatus !== newProductUpdatesStatus;
+  var isNewsletterStatusChanged = currentNewsletterStatus !== newNewsletterStatus;
+  var isFeaturesAndPromotionsStatusChanged = currentFeaturesAndPromotionsStatus !== newFeaturesAndPromotionsStatus;
+  var isMathleticsStatusChanged = currentMathleticsStatus !== newMathleticsStatus;
+  var isMathseedsStatusChanged = currentMathseedsStatus !== newMathseedsStatus;
+  var isReadingEggsStatusChanged = currentReadingEggsStatus !== newReadingEggsStatus;
+  var isAllSubscriberStatusChanged = currentAllSubscriberStatus !== newAllSubscriberStatus;
+
+  //helpers
+  var isNotUnsubscribingToAll = newAllSubscriberStatus != "Unsubscribed"
+
+
+  /****************************************************
+   IF PREFERENCES CHANGED, UPDATE SUBSCRIBER & LISTS
+  *****************************************************/
+
+
+  //All Subscribers (needs to be first)
+  if (isAllSubscriberStatusChanged) {
+    var allSubscribersResponse;
+    for (var i=0; i<relatedSubscriberKeys.length; i++) { 
+      var subscriberObject = Subscriber.Init(relatedSubscriberKeys[i]);
+      allSubscribersResponse = subscriberObject.Update({Status: newAllSubscriberStatus});    
+    }//for
+  }//if
+
+
+  //Product Updates
+  if (isNotUnsubscribingToAll && isProductUpdatesStatusChanged) {
+    var productUpdatesList = List.Init("Product Updates - 20739")
+    var productUpdatesResponse;
+    for (var i=0; i<relatedSubscriberKeys.length; i++) { 
+      productUpdatesResponse = productUpdatesList.Subscribers.Upsert({SubscriberKey: relatedSubscriberKeys[i], EmailAddress: emailAddress },{Status: newProductUpdatesStatus});
+    }//for
+  }//if
+
+  //Newsletter
+  if (isNotUnsubscribingToAll && isNewsletterStatusChanged) {
+    var newsletterList = List.Init("Newsletter - 20739")
+    var newsletterResponse;
+    for (var i=0; i<relatedSubscriberKeys.length; i++) { 
+      newsletterResponse = newsletterList.Subscribers.Upsert({SubscriberKey: relatedSubscriberKeys[i], EmailAddress: emailAddress },{Status: newNewsletterStatus});
+    }//for
+  }//if
+
+  //Features and Promotions
+  if (isNotUnsubscribingToAll && isFeaturesAndPromotionsStatusChanged) {
+    var featuresAndPromotionsList = List.Init("Features and Promotions - 20739")
+    var featuresAndPromotionsResponse;
+    for (var i=0; i<relatedSubscriberKeys.length; i++) { 
+      featuresAndPromotionsResponse = featuresAndPromotionsList.Subscribers.Upsert({SubscriberKey: relatedSubscriberKeys[i], EmailAddress: emailAddress },{Status: newFeaturesAndPromotionsStatus});
+    }//for
+  }//if
+
+  //Mathletics
+  if (isNotUnsubscribingToAll && isMathleticsStatusChanged) {
+    var mathleticsList = List.Init("Mathletics - 20739")
+    var mathleticsResponse;
+    for (var i=0; i<relatedSubscriberKeys.length; i++) { 
+      mathleticsResponse = mathleticsList.Subscribers.Upsert({SubscriberKey: relatedSubscriberKeys[i], EmailAddress: emailAddress },{Status: newMathleticsStatus});
+    }//for
+  }//if
+
+  //Mathseeds
+  if (isNotUnsubscribingToAll && isMathseedsStatusChanged) {
+    var mathseedsList = List.Init("Mathseeds - 20739")
+    var mathseedsResponse;
+    for (var i=0; i<relatedSubscriberKeys.length; i++) { 
+      mathseedsResponse = mathseedsList.Subscribers.Upsert({SubscriberKey: relatedSubscriberKeys[i], EmailAddress: emailAddress },{Status: newMathseedsStatus});
+    }//for
+  }//if
+
+  //Reading Eggs
+  if (isNotUnsubscribingToAll && isReadingEggsStatusChanged) {
+    var readingEggsList = List.Init("Reading Eggs - 20739")
+    var readingEggsResponse;
+    for (var i=0; i<relatedSubscriberKeys.length; i++) { 
+      readingEggsResponse = readingEggsList.Subscribers.Upsert({SubscriberKey: relatedSubscriberKeys[i], EmailAddress: emailAddress },{Status: newReadingEggsStatus});
+    }//for
+  }//if
+
+</script>
+
+
+
+<!--
+/*****************************************
+UPDATE PREFERENCES (SALESFORCE CRM)
+*****************************************/
+
+%%[
+  /*************************************
+   GET & CALCULATE PREFRENCES
+  *************************************/ 
+
+  SET @RELATED_SUBSCRIBER_KEYS = BuildRowSetFromString(RequestParameter("hidden_related_subscriber_keys"), ",")
+
+  SET @HAS_OPTED_OUT_OF_EMAIL = IIF(RequestParameter("new_all_subscriber_status"), 1, 0)
+
+  SET @MARKETING_PRODUCT_INTEREST__C = Concat("",
+   IIF(RequestParameter("new_mathletics_status"), "Mathletics;", ""),
+   IIF(RequestParameter("new_mathseeds_status"), "Mathseeds;", ""),
+   IIF(RequestParameter("new_reading_eggs_status"), "ReadingEggs;", ""),
+  )/*concat*/
+  IF Empty(@MARKETING_PRODUCT_INTEREST__C) THEN SET @MARKETING_PRODUCT_INTEREST__C = "None" ENDIF
+
+  SET @MARKETING_INTEREST__C = Concat("",
+   IIF(RequestParameter("new_product_updates_status"), "Product Information;", ""),
+   IIF(RequestParameter("new_newsletter_status"), "Newsletter;", ""),
+   IIF(RequestParameter("new_features_and_promotions_status"), "Promotions;", ""),
+  )/*concat*/
+  IF Empty(@MARKETING_INTEREST__C) THEN SET @MARKETING_INTEREST__C = "None" ENDIF
+
+
+  /*==================================================
+   ONLY UDPATE LEAD OR CONTACT RELATED SUBSCRIBER KEYS
+  ====================================================*/
+
+  FOR @i=1 TO RowCount(@RELATED_SUBSCRIBER_KEYS) DO
+
+    SET @EACH_SUBSCRIBER_KEY = Field(Row(@RELATED_SUBSCRIBER_KEYS, @i), 1)
+
+    IF Substring(@EACH_SUBSCRIBER_KEY,1,3) == '003' THEN SET @SALESFORCE_OBJECT_TYPE = "Contact" 
+    ELSEIF Substring(@EACH_SUBSCRIBER_KEY,1,3) == '00Q' THEN SET @SALESFORCE_OBJECT_TYPE = "Lead" 
+    ELSE VAR @SALESFORCE_OBJECT_TYPE ENDIF
+
+    SET @TOTAL_RECORDS_UPDATED=0
+    IF NOT Empty(@SALESFORCE_OBJECT_TYPE) THEN
+
+      SET @RECORD_UPDATED = UpdateSingleSalesforceObject(
+        @SALESFORCE_OBJECT_TYPE, 
+        @EACH_SUBSCRIBER_KEY, 
+        'HasOptedOutOfEmail', @HAS_OPTED_OUT_OF_EMAIL, 
+        'Marketing_Product_Interest__c', @MARKETING_PRODUCT_INTEREST__C, 
+        'Marketing_Interest__c', @MARKETING_INTEREST__C
+        ) 
+
+      SET @TOTAL_RECORDS_UPDATED = @TOTAL_RECORDS_UPDATED + @RECORD_UPDATED
+    ENDIF
+
+  NEXT @i
+]%%
+-->
+
+
+
+
+<script runat="server">
+  
+  /*****************************************
+   REDIRECT
+  *****************************************/
+
+  //success
+  Redirect("https://cloud.my.3plearning.com/thank-you-30-11-2021",false);
+  
+</script>
+
+
+
+<div>
+  <h2 style="margin: 0">DEBUGGING INFO</h2>
+  <small>(comment out redirect to display)</small>
+  
+  <br><br>
+  
+  <b>UPDATE MARKETING CLOUD </b><br>
+  <br>
+  jobID: <ctrl:var name="jobID"/><br>
+  listID: <ctrl:var name="listID"/><br>
+  batchID: <ctrl:var name="batchID"/><br>
+  <br>
+  subscriberKey: <ctrl:var name="subscriberKey"/><br>
+  emailAddress: <ctrl:var name="emailAddress"/><br>
+  relatedSubscriberKeys: <ctrl:var name="relatedSubscriberKeys"/><br>
+  <br>
+  currentProductUpdatesStatus: <ctrl:var name="currentProductUpdatesStatus"/><br>
+  currentNewsletterStatus: <ctrl:var name="currentNewsletterStatus"/><br>
+  currentFeaturesAndPromotionsStatus: <ctrl:var name="currentFeaturesAndPromotionsStatus"/><br>
+  currentMathleticsStatus: <ctrl:var name="currentMathleticsStatus"/><br>
+  currentMathseedsStatus: <ctrl:var name="currentMathseedsStatus"/><br>
+  currentReadingEggsStatus: <ctrl:var name="currentReadingEggsStatus"/><br>
+  currentAllSubscriberStatus: <ctrl:var name="currentAllSubscriberStatus"/><br>
+  <br>
+  newProductUpdatesStatus: <ctrl:var name="newProductUpdatesStatus"/><br>
+  newNewsletterStatus: <ctrl:var name="newNewsletterStatus"/><br>
+  newFeaturesAndPromotionsStatus: <ctrl:var name="newFeaturesAndPromotionsStatus"/><br>
+  newMathleticsStatus: <ctrl:var name="newMathleticsStatus"/><br>
+  newMathseedsStatus: <ctrl:var name="newMathseedsStatus"/><br>
+  newReadingEggsStatus: <ctrl:var name="newReadingEggsStatus"/><br>
+  newAllSubscriberStatus: <ctrl:var name="newAllSubscriberStatus"/><br>
+  <br>
+  productUpdatesResponse: <ctrl:var name="productUpdatesResponse"/><br>
+  newsletterResponse: <ctrl:var name="newsletterResponse"/><br>
+  featuresAndPromotionsResponse: <ctrl:var name="featuresAndPromotionsResponse"/><br>
+  mathleticsResponse: <ctrl:var name="mathleticsResponse"/><br>
+  mathseedsResponse: <ctrl:var name="mathseedsResponse"/><br>
+  readingEggsResponse: <ctrl:var name="readingEggsResponse"/><br>
+  allSubscribersResponse: <ctrl:var name="allSubscribersResponse"/><br>
+  <br>
+
+
+  <br>
+  <b>Debug: UPDATE CRM</b><br>
+  <br>
+  @RELATED_SUBSCRIBER_KEYS: <ctrl:var name="@RELATED_SUBSCRIBER_KEYS"/><br>
+  <br>
+  @HAS_OPTED_OUT_OF_EMAIL: <ctrl:var name="@HAS_OPTED_OUT_OF_EMAIL"/><br>
+  @MARKETING_PRODUCT_INTEREST__C: <ctrl:var name="@MARKETING_PRODUCT_INTEREST__C"/><br>
+  @MARKETING_INTEREST__C: <ctrl:var name="@MARKETING_INTEREST__C"/><br>
+  <br>
+  @TOTAL_RECORDS_UPDATED: <ctrl:var name="@TOTAL_RECORDS_UPDATED"/><br>
+  <br>
+
+</div>
+
+
+
+
+
+

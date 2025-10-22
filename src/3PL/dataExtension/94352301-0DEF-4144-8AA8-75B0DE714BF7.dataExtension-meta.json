@@ -1,0 +1,28 @@
+{
+    "CustomerKey": "94352301-0DEF-4144-8AA8-75B0DE714BF7",
+    "Name": "APAC Renewal Email_Opens_JobIDs_for_Exclusion",
+    "Description": "",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "SubscriberKey",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "ContactEmail",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "EmailAddress"
+        }
+    ],
+    "r__folder_ContentType": "salesforcedataextension",
+    "r__folder_Path": "Salesforce Data Extensions/B2B/APAC/BAU/FY26 ANZ Renewal Campaign/Email4",
+    "c__retentionPolicy": "none"
+}

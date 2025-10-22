@@ -1,0 +1,116 @@
+%%[
+    /* 
+     * Form Processing Page
+     * Purpose: Process form submissions and handle lead creation, campaign membership, and redirection logic.
+     * Description: This script handles the form submissions, processes the request parameters, and manages campaign and lead creation. It also includes debugging information and redirection logic.
+     */
+
+    set @form               = lowercase(RequestParameter('form')) 
+    set @_Campaign_Name     = RequestParameter("campaign-name")
+    set @_Triggered_Send_Key= RequestParameter("triggered-send-key")
+    set @_Redirect_To_Page  = RequestParameter("redirect-to-page")
+    set @RedirectId         = RequestParameter('rid') 
+    set @pid                = RequestParameter('pid') 
+    set @cid                = RequestParameter('cid') 
+    set @_UTM_Campaign      = RequestParameter("utm-campaign")
+    set @_UTM_Content       = RequestParameter("utm-content")
+    set @_UTM_Medium        = RequestParameter("utm-medium")
+    set @_UTM_Source        = RequestParameter("utm-source")
+    set @_UTM_Term          = RequestParameter("utm-term")
+    set @gclid              = RequestParameter("gclid")
+    set @referrer           = RequestParameter("referrer")
+    set @http_referrer      = HTTPRequestHeader("referer")
+    set @debug              = RequestParameter('debug')
+    
+    set @_Mathletics_Subscriber    = RequestParameter("mathletics-subscriber")
+    set @_Product_Interest    = RequestParameter("product-interest")
+    set @_First_Name          = RequestParameter("first-name")
+    set @_Last_Name           = RequestParameter("last-name")
+    set @_Email_Address       = RequestParameter("email-address")
+    set @_Phone_Number        = RequestParameter("phone-number")
+    set @_Grade_Level         = RequestParameter("grade-level")
+    set @_Job_Title           = RequestParameter("job_title_select")
+    set @_Country_Name        = RequestParameter("country-name")
+    set @_State_Name          = RequestParameter("state-name")
+    set @_Postal_Code         = RequestParameter("postal-code")
+    set @_School_Name         = RequestParameter("school-name")
+    set @_No_Of_Licences      = RequestParameter("no-of-licences")
+    set @_Terms_And_Conditions= RequestParameter("terms-and-conditions")
+    set @_Subscriber_Opt_In   = RequestParameter("subscriber-opt-in")
+    set @_Subject             = RequestParameter("subject_select")
+    set @formattedSubjects    = ""
+    
+    SET @autoTrial = 0
+    /*IF @autoTrial == 1 THEN
+      set @_Campaign_Name ='701Mp00000V66grIAB'
+      set @_Campaign_Code = 'GLOBAL_MX0067_WMD2025_AT'
+    ENDIF*/
+    
+    set @_Campaign_Name ='701Mp00000ZACWZIA5'
+    set @_Campaign_Code = 'GLOBAL_MX0037_WMD2026'
+    /* Campaign Pre processing : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("campaign_pre_process")))
+    
+    
+    IF @autoTrial == 1 THEN
+      set @_Campaign_Code = 'GLOBAL_MX0037_WMD2026'
+    ELSE
+      set @_Campaign_Code = 'GLOBAL_MX0037_WMD2026'
+    ENDIF
+    
+    SET @Territory = ''
+    if @region == 'EMEA' THEN
+       SET @Territory = 'EME'
+    ELSEIF @region == 'APAC' THEN
+       SET @Territory = 'APAC'
+    ELSEIF @region == 'AMER' OR @region == 'CANADA' THEN
+       SET @Territory = 'AMER'
+    ENDIF
+       
+    
+    
+    /* Lead Pre processing : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("lead_pre_process")))
+
+    /* Debug Information : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("debug_form_stage1")))
+    SET @Existing_Customer = ''
+    if @_Campaign_Name == '701Mp00000PxjM6IAJ' OR @_Campaign_Name =='701Mp00000V66grIAB' OR @_Campaign_Name =='701Mp00000ZACWZIA5' then
+       SET @Description = Concat(@Description, ';Are you an existing Mathletics subscriber? Response: ', @_Mathletics_Subscriber)
+       IF @_Mathletics_Subscriber == 'Yes' THEN 
+           SET @Existing_Customer = 'Yes'
+       ELSE
+           SET @Existing_Customer = 'No'
+       ENDIF
+    endif
+    /* Processing Logic */
+
+    IF @debug != true THEN
+    /* Create Lead and Campaign Member */
+      IF @autoTrial == 1 THEN
+          IF @_Mathletics_Subscriber == 'Yes' THEN
+             output(concat(ContentBlockByKey("upsert_lead_wmd_at")))
+          ELSEIF (@_Job_Title == "Parent" OR 
+                @_Job_Title == "Home Schooling Parent" OR 
+                @_Job_Title == "Student" OR 
+                @_Job_Title == "Other") THEN
+             SET @RedirectId = 137
+             output(concat(ContentBlockByKey("upsert_lead_wmd_at")))
+          ELSE
+            output(concat(ContentBlockByKey("upsert_lead_wmd")))
+          ENDIF
+      ELSE
+        output(concat(ContentBlockByKey("upsert_lead_wmd_at")))
+      ENDIF
+    ENDIF
+
+
+
+    /* Redirection Logic : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("redirection_logic")))
+
+    /* Additional Debug Information : Snippets @ 05_CLOUDPAGES --> Form Processing Snippets */
+    output(concat(ContentBlockByKey("debug_form_stage2")))
+    
+]%%
+

@@ -1,0 +1,28 @@
+## A5FD9AAB-BBDA-4F29-9BCC-E76BCB5F0D83
+
+**Name** (not equal to External Key)**:** AMER_RE0123_ReggiesReadathonFY25_CC_EM1
+
+**Description:** n/a
+
+**Folder:** Data Extensions/01_B2B/01_AMER/00_IMPORT/04_Adhoc Lists/AMER Reggies Read-A-Thon FY25/
+
+**Fields in table:** 10
+
+**Sendable:** Yes (`Contact ID 18` to `Subscriber Key`)
+
+**Testable:** Yes
+
+**Retention Policy:** none
+
+| Name | FieldType | MaxLength | IsPrimaryKey | IsNullable | DefaultValue |
+| --- | --- | --- | --- | --- | --- |
+| Contact ID 18 | Text | 50 | + | - |  |
+| Email | EmailAddress | 254 | - | - |  |
+| First Name | Text | 50 | - | - |  |
+| Last Name | Text | 50 | - | + |  |
+| Account Name | Text | 50 | - | + |  |
+| Job Function | Text | 50 | - | + |  |
+| School C3ID | Text | 50 | - | + |  |
+| Status | Text | 50 | - | + |  |
+| Country | Text | 50 | - | + |  |
+| Account Owner | Text | 50 | - | + |  |

@@ -1,0 +1,54 @@
+%%[
+  VAR @email, @firstName, @lastName, @submitted, @insertResult
+
+  SET @submitted = RequestParameter("submitted")
+  
+  IF @submitted == "true" THEN
+    SET @email = RequestParameter("email")
+    SET @firstName = RequestParameter("firstName")
+    SET @lastName = RequestParameter("lastName")
+
+    SET @insertResult = InsertData("CloudPage_LeadCapture", 
+      "EmailAddress", @email,
+      "FirstName", @firstName,
+      "LastName", @lastName,
+      "SubmittedDate", Now()
+    )
+  ENDIF
+]%%
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cloud Page Journey Trigger</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; }
+    label { display: block; margin-top: 10px; }
+    input[type="text"], input[type="email"] { width: 100%; padding: 8px; margin-top: 5px; }
+    input[type="submit"] { margin-top: 15px; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+
+%%[ IF @submitted == "true" THEN ]%%
+  <h3>Thank you, %%=v(@firstName)=%%! You’ve been added to the journey.</h3>
+%%[ ELSE ]%%
+  <h2>Sign Up Form</h2>
+  <form method="POST" action="%%=RequestParameter('PAGEURL')=%%">
+    <input type="hidden" name="submitted" value="true">
+    <label>Email Address:</label>
+    <input type="email" name="email" required>
+
+    <label>First Name:</label>
+    <input type="text" name="firstName" required>
+
+    <label>Last Name:</label>
+    <input type="text" name="lastName">
+
+    <input type="submit" value="Submit">
+  </form>
+%%[ ENDIF ]%%
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><div> 
+<!--
+		%%[
+			VAR @CPID, @deExtKey, @encodedDeExtKey, @CPURL, @hiddenFields, @qsStart, @qsValueStart, @qsValue, @unmappedFields, @cloudpageErrors, @afbCPURL
+			SET @hiddenFields = URLEncode("",1,1)
+			SET @unmappedFields = FALSE
+			SET @CPID = "null"
+			SET @deExtKey = "undefined"
+			SET @cloudpageErrors = false
+			IF (@CPID == 'undefined') AND (@deExtKey == 'undefined') THEN
+				RaiseError("Please select a CloudPage and Data Extension and assign all fields to data attributes on the Interactive Email Form Block.")
+			ELSEIF (@CPID == "undefined") THEN
+				RaiseError("Please select a CloudPage on the Interactive Email Form Block.")
+			ELSEIF (@deExtKey == "undefined") THEN
+				RaiseError("Please select a Data Extension and assign all fields to data attributes on the Interactive Email Form Block.")
+			ELSEIF (@cloudpageErrors) THEN
+				RaiseError("false")
+			ENDIF
+			SET @encodedDeExtKey = URLEncode(@deExtKey,1,1)
+			SET @CPURL = CloudPagesURL(@CPID,'ic_deN',@encodedDeExtKey, 'ic_hf', @hiddenFields)
+			SET @qsStart = IndexOf(@CPURL,'?')
+			SET @qsValueStart = Add(@qsStart, 4)
+			SET @qsValue = Substring(@CPURL, @qsValueStart)
+			SET @qsValue = Replace(@qsValue,'%3D','=')
+			VAR @linkToClickCode, @link2C, @regexPattern, @sanitizedString, @trackedClickLink
+			SET @linkToClickCode = '<a href="httpgetwrap|https://submit.mc-content.com" alias="formSubmit" target="_blank">Interactive Email Form Submit</a>'
+			SET @link2C = TreatAsContent(@linkToClickCode)
+			SET @regexPattern = 'href="(.+?)"'
+			SET @sanitizedString = RegExMatch(@link2C, @regexPattern, 1)
+			SET @trackedClickLink = Replace(@sanitizedString, 'httpgetwrap|', '')
+			]%%
+		-->
+ <!-- %%[ if _MessageContext != "SEND" then ]%% --> <style>#interactive:checked+#rebel#rebel .ie-form{display:block!important}#interactive:checked+#rebel#rebel .ie-formFallback{display:none}</style> <!-- %%[ ENDIF ]%% --> <!--[if mso]><!--> <div class="ie-form" style="display:none" rebel=""> <form class="sc-block-cnrbg61-ic-form" action="%%=v(@CPURL)=%%" method="get" novalidate=""> <div class="sc-cnrbg61-ic-form-box-sizing sc-box-sizing"> <input type="hidden" name="qs" value="%%=v(@qsValue)=%%"> <input type="hidden" name="ic_tLink" value="%%=v(@trackedClickLink)=%%"> <label class="ie-input-wraper"> <span class="ie-label sc-block-cnrbg61-ic-label"> <span class="sc-cnrbg61-ic-label-box-sizing sc-box-sizing ie-b-label-box"> How are you feeling today? </span> </span> <div class="ie-input-wrap-cnrbg61-ic-text-select"> <div class="ie-input ie-input-cnrbg61-ic-text-select"> <ul style="margin:0;padding:0" role="presentation"> <input class="ie-text-in" type="text" name="%%[SET @unmappedFields = TRUE]%%"> </ul> 
+</div> </div> </label> <label> <input type="submit" class="ie-radio-check ie-frm-btni ie-frm-btni-cnrbg61-ic-submit" value="Submit"> <div class="ie-frm-btn ie-frm-btn-cnrbg61-ic-submit" aria-hidden="true"> Submit </div> </label> <input type="hidden" name="ic_c" value="7VptU9s4EP4rqplMwjWBBEq5yxVaLoQpc5RjCO2XhukolhxrcCxjyZAcl_9-K8lxbOcFCExfGLczrSytVqvdZ59dJ7mz5CigVtOyuS_pUFpVS1Apmd8XVvPOChmBtaheo-KkrRb7A8y8ThQEPJRWU4YRzc594j3m0ckKF0M1H1IB2hzsCTquwkmDgPvUlzD39S45PxKSD2quHHhwTI-TkTpfPzatd69qta7flV1ZKn01g678cnCOPrTOjg-r6AOh7aH8m45gSH2bE0oOpzOts8_nJ_C_ywih_hGjHhHweC06EodSj75gL6K5RxhF_gAHASXJHtvjEQlwn7bDkIdqBjs9rX9iVad9kT0J7SFYbmurKl2ra1Ub1cZ6Rjx7DGw4OjjptDMi6p6w0LX8yPNAS3ptcnm9HvmEOsynJCeUsxxkdTwmMsdHqBIfsofKiZLyOjo4PYSl6Rm55YuP7dOJkq48x0yYE-CqZx7FgiJBPWpLhFFLmXAGJiDsE3SIJUaglPqCcV9PYSFYH4aehxzjCskRUXJYypD1IkkFAlnpUnQMcA2xLdkNRW0FQHTEwwH6y-P21UbXShzcBk9mLpdx0Yr2r2pD2our2_G9PZeDzlJbDahSSk4Pj48yQMzlZyY9pnk8kyM6yUA4CYKAZxPVapnZ3wg9LVdnk18tuU45l_1Z1TERgPJjiMjwH6cSU0b5fTkvOSUKED8gpDKlkTdzZUGsE_UEBMHvVxIqSitatO2cBh62aSXho3Jp-7BcLe9NjdIU6DH_6oK3PGZfteDyVTOz1YJBSPt0eAYQoKEPjwL7TLJ_Keloc2BGAhCuKNGbT2BXxpScYjCp_A4jN6TOXheYWQZ9Km9DHPynxqK5uSmi3oDJjYFd09XElxvA9V0LYMmwgD0O4KyjZWASrg77YfZbz8NwsrW_AJhmx7tNvF-eMW-rBVZdhBTLA9EyZ1bydmf9m3aJulF8ncrG6_frXSt7Qs5fOib99vATlrZbWeTlHG7zHk4HdiYe5bRXAbTlaagvSyUzrNX2zUAVRQT1EDEHffsEJRaSomWqOHql-KUDyacc7VIfwXaU7IS9Qo48uj9N4jU2dX7Tdqmy-fVaSHvUM_-iDUZrKoB3hAmwf9TsKcJ4xQaq7GNfjldRdgSM1QMHJUp96AwSTe8202Ym99Wckr2RNR5Xk1ZCKU71EAaVn0PVSJRKezdxFq7vlUogFVLCQuBVs64nriOYIWqr7oia1m8wbXtYNTFfLWbXEpHLqhVwATHkPohhB26tLMkIa2suF7U9zA8iWTPclLLZxwO1ei1g7kYlf2J7TAba-vSllysCFpQKfTPq8vBcoDduDSdab3DIIOSwHC94GKKa8thHfotwSNGIR8ih1FPZIznBo_co50uzM-vIHgWnUQscSaiwQxaY-UR7TkVaaJGi2A8An_kd18X55_alBsTEPzDUaepyj0BY9QSsMaiqoNx0xwlUTG-bi7yytmaqtnWZw2cNSrLk_lyfGsDCUnxdQ4BWTnssdTlOq358Fw2ZNOMN445MmZ_XkED_EUGMpYulDrSLgbiNJt2JaOjM7URumXTZ0m6kN9ONTBuJhAovXCgcBmM8RJFQKJvRZ0S3duob9Y3G7mZjd7u-9Xb37e7Wm91GnlEJu0GacqAipBnpT1XEIDxxfsGqer-BkhXvy1TFR1fCeSeuViBjczbhHvuQxZAMWrdwKZUasBE8aPqJkZQQVCyphBzua2EHD5g3itONezzOgVvK-m6chfEeNSTU5iGO8w6e4ab9eCigxBmEJ5kVQeFTI8A0cAP9GOtcKENVce0E2IYQLxa75SG5R0hJMSLdxUoG4HZm2IYHi8XC5Rb3OKT3YNmNHLnExgATEt_iB1qhKnM_5PCeYjAzAYECVg98rWgxMTANkeUeTlCTvsBq26cXXG3_xAGr7B5PnHCOCYtE7IqTJS6tKoHzh4TsQULLjhrrGp7KclNnU2kes43Z99Cc70ExfKF5795jy0_OC42dqWgwnGtJPS8xa8yMkrw9OR0FSbwokkh30k-lioImsglaf478rD8-PxdTxv2McR933UsXRUPxYrki_XZbcMWkCtdTCViazxfbM0lcvHI8jSHWbP1nXq418r6e4Exwj5G5hPEkbbP88SR1eTp5grKfm12qVtPlNya6RYdxjzd_4igWFX5phVc4d7htAlfgvMD5C8Z55tuTl472mfY4-RLn8Z3xmqP_PNAp6tuCX4sGcCT5M71UP8-nXo2d7_ta3XiOT-IaD_4obm27_gchpOCmX-Atu-iDi_6g6IMLnBc4fxk41z_CGFDCsPbPdURDhfAPegpx3xshYYeUmp_xVgZ4WNPam2926sFwXf0ebd5vNoTEYU2hH4D3wz583f59pkcpvtMtfutRNI0_oGmMf2VblNOinL7wtrF4PSpwXrweFTgvcP4yXo_g7_h_"> </div> </form> </div> <!--<![endif]--> <!--
+		%%[
+			IF @unmappedFields == TRUE THEN
+			RaiseError("Please ensure that you have mapped all inputs to data attributes within the Interactive Email Form block.")
+			ENDIF
+		]%%
+		Thank you for using Interactive Email
+		250.0.17/1730267672471
+		--> <div style="display:none" aria-hidden="true"> <a href="https://submit.mc-content.com" alias="formSubmit" style="display:none" target="_blank">Interactive Email Form Submit</a> </div> </div></td></tr></table>

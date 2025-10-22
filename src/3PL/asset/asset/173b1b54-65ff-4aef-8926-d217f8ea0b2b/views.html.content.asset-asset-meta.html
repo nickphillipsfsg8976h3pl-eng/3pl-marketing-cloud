@@ -1,0 +1,138 @@
+%%[
+
+  
+
+  /* Const for Salesforce Lead */
+
+  SET @LeadSource = "Marketing Cloud"
+  SET @LeadStatus = "MQL"
+  SET @LeadCustomerLeadTypeId = "0120I0000019a2jQAA"
+  SET @RedirectId = RequestParameter('rid')
+   
+  /* Get all form fields value */
+  SET @firstName = TRIM(RequestParameter("first-name"))
+  SET @lastName = TRIM(RequestParameter("last-name"))
+  SET @email = TRIM(RequestParameter("email"))
+  SET @phone = TRIM(RequestParameter("phone"))
+  SET @jobTitle = RequestParameter("job-title")
+  SET @countryCode = RequestParameter("country")
+  SET @countryName = RequestParameter("selectedCountryName")
+  SET @stateCode = RequestParameter("state")
+  SET @stateName = RequestParameter("selectedStateName")
+  SET @postcode = RequestParameter("postcode")
+  SET @schoolName = TRIM(RequestParameter("school-name"))
+  SET @schoolEnquiryQuestionId = RequestParameter("enquiry-select-school-user")
+  SET @homeEnquiryQuestionId = RequestParameter("enquiry-select-home-user")
+  SET @yearGroup = RequestParameter("year-select")
+  SET @isTermAgree = RequestParameter("tc-agree")
+  SET @isReceiveEmail = RequestParameter("sub-opt-in")
+
+
+   SET @Campaign = RequestParameter("cid")
+
+   SET @UTMcontent = RequestParameter("utmcontent")
+   SET @UTMcampaign = RequestParameter("utmcampaign")
+   SET @UTMmedium = RequestParameter("utmmedium")
+   SET @UTMsource = RequestParameter("utmsource")
+   SET @UTMterm = RequestParameter("utmterm")
+
+   SET @enquiry = RequestParameter("eid")
+   SET @Product = RequestParameter("pid")
+
+  SET @productCode = RequestParameter("pid")
+  SET @resource = RequestParameter("resource")
+
+  IF @isTermAgree == "agree" THEN
+    SET @isTermAgree = "true"
+  ELSE 
+    SET @isTermAgree = "false"
+  ENDIF
+  IF @isReceiveEmail == "receive" THEN
+    SET @isReceiveEmail = "true"
+  ELSE 
+    SET @isReceiveEmail = "false"
+  ENDIF
+  IF empty(@productCode) THEN
+    SET @productCode = "NULL"
+  ENDIF
+  IF empty(@resource) THEN
+    SET @resource = ""
+  ENDIF
+
+ SET @updatemarketinginterest = 'Promotions;Product information;'
+
+
+IF @isReceiveEmail == 'true' THEN
+ SET @updatemarketinginterest = CONCAT(@updatemarketinginterest, 'Newsletter;')
+ENDIF
+
+
+
+
+IF @schoolName == '' THEN
+SET @schoolName = 'Free Trial'
+ENDIF
+
+If @jobTitle == 'Parent' OR 'Home schooling parent' THEN
+SET @customerType = 'Home' 
+ELSE
+SET @customerType = 'School' 
+ENDIF 
+  
+  
+  /* create Lead in Salesforce */
+   
+    SET @leadId = CreateSalesforceObject("Lead",
+           23,  /* Number of fields specified to add in the Lead record */ 
+           
+           "Campaign_Name__c", '',
+           "UTM_Content__c", @UTMContent,
+"UTM_Campaign__c", @UTMcampaign,
+"UTM_Medium__c", @UTMmedium,
+"UTM_Source__c", @UTMsource,
+"UTM_Term__c", @UTMterm,
+           "Status", @LeadStatus,
+           "RecordTypeId", @LeadCustomerLeadTypeId,
+            "Enquiry_Type__c", @enquiry,
+           "FirstName", @firstName,
+           "LastName", @lastName,
+           "Company", @schoolName,
+           "Phone", @phone,
+      "Title", @jobTitle,
+           "Email", @email,
+           "PostalCode", @postcode,
+           "Marketing_Product_Interest__c", @Product,
+           "Country__c", @countryName,
+           "CountryCode", @countryCode,
+           "State__c", @stateName,
+           "StateCode", @stateCode,
+           "Marketing_Interest__c",@updatemarketinginterest,
+           "Job_Function__c", @salesforceJobFunction,
+           "Grade_Level__c", @yearGroup,
+           "Marketing_Cloud_MQL_Id__c", @trialId,
+           "Product_family__c", @Product,
+           "Product_Interest__c", @Product,
+           "Resource__c", @resource
+          )
+
+      set @campaignMemberId = CreateSalesforceObject('CampaignMember', 
+           3,  /* Number of fields specified to add in the Lead record */ 
+            
+           'CampaignId', @Campaign, 
+           'LeadId', @leadId,
+           'Status','Sent'
+           
+           )
+ 
+SET @redirectURL = Lookup('BOF_URL_Redirect','URL','Id',@RedirectId)
+
+IF @leadId == '' THEN
+Redirect('https://cloud.my.3plearning.com/trialerror')
+
+ELSE
+Redirect(@redirectURL)
+
+ENDIF
+
+]%%
+

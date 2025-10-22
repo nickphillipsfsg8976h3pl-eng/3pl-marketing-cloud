@@ -1,0 +1,18 @@
+%%[
+  /* Only when Campaign Code not given attempt to create a campaign member directly.*/
+  if @_Campaign_Code == "NOT-DEFINED" then
+    set @CAMPAIGN_MEMBER__Campaign_Name = IIF(Not Empty(@UTMcampaignIdLookup),@UTMcampaignIdLookup,@_Campaign_Name)
+    set @CAMPAIGN_MEMBER__Status        = 'Sent'
+    set @CAMPAIGN_MEMBER__Lead_Id       = @LEAD__New_Id
+    if ((Not Empty(@CAMPAIGN_MEMBER__Campaign_Name)) AND (Not Empty(@CAMPAIGN_MEMBER__Lead_Id))) then
+          set @_Campaign_Objects = RetrieveSalesforceObjects("Campaign", "Id", "Id", "=",@CAMPAIGN_MEMBER__Campaign_Name)            
+          if (RowCount(@_Campaign_Objects)>0) then            
+              set @CAMPAIGN_MEMBER__CampaignId = Field(Row(@_Campaign_Objects, 1), "Id")
+              set @CAMPAIGN_MEMBER__New_Id     = CreateSalesforceObject("CampaignMember", 2,
+                                                       "CampaignId", @CAMPAIGN_MEMBER__CampaignId,
+                                                       "LeadId", @CAMPAIGN_MEMBER__Lead_Id
+                                                   )                        
+          endif
+    endif
+  endif
+]%%

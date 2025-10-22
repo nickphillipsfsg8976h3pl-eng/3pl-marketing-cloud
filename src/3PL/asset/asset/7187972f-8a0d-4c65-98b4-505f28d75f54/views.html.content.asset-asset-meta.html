@@ -1,0 +1,285 @@
+
+%%[ 
+
+        /*************************************************************
+        -- GET REQUEST PARAMETERS
+        **************************************************************/
+
+
+        /* HIDDEN FIELDS
+        *****************/
+
+        set @_Debug             = RequestParameter("debug")
+
+        set @form               = lowercase(RequestParameter('form')) 
+        Set @_Campaign_Name     = RequestParameter("campaign-name")
+        Set @_Triggered_Send_Key= RequestParameter("triggered-send-key")
+        Set @_Redirect_To_Page  = RequestParameter("redirect-to-page")
+        set @RedirectId         = RequestParameter('rid') 
+        set @pid                = RequestParameter('pid') 
+        set @cid                = RequestParameter('cid') 
+        set @_UTM_Campaign      = RequestParameter("utm-campaign")
+        set @_UTM_Content       = RequestParameter("utm-content")
+        set @_UTM_Medium        = RequestParameter("utm-medium")
+        set @_UTM_Source        = RequestParameter("utm-source")
+        set @_UTM_Term          = RequestParameter("utm-term")
+        set @gclid              = RequestParameter("gclid")
+        
+    set @fbclid             = RequestParameter("fbclid")
+    set @msclkid            = RequestParameter("msclkid")
+        set @referrer           = RequestParameter("referrer")
+        set @http_referrer      = HTTPRequestHeader("referer")
+
+
+        set @_UTM_Campaign_entry = IIF(Not Empty(@_UTM_Campaign), @_UTM_Campaign, "NA")
+        set @campaignNameLookup  =''
+        if Empty(@_UTM_Campaign) then
+            if not Empty(@_Campaign_Name) then
+                set @campaignNameLookup = Lookup("ENT.Campaign_Salesforce", "Name", "Id",@_Campaign_Name)
+                if not Empty(@campaignNameLookup) then
+                    set @_UTM_Campaign_entry = @campaignNameLookup
+                endif
+            endif
+        endif
+
+        /* FORM FIELDS
+        *****************/
+
+        set @_Product_Interest    = "ReadingEggs"
+        set @_First_Name          = RequestParameter("first-name")
+        set @_Last_Name           = RequestParameter("last-name")
+        set @_Email_Address       = RequestParameter("email-address")
+        set @_Phone_Number        = RequestParameter("phone-number")
+        set @_Grade_Level         = RequestParameter("grade-level")
+        set @_Job_Title           = RequestParameter("job_title_select")
+        set @_Other_Job_Title     = RequestParameter("other_job_title")
+        set @_re_interest         = RequestParameter("re_interest")
+        set @_Country_Name        = "United States"
+        set @_State_Name          = RequestParameter("state-name")
+        set @_Postal_Code         = RequestParameter("postal-code")
+        set @_School_Name         = RequestParameter("school-name")
+        set @_Enquiry_Type         = RequestParameter("enquiry-type")
+        set @_No_Of_Licences      = RequestParameter("no-of-licences")
+        set @_Terms_And_Conditions= RequestParameter("terms-and-conditions")
+        set @_Subscriber_Opt_In   = RequestParameter("subscriber-opt-in")
+        
+
+        /*************************************************************
+        -- CREATE SALESFORCE LEAD OBJECT
+        **************************************************************/
+
+        set @LeadStatus = "MQL"
+        set @LeadSource = "Marketing Cloud"
+        set @LeadStage  = "Unassigned"
+        
+        if not empty(@_Job_Title) then
+         if indexof(@_Job_Title, "Other")>0 then
+                 set @_Job_Title = Concat(@_Job_Title," - ",@_Other_Job_Title)
+         endif  
+        endif
+ 
+            /* Specifying State and Country Variables
+        *****************/
+
+        set @countrycode = Lookup("Country_DE","CountryCode","CountryName", @_Country_Name)
+        set @rows        = LookupRows("state","State Code", @_State_Name,"Country Code", @countrycode)
+        set @rowCount    = rowcount(@rows)
+        set @stateName   =  @_State_Name
+        if @rowCount > 0 then
+
+            for @i = 1 to @rowCount do
+                var @stateName
+                set @row = row(@rows, @i) /* get row based on counter */
+                set @stateName = field(@row,"State Name")
+            next @i 
+        endif
+        
+        if @_re_interest == 'quote' then 
+            set @enquiry = 'Quote' 
+        elseif @_re_interest == 'demo' then
+            set @enquiry = 'Demo'
+        elseif @_re_interest == 'info' then
+            set @enquiry = 'Information'
+        else
+            set @enquiry = ''
+        endif
+        
+        set @_Campaign_Code =''
+        
+        if not empty(@_Campaign_Name) then
+          if @_Campaign_Name == '701Mp00000HVYN0IAP' then
+            set @_Campaign_Code ='AMER_RE0053_BackToSchoolFY25_US'
+            if @_re_interest == 'quote' then
+               set @Description = "This prospect has requested a quote from the AMER US District Back to School Reading Eggs Landing Page."
+            elseif @_re_interest == 'demo' then
+               set @Description = "This prospect has requested a product demo from the AMER US District Back to School Reading Eggs Landing Page."
+            elseif @_re_interest == 'info' then
+               set @Description = "This prospect has requested a Pilot with Purpose consultation from the AMER US District Back to School Reading Eggs Landing Page"
+            endif
+          endif
+        endif
+        if not empty(@_Product_Interest) then
+           set @_Product_Interest = Replace(@_Product_Interest,",",";")
+           set @_Product_Interest = Replace(@_Product_Interest,"brightpath","Brightpath Writing")
+           set @_Product_Interest_c = @_Product_Interest
+           if indexOf(@_Product_Interest,"mathspackage") > 0 then
+             set @_Product_Interest = Replace(@_Product_Interest,",",";")
+             set @_Product_Interest = Replace(@_Product_Interest,"mathspackage","")
+             set @_Product_Interest = Replace(@_Product_Interest,";;",";")
+             if indexOf(@_Product_Interest,"Mathletics") == 0 then
+               set @_Product_Interest = concat(@_Product_Interest,";","Mathletics")
+             endif
+             if indexOf(@_Product_Interest,"Mathseeds") == 0 then
+               set @_Product_Interest = concat(@_Product_Interest,";","Mathseeds")
+             endif
+             set @_Product_Interest_c = @_Product_Interest
+             set @_Product_Interest_c = concat(@_Product_Interest_c,";","MathematicsPackage")
+             set @mathpkg = 1
+          endif
+          if indexOf(@_Product_Interest,"literacypackage") > 0 then
+             set @_Product_Interest = Replace(@_Product_Interest,",",";")
+             set @_Product_Interest = Replace(@_Product_Interest,"literacypackage","")
+             set @_Product_Interest = Replace(@_Product_Interest,";;",";")
+             if indexOf(@_Product_Interest,"Reading") == 0 then
+               set @_Product_Interest = concat(@_Product_Interest,";","ReadingEggs")
+             endif
+             if indexOf(@_Product_Interest,"Writing") == 0 then
+               set @_Product_Interest = concat(@_Product_Interest,";","WritingLegends")
+             endif
+             if indexOf(@_Product_Interest,"Brightpath") == 0 then
+               set @_Product_Interest = concat(@_Product_Interest,";","Brightpath Writing")
+             endif
+             set @_Product_Interest_c = @_Product_Interest
+             set @_Product_Interest_c = concat(@_Product_Interest_c,";","LiteracyPackage")
+           endif
+           set @_Product_Interest_c = Replace(@_Product_Interest_c,"Writing Legends","WritingLegends")
+           set @_Product_Interest = Replace(@_Product_Interest,"Writing Legends","WritingLegends")
+           set @_Product_Interest_c = Replace(@_Product_Interest_c,"Brightpath Writing","Brightpath")
+           if @mathpkg == 1 then set @_Product_Interest_c = concat(@_Product_Interest_c,";","MathematicsPackage") endif
+           set @_Product_Interest_c = Replace(@_Product_Interest_c,";;",";")
+           
+        endif
+        
+        /* Specifying SF Job Function
+        *****************/
+        set @sfJobFunction = ""
+        if not empty( @_Job_Title) then
+           set @sfJobFunction = Lookup("jobTitle_USA_District_Forms","SF Job Function","Job Title", @_Job_Title)
+        endif
+        set @debug = false
+
+        if @debug == true then
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Campaign_Name: ', @_Campaign_Name, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Campaign_Code: ', @_Campaign_Code, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@campaignNameLookup: ', @campaignNameLookup, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_re_interest: ', @_re_interest, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Product_Interest: ', @_Product_Interest, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Product_Interest_c: ', @_Product_Interest_c, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_First_Name: ', @_First_Name, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Last_Name: ', @_Last_Name, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Email_Address: ', @_Email_Address, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Phone_Number: ', @_Phone_Number, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Country_Name : ', @_Country_Name , '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_State_Name: ', @_State_Name, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Other_Job_Title: ', @_Other_Job_Title, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_School_Name: ', @_School_Name, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Enquiry_Type : ', @_Enquiry_Type , '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@enquiry : ', @enquiry , '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Terms_And_Conditions: ', @_Terms_And_Conditions, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Subscriber_Opt_In : ', @_Subscriber_Opt_In, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@LeadStatus: ', @LeadStatus, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@LeadSource: ', @LeadSource, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Job_Title: ', @_Job_Title, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@LeadStage: ', @LeadStage, '</code></pre>'))
+   OutputLine(Concat('<pre style="background-color:#ccc;"><code>@Description: ', @Description, '</code></pre>'))
+  else]%%
+
+<script runat="server">
+ Platform.Load("core","1");
+ try {
+</script>
+%%[
+         set @LEAD__New_Id = CreateSalesforceObject("Lead", 31,
+             
+              "Marketing_Product_Interest__c", @_Product_Interest, 
+              "FirstName", IIF(Not Empty(@_First_Name), @_First_Name, ""),  
+              "LastName", IIF(Not Empty(@_Last_Name), @_Last_Name, ""),  
+              "Email", IIF(Not Empty(@_Email_Address), @_Email_Address, "xxxx@xxxx.com"), 
+              "Phone", IIF(Not Empty(@_Phone_Number), @_Phone_Number, 0000000000),  
+              "Grade_Level__c", IIF(Not Empty(@_Grade_Level), @_Grade_Level, "Not Mentioned"),  
+              "Title", IIF(Not Empty(@_Job_Title), @_Job_Title, 'Unknown'),
+              "Job_Function__c",IIF(Not Empty(@sfJobFunction), @sfJobFunction, ''),
+              "Country", IIF(Not Empty(@_Country_Name), @_Country_Name, "Australia"),  
+              "State__c", IIF(Not Empty(@stateName),@stateName, ""),
+              "Campaign_Name__c", IIF(Not Empty(@campaignNameLookup),@campaignNameLookup, ""),
+              "Campaign_Code__c", IIF(Not Empty(@_Campaign_Code),@_Campaign_Code, ""),
+              "State", IIF(Not Empty(@stateName),@stateName, ""),   
+              "PostalCode", IIF(Not Empty(@_Postal_Code), @_Postal_Code, "0000"), 
+              "Company", IIF(Not Empty(@_School_Name), @_School_Name, "NA Currently"),
+              "No_of_licences__c",  IIF(Not Empty(@_No_Of_Licences), @_No_Of_Licences, 0), 
+              "Marketing_Interest__c", IIF(@_Subscriber_Opt_In, "Promotions;Product Information;Newsletter", "Promotions;Product Information;"),
+              "LeadSource", @LeadSource,
+              "Status", @LeadStatus,
+              "Enquiry_Type__c", @enquiry,
+              'UTM_Source__c', IIF(Not Empty(@_UTM_Source), @_UTM_Source, @referrer),
+              'UTM_Medium__c', IIF(Not Empty(@_UTM_Medium), @_UTM_Medium, 'Unknown'),
+              'UTM_Campaign__c', IIF(Not Empty(@_UTM_Campaign), @_UTM_Campaign, 'Organic'),
+              'UTM_Content__c', IIF(Not Empty(@_UTM_Content), @_UTM_Content, 'Unknown'),
+              'UTM_Term__c', IIF(Not Empty(@_UTM_Term), @_UTM_Term, 'Unknown'),
+              'Description', IIF(Not Empty(@Description), @Description, 'Unknown'),
+              'GCLID__c', IIF(Not Empty(@gclid), @gclid, 'Unknown'),            
+              'MSCLKID__c', IIF(Not Empty(@msclkid), @msclkid, 'Unknown'),
+              'FBCLID__c', IIF(Not Empty(@fbclid), @fbclid, 'Unknown'),
+              'Subject__c', IIF(Not Empty(@formattedSubjects), @formattedSubjects, ''),
+              'Product_Interest__c',@_Product_Interest_c ) 
+              
+
+          )
+
+
+]%%
+<script runat="server">
+ }
+ catch (err) {
+  Write("Error Message: " + Stringify(err.message) + Stringify(err.description));
+ }
+</script>
+        
+%%[
+
+        /*************************************************************
+        -- CREATE SALESFORCE CAMPAIGN MEMBER OBJECT
+        **************************************************************/
+
+
+        /* DEFAULTS
+        *************/
+
+        set @CAMPAIGN_MEMBER__Campaign_Name = IIF(Not Empty(@_Campaign_Name), @_Campaign_Name, '')
+        set @CAMPAIGN_MEMBER__Status        = 'Sent'
+        set @CAMPAIGN_MEMBER__Lead_Id       = @LEAD__New_Id
+
+
+        /* ACTION
+        ***********
+
+        if ((Not Empty(@CAMPAIGN_MEMBER__Campaign_Name)) AND (Not Empty(@CAMPAIGN_MEMBER__Lead_Id))) then
+            set @_Campaign_Objects = RetrieveSalesforceObjects("Campaign", "Id", "Id", "=", @CAMPAIGN_MEMBER__Campaign_Name)            
+            if (RowCount(@_Campaign_Objects)>0) then            
+                set @CAMPAIGN_MEMBER__CampaignId = Field(Row(@_Campaign_Objects, 1), "Id")
+                set @CAMPAIGN_MEMBER__New_Id     = CreateSalesforceObject("CampaignMember", 2,
+                                                      "CampaignId", @CAMPAIGN_MEMBER__CampaignId,
+                                                      "LeadId", @CAMPAIGN_MEMBER__Lead_Id
+                                                  )                        
+            endif
+        endif
+
+       */
+        set @RedirectURL= "https://readingeggs.com/back-to-school/thank-you/"
+        
+        Redirect(@RedirectURL)
+
+     endif
+
+]%%
+

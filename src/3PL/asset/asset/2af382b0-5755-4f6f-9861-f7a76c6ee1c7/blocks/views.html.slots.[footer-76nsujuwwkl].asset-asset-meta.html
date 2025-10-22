@@ -1,0 +1,521 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" class="stylingblock-content-wrapper" style="min-width: 100%; font-family: 'Trebuchet MS', sans-serif;">
+  <tr>
+    <td class="stylingblock-content-wrapper camarker-inner">
+      %%[
+  VAR @submitted
+  SET @submitted = RequestParameter("submitted")
+]%%
+%%[
+  VAR @submitted, @firstName, @lastName, @email, @jobTitle, @country, @phone, @state, @zip, @school, @terms, @submissionDate, @errorMessages
+
+  SET @submitted = RequestParameter("submitted")
+
+  IF @submitted == "true" THEN
+
+    /* Gather parameters */
+    SET @firstName = RequestParameter("First Name")
+    SET @lastName = RequestParameter("Last Name")
+    SET @email = RequestParameter("Email")
+    SET @jobTitle = RequestParameter("Job Title")
+    SET @country = RequestParameter("Country")
+    SET @state = RequestParameter("State")
+    SET @zip = RequestParameter("Postcode or Zip")
+    SET @school = RequestParameter("School Name")
+    SET @terms = RequestParameter("Terms")
+    SET @phone = RequestParameter("Phone Number")
+    SET @submissionDate = Now()
+
+    /* Initialize error messages */
+    SET @errorMessages = ""
+
+    /* Validate required fields */
+    IF EMPTY(@firstName) THEN SET @errorMessages = CONCAT(@errorMessages, "Missing First Name<br>") ENDIF
+    IF EMPTY(@lastName) THEN SET @errorMessages = CONCAT(@errorMessages, "Missing Last Name<br>") ENDIF
+    IF EMPTY(@email) THEN SET @errorMessages = CONCAT(@errorMessages, "Missing Email<br>") ENDIF
+    IF EMPTY(@jobTitle) THEN SET @errorMessages = CONCAT(@errorMessages, "Missing Job Title<br>") ENDIF
+    IF EMPTY(@country) THEN SET @errorMessages = CONCAT(@errorMessages, "Missing Country<br>") ENDIF
+    IF EMPTY(@zip) THEN SET @errorMessages = CONCAT(@errorMessages, "Missing Zip<br>") ENDIF
+    IF EMPTY(@school) THEN SET @errorMessages = CONCAT(@errorMessages, "Missing School<br>") ENDIF
+
+    /* Default terms to "false" if not set */
+    IF EMPTY(@terms) THEN 
+      SET @terms = "false" 
+    ENDIF
+
+    /* If there are errors, show them */
+    IF NOT EMPTY(@errorMessages) THEN
+      Output(CONCAT("<br><strong>❌ Form Errors:</strong><br>", @errorMessages))
+    ELSE
+
+     
+
+      /* Safe insert or update */
+      UPSERTDE("ULead QR Code DE", 1, "Email", @email,
+        "First Name", @firstName,
+        "Last Name", @lastName,
+        "Job Title", @jobTitle,
+        "Country", @country,
+        "State", @state,
+        "Postcode or Zip", @zip,
+        "School Name", @school,
+        "Terms", @terms,
+        "Phone Number", @phone,
+        "submissionDate", @submissionDate
+      )
+
+    ENDIF
+  ENDIF
+]%%
+
+%%[ IF @submitted != "true" THEN ]%%
+<form method="post" action="%%=CloudPagesURL(6360, 'submitted', 'true')=%%" id="smartcapture-block-1a59ghyshvt" class="smartcapture-content-wrapper fuelux"> 
+  <h2 style="font-family: 'Trebuchet MS', sans-serif;">Get Your Brochures<br></h2>
+  <p style="font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+    To receive the brochures we're sharing at ULead in your email inbox, provide your information below.
+  </p>
+
+<p style="text-align: left; font-size: 12px; font-style: italic; font-family: 'Trebuchet MS', sans-serif; margin: 0 auto 10px auto; max-width: 308px;">
+  * = <i>Required Field</i>
+</p>
+
+
+
+  <!-- First Name -->
+  <div class="smartcapture-controls">
+    <input type="text" name="First Name" placeholder="First Name*" required="" style="width:100%; max-width: 300px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+  </div>
+
+  <!-- Last Name -->
+  <div class="smartcapture-controls">
+    <input type="text" name="Last Name" placeholder="Last Name*" required="" style="width:100%; max-width: 300px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+  </div>
+
+  <!-- Email Address -->
+  <div class="smartcapture-controls">
+    <input type="email" name="Email" placeholder="Email Address*" required="" style="width:100%; max-width: 300px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+  </div>
+  
+ 
+  <!-- Job Title -->
+  <div class="smartcapture-controls">
+    <select id="job-title" name="Job Title" required="" style="width:308px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+      <option value="">Select Job Title*</option>
+      <option value="Teacher">Teacher/Educator</option>
+      <option value="Head_of_Maths">Head of Mathematics</option>
+      <option value="Head_of_ICT">Head of ICT</option>
+      <option value="Head_of_Support">Head of Support</option>
+      <option value="Principal">Principal</option>
+      <option value="Head_Teacher">Head Teacher</option>
+      <option value="School_District_Employee">School District Employee</option>
+      <option value="Parent">Parent</option>
+      <option value="Home_Schooling_Parent">Home schooling parent</option>
+      <option value="Student">Student</option>
+      <option value="Other">Other</option>
+      <option value="Head_of_English">Head of English/Literacy</option>
+      <option value="Head_of_Science">Head of Science</option>
+    </select>
+  </div>
+
+  <!-- Country -->
+  <div class="smartcapture-controls">
+    <select id="country" name="Country" required="" style="width:100%; max-width: 308px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+  <option value="">Select Country*</option>
+  <option value="Canada">Canada</option>
+  <option value="United States">United States</option>
+  <option value="United Kingdom">United Kingdom</option>
+  <option value="Australia">Australia</option>
+  <option value="Afghanistan">Afghanistan</option>
+  <option value="Albania">Albania</option>
+  <option value="Algeria">Algeria</option>
+  <option value="Andorra">Andorra</option>
+  <option value="Angola">Angola</option>
+  <option value="Argentina">Argentina</option>
+  <option value="Armenia">Armenia</option>
+  <option value="Austria">Austria</option>
+  <option value="Azerbaijan">Azerbaijan</option>
+  <option value="Bahamas">Bahamas</option>
+  <option value="Bahrain">Bahrain</option>
+  <option value="Bangladesh">Bangladesh</option>
+  <option value="Barbados">Barbados</option>
+  <option value="Belarus">Belarus</option>
+  <option value="Belgium">Belgium</option>
+  <option value="Belize">Belize</option>
+  <option value="Benin">Benin</option>
+  <option value="Bhutan">Bhutan</option>
+  <option value="Bolivia">Bolivia</option>
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+  <option value="Botswana">Botswana</option>
+  <option value="Brazil">Brazil</option>
+  <option value="Brunei">Brunei</option>
+  <option value="Bulgaria">Bulgaria</option>
+  <option value="Burkina Faso">Burkina Faso</option>
+  <option value="Burundi">Burundi</option>
+  <option value="Cambodia">Cambodia</option>
+  <option value="Cameroon">Cameroon</option>
+  <option value="Cape Verde">Cape Verde</option>
+  <option value="Central African Republic">Central African Republic</option>
+  <option value="Chad">Chad</option>
+  <option value="Chile">Chile</option>
+  <option value="China">China</option>
+  <option value="Colombia">Colombia</option>
+  <option value="Comoros">Comoros</option>
+  <option value="Costa Rica">Costa Rica</option>
+  <option value="Croatia">Croatia</option>
+  <option value="Cuba">Cuba</option>
+  <option value="Cyprus">Cyprus</option>
+  <option value="Czech Republic">Czech Republic</option>
+  <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+  <option value="Denmark">Denmark</option>
+  <option value="Djibouti">Djibouti</option>
+  <option value="Dominica">Dominica</option>
+  <option value="Dominican Republic">Dominican Republic</option>
+  <option value="Ecuador">Ecuador</option>
+  <option value="Egypt">Egypt</option>
+  <option value="El Salvador">El Salvador</option>
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+  <option value="Eritrea">Eritrea</option>
+  <option value="Estonia">Estonia</option>
+  <option value="Eswatini">Eswatini</option>
+  <option value="Ethiopia">Ethiopia</option>
+  <option value="Fiji">Fiji</option>
+  <option value="Finland">Finland</option>
+  <option value="France">France</option>
+  <option value="Gabon">Gabon</option>
+  <option value="Gambia">Gambia</option>
+  <option value="Georgia">Georgia</option>
+  <option value="Germany">Germany</option>
+  <option value="Ghana">Ghana</option>
+  <option value="Greece">Greece</option>
+  <option value="Grenada">Grenada</option>
+  <option value="Guatemala">Guatemala</option>
+  <option value="Guinea">Guinea</option>
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+  <option value="Guyana">Guyana</option>
+  <option value="Haiti">Haiti</option>
+  <option value="Honduras">Honduras</option>
+  <option value="Hungary">Hungary</option>
+  <option value="Iceland">Iceland</option>
+  <option value="India">India</option>
+  <option value="Indonesia">Indonesia</option>
+  <option value="Iran">Iran</option>
+  <option value="Iraq">Iraq</option>
+  <option value="Ireland">Ireland</option>
+  <option value="Israel">Israel</option>
+  <option value="Italy">Italy</option>
+  <option value="Jamaica">Jamaica</option>
+  <option value="Japan">Japan</option>
+  <option value="Jordan">Jordan</option>
+  <option value="Kazakhstan">Kazakhstan</option>
+  <option value="Kenya">Kenya</option>
+  <option value="Kiribati">Kiribati</option>
+  <option value="Kuwait">Kuwait</option>
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+  <option value="Laos">Laos</option>
+  <option value="Latvia">Latvia</option>
+  <option value="Lebanon">Lebanon</option>
+  <option value="Lesotho">Lesotho</option>
+  <option value="Liberia">Liberia</option>
+  <option value="Libya">Libya</option>
+  <option value="Liechtenstein">Liechtenstein</option>
+  <option value="Lithuania">Lithuania</option>
+  <option value="Luxembourg">Luxembourg</option>
+  <option value="Madagascar">Madagascar</option>
+  <option value="Malawi">Malawi</option>
+  <option value="Malaysia">Malaysia</option>
+  <option value="Maldives">Maldives</option>
+  <option value="Mali">Mali</option>
+  <option value="Malta">Malta</option>
+  <option value="Mauritania">Mauritania</option>
+  <option value="Mauritius">Mauritius</option>
+  <option value="Mexico">Mexico</option>
+  <option value="Moldova">Moldova</option>
+  <option value="Monaco">Monaco</option>
+  <option value="Mongolia">Mongolia</option>
+  <option value="Montenegro">Montenegro</option>
+  <option value="Morocco">Morocco</option>
+  <option value="Mozambique">Mozambique</option>
+  <option value="Myanmar">Myanmar</option>
+  <option value="Namibia">Namibia</option>
+  <option value="Nepal">Nepal</option>
+  <option value="Netherlands">Netherlands</option>
+  <option value="New Zealand">New Zealand</option>
+  <option value="Nicaragua">Nicaragua</option>
+  <option value="Niger">Niger</option>
+  <option value="Nigeria">Nigeria</option>
+  <option value="North Korea">North Korea</option>
+  <option value="North Macedonia">North Macedonia</option>
+  <option value="Norway">Norway</option>
+  <option value="Oman">Oman</option>
+  <option value="Pakistan">Pakistan</option>
+  <option value="Palau">Palau</option>
+  <option value="Panama">Panama</option>
+  <option value="Papua New Guinea">Papua New Guinea</option>
+  <option value="Paraguay">Paraguay</option>
+  <option value="Peru">Peru</option>
+  <option value="Philippines">Philippines</option>
+  <option value="Poland">Poland</option>
+  <option value="Portugal">Portugal</option>
+  <option value="Qatar">Qatar</option>
+  <option value="Republic of the Congo">Republic of the Congo</option>
+  <option value="Romania">Romania</option>
+  <option value="Russia">Russia</option>
+  <option value="Rwanda">Rwanda</option>
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+  <option value="Saint Lucia">Saint Lucia</option>
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+  <option value="Samoa">Samoa</option>
+  <option value="San Marino">San Marino</option>
+  <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+  <option value="Saudi Arabia">Saudi Arabia</option>
+  <option value="Senegal">Senegal</option>
+  <option value="Serbia">Serbia</option>
+  <option value="Seychelles">Seychelles</option>
+  <option value="Sierra Leone">Sierra Leone</option>
+  <option value="Singapore">Singapore</option>
+  <option value="Slovakia">Slovakia</option>
+  <option value="Slovenia">Slovenia</option>
+  <option value="Solomon Islands">Solomon Islands</option>
+  <option value="Somalia">Somalia</option>
+  <option value="South Africa">South Africa</option>
+  <option value="South Korea">South Korea</option>
+  <option value="South Sudan">South Sudan</option>
+  <option value="Spain">Spain</option>
+  <option value="Sri Lanka">Sri Lanka</option>
+  <option value="Sudan">Sudan</option>
+  <option value="Suriname">Suriname</option>
+  <option value="Sweden">Sweden</option>
+  <option value="Switzerland">Switzerland</option>
+  <option value="Syria">Syria</option>
+  <option value="Taiwan">Taiwan</option>
+  <option value="Tajikistan">Tajikistan</option>
+  <option value="Tanzania">Tanzania</option>
+  <option value="Thailand">Thailand</option>
+  <option value="Timor-Leste">Timor-Leste</option>
+  <option value="Togo">Togo</option>
+  <option value="Tonga">Tonga</option>
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+  <option value="Tunisia">Tunisia</option>
+  <option value="Turkey">Turkey</option>
+  <option value="Turkmenistan">Turkmenistan</option>
+  <option value="Tuvalu">Tuvalu</option>
+  <option value="Uganda">Uganda</option>
+  <option value="Ukraine">Ukraine</option>
+  <option value="United Arab Emirates">United Arab Emirates</option>
+  <option value="Uruguay">Uruguay</option>
+  <option value="Uzbekistan">Uzbekistan</option>
+  <option value="Vanuatu">Vanuatu</option>
+  <option value="Vatican City">Vatican City</option>
+  <option value="Venezuela">Venezuela</option>
+  <option value="Vietnam">Vietnam</option>
+  <option value="Yemen">Yemen</option>
+  <option value="Zambia">Zambia</option>
+  <option value="Zimbabwe">Zimbabwe</option>
+</select>
+  </div>
+
+  <!-- State/Province -->
+  <div class="smartcapture-controls">
+    <select id="state" name="State" style="width:308px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+      <option value="">Select State (Please select a country first.)</option>
+    </select>
+  </div>
+
+  <!-- Postcode / Zipcode -->
+  <div class="smartcapture-controls">
+    <input type="text" name="Postcode or Zip" placeholder="Postcode / Zipcode*" required="" style="width:100%; max-width: 300px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+  </div>
+
+  <!-- School Name -->
+  <div class="smartcapture-controls">
+    <input type="text" name="School Name" placeholder="School Name*" required="" style="width:100%; max-width: 300px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+  </div>
+   <!-- Phone Number -->
+<div class="smartcapture-controls">
+  <input type="tel" name="Phone Number" placeholder="Phone Number (Optional)" pattern="\(\d{3}\) \d{3}-\d{4}" title="Format: (123) 456-7890" style="width:100%; max-width: 300px; font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d;">
+</div>
+
+  <!-- Terms Checkbox -->
+<input type="hidden" name="Terms" id="terms-value" value="false">
+<label style="cursor: pointer;">
+  <input type="checkbox" required="" id="terms">
+  I agree to the 3P Learning <a href="https://www.3plearning.com/terms/" target="_blank" style="color: #0069AD;">terms and conditions</a>.
+</label><br><br>
+
+
+
+  
+
+<div class="smartcapture-submit-button-wrapper">
+  <button type="submit" class="sc-button" style="background-color: #015f4e; border-color: #015f4e; color: #ffffff;">
+    Send Brochures
+  </button>
+</div>
+
+
+
+  <style id="smartcapture-styles-1a59ghyshvt">
+ #smartcapture-block-1a59ghyshvt {
+  background-color:transparent;margin:0px 45px;padding:0px;text-align:center;font-family:'Trebuchet MS', sans-serif;
+ }
+
+ #smartcapture-block-1a59ghyshvt .smartcapture-controls {
+  padding-bottom: 10px;
+ }
+
+ #smartcapture-block-1a59ghyshvt .smartcapture-controls .sc-formfield-label,
+ #smartcapture-block-1a59ghyshvt .smartcapture-controls .sc-formfield-label label,
+ #smartcapture-block-1a59ghyshvt .smartcapture-controls .sc-formfield-input label {
+  color:#808080;font-family:"Trebuchet MS", sans-serif;font-size:16px;line-height:inherit;margin-bottom:3px;vertical-align:middle;
+ }
+
+ #smartcapture-block-1a59ghyshvt input[type="radio"],
+ #smartcapture-block-1a59ghyshvt input[type="checkbox"] {
+  margin: 0 0.4em 3px 0;
+  vertical-align: middle;
+ }
+
+ #smartcapture-block-1a59ghyshvt input[type="text"],
+ #smartcapture-block-1a59ghyshvt input[type="email"],
+ #smartcapture-block-1a59ghyshvt input[type="number"] {
+  width:200px;
+ }
+
+ #smartcapture-block-1a59ghyshvt .sc-button {
+  background-color:#0069AD;border-color:#0069AD;border-radius:3px;border-style:solid;-webkit-border-radius:3px;-moz-border-radius:3px;color:#FFFFFF;font-family:Arial, Helvetica, sans-serif;font-size:16px;line-height:normal;padding:10px;
+ }
+
+ #smartcapture-block-1a59ghyshvt .smartcapture-submit-button-wrapper {
+  padding-bottom:10px;text-align:center;
+ }
+
+ #smartcapture-block-1a59ghyshvt .date-dropdown-select-boxes input {
+  display: none;
+ }
+
+ #smartcapture-block-1a59ghyshvt .date-dropdown-select-boxes .select {
+  max-height: 28em;
+  max-width: 6em;
+  overflow: auto;
+ }
+</style>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const stateSelect = document.getElementById('state');
+    const countrySelect = document.getElementById('country');
+
+    const statesByCountry = {
+      "Canada": [
+        "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador",
+        "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Northwest Territories",
+        "Nunavut", "Yukon"
+      ],
+      "United States": [
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
+        "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+        "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", 
+        "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
+        "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania",
+        "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
+        "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+      ],
+      "Australia": [
+        "Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia",
+        "Tasmania", "Victoria", "Western Australia"
+      ],
+      "United Kingdom": [
+        "England", "Scotland", "Wales", "Northern Ireland"
+      ]
+    };
+
+    countrySelect.addEventListener("change", function () {
+      const country = countrySelect.value;
+      const states = statesByCountry[country] || [];
+
+      stateSelect.innerHTML = '<option value="">Select State (Please select a country first.)</option>';
+
+      states.forEach(function (state) {
+        const option = document.createElement("option");
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+      });
+    });
+  });
+</script>
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const termsCheckbox = document.getElementById("terms");
+  const termsHidden = document.getElementById("terms-value");
+  const form = document.getElementById("smartcapture-block-1a59ghyshvt");
+
+  const updateTermsValue = () => {
+    termsHidden.value = termsCheckbox.checked ? "true" : "false";
+  };
+
+  updateTermsValue(); // initialize on load
+  termsCheckbox.addEventListener("change", updateTermsValue);
+  form.addEventListener("submit", updateTermsValue);
+});
+</script>
+
+
+</form>
+%%[ ENDIF ]%%
+
+      %%[ IF @submitted == "true" THEN ]%%
+  <p style="font-family: 'Trebuchet MS', sans-serif; color: #4d4d4d; text-align: center; font-size: 16px; margin-top: 20px;">
+    ✅ Check your inbox! We've just sent you the brochures from the event you've attended. 📨
+  </p>
+%%[ ENDIF ]%%
+
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.href.indexOf("submitted=true") > -1) {
+      const form = document.querySelector("#smartcapture-block-1a59ghyshvt");
+      if (form) {
+        form.reset();
+      }
+    }
+  });
+</script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const phoneInput = document.querySelector('input[name="Phone Number"]');
+
+    phoneInput.addEventListener("input", function (e) {
+      const isBackspace = e.inputType === "deleteContentBackward";
+
+      // Capture cursor position
+      let inputVal = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+
+      if (isBackspace) {
+        // Don't reformat on backspace – let the user edit manually
+        return;
+      }
+
+      let formatted = inputVal;
+
+      if (inputVal.length >= 6) {
+        formatted = `(${inputVal.slice(0, 3)}) ${inputVal.slice(3, 6)}-${inputVal.slice(6)}`;
+      } else if (inputVal.length >= 3) {
+        formatted = `(${inputVal.slice(0, 3)}) ${inputVal.slice(3)}`;
+      } else if (inputVal.length > 0) {
+        formatted = `(${inputVal}`;
+      }
+
+      phoneInput.value = formatted;
+    });
+  });
+</script>
+
+
+
+</td></tr></table>
+
+
+
+
+</td></tr></table>

@@ -1,0 +1,1303 @@
+{
+    "key": "7f3321b0-64dd-0f43-8d1f-832e7d17e0be",
+    "name": "GLOBAL_RE0033_TrialRequestConfirmation",
+    "lastPublishedDate": "2025-05-29T07:34:36",
+    "description": "",
+    "version": 5,
+    "workflowApiVersion": 1,
+    "createdDate": "2025-05-07T16:42:39.38",
+    "modifiedDate": "2025-05-29T07:34:36.45",
+    "activities": [
+        {
+            "key": "EMAILV2-1",
+            "name": "APAC RE Trial Confirmation - Refreshed",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "9d03603b-5c07-4dc1-b5eb-33bdeb8d75c2",
+                    "next": "WAITBYDURATION-2",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Your ABC Reading Eggs trial: Here’s what’s next",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Your ABC Reading Eggs trial: Here’s what’s next",
+                    "emailSubject": "Your ABC Reading Eggs trial: Here’s what’s next",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": false,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "preHeader": "🔜 We’ll be in touch shortly to get you started",
+                    "publicationListId": 187,
+                    "r__asset_key": "836f238c-0679-4bd2-b5ce-a6ad0aadbb7a",
+                    "r__asset_name_readOnly": "APAC RE Trial Confirmation - Refreshed",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2120,
+                    "r__triggeredSend_key": "258045",
+                    "suppressTracking": false,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "258045"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": "",
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-2",
+            "name": "AMER RE Trial Confirmation - Refreshed",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "011bc575-bb6a-4cf7-a8fd-27efe6996907",
+                    "next": "WAITBYDURATION-4",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Your Reading Eggs trial: Here’s what’s next",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Your Reading Eggs trial: Here’s what’s next",
+                    "emailSubject": "Your Reading Eggs trial: Here’s what’s next",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": false,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "preHeader": "🔜 We’ll be in touch shortly to get you started",
+                    "publicationListId": 187,
+                    "r__asset_key": "a3a44a00-3e72-4813-b0b8-a4c5ec66e5f4",
+                    "r__asset_name_readOnly": "AMER RE Trial Confirmation - Refreshed",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2120,
+                    "r__triggeredSend_key": "258047",
+                    "suppressTracking": false,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "258047"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": "",
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "EMAILV2-3",
+            "name": "EMEA RE Trial Confirmation - Refreshed",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "de328b7a-b8d0-434a-8169-c63a0caabde8",
+                    "next": "WAITBYDURATION-5",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "Your Reading Eggs trial: Here’s what’s next",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "ccEmail": [],
+                    "created": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "Your Reading Eggs trial: Here’s what’s next",
+                    "emailSubject": "Your Reading Eggs trial: Here’s what’s next",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": false,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "modified": {
+                        "name": "",
+                        "date": ""
+                    },
+                    "preHeader": "🔜 We’ll be in touch shortly to get you started",
+                    "publicationListId": 187,
+                    "r__asset_key": "8f08da18-210a-4aab-b298-44c9ae641b64",
+                    "r__asset_name_readOnly": "EMEA RE Trial Confirmation - Refreshed",
+                    "r__deliveryProfile_key": "Default",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__senderProfile_key": 2120,
+                    "r__triggeredSend_key": "258046",
+                    "suppressTracking": false,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active"
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "258046"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": "",
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "MULTICRITERIADECISIONV2-1",
+            "name": "",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "EMAILV2-1",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "APAC",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "Lead:Country equal Australia OR Lead:Country equal New Zealand OR Lead:Country equal Africa",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "cfa915c6-9b0a-547c-7077-864e6a220d37",
+                    "next": "EMAILV2-2",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "AMER",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "Lead:Country equal USA OR Lead:Country equal US OR Lead:Country equal United States OR Lead:Country equal CA OR Lead:Country equal Canada OR Lead:Country__c equal USA OR Lead:Country__c equal US OR Lead:Country__c equal United States OR Lead:Country__c equal CA OR Lead:Country__c equal Canada",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "fa64a78f-8d8b-7d04-6822-f98b23c8eb6b",
+                    "next": "EMAILV2-3",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "EMEA",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "Lead:Country equal UK OR Lead:Country equal United Kingdom OR Lead:Country equal Ireland OR Lead:Country equal IE OR Lead:Country__c equal UK OR Lead:Country__c equal United Kingdom OR Lead:Country__c equal IE OR Lead:Country__c equal Ireland OR Lead:Country__c equal Albania OR Lead:Country__c equal Andorra OR Lead:Country__c equal Austria OR Lead:Country__c equal Belgium OR Lead:Country__c equal Bosnia and Herzegovina OR Lead:Country__c equal Bulgaria OR Lead:Country__c equal Croatia OR Lead:Country__c equal Czech Republic OR Lead:Country__c equal Denmark OR Lead:Country__c equal Estonia OR Lead:Country__c equal Finland OR Lead:Country__c equal France OR Lead:Country__c equal Germany OR Lead:Country__c equal Greece OR Lead:Country__c equal Hungary OR Lead:Country__c equal Iceland OR Lead:Country__c equal Italy OR Lead:Country__c equal Latvia OR Lead:Country__c equal Liechtenstein OR Lead:Country__c equal Lithuania OR Lead:Country__c equal Luxembourg OR Lead:Country__c equal Malta OR Lead:Country__c equal Moldova OR Lead:Country__c equal Monaco OR Lead:Country__c equal Montenegro OR Lead:Country__c equal Netherlands OR Lead:Country__c equal Norway OR Lead:Country__c equal Poland OR Lead:Country__c equal Portugal OR Lead:Country__c equal Romania OR Lead:Country__c equal San Marino OR Lead:Country__c equal Serbia OR Lead:Country__c equal Slovakia OR Lead:Country__c equal Slovenia OR Lead:Country__c equal Spain OR Lead:Country__c equal Sweden OR Lead:Country__c equal Switzerland OR Lead:Country__c equal Ukraine OR Lead:Country__c equal Turkey OR Lead:Country__c equal United Arab Emirates OR Lead:Country__c equal Israel OR Lead:Country__c equal Jordan OR Lead:Country__c equal Lebanon OR Lead:Country__c equal Oman OR Lead:Country__c equal Kuwait OR Lead:Country__c equal Qatar OR Lead:Country__c equal Bahrain OR Lead:Country__c equal Cyprus OR Lead:Country__c equal Saudi Arabia OR Lead:Country equal Albania OR Lead:Country equal Andorra OR Lead:Country equal Austria OR Lead:Country equal Belgium OR Lead:Country equal Bosnia and Herzegovina OR Lead:Country equal Bulgaria OR Lead:Country equal Croatia OR Lead:Country equal Czech Republic OR Lead:Country equal Denmark OR Lead:Country equal Estonia OR Lead:Country equal Finland OR Lead:Country equal France OR Lead:Country equal Germany OR Lead:Country equal Greece OR Lead:Country equal Hungary OR Lead:Country equal Iceland OR Lead:Country equal Italy OR Lead:Country equal Latvia OR Lead:Country equal Liechtenstein OR Lead:Country equal Lithuania OR Lead:Country equal Luxembourg OR Lead:Country equal Malta OR Lead:Country equal Moldova OR Lead:Country equal Monaco OR Lead:Country equal Montenegro OR Lead:Country equal Netherlands OR Lead:Country equal North Macedonia OR Lead:Country equal Norway OR Lead:Country equal Poland OR Lead:Country equal Portugal OR Lead:Country equal Romania OR Lead:Country equal San Marino OR Lead:Country equal Serbia OR Lead:Country equal Slovakia OR Lead:Country equal Slovenia OR Lead:Country equal Spain OR Lead:Country equal Sweden OR Lead:Country equal Switzerland OR Lead:Country equal Ukraine OR Lead:Country equal Egypt OR Lead:Country equal Turkey OR Lead:Country equal Yemen OR Lead:Country equal United Arab Emirates OR Lead:Country equal Israel OR Lead:Country equal Jordan OR Lead:Country equal Kuwait OR Lead:Country equal Qatar OR Lead:Country equal Bahrain OR Lead:Country equal Cyprus",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-3",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Remainder",
+                        "isLabelFromConversion": false,
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "filterResult": "default_path_1={{Contact.FilterId.f35ef45c-3add-46fd-94e5-37094efb1cb4}},cfa915c6-9b0a-547c-7077-864e6a220d37={{Contact.FilterId.8314cde4-5475-4e5e-9ef8-4fec7ec2ff0d}},fa64a78f-8d8b-7d04-6822-f98b23c8eb6b={{Contact.FilterId.372e2a5d-6abc-4ae9-8b72-f570f99c5b1e}},remainder_path=False"
+            },
+            "configurationArguments": {
+                "schemaVersionId": 252,
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Australia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[New Zealand]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Africa]]></Value></Condition></ConditionSet></FilterDefinition>",
+                    "cfa915c6-9b0a-547c-7077-864e6a220d37": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[USA]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[US]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United States]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[CA]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Canada]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[USA]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[US]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United States]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[CA]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Canada]]></Value></Condition></ConditionSet></FilterDefinition>",
+                    "fa64a78f-8d8b-7d04-6822-f98b23c8eb6b": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[UK]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United Kingdom]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Ireland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[IE]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[UK]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United Kingdom]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[IE]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Ireland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Albania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Andorra]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Austria]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Belgium]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bosnia and Herzegovina]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bulgaria]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Croatia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Czech Republic]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Denmark]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Estonia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Finland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[France]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Germany]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Greece]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Hungary]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Iceland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Italy]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Latvia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Liechtenstein]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Lithuania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Luxembourg]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Malta]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Moldova]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Monaco]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Montenegro]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Netherlands]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Norway]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Poland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Portugal]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Romania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[San Marino]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Serbia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Slovakia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Slovenia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Spain]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Sweden]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Switzerland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Ukraine]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Turkey]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United Arab Emirates]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Israel]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Jordan]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Lebanon]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Oman]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Kuwait]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Qatar]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bahrain]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Cyprus]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country__c\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Saudi Arabia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Albania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Andorra]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Austria]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Belgium]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bosnia and Herzegovina]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bulgaria]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Croatia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Czech Republic]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Denmark]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Estonia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Finland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[France]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Germany]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Greece]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Hungary]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Iceland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Italy]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Latvia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Liechtenstein]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Lithuania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Luxembourg]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Malta]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Moldova]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Monaco]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Montenegro]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Netherlands]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[North Macedonia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Norway]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Poland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Portugal]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Romania]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[San Marino]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Serbia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Slovakia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Slovenia]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Spain]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Sweden]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Switzerland]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Ukraine]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Egypt]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Turkey]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Yemen]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[United Arab Emirates]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Israel]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Jordan]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Kuwait]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Qatar]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Bahrain]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.Lead:Country\" Operator=\"Equal\" UiMetaData=\"{}\"><Value><![CDATA[Cyprus]]></Value></Condition></ConditionSet></FilterDefinition>"
+                }
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-2",
+            "name": "1 hour",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "42d4152f-fbc4-476f-82b9-0ceb68b506ff",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "HOURS",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-3",
+            "name": "3 minutes",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "ead0f1d0-bbec-49da-8375-e1ca599b9ef0",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
+            "configurationArguments": {
+                "waitDuration": 3,
+                "waitUnit": "MINUTES",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-4",
+            "name": "1 hour",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "0681e5cd-fc80-4d1a-95a8-87a812915bfe",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "HOURS",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "key": "WAITBYDURATION-5",
+            "name": "1 hour",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "ba625a91-6f96-416a-9fec-fb71374e589b",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "HOURS",
+                "specifiedTime": "00:00",
+                "timeZone": "AUS Eastern Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "TRIGGER",
+            "description": "",
+            "type": "SalesforceObjectTriggerV2",
+            "outcomes": [],
+            "arguments": {
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": ""
+            },
+            "configurationArguments": {
+                "applicationExtensionKey": "SalesforceObjectTriggerV2",
+                "version": "3.0",
+                "salesforceTriggerCriteria": "Created",
+                "eventDataConfig": {
+                    "objects": [
+                        {
+                            "dePrefix": "Lead:",
+                            "isPolymorphic": false,
+                            "relationshipName": "",
+                            "referenceObject": "",
+                            "relationshipIdName": "",
+                            "fields": [
+                                "Email",
+                                "HasOptedOutOfEmail",
+                                "Id",
+                                "Campaign_Code__c",
+                                "Campaign_Name__c",
+                                "Country",
+                                "Country__c",
+                                "CreatedDate",
+                                "Enquiry_Type__c",
+                                "FirstName",
+                                "LastName",
+                                "Lead_Country__c",
+                                "LeadReferenceId__c",
+                                "Marketing_Cloud_MQL_Id__c",
+                                "Marketing_Cloud_Purchase_Id__c",
+                                "Marketing_Interest__c",
+                                "Marketing_Product_Interest__c",
+                                "State",
+                                "Sync_to_Marketing_Cloud__c",
+                                "Sync_Lead_2_MC__c",
+                                "UTM_Campaign__c",
+                                "UTM_Content__c",
+                                "UTM_Medium__c",
+                                "UTM_Source__c",
+                                "UTM_Term__c",
+                                "PostalCode",
+                                "Zip_Code__c"
+                            ]
+                        }
+                    ]
+                },
+                "primaryObjectFilterCriteria": {
+                    "operand": "AND",
+                    "conditions": [
+                        {
+                            "operand": "OR",
+                            "conditions": [
+                                {
+                                    "_length": 255,
+                                    "dataType": "picklist",
+                                    "fieldName": "Enquiry_Type__c",
+                                    "folderId": "Lead-Lead",
+                                    "id": "Lead-Lead-Enquiry_Type__c",
+                                    "isPolymorphic": false,
+                                    "name": "Enquiry Type",
+                                    "operator": "EQUALS",
+                                    "precision": 0,
+                                    "referenceObjectName": "Lead",
+                                    "relationshipIdName": "",
+                                    "relationshipName": "",
+                                    "scale": 0,
+                                    "text": "Enquiry Type",
+                                    "value": "Trial"
+                                },
+                                {
+                                    "_length": 255,
+                                    "dataType": "picklist",
+                                    "fieldName": "Enquiry_Type__c",
+                                    "folderId": "Lead-Lead",
+                                    "id": "Lead-Lead-Enquiry_Type__c",
+                                    "isPolymorphic": false,
+                                    "name": "Enquiry Type",
+                                    "operator": "EQUALS",
+                                    "precision": 0,
+                                    "referenceObjectName": "Lead",
+                                    "relationshipIdName": "",
+                                    "relationshipName": "",
+                                    "scale": 0,
+                                    "text": "Enquiry Type",
+                                    "value": "Class Trial"
+                                },
+                                {
+                                    "_length": 255,
+                                    "dataType": "picklist",
+                                    "fieldName": "Enquiry_Type__c",
+                                    "folderId": "Lead-Lead",
+                                    "id": "Lead-Lead-Enquiry_Type__c",
+                                    "isPolymorphic": false,
+                                    "name": "Enquiry Type",
+                                    "operator": "EQUALS",
+                                    "precision": 0,
+                                    "referenceObjectName": "Lead",
+                                    "relationshipIdName": "",
+                                    "relationshipName": "",
+                                    "scale": 0,
+                                    "text": "Enquiry Type",
+                                    "value": "School Trial"
+                                }
+                            ]
+                        },
+                        {
+                            "operand": "OR",
+                            "conditions": [
+                                {
+                                    "_length": 4099,
+                                    "dataType": "multipicklist",
+                                    "fieldName": "Marketing_Product_Interest__c",
+                                    "folderId": "Lead-Lead",
+                                    "id": "Lead-Lead-Marketing_Product_Interest__c",
+                                    "isPolymorphic": false,
+                                    "name": "Marketing Product Interest",
+                                    "operator": "EQUALS",
+                                    "precision": 4,
+                                    "referenceObjectName": "Lead",
+                                    "relationshipIdName": "",
+                                    "relationshipName": "",
+                                    "scale": 0,
+                                    "text": "Marketing Product Interest",
+                                    "value": "ReadingEggs"
+                                },
+                                {
+                                    "_length": 4099,
+                                    "dataType": "multipicklist",
+                                    "fieldName": "Product_Interest__c",
+                                    "folderId": "Lead-Lead",
+                                    "id": "Lead-Lead-Product_Interest__c",
+                                    "isPolymorphic": false,
+                                    "name": "Product Interest",
+                                    "operator": "EQUALS",
+                                    "precision": 4,
+                                    "referenceObjectName": "Lead",
+                                    "relationshipIdName": "",
+                                    "relationshipName": "",
+                                    "scale": 0,
+                                    "text": "Product Interest",
+                                    "value": "ReadingEggs"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "relatedObjectFilterCriteria": {
+                    "operand": "AND",
+                    "conditions": []
+                },
+                "additionalObjectFilterCriteria": "",
+                "contactKey": {
+                    "relationshipIdName": "Id",
+                    "relationshipName": "",
+                    "isPolymorphic": false,
+                    "referenceObjectName": "Lead"
+                },
+                "passThroughArgument": {
+                    "fields": {
+                        "ContactKey": "Lead:Id",
+                        "Email": "Lead:Email",
+                        "HasOptedOutOfEmail": "Lead:HasOptedOutOfEmail"
+                    }
+                },
+                "primaryObjectFilterSummary": "Lead:Enquiry_Type__c EQUALS Trial OR  Lead:Enquiry_Type__c EQUALS Class Trial OR  Lead:Enquiry_Type__c EQUALS School Trial AND  Lead:Marketing_Product_Interest__c EQUALS ReadingEggs OR  Lead:Product_Interest__c EQUALS ReadingEggs",
+                "relatedObjectFilterSummary": "",
+                "eventDataSummary": [
+                    "Lead:Campaign_Code__c",
+                    "Lead:Campaign_Name__c",
+                    "Lead:Country",
+                    "Lead:Country__c",
+                    "Lead:CreatedDate",
+                    "Lead:Email",
+                    "Lead:Enquiry_Type__c",
+                    "Lead:FirstName",
+                    "Lead:HasOptedOutOfEmail",
+                    "Lead:Id",
+                    "Lead:LastName",
+                    "Lead:LeadReferenceId__c",
+                    "Lead:Lead_Country__c",
+                    "Lead:Marketing_Cloud_MQL_Id__c",
+                    "Lead:Marketing_Cloud_Purchase_Id__c",
+                    "Lead:Marketing_Interest__c",
+                    "Lead:Marketing_Product_Interest__c",
+                    "Lead:PostalCode",
+                    "Lead:State",
+                    "Lead:Sync_Lead_2_MC__c",
+                    "Lead:Sync_to_Marketing_Cloud__c",
+                    "Lead:UTM_Campaign__c",
+                    "Lead:UTM_Content__c",
+                    "Lead:UTM_Medium__c",
+                    "Lead:UTM_Source__c",
+                    "Lead:UTM_Term__c",
+                    "Lead:Zip_Code__c"
+                ],
+                "evaluationCriteriaSummary": "Created;",
+                "contactPersonType": "Lead",
+                "whoToInject": "Lead ID (Lead)",
+                "schemaVersionId": 0,
+                "criteria": "",
+                "objectAPIName": "Lead"
+            },
+            "metaData": {
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/jbint-events/events/SalesforceData/images/SF-Event-Icon.svg",
+                "title": "",
+                "entrySourceGroupConfigUrl": "https://jbinteractions.s7.marketingcloudapps.com/jbint-events/entrysourcegroupconfig.json",
+                "r__event_key": "SalesforceObj3507eb43e90c437920f9cd11bb55aa4b"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "SingleEntryAcrossAllVersions",
+    "definitionType": "Multistep",
+    "channel": "",
+    "defaults": {
+        "email": [
+            "{{Event.SalesforceObj3507eb43e90c437920f9cd11bb55aa4b.\"Lead:Email\"}}"
+        ],
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "dataSource": "ContactsModel"
+    },
+    "executionMode": "Production",
+    "status": "Published",
+    "scheduledStatus": "Draft",
+    "r__folder_Path": "my journeys"
+}

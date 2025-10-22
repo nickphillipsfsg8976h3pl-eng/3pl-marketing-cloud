@@ -1,0 +1,128 @@
+{
+    "type": "SalesforceObjectTriggerV2",
+    "name": "checkingCampaignEntry",
+    "description": "",
+    "createdDate": "2022-04-23T19:21:23.257",
+    "createdBy": "Stephan Peniguel",
+    "modifiedDate": "2022-04-23T19:21:23.257",
+    "modifiedBy": "Stephan Peniguel",
+    "eventDefinitionKey": "SalesforceObj793493f045e8e8823887425dba6efa57",
+    "schema": {
+        "fields": [
+            {
+                "name": "Lead:Email",
+                "dataType": "EmailAddress",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:HasOptedOutOfEmail",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "Lead:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            }
+        ],
+        "sendableCustomObjectField": "Lead:Id",
+        "sendableSubscriberField": "_SubscriberKey"
+    },
+    "sourceApplicationExtensionId": "597d9e4a-1c0d-4225-86b2-0a1e864b7ca3",
+    "filterDefinitionTemplate": "",
+    "iconUrl": "https://sales-cloud-jbint-events.s7.marketingcloudapps.com/events/SalesforceData/images/SF-Event-Icon.svg",
+    "arguments": {
+        "serializedObjectType": 0,
+        "useHighWatermark": false,
+        "criteria": ""
+    },
+    "configurationArguments": {
+        "applicationExtensionKey": "SalesforceObjectTriggerV2",
+        "contactKey": {
+            "relationshipIdName": "Id",
+            "relationshipName": "",
+            "isPolymorphic": false,
+            "referenceObjectName": "Lead"
+        },
+        "contactPersonType": "Lead",
+        "evaluationCriteriaSummary": "Updated;",
+        "eventDataConfig": {
+            "objects": [
+                {
+                    "dePrefix": "Lead:",
+                    "isPolymorphic": false,
+                    "relationshipName": "",
+                    "referenceObject": "",
+                    "relationshipIdName": "",
+                    "fields": [
+                        "Email",
+                        "HasOptedOutOfEmail",
+                        "Id"
+                    ]
+                }
+            ]
+        },
+        "eventDataSummary": [
+            "Lead:Email",
+            "Lead:HasOptedOutOfEmail",
+            "Lead:Id"
+        ],
+        "objectAPIName": "Lead",
+        "passThroughArgument": {
+            "fields": {
+                "ContactKey": "Lead:Id",
+                "Email": "Lead:Email",
+                "HasOptedOutOfEmail": "Lead:HasOptedOutOfEmail"
+            }
+        },
+        "primaryObjectFilterCriteria": {
+            "operand": "AND",
+            "conditions": [
+                {
+                    "_length": 1300,
+                    "dataType": "string",
+                    "fieldName": "LeadID_18__c",
+                    "folderId": "Lead-Lead",
+                    "id": "Lead-Lead-LeadID_18__c",
+                    "isPolymorphic": false,
+                    "name": "Lead ID 18",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "Lead",
+                    "relationshipIdName": "",
+                    "relationshipName": "",
+                    "scale": 0,
+                    "text": "Lead ID 18",
+                    "value": "00Q2y000006NwPKEA0"
+                }
+            ]
+        },
+        "primaryObjectFilterSummary": "Lead:LeadID_18__c EQUALS 00Q2y000006NwPKEA0",
+        "relatedObjectFilterCriteria": {
+            "operand": "AND",
+            "conditions": []
+        },
+        "relatedObjectFilterSummary": "",
+        "salesforceTriggerCriteria": "Updated",
+        "version": "3.0",
+        "whoToInject": "Lead ID (Lead)"
+    },
+    "metaData": {
+        "criteriaDescription": "",
+        "scheduleState": "No Schedule"
+    },
+    "interactionCount": 1,
+    "isVisibleInPicker": false,
+    "category": "Event",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false
+}

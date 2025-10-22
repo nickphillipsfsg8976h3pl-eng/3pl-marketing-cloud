@@ -1,0 +1,42 @@
+{
+    "type": "AutomationAudience",
+    "name": "EMEA_B2C_MX0002_ONBOARDING (Copy) (Copy)",
+    "description": "",
+    "createdDate": "2023-05-02T19:27:22.2",
+    "createdBy": "Barbara Rivera",
+    "modifiedDate": "2023-05-02T19:27:22.2",
+    "modifiedBy": "Barbara Rivera",
+    "eventDefinitionKey": "AutomationAud-f16942a3-8420-2028-1424-241cf30ab2c7",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "aa348abb-efab-4fb4-9f4d-361c878657e0",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Trial_Start__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d0855237-d21d-ed11-b846-48df37d68272&quot;}\"><AttributePath RelationshipID=\"1ba98de9-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;+;0;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 3,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Trial_Start__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d0855237-d21d-ed11-b846-48df37d68272&quot;}\"><AttributePath RelationshipID=\"1ba98de9-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;+;0;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+        "useHighWatermark": true,
+        "resetHighWatermark": true
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "scheduleState": "No Schedule",
+        "criteriaDescription": "",
+        "scheduleFlowMode": "automation"
+    },
+    "schedule": {
+        "startDateTime": "2023-04-28T17:30:00",
+        "endDateTime": "2073-04-28T17:30:00",
+        "timeZone": "AUS Eastern Standard Time",
+        "occurrences": 73053,
+        "endType": "EndDate",
+        "frequency": "Hourly",
+        "recurrencePattern": "Interval",
+        "interval": 6
+    },
+    "interactionCount": 0,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false,
+    "r__automation_key": "4d6cd36a-6d46-4b41-a326-52ca5310f4be"
+}

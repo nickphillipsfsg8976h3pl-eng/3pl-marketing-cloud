@@ -1,0 +1,38 @@
+{
+    "name": "freeTrial_DataLookups",
+    "description": "",
+    "key": "60ee974a-ae1f-36cb-bba0-5fed76e8f03b",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2022-04-25T12:30:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=HOURLY;UNTIL=20790606T160000;INTERVAL=4",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "MC_Active-AT-IMPORT",
+                    "r__type": "importFile"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "MC_Purchased-AT-IMPORT",
+                    "r__type": "importFile"
+                }
+            ]
+        }
+    ],
+    "createdName": "Stephan Peniguel",
+    "createdDate": "2022-04-25T02:00:35.033Z",
+    "modifiedName": "Stephan Peniguel",
+    "modifiedDate": "2022-04-25T02:00:59.377Z",
+    "r__folder_Path": "my automations/001_Import"
+}

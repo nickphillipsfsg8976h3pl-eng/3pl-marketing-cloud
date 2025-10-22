@@ -1,0 +1,27 @@
+{
+    "CustomerKey": "0F87A11F-5062-4EB0-B87D-CC238496B84E",
+    "Name": "MailChimp Unsubscribes Auto-suppression List - Log",
+    "Description": "",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "Email Address",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "DateProcessed",
+            "DefaultValue": "GetDate()",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/System/Supression Lists",
+    "c__retentionPolicy": "none"
+}

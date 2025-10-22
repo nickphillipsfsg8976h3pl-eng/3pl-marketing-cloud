@@ -1,0 +1,83 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><script runat="server">
+  
+
+Platform.Load("core", "1.1.1");
+
+
+var qParam = Request.GetQueryStringParameter("q");
+var cParam = Request.GetQueryStringParameter("country");
+var sParam = Request.GetQueryStringParameter("state");
+
+
+
+  var query = "";
+  var country = "";
+  var state = "";
+
+  if (typeof qParam === "string" && qParam.length > 0) {
+    query = qParam.toLowerCase();
+    if (typeof query.trim === "function") query = query.trim();
+  }
+
+  if (typeof cParam === "string" && cParam.length > 0) {
+    country = cParam;
+    if (typeof country.trim === "function") country = country.trim();
+    country = country.toUpperCase();
+  }
+
+  if (typeof sParam === "string" && sParam.length > 0) {
+    state = sParam;
+    if (typeof state.trim === "function") state = state.trim();
+    state = state.toUpperCase();
+  }
+
+
+
+var result = [];
+var seen = {};
+var maxResults = 15;
+
+try {
+    var de = DataExtension.Init("School_Lookup_DE");
+    var rows = de.Rows.Lookup(["Active"], ["True"], 2500);
+
+
+    for (var i = 0; i < rows.length; i++) {
+        if (result.length >= maxResults) break;
+
+        var row = rows[i];
+
+        var name = row["School Name"] || "";
+        var c = row["Country Code"] || "";
+        var s = row["State Code"] || "";
+        var active = row["Active"];
+
+
+        if (!name || seen[name]) continue;
+        var matchesQuery = !query || name.toLowerCase().indexOf(query) !== -1;
+        var matchesCountry = !country || c === country;
+        var matchesState = !state || s === state;
+        var isActive = (active === true || active === "True" || active === "true");
+        if (matchesQuery && matchesCountry && matchesState && isActive) {
+            var label = name;
+            if (s) label += " – " + s;
+            if (c) label += ", " + c;
+
+            result.push({ label: label, value: name });
+            seen[name] = true;
+        }
+
+    }
+
+
+    Write(Stringify(result));
+
+
+
+} catch (e) {
+    Write("❌ ERROR: " + Stringify(e.message) + "<br>");
+}
+</script>
+
+
+</td></tr></table>

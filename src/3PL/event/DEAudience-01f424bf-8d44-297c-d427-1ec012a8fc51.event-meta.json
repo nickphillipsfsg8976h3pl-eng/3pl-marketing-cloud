@@ -1,0 +1,32 @@
+{
+    "type": "EmailAudience",
+    "name": "Testing contact removal filter",
+    "description": "",
+    "createdDate": "2024-08-05T11:56:02.307",
+    "createdBy": "Rinn Gnepper",
+    "modifiedDate": "2024-08-05T12:12:51.297",
+    "modifiedBy": "Rinn Gnepper",
+    "eventDefinitionKey": "DEAudience-01f424bf-8d44-297c-d427-1ec012a8fc51",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "e641892c-4e17-4a3c-968c-7508954854a5",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"Email Addresses.Email Address\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;698e06b8-1b4b-ec11-b838-48df37d68272&quot;}\"><Value><![CDATA[gnepperb@gmail.com]]></Value></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 3,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"Email Addresses.Email Address\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;698e06b8-1b4b-ec11-b838-48df37d68272&quot;}\"><Value><![CDATA[gnepperb@gmail.com]]></Value></Condition></ConditionSet></FilterDefinition>",
+        "useHighWatermark": false
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "scheduleState": "No Schedule",
+        "criteriaDescription": "Email Address does not contain gnepperb@gmail.com",
+        "scheduleFlowMode": "runOnce",
+        "runOnceScheduleMode": "onPublish"
+    },
+    "interactionCount": 2,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 1,
+    "disableDEDataLogging": false,
+    "r__automation_key": "a4dcd4a9-20d9-4ed6-8d93-f18bf3879d1b"
+}

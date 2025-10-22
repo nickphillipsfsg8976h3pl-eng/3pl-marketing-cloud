@@ -1,0 +1,129 @@
+%%[
+
+SET @nocontact = RequestParameter("nocontact")
+SET @tsid = RequestParameter("tsid")
+
+
+IF @nocontact == "1" THEN 
+
+   SET @FirstName = Lookup('AutoTrial- Email Confirmation TS','FirstName','SubscriberKey',@tsid)
+   SET @LastName = Lookup('AutoTrial- Email Confirmation TS','LastName','SubscriberKey',@tsid)
+   SET @Email = Lookup('AutoTrial- Email Confirmation TS','EmailAddress','SubscriberKey',@tsid)
+
+   SET @countryCode = RequestParameter("country")
+   SET @countryName = RequestParameter("selectedCountryName")
+   SET @LeadStatus = "New"
+   SET @LeadCustomerLeadTypeId = "0120I0000019a2jQAA"
+   SET @schoolName = TRIM(RequestParameter("school"))
+   SET @updatemarketinginterest = 'Promotions;Product information;'
+
+   /* create Lead in Salesforce */
+
+    SET @leadId = CreateSalesforceObject("Lead",
+        15,  /* Number of fields specified to add in the Lead record */ 
+
+        "Status", @LeadStatus,
+        "RecordTypeId", @LeadCustomerLeadTypeId,
+        "Territory__c", @LeadTerritory, 
+        "Enquiry_Type__c", "School Trial",
+        "FirstName", @firstName,
+        "LastName", @lastName,
+        "Company", @schoolName,
+        "Phone", @phone,
+        "Title", @jobTitle,
+        "Email", @email,
+        "Marketing_Product_Interest__c", 'Mathletics',
+        "Country__c", @countryName,
+        "CountryCode", @countryCode,
+        "Marketing_Interest__c",@updatemarketinginterest,
+        "Product_Interest__c", 'Mathletics'
+       )
+
+ set @campaignMemberId = CreateSalesforceObject('CampaignMember', 3, 'CampaignId', '7010I000001e0btQAA', 'LeadId', @leadId,'Status','Sent')
+
+ELSE
+
+SET @schoolName = TRIM(RequestParameter("school"))
+SET @ContactId  = RequestParameter("contactid")
+
+
+  IF @schoolName == "Other" THEN
+      
+  Set @rs= RetrieveSalesforceObjects('Contact', 'Email,FirstName,LastName','Id', '=', @ContactId)
+  Set @Email = Field(ROW(@rs,1), 'Email')
+  Set @FirstName = Field(ROW(@rs,1), 'FirstName')
+  Set @LastName = Field(ROW(@rs,1), 'LastName')
+
+   SET @LeadStatus = "New"
+   SET @LeadCustomerLeadTypeId = "0120I0000019a2jQAA"
+   SET @updatemarketinginterest = 'Promotions;Product information;'
+   SET @Description = CONCAT('Existing contact: ','https://3plearning.lightning.force.com/lightning/r/Contact/',@ContactId,'/view')
+   
+
+   /* create Lead in Salesforce */
+
+    SET @leadId = CreateSalesforceObject("Lead",
+        16,  /* Number of fields specified to add in the Lead record */ 
+
+        "Status", @LeadStatus,
+        "RecordTypeId", @LeadCustomerLeadTypeId,
+        "Territory__c", @LeadTerritory, 
+        "Enquiry_Type__c", "School Trial",
+        "FirstName", @firstName,
+        "LastName", @lastName,
+        "Company", @schoolName,
+        "Phone", @phone,
+        "Title", @jobTitle,
+        "Email", @email,
+        "Marketing_Product_Interest__c", 'Mathletics',
+        "Country__c", "Australia",
+        "CountryCode", "AU",
+        "Marketing_Interest__c",@updatemarketinginterest,
+        "Description",@Description,
+        "Product_Interest__c", 'Mathletics'
+       )
+
+set @campaignMemberId = CreateSalesforceObject('CampaignMember', 3, 'CampaignId', '7010I000001e0btQAA', 'LeadId', @leadId,'Status','Sent')
+
+
+      ELSE
+
+
+   /* create Opportunity in Salesforce */
+
+    SET @OpportunityID = CreateSalesforceObject("Opportunity",
+        7,  /* Number of fields specified to add in the Opportunity record */ 
+       "AccountId", @schoolName,
+         "Name", "AutoTrial - TEST",
+          "OwnerId", "00528000000FSgVAAW",
+       "Type", "Cross Sell",
+       "RecordTypeId", "0120I000000TP4J",
+       "StageName", "Trial",
+       "CloseDate", "2019-07-20" 
+       )
+
+
+     /* create Opportunity Contact in Salesforce */
+
+    SET @OpportunityContactsId = CreateSalesforceObject("OpportunityContacts__c",
+        4,  /* Number of fields specified to add in the OpportunityContacts__c record */ 
+      
+       "Account__c", @schoolName,
+         "Contact__c", @ContactId,
+          "Role__c", "Opportunity Contact",
+       "Opportunity__c", @OpportunityID
+
+       )
+    
+ set @campaignMemberId = CreateSalesforceObject('CampaignMember', 3, 'CampaignId', '7010I000001e0btQAA', 'ContactId', @ContactId,'Status','Sent')
+
+        ENDIF
+
+
+
+ENDIF
+
+REDIRECT("https://pages.my.3plearning.com/auto-thankyou/")
+
+
+]%%

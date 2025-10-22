@@ -1,0 +1,175 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!-- START OF PRODUCT STYLING SELECTION --> 
+
+
+
+
+<!-- %%[
+
+VAR @FN, @NAME, @TEMPLATE
+
+set @lookupValue = AttributeValue("ContactFirstName") /* value from attribute or DE column in send context */
+set @RowCount_prof = RowCount(LookupRows("01_Profanity-Check", "Name", @lookupValue))
+
+IF @RowCount_prof == 0 THEN
+SET @FN = AttributeValue("ContactFirstName")
+ELSE
+SET @FN = "there"
+ENDIF
+
+/* START NAMING CONVENTION */
+
+IF ( NOT(Empty(@FN)) AND Length(@FN) >= 1 ) THEN
+SET @NAME = Concat("Hi ", ProperCase(Trim(@FN)), ", ")
+SET @NAME_Y = Concat(ProperCase(Trim(@FN)), ", y")
+SET @NAME_D = Concat(ProperCase(Trim(@FN)), ", d")
+SET @NAME_G = Concat(ProperCase(Trim(@FN)), ", g")
+SET @NAME_P = Concat(ProperCase(Trim(@FN)), ", p")
+SET @NAME_H = Concat(ProperCase(Trim(@FN)), ", h")
+SET @NAME_A = Concat(ProperCase(Trim(@FN)), ", a")
+SET @NAME_E = Concat(ProperCase(Trim(@FN)), ", e")
+SET @NAME_T = Concat(ProperCase(Trim(@FN)), ", t")
+SET @NAME_I = Concat(ProperCase(Trim(@FN)), ", i")
+SET @NAME_S = Concat(ProperCase(Trim(@FN)), ", s")
+SET @NAME_J = Concat(ProperCase(Trim(@FN)), ", j")
+SET @NAME_O = Concat(ProperCase(Trim(@FN)), ", o")
+
+
+ELSE
+SET @NAME = "Hi there, "
+SET @NAME_Y = "Y"
+SET @NAME_D = "D"
+SET @NAME_G = "G"
+SET @NAME_P = "P"
+SET @NAME_H = "H"
+SET @NAME_A = "A"
+SET @NAME_E = "E"
+SET @NAME_T = "T"
+SET @NAME_I = "I"
+SET @NAME_S = "S"
+SET @NAME_J = "J"
+SET @NAME_O = "O"
+
+ENDIF
+
+IF ( NOT(Empty(@FN)) AND Length(@FN) >= 1 ) THEN
+SET @NONAME = Concat(ProperCase(Trim(@FN)),",")
+
+ELSE
+SET @NONAME = ""
+ENDIF
+/* END NAMING CONVENTION */
+
+
+]%% 
+-->
+<!-- START OF PRODUCT STYLING SELECTION --> 
+
+<!--
+%%[
+SET @TEMPLATE = "3P"
+IF @TEMPLATE == "MX" THEN
+        SET @BG_BRAND = "#FFFFFF"
+        SET @BG_BRAND_2 = "#FFFFFF"
+        SET @button_color = "#1981C4"
+        SET @H1_COLOR = "#1981C4"
+        SET @H3_INLINE_COLOR = "#1981C4"
+        SET @PRODUCT_LOGO = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/b5c88b13-45c4-4d4d-994d-9824e264d3c7.jpg"
+        SET @Logo_Height = "40"
+        SET @PRODUCT_ALT = "MATHLETICS LOGO" 
+        SET @PRODUCT_URL = "https://knowledgebase.mathletics.com/?utm_source=email&utm_medium=email&utm_campaign=Global_Retention_BacktoSchool"
+             ELSEIF @TEMPLATE == "3P" THEN
+        SET @BG_BRAND = "#FFFFFF"
+        SET @BG_BRAND_2 = "#FFFFFF"
+        SET @button_color = "#5FAD6E"
+        SET @H1_COLOR = "#5FAD6E"
+        SET @H2 = "#5A969C"
+        SET @H3_INLINE_COLOR = "#4E5C67"
+        SET @PRODUCT_LOGO = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/4efa20c6-8ad4-448b-a37c-d1b457fe1210.gif"
+        SET @Logo_Height = "40"
+        SET @PRODUCT_ALT = "3P LOGO" 
+        SET @PRODUCT_URL = "https://www.3plearning.com/"
+              ELSEIF @TEMPLATE == "SS" THEN
+        SET @BG_BRAND = "#FFFFFF"
+        SET @BG_BRAND_2 = "#FFFFFF"
+        SET @button_color = "#FA4D16"
+        SET @H1_COLOR = "#FA4D16"
+        SET @H2 = "#4E5C67"
+        SET @H3_INLINE_COLOR = "#FA4D16"
+        SET @PRODUCT_LOGO = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/9db1f18d-af65-4f68-9932-c248907b4070.png"
+        SET @Logo_Height = "40"
+        SET @PRODUCT_ALT = "3P LOGO" 
+        SET @PRODUCT_URL = "https://www.3plearning.com/"
+ELSEIF @TEMPLATE == "WF" THEN
+        SET @BG_BRAND = "#FFFFFF"
+        SET @BG_BRAND_2 = "#FFFFFF"
+        SET @button_color = "#5C146A"
+        SET @H1_COLOR = "#5C146A"
+        SET @H2 = "#4E5C67"
+        SET @H3_INLINE_COLOR = "#65006E"
+        SET @PRODUCT_LOGO = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/6692ca37-a73c-4914-9c0b-8c90fa158d1c.png"
+        SET @Logo_Height = "40"
+        SET @PRODUCT_ALT = "3P LOGO" 
+        SET @PRODUCT_URL = "https://sso.readingeggs.com/login?client_id=86a60ec37df894585cb5098bce46841a7e618f93&idp=d0797975a160eeec142b30cd3705fe6ee3eafec9&redirect_uri=https%3A%2F%2Fteacher.wordflyers.com%2Foauth%2Flogin%3Fidp%3Dd0797975a160eeec142b30cd3705fe6ee3eafec9%26scope%3Dblake&response_type=code&scope=blake&state=e87100004509bf8e44502fbd8bee1c85871c8320aa3bb641"
+         ELSEIF @TEMPLATE == "RE" THEN
+        SET @BG_BRAND = "#FFFFFF"
+        SET @BG_BRAND_2 = "#FFFFFF"
+        SET @button_color = "#23B0E6"
+        SET @H1_COLOR = "#CA338C"
+        SET @H2 = "#4E5C67"
+        SET @H3_INLINE_COLOR = "#CA338C"
+        SET @PRODUCT_LOGO = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/172c30c2-a57c-4cf1-a717-45f900370824.png"
+        SET @Logo_Height = "40"
+        SET @PRODUCT_ALT = "3P LOGO" 
+        SET @PRODUCT_URL = "https://www.3plearning.com/"
+            ELSEIF @TEMPLATE == "MS" THEN
+        SET @BG_BRAND = "#FFFFFF"
+        SET @BG_BRAND_2 = "#FFFFFF"
+        SET @button_color = "#74457A"
+        SET @H1_COLOR = "#74457A"
+        SET @H2 = "#4E5C67"
+        SET @H3_INLINE_COLOR = "#74457A"
+        SET @PRODUCT_LOGO = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/bc051573-cdb2-4a94-adf6-49282c1d23b9.png"
+        SET @Logo_Height = "40"
+        SET @PRODUCT_ALT = "3P LOGO" 
+        SET @PRODUCT_URL = "https://www.3plearning.com/"
+              ELSE 
+        SET @BG_BRAND = "#FFFFFF"
+        SET @BG_BRAND_2 = "#FFFFFF"
+        SET @button_color = "#EF8800"
+        SET @H1_COLOR = "#109E86"
+        SET @H3_INLINE_COLOR = "#109E86"        
+        SET @PRODUCT_LOGO = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/e27c8127-0e9e-4dfc-85b8-717eaba828d0.png"
+        SET @Logo_Height = "40"
+        SET @PRODUCT_ALT = "READIWRITER LOGO" 
+        SET @PRODUCT_URL = "https://www.3plearning.com/software/readiwriter"
+     ENDIF
+]%%
+ 
+-->
+<!-- START OF FOOTER ADDRESS LOCATION --> 
+
+<!--
+      %%[
+SET @COM_COUNTRY = AttributeValue("ContactLocale")
+
+      IF EMPTY (@COM_COUNTRY) THEN
+      SET @COM_COUNTRY = "Australia" 
+      SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+      ElSEIF @COM_COUNTRY == "New Zealand" OR @COM_COUNTRY == "NZ" THEN
+        SET @ADDRESS = "Unit 1B, 62 Paul Matthews Drive, North Harbour, Auckland, New Zealand"
+      ElSEIF @COM_COUNTRY == "Australia" OR @COM_COUNTRY == "AU" THEN
+        SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+      ELSEIF @COM_COUNTRY == "United States" OR @COM_COUNTRY == "US" THEN
+        SET @ADDRESS = "37 W 26th St Suite 201, NEW YORK, NY 10010-1144, United States"
+      ELSEIF @COM_COUNTRY == "Canada" OR @COM_COUNTRY == "CA" THEN
+        SET @ADDRESS = "Suite 1100, 550 11th Ave SW, Calgary, AB T2R 1M7"
+       ELSEIF @COM_COUNTRY == "United Kingdom" OR @COM_COUNTRY == "UK" THEN
+        SET @ADDRESS = "4th Floor, Bull Wharf, Redcliff Street, Bristol, BS1 6QR"
+       ELSEIF @COM_COUNTRY == "Ireland" OR @COM_COUNTRY == "IR" THEN
+        SET @ADDRESS = "4th Floor, Bull Wharf, Redcliff Street, Bristol, BS1 6QR"
+       ELSE
+        SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+     ENDIF
+]%%
+ 
+--></td></tr></table>

@@ -1,0 +1,47 @@
+{
+    "name": "Refresh Data Views",
+    "description": "",
+    "key": "58ba5442-abb3-76c5-63ae-ff9f6ec34e1b",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2023-06-30T12:47:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=HOURLY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "GET ContactsWithSubscriptions_Stagin"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "GET ContactsWithSubscriptions"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "GET ContactsWithSubscriptions Existi"
+                }
+            ]
+        }
+    ],
+    "createdName": "Andrew McLeod",
+    "createdDate": "2023-06-29T05:21:04.083Z",
+    "modifiedName": "Andrew McLeod",
+    "modifiedDate": "2023-09-14T01:34:06.63Z",
+    "r__folder_Path": "my automations/002_SystemViews"
+}

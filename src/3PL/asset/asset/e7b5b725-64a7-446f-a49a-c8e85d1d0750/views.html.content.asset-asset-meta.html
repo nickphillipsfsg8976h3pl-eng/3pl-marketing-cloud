@@ -1,0 +1,94 @@
+<script runat="server">
+Platform.Load("Core","1.1.5");
+
+function respond(obj){
+  Platform.Response.ContentType = "application/json";
+  Platform.Response.Write(Platform.Function.Stringify(obj));
+  Platform.Response.End();
+}
+
+try {
+  if (Platform.Request.Method == "GET") {
+    respond({ ok:true, info:"API alive. POST uploaderName & jsonData." });
+  }
+
+  if (Platform.Request.Method == "POST") {
+    var uploader = Platform.Request.GetFormField("uploaderName");
+    var jsonData = Platform.Request.GetFormField("jsonData");
+    if (!jsonData) respond({ success:false, error:"jsonData missing" });
+
+    var data;
+    try {
+      data = Platform.Function.ParseJSON(jsonData);
+      if (!data || !data.length) respond({ success:false, error:"No rows parsed" });
+    } catch (eParse) {
+      respond({ success:false, error:"JSON parse failed: " + String(eParse) });
+    }
+
+    var de = DataExtension.Init("F9E77BDC-3393-4AC5-836D-A32579A8F518"); // <-- your DE key
+
+    function strip(o){
+      var x={};
+      for (var k in o){ var v=o[k];
+        if (!(v===""||v===null||typeof v==="undefined")) x[k]=v;
+      }
+      return x;
+    }
+
+    var submittedDate = Platform.Function.FormatDate(new Date(),"yyyy-MM-dd HH:mm:ss");
+    var results = [], inserted = 0;
+
+    for (var i=0;i<data.length;i++){
+      var r = data[i];
+      try {
+        var addObj = strip({
+          FirstName: r["FirstName"],
+          LastName: r["LastName"],
+          Email: r["Email"],
+          Phone: r["Phone"],
+          Country: r["Country"],
+          State: r["State"],
+          PostalCode: r["Zip/Postal Code"],
+          Title: r["Title"],
+          Job_Function__c: r["Job Function"],
+          Enquiry_Type__c: r["Enquiry Type"],
+          Company: r["School Name"],
+          Grade_Level__c: r["Grade Level"],
+          No_of_licences__c: r["No of licences"],
+          Territory__c: r["Territory"],
+          Campaign_Name__c: r["Campaign Name"],
+          Campaign_Code__c: r["Campaign Code"],
+          LeadSource: r["Lead Status 1"],
+          Status: r["Lead Stage"],
+          Description: r["Description"],
+          Marketing_Interest__c: r["Marketing Interest"],
+          Product_Interest__c: r["Product Interest"],
+          Marketing_Product_Interest__c: r["Marketing Product Interest"],
+          Street: r["Street"],
+          City: r["City"],
+          LeadIdCreated: r["Lead Id"],
+          Uploader: uploader,
+          SubmittedDate: submittedDate,
+          ResultStatus: "Success",
+          IsProcessed: false
+        });
+
+        de.Rows.Add(addObj);
+        inserted++;
+        results.push("Row " + (i+1) + ",Success");
+      } catch (eRow) {
+        results.push("Row " + (i+1) + ",Error: " + String(eRow).replace(/[\r\n]+/g," "));
+      }
+    }
+
+    var csv = "Row,Status\r\n" + results.join("\r\n");
+    respond({ success:true, inserted:inserted, total:data.length, csv:csv });
+  }
+
+  // fallback
+  respond({ ok:true, info:"Use GET (alive) or POST (insert)." });
+
+} catch (eTop) {
+  respond({ success:false, error:"Top-level: " + String(eTop) });
+}
+</script>

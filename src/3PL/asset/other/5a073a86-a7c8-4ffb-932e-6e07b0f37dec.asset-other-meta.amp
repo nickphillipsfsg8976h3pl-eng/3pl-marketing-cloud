@@ -1,0 +1,68 @@
+%%[
+
+ /*
+ -
+ - This snippet is a part of the 'Dynamic Sender Profiles' setup.
+ - Note, there is a snippet for 'FROM NAME' and a snippet for 'FROM EMAIL' 
+ - used to create this functionality.
+ -
+ - To use this, please include a 'Username' field in your sendable DE
+ - and select the 'Dynamic Sender Profiles' sender profile in your email activities
+ - when peforming your next send. 
+ -
+ */
+ 
+ /*============================================================================*/
+ 
+set @UserName = AttributeValue("UserName")
+
+/* Initialize variables */
+set @First_NAME = ""
+set @Last_NAME = ""
+set @FROM_NAME = ""
+
+/* Try to retrieve the 'From Name' from AMER dynamic seller profile DE */
+set @First_NAME = Lookup('Dynamic Sender Profile - AMER seller profiles','First Name','UserName', @UserName)
+set @Last_NAME = Lookup('Dynamic Sender Profile - AMER seller profiles','Last Name','UserName', @UserName)
+if not empty(@First_NAME) or not empty(@Last_NAME) then
+  set @FROM_NAME = Concat(@First_NAME, ' ', @Last_NAME)
+endif
+
+/* Check other regions if AMER does not have complete data */
+if empty(@FROM_NAME) then
+  set @First_NAME = Lookup('Dynamic Sender Profile - APAC seller profiles','First Name','UserName', @UserName)
+  set @Last_NAME = Lookup('Dynamic Sender Profile - APAC seller profiles','Last Name','UserName', @UserName)
+  if not empty(@First_NAME) or not empty(@Last_NAME) then
+    set @FROM_NAME = Concat(@First_NAME, ' ', @Last_NAME)
+  endif
+endif
+
+if empty(@FROM_NAME) then
+  set @First_NAME = Lookup('Dynamic Sender Profile - EMEA seller profiles','First Name','UserName', @UserName)
+  set @Last_NAME = Lookup('Dynamic Sender Profile - EMEA seller profiles','Last Name','UserName', @UserName)
+  if not empty(@First_NAME) or not empty(@Last_NAME) then
+    set @FROM_NAME = Concat(@First_NAME, ' ', @Last_NAME)
+  endif
+endif
+
+if empty(@FROM_NAME) then
+  set @First_NAME = Lookup('Dynamic Sender Profile - SA seller profiles','First Name','UserName', @UserName)
+  set @Last_NAME = Lookup('Dynamic Sender Profile - SA seller profiles','Last Name','UserName', @UserName)
+  if not empty(@First_NAME) or not empty(@Last_NAME) then
+    set @FROM_NAME = Concat(@First_NAME, ' ', @Last_NAME)
+  endif
+endif
+
+/* Default From Name if none found */
+if empty(@FROM_NAME) then
+  set @FROM_NAME = '3P Learning Team'
+endif
+
+/* Output the result */
+
+OutputLine(Concat(@FROM_NAME))
+ /*============================================================================*/
+
+]%%
+
+

@@ -1,0 +1,61 @@
+%%[
+/* Get all form fields value */
+  SET @firstName = TRIM(RequestParameter("first-name"))
+  SET @LastName = TRIM(RequestParameter("last-name"))
+  SET @email = TRIM(RequestParameter("email"))
+ SET @SubscriberKey = SHA256('@email','UTF-8')
+
+
+/* Trigger Send Object Creation */
+            SET @ts = CreateObject("TriggeredSend")
+            SET @tsDef = CreateObject("TriggeredSendDefinition")
+            SET @ts_subkey = @email
+
+/* Set the External Key of the Trigger Send Definition */
+            SetObjectProperty(@tsDef, "CustomerKey", "55941")
+            SetObjectProperty(@ts, "TriggeredSendDefinition", @tsDef)
+
+/* Create the Subscriber Object */
+            SET @ts_sub = CreateObject("Subscriber")
+            SetObjectProperty(@ts_sub, "EmailAddress", @email)
+
+
+/* Set SubscriberKey to EmailAddress */
+            SetObjectProperty(@ts_sub, "SubscriberKey", @ts_subkey)
+
+
+/* Create and Set Attributes */
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "SubscriberKey")
+            SetObjectProperty(@attr, "Value",  @ts_subkey)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "EmailAddress")
+            SetObjectProperty(@attr, "Value", @email)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+            SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "FirstName")
+            SetObjectProperty(@attr, "Value", @firstName)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+
+   SET @attr = CreateObject("Attribute")
+            SetObjectProperty(@attr, "Name", "LastName")
+            SetObjectProperty(@attr, "Value", @LastName)
+            AddObjectArrayItem(@ts_sub, "Attributes", @attr)
+   
+/* Add all Attributes into Array */
+            AddObjectArrayItem(@ts, "Subscribers", @ts_sub)
+
+/*Complete the Web API call to trigger send */
+            SET @ts_statusCode = InvokeCreate(@ts, @ts_statusMsg, @errorCode)
+
+/* Raise Error if Trigger fails */
+            IF @ts_statusCode != "OK" THEN
+               RaiseError(@ts_statusMsg, 0, @ts_statusCode, @errorCode)
+            ENDIF 
+
+
+REDIRECT("https://pages.my.3plearning.com/auto-thankyou/")
+]%%

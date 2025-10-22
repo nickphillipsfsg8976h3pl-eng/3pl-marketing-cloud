@@ -1,0 +1,73 @@
+{
+    "name": "Advertising Audience Refresh",
+    "description": "",
+    "key": "547fa03d-1ad2-a4cb-6eb6-85cab9a4eb1d",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2024-10-07T22:15:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "F7D91DBF-EB5F-418D-B791-C25CF18FDC18"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "3BED49FE-C2F6-4EE8-9044-6EEEF95D3ECF"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "DC29FB79-5E68-4F3B-B51C-CDAD9CC92552"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "6DCEE55F-3EE9-471A-BEED-607DCE21CB7F"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "F16D37CC-6A82-47B1-93B7-2127FB4CCE6B"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "F81D0F8B-9F41-4F08-B974-EE475101841A"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "2F4C2ACC-9E13-4077-8474-136BF77322EA"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "A4C571AF-E906-4C1E-A050-C655AB4C4C40"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2024-10-07T10:48:26.167Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2024-12-02T12:30:40.34Z",
+    "pausedName": "Vijay Kapadam",
+    "pausedDate": "2024-12-02T12:15:39.697Z",
+    "notifications": [
+        {
+            "email": [
+                "vijay.kapadam@partners.3plearning.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/Advertising Audience"
+}

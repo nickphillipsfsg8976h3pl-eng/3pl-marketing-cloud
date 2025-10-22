@@ -1,0 +1,84 @@
+{
+    "name": "APAC_BTS_FY25_NB_MarketingProspect&LostCustomer",
+    "description": "",
+    "key": "5940a93d-1d7d-bfb7-6146-ba52cb99109e",
+    "type": "scheduled",
+    "status": "Ready",
+    "schedule": {
+        "startDate": "2025-02-11T08:08:00",
+        "endDate": "2025-02-11T08:08:00",
+        "icalRecur": "FREQ=DAILY;COUNT=1;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "753CA429-C320-41B4-ABF6-F6582961045A"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "DF4D1971-F878-45CD-BA40-FB3F0EB4BC3A"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "79CBD23C-4EA5-47C7-B6B6-1AE236DFBF2E"
+                },
+                {
+                    "r__type": "query",
+                    "r__key": "F031677F-3D56-4404-AE51-FA5E67192D93"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_RE0134_BTS_FY25_NB_MarketingProspect",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_MX0141_BTS_FY25_NB_LostCustomers",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_RE0134_BTS_FY25_NB_LostCustomers",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "activities": [
+                {
+                    "name": "APAC_MX0141_BTS_FY25_NB_MarketingPropsect",
+                    "r__type": "journeyEntry"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2025-02-06T23:39:46.077Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2025-02-10T11:48:51.003Z",
+    "pausedName": "Vijay Kapadam",
+    "pausedDate": "2025-02-10T11:36:19.897Z",
+    "r__folder_Path": "my automations"
+}

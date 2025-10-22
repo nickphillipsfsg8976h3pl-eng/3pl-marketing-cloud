@@ -1,0 +1,24 @@
+{
+    "name": "CSC_UnsubscribeRequests",
+    "description": "",
+    "key": "25993a03-64bd-ab3b-0d02-8b5997ed983b",
+    "type": "scheduled",
+    "status": "Ready",
+    "schedule": {},
+    "steps": [
+        {
+            "name": "Finds all subscriberKeys associated with emails from CSC DE and unsubscribes them from SFMC and in CRM",
+            "activities": [
+                {
+                    "r__type": "script",
+                    "r__key": "bad89e0f-cf85-4230-a74d-e8c3b484d7e6"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2023-11-09T08:01:22.813Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2024-04-22T04:13:25.51Z",
+    "r__folder_Path": "my automations/009_CustomerSupport"
+}

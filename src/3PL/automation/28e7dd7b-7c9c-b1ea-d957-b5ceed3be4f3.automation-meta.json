@@ -1,0 +1,85 @@
+{
+    "name": "Email Address Change in All subscribers",
+    "description": "",
+    "key": "28e7dd7b-7c9c-b1ea-d957-b5ceed3be4f3",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2024-07-08T01:30:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=WEEKLY;UNTIL=20790606T160000;INTERVAL=1;BYDAY=MO",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "9283873E-0A62-49EB-AADD-2402A1B9645E"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "52909AE3-26E9-4706-8A39-7880BFED4E25"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "dataExtract",
+                    "r__key": "A9D4785E-6C43-4563-BEF0-9D800A934483"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "fileTransfer",
+                    "r__key": "7032f6d8-c3c2-4a1e-ac04-072e5a672597"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "importFile",
+                    "r__key": "17C229BC-B6B2-4A7F-B648-D308F5C50D20"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "6EEDCD78-5B7A-41D1-819C-EF30D3ACEA0E"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2023-12-07T21:28:25.263Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2024-07-04T01:47:10.217Z",
+    "pausedName": "Vijay Kapadam",
+    "pausedDate": "2024-07-04T01:49:58.517Z",
+    "notifications": [
+        {
+            "email": [
+                "vijay.kapadam@partners.3plearning.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/009_CustomerSupport"
+}

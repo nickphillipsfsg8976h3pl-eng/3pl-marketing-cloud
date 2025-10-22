@@ -1,0 +1,85 @@
+{
+    "name": "AMER - DO NOT Contact - Districts - auto-suppression list - Automation",
+    "description": "",
+    "key": "d5b2ae53-323d-0fe1-c750-6edee69e40b8",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2024-08-22T01:15:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "C8EA7C21-2503-4920-8057-EC2A42D87472"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "verification",
+                    "r__key": "d5b2ae53-323d-0fe1-c750-6edee69e40b8__s2.1"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "dataExtract",
+                    "r__key": "D0BB2BFC-3CE4-48F6-9280-44E54ABF5A2E"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "fileTransfer",
+                    "r__key": "6f7d27f1-84b8-4530-8e19-494c258aae79"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "importFile",
+                    "r__key": "B6F8B8AB-415F-47FB-BA9D-C0ACDDE8545F"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "CFDB070A-A791-4411-B59A-3DDDA9BB45FF"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2023-11-18T08:31:51.98Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2025-08-28T09:37:44.347Z",
+    "pausedName": "Vijay Kapadam",
+    "pausedDate": "2025-08-28T09:37:27.82Z",
+    "notifications": [
+        {
+            "email": [
+                "vijay.kapadam@partners.3plearning.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/Adhoc"
+}

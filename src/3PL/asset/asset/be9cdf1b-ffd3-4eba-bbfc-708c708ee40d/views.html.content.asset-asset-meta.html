@@ -1,0 +1,155 @@
+<!doctype html>
+  <!-- %%[ 
+
+VAR @Campaign
+SET @Campaign = Requestparameter('cid')
+SET @UTMcontent = Requestparameter('utm_content')
+SET @UTMcampaign = Requestparameter('utm_campaign')
+SET @UTMmedium = Requestparameter('utm_medium')
+SET @UTMsource = Requestparameter('utm_source')
+SET @UTMterm = Requestparameter('utm_term')
+SET @Product = RequestParameter('pid')
+SET @enquiry = RequestParameter('eid')
+SET @Redirect = RequestParameter('rid')
+
+IF @Product == "Mathletics" OR @Product == "mathletics" THEN
+SET @forms_css = "Form.css" 
+ELSE
+SET @forms_css = "Form_WF.css"
+ENDIF
+
+ ]%% -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Trial Survey Home Page">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon" />
+  <!-- For iPhone -->
+  <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
+  <!-- For iPhone 4 Retina display -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
+  <!-- For iPad -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
+  <!-- For iPad Retina display -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+  
+  <title>3PLearning</title>
+  
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://marketing-cdn.3plearning.com/uploads/dev/assets/%%=v(@forms_css)=%%">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+  <!-- FONT AWESOME -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+%%[ 
+IF @Product == "Mathletics" OR @Product == "mathletics" THEN
+]%%
+<script type="text/javascript" src="https://pages.my.3plearning.com/bof_js_mathletics/"></script>
+%%[ ELSE ]%%
+<script type="text/javascript" src="https://pages.my.3plearning.com/bof_js/"></script>
+%%[ ENDIF ]%%
+   <style type="text/css">
+  
+ input[type=email], select {
+    background-color: #DBE3E9;
+    border: 1px solid #758088;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #272727;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    margin: 8px 0px 8px 0px;
+    padding: 11px;
+    resize: vertical;
+    width: 100%;
+} 
+ input[type=text], select {
+    background-color: #DBE3E9;
+    border: 1px solid #758088;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #4e5c67;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    margin: 8px 0px 8px 0px;
+    padding: 11px;
+    resize: vertical;
+    width: 100%;
+}
+ 
+ </style>
+</head>
+
+
+<body>
+  <div class="container">
+    <form id="registerTrial" action="https://pages.my.3plearning.com/page.aspx?QS=c76003443ff9837d04e962338bd25a14afda3013ec86bb71858bbdfc6a014ef8" method="POST" onsubmit="myButton.disabled = true; return true;" target="_parent" >
+   <input type="hidden" id="selectedCountryName" name="selectedCountryName" value="">
+   <input type="hidden" id="selectedStateName" name="selectedStateName" value="">
+                <input type="hidden" id="cid" name="cid" value="%%=v(@Campaign)=%%">
+
+                <input type="hidden" id="utmcontent" name="utmcontent" value="%%=v(@UTMcontent)=%%">
+                <input type="hidden" id="utmcampaign" name="utmcampaign" value="%%=v(@UTMcampaign)=%%">
+                <input type="hidden" id="utmmedium" name="utmmedium" value="%%=v(@UTMmedium)=%%">
+                <input type="hidden" id="utmsource" name="utmsource" value="%%=v(@UTMsource)=%%">
+                <input type="hidden" id="utmterm" name="utmterm" value="%%=v(@UTMterm)=%%">
+
+                <input type="hidden" id="pid" name="pid" value="%%=v(@Product)=%%">
+                <input type="hidden" id="eid" name="eid" value="%%=v(@enquiry)=%%">
+        <input type="hidden" id="redirect" name="rid" value="%%=v(@Redirect)=%%">
+        
+  <div class="row">
+        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+         <label for="required">All fields are required.  </label>
+    </div>
+  </div>
+
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <!--<label for="first-name">First Name</label>-->
+            <input type="text" id="first-name" name="first-name" placeholder="First Name" required="required" maxlength="40">
+    </div>
+  </div>
+  
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <!--<label for="e-mail">E-mail Address</label>-->
+            <input type="email" id="email" required name="email" placeholder="Email " oninvalid="setCustomValidity('Please enter a valid email address')" oninput="this.setCustomValidity('')">
+    </div>
+  </div>
+
+  
+
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <label class="tc">
+     <input type="checkbox" id="tc-agree" name="tc-agree" value="agree" required>&nbsp;I agree to 3P Learning's <a target="_parent" href="https://www.3plearning.com/terms/">terms and conditions</a>.
+            </label>
+    </div>
+  </div>
+  
+  
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <input type="submit" name="myButton" value="Submit" class="btn btn-primary">
+    </div>
+  </div>
+
+ <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+   <label id="term-warning" style="color: red;" class="initHidden">You need read and agree 3P Learning's terms and conditions before submit</label>
+    </div>
+  </div>
+  
+      </div>
+    </form>
+  </div>
+</body>
+</html>

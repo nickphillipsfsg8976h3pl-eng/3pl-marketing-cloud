@@ -1,0 +1,372 @@
+%%[
+  set @DebugEmail = "" /* Leave blank to process all */
+
+  if not empty(@DebugEmail) then
+    set @rows = LookupRows("023_Lead_Submission_StudentsParents_Log", "Email", @DebugEmail)
+  else
+    set @rows = LookupOrderedRows("023_Lead_Submission_StudentsParents_Log", 0, "SubmittedDate DESC", "IsProcessed", "True")
+  endif
+  
+  set @recordCount = RowCount(@rows)
+  set @debug = false
+
+  if @recordCount > 0 then
+
+    for @r = 1 to @recordCount do
+
+
+      set @mainrow = Row(@rows, @r)
+      set @SubmissionId  = Field(@mainrow, "SubmissionId")
+      set @SubmittedDate = Field(@mainrow, "SubmittedDate")
+      set @jsonStr       = Field(@mainrow, "SubmittedData")
+      set @ErrorCode     = Field(@mainrow, "ErrorCode")
+      set @ErrorDetails  = Field(@mainrow, "ErrorDetails")
+      
+      set @IsProcessed   = Field(@mainrow, "IsProcessed")
+      
+      if DateDiff(@SubmittedDate,Now(), "D") <= 1 then
+
+      /* Parse flat JSON object */
+
+      set @cleanJson = Replace(@jsonStr, ':null', ':""')
+      set @cleanJson = Replace(@cleanJson, ': null', ':""')
+
+      /* Build RowSet from cleaned JSON */
+      set @jsonParsed = BuildRowSetFromJSON(@cleanJson, "$.rows.[*]", 1)
+
+      
+
+      if RowCount(@jsonParsed) > 0 then
+          set @row = Row(@jsonParsed, 1)
+
+          set @FormName             = IIF(IndexOf(@jsonStr, "FormName") > 0, Field(@row, "FormName"), "")
+          set @Form                 = IIF(IndexOf(@jsonStr, "Form") > 0, Field(@row, "Form"), "")
+          set @FirstName            = IIF(IndexOf(@jsonStr, "FirstName") > 0, Field(@row, "FirstName"), "")
+          set @LastName             = IIF(IndexOf(@jsonStr, "LastName") > 0, Field(@row, "LastName"), "")
+          set @Email                = IIF(IndexOf(@jsonStr, "Email") > 0, Field(@row, "Email"), "")
+          set @Referrer             = IIF(IndexOf(@jsonStr, "Referrer") > 0, Field(@row, "Referrer"), "")
+          set @Phone                = IIF(IndexOf(@jsonStr, "Phone") > 0, Field(@row, "Phone"), "")
+          set @Country              = IIF(IndexOf(@jsonStr, "Country") > 0, Field(@row, "Country"), "")
+          set @School               = IIF(IndexOf(@jsonStr, "School") > 0, Field(@row, "School"), "")
+          set @State                = IIF(IndexOf(@jsonStr, "State") > 0, Field(@row, "State"), "")
+          set @JobTitle             = IIF(IndexOf(@jsonStr, "JobTitle") > 0, Field(@row, "JobTitle"), "")
+          set @GradeLevel           = IIF(IndexOf(@jsonStr, "GradeLevel") > 0, Field(@row, "GradeLevel"), "")
+          set @CampaignId           = IIF(IndexOf(@jsonStr, "CampaignId") > 0, Field(@row, "CampaignId"), "")
+          set @PostCode             = IIF(IndexOf(@jsonStr, "PostCode") > 0, Field(@row, "PostCode"), "")
+          set @Licenses             = IIF(IndexOf(@jsonStr, "Licenses") > 0, Field(@row, "Licenses"), "")
+          set @ProductInterest      = IIF(IndexOf(@jsonStr, "ProductInterest") > 0, Field(@row, "ProductInterest"), "")
+          set @MathleticsSubscriber = IIF(IndexOf(@jsonStr, "MathleticsSubscriber") > 0, Field(@row, "MathleticsSubscriber"), "")
+          set @Subject              = IIF(IndexOf(@jsonStr, "Subject") > 0, Field(@row, "Subject"), "")
+          set @PID                  = IIF(IndexOf(@jsonStr, "PID") > 0, Field(@row, "PID"), "")
+          set @CID                  = IIF(IndexOf(@jsonStr, "CID") > 0, Field(@row, "CID"), "")
+          set @GCLID                = IIF(IndexOf(@jsonStr, "GCLID") > 0, Field(@row, "GCLID"), "")
+          set @FBCLID               = IIF(IndexOf(@jsonStr, "FBCLID") > 0, Field(@row, "FBCLID"), "")
+          set @MSCLKID              = IIF(IndexOf(@jsonStr, "MSCLKID") > 0, Field(@row, "MSCLKID"), "")
+          set @UTM_Source           = IIF(IndexOf(@jsonStr, "UTM_Source") > 0, Field(@row, "UTM_Source"), "")
+          set @UTM_Medium           = IIF(IndexOf(@jsonStr, "UTM_Medium") > 0, Field(@row, "UTM_Medium"), "")
+          set @UTM_Campaign         = IIF(IndexOf(@jsonStr, "UTM_Campaign") > 0, Field(@row, "UTM_Campaign"), "")
+          set @UTM_Content          = IIF(IndexOf(@jsonStr, "UTM_Content") > 0, Field(@row, "UTM_Content"), "")
+          set @UTM_Term             = IIF(IndexOf(@jsonStr, "UTM_Term") > 0, Field(@row, "UTM_Term"), "")
+          set @TermsAccepted        = IIF(IndexOf(@jsonStr, "TermsAccepted") > 0, Field(@row, "TermsAccepted"), "")
+          set @SubscriberOptIn      = IIF(IndexOf(@jsonStr, "SubscriberOptIn") > 0, Field(@row, "SubscriberOptIn"), "")
+
+
+
+          /* --- Check if 'test' is in name or email --- */
+          set @is_invalid_lead = "false"
+          if indexof(@ErrorCode, "TEST_KEYWORDS") > 0 then
+            set @is_invalid_lead = "true"
+          endif
+
+          /* Additional processing required for lead creation */
+
+          /*Job Function*/
+          set @_JobFunction   = Lookup("JobTitle_Mapping_JobFunction_In_SF", "SF Job Function", "Job Title", @JobTitle)
+          if empty(@_JobFunction) then
+            set @_JobFunction = Lookup("jobTitle_USA_District_Forms", "SF Job Function", "Job Title", @JobTitle)
+          endif
+
+          /*State and Country*/
+          var @_StateName
+          set @countrycode = Lookup("Country_DE","CountryCode","CountryName", @Country)
+          if not empty(@countrycode) then
+            set @rows1        = LookupRows("state","State Code", @State,"Country Code", @countrycode)
+            set @rowCount1    = rowcount(@rows1)
+
+            if @rowCount1 > 0 then
+              for @i = 1 to @rowCount1 do
+
+                set @row1 = row(@rows1, @i) /* get row based on counter */
+                set @_StateName = field(@row1,"State Name")
+              next @i 
+            endif
+          endif
+
+          /*Region and Territory*/
+          set @Region      = Lookup("Country_Region_Mapping", "Region", "Country", @Country)
+          set @_Territory  =""
+          if not empty(@region) then
+            set @_Territory  = IIF(@Region == 'EMEA', 'EME', IIF(@Region == 'APAC', 'APAC', IIF(@Region == 'AMER' or @Region == 'CANADA', 'AMER', '')))
+          endif
+
+          /*Subject*/
+          set @_FormattedSubjects = IIF(Not Empty(@Subject), Concat(Replace(@Subject, ",", ";"), ";"), "")
+
+          /*Campaign Details*/
+
+          var @campaignNameLookup, @campaignCodeLookup, @UTMcampaignIdLookup, @UTMcampaignCodeLookup
+          var @Campaign_Name_Lead, @Campaign_Code, @UTM_Campaign_entry
+
+          /* Primary campaign lookup */
+          if not empty(@CampaignId) then
+            set @campaignNameLookup = Lookup("ENT.Campaign_Salesforce", "Name", "Id", @CampaignId)
+            set @campaignCodeLookup = Lookup("ENT.Campaign_Salesforce", "Campaign_Code__c", "Id", @CampaignId)
+            set @Campaign_Name_Lead = IIF(not empty(@campaignNameLookup), @campaignNameLookup, "NOT-DEFINED")
+            set @Campaign_Code = IIF(not empty(@campaignCodeLookup), @campaignCodeLookup, "NOT-DEFINED")
+          endif
+
+          /* UTM campaign overrides */
+          if @Form != "tof" and @UTM_Campaign!='Organic' then
+            set @UTMcampaignIdLookup = Lookup("ENT.Campaign_Salesforce", "Id", "Name", @UTM_Campaign)
+            set @UTMcampaignCodeLookup = Lookup("ENT.Campaign_Salesforce", "Campaign_Code__c", "Name", @UTM_Campaign)
+            set @Campaign_Name_Lead = @UTM_Campaign           
+            set @Campaign_Code = IIF(not empty(@UTMcampaignCodeLookup), @UTMcampaignCodeLookup, @Campaign_Code)
+          endif
+          
+          if @Form != "tof" and @UTM_Campaign !='Organic' then
+             if not empty(@UTMcampaignCodeLookup) then
+               set @UTM_Campaign_entry= @UTM_Campaign
+             else
+               set @UTM_Campaign_entry= @campaignNameLookup
+             endif
+          endif
+
+          if @UTM_Campaign == 'Organic' then
+            set @UTM_Campaign_entry= @campaignNameLookup
+          endif
+         
+          /* TOF-specific resource campaign mapping */
+          set @region = Lookup("Country_Region_Mapping", "Region", "Country", @Country)
+
+          var @EMEA_CampaignID, @EMEA_CampaignName, @EMEA_CampaignCode
+          var @AMER_CampaignID, @AMER_CampaignName, @AMER_CampaignCode
+          var @APAC_CampaignID, @APAC_CampaignName, @APAC_CampaignCode
+
+          if @form == "tof" then
+
+            if @region == "EMEA" then
+              set @campaign_rows = LookupRows("Resources_Campaign_Mapping", "Global_CampaignID", @CampaignId)
+              set @rowCount = rowcount(@campaign_rows)
+
+              if @rowCount == 1 then
+                var @emailAddress, @firstName, @rank
+                set @row = row(@campaign_rows, 1)
+                set @EMEA_CampaignID   = field(@row, "EMEA_CampaignID")
+                set @EMEA_CampaignName = field(@row, "EMEA_CampaignName")
+                set @EMEA_CampaignCode = field(@row, "EMEA_CampaignCode")
+              endif
+
+              set @Campaign_Name_Lead = IIF(empty(@EMEA_CampaignID), @CampaignId, @EMEA_CampaignID)
+              set @Campaign_Code      = IIF(empty(@EMEA_CampaignCode), @Campaign_Code, @EMEA_CampaignCode)
+              set @pid                = IIF(empty(@EMEA_CampaignID), @pid, "ReadingEggs")
+
+            elseif @region == "AMER" or @region == "CANADA" then
+              set @campaign_rows = LookupRows("Resources_Campaign_Mapping_AMER", "Global_CampaignID", @CampaignId)
+              set @rowCount = rowcount(@campaign_rows)
+
+              if @rowCount == 1 then
+                var @emailAddress, @firstName, @rank
+                set @row = row(@campaign_rows, 1)
+                set @AMER_CampaignID   = field(@row, "AMER_CampaignID")
+                set @AMER_CampaignName = field(@row, "AMER_CampaignName")
+                set @AMER_CampaignCode = field(@row, "AMER_CampaignCode")
+              endif
+
+              set @Campaign_Name_Lead = IIF(empty(@AMER_CampaignID), @CampaignId, @AMER_CampaignID)
+              set @Campaign_Code      = IIF(empty(@AMER_CampaignCode), @Campaign_Code, @AMER_CampaignCode)
+
+            elseif @region == "APAC" then
+              set @campaign_rows = LookupRows("Resources_Campaign_Mapping_APAC", "Global_CampaignID", @CampaignId)
+              set @rowCount = rowcount(@campaign_rows)
+
+              if @rowCount == 1 then
+                var @emailAddress, @firstName, @rank
+                set @row = row(@campaign_rows, 1)
+                set @APAC_CampaignID   = field(@row, "APAC_CampaignID")
+                set @APAC_CampaignName = field(@row, "APAC_CampaignName")
+                set @APAC_CampaignCode = field(@row, "APAC_CampaignCode")
+              endif
+
+              set @Campaign_Name_Lead = IIF(empty(@APAC_CampaignID), @CampaignId, @APAC_CampaignID)
+              set @Campaign_Code      = IIF(empty(@APAC_CampaignCode), @Campaign_Code, @APAC_CampaignCode)
+            endif
+
+            set @UTM_Campaign_entry = IIF(not empty(@Campaign_Name_Lead), @Campaign_Name_Lead, @campaignNameLookup)
+          endif
+          
+          /* Check if campaign name needs lookup */
+          if not empty(@UTM_Campaign_entry) then
+            if Substring(@UTM_Campaign_entry,1,3) == '701' then
+              set @UTM_Campaign_entry = Lookup("ENT.Campaign_Salesforce", "Name", "Id", @UTM_Campaign_entry)
+            endif
+          endif
+
+
+
+          /*Description*/
+          set @LicenseLabel =""
+          if not empty(@Licenses) then
+            set @LicenseLabel      = IIF(@Licenses > 1, 'licenses', 'license')
+          endif
+          if @Form == "quote" and Not Empty(@Licenses) then
+            set @_Description     = Concat("Customer has requested a quote for ", @Licenses, " ", @LicenseLabel, ".")
+          elseif @Form == "trial" then
+            set @_Description     = "Customer has requested a Trial."
+          elseif @Form == "demo" then
+            set @_Description     = "Customer has requested a Demo."
+          elseif @Form == "info" then
+            set @_Description     = "Customer has requested Information."
+          else
+            set @_Description     = "Customer has requested a resource."
+          endif
+
+          /*Enquiry_Type*/
+          if @Form == 'quote' then 
+            set @_Enquiry_Type = 'Quote' 
+          elseif @Form == 'trial' then
+            set @_Enquiry_Type = 'Trial' 
+          elseif @Form == 'demo' then
+            set @_Enquiry_Type = 'Demo'
+          elseif @Form == 'info' then
+            set @_Enquiry_Type = 'Information'  
+          else
+            set @_Enquiry_Type = ''
+          endif
+
+          set @ExistingCustomer =""
+          if not empty(@MathleticsSubscriber) then
+            set @ExistingCustomer = IIF(@MathleticsSubscriber == "Yes", "Yes", "No")
+          endif
+
+          set @errorMessage = ""
+
+          set @PID                     = IIF(not empty(@PID), @PID, @ProductInterest)
+          if not empty(@PID) then
+            set @_Mkt_Product_Interest   = Replace(@PID,"brightpath","Brightpath Writing")
+            set @_Mkt_Product_Interest   = Replace(@_Mkt_Product_Interest,",",";")
+            set @_Product_Interest_c     = Replace(@PID,"brightpath","Brightpath Progress Writing")
+            set @_Product_Interest_c     = Replace(@_Product_Interest_c,",",";")
+            set @PID                     = Replace(@PID,"brightpath","Brightpath Writing")
+            set @PID1                    = Replace(@PID,"Brightpath Writing","Brightpath Progress Writing")
+          endif
+
+
+
+          if @Form == 'tof' then
+            set @LeadStatus = "Marketing Prospect"
+          else
+            set @LeadStatus = "MQL"
+          endif
+
+
+
+          /* 1. Preprocess Variables - Underscored variable names are further transformed*/
+                
+          set @lead_FirstName         = IIF(Not Empty(@FirstName), @FirstName, "")
+          set @lead_LastName          = IIF(Not Empty(@LastName), @LastName, "NA")
+          set @lead_Email             = IIF(Not Empty(@Email), @Email, "xxxx@xxxx.com")
+          set @lead_Phone             = IIF(Not Empty(@Phone), @Phone, "0000000000")
+          set @lead_GradeLevel        = IIF(Not Empty(@GradeLevel), @GradeLevel, "Not Mentioned")
+          set @lead_Title             = IIF(Not Empty(@JobTitle), @JobTitle, "Unknown")          
+          set @lead_Country           = IIF(Not Empty(@Country), @Country, "Australia")          
+          set @lead_PostalCode        = IIF(Not Empty(@PostCode), @PostCode, "0000")
+          set @lead_Company           = IIF(Not Empty(@School), @School, "NA Currently")
+          set @lead_Licenses          = IIF(Not Empty(@Licenses), @Licenses, 0)          
+          set @lead_UTMSource         = IIF(Not Empty(@UTM_Source), @UTM_Source, 'Unknown')
+          set @lead_UTMMedium         = IIF(Not Empty(@UTM_Medium), @UTM_Medium, "Unknown")
+          set @lead_UTMCampaign       = IIF(Not Empty(@UTM_Campaign), @UTM_Campaign, "Organic")
+          set @lead_UTMContent        = IIF(Not Empty(@UTM_Content), @UTM_Content, "Unknown")
+          set @lead_UTMTerm           = IIF(Not Empty(@UTM_Term), @UTM_Term, "Unknown")          
+          set @lead_GCLID             = IIF(Not Empty(@GCLID), @GCLID, "Unknown")
+          set @lead_FBCLID            = IIF(Not Empty(@FBCLID), @FBCLID, "Unknown")
+          set @lead_MSCLKID           = IIF(Not Empty(@MSCLKID), @MSCLKID, "Unknown")
+          set @lead_MarketingInterest = ""
+          if not empty(@SubscriberOptIn) then
+            set @lead_MarketingInterest = IIF(@SubscriberOptIn == "true", "Promotions;Product Information;Newsletter", "Promotions;Product Information;")
+          endif
+          set @lead_Source            = "Marketing Cloud"
+          set @lead_Status            = @LeadStatus
+          set @lead_ExistingCustomer  = ""
+          if not empty(@MathleticsSubscriber) then
+            set @lead_ExistingCustomer  = IIF(@MathleticsSubscriber == "Yes", "Yes", "No")
+          endif
+          set @lead_JobFunction       = IIF(Not Empty(@_JobFunction), @_JobFunction, "")
+          set @lead_Description       = IIF(Not Empty(@_Description), @_Description, "Unknown")
+          set @lead_EnquiryType       = @_Enquiry_Type
+          set @lead_State             = IIF(Not Empty(@_StateName), @_StateName, "")
+          set @lead_State_c           = IIF(Not Empty(@_StateName), @_StateName, "")
+          set @lead_Subject           = IIF(Not Empty(@_FormattedSubjects), @_FormattedSubjects, "")
+          set @lead_CampaignName      = IIF(Not Empty(@UTM_Campaign_entry), @UTM_Campaign_entry, "")
+          set @lead_CampaignCode      = IIF(Not Empty(@Campaign_Code), @Campaign_Code, "")          
+          set @lead_ProductInterest   = @_Product_Interest_c
+          set @lead_MktProductInterest= @_Mkt_Product_Interest                    
+          set @lead_Territory         = @_Territory
+          set @lead_isInvalid         = @is_invalid_lead
+
+          UpsertData("B2C_Leads_Ready_For_CustomerServiceTeam", 1,
+            "SubmissionId", @SubmissionId,
+            "SubmittedDate", @SubmittedDate,
+            "ErrorDetails", @ErrorDetails,
+            "ErrorCode", @ErrorCode,
+            "IsProcessed", @IsProcessed,
+            "FirstName", @lead_FirstName,
+            "LastName", @lead_LastName,
+            "Email", @lead_Email,
+            "Phone", @lead_Phone,
+            "Grade_Level__c", @lead_GradeLevel,
+            "Title", @lead_Title,
+            "Country", @lead_Country,
+            "PostalCode", @lead_PostalCode,
+            "Company", @lead_Company,
+            "No_of_licences__c", @lead_Licenses,
+            "UTM_Source__c", @lead_UTMSource,
+            "UTM_Medium__c", @lead_UTMMedium,
+            "UTM_Campaign__c", @lead_UTMCampaign,
+            "UTM_Content__c", @lead_UTMContent,
+            "UTM_Term__c", @lead_UTMTerm,
+            "GCLID__c", @lead_GCLID,
+            "FBCLID__c", @lead_FBCLID,
+            "MSCLKID__c", @lead_MSCLKID,
+            "Marketing_Interest__c", @lead_MarketingInterest,
+            "LeadSource", @lead_Source,
+            "Status", @lead_Status,
+            "Existing_Customer__c", @lead_ExistingCustomer,
+            "Job_Function__c", @lead_JobFunction,
+            "Description", @lead_Description,
+            "Enquiry_Type__c", @lead_EnquiryType,
+            "State", @lead_State,
+            "State__c", @lead_State_c,
+            "Subject__c", @lead_Subject,
+            "Campaign_Name__c", @lead_CampaignName,
+            "Campaign_Code__c", @lead_CampaignCode,
+            "Product_Interest__c", @lead_ProductInterest,
+            "Marketing_Product_Interest__c", @lead_MktProductInterest,
+            "Territory__c", @lead_Territory,
+            "Invalid_Lead__c", @lead_isInvalid,
+            "FormCampaignId",@CampaignId
+          )
+
+
+
+
+      else
+        output(concat("<br>Could not parse JSON for SubmissionId: ", @SubmissionId))
+      endif
+endif
+
+    next @r
+
+  else
+    output("No unprocessed records found.")
+  endif
+]%%

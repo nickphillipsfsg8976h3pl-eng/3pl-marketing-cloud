@@ -1,0 +1,29 @@
+## D3C7B23E-D5EC-4EF7-B701-E5C31ADD35CC
+
+**Name** (not equal to External Key)**:** MXGLOBAL - PSR Lesson Plan Nurture - 2019-08-22T1846191161651299350271
+
+**Description:** n/a
+
+**Folder:** Data Extensions/02_B2C/
+
+**Fields in table:** 11
+
+**Sendable:** Yes (`CampaignMember:Common:Id` to `Subscriber Key`)
+
+**Testable:** No
+
+**Retention Policy:** none
+
+| Name | FieldType | MaxLength | IsPrimaryKey | IsNullable | DefaultValue |
+| --- | --- | --- | --- | --- | --- |
+| CampaignMember:Id | Text | 18 | - | - |  |
+| CampaignMember:Description | Text | 4000 | - | + |  |
+| CampaignMember:Common:Id | Text | 18 | - | - |  |
+| CampaignMember:Common:Email | EmailAddress | 80 | - | + |  |
+| CampaignMember:Common:HasOptedOutOfEmail | Boolean |  | - | + | False |
+| CampaignMember:Common:FirstName | Text | 40 | - | + |  |
+| CampaignMember:Common:Name | Text | 121 | - | + |  |
+| CampaignMember:Common:Title | Text | 128 | - | + |  |
+| CampaignMember:Common:LastName | Text | 80 | - | + |  |
+| CampaignMember:Common:Marketing_Product_Interest__c | Text | 255 | - | + |  |
+| MemberRecordType | Text | 20 | - | - |  |

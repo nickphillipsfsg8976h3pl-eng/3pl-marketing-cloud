@@ -1,0 +1,45 @@
+<table role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper" width="100%" cellspacing="0" cellpadding="0"><tr><td class="stylingblock-content-wrapper camarker-inner">
+
+
+<!-- START OF PRODUCT STYLING SELECTION --> 
+
+
+
+<!-- %%[
+
+VAR @FN, @NAME, @TEMPLATE
+set @lookupValue = AttributeValue("FirstName") /* value from attribute or DE column in send context */
+set @RowCount_prof = RowCount(LookupRows("01_Profanity-Check", "Name", @lookupValue))
+
+IF @RowCount_prof == 0 THEN
+SET @FN = AttributeValue("FirstName")
+ELSE
+SET @FN = "there"
+ENDIF
+
+/* START NAMING CONVENTION */
+
+IF ( NOT(Empty(@FN)) AND Length(@FN) >= 1 ) THEN
+SET @Name = Concat("Hi ", ProperCase(Trim(@FN)), ", ")
+ELSE
+SET @Name = "Hi there, "
+ENDIF
+
+/* END NAMING CONVENTION */
+
+
+]%% 
+
+
+<!-- %%[
+
+
+
+SET @repEmail = "rachel.king@3plearning.com"
+SET @rep_FullName = "Rachel King"
+SET @repPhone = CONCAT("Tel: +61 02 8310 6965","<br>", "Extension: 1115")
+SET @rep_FName = "Rachel"
+
+
+
+]%% --></td></tr></table>

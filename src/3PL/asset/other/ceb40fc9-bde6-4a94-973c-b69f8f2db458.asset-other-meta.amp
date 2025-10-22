@@ -1,0 +1,191 @@
+%%[
+    /* Initialize variables */
+    set @debug = false
+    set @listUpdateRows = LookupRows('CSC_UnsubscribeRequests', 'IsProcessed', 0) 
+    set @updateRowsReturned = RowCount(@listUpdateRows) 
+
+    /* Check if there are rows to process */
+    if @updateRowsReturned > 0 then 
+        for @counter = 1 to @updateRowsReturned do 
+            /* Initialize variables for each iteration */
+            set @SubscriberKeys = ""
+            set @lineItem       = row(@listUpdateRows, @counter) 
+            set @emailAddress   = field(@LineItem, 'EmailAddress')
+            set @isProcessed    = field(@LineItem, 'IsProcessed')
+
+            /* Skip processing if email address is empty */
+            if not empty(@emailAddress) then
+                ]%%
+                <script runat="server">
+                    Platform.Load("Core","1");
+                    var emailToLookup = Platform.Variable.GetValue("@emailAddress");
+                    try {
+                        var rr = Platform.Function.LookupRows("Ent._Subscribers", "EmailAddress", emailToLookup);
+                        var subscriberKeys = [];
+                        if (rr && rr.length > 0) {
+                            for (var i = 0; i < rr.length; i++) {
+                                subscriberKeys.push(rr[i].SubscriberKey);
+                            }
+                        }
+                        Platform.Variable.SetValue("@SubscriberKeys", subscriberKeys.join(','));
+                    } catch (e) {
+                        Write("An error occurred: " + Stringify(e));
+                    }
+                </script>
+                %%[
+                /* Debugging output */
+                if @debug then
+                    OutputLine(Concat('<pre style="background-color:#ccc;"><code>SUBSCRIBER_KEYS: ', @SubscriberKeys, '</code></pre>'))
+                    OutputLine(Concat('<pre style="background-color:#ccc;"><code>EmailAddrs: ', @emailAddress, '</code></pre>'))
+                endif
+
+                /* Prepare for unsubscribe actions */
+                set @reason = "Requested through Customer Support"
+                set @unsuball = 1
+
+                if @unsuball == 1 then
+                    set @unsub = 1
+                    set @statusforsubs = "Unsubscribed"
+                else
+                    set @unsub = 0
+                    set @statusforsubs = "Active"
+                endif
+
+                set @listid = 187
+                set @SUBSCRIBER_KEYS_ROWS = BuildRowSetFromString(@SubscriberKeys, ",")
+                set @TOTAL_RECORDS_UPDATED = 0
+
+                /* Process each subscriber key found */
+                for @i = 1 to RowCount(@SUBSCRIBER_KEYS_ROWS) do
+                    set @EACH_SUBSCRIBER_KEY = Field(Row(@SUBSCRIBER_KEYS_ROWS, @i), 1)
+                    /* Log unsubscribe event */
+                    set @lue = CreateObject("ExecuteRequest")
+                    setObjectProperty(@lue, "Name", "LogUnsubEvent")
+                    set @lue_prop = CreateObject("APIProperty")
+                    setObjectProperty(@lue_prop, "Name", "SubscriberKey")
+                    setObjectProperty(@lue_prop, "Value", @EACH_SUBSCRIBER_KEY)
+                    AddObjectArrayItem(@lue, "Parameters", @lue_prop)
+                    set @lue_prop = CreateObject("APIProperty")
+                    setObjectProperty(@lue_prop, "Name", "ListID")
+                    setObjectProperty(@lue_prop, "Value", @listid)
+                    AddObjectArrayItem(@lue, "Parameters", @lue_prop)
+                    set @lue_prop = CreateObject("APIProperty")
+                    setObjectProperty(@lue_prop, "Name", "Reason")
+                    setObjectProperty(@lue_prop, "Value", @reason)
+                    AddObjectArrayItem(@lue, "Parameters", @lue_prop)
+                    set @lue_statusCode = InvokeExecute(@lue, @overallStatus, @requestId)
+                    set @Response = Row(@lue_statusCode, 1)
+                    set @Status = Field(@Response, "StatusMessage")
+                    set @Error = Field(@Response, "ErrorCode")
+
+                    /* Update consent in All Subs */
+                    set @actsub = CreateObject("Subscriber")
+                    setObjectProperty(@actsub, "SubscriberKey", @EACH_SUBSCRIBER_KEY)
+                    setObjectProperty(@actsub, "Status", @statusforsubs)
+                    set @options = CreateObject("UpdateOptions")
+                    set @save = CreateObject("SaveOption")
+                    setObjectProperty(@save, "SaveAction", "UpdateAdd")
+                    setObjectProperty(@save, "PropertyName", "*")
+                    AddObjectArrayItem(@options, "SaveOptions", @save)
+                    set @updateStatusCode = InvokeUpdate(@actsub, @updateStatusMessage, @updateErrorCode, @options)
+                    set @status  =""
+                    if @updateStatusCode == "OK" then
+                            set @status  =Concat(@status,"SUCCESS: SFMC update;")
+                    else
+                            set @status  =Concat(@status,"FAILURE: SFMC update;")
+                    endif
+                    /* Check the type of subscriber */
+                    set @updaterecord = 0
+                    set @updatetype = ""
+                    if Substring(@EACH_SUBSCRIBER_KEY, 1, 3) == '003' then
+                        set @updatetype = "Contact"
+                    elseif Substring(@EACH_SUBSCRIBER_KEY, 1, 3) == '00Q' then
+                        set @updatetype = "Lead"
+                    endif
+
+                    if not empty(@updatetype) then
+                        set @subscriberRows = RetrieveSalesforceObjects(
+                                  @updatetype,
+                                  "FirstName, LastName, Email",
+                                  "Id", "=", @EACH_SUBSCRIBER_KEY )
+                        if RowCount(@subscriberRows) > 0 then
+                            if @updatetype == "Contact" OR @updatetype == "Lead" then
+                                set @updaterecord = UpdateSingleSalesforceObject(@updatetype,
+                                         @EACH_SUBSCRIBER_KEY,
+                                         'HasOptedOutOfEmail', @unsub)
+                                set @TOTAL_RECORDS_UPDATED = @TOTAL_RECORDS_UPDATED + @updaterecord
+                            endif
+                        else 
+                            set @Reason = Concat(@Reason, " - Failed to access record from CRM")
+                        endif
+                    endif
+                    
+                    if not empty(@updatetype) and @updaterecord == 1 then
+                            set @status  =Concat(@status,"SUCCESS: CRM update;")
+                    elseif not empty(@updatetype) then
+                            set @status  =Concat(@status,"FAILURE: CRM update;")
+                    else 
+                            set @status  =Concat(@status,"NA     : CRM update;")
+                    endif
+
+                    /* Debugging and logging */
+                    if @debug then
+                         OutputLine(Concat('<pre style="background-color:#ccc;"><code>EACH_SUBSCRIBER_KEY: ', @EACH_SUBSCRIBER_KEY, '</code></pre>'))
+                         OutputLine(Concat('<pre style="background-color:#ccc;"><code>updateStatusCode: ', @updateStatusCode, '</code></pre>'))
+                         OutputLine(Concat('<pre style="background-color:#ccc;"><code>updaterecord: ', @updaterecord, '</code></pre>'))
+                         OutputLine(Concat('<pre style="background-color:#ccc;"><code>TOTAL_RECORDS_UPDATED: ', @TOTAL_RECORDS_UPDATED, '</code></pre>'))
+                    endif
+
+                    set @logtime = SystemDateToLocalDate(now())
+                    set @logdate = FormatDate(SystemDateToLocalDate(NOW()), "MM/dd/yyyy")
+                    insertData("CSC_UnsubscribeRequests_Log", "SubscriberKey", @EACH_SUBSCRIBER_KEY, "EmailAddress", @emailAddress,"LogDate",@logdate, "LogTime", @logtime, "HasOptedOutOfEmail",@HasOptedOutOfEmail,"Status",@status,"SFMC_UpdateStatusCode",@updateStatusCode , "RecordUpdated", @updaterecord, "Reason", @Reason)
+                        
+                next @i
+                if RowCount(@SUBSCRIBER_KEYS_ROWS) == 0 then
+                    set @logtime = SystemDateToLocalDate(now())
+                    set @logdate = FormatDate(SystemDateToLocalDate(NOW()), "MM/dd/yyyy")
+                    insertData("CSC_UnsubscribeRequests_Log", "SubscriberKey", @emailAddress, "EmailAddress", @emailAddress,"LogDate",@logdate, "LogTime", @logtime, "Status","NO RECORDS FOUND in SFMC","SFMC_UpdateStatusCode","NA" ,"HasOptedOutOfEmail", 0, "RecordUpdated", 0, "Reason", "Cannot find subscriber in SFMC")
+                endif
+                updateData("CSC_UnsubscribeRequests", 1, "EmailAddress", @emailAddress, "IsProcessed", 1)
+    
+            endif
+        next @counter
+    endif
+    set @today = FormatDate(SystemDateToLocalDate(NOW()), "MM/dd/yyyy")
+    set @rows = LookupRows("CSC_UnsubscribeRequests_Log","LogDate",@today)
+    if RowCount(@rows) >0 then
+        set @SubscriberKey = "vijay.kapadam@partners.3plearning.com"
+        set @EmailAddress  = "vijay.kapadam@partners.3plearning.com"
+
+
+         SET @Language = "EN"
+         SET @TriggerSendExternalKey = "235992"
+
+
+         /* Specify the external key of the TriggerSend */
+         SET @TriggerSend = CreateObject("TriggeredSend")
+         SET @TriggerSendDefinition = CreateObject("TriggeredSendDefinition")
+         SetObjectProperty(@TriggerSendDefinition, "CustomerKey", @TriggerSendExternalKey)
+         SetObjectProperty(@TriggerSend, "TriggeredSendDefinition", @TriggerSendDefinition)
+
+         /* Specify the email address and the subscriber key */
+         SET @TriggerSendSubscriber = CreateObject("Subscriber")
+         SetObjectProperty(@TriggerSendSubscriber, "EmailAddress", @EmailAddress) 
+         SetObjectProperty(@TriggerSendSubscriber, "SubscriberKey", @SubscriberKey) 
+
+         /* Fill out the Language field in the TriggerSend data extension */
+         SET @TriggerSendLanguage = CreateObject("Attribute")
+         SetObjectProperty(@TriggerSendLanguage, "Name", "Language")
+         SetObjectProperty(@TriggerSendLanguage,"Value", @Language)
+         AddObjectArrayItem(@TriggerSend, "Attributes", @TriggerSendLanguage)
+
+         AddObjectArrayItem(@TriggerSend, "Subscribers", @TriggerSendSubscriber)  
+
+         SET @TriggerSend_statusCode = InvokeCreate(@TriggerSend, @TriggerSend_statusMsg, @errorCode) 
+
+         IF @TriggerSend_statusCode != "OK" THEN
+          OUTPUTLINE(CONCAT("Status: ",@TriggerSend_statusMsg," / Code: ",@errorCode))
+         ENDIF
+    endif
+
+]%%
