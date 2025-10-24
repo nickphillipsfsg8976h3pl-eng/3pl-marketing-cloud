@@ -1,5 +1,5 @@
 # ~/.bashrc - General Bash Profile
-echo '~/.bashrc loaded'
+echo '--- marketing cloud bash profile loaded ---'
 
 # basics
 export PS1='$ '
