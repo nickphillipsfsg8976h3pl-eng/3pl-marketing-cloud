@@ -1,5 +1,6 @@
 select
-    top 10 formname,
+    top 100 
+    formname,
     firstname,
     lastname,
     email,
@@ -9,7 +10,8 @@ select
     leadidcreated,
     leadidupdated,
     resultstatus,
-    errordetails
+    errordetails,
+    retrievable
 from
     lead_submission_queue
 order by
