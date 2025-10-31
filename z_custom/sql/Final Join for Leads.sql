@@ -42,10 +42,10 @@ SELECT
     sau.Name as SchoolAccountOwnerName,
     sau.Email as SchoolAccountOwnerEmail
 FROM
-    AMER_MX_Leads_MarketingProspects_EXCLUDE p
-    LEFT JOIN ENT.Lead_Salesforce l ON l.Id = p.Id
-    LEFT JOIN ENT.User_Salesforce u ON l.OwnerId = u.Id
-    LEFT JOIN ENT.School__c_Salesforce s ON l.School__c = s.Id
-    LEFT JOIN ENT.Account_Salesforce sa ON sa.Id = s.Account__c
-    LEFT JOIN ENT.User_Salesforce sau ON sau.Id = sa.OwnerId
-    LEFT JOIN _Subscribers sub ON l.Id = sub.SubscriberKey
+    AMER_MX_Leads_MarketingProspects_EXCLUDE p /*Prospect*/
+    LEFT JOIN ENT.Lead_Salesforce l ON l.Id = p.Id /*Lead*/
+    LEFT JOIN ENT.User_Salesforce u ON l.OwnerId = u.Id /*LeadOwner*/
+    LEFT JOIN ENT.School__c_Salesforce s ON l.School__c = s.Id /*School*/
+    LEFT JOIN ENT.Account_Salesforce sa ON sa.Id = s.Account__c /*SchoolAccount*/
+    LEFT JOIN ENT.User_Salesforce sau ON sau.Id = sa.OwnerId /*SchoolAccountUser*/
+    LEFT JOIN _Subscribers sub ON l.Id = sub.SubscriberKey /*Subscriber*/
