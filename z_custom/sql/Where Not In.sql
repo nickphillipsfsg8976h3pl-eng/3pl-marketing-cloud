@@ -1,11 +1,13 @@
 SELECT
-    ContactEmail
+    *
 FROM
-    AMER_MX_Leads_MarketingProspects_DEDUP
+    Data_Extension_With_Email_Example l
 WHERE
-    ContactEmail NOT IN (
+    NOT EXISTS (
         SELECT
-            ContactEmail
+            1
         FROM
-            ContactsWithSubscriptions_v1
+            ContactsWithSubscriptions_v1 c
+        WHERE
+            l.Email = c.ContactEmail
     )
