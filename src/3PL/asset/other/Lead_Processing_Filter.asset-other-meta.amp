@@ -1,6 +1,6 @@
 %%[
 SET @Debug = false /* Set to false to disable debug logs */
-SET @DebugRawData = false 
+SET @DebugRawData = false
 SET @DoNotProcess = false /* Set to false to disable debug logs */
 SET @DebugEmail = "" /* Leave blank to process all */
 
@@ -109,7 +109,7 @@ IF @recordCount > 0 THEN
                 ENDIF
               NEXT @i
             ENDIF
-            
+
             IF @type == "EmailFormat" THEN
               IF NOT IsEmailAddress(@Email) THEN
                 SET @match = "true"
@@ -151,6 +151,13 @@ IF @recordCount > 0 THEN
                 "ErrorDetails", @errorMsg)
 
               IF @action == "BLOCK" THEN
+
+                UpsertDE("Lead_Submission_Queue", 1,
+                    "SubmissionId", @SubmissionId,
+                    "IsProcessed", "true",
+                    "ErrorCode", @errorCode,
+                    "ErrorDetails", @errorMsg)
+
                 SET @isBlocked = "true"
                 SET @finalTargetDE = @targetDE
                 SET @finalErrorCode = @errorCode
@@ -194,7 +201,7 @@ IF @recordCount > 0 THEN
           output(concat("<br>",@r," <strong style='color:RED;'>ERROR</strong>: ",@FirstName,"|",@LastName,"|",@Country,"|",@Email,"|",@JobTitle, "--",@finalErrorCode))
         ENDIF
     ENDIF
-    
+
   NEXT @r
 ENDIF
 ]%%
