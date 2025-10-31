@@ -1,5 +1,5 @@
 SELECT
-    TOP 10 sub.Status as SubscriberStatus,
+    sub.Status as SubscriberStatus,
     l.Id as SubscriberKey,
     l.Id as LeadId,
     l.Email as LeadEmail,
