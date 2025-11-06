@@ -1,0 +1,36 @@
+<table role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper" width="100%" cellspacing="0" cellpadding="0"><tr><td class="stylingblock-content-wrapper camarker-inner"><!-- 
+%%[ 
+
+VAR @countryName, @link, @link2
+SET @countryName = AttributeValue("Country")
+
+IF @countryName == 'Canada' THEN
+SET @link = 'https://www.mathletics.com/ca/for-schools/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+SET @link2 = 'https://mathseeds.ca/schools/getstarted/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+
+ELSEIF @countryName == 'United States' THEN
+SET @link = 'https://www.mathletics.com/us/for-schools/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+SET @link2 = 'https://mathseeds.com/schools/getstarted/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+
+ELSEIF @countryName == 'United Kingdom' THEN
+SET @link = 'https://www.mathletics.com/uk/for-schools/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+SET @link2 = 'https://www.3plearning.com/software/mathseeds/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+
+ELSEIF @countryName =='Australia' THEN
+SET @link = 'https://www.mathletics.com/au/for-schools/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+SET @link2 = 'https://www.3plearning.com/software/mathseeds/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+
+ELSEIF @countryName == 'New Zealand' THEN
+SET @link = 'https://www.mathletics.com/nz/for-schools/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+SET @link2 = 'https://www.3plearning.com/software/mathseeds/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+
+ELSE
+SET @link = 'https://www.3plearning.com/software/mathletics/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+SET @link2 = 'https://www.3plearning.com/software/mathseeds/free-trial/?utm_source=Email+Nurture&utm_medium=Email&utm_campaign=GLOBAL_3P0019_TOFU_HybridTeachingPack&utm_content=Nurture-4'
+
+
+ENDIF
+ENDIF
+
+]%%
+--></td></tr></table>

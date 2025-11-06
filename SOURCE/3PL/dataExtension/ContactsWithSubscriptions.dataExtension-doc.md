@@ -1,0 +1,57 @@
+## ContactsWithSubscriptions
+
+**Description:** n/a
+
+**Folder:** Data Extensions/1000_SegmentedAudiences/Data Views/00_MASTER/
+
+**Fields in table:** 41
+
+**Sendable:** Yes (`ContactKey` to `Subscriber Key`)
+
+**Testable:** No
+
+**Retention Policy:** none
+
+| Name | FieldType | MaxLength | IsPrimaryKey | IsNullable | DefaultValue |
+| --- | --- | --- | --- | --- | --- |
+| ContactKey | Text | 254 | + | - |  |
+| SubscriptionProduct | Text | 80 | + | - |  |
+| SubscriptionRecordType | Text | 80 | - | + |  |
+| SubscriptionEndDate | Date |  | - | + |  |
+| SubscriptionId | Text | 18 | - | + |  |
+| ContactTitle | Text | 126 | - | + |  |
+| ContactFirstName | Text | 40 | - | + |  |
+| ContactLastName | Text | 80 | - | + |  |
+| ContactEmail | EmailAddress | 254 | - | + |  |
+| ContactMobilePhone | Phone | 50 | - | + |  |
+| ContactLocale | Locale | 5 | - | + |  |
+| HasOptedOutOfEmail | Boolean |  | - | + |  |
+| ContactCreateDate | Date |  | - | + |  |
+| BillingCountry | Text | 80 | - | + |  |
+| BillingCountryCode | Text | 10 | - | + |  |
+| BillingStateCode | Text | 10 | - | + |  |
+| ContactJobFunction | Text | 255 | - | + |  |
+| ContactStatus | Text | 50 | - | + |  |
+| ContactRoles | Text |  | - | + |  |
+| AccountId | Text | 18 | - | + |  |
+| AccountName | Text | 255 | - | + |  |
+| ContractStartDate | Date |  | - | + |  |
+| ContractEndDate | Date |  | - | + |  |
+| ContractMultiYearExpiration | Date |  | - | + |  |
+| OpportunityId | Text | 18 | - | + |  |
+| QuoteId | Text | 18 | - | + |  |
+| RenewalOpportunityId | Text | 18 | - | + |  |
+| SubscriptionStartDate | Date |  | - | + |  |
+| SubscriptionCapacity | Number |  | - | + |  |
+| SubscriptionExpired | Boolean |  | - | + |  |
+| SubscriptionStatus | Text | 50 | - | + |  |
+| SubscriptionTerritory | Text | 50 | - | + |  |
+| OpportunityType | Text | 80 | - | + |  |
+| OpportunityStage | Text | 80 | - | + |  |
+| OpportunityOwnerId | Text | 18 | - | + |  |
+| OpportunityOwnerRole | Text | 80 | - | + |  |
+| OwnerEmail | Text | 128 | - | + |  |
+| OwnerFirstName | Text | 40 | - | + |  |
+| OwnerLastName | Text | 80 | - | + |  |
+| ExistingAccount | Boolean |  | - | + | false |
+| ActiveFullSubscriptions | Text | 95 | - | + |  |

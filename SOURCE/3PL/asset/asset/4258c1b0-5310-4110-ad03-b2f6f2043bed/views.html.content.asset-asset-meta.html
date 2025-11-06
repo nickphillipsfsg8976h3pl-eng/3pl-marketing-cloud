@@ -1,0 +1,785 @@
+
+<!--
+/**************************
+GET PREFRENCE CENTRE
+**************************/
+
+TODO:
+
+- click on card not checkbox
+
+- add semantic html and aria attributes
+
+- add favicon
+
+/*not priority*/
+- add a "snooze" dropdown
+- * snooze all email
+- * 1 month
+- * 6 months
+- * 12 months
+
+/*not priority*/
+- add "How often would you like to hear from us" dropdown
+- * as often as you send them
+- * once or twice a week
+- * once or twice month
+
+- Have a markerting intersts and subscription sectins) ...stephan/liam
+
+
+================ TO DO NOW ===================
+
+- add a birthday field, and update code
+
+- make all subscriber preferences/profile attributes source of truth
+-- publication list are bonuses for now
+
+- Have a markerting intersts and subscription sectins...move total unsubscribe near subscriptions ...stephan/liam
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================== SERVER-SIDE ================== -->
+
+
+<script runat="server">
+  Platform.Load("Core", "1")
+  try {
+
+
+
+    /***********************************************
+   CONSTANTS
+  ************************************************/  
+    // Default Subscriber
+    var defaultSubscriberKey = "test.email.1"
+
+    // System Variables
+    var _subscriberKey = _SubscriberKey? _SubscriberKey: defaultSubscriberKey;
+
+
+    // Redirect Pages
+    var ERROR_PAGE = "https://cloud.my.3plearning.com/error_preferences";
+    var SUCCESS_PAGE = "https://cloud.my.3plearning.com/thankyou_preferences";
+
+
+
+    /***********************************************
+   GET SUBSCRIBER
+  ************************************************/  
+    var subscriberObject = Subscriber.Retrieve({Property:"SubscriberKey",SimpleOperator:"equals",Value: _subscriberKey});
+    var subscriberKey = subscriberObject[0].SubscriberKey;
+    var emailAddress = subscriberObject[0].EmailAddress;
+    var currentAllSubscriberStatus = subscriberObject[0].Status == "Unsubscribed"? false: true;
+
+
+
+    /*****************************************************
+   GET RELATED SUBSCRIBERS (BASED ON EMAIL ADDRESS)
+  *****************************************************/
+    var relatedSubscribers = Subscriber.Retrieve({Property:"EmailAddress",SimpleOperator:"equals",Value: emailAddress});
+
+    var relatedSubscriberKeys = [];
+    for (var i=0; i<relatedSubscribers.length; i++) {
+      relatedSubscriberKeys.push(relatedSubscribers[i].SubscriberKey);
+    }//for
+
+
+
+    /***********************************************
+   GET SUBSCRIBER LISTS
+  ************************************************/
+    var currentProductUpdatesStatus;
+    var currentNewsletterStatus;
+    var currentFeaturesAndPromotionsStatus;
+    var currentMathleticsStatus;
+    var currentMathseedsStatus;
+    var currentReadingEggsStatus;
+
+    //get lists
+    var listSubscriberObject = Subscriber.Init(subscriberKey);
+    var subscriberLists = listSubscriberObject.Lists.Retrieve();
+
+    //get list statuses
+    for (var i=0; i<subscriberLists.length; i++) {
+      var listName = subscriberLists[i].List.Name
+      var listStatus = subscriberLists[i].Status
+
+      if (listName == "Product Updates") {currentProductUpdatesStatus = listStatus;}
+      if (listName == "Newsletter") {currentNewsletterStatus = listStatus;}
+      if (listName == "Features and Promotions") {currentFeaturesAndPromotionsStatus = listStatus;}
+      if (listName == "Mathletics") {currentMathleticsStatus = listStatus;}
+      if (listName == "Mathseeds") {currentMathseedsStatus = listStatus;}
+      if (listName == "Reading Eggs") {currentReadingEggsStatus = listStatus;}
+
+    }//for i
+
+
+
+    /***********************************************
+   OUTPUT RESULTS
+  ************************************************/
+    Variable.SetValue("@JOB_ID", jobID);
+    Variable.SetValue("@LIST_ID", listID);
+    Variable.SetValue("@BATCH_ID", _JobSubscriberBatchID);
+
+    Variable.SetValue("@SUBSCRIBER_KEY", subscriberKey);
+    Variable.SetValue("@EMAIL_ADDRESS", emailAddress);
+    Variable.SetValue("@RELATED_SUBSCRIBER_KEYS", relatedSubscriberKeys.toString());  
+
+    Variable.SetValue("@CURRENT_PRODUCT_UPDATES_STATUS", currentProductUpdatesStatus);
+    Variable.SetValue("@CURRENT_NEWSLETTER_STATUS", currentNewsletterStatus);
+    Variable.SetValue("@CURRENT_FEATURES_AND_PROMOTIONS_STATUS", currentFeaturesAndPromotionsStatus);
+    Variable.SetValue("@CURRENT_MATHLETICS_STATUS", currentMathleticsStatus);
+    Variable.SetValue("@CURRENT_MATHSEEDS_STATUS", currentMathseedsStatus);
+    Variable.SetValue("@CURRENT_READING_EGGS_STATUS", currentReadingEggsStatus);
+
+    Variable.SetValue("@CURRENT_ALL_SUBSCRIBER_STATUS", currentAllSubscriberStatus);
+
+
+
+    /***********************************************
+   HEADERS
+  ************************************************/
+    //security
+    Platform.Response.SetResponseHeader("Strict-Transport-Security","max-age=200");
+    Platform.Response.SetResponseHeader("X-XSS-Protection","1; mode=block");
+    Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+    Platform.Response.SetResponseHeader("X-Content-Type-Options","nosniff");
+    Platform.Response.SetResponseHeader("Referrer-Policy","strict-origin-when-cross-origin");
+    //Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+
+    //no cache
+    Platform.Response.SetResponseHeader("Cache-Control","no-store, must-revalidate");
+    Platform.Response.SetResponseHeader("Pragma","no-cache");
+    Platform.Response.SetResponseHeader("Expires","0");
+
+
+
+  } catch(e) {Redirect("https://cloud.my.3plearning.com/error-30-11-2021",false);}
+</script>
+
+
+
+
+<!-- ================== HTML ================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- META -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>3PLearning - Email Preferences</title>
+
+    <!-- Materialize: Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Materialize: Compiled and minified JavaScript -->
+    %%=Concat('<', 'script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>')=%%
+
+
+    <!-- CUSTOM STYLES -->
+    <style>
+      :root {
+        --custom-green: #015f4e;
+        --custom-dark-green: #00473b;
+      }
+      .custom-background {
+        background: url(https://image.my.3plearning.com/lib/fe9413737461017874/m/3/144947cc-210d-4c26-b9f7-7dc688d4ccf4.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 70% 0;
+      }
+      @media screen and (max-width: 800px) {
+      }
+      .custom-nav {
+        background-color: white;
+        box-shadow: 0 1px 5px 0 grey;
+        padding-top: 15px;
+        padding-bottom: 10px;
+      }
+      @media screen and (max-width: 480px) {
+        .custom-mobile-center {
+          display: block;
+          margin: auto;
+        }
+      }
+      .custom-footer {
+        background-color: var(--custom-dark-green);
+        color: white;
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+      .custom-intro-text {
+        font-size: 1.2rem
+      }
+
+      .custom-unsubscribe-panel {
+        background-color: lightgrey;
+        padding: 24px;
+      }
+
+      .custom-min-height {
+        min-height: 170px;
+      }
+
+      .custom-panel-content-position {
+        display: flex;
+        flex-flow: row nowrap;
+      }
+
+      .custom-submit-button {
+        display: inline-block;
+        background-color: var(--custom-green);
+        border: 2px solid var(--custom-green);
+        border-radius: 2em;
+        padding: 1.5rem;
+        font-size: 1.5rem;
+        color: #fff;
+        text-align: center;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .custom-submit-button:hover {
+        background-color: var(--custom-dark-green);
+        border: 2px solid var(--custom-dark-green);
+
+      }
+
+      .custom-spacing-20px {
+        padding-top: 20px;
+      }
+
+      .custom-spacing-40px {
+        padding-top: 40px;
+      }
+
+      .custom-spacing-60px {
+        padding-top: 60px;
+      }
+
+      .custom-spacing-80px {
+        padding-top: 80px;
+      }
+
+      .custom-spacing-100px {
+        padding-top: 100px;
+      }
+
+      .custom-remove-margin {
+        margin: 0 !important;
+      }
+      .custom-loading-backdrop {
+        background-color: rgb(0,0,0,0.3);
+        position: fixed;
+        top: 0; 
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      .custom-loading-spinner-position {
+        position: fixed;
+        top: calc(50% - 70px);
+        left: calc(50% - 35px);
+      }
+    </style>
+  </head>
+
+
+
+
+
+  <!-- ================== BODY ================== -->
+
+  <body class="custom-background">
+
+
+
+
+    <!-- LOADING/SPINNER -->
+    <div id="dom-hidden-loading-indicator">
+      <div class="custom-loading-backdrop">
+        <div class=custom-loading-spinner-position>
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-green-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+              <div class="circle"></div>
+              </div><div class="circle-clipper right">
+              <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- NAV/LOGO -->
+    <div class="custom-nav">
+      <div class="container">
+        <a href="https://3plearning.com">
+          <img class="custom-mobile-center"
+               src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/055af50d-722b-450e-a34d-88cb191a2384.png" />
+        </a>
+      </div>
+    </div>
+
+
+
+
+    <div class="custom-spacing-20px"></div>
+
+
+
+
+    <!-- CONTENT WRAPPER -->
+    <div class="container">
+
+
+
+
+      <!-- TITLE -->
+      <div class="row">
+        <div class="col s12">
+          <h3>Update your email preferences</h3>
+        </div>
+      </div>
+
+
+
+
+      <div class="custom-spacing-20px"></div>
+
+
+
+
+      <!-- EMAIL ADDRESS -->
+      <div class="row">
+        <div class="col s12">
+          <p>Email Address</p>
+          <h6 class="grey-text">%%=v(@EMAIL_ADDRESS)=%%</h6>
+          <div class="divider"></div>
+        </div>
+      </div>
+
+
+
+
+      <!-- INTRO -->
+      <div class="row">
+        <div class="col s12">
+          <p class="custom-intro-text">
+            Choose what communications you’d like to receive from 3P Learning. We’re always
+            trying to provide you with the most relevant information, ideas, tips and news – if you have
+            any feedback, we’d love to hear it – reach out to <a href="https://support.3plearning.com">support@3plearning.com</a> with your thoughts!
+          </p>
+        </div>
+      </div>
+
+
+
+
+      <!-- FORM -->
+      <form id="dom-preferences-form" action="/submit-preferences-30-11-2021" method="POST">
+
+
+        <!-- HIDDEN -->
+        <input type="hidden" id="hidden_job_id" name="hidden_job_id" value="%%=v(@JOB_ID)=%%">
+        <input type="hidden" id="hidden_list_id" name="hidden_list_id" value="%%=v(@LIST_ID)=%%">
+        <input type="hidden" id="hidden_batch_id" name="hidden_batch_id" value="%%=v(@BATCH_ID)=%%">
+
+        <input type="hidden" id="hidden_subscriber_key" name="hidden_subscriber_key" value="%%=v(@SUBSCRIBER_KEY)=%%" />
+        <input type="hidden" id="hidden_email_address" name="hidden_email_address" value="%%=v(@EMAIL_ADDRESS)=%%">
+        <input type="hidden" id="hidden_related_subscriber_keys" name="hidden_related_subscriber_keys" value="%%=v(@RELATED_SUBSCRIBER_KEYS)=%%">
+
+        <input type="hidden" id="hidden_current_product_updates_status" name="hidden_current_product_updates_status" 
+               value="%%=IIF(@CURRENT_PRODUCT_UPDATES_STATUS != "Unsubscribed", "true", NULL)=%%">
+        <input type="hidden" id="hidden_current_newsletter_status" name="hidden_current_newsletter_status" 
+               value="%%=IIF(@CURRENT_NEWSLETTER_STATUS != "Unsubscribed", "true", NULL)=%%">
+        <input type="hidden" id="hidden_current_features_and_promotions_status" name="hidden_current_features_and_promotions_status" 
+               value="%%=IIF(@CURRENT_FEATURES_AND_PROMOTIONS_STATUS != "Unsubscribed", "true", NULL)=%%">
+        <input type="hidden" id="hidden_current_mathletics_status" name="hidden_current_mathletics_status" 
+               value="%%=IIF(@CURRENT_MATHLETICS_STATUS != "Unsubscribed", "true", NULL)=%%">
+        <input type="hidden" id="hidden_current_mathseeds_status" name="hidden_current_mathseeds_status" 
+               value="%%=IIF(@CURRENT_MATHSEEDS_STATUS != "Unsubscribed", "true", NULL)=%%">
+        <input type="hidden" id="hidden_current_reading_eggs_status" name="hidden_current_reading_eggs_status" 
+               value="%%=IIF(@CURRENT_READING_EGGS_STATUS != "Unsubscribed", "true", NULL)=%%">
+
+        <input type="hidden" id="hidden_current_all_subscriber_status" name="hidden_current_all_subscriber_status" 
+               value="%%=IIF(@CURRENT_ALL_SUBSCRIBER_STATUS != "Unsubscribed", "true", NULL)=%%">
+
+
+
+        <div class="row">
+          <div class="col s12 xl6">
+
+
+
+
+            <!-- MARKETING INTERESTS TITLE -->
+            <div class="custom-spacing-20px"></div>
+            <h6>Communication Categories:</h6>
+            <div class="divider"></div>
+            <div class="custom-spacing-20px"></div>            
+
+
+
+
+            <!-- PRODUCT UPDATES -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s10">
+                        <h5>Product Updates</h5>
+                        <p>What’s new with 3P Learning products you’re following, like new features,
+                          games
+                          and activities, as well as bug-fixes, troubleshooting and upcoming
+                          upgrades.
+                        </p>
+                      </div>
+                      <div class="col s2">
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="new_product_updates_status" name="new_product_updates_status" value="true"
+                                   %%=IIF(@CURRENT_PRODUCT_UPDATES_STATUS != "Unsubscribed", 'checked', '')=%%>
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- NEWSLETTER -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s10">
+                        <h5>Newsletter</h5>
+                        <p>Get regular updates from the Team at 3P Learning, with insights, blogs,
+                          resources, and what’s happening in the wonderful world of Edtech!</p>
+                      </div>
+                      <div class="col s2">
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="new_newsletter_status" name="new_newsletter_status" value="true"
+                                   %%=IIF(@CURRENT_NEWSLETTER_STATUS != "Unsubscribed", 'checked', '')=%%>
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- FEATURES & PROMOTIONS -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s10">
+                        <h5>Features and Promotions</h5>
+                        <p>See how the range of 3P Learning products can complement your students or
+                          kids’ education, from maths, to spelling, to STEM and literacy
+                          development.</p>
+                      </div>
+                      <div class="col s2">
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="new_features_and_promotions_status" name="new_features_and_promotions_status" value="true"
+                                   %%=IIF(@CURRENT_FEATURES_AND_PROMOTIONS_STATUS != "Unsubscribed", 'checked', '')=%%>
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+          <!-- DESKTOP RESPONSIVE -->
+          <div class="col s12 xl6">
+
+
+
+
+            <!-- PRODUCT INTERESTS TITLE -->
+            <div class="custom-spacing-20px"></div>
+            <h6>Product Categories:</h6>
+            <div class="divider"></div>
+            <div class="custom-spacing-20px"></div>
+
+
+
+
+            <!-- MATHLETICS -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s2 hide-on-small-and-down"> 
+                        <img
+                             src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/fd97c9c3-c2bb-4c06-9f5a-131e1634d8d1.png"
+                             alt="Mathletics Logo" class="responsive-img circle grey lighten-3">
+                      </div>
+                      <div class="col s8">
+                        <h5>Mathletics</h5>
+                        <p>
+                          Our world-famous mathematics program created by specialist educators to
+                          support in-school or at-home learning.
+                      </div>
+                      <div class="col s2">
+                        <!-- Switch -->
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="new_mathletics_status" name="new_mathletics_status" value="true"
+                                   %%=IIF(@CURRENT_MATHLETICS_STATUS != "Unsubscribed", 'checked', '')=%%>
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- MATHSEEDS -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s2 hide-on-small-and-down"> 
+                        <img
+                             src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/8a685bfd-ed3a-4d1e-8db4-805a8125fd95.png"
+                             alt="Mathseeds Logo" class="responsive-img circle grey lighten-3">
+                      </div>
+                      <div class="col s8">
+                        <h5>Mathseeds</h5>
+                        <p>The engaging mathematics program designed to introduce numeracy and basic
+                          mathematics to early learners..</p>
+                      </div>
+                      <div class="col s2">
+                        <!-- Switch -->
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="new_mathseeds_status" name="new_mathseeds_status" value="true"
+                                   %%=IIF(@CURRENT_MATHSEEDS_STATUS != "Unsubscribed", 'checked', '')=%%>
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- READING EGGS -->
+            <div class="row">
+              <div class="col">
+                <div class="card-panel hoverable">
+                  <div class="row">
+                    <div class="valign-wrapper custom-min-height">
+                      <div class="col s2 hide-on-small-and-down">
+                        <img src="https://image.my.3plearning.com/lib/fe9413737461017874/m/1/96651f9c-b1d1-4a21-b40e-1fd0c9f38db9.png"
+                             alt="Reading Eggs Logo" class="responsive-img circle grey lighten-3">
+                      </div>
+                      <div class="col s8">
+                        <h5>Reading Eggs</h5>
+                        <p>The reading program packed with resources designed to entertain and
+                          engage
+                          young minds with reading and literacy. </p>
+                      </div>
+                      <div class="col s2">
+                        <!-- Switch -->
+                        <div class="switch">
+                          <label>
+                            <input type="checkbox" id="new_reading_eggs_status" name="new_reading_eggs_status" value="true"
+                                   %%=IIF(@CURRENT_READING_EGGS_STATUS != "Unsubscribed", 'checked', '')=%%>
+                            <span class="lever custom-remove-margin"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+        <!-- //responsive desktop-->
+
+
+
+
+        <!-- UNSUBSCRIBE -->
+        <div class="row">
+          <div class="col s12">
+            <div class="custom-unsubscribe-panel">
+              <div class="row">
+                <div class="valign-wrapper custom-min-height">
+                  <div class="col s10">
+                    <h5>Unsubscribe from all marketing emails</h5>
+                    <p>Click here to unsubscribe from our news, articles, ideas, inspirations, and
+                      promotional offers from 3P Learning.</p>
+                  </div>
+                  <div class="col s2">
+                    <div class="switch">
+                      <label>
+                        <input type="checkbox" id="new_all_subscriber_status" name="new_all_subscriber_status" value="true"
+                               %%=IIF(@CURRENT_ALL_SUBSCRIBER_STATUS == 'Unsubscribed', 'checked', '')=%%>
+                        <span class="lever custom-remove-margin"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- spacing -->
+        <div class="custom-spacing-60px"></div>
+
+
+
+
+        <!-- SAVE PREFERENCES -->
+        <div class="row ">
+          <div class="col s12">
+            <button class="custom-submit-button right" type="submit">
+              Save Preferences
+            </button>
+          </div>
+        </div>
+
+
+
+
+      </form>
+    </div>
+    <!-- //content wrapper -->
+
+
+
+
+    <!-- spacing -->
+    <div class="custom-spacing-60px"></div>
+
+
+
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="custom-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <p>
+                <a href="http://www.3plearning.com/hello/">About Us</a>&nbsp;&nbsp;&#124;&nbsp;&nbsp;
+                <a href="http://www.3plearning.com/careers/">Careers</a>&nbsp;&nbsp;&#124;&nbsp;
+                <a href="http://www.3plearning.com/contact/">Contact Us</a>&nbsp;&nbsp;&#124;&nbsp;
+                <a href="http://www.3plearning.com/privacy/">Privacy Policy</a>&nbsp;&nbsp;&#124;&nbsp;
+                <a href="http://www.3plearning.com/terms/">Terms &amp; Conditions</a>
+              </p>
+              <div class="custom-spacing-20px"></div>
+              <p>
+                Copyright %%=Format(Now(), "yyyy")=%%.
+                <a href="https://www.3plearning.com/">3P Learning</a>
+                - Transforming lives through a love of learning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+
+    <!-- =================== CUSTOM JAVASCRIPT =================== -->
+
+    %%=Concat('<', 'script>')=%%
+
+    //DOM
+    let hiddenLoadingIndicator = document.querySelector('#dom-hidden-loading-indicator')    
+    let preferencesForm = document.querySelector('#dom-preferences-form')
+
+    //EVENTS
+    window.addEventListener("load", ()=> {
+    hiddenLoadingIndicator.style.display = "none"
+    })
+    preferencesForm.addEventListener("submit", ()=> {
+    hiddenLoadingIndicator.style.display = "block"
+    })
+
+    %%=Concat('</', 'script>')=%%
+
+
+
+
+  </body>
+</html>
+
+
+
+
+

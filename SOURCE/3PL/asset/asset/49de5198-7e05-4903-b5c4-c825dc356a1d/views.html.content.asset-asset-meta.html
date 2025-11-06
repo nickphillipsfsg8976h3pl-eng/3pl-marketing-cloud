@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--
+%%[
+VAR @Campaign
+SET @Campaign = Requestparameter('cid')
+SET @UTMcontent = Requestparameter('utm_content')
+SET @UTMcampaign = Requestparameter('utm_campaign')
+SET @UTMmedium = Requestparameter('utm_medium')
+SET @UTMsource = Requestparameter('utm_source')
+SET @UTMterm = Requestparameter('utm_term')
+SET @pid = RequestParameter('pid')
+SET @enquiry = RequestParameter('eid')
+SET @Redirect = RequestParameter('rid')
+SET @Product = RequestParameter('Product')
+SET @Email_DE = RequestParameter('EmailAddress')
+SET @grade = RequestParameter('grade')
+/* Identify multliselector if pre-set in url */
+IF @grade == "grade1" THEN
+SET @selected_1 = "selected"
+ELSEIF @grade == "grade2" THEN
+SET @selected_2 = "selected"
+ELSEIF @grade == "grade3" THEN
+SET @selected_3 = "selected"
+ELSEIF @grade == "grade4" THEN
+SET @selected_4 = "selected"
+ELSEIF @grade == "grade5" THEN
+SET @selected_5 = "selected"
+ELSEIF @grade == "grade6" THEN
+SET @selected_6 = "selected"
+ELSEIF @grade == "grade7" THEN
+SET @selected_7 = "selected"
+ELSEIF @grade == "grade8" THEN
+SET @selected_8 = "selected"
+ELSEIF @grade == "kinder" THEN
+SET @selected_kinder = "selected"
+ENDIF
+IF @pid == "Mathletics" OR @pid == "mathletics" THEN
+SET @forms_css = "Form.css"
+ELSE
+SET @forms_css = "Form_WF.css"
+ENDIF
+]%%
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="3P Products">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon"
+          href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png"
+          type="image/x-icon" />
+    <!-- For iPhone -->
+    <link rel="apple-touch-icon-precomposed"
+          href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
+    <!-- For iPhone 4 Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
+    <!-- For iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
+    <!-- For iPad Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+    <title>3PLearning
+    </title>
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
+    <!-- 3PL CDN CSS -->
+    <link rel="stylesheet" href="https://cloud.my.3plearning.com/01_3PQuote_CSS" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!--FORM STYLING --> 
+    <style>
+      .btn-light {
+        background-color: white;
+        border: solid 0.5px;
+      }
+      .butt {
+        width: 50px;
+        height: 50px;
+        padding: 7px 10px;
+        border-radius: 25px;
+        font-size: 10px;
+        text-align: center;
+        background-color: rgba(25, 129, 196, 1);
+      }
+      .initHidden {
+        display: none;
+      }
+      /* The container */
+      .custom-checkbox {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 16px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      /* Hide the browser's default checkbox */
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      /* Create a custom checkbox */
+      .checkmark {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+      }
+      /* On mouse-over, add a grey background color */
+      .custom-checkbox:hover input~.checkmark {
+        background-color: pink;
+      }
+      /* When the checkbox is checked, add a blue background */
+      .custom-checkbox input:checked~.checkmark {
+        background-color: #015F4E;
+      }
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      /* Show the checkmark when checked */
+      .custom-checkbox input:checked~.checkmark:after {
+        display: block;
+      }
+      /* Style the checkmark/indicator */
+      .custom-checkbox .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 7px;
+        height: 15px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container p-3 form-group-lg" style="height: 100%;">
+      <form id="registerTrial"
+            action="https://pages.my.3plearning.com/page.aspx?QS=472529ec60bdf32a8779bbf6aab4a7091acfbabd0c85334be60b18da1886e9d5"
+            target="_parent" method="POST" onsubmit="myButton.disabled = true; return true;">
+        <input type="hidden" id="selectedCountryName" name="selectedCountryName" value="">
+        <input type="hidden" id="selectedStateName" name="selectedStateName" value="">
+        <input type="hidden" id="Product" name="Product" value="%%=v(@Product)=%%">
+        <input type="hidden" id="utmcontent" name="utmcontent" value="%%=v(@UTMcontent)=%%">
+        <input type="hidden" id="utmcampaign" name="utmcampaign" value="%%=v(@UTMcampaign)=%%">
+        <input type="hidden" id="utmmedium" name="utmmedium" value="%%=v(@UTMmedium)=%%">
+        <input type="hidden" id="utmsource" name="utmsource" value="%%=v(@UTMsource)=%%">
+        <input type="hidden" id="utmterm" name="utmterm" value="%%=v(@UTMterm)=%%">
+        <input type="hidden" id="pid" name="pid" value="%%=v(@pid)=%%">
+        <input type="hidden" id="cid" name="cid" value="%%=v(@Campaign)=%%">
+        <input type="hidden" id="eid" name="eid" value="%%=v(@enquiry)=%%">
+        <input type="hidden" id="Date" name="Date" value="%%=v(@updatedDate)=%%">
+        <input type="hidden" id="redirect" name="Rid" value="%%=v(@Redirect)=%%">
+        <input id="submitted" type="hidden" name="submitted" value="submitted">
+        <div class="layout layout-canvas-b">
+          <div class="header">
+            <div data-type="slot" data-key="header">
+            </div>
+          </div>
+          <div class="section">
+            <div class="columns col1">
+              <div data-type="slot" data-key="col1">
+              </div>
+            </div>
+            <div class="columns col2">
+              <div data-type="slot" data-key="col2">
+              </div>
+            </div>
+          </div>
+          <div class="columns col3">
+            <div data-type="slot" data-key="col3">
+            </div>
+          </div>
+          <div class="columns col4">
+            <div data-type="slot" data-key="col4">
+            </div>
+          </div>
+          <div class="columns col5">
+            <div data-type="slot" data-key="col5">
+            </div>
+          </div>
+          <div class="columns col6">
+            <div data-type="slot" data-key="col6">
+            </div>
+          </div>
+          <div class="columns col7">
+            <div data-type="slot" data-key="col7">
+            </div>
+          </div>
+          <div class="columns col8">
+            <div data-type="slot" data-key="col8">
+            </div>
+          </div>
+          <div class="columns col9">
+            <div data-type="slot" data-key="col9">
+            </div>
+          </div>
+          <div class="columns col10">
+            <div data-type="slot" data-key="col10">
+            </div>
+          </div>
+          <div class="footer">
+            <div data-type="slot" data-key="footer">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>    
+    <!-- CLOUDPAGES -->
+    <script type="text/javascript" src="https://cloud.my.3plearning.com/GLOBAL_MX0002_JS"></script>
+    <!-- <script type="text/javascript" src="https://pages.my.3plearning.com/bof_js/"></script>
+<script type="text/javascript" src="https://cloud.my.3plearning.com/trialjsfinal"></script> -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- JS, Popper.js, and jQuery -->    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+  </body>
+</html>

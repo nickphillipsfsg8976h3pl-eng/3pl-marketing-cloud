@@ -1,0 +1,239 @@
+var errorUrl = 'https://cloud.my.3plearning.com/trialerror';
+var ParentURL = 'https://www.mathletics.com/for-home/free-trial/parents/';
+
+
+function countryChanged() {
+
+
+    var selectedCountryCode = $("#country").val();
+    var stateURL = "https://pages.my.3plearning.com/stateJSON/?countryCode=" + selectedCountryCode;
+    $("#selectedCountryName").val($("#country").find(":selected").text());
+
+
+    if (
+        (
+            ($('#pid').val() === 'ReadingEggs')
+            ||
+            ($("#pid").val() === "WordFlyers")
+        )    
+        &&
+        (
+            ($("#selectedCountryName").val() === "Canada")
+            ||
+            ($("#selectedCountryName").val() === "United States")
+        )
+        ) {
+            $('select').prop('selectedIndex', 0);
+            alert("This product is unfortunately unavailable in the selected country.");
+            return false;
+
+        }
+
+
+    $.ajax({
+        url: stateURL,
+        async: true,
+        success: function (result, status, xhr) {
+            // always reset state options  
+            $("#state").find("option").remove();
+            $("#state").attr("required", "false");
+            $("#state").append('<option value="" default="true" selected="true" disabled="disabled">Select State</option>');
+            if ($("#selectedCountryName").val() == "Canada") {
+                $("option[disabled='Hot Fuzz']")
+                $("#state").find("option[disabled='disabled']").text("Select Province");
+            }
+            else {
+                $("#state").find("option[disabled='disabled']").text("Select State");
+
+            }
+            $("#selectedStateName").val("");
+
+            var stateJSONData = result.substring(result.indexOf("<rs1>") + 5, result.indexOf("</rs1>"));
+            var data_state = JSON.parse(stateJSONData);
+            // if can not find any state to the select country, prepurchase-state-json will return array has one object with the following content:
+            // [{"countryCode":"n/a", "stateCode":"n/a", "stateName":"n/a"}]
+            if (data_state.length == 1 && data_state[0].countryCode == "n/a") {
+                // if the country has no any state, hide the state select
+                $("#divState").hide();
+                $("#state").removeAttr("required");
+            }
+            else {
+                for (var i = 0; i < data_state.length; i++) {
+                    $("#state").append(new Option(data_state[i].stateName, data_state[i].stateCode));
+                }
+                $("#divState").show();
+                $("#state").attr("required", "true");
+            }
+        },
+        error: function (xhr, status, error) {
+            $("#selectedStateName").val("");
+            $("#divState").hide();
+            //alert("Retrieve state date failed. Statue: " + status + "; Error: " + error);
+            window.location.href = errorUrl;
+        }
+    });
+}
+
+function stateChanged() {
+    $("#selectedStateName").val($("#state").find(":selected").text());
+}
+
+function jobTitleChanged() {
+    var selectedJobTitle = $("#job-title").val();
+    var jobTitleURL = "https://pages.my.3plearning.com/jobtitlevalidator/?jobTitle=" + selectedJobTitle;
+
+    $.ajax({
+        url: jobTitleURL,
+        async: true,
+        success: function (result, status, xhr) {
+            var jobTitleJSONData = result.substring(result.indexOf("<rs1>") + 5, result.indexOf("</rs1>"));
+            var data_jobTitle = JSON.parse(jobTitleJSONData);
+            // depending on jobtitle only one record will return, if can not find record or there are more than
+            // one record in data extension, will redirect to error page from trial-survey-job-title-processing
+            var customerType = data_jobTitle[0]["Customer Type"];
+
+            if (customerType == "School") {
+                $("#divEnquirySelectHomeUser").hide();
+                $("#divSchoolName").show();
+                $("#divEnquirySelectSchoolUser").show();
+                $("#enquiry-select-school-user").val("");
+            }
+            else if (customerType == "Home") {
+                $("#divSchoolName").hide();
+                $("#divEnquirySelectSchoolUser").hide();
+                $("#divEnquirySelectHomeUser").show();
+                $("#enquiry-select-home-user").val("");
+                window.parent.location.href = ParentURL;
+            }
+            else {
+                //alert("Retrieve job title date failed. Customer Type has an invalid value: " + customerType);
+                window.location.href = errorUrl;
+            }
+        },
+        error: function (xhr, status, error) {
+            //alert("Retrieve job title date failed. Statue: " + status + "; Error: " + error);
+            window.location.href = errorUrl;
+        }
+    });
+}
+
+function checkform() {
+    var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var postcodePattern = /^\d{4}$/;
+
+    var isvalid = true;
+
+    if ($('#first-name').val().trim() === "") {
+        $('#first-name').css('border-color', 'red');
+        isvalid = false;
+    }
+    else {
+        $('#first-name').css('border-color', '#758088');
+    }
+
+    if ($('#last-name').val().trim() === "") {
+        $('#last-name').css('border-color', 'red');
+        isvalid = false;
+    }
+    else {
+        $('#last-name').css('border-color', '#758088');
+    }
+
+    if ($('#email').val().trim() === "" || !emailPattern.test($('#email').val().trim())) {
+        $('#email').css('border-color', 'red');
+        isvalid = false;
+    }
+    else {
+        $('#email').css('border-color', '#758088');
+    }
+
+    if ($('#phone').val().trim() === "") {
+        $('#phone').css('border-color', 'red');
+        isvalid = false;
+    }
+    else {
+        $('#phone').css('border-color', '#758088');
+    }
+
+    if ($('#job-title :selected').val().trim() === "") {
+        $('#job-title').css('border-color', 'red');
+        isvalid = false;
+    }
+    else {
+        $('#job-title').css('border-color', '#758088');
+    }
+
+    if ($('#country :selected').val().trim() === "") {
+        $('#country').css('border-color', 'red');
+        isvalid = false;
+    }
+    else {
+        $('#country').css('border-color', '#758088');
+    }
+
+    if ($('#divState').is(':visible')) {
+        if ($('#state :selected').val().trim() === "") {
+            $('#state').css('border-color', 'red');
+            isvalid = false;
+        }
+        else {
+            $('#state').css('border-color', '#758088');
+        }
+    }
+
+    if ($('#postcode').val().trim() === "" || !postcodePattern.test($('#postcode').val().trim())) {
+        $('#postcode').css('border-color', 'red');
+        isvalid = false;
+    }
+    else {
+        $('#postcode').css('border-color', '#758088');
+    }
+
+    if ($('#divSchoolName').is(':visible')) {
+        if ($('#school-name').val().trim() === "") {
+            $('#school-name').css('border-color', 'red');
+            isvalid = false;
+        }
+        else {
+            $('#school-name').css('border-color', '#758088');
+        }
+    }
+
+    if ($('#divEnquirySelectSchoolUser').is(':visible')) {
+        if ($('#enquiry-select-school-user :selected').val().trim() === "") {
+            $('#enquiry-select-school-user').css('border-color', 'red');
+            isvalid = false;
+        }
+        else {
+            $('#enquiry-select-school-user').css('border-color', '#758088');
+        }
+    }
+
+    if ($('#divEnquirySelectHomeUser').is(':visible')) {
+        if ($('#enquiry-select-home-user :selected').val().trim() === "") {
+            $('#enquiry-select-home-user').css('border-color', 'red');
+            isvalid = false;
+        }
+        else {
+            $('#enquiry-select-home-user').css('border-color', '#758088');
+        }
+    }
+
+    if ($('#year-select :selected').val().trim() === "") {
+        $('#year-select').css('border-color', 'red');
+        isvalid = false;
+    }
+    else {
+        $('#year-select').css('border-color', '#758088');
+    }
+
+    if (!$('#tc-agree').is(':checked')) {
+        $('#term-warning').show();
+        isvalid = false;
+    }
+    else {
+        $('#term-warning').hide();
+    }
+
+    return isvalid;
+}

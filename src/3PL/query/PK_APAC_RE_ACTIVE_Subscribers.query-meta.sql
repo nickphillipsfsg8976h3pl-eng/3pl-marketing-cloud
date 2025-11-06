@@ -1,1 +1,0 @@
-SELECT * FROM [APAC_B2B_RE_Full&Ext_ACTIVE_Subscribers] WHERE AccountBillingCountryCode = 'PK'

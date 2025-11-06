@@ -1,0 +1,92 @@
+%%[
+
+set @errorMsg = AttributeValue("Error_Message") 
+set @timeStamp = AttributeValue("Time_Stamp") 
+set @http_referrer = AttributeValue("Http_Referrer") 
+
+
+]%%
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Responsive Email Template</title>
+    <style type="text/css">
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #F4F4F4;
+        }
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+
+        }
+        td, th {
+            color: #333;
+            padding: 10px;
+            border: 1px solid #dddddd; /* Ensuring borders are visible in Outlook */
+        }
+        .content-table th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .content-table {
+            width: 100%;
+            border: 1px solid #dddddd;
+        }
+        .content-table tr {
+            background-color: #f9f9f9; /* Default background for all rows for Outlook */
+        }
+      .header-image {
+    width: 100%; /* Use 100% of the container width */
+    max-width: 620px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px 8px 0 0; /* Optional: rounded corners at the top */
+}
+
+    </style>
+</head>
+
+<body>
+    <center style="width: 100%; background-color: #F4F4F4;">
+        <div style="max-width: 620px; margin: 0 auto;" class="email-container">
+          
+            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
+                <tr>
+                    <td style="padding: 20px; text-align: center; font-size: 0;">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 620px;"><tr>
+                                <td style="padding: 0; border-radius: 8px 8px 0 0; overflow: hidden;">
+                                    <img src="https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/608a4117-0ee2-407e-963e-d6202d01520d.png" alt="Header Image" class="header-image">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #ffffff; padding: 40px; text-align: left; border-radius: 8px;"><p style="margin: 20px 0; font-size: 16px; color: #333;">Hi Admin,</p>
+                                 
+                                    <h4 style="margin: 0 0 20px; font-size: 16px; color: #333;">Automated Form Error Report </h4>
+                                   <br>
+
+      <p style="margin: 20px 0; font-size: 16px; color: #333;"><strong>Error Message:</strong> %%=v(@errorMsg)=%%</p>
+      <p style="margin: 20px 0; font-size: 16px; color: #333;"><strong>Time Stamp   :</strong> %%=v(@timeStamp)=%%</p>
+      <p style="margin: 20px 0; font-size: 16px; color: #333;"><strong>HTTP Referrer:</strong> %%=v(@http_referrer)=%%</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </center>
+</body>
+</html>
+
+
+
+<custom name="opencounter" type="tracking">
+  %%[ if 0 == 1 then ]%% %%Member_Busname%% %%Member_Addr%% %%Member_City%% %%Member_State%% %%Member_PostalCode%% %%Member_Country%% %%[ endif ]%%
+</custom>
+

@@ -1,0 +1,27 @@
+{
+    "CustomerKey": "C8BF7E5A-B3F8-4972-A2F2-126379FF2EE7",
+    "Name": "AMER - DO NOT Contact - Districts - auto-suppression list - Staging",
+    "Description": "JIRA B2BM-458",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "Email Address",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "Date",
+            "DefaultValue": "GetDate()",
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/System/Supression Lists",
+    "c__retentionPolicy": "none"
+}

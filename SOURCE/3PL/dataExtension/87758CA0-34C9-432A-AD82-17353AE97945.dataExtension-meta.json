@@ -1,0 +1,36 @@
+{
+    "CustomerKey": "87758CA0-34C9-432A-AD82-17353AE97945",
+    "Name": "B2C_Country2Currency",
+    "Description": "A list of the countries which 3PL has chosen to pay in a particular currency",
+    "IsSendable": false,
+    "IsTestable": false,
+    "Fields": [
+        {
+            "Name": "CurrencyIsoCode",
+            "DefaultValue": "",
+            "MaxLength": 5,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "Currency",
+            "DefaultValue": "",
+            "MaxLength": 124,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        },
+        {
+            "Name": "MailingCountry",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": false,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__folder_ContentType": "dataextension",
+    "r__folder_Path": "Data Extensions/05_Global-References/03_Lookup tables/00_General",
+    "c__retentionPolicy": "none"
+}

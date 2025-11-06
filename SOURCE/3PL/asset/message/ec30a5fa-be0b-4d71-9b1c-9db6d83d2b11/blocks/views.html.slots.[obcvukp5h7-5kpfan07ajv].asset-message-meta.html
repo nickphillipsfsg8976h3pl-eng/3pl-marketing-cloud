@@ -1,0 +1,36 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!-- 
+%%[ 
+
+VAR @countryName, @link, @link2
+SET @countryName = AttributeValue("CampaignMember:Lead:Country")
+
+IF @countryName == 'Canada' THEN
+SET @link = 'https://www.mathletics.com/ca/for-schools/free-trial/?utm_source=Email&utm_medium=edm&utm_content=AMER_MS0008_EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+SET @link2 = 'https://mathseeds.ca/schools/getstarted/?utm_source=Email&utm_medium=edm&utm_content=AMER_MS0008_EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+
+ELSEIF @countryName == 'United States' THEN
+SET @link = 'https://www.mathletics.com/us/for-schools/free-trial/?utm_source=Email&utm_medium=edm&utm_content=AMER_MS0008_EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+SET @link2 = 'https://mathseeds.com/schools/getstarted/?utm_source=Email&utm_medium=edm&utm_content=AMER_MS0008_EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+
+ELSEIF @countryName == 'United Kingdom' THEN
+SET @link = 'https://www.mathletics.com/uk/for-schools/free-trial/?utm_source=Email&utm_medium=edm&utm_content=EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+SET @link2 = 'https://www.3plearning.com/software/mathseeds/free-trial/?utm_source=Email&utm_medium=edm&utm_content=EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+
+ELSEIF @countryName =='Australia' THEN
+SET @link = 'https://www.mathletics.com/au/for-schools/free-trial/?utm_source=Email&utm_medium=edm&utm_content=EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+SET @link2 = 'https://www.3plearning.com/software/mathseeds/free-trial/?utm_source=Email&utm_medium=edm&utm_content=EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+
+ELSEIF @countryName == 'New Zealand' THEN
+SET @link = 'https://www.mathletics.com/nz/for-schools/free-trial/?utm_source=Email&utm_medium=edm&utm_content=EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+SET @link2 = 'https://www.3plearning.com/software/mathseeds/free-trial/?utm_source=Email&utm_medium=edm&utm_content=EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+
+ELSE
+SET @link = 'https://www.3plearning.com/software/mathletics/free-trial/?utm_source=Email&utm_medium=edm&utm_content=EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+SET @link2 = 'https://www.3plearning.com/software/mathseeds/free-trial/?utm_source=Email&utm_medium=edm&utm_content=EMAIL3&utm_campaign=GLOBAL_MS0008_TOF_NumberGames'
+
+
+ENDIF
+ENDIF
+
+]%%
+--></td></tr></table>

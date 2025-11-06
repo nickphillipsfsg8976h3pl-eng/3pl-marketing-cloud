@@ -1,0 +1,63 @@
+{
+    "name": "GLOBAL_B2C_MX0001_US_CA",
+    "description": "",
+    "key": "06fa7da3-cc63-4300-9fab-078ac400cb73",
+    "type": "scheduled",
+    "status": "Ready",
+    "schedule": {
+        "startDate": "2022-11-25T23:00:00",
+        "endDate": "2022-11-25T23:00:00",
+        "icalRecur": "FREQ=DAILY;COUNT=1;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "emailSend",
+                    "r__key": 138665
+                },
+                {
+                    "r__type": "emailSend",
+                    "r__key": 138664
+                },
+                {
+                    "r__type": "emailSend",
+                    "r__key": 138692
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "5 Days",
+                    "r__type": "wait"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "emailSend",
+                    "r__key": 138691
+                },
+                {
+                    "r__type": "emailSend",
+                    "r__key": 138676
+                },
+                {
+                    "r__type": "emailSend",
+                    "r__key": 138675
+                }
+            ]
+        }
+    ],
+    "createdName": "Stephan Peniguel",
+    "createdDate": "2022-11-24T05:11:35.86Z",
+    "modifiedName": "Stephan Peniguel",
+    "modifiedDate": "2022-11-25T05:34:30.8Z",
+    "r__folder_Path": "my automations/B2C/01_Ongoing/GLOBAL_B2C_MX0001/US_CA"
+}

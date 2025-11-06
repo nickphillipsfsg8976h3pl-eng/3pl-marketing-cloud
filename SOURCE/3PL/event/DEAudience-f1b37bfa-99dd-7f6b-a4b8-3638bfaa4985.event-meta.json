@@ -1,0 +1,41 @@
+{
+    "type": "EmailAudience",
+    "name": "EMEA_RE0063_RolloverFY25 Phase 1",
+    "description": "",
+    "createdDate": "2024-08-09T10:08:16.793",
+    "createdBy": "Rinn Gnepper",
+    "modifiedDate": "2024-08-09T11:50:41.94",
+    "modifiedBy": "Rinn Gnepper",
+    "eventDefinitionKey": "DEAudience-f1b37bfa-99dd-7f6b-a4b8-3638bfaa4985",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "b3e070ba-470d-4118-afc9-3f23365ec16b",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"ContactsWithSubscriptions.ContactEmail\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;e1a843ef-0117-ee11-ba48-d4f5ef424921&quot;}\"><Value><![CDATA[schoolfinance@kingswood.bucks.sch.uk]]></Value></Condition><Condition Key=\"ContactsWithSubscriptions.ContactEmail\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;e1a843ef-0117-ee11-ba48-d4f5ef424921&quot;}\"><Value><![CDATA[deoleary@wicklowcoco.ie]]></Value></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 3,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"ContactsWithSubscriptions.ContactEmail\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;e1a843ef-0117-ee11-ba48-d4f5ef424921&quot;}\"><Value><![CDATA[schoolfinance@kingswood.bucks.sch.uk]]></Value></Condition><Condition Key=\"ContactsWithSubscriptions.ContactEmail\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;e1a843ef-0117-ee11-ba48-d4f5ef424921&quot;}\"><Value><![CDATA[deoleary@wicklowcoco.ie]]></Value></Condition></ConditionSet></FilterDefinition>",
+        "useHighWatermark": false
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "criteriaDescription": "ContactEmail does not contain schoolfinance@kingswood.bucks.sch.uk AND ContactEmail does not contain deoleary@wicklowcoco.ie",
+        "scheduleFlowMode": "runOnce",
+        "runOnceScheduleMode": "onSchedule"
+    },
+    "schedule": {
+        "startDateTime": "2024-08-13T00:00:00",
+        "endDateTime": "2024-08-13T00:00:00",
+        "timeZone": "Central Standard Time",
+        "occurrences": 1,
+        "endType": "Occurrences",
+        "frequency": "Daily",
+        "recurrencePattern": "Interval",
+        "interval": 1
+    },
+    "interactionCount": 1,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 1,
+    "disableDEDataLogging": false,
+    "r__automation_key": "83905e61-d061-40cb-a145-7206aee314b9"
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Thank You</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #f8f8f8; padding: 30px; }
+      h1 { color: #2c3e50; }
+      pre { padding: 10px; border-radius: 5px; font-size: 14px; }
+      pre:nth-of-type(odd) { background-color: #eee; }
+      pre:nth-of-type(even) { background-color: #ccc; }
+    </style>
+  </head>
+  <body>
+    <header class="bg-light py-3 mb-4 border-bottom">
+  <div class="container d-flex align-items-center">
+    <img src="https://surveygizmolibrary.s3.amazonaws.com/library/317216/3plogo1920x440.png" alt="3P Learning Logo" height="40">
+    <h5 class="mb-0 ml-3">Submission Received</h5>
+  </div>
+</header>
+    <div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+    <h1>Thank you for your submission!</h1>
+    <p>Thank you for confirming your school's contact information.</p>
+    %%[
+        set @_Other_Product        = RequestParameter("other_product")
+        set @_Products_Selected = RequestParameter("products")
+set @_Other_Product = RequestParameter("other_product")
+
+if not empty(@_Other_Product) then
+  set @_Products_Selected = Concat(@_Products_Selected, "|", @_Other_Product)
+endif
+        set @_School_Name          = RequestParameter("school_name")
+        set @_Postal_Code          = RequestParameter("postcode")
+        set @_Primary_Contact      = RequestParameter("primary_contact")
+
+        set @_Email_Address        = RequestParameter("email_address")
+        set @_Your_Role = RequestParameter("your_role")
+        set @_Your_Role_Other = RequestParameter("your_role_other")
+
+        if @Your_Role == "Other" and not empty(@_Your_Role_Other) then
+           set @_Your_Role = @_Your_Role_Other
+        endif
+
+        set @_New_Role = RequestParameter("new_role")
+        set @_New_Role_Other = RequestParameter("new_role_other")
+
+        if @New_Role == "Other" and not empty(@_New_Role_Other) then
+          set @_New_Role = @_New_Role_Other
+        endif
+
+        set @_New_First_Name       = RequestParameter("new_first_name")
+        set @_New_Last_Name        = RequestParameter("new_last_name")
+        set @_New_Email            = RequestParameter("new_email")
+ 
+        
+        set @SubmissionID           = GUID()
+        set @debug = 0
+        IF @debug == 1 THEN
+        OutputLine(Concat('<pre><code>FORM DEBUG INFORMATION: </code></pre>'))
+        OutputLine(Concat('<pre><code>@_Products_Selected: ', @_Products_Selected, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_Other_Product: ', @_Other_Product, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_School_Name: ', @_School_Name, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_Postal_Code: ', @_Postal_Code, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_Primary_Contact: ', @_Primary_Contact, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_Email_Address: ', @_Email_Address, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_Your_Role: ', @_Your_Role, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_Your_Role_Other: ', @_Your_Role_Other, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_New_First_Name: ', @_New_First_Name, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_New_Last_Name: ', @_New_Last_Name, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_New_Email: ', @_New_Email, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_New_Role: ', @_New_Role, '</code></pre>'))
+        OutputLine(Concat('<pre><code>@_New_Role_Other: ', @_New_Role_Other, '</code></pre>'))
+        ENDIF
+        try{
+        set @insertSuccess = InsertData("Contact_Confirmation_Form_Submissions",
+        "SubmissionID", @SubmissionID,
+        "FirstName", @_First_Name,
+        "LastName", @_Last_Name,
+        "Email_Address", @_Email_Address,
+        "School_Name", @_School_Name,
+        "Postal_Code", @_Postal_Code,
+        "Products_Selected", @_Products_Selected,
+        "Is_Primary_Contact", @_Is_Primary_Contact,
+        "New_Contact_First_Name", @_New_First_Name,
+        "New_Contact_Last_Name", @_New_Last_Name,
+        "New_Contact_Email", @_New_Email,
+        "New_Contact_Role", @_New_Role,
+        "Your_Role",@_Your_Role,
+        "Submission_Date", SystemDateToLocalDate(now())
+    ) } catch {
+
+          set @errorMessage = "An error occurred while processing your request."
+          }
+    ]%%
+        </div>
+  </div>
+</div>
+    <footer class="bg-light py-4 mt-5 border-top">
+  <div class="container text-center">
+    <small>&copy; 2025 3P Learning. All rights reserved.</small>
+  </div>
+</footer>
+  </body>
+</html>

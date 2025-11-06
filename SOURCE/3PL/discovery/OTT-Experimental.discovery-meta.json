@@ -1,0 +1,2698 @@
+{
+    "kind": "discovery#restDescription",
+    "discoveryVersion": "v2",
+    "id": "OTTService:v1",
+    "name": "OTTService",
+    "version": "v1",
+    "title": "OTTService",
+    "description": "Provides services around concepts; send, registration, chatMessaging, whatsapp",
+    "documentationLink": "http://code.exacttarget.com",
+    "protocol": "rest",
+    "rootUrl": "https://www.exacttargetapis.com/",
+    "servicePath": "OTTService/v1",
+    "resources": {
+        "send": {
+            "methods": {
+                "GetSentMessageByMessageId": {
+                    "id": "OTTService.send.GetSentMessageByMessageId",
+                    "path": "send/{messageId}",
+                    "httpMethod": "get",
+                    "description": "Get information about a send request",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response"
+                    },
+                    "parameters": {
+                        "messageId": {
+                            "type": "string",
+                            "description": "Id of the send request to be retrieved",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "SendContentToRecipient": {
+                    "id": "OTTService.send.SendContentToRecipient",
+                    "path": "send",
+                    "httpMethod": "post",
+                    "description": "Send an OTT message to the recipient",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 201,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.send.SendContentToRecipient-Response"
+                    },
+                    "request": {
+                        "$ref": "OTTService.send.SendContentToRecipient-Request"
+                    }
+                },
+                "GetSentMessagesCollection": {
+                    "id": "OTTService.send.GetSentMessagesCollection",
+                    "path": "sends",
+                    "httpMethod": "get",
+                    "description": "Get information about collection of send requests (placeholder)",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.send.GetSentMessagesCollection-Response"
+                    },
+                    "parameters": {
+                        "$page": {
+                            "type": "integer",
+                            "description": "Paging",
+                            "required": false,
+                            "location": "query",
+                            "format": "int32",
+                            "default": "1",
+                            "minimum": 1,
+                            "maximum": 2147483647
+                        },
+                        "$pagesize": {
+                            "type": "integer",
+                            "description": "Page Size for paging",
+                            "required": false,
+                            "location": "query",
+                            "format": "int32",
+                            "default": "50",
+                            "minimum": 1,
+                            "maximum": 5000
+                        }
+                    }
+                }
+            }
+        },
+        "registration": {
+            "methods": {
+                "GetRegistrationPropertyById": {
+                    "id": "OTTService.registration.GetRegistrationPropertyById",
+                    "path": "registration/{platform}/{ottPropertyId}",
+                    "httpMethod": "get",
+                    "description": "Get information about a registered OTT property by Platform and ID",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.registration.GetRegistrationPropertyById-Response"
+                    },
+                    "parameters": {
+                        "platform": {
+                            "type": "string",
+                            "description": "Platform Name of the property",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "ottPropertyId": {
+                            "type": "string",
+                            "description": "ID of the OTT property",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "GetRegistrationCollectionByPlatformType": {
+                    "id": "OTTService.registration.GetRegistrationCollectionByPlatformType",
+                    "path": "registration/{platform}",
+                    "httpMethod": "get",
+                    "description": "Get information about registered OTT properties by Platform",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.registration.GetRegistrationCollectionByPlatformType-Response"
+                    },
+                    "parameters": {
+                        "$page": {
+                            "type": "integer",
+                            "description": "Paging",
+                            "required": false,
+                            "location": "query",
+                            "format": "int32",
+                            "default": "1",
+                            "minimum": 1,
+                            "maximum": 2147483647
+                        },
+                        "$pagesize": {
+                            "type": "integer",
+                            "description": "Page Size for paging",
+                            "required": false,
+                            "location": "query",
+                            "format": "int32",
+                            "default": "50",
+                            "minimum": 1,
+                            "maximum": 5000
+                        },
+                        "platform": {
+                            "type": "string",
+                            "description": "Platform Name of property",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "RegisterOttProperty": {
+                    "id": "OTTService.registration.RegisterOttProperty",
+                    "path": "registration",
+                    "httpMethod": "post",
+                    "description": "Register a property for a specific OTT platform",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 201,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.registration.RegisterOttProperty-Response"
+                    },
+                    "request": {
+                        "$ref": "OTTService.registration.GetRegistrationPropertyById-Response"
+                    }
+                },
+                "UpdateOttProperty": {
+                    "id": "OTTService.registration.UpdateOttProperty",
+                    "path": "registration/{platform}",
+                    "httpMethod": "patch",
+                    "description": "Updates a property for a specific OTT platform",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.registration.RegisterOttProperty-Response"
+                    },
+                    "request": {
+                        "$ref": "OTTService.registration.GetRegistrationPropertyById-Response"
+                    },
+                    "parameters": {
+                        "platform": {
+                            "type": "string",
+                            "description": "Platform Name of the property",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "GetRegisteredChannelUtilizationByProvider": {
+                    "id": "OTTService.registration.GetRegisteredChannelUtilizationByProvider",
+                    "path": "registration/channelUtilization/{provider}",
+                    "httpMethod": "get",
+                    "description": "Get information about the registered chat messaging channel and utilization count by provider",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.registration.GetRegisteredChannelUtilizationByProvider-Response"
+                    },
+                    "parameters": {
+                        "provider": {
+                            "type": "string",
+                            "description": "Name of the provider",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                }
+            }
+        },
+        "chatMessaging": {
+            "methods": {
+                "GetKeywordAvailability": {
+                    "id": "OTTService.chatMessaging.GetKeywordAvailability",
+                    "path": "chatMessaging/keyword/availability/{channelId}/{channelType}",
+                    "httpMethod": "get",
+                    "description": "Checks if keyword is available to use",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.chatMessaging.GetKeywordAvailability-Response"
+                    },
+                    "parameters": {
+                        "keyword": {
+                            "type": "string",
+                            "description": "Keyword to validate",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "keywordType": {
+                            "type": "integer",
+                            "description": "Keyword Type to validate.  0 = JB Chat Entry, 1 = JB Chat WaitUntil",
+                            "required": false,
+                            "location": "query",
+                            "format": "int32",
+                            "default": "0"
+                        },
+                        "channelId": {
+                            "type": "string",
+                            "description": "Id of the channel",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "channelType": {
+                            "type": "string",
+                            "description": "Type of the channel",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "CheckKeywordApplicability": {
+                    "id": "OTTService.chatMessaging.CheckKeywordApplicability",
+                    "path": "chatMessaging/keyword/validate/{channelId}/{channelType}",
+                    "httpMethod": "get",
+                    "description": "Checks if the provided keyword exists in the ongoing journeys.",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.chatMessaging.CheckKeywordApplicability-Response"
+                    },
+                    "parameters": {
+                        "keyword": {
+                            "type": "string",
+                            "description": "Keyword to search in active journeys",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "secondaryKeyword": {
+                            "type": "string",
+                            "description": "Keyword to search in active journeys",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "fromNumber": {
+                            "type": "string",
+                            "description": "Mobile End User (MEU) phone number",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "mid": {
+                            "type": "string",
+                            "description": "mid for the context",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "channelId": {
+                            "type": "string",
+                            "description": "Id of the channel (Business Phone number)",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "channelType": {
+                            "type": "string",
+                            "description": "Type of the channel",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "LookupKeywordApplicability": {
+                    "id": "OTTService.chatMessaging.LookupKeywordApplicability",
+                    "path": "chatMessaging/keyword/lookup/{channelId}/{channelType}",
+                    "httpMethod": "get",
+                    "description": "Checks if the provided keyword exists in the ongoing journeys.",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.chatMessaging.LookupKeywordApplicability-Response"
+                    },
+                    "parameters": {
+                        "keyword": {
+                            "type": "string",
+                            "description": "Keyword to search in active journeys",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "secondaryKeyword": {
+                            "type": "string",
+                            "description": "Keyword to search in active journeys",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "fromNumber": {
+                            "type": "string",
+                            "description": "Mobile End User (MEU) phone number",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "mid": {
+                            "type": "string",
+                            "description": "mid for the context",
+                            "required": false,
+                            "location": "query"
+                        },
+                        "channelId": {
+                            "type": "string",
+                            "description": "Id of the channel (Business Phone number)",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "channelType": {
+                            "type": "string",
+                            "description": "Type of the channel",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                }
+            }
+        },
+        "whatsapp": {
+            "methods": {
+                "GetMetaAppIdAndVersion": {
+                    "id": "OTTService.whatsapp.GetMetaAppIdAndVersion",
+                    "path": "whatsapp/metaApp",
+                    "httpMethod": "get",
+                    "description": "Get information about the meta app by provider name",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.whatsapp.GetMetaAppIdAndVersion-Response"
+                    }
+                },
+                "GetWhatsAppWabaCollection": {
+                    "id": "OTTService.whatsapp.GetWhatsAppWabaCollection",
+                    "path": "whatsapp/wabas",
+                    "httpMethod": "get",
+                    "description": "Get information about the registered WABAs by provider name",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.whatsapp.GetWhatsAppWabaCollection-Response"
+                    },
+                    "parameters": {
+                        "$page": {
+                            "type": "integer",
+                            "description": "Paging",
+                            "required": false,
+                            "location": "query",
+                            "format": "int32",
+                            "default": "1",
+                            "minimum": 1,
+                            "maximum": 2147483647
+                        },
+                        "$pagesize": {
+                            "type": "integer",
+                            "description": "Page Size for paging",
+                            "required": false,
+                            "location": "query",
+                            "format": "int32",
+                            "default": "50",
+                            "minimum": 1,
+                            "maximum": 5000
+                        }
+                    }
+                },
+                "RegisterWabaProperty": {
+                    "id": "OTTService.whatsapp.RegisterWabaProperty",
+                    "path": "whatsapp/registerWaba",
+                    "httpMethod": "post",
+                    "description": "Register WABA for the account",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 201,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.registration.RegisterOttProperty-Response"
+                    },
+                    "request": {
+                        "$ref": "OTTService.whatsapp.RegisterWabaProperty-Request"
+                    }
+                },
+                "GetSupportedMessageTypes": {
+                    "id": "OTTService.whatsapp.GetSupportedMessageTypes",
+                    "path": "whatsapp/content/supportedMessageType",
+                    "httpMethod": "get",
+                    "description": "Get the supported message type for WhatsApp templates",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.whatsapp.GetSupportedMessageTypes-Response"
+                    }
+                },
+                "ReprocessWaba": {
+                    "id": "OTTService.whatsapp.ReprocessWaba",
+                    "path": "whatsapp/reprocessWaba",
+                    "httpMethod": "post",
+                    "description": "Reprocess Waba to Sync With Meta",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 201,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.registration.RegisterOttProperty-Response"
+                    },
+                    "request": {
+                        "$ref": "OTTService.whatsapp.ReprocessWaba-Request"
+                    }
+                },
+                "GetWhatsAppAccountDetailsById": {
+                    "id": "OTTService.whatsapp.GetWhatsAppAccountDetailsById",
+                    "path": "whatsapp/wabas/{wabaId}/channels",
+                    "httpMethod": "get",
+                    "description": "Get information about Waba ID",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.whatsapp.GetWhatsAppAccountDetailsById-Response"
+                    },
+                    "parameters": {
+                        "wabaId": {
+                            "type": "string",
+                            "description": "WhatsApp Account Id",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "GetChannelTimeline": {
+                    "id": "OTTService.whatsapp.GetChannelTimeline",
+                    "path": "whatsapp/wabas/{wabaId}/channels/{channel}/auditLog",
+                    "httpMethod": "get",
+                    "description": "Get information about Channel ID against given Waba",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.whatsapp.GetChannelTimeline-Response"
+                    },
+                    "parameters": {
+                        "wabaId": {
+                            "type": "string",
+                            "description": "WhatsApp Account Id",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "channel": {
+                            "type": "string",
+                            "description": "Sender Phone Number",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "GetTemplateDetails": {
+                    "id": "OTTService.whatsapp.GetTemplateDetails",
+                    "path": "whatsapp/wabas/{wabaId}/templates/{templateName}/{templateLanguage}",
+                    "httpMethod": "get",
+                    "description": "Get information about template against given Waba",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.whatsapp.GetTemplateDetails-Response"
+                    },
+                    "parameters": {
+                        "wabaId": {
+                            "type": "string",
+                            "description": "WhatsApp Account Id",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "templateName": {
+                            "type": "string",
+                            "description": "Template Name",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "templateLanguage": {
+                            "type": "string",
+                            "description": "Template Language",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "GetFlowDetails": {
+                    "id": "OTTService.whatsapp.GetFlowDetails",
+                    "path": "whatsapp/{wabaId}/flows/{flowId}",
+                    "httpMethod": "get",
+                    "description": "Get all the details for a specific flow",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.whatsapp.GetFlowDetails-Response"
+                    },
+                    "parameters": {
+                        "wabaId": {
+                            "type": "string",
+                            "description": "WhatsApp Account Id",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "flowId": {
+                            "type": "string",
+                            "description": "Flow Id",
+                            "required": true,
+                            "location": "path"
+                        }
+                    }
+                },
+                "GetAllFlows": {
+                    "id": "OTTService.whatsapp.GetAllFlows",
+                    "path": "whatsapp/flows",
+                    "httpMethod": "get",
+                    "description": "Get list of flows",
+                    "responseCodes": [
+                        {
+                            "httpStatusCode": 200,
+                            "description": "When successful"
+                        }
+                    ],
+                    "response": {
+                        "$ref": "OTTService.whatsapp.GetAllFlows-Response"
+                    }
+                }
+            }
+        }
+    },
+    "schemas": {
+        "OTTService.send.GetSentMessageByMessageId-Response": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response",
+            "type": "object",
+            "properties": {
+                "messageRequestEntityV1": {
+                    "$ref": "OTTService.send.SendContentToRecipient-Request"
+                },
+                "sentMessageStatusResponseEntityV1": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ISentMessageStatusResponseEntityV1"
+                    }
+                }
+            }
+        },
+        "OTTService.send.SendContentToRecipient-Request": {
+            "id": "OTTService.send.SendContentToRecipient-Request",
+            "type": "object",
+            "properties": {
+                "messageKey": {
+                    "type": "string"
+                },
+                "ottRequestId": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "from": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageSenderEntityV1"
+                },
+                "to": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageRecipientEntityV1"
+                },
+                "message": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageContentEntityV1"
+                },
+                "validityPeriod": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageSenderEntityV1": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageSenderEntityV1",
+            "type": "object",
+            "properties": {
+                "senderType": {
+                    "type": "string"
+                },
+                "senderId": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageRecipientEntityV1": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageRecipientEntityV1",
+            "type": "object",
+            "properties": {
+                "ottId": {
+                    "type": "string"
+                },
+                "contactKey": {
+                    "type": "string"
+                },
+                "userReference": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageContentEntityV1": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageContentEntityV1",
+            "type": "object",
+            "properties": {
+                "subject": {
+                    "type": "string"
+                },
+                "contents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageContentBlockEntityV1"
+                    }
+                },
+                "customKeys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageCustomKeyEntityV1"
+                    }
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageContentBlockEntityV1": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageContentBlockEntityV1",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "altUrl": {
+                    "type": "string"
+                },
+                "duration": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "payload": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-JsonObjectAttribute"
+                },
+                "nativePayload": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                },
+                "isReusable": {
+                    "type": "boolean"
+                },
+                "attachmentId": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-JsonObjectAttribute": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-JsonObjectAttribute",
+            "type": "object",
+            "properties": {
+                "memberSerialization": {
+                    "type": "string"
+                },
+                "itemRequired": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "itemConverterType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "itemConverterParameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                    }
+                },
+                "namingStrategyType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "namingStrategyParameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                    }
+                },
+                "isReference": {
+                    "type": "boolean"
+                },
+                "itemIsReference": {
+                    "type": "boolean"
+                },
+                "itemReferenceLoopHandling": {
+                    "type": "string"
+                },
+                "itemTypeNameHandling": {
+                    "type": "string"
+                },
+                "typeId": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type",
+            "type": "object",
+            "properties": {
+                "memberType": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "declaringMethod": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodBase"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "structLayoutAttribute": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-StructLayoutAttribute"
+                },
+                "gUID": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                },
+                "assembly": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Assembly"
+                },
+                "typeHandle": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "assemblyQualifiedName": {
+                    "type": "string"
+                },
+                "baseType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "typeInitializer": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ConstructorInfo"
+                },
+                "isNested": {
+                    "type": "boolean"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "genericParameterAttributes": {
+                    "type": "string"
+                },
+                "isVisible": {
+                    "type": "boolean"
+                },
+                "isNotPublic": {
+                    "type": "boolean"
+                },
+                "isPublic": {
+                    "type": "boolean"
+                },
+                "isNestedPublic": {
+                    "type": "boolean"
+                },
+                "isNestedPrivate": {
+                    "type": "boolean"
+                },
+                "isNestedFamily": {
+                    "type": "boolean"
+                },
+                "isNestedAssembly": {
+                    "type": "boolean"
+                },
+                "isNestedFamANDAssem": {
+                    "type": "boolean"
+                },
+                "isNestedFamORAssem": {
+                    "type": "boolean"
+                },
+                "isAutoLayout": {
+                    "type": "boolean"
+                },
+                "isLayoutSequential": {
+                    "type": "boolean"
+                },
+                "isExplicitLayout": {
+                    "type": "boolean"
+                },
+                "isClass": {
+                    "type": "boolean"
+                },
+                "isInterface": {
+                    "type": "boolean"
+                },
+                "isValueType": {
+                    "type": "boolean"
+                },
+                "isAbstract": {
+                    "type": "boolean"
+                },
+                "isSealed": {
+                    "type": "boolean"
+                },
+                "isEnum": {
+                    "type": "boolean"
+                },
+                "isSpecialName": {
+                    "type": "boolean"
+                },
+                "isImport": {
+                    "type": "boolean"
+                },
+                "isSerializable": {
+                    "type": "boolean"
+                },
+                "isAnsiClass": {
+                    "type": "boolean"
+                },
+                "isUnicodeClass": {
+                    "type": "boolean"
+                },
+                "isAutoClass": {
+                    "type": "boolean"
+                },
+                "isArray": {
+                    "type": "boolean"
+                },
+                "isGenericType": {
+                    "type": "boolean"
+                },
+                "isGenericTypeDefinition": {
+                    "type": "boolean"
+                },
+                "isConstructedGenericType": {
+                    "type": "boolean"
+                },
+                "isGenericParameter": {
+                    "type": "boolean"
+                },
+                "genericParameterPosition": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "containsGenericParameters": {
+                    "type": "boolean"
+                },
+                "isByRef": {
+                    "type": "boolean"
+                },
+                "isPointer": {
+                    "type": "boolean"
+                },
+                "isPrimitive": {
+                    "type": "boolean"
+                },
+                "isCOMObject": {
+                    "type": "boolean"
+                },
+                "hasElementType": {
+                    "type": "boolean"
+                },
+                "isContextful": {
+                    "type": "boolean"
+                },
+                "isMarshalByRef": {
+                    "type": "boolean"
+                },
+                "genericTypeArguments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                    }
+                },
+                "isSecurityCritical": {
+                    "type": "boolean"
+                },
+                "isSecuritySafeCritical": {
+                    "type": "boolean"
+                },
+                "isSecurityTransparent": {
+                    "type": "boolean"
+                },
+                "underlyingSystemType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodBase": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodBase",
+            "type": "object",
+            "properties": {
+                "methodImplementationFlags": {
+                    "type": "string"
+                },
+                "methodHandle": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "callingConvention": {
+                    "type": "string"
+                },
+                "isGenericMethodDefinition": {
+                    "type": "boolean"
+                },
+                "containsGenericParameters": {
+                    "type": "boolean"
+                },
+                "isGenericMethod": {
+                    "type": "boolean"
+                },
+                "isSecurityCritical": {
+                    "type": "boolean"
+                },
+                "isSecuritySafeCritical": {
+                    "type": "boolean"
+                },
+                "isSecurityTransparent": {
+                    "type": "boolean"
+                },
+                "isPublic": {
+                    "type": "boolean"
+                },
+                "isPrivate": {
+                    "type": "boolean"
+                },
+                "isFamily": {
+                    "type": "boolean"
+                },
+                "isAssembly": {
+                    "type": "boolean"
+                },
+                "isFamilyAndAssembly": {
+                    "type": "boolean"
+                },
+                "isFamilyOrAssembly": {
+                    "type": "boolean"
+                },
+                "isStatic": {
+                    "type": "boolean"
+                },
+                "isFinal": {
+                    "type": "boolean"
+                },
+                "isVirtual": {
+                    "type": "boolean"
+                },
+                "isHideBySig": {
+                    "type": "boolean"
+                },
+                "isAbstract": {
+                    "type": "boolean"
+                },
+                "isSpecialName": {
+                    "type": "boolean"
+                },
+                "isConstructor": {
+                    "type": "boolean"
+                },
+                "memberType": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData",
+            "type": "object",
+            "properties": {
+                "attributeType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "constructor": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ConstructorInfo"
+                },
+                "constructorArguments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "namedArguments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-ConstructorInfo": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ConstructorInfo",
+            "type": "object",
+            "properties": {
+                "memberType": {
+                    "type": "string"
+                },
+                "methodImplementationFlags": {
+                    "type": "string"
+                },
+                "methodHandle": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "callingConvention": {
+                    "type": "string"
+                },
+                "isGenericMethodDefinition": {
+                    "type": "boolean"
+                },
+                "containsGenericParameters": {
+                    "type": "boolean"
+                },
+                "isGenericMethod": {
+                    "type": "boolean"
+                },
+                "isSecurityCritical": {
+                    "type": "boolean"
+                },
+                "isSecuritySafeCritical": {
+                    "type": "boolean"
+                },
+                "isSecurityTransparent": {
+                    "type": "boolean"
+                },
+                "isPublic": {
+                    "type": "boolean"
+                },
+                "isPrivate": {
+                    "type": "boolean"
+                },
+                "isFamily": {
+                    "type": "boolean"
+                },
+                "isAssembly": {
+                    "type": "boolean"
+                },
+                "isFamilyAndAssembly": {
+                    "type": "boolean"
+                },
+                "isFamilyOrAssembly": {
+                    "type": "boolean"
+                },
+                "isStatic": {
+                    "type": "boolean"
+                },
+                "isFinal": {
+                    "type": "boolean"
+                },
+                "isVirtual": {
+                    "type": "boolean"
+                },
+                "isHideBySig": {
+                    "type": "boolean"
+                },
+                "isAbstract": {
+                    "type": "boolean"
+                },
+                "isSpecialName": {
+                    "type": "boolean"
+                },
+                "isConstructor": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module",
+            "type": "object",
+            "properties": {
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "mDStreamVersion": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fullyQualifiedName": {
+                    "type": "string"
+                },
+                "moduleVersionId": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "scopeName": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "assembly": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Assembly"
+                },
+                "moduleHandle": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-Assembly": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Assembly",
+            "type": "object",
+            "properties": {
+                "codeBase": {
+                    "type": "string"
+                },
+                "escapedCodeBase": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "entryPoint": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo"
+                },
+                "exportedTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                    }
+                },
+                "definedTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-TypeInfo"
+                    }
+                },
+                "evidence": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Evidence"
+                },
+                "permissionSet": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-PermissionSet"
+                },
+                "isFullyTrusted": {
+                    "type": "boolean"
+                },
+                "securityRuleSet": {
+                    "type": "string"
+                },
+                "manifestModule": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "reflectionOnly": {
+                    "type": "boolean"
+                },
+                "modules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                    }
+                },
+                "location": {
+                    "type": "string"
+                },
+                "imageRuntimeVersion": {
+                    "type": "string"
+                },
+                "globalAssemblyCache": {
+                    "type": "boolean"
+                },
+                "hostContext": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isDynamic": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo",
+            "type": "object",
+            "properties": {
+                "memberType": {
+                    "type": "string"
+                },
+                "returnType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "returnParameter": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ParameterInfo"
+                },
+                "returnTypeCustomAttributes": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ICustomAttributeProvider"
+                },
+                "methodImplementationFlags": {
+                    "type": "string"
+                },
+                "methodHandle": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "callingConvention": {
+                    "type": "string"
+                },
+                "isGenericMethodDefinition": {
+                    "type": "boolean"
+                },
+                "containsGenericParameters": {
+                    "type": "boolean"
+                },
+                "isGenericMethod": {
+                    "type": "boolean"
+                },
+                "isSecurityCritical": {
+                    "type": "boolean"
+                },
+                "isSecuritySafeCritical": {
+                    "type": "boolean"
+                },
+                "isSecurityTransparent": {
+                    "type": "boolean"
+                },
+                "isPublic": {
+                    "type": "boolean"
+                },
+                "isPrivate": {
+                    "type": "boolean"
+                },
+                "isFamily": {
+                    "type": "boolean"
+                },
+                "isAssembly": {
+                    "type": "boolean"
+                },
+                "isFamilyAndAssembly": {
+                    "type": "boolean"
+                },
+                "isFamilyOrAssembly": {
+                    "type": "boolean"
+                },
+                "isStatic": {
+                    "type": "boolean"
+                },
+                "isFinal": {
+                    "type": "boolean"
+                },
+                "isVirtual": {
+                    "type": "boolean"
+                },
+                "isHideBySig": {
+                    "type": "boolean"
+                },
+                "isAbstract": {
+                    "type": "boolean"
+                },
+                "isSpecialName": {
+                    "type": "boolean"
+                },
+                "isConstructor": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-ParameterInfo": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ParameterInfo",
+            "type": "object",
+            "properties": {
+                "parameterType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "hasDefaultValue": {
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                },
+                "rawDefaultValue": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                },
+                "position": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "member": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MemberInfo"
+                },
+                "isIn": {
+                    "type": "boolean"
+                },
+                "isOut": {
+                    "type": "boolean"
+                },
+                "isLcid": {
+                    "type": "boolean"
+                },
+                "isRetval": {
+                    "type": "boolean"
+                },
+                "isOptional": {
+                    "type": "boolean"
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object",
+            "type": "object",
+            "properties": {}
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-MemberInfo": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MemberInfo",
+            "type": "object",
+            "properties": {
+                "memberType": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-ICustomAttributeProvider": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ICustomAttributeProvider",
+            "type": "object",
+            "properties": {}
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-TypeInfo": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-TypeInfo",
+            "type": "object",
+            "properties": {
+                "genericTypeParameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                    }
+                },
+                "declaredConstructors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ConstructorInfo"
+                    }
+                },
+                "declaredEvents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-EventInfo"
+                    }
+                },
+                "declaredFields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-FieldInfo"
+                    }
+                },
+                "declaredMembers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MemberInfo"
+                    }
+                },
+                "declaredMethods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo"
+                    }
+                },
+                "declaredNestedTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-TypeInfo"
+                    }
+                },
+                "declaredProperties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-PropertyInfo"
+                    }
+                },
+                "implementedInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                    }
+                },
+                "memberType": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "declaringMethod": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodBase"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "structLayoutAttribute": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-StructLayoutAttribute"
+                },
+                "gUID": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                },
+                "assembly": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Assembly"
+                },
+                "typeHandle": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "assemblyQualifiedName": {
+                    "type": "string"
+                },
+                "baseType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "typeInitializer": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ConstructorInfo"
+                },
+                "isNested": {
+                    "type": "boolean"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "genericParameterAttributes": {
+                    "type": "string"
+                },
+                "isVisible": {
+                    "type": "boolean"
+                },
+                "isNotPublic": {
+                    "type": "boolean"
+                },
+                "isPublic": {
+                    "type": "boolean"
+                },
+                "isNestedPublic": {
+                    "type": "boolean"
+                },
+                "isNestedPrivate": {
+                    "type": "boolean"
+                },
+                "isNestedFamily": {
+                    "type": "boolean"
+                },
+                "isNestedAssembly": {
+                    "type": "boolean"
+                },
+                "isNestedFamANDAssem": {
+                    "type": "boolean"
+                },
+                "isNestedFamORAssem": {
+                    "type": "boolean"
+                },
+                "isAutoLayout": {
+                    "type": "boolean"
+                },
+                "isLayoutSequential": {
+                    "type": "boolean"
+                },
+                "isExplicitLayout": {
+                    "type": "boolean"
+                },
+                "isClass": {
+                    "type": "boolean"
+                },
+                "isInterface": {
+                    "type": "boolean"
+                },
+                "isValueType": {
+                    "type": "boolean"
+                },
+                "isAbstract": {
+                    "type": "boolean"
+                },
+                "isSealed": {
+                    "type": "boolean"
+                },
+                "isEnum": {
+                    "type": "boolean"
+                },
+                "isSpecialName": {
+                    "type": "boolean"
+                },
+                "isImport": {
+                    "type": "boolean"
+                },
+                "isSerializable": {
+                    "type": "boolean"
+                },
+                "isAnsiClass": {
+                    "type": "boolean"
+                },
+                "isUnicodeClass": {
+                    "type": "boolean"
+                },
+                "isAutoClass": {
+                    "type": "boolean"
+                },
+                "isArray": {
+                    "type": "boolean"
+                },
+                "isGenericType": {
+                    "type": "boolean"
+                },
+                "isGenericTypeDefinition": {
+                    "type": "boolean"
+                },
+                "isConstructedGenericType": {
+                    "type": "boolean"
+                },
+                "isGenericParameter": {
+                    "type": "boolean"
+                },
+                "genericParameterPosition": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "containsGenericParameters": {
+                    "type": "boolean"
+                },
+                "isByRef": {
+                    "type": "boolean"
+                },
+                "isPointer": {
+                    "type": "boolean"
+                },
+                "isPrimitive": {
+                    "type": "boolean"
+                },
+                "isCOMObject": {
+                    "type": "boolean"
+                },
+                "hasElementType": {
+                    "type": "boolean"
+                },
+                "isContextful": {
+                    "type": "boolean"
+                },
+                "isMarshalByRef": {
+                    "type": "boolean"
+                },
+                "genericTypeArguments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                    }
+                },
+                "isSecurityCritical": {
+                    "type": "boolean"
+                },
+                "isSecuritySafeCritical": {
+                    "type": "boolean"
+                },
+                "isSecurityTransparent": {
+                    "type": "boolean"
+                },
+                "underlyingSystemType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-EventInfo": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-EventInfo",
+            "type": "object",
+            "properties": {
+                "memberType": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "addMethod": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo"
+                },
+                "removeMethod": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo"
+                },
+                "raiseMethod": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo"
+                },
+                "eventHandlerType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "isSpecialName": {
+                    "type": "boolean"
+                },
+                "isMulticast": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-FieldInfo": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-FieldInfo",
+            "type": "object",
+            "properties": {
+                "memberType": {
+                    "type": "string"
+                },
+                "fieldHandle": {
+                    "type": "string"
+                },
+                "fieldType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "isPublic": {
+                    "type": "boolean"
+                },
+                "isPrivate": {
+                    "type": "boolean"
+                },
+                "isFamily": {
+                    "type": "boolean"
+                },
+                "isAssembly": {
+                    "type": "boolean"
+                },
+                "isFamilyAndAssembly": {
+                    "type": "boolean"
+                },
+                "isFamilyOrAssembly": {
+                    "type": "boolean"
+                },
+                "isStatic": {
+                    "type": "boolean"
+                },
+                "isInitOnly": {
+                    "type": "boolean"
+                },
+                "isLiteral": {
+                    "type": "boolean"
+                },
+                "isNotSerialized": {
+                    "type": "boolean"
+                },
+                "isSpecialName": {
+                    "type": "boolean"
+                },
+                "isPinvokeImpl": {
+                    "type": "boolean"
+                },
+                "isSecurityCritical": {
+                    "type": "boolean"
+                },
+                "isSecuritySafeCritical": {
+                    "type": "boolean"
+                },
+                "isSecurityTransparent": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-PropertyInfo": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-PropertyInfo",
+            "type": "object",
+            "properties": {
+                "memberType": {
+                    "type": "string"
+                },
+                "propertyType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "attributes": {
+                    "type": "string"
+                },
+                "canRead": {
+                    "type": "boolean"
+                },
+                "canWrite": {
+                    "type": "boolean"
+                },
+                "getMethod": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo"
+                },
+                "setMethod": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MethodInfo"
+                },
+                "isSpecialName": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "declaringType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "reflectedType": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Type"
+                },
+                "customAttributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-CustomAttributeData"
+                    }
+                },
+                "metadataToken": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "module": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Module"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-StructLayoutAttribute": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-StructLayoutAttribute",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "string"
+                },
+                "typeId": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-Evidence": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Evidence",
+            "type": "object",
+            "properties": {
+                "locked": {
+                    "type": "boolean"
+                },
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "syncRoot": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                },
+                "isSynchronized": {
+                    "type": "boolean"
+                },
+                "isReadOnly": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-PermissionSet": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-PermissionSet",
+            "type": "object",
+            "properties": {
+                "syncRoot": {
+                    "$ref": "OTTService.send.GetSentMessageByMessageId-Response-SubType-Object"
+                },
+                "isSynchronized": {
+                    "type": "boolean"
+                },
+                "isReadOnly": {
+                    "type": "boolean"
+                },
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageCustomKeyEntityV1": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-MessageCustomKeyEntityV1",
+            "type": "object",
+            "properties": {
+                "messagingType": {
+                    "type": "string"
+                },
+                "notificationType": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.send.GetSentMessageByMessageId-Response-SubType-ISentMessageStatusResponseEntityV1": {
+            "id": "OTTService.send.GetSentMessageByMessageId-Response-SubType-ISentMessageStatusResponseEntityV1",
+            "type": "object",
+            "properties": {
+                "event": {
+                    "type": "string"
+                },
+                "eventDateTime": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "errorReason": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.send.SendContentToRecipient-Response": {
+            "id": "OTTService.send.SendContentToRecipient-Response",
+            "type": "object",
+            "properties": {
+                "ottRequestId": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "OTTService.send.GetSentMessagesCollection-Response": {
+            "id": "OTTService.send.GetSentMessagesCollection-Response",
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.send.GetSentMessageByMessageId-Response"
+                    }
+                },
+                "page": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pageSize": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "OTTService.registration.GetRegistrationPropertyById-Response": {
+            "id": "OTTService.registration.GetRegistrationPropertyById-Response",
+            "type": "object",
+            "properties": {
+                "ottPlatformName": {
+                    "type": "string"
+                },
+                "ottPlatformAttributes": {
+                    "$ref": "OTTService.registration.GetRegistrationPropertyById-Response-SubType-OttPlatformAttributesV1"
+                }
+            }
+        },
+        "OTTService.registration.GetRegistrationPropertyById-Response-SubType-OttPlatformAttributesV1": {
+            "id": "OTTService.registration.GetRegistrationPropertyById-Response-SubType-OttPlatformAttributesV1",
+            "type": "object",
+            "properties": {
+                "endpointUrl": {
+                    "type": "string"
+                },
+                "apiVersion": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "modifiedDate": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string"
+                },
+                "providerName": {
+                    "type": "string"
+                },
+                "meta": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "authUrl": {
+                    "type": "string"
+                },
+                "defaultResponse": {
+                    "type": "string"
+                },
+                "channelIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "defaultResponseLastUpdated": {
+                    "type": "string"
+                },
+                "webhookSecret": {
+                    "type": "string"
+                },
+                "webhookUrl": {
+                    "type": "string"
+                },
+                "channelId": {
+                    "type": "string"
+                },
+                "channelName": {
+                    "type": "string"
+                },
+                "channelSecret": {
+                    "type": "string"
+                },
+                "isTransactional": {
+                    "type": "boolean"
+                },
+                "isTestChannel": {
+                    "type": "boolean"
+                },
+                "customerConnectSecret": {
+                    "type": "string"
+                },
+                "isCustomerSecretSet": {
+                    "type": "boolean"
+                },
+                "applicationId": {
+                    "type": "string"
+                },
+                "applicationSecret": {
+                    "type": "string"
+                },
+                "pageId": {
+                    "type": "string"
+                },
+                "pageName": {
+                    "type": "string"
+                },
+                "pageAccessToken": {
+                    "type": "string"
+                },
+                "callbackVerifyToken": {
+                    "type": "string"
+                },
+                "wabaId": {
+                    "type": "string"
+                },
+                "phoneNumberId": {
+                    "type": "string"
+                },
+                "channelStatus": {
+                    "type": "string"
+                },
+                "qualityRating": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.registration.GetRegistrationCollectionByPlatformType-Response": {
+            "id": "OTTService.registration.GetRegistrationCollectionByPlatformType-Response",
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.registration.GetRegistrationPropertyById-Response"
+                    }
+                },
+                "page": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pageSize": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "OTTService.registration.RegisterOttProperty-Response": {
+            "id": "OTTService.registration.RegisterOttProperty-Response",
+            "type": "object",
+            "properties": {}
+        },
+        "OTTService.registration.GetRegisteredChannelUtilizationByProvider-Response": {
+            "id": "OTTService.registration.GetRegisteredChannelUtilizationByProvider-Response",
+            "type": "object",
+            "properties": {
+                "enterpriseId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "channels": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.registration.GetRegisteredChannelUtilizationByProvider-Response-SubType-ChannelEntity"
+                    }
+                }
+            }
+        },
+        "OTTService.registration.GetRegisteredChannelUtilizationByProvider-Response-SubType-ChannelEntity": {
+            "id": "OTTService.registration.GetRegisteredChannelUtilizationByProvider-Response-SubType-ChannelEntity",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "purchased": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "consumed": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "OTTService.chatMessaging.GetKeywordAvailability-Response": {
+            "id": "OTTService.chatMessaging.GetKeywordAvailability-Response",
+            "type": "object",
+            "properties": {
+                "capacity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "item": {
+                    "$ref": "OTTService.chatMessaging.GetKeywordAvailability-Response-SubType-KeywordValidation"
+                }
+            }
+        },
+        "OTTService.chatMessaging.GetKeywordAvailability-Response-SubType-KeywordValidation": {
+            "id": "OTTService.chatMessaging.GetKeywordAvailability-Response-SubType-KeywordValidation",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "keyword": {
+                    "type": "string"
+                },
+                "restriction": {
+                    "type": "string"
+                },
+                "eventKey": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "OTTService.chatMessaging.CheckKeywordApplicability-Response": {
+            "id": "OTTService.chatMessaging.CheckKeywordApplicability-Response",
+            "type": "object",
+            "properties": {
+                "requiresExplicitOptIn": {
+                    "type": "boolean"
+                },
+                "keywordFound": {
+                    "type": "boolean"
+                },
+                "errorDetails": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.chatMessaging.LookupKeywordApplicability-Response": {
+            "id": "OTTService.chatMessaging.LookupKeywordApplicability-Response",
+            "type": "object",
+            "properties": {
+                "requiresExplicitOptIn": {
+                    "type": "boolean"
+                },
+                "keywordFound": {
+                    "type": "boolean"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "errorCode": {
+                    "type": "string"
+                },
+                "keywordMatchType": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.whatsapp.GetMetaAppIdAndVersion-Response": {
+            "id": "OTTService.whatsapp.GetMetaAppIdAndVersion-Response",
+            "type": "object",
+            "properties": {
+                "whatsAppMetaAppId": {
+                    "type": "string"
+                },
+                "metaApiVersion": {
+                    "type": "string"
+                },
+                "metaEmbeddedSignupVersion": {
+                    "type": "string"
+                },
+                "eSConfigId": {
+                    "type": "string"
+                },
+                "enableESAuthViaCode": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "OTTService.whatsapp.GetWhatsAppWabaCollection-Response": {
+            "id": "OTTService.whatsapp.GetWhatsAppWabaCollection-Response",
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.whatsapp.GetWhatsAppWabaCollection-Response-SubType-IWhatsAppWabaResponseEntity"
+                    }
+                },
+                "page": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pageSize": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "OTTService.whatsapp.GetWhatsAppWabaCollection-Response-SubType-IWhatsAppWabaResponseEntity": {
+            "id": "OTTService.whatsapp.GetWhatsAppWabaCollection-Response-SubType-IWhatsAppWabaResponseEntity",
+            "type": "object",
+            "properties": {
+                "wabaId": {
+                    "type": "string"
+                },
+                "wabaBusinessId": {
+                    "type": "string"
+                },
+                "wabaName": {
+                    "type": "string"
+                },
+                "wabaStatus": {
+                    "type": "string"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string"
+                },
+                "modifiedDate": {
+                    "type": "string"
+                },
+                "isProcessed": {
+                    "type": "boolean"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "providerName": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.whatsapp.RegisterWabaProperty-Request": {
+            "id": "OTTService.whatsapp.RegisterWabaProperty-Request",
+            "type": "object",
+            "properties": {
+                "providerName": {
+                    "type": "string"
+                },
+                "userAccessToken": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.whatsapp.GetSupportedMessageTypes-Response": {
+            "id": "OTTService.whatsapp.GetSupportedMessageTypes-Response",
+            "type": "object",
+            "properties": {
+                "supportedMessageType": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "interactiveMessageType": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "OTTService.whatsapp.ReprocessWaba-Request": {
+            "id": "OTTService.whatsapp.ReprocessWaba-Request",
+            "type": "object",
+            "properties": {
+                "wabaId": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.whatsapp.GetWhatsAppAccountDetailsById-Response": {
+            "id": "OTTService.whatsapp.GetWhatsAppAccountDetailsById-Response",
+            "type": "object",
+            "properties": {
+                "wabaId": {
+                    "type": "string"
+                },
+                "channelDetailList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.whatsapp.GetWhatsAppAccountDetailsById-Response-SubType-ChannelDetail"
+                    }
+                }
+            }
+        },
+        "OTTService.whatsapp.GetWhatsAppAccountDetailsById-Response-SubType-ChannelDetail": {
+            "id": "OTTService.whatsapp.GetWhatsAppAccountDetailsById-Response-SubType-ChannelDetail",
+            "type": "object",
+            "properties": {
+                "channelId": {
+                    "type": "string"
+                },
+                "channelName": {
+                    "type": "string"
+                },
+                "channelStatus": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "throughput": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.whatsapp.GetChannelTimeline-Response": {
+            "id": "OTTService.whatsapp.GetChannelTimeline-Response",
+            "type": "object",
+            "properties": {
+                "wabaId": {
+                    "type": "string"
+                },
+                "channelId": {
+                    "type": "string"
+                },
+                "channelAuditEvents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.whatsapp.GetChannelTimeline-Response-SubType-WhatsAppChannelAuditEvent"
+                    }
+                }
+            }
+        },
+        "OTTService.whatsapp.GetChannelTimeline-Response-SubType-WhatsAppChannelAuditEvent": {
+            "id": "OTTService.whatsapp.GetChannelTimeline-Response-SubType-WhatsAppChannelAuditEvent",
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "eventTime": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.whatsapp.GetTemplateDetails-Response": {
+            "id": "OTTService.whatsapp.GetTemplateDetails-Response",
+            "type": "object",
+            "properties": {
+                "wabaId": {
+                    "type": "string"
+                },
+                "templateName": {
+                    "type": "string"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "templateId": {
+                    "type": "string"
+                },
+                "auditEventList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.whatsapp.GetTemplateDetails-Response-SubType-TemplateAuditEvent"
+                    }
+                }
+            }
+        },
+        "OTTService.whatsapp.GetTemplateDetails-Response-SubType-TemplateAuditEvent": {
+            "id": "OTTService.whatsapp.GetTemplateDetails-Response-SubType-TemplateAuditEvent",
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "eventTime": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.whatsapp.GetFlowDetails-Response": {
+            "id": "OTTService.whatsapp.GetFlowDetails-Response",
+            "type": "object",
+            "properties": {
+                "wabaId": {
+                    "type": "string"
+                },
+                "flowId": {
+                    "type": "string"
+                },
+                "flowName": {
+                    "type": "string"
+                },
+                "categories": {
+                    "type": "string"
+                },
+                "previewUrl": {
+                    "type": "string"
+                },
+                "urlExpiryDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "flowMessageVersion": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "flowAction": {
+                    "type": "string"
+                },
+                "flowActionPayload": {
+                    "$ref": "OTTService.whatsapp.GetFlowDetails-Response-SubType-FlowActionPayload"
+                },
+                "flowStatus": {
+                    "type": "string"
+                }
+            }
+        },
+        "OTTService.whatsapp.GetFlowDetails-Response-SubType-FlowActionPayload": {
+            "id": "OTTService.whatsapp.GetFlowDetails-Response-SubType-FlowActionPayload",
+            "type": "object",
+            "properties": {
+                "screen": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "OTTService.whatsapp.GetAllFlows-Response": {
+            "id": "OTTService.whatsapp.GetAllFlows-Response",
+            "type": "object",
+            "properties": {
+                "whatsAppFlowList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "OTTService.whatsapp.GetFlowDetails-Response"
+                    }
+                }
+            }
+        }
+    },
+    "key": "OTT-Experimental"
+}

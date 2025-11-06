@@ -1,0 +1,42 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">/* replace the highlighted values with ours - Resources here https://code4.cloud/articles/sfmc-automate-delete-contacts-process-with-rest-api/ */
+<script runat="server">
+   Platform.Load("Core", "1");
+  
+  
+var dupLeadDE = DataExtension.Init("0001_CUSTOM_Import_Leads");
+var filter = {Property:"Email",SimpleOperator:"equals",Value:"Email"};
+var data = dupLeadDE.Rows.Retrieve(filter);
+  
+  
+   try {
+
+         /* get OAuth 2.0 access token */
+          var payload = '{"grant_type": "client_credentials",';
+                payload += '"client_id": "d20aaul96htb2hgo9b4i47gx",';
+                payload += '"client_secret": "tUriuDS0zdV82vFrLIbJek77",';
+                payload += '"scope": null,';
+                payload += '"account_id": "012345678"}';
+          var OAuth2URL = "https://mc06n741d3km57h-ztlmx29hh3s7.auth.marketingcloudapis.com/v2/token";
+          var contentType = 'application/json';
+          var accessTokenResult = HTTP.Post(OAuth2URL, contentType, payload);
+          var tokenObj = Platform.Function.ParseJSON(accessTokenResult["Response"][0]);
+          var accessToken = tokenObj.access_token;
+          var headerNames = ["Authorization"];
+          var headerValues = ["Bearer " + accessToken];
+
+          /* create the payload */ 
+          var deletePayload = '{"ContactTypeId": 0,';
+          deletePayload += '"values": ["12345", "123456789"],';
+          deletePayload += '"DeleteOperationType": "ContactAndAttributes" }';
+
+          /* make the API call and get the response */ 
+          var content = [0];
+          var urlDelete = "https://mc06n741d3km57h-ztlmx29hh3s7.rest.marketingcloudapis.com/contacts/v1/contacts/actions/delete?type=keys";
+          var response = HTTP.Post(urlDelete, contentType, deletePayload, headerNames, headerValues, content);
+          Write(Stringify(response));
+
+    } catch(e) { Write(Stringify(e)); }
+</script>
+
+
+</td></tr></table>

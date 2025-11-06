@@ -1,0 +1,19 @@
+%%_RMM_ReplyBodyHTML%%
+
+%%[
+SET @SubscriberKey = _RMM_RecipientSubscriberKey
+SET @EmailAddress = _RMM_RecipientEmailAddress
+SET @ReplySubject = _RMM_ReplySubject
+SET @JobID = _RMM_JobID
+SET @ListID = _RMM_ListID
+SET @BatchID = _RMM_BatchID
+SET @JourneyName = "UK MQL Nurture"
+
+INSERTDE('RMM_ReplyCaptureDE', 'SubscriberKey', @SubscriberKey, 'RecipientEmailAddress', @EmailAddress, 'ReplySubject', @ReplySubject, 'JobID', @JobID, 'ListID', @ListID, 'BatchID', @BatchID, 'Timestamp', SystemDateToLocalDate(NOW()),'JourneyName',@JourneyName)
+]%%
+
+
+<custom name="opencounter" type="tracking">
+  %%[ if 0 == 1 then ]%% %%Member_Busname%% %%Member_Addr%% %%Member_City%% %%Member_State%% %%Member_PostalCode%% %%Member_Country%% %%[ endif ]%%
+</custom>
+

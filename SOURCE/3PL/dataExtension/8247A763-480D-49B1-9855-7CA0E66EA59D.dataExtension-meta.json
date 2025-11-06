@@ -1,0 +1,41 @@
+{
+    "CustomerKey": "8247A763-480D-49B1-9855-7CA0E66EA59D",
+    "Name": "Suppress Opt-Out and Inactive Contacts",
+    "Description": "",
+    "IsSendable": true,
+    "IsTestable": false,
+    "SendableDataExtensionField": {
+        "Name": "Email Address"
+    },
+    "SendableSubscriberField": {
+        "Name": "_EmailAddress"
+    },
+    "CategoryID": 365425,
+    "Fields": [
+        {
+            "Name": "Email Address",
+            "DefaultValue": "",
+            "MaxLength": 254,
+            "IsRequired": true,
+            "IsPrimaryKey": true,
+            "FieldType": "EmailAddress"
+        },
+        {
+            "Name": "Date Added",
+            "DefaultValue": "GETDATE()",
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Date"
+        },
+        {
+            "Name": "SubscriberKey",
+            "DefaultValue": "",
+            "MaxLength": 50,
+            "IsRequired": true,
+            "IsPrimaryKey": false,
+            "FieldType": "Text"
+        }
+    ],
+    "r__dataExtensionTemplate_name": "CONTEXTUAL_SUPPRESSION_LISTS",
+    "c__retentionPolicy": "none"
+}

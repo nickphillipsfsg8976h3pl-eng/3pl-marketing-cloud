@@ -1,0 +1,397 @@
+<script runat="server">
+Platform.Load("Core","1.1.5");
+
+// Return JSON and end
+function respond(obj) {
+  Platform.Response.ContentType = "application/json";
+  Platform.Response.Write(Platform.Function.Stringify(obj));
+  Platform.Response.End();
+}
+
+try {
+  var method = Platform.Request.Method;
+  var qsPwd   = Platform.Request.GetQueryStringParameter("password");
+  var qsDebug = Platform.Request.GetQueryStringParameter("debug");
+  var DE_KEY  = "F9E77BDC-3393-4AC5-836D-A32579A8F518"; // <-- YOUR DE CUSTOMER KEY
+
+  // ---------- GET ?debug=1 ----------
+  if (method == "GET" && qsDebug == "1") {
+    var info = {};
+    try {
+      info.mid    = Platform.Function.AccountID();
+      info.pageId = Platform.PageID();
+      info.deKey  = DE_KEY;
+
+      try { DataExtension.Init(DE_KEY); info.deInit = "OK"; }
+      catch (eDe) { info.deInit = "ERROR: " + String(eDe); }
+
+      try {
+        var prox = new Script.Util.WSProxy();
+        var f = prox.retrieve(
+          "DataExtensionField",
+          ["Name","FieldType","IsPrimaryKey","IsRequired","MaxLength"],
+          { Property:"DataExtension.CustomerKey", SimpleOperator:"equals", Value: DE_KEY }
+        );
+        info.fieldCount = (f && f.Results) ? f.Results.length : 0;
+        if (f && f.Results) {
+          var names = [];
+          for (var i=0; i<Math.min(8, f.Results.length); i++) names.push(f.Results[i].Name);
+          info.sampleFields = names;
+        }
+      } catch (eWF) {
+        info.wsProxyError = String(eWF);
+      }
+    } catch (eTop) {
+      info.error = String(eTop);
+    }
+    respond({ ok:true, debug:info });
+  }
+
+  // ---------- POST: insert and return JSON ----------
+  if (method == "POST") {
+    if (qsPwd != "LeadImport3PL") {
+      respond({ success:false, error:"Unauthorized (password mismatch)" });
+    }
+
+    var uploader = Platform.Request.GetFormField("uploaderName");
+    var jsonData = Platform.Request.GetFormField("jsonData");
+    if (!jsonData) respond({ success:false, error:"jsonData missing" });
+
+    var data;
+    try {
+      data = Platform.Function.ParseJSON(jsonData);
+      if (!data || !data.length) respond({ success:false, error:"No rows parsed" });
+    } catch (eParse) {
+      respond({ success:false, error:"JSON parse failed: " + String(eParse) });
+    }
+
+    var de;
+    try { de = DataExtension.Init(DE_KEY); }
+    catch (eDe2) { respond({ success:false, error:"DE init failed: " + String(eDe2) }); }
+
+    function strip(o){
+      var x={};
+      for (var k in o) if (o.hasOwnProperty(k)) {
+        var v=o[k];
+        if (!(v==="" || v===null || typeof v==="undefined")) x[k]=v;
+      }
+      return x;
+    }
+
+    var submittedDate = Platform.Function.FormatDate(new Date(),"yyyy-MM-dd HH:mm:ss");
+    var results = [];
+    var inserted = 0;
+
+    for (var ii=0; ii<data.length; ii++) {
+      var r = data[ii];
+      try {
+        var addObj = strip({
+          FirstName: r["FirstName"],
+          LastName: r["LastName"],
+          Email: r["Email"],
+          Phone: r["Phone"],
+          Country: r["Country"],
+          State: r["State"],
+          PostalCode: r["Zip/Postal Code"],
+          Title: r["Title"],
+          Job_Function__c: r["Job Function"],
+          Enquiry_Type__c: r["Enquiry Type"],
+          Company: r["School Name"],
+          Grade_Level__c: r["Grade Level"],
+          No_of_licences__c: r["No of licences"],
+          Territory__c: r["Territory"],
+          Campaign_Name__c: r["Campaign Name"],
+          Campaign_Code__c: r["Campaign Code"],
+          LeadSource: r["Lead Status 1"],
+          Status: r["Lead Stage"],
+          Description: r["Description"],
+          Marketing_Interest__c: r["Marketing Interest"],
+          Product_Interest__c: r["Product Interest"],
+          Marketing_Product_Interest__c: r["Marketing Product Interest"],
+          Street: r["Street"],
+          City: r["City"],
+          LeadIdCreated: r["Lead Id"],
+          Uploader: uploader,
+          SubmittedDate: submittedDate,
+          ResultStatus: "Success",
+          IsProcessed: false
+        });
+
+        de.Rows.Add(addObj);
+        inserted++;
+        results.push("Row " + (ii+1) + ",Success");
+      } catch (eRow) {
+        results.push("Row " + (ii+1) + ",Error: " + String(eRow).replace(/[\r\n]+/g," "));
+      }
+    }
+
+    var csv = "Row,Status\r\n" + results.join("\r\n");
+    respond({ success:true, inserted:inserted, total:data.length, csv:csv });
+  }
+
+  // else: normal GET → render HTML below
+
+} catch (eTopAll) {
+  respond({ success:false, error:"Top-level: " + String(eTopAll) });
+}
+</script>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3P Learning | Lead Import Upload</title>
+  <style>
+    body { font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0; }
+    .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+    .header img { max-width: 100%; height: auto; }
+    h2 { color: #007bff; margin-top: 20px; }
+    .error { color: #b00020; }
+    .success { color: #0a7c2f; }
+    .custom_submit_button {
+      background-color: #23a667; color: #fff;
+      padding: 12px 32px; border-radius: 4px;
+      font-weight: 700; font-size: 1rem;
+      border: none; cursor: pointer;
+      display: block; margin: 20px auto 0;
+    }
+    pre { background:#f6f8fa; padding:10px; overflow:auto; }
+    .muted { color:#666; font-size:.9rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <img src="https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/608a4117-0ee2-407e-963e-d6202d01520d.png" alt="3P Learning Banner">
+  </div>
+
+  %%[
+    VAR @password, @authenticated
+    SET @password = RequestParameter('password')
+    IF @password == "LeadImport3PL" THEN
+      SET @authenticated = "true"
+    ELSE
+      SET @authenticated = "false"
+    ENDIF
+  ]%%
+
+  %%[ IF @authenticated == "false" THEN ]%%
+    <div>
+      <h2>Secure Access</h2>
+      <form method="get">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        <button type="submit" class="custom_submit_button">Access</button>
+      </form>
+      <p class="muted">Tip: add <code>&debug=1</code> to the URL to see JSON diagnostics.</p>
+    </div>
+  %%[ ELSE ]%%
+
+    <h2>Upload Leads CSV</h2>
+    <form id="uploadForm" novalidate>
+      <label>Your Name:</label><br/>
+      <input type="text" id="uploaderName" required><br/><br/>
+
+      <label>Select CSV:</label><br/>
+      <input type="file" id="csvFile" accept=".csv" required><br/><br/>
+
+      <button type="submit" class="custom_submit_button">Validate & Upload</button>
+    </form>
+
+    <div id="result" class="muted">Open DevTools → Console for live logs.</div>
+
+    <script>
+      var API_URL = window.location.origin + window.location.pathname + window.location.search;
+      var REQUIRED_HEADERS = ['FirstName','LastName','Email','Job Function','School Name'];
+
+      window.onerror = function(message, source, lineno, colno, error) {
+        console.error('window.onerror', { message: message, source: source, lineno: lineno, colno: colno, error: error });
+        var el = document.getElementById('result');
+        if (el) el.innerHTML = '<p class="error">JS error: ' + String(message) + ' (see console)</p>';
+      };
+      window.onunhandledrejection = function(e) {
+        console.error('unhandledrejection', e && e.reason ? e.reason : e);
+        var el = document.getElementById('result');
+        if (el) el.innerHTML = '<p class="error">Unhandled promise rejection (see console)</p>';
+      };
+
+      function showPre(title, content) {
+        var res = document.getElementById('result');
+        var pre = document.createElement('pre');
+        var txt = title + '\n' + (typeof content === 'string' ? content : JSON.stringify(content, null, 2));
+        res.innerHTML = '';
+        pre.textContent = txt;
+        res.appendChild(pre);
+      }
+
+      document.getElementById('uploadForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.group('Upload');
+
+        var uploader = (document.getElementById('uploaderName').value || '').trim();
+        var fileInput = document.getElementById('csvFile');
+        var resultEl = document.getElementById('result');
+        if (resultEl) resultEl.innerHTML = '';
+
+        console.log('API_URL:', API_URL);
+        console.log('Uploader:', uploader);
+        console.log('File selected:', fileInput.files.length > 0);
+
+        if (!uploader) { if (resultEl) resultEl.innerHTML = '<p class="error">Uploader name required.</p>'; console.warn('No uploader'); console.groupEnd(); return; }
+        if (fileInput.files.length === 0) { if (resultEl) resultEl.innerHTML = '<p class="error">Select a file.</p>'; console.warn('No file'); console.groupEnd(); return; }
+
+        var file = fileInput.files[0];
+
+        file.text().then(function(text) {
+          if (!text || !text.trim()) {
+            if (resultEl) resultEl.innerHTML = '<p class="error">Empty file.</p>';
+            console.warn('Empty file');
+            console.groupEnd();
+            return;
+          }
+          console.log('Raw file length:', text.length);
+
+          var lines = text.trim().split(/\r?\n/);
+          var headers = lines[0].split(',').map(function(h){ return h.trim(); });
+          console.log('Headers:', headers);
+
+          var missingHeaders = [];
+          for (var i=0; i<REQUIRED_HEADERS.length; i++) {
+            if (headers.indexOf(REQUIRED_HEADERS[i]) === -1) missingHeaders.push(REQUIRED_HEADERS[i]);
+          }
+          if (missingHeaders.length) {
+            var msg = 'Missing headers: ' + missingHeaders.join(', ');
+            if (resultEl) resultEl.innerHTML = '<p class="error">' + msg + '</p>';
+            console.error(msg);
+            console.groupEnd();
+            return;
+          }
+
+          var rows = [];
+          for (var j=1; j<lines.length; j++) {
+            var line = lines[j];
+            if (!line || !line.trim()) continue;
+            var values = line.split(',');
+            var row = {};
+            for (var k=0; k<headers.length; k++) {
+              var h = headers[k];
+              row[h] = (values[k] || '').trim();
+            }
+            rows.push(row);
+          }
+          console.log('Row count:', rows.length);
+          if (!rows.length) {
+            if (resultEl) resultEl.innerHTML = '<p class="error">No data rows.</p>';
+            console.warn('No rows');
+            console.groupEnd();
+            return;
+          }
+
+          // URL-encoded payload
+          var payload = new URLSearchParams();
+          payload.set('uploaderName', uploader);
+          payload.set('jsonData', JSON.stringify(rows));
+
+          var bodyString = '';
+          try { bodyString = payload.toString(); }
+          catch (e1) {
+            console.error('payload.toString() failed', e1);
+            if (resultEl) resultEl.innerHTML = '<p class="error">Could not encode request body.</p>';
+            console.groupEnd();
+            return;
+          }
+
+          var approxBytes = bodyString.length;
+          try { if (window.TextEncoder) approxBytes = new TextEncoder().encode(bodyString).length; } catch (e2) {}
+          console.log('Payload length (approx bytes):', approxBytes);
+
+          fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+            body: bodyString
+          })
+          .then(function(resp){
+            var status = resp.status;
+            var ct = resp.headers.get('content-type') || '';
+            var urlUsed = resp.url || API_URL;
+            return resp.text().then(function(body){
+              console.log('Response meta:', { status: status, contentType: ct, url: urlUsed, bodyLen: body.length });
+
+              var json;
+              try { json = JSON.parse(body); }
+              catch (eJson) {
+                console.error('Non-JSON body:', body);
+                showPre('Non-JSON response (status ' + status + ', content-type ' + ct + ')', body);
+                console.groupEnd();
+                return;
+              }
+
+              console.log('JSON payload:', json);
+
+              // ----- handle JSON result -----
+              var resultEl2 = document.getElementById('result');
+
+              if (json && json.success) {
+                if (json.csv) {
+                  try {
+                    var blob = new Blob([json.csv], { type: 'text/csv' });
+                    var urlDL = URL.createObjectURL(blob);
+                    var link = document.createElement('a');
+                    link.href = urlDL;
+                    link.download = 'UploadResults.csv';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    try { URL.revokeObjectURL(urlDL); } catch (ignore) {}
+                  } catch (dlErr) {
+                    console.error('Download error:', dlErr);
+                    if (resultEl2) {
+                      var pre = document.createElement('pre');
+                      pre.textContent = json.csv;
+                      resultEl2.appendChild(pre);
+                    }
+                  }
+                }
+
+                if (resultEl2) {
+                  resultEl2.innerHTML = '<p class="success">Inserted ' +
+                    (json.inserted || 0) + ' of ' + (json.total || 0) + ' rows.</p>';
+                }
+              } else {
+                // >>> PATCH: show full error + full JSON for troubleshooting
+                if (resultEl2) {
+                  var msg = (json && json.error) ? json.error : 'Unknown error (no error field)';
+                  resultEl2.innerHTML =
+                    '<p class="error">Upload failed: ' + msg + '</p>' +
+                    '<pre style="white-space:pre-wrap">' +
+                    JSON.stringify(json, null, 2) +
+                    '</pre>';
+                }
+              }
+
+              console.groupEnd();
+            });
+          })
+          .catch(function(fetchErr){
+            console.error('Fetch error:', fetchErr);
+            var resEl = document.getElementById('result');
+            if (resEl) resEl.innerHTML = '<p class="error">Fetch error: ' + fetchErr.message + '</p>';
+            console.groupEnd();
+          });
+
+        }).catch(function(readErr){
+          console.error('File read error', readErr);
+          if (resultEl) resultEl.innerHTML = '<p class="error">Failed to read file.</p>';
+          console.groupEnd();
+        });
+
+      });
+    </script>
+
+  %%[ ENDIF ]%%
+
+</div>
+</body>
+</html>

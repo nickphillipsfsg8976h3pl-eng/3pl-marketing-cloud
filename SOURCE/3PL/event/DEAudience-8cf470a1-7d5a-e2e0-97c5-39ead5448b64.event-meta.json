@@ -1,0 +1,32 @@
+{
+    "type": "EmailAudience",
+    "name": "test_exclusion",
+    "description": "",
+    "createdDate": "2024-10-23T14:38:19.887",
+    "createdBy": "Charlotte Dillabough",
+    "modifiedDate": "2024-10-23T14:38:19.887",
+    "modifiedBy": "Charlotte Dillabough",
+    "eventDefinitionKey": "DEAudience-8cf470a1-7d5a-e2e0-97c5-39ead5448b64",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "6b621955-1adf-4e32-a8f5-9b5b140f143e",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"ContactsWithSubscriptions.ContactEmail\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;e1a843ef-0117-ee11-ba48-d4f5ef424921&quot;}\"><Value><![CDATA[charlotte.dillabough@3plearning.com]]></Value></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 3,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"ContactsWithSubscriptions.ContactEmail\" Operator=\"NotContains\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;e1a843ef-0117-ee11-ba48-d4f5ef424921&quot;}\"><Value><![CDATA[charlotte.dillabough@3plearning.com]]></Value></Condition></ConditionSet></FilterDefinition>",
+        "useHighWatermark": false
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "criteriaDescription": "ContactEmail does not contain charlotte.dillabough@3plearning.com",
+        "scheduleFlowMode": "runOnce",
+        "runOnceScheduleMode": "onPublish",
+        "scheduleState": "No Schedule"
+    },
+    "interactionCount": 1,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 1,
+    "disableDEDataLogging": false,
+    "r__automation_key": "1b166930-6096-4eb3-b568-97d310a8cdfe"
+}

@@ -1,0 +1,23 @@
+%%[
+IF @debug THEN
+    DeleteData("DebugVariables", "ClearDe", 1)
+
+    SET @debugVarStr = "form,RedirectId,pid,_Campaign_Name,campaignNameLookup,_UTM_Campaign,UTMcampaignIdLookup,UTMcampaignCodeLookup,_Campaign_Name_Lead,_Campaign_Code,_Product_Interest,_Product_Interest_c,_First_Name,_Last_Name,_Email_Address,_Phone_Number,_Grade_Level,_Country_Name,_State_Name,stateName,countrycode,_Postal_Code,_Other_Job_Title,_Job_Title,sfJobFunction,_No_Of_Licences,_School_Name,_Enquiry_Type,enquiry,_Terms_And_Conditions,_Subscriber_Opt_In,LeadStatus,LeadSource,LeadStage,Description,referrer,http_referrer"
+    SET @varRowSet = BuildRowsetFromString(@debugVarStr,',')
+    SET @finalStr = '';
+
+    FOR @i = 1 TO Rowcount(@varRowSet) DO
+
+       SET @row = Row(@varRowSet,@i)
+       SET @tempName = Field(@row,1,0)
+       SET @attrName = @tempName
+
+       SET @FieldName = CONCAT('@',@attrName)
+       
+       SET @FieldValue = TreatAsContent(CONCAT('%','%=v(',CONCAT('@',@attrName),')=%','%'))
+       insertdata("DebugVariables","VariableName",@FieldName, "VariableValue", @FieldValue)
+    
+    NEXT @i
+
+ENDIF
+]%%

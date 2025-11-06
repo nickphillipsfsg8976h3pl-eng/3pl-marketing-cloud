@@ -1,0 +1,38 @@
+{
+    "name": "MX0001_B2C_MX0002-SEND-DATA1651296586528",
+    "description": "",
+    "key": "f04543a4-7a26-4b30-8d70-902038a0633e",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "categoryId": 376727,
+    "schedule": {
+        "startDate": "2020-08-08T02:07:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=HOURLY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "query",
+                    "r__key": "4822625a-63da-406b-82ac-c86abb9e7330"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "30 Minutes",
+                    "r__type": "wait"
+                }
+            ]
+        }
+    ],
+    "createdName": "Stephan Peniguel",
+    "createdDate": "2022-04-30T05:29:48.723Z",
+    "modifiedName": "Stephan Peniguel",
+    "modifiedDate": "2022-04-30T05:29:49.833Z"
+}

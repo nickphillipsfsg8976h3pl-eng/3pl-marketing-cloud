@@ -1,0 +1,38 @@
+{
+    "name": "B2C Processing to Customer Support Emails",
+    "description": "",
+    "key": "d55425af-07e6-d068-0104-adee264f650c",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2025-07-07T09:37:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T160000;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "script",
+                    "r__key": "2fe655f4-c287-4eb3-974f-5c64c91b26b0"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "script",
+                    "r__key": "9e055412-3ce5-41d7-a6c9-835af1b348df"
+                }
+            ]
+        }
+    ],
+    "createdName": "Vijay Kapadam",
+    "createdDate": "2025-07-06T12:49:45.397Z",
+    "modifiedName": "Vijay Kapadam",
+    "modifiedDate": "2025-07-06T23:20:52.603Z",
+    "r__folder_Path": "my automations/System/Lead processing to CRM"
+}

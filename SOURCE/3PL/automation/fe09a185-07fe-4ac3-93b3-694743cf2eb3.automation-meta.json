@@ -1,0 +1,91 @@
+{
+    "name": "GLOBAL_AT0001-Filter",
+    "description": "This automation contain every filtered list for all AutoTrial onboarding nurtures",
+    "key": "fe09a185-07fe-4ac3-93b3-694743cf2eb3",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2021-08-24T22:45:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=HOURLY;UNTIL=20790606T160000;INTERVAL=4",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "GLOBAL_AT0001-filterActivity-Canada-New",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "5 Minutes",
+                    "r__type": "wait"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "GLOBAL_AT0001-filterActivity-USA-New",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "GLOBAL_AT0001-filterActivity-AUS-New",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "5 Minutes",
+                    "r__type": "wait"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "GLOBAL_AT0001-filterActivity-UK-New",
+                    "r__type": "filter"
+                },
+                {
+                    "name": "GLOBAL_AT0001-filterActivity-EU-New",
+                    "r__type": "filter"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "5 Minutes",
+                    "r__type": "wait"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "AMER-AT0001_PQL_CANADA - Filter",
+                    "r__type": "filter"
+                }
+            ]
+        }
+    ],
+    "createdName": "Nick Phillips",
+    "createdDate": "2021-12-21T23:24:37.79Z",
+    "modifiedName": "Nick Phillips",
+    "modifiedDate": "2021-12-21T23:24:37.883Z",
+    "r__folder_Path": "my automations"
+}

@@ -1,0 +1,206 @@
+<!-- START OF LANGUAGE CHANGES --> 
+
+<!-- %%[ var @program, @region, @currency, @hero1, @hero2, @phone, @emailLink, @maths, @word1,  @word2, @customis, @Math, @ADDRESS, @headline, @word3, @videolink, @word4, @coupon, @saving, @rrp, @price, @personalise
+
+   SET @COUNTRY = AttributeValue("Country")
+   SET @currency_data = LookupRows("B2C_Country2Currency","MailingCountry", @COUNTRY)
+   SET @rowCount = rowcount(@currency_data)
+
+if @rowCount > 0 then
+
+  for @i = 1 to @rowCount do
+    var @curr_data
+    SET @row = row(@currency_data, @i) /* get row based on counter */
+    SET @curr_data = trim(field(@row,"CurrencyIsoCode"))
+
+
+next @i
+endif
+   
+     /* Default*/
+       SET @program = "program"
+         SET @region = "national"
+         SET @currency = "USD"
+         SET @phone = "1-877-661-4898"
+         SET @emailLink = "customerservice@mathletics.com"
+         SET @word1 = "Personalization"
+         SET @word2 = "personalized"
+         SET @word3 = "Center"
+         SET @word4 = "grades 3–10"
+         SET @personalise = "personalize"
+         SET @maths = "math"
+         SET @Math = "Math"
+         SET @coupon = "BTSJL24"
+         SET @price = "$85.00"
+         SET @rrp = "$239.40"
+         SET @saving = "$154.40"
+         SET @videolink = "https://www.youtube.com/watch?v=1OdFkUF6WDI&feature=youtu.be"
+         SET @ADDRESS = "37 West 26th Street Suite 408, New York, NY 10010, United States"
+         SET @headline = "Great News: Your Child is About to Enjoy Learning Math Even More!"
+      
+      
+      
+       /* US */
+         IF @COUNTRY ==  "United States" OR @COUNTRY == "US" THEN
+         SET @program = "program"
+         SET @region = "national"
+         SET @currency = "USD"
+         SET @phone = "1-877-661-4898"
+         SET @emailLink = "customerservice@mathletics.com"
+         SET @word1 = "Personalization"
+         SET @word2 = "personalized"
+         SET @word3 = "Center"
+         SET @word4 = "grades 3–10"
+         SET @personalise = "personalize"
+         SET @maths = "math"
+         SET @Math = "Math"
+         SET @coupon = "BTSJL24"
+         SET @price = "$85.00"
+         SET @rrp = "$239.40"
+         SET @saving = "$154.40"
+         SET @videolink = "https://www.youtube.com/watch?v=1OdFkUF6WDI&feature=youtu.be"
+         SET @ADDRESS = "37 West 26th Street Suite 408, New York, NY 10010, United States"
+         SET @headline = "Great News: Your Child is About to Enjoy Learning Math Even More!"
+         
+                  
+         /* CA */
+         ELSEIF @COUNTRY ==  "Canada" OR @COUNTRY == "CA" THEN
+         SET @program = "program"
+         SET @region = "national"
+         SET @currency = "CAD"
+         SET @phone = "1-877-661-4898"
+         SET @emailLink = "customerservice@mathletics.com"
+         SET @word1 = "Personalization"
+         SET @word2 = "personalized"
+         SET @word3 = "Center"
+         SET @word4 = "grades 3–10"
+         SET @personalise = "personalize"
+         SET @maths = "math"
+         SET @Math = "Math"
+         SET @coupon = "BTSJL24"
+         SET @price = "$85.00"
+         SET @rrp = "$239.40"
+         SET @saving = "$154.40"
+         SET @videolink = "https://www.youtube.com/watch?v=1OdFkUF6WDI&feature=youtu.be"
+         SET @ADDRESS = "37 West 26th Street Suite 408, New York, NY 10010, United States"
+         SET @headline = "Great News: Your Child is About to Enjoy Learning Math Even More!"
+         
+
+      /* AU */
+      ELSEIF @COUNTRY == "Australia" OR @COUNTRY == "AU" THEN
+       SET @program = "program"
+       SET @region = "Australian"
+       SET @currency = "AUD"
+       SET @phone = "1300 457 271"
+       SET @emailLink = "customerservice@mathletics.com.au"
+       SET @word1 = "Personalisation"
+       SET @word2 = "personalised"
+       SET @word3 = "Centre"
+       SET @word4 = "years 3–10"
+       SET @customis = "customis"
+       SET @maths = "maths"
+       SET @Math = "Maths"
+       SET @coupon = "BTSJL24"
+       SET @price = "AU$75.00"
+       SET @rrp = "AU$239.40"
+       SET @saving = "AU$164.40"
+       SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+       SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+       SET @headline = "Great News: Your Child is About to Enjoy Learning Maths Even More!"
+
+       
+        /* NZ */
+         ELSEIF @COUNTRY =="New Zealand" OR @COUNTRY == "NZ" THEN
+         SET @program = "program"
+         SET @region = "national"
+         SET @currency = "NZD"
+         SET @phone = "0800 643 080 "
+         SET @emailLink = "customerservice@mathletics.com.au"
+         SET @word1 = "Personalisation"
+         SET @word2 = "personalised"
+         SET @word3 = "Centre"
+         SET @word4 = "years 3–10"
+         SET @customis = "customis"
+         SET @maths = "maths"
+         SET @Math = "Maths"
+         SET @coupon = "BTSJL24"
+         SET @price = "$75.00"
+         SET @rrp = "$239.40"
+         SET @saving = "$164.40"
+         SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+         SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+         SET @headline = "Great News: Your Child is About to Enjoy Learning Maths Even More!"
+
+
+         
+         /* UK */
+         ELSEIF @COUNTRY ==  "United Kingdom" OR @COUNTRY == "UK" THEN
+         SET @program = "program"
+         SET @region = "national"
+         SET @currency = "GBP"
+         SET @phone = "0117 3600248"
+         SET @emailLink = "customerservice@mathletics.co.uk"
+         SET @word1 = "Personalisation"
+         SET @word2 = "personalised"
+         SET @word3 = "Centre"
+         SET @word4 = "years 3–10"
+         SET @personalise = "personalise"
+         SET @maths = "maths"
+         SET @Math = "Maths"
+         SET @coupon = "BTSJL24"
+         SET @price = "£45.00"
+         SET @rrp = "£143.40"
+         SET @saving = "£98.40"
+         SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+         SET @ADDRESS = "33 Colston Avenue, Bristol, BS1 4UA"
+         SET @headline = "great news: your child is about to enjoy learning maths even more!"
+
+         
+         /* Europe*/
+         ELSEIF @curr_data == "EUR" THEN
+         SET @program = "program"
+         SET @region = "national"
+         SET @currency = "euro"
+         SET @phone = "0117 3600248"
+         SET @emailLink = "customerservice@mathletics.co.uk"
+         SET @word1 = "Personalisation"
+         SET @word2 = "personalised"
+         SET @word3 = "Centre"
+         SET @word4 = "years 3–10"
+         SET @personalise = "personalise"
+         SET @maths = "maths"
+         SET @Math = "Maths"
+         SET @coupon = "BTSJL24"
+         SET @price = "€45.00"
+         SET @rrp = "€143.40"
+         SET @saving = "€98.40"
+         SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+         SET @ADDRESS = "33 Colston Avenue, Bristol, BS1 4UA"
+         SET @headline = "Great News: Your Child is About to Enjoy Learning Maths Even More!"
+
+         
+          /* South Africa*/
+         ELSEIF @COUNTRY == "South Africa" OR @curr_data == "ZAR" THEN
+         SET @program = "program"
+         SET @region = "national"
+         SET @currency = "ZAR"
+         SET @phone = "0117 3600248"
+         SET @emailLink = "customerservice@mathletics.co.uk"
+         SET @word1 = "Personalisation"
+         SET @word2 = "personalised"
+         SET @word3 = "Centre"
+         SET @word4 = "years 3–10"
+         SET @personalise = "personalise"
+         SET @maths = "maths"
+         SET @Math = "Maths"
+         SET @coupon = "BTSJL24"
+         SET @price = "R561.00"
+         SET @rrp = "R1,788.00"
+         SET @saving = "R1,227"
+         SET @videolink = "https://www.youtube.com/watch?v=dSeruRgwOEg"
+         SET @ADDRESS = "33 Colston Avenue, Bristol, BS1 4UA"
+         SET @headline = "Great News: Your Child is About to Enjoy Learning Maths Even More!"
+
+    
+     ENDIF
+  ]%% -->

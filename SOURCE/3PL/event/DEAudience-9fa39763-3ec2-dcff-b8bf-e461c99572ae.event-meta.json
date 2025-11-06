@@ -1,0 +1,40 @@
+{
+    "type": "AutomationAudience",
+    "name": "APAC_B2C_MX0001_ONBOARDING (Copy)",
+    "description": "",
+    "createdDate": "2023-04-28T00:01:58.577",
+    "createdBy": "Sarah Santangelo",
+    "modifiedDate": "2023-04-28T00:01:58.577",
+    "modifiedBy": "Sarah Santangelo",
+    "eventDefinitionKey": "DEAudience-9fa39763-3ec2-dcff-b8bf-e461c99572ae",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "b83b53e5-b1d9-4b5d-b76e-27d9d733b55d",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Subscription_Created_At__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d0855237-d21d-ed11-b846-48df37d68272&quot;}\"><AttributePath RelationshipID=\"1ba98de9-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;-;1;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 9,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Subscription_Created_At__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d0855237-d21d-ed11-b846-48df37d68272&quot;}\"><AttributePath RelationshipID=\"1ba98de9-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;-;1;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+        "useHighWatermark": false
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "criteriaDescription": "chargebeeapps__Subscription_Created_At__c equal Today Minus 1 days",
+        "scheduleFlowMode": "automation"
+    },
+    "schedule": {
+        "startDateTime": "2023-04-29T08:00:00",
+        "endDateTime": "2079-06-06T00:00:00",
+        "timeZone": "AUS Eastern Standard Time",
+        "occurrences": 81967,
+        "endType": "EndDate",
+        "frequency": "Hourly",
+        "recurrencePattern": "Interval",
+        "interval": 6
+    },
+    "interactionCount": 0,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false,
+    "r__automation_key": "861cfa40-3172-d7ae-6dd2-953e7f3718b4"
+}

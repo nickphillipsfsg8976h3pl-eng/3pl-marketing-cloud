@@ -1,0 +1,234 @@
+<!doctype html>
+%%[
+VAR @Campaign
+SET @Campaign = Requestparameter('cid')
+SET @UTMcontent = Requestparameter('utm_content')
+SET @UTMcampaign = Requestparameter('utm_campaign')
+SET @UTMmedium = Requestparameter('utm_medium')
+SET @UTMsource = Requestparameter('utm_source')
+SET @UTMterm = Requestparameter('utm_term')
+SET @pid = RequestParameter('pid')
+SET @enquiry = RequestParameter('eid')
+SET @Redirect = RequestParameter('rid')
+SET @Product = RequestParameter('Product')
+SET @Email_DE = RequestParameter('EmailAddress')
+
+
+IF @pid == "Mathletics" OR @pid == "mathletics" THEN
+SET @forms_css = "Form.css" 
+ELSE
+SET @forms_css = "Form_WF.css"
+ENDIF
+]%%
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Auto Trial Page">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon" />
+  <!-- For iPhone -->
+  <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
+  <!-- For iPhone 4 Retina display -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
+  <!-- For iPad -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
+  <!-- For iPad Retina display -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+  
+  <title>Auto Trial</title>
+  
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://marketing-cdn.3plearning.com/uploads/dev/assets/%%=v(@forms_css)=%%">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+  <!-- FONT AWESOME -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+ 
+
+
+ <style type="text/css">
+  
+ input[type=email], select,  input[type=text] 
+  {
+    background-color: #DBE3E9;
+    border: 1px solid #758088;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #272727;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    margin: 8px 0px 8px 0px;
+    padding: 11px;
+    resize: vertical;
+    width: 100%;
+} 
+ input[type=number], select {
+    background-color: #DBE3E9;
+    border: 1px solid #758088;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #4e5c67;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    margin: 8px 0px 8px 0px;
+    padding: 11px;
+    resize: vertical;
+    width: 100%;
+}
+ 
+ </style>
+<script type="text/javascript">
+var errorUrl = 'https://pub.s7.exacttarget.com/54brhn5lcbv';
+var ParentURL = 'https://www.mathletics.com/latam/error/';
+function jobTitleChanged() {
+  var selectedJobTitle = $("#job-title").val();
+  var jobTitleURL = "https://pages.my.3plearning.com/002_AT_JobValidator_Spanish/?jobTitle=" + selectedJobTitle;
+  
+  $.ajax({
+   url: jobTitleURL,
+   async: true,
+   success: function(result, status, xhr) {
+  var jobTitleJSONData = result.substring(result.indexOf("<rs1>") + 5, result.indexOf("</rs1>"));
+  var data_jobTitle = JSON.parse(jobTitleJSONData);
+  // depending on jobtitle only one record will return, if can not find record or there are more than
+  // one record in data extension, will redirect to error page from trial-survey-job-title-processing
+  var customerType = data_jobTitle[0]["Customer Type"];
+  
+  if (customerType == "School") {
+    $("#divEnquirySelectHomeUser").hide();
+    $("#divSchoolName").show();
+    $("#divEnquirySelectSchoolUser").show();
+    $("#enquiry-select-school-user").val("");
+  }
+  else if (customerType == "Home") {
+    $("#divSchoolName").hide();
+    $("#divEnquirySelectSchoolUser").hide();
+    $("#divEnquirySelectHomeUser").show();
+    $("#enquiry-select-home-user").val("");
+ window.parent.location.href = ParentURL;
+  }
+  else {
+    //alert("Retrieve job title date failed. Customer Type has an invalid value: " + customerType);
+    window.location.href = errorUrl;
+  }
+   },
+   error: function(xhr, status, error) {
+  //alert("Retrieve job title date failed. Statue: " + status + "; Error: " + error);
+  window.location.href = errorUrl;
+   }
+  });
+}
+
+ </script>
+</head>
+
+<body>
+  <div class="container">
+    <form id="registerTrial" action="https://pages.my.3plearning.com/page.aspx?QS=c76003443ff9837dff488aabdc0b1a9d872826161ddc9c80bd063cc98e537620" target="_parent" method="POST" onsubmit="myButton.disabled = true; return true;" target="_parent">
+   <input type="hidden" id="selectedCountryName" name="selectedCountryName" value="">
+   <input type="hidden" id="selectedStateName" name="selectedStateName" value="">
+    <input type="hidden" id="Product" name="Product" value="%%=v(@Product)=%%">
+
+                <input type="hidden" id="utmcontent" name="utmcontent" value="%%=v(@UTMcontent)=%%">
+                <input type="hidden" id="utmcampaign" name="utmcampaign" value="%%=v(@UTMcampaign)=%%">
+                <input type="hidden" id="utmmedium" name="utmmedium" value="%%=v(@UTMmedium)=%%">
+                <input type="hidden" id="utmsource" name="utmsource" value="%%=v(@UTMsource)=%%">
+                <input type="hidden" id="utmterm" name="utmterm" value="%%=v(@UTMterm)=%%">
+                <input type="hidden" id="pid" name="pid" value="%%=v(@pid)=%%">
+                <input type="hidden" id="cid" name="cid" value="%%=v(@Campaign)=%%">
+                <input type="hidden" id="eid" name="eid" value="%%=v(@enquiry)=%%">
+                <input type="hidden" id="Date" name="Date" value="%%=v(@updatedDate)=%%">
+
+
+
+        <input type="hidden" id="redirect" name="Rid" value="%%=v(@Redirect)=%%">
+   <div class="row">
+        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+         <label for="required">Todos los campos son obligatorios.</label>
+    </div>
+  </div>
+
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <!--<label for="first-name">First Name</label>-->
+            <input type="text" id="first-name" name="first-name" placeholder="Nombre" title="Por favor complete este campo" required="required">
+    </div>
+  </div>
+  
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <!--<label for="last-name">Last Name</label>-->
+            <input type="text" id="last-name" name="last-name" placeholder="Apelido" title="Por favor complete este campo" required="required">
+    </div>
+  </div>
+  
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <!--<label for="e-mail">E-mail Address</label>-->
+          <input type="email" id="email" required name="email" placeholder="Dirección de correo electrónico" oninvalid="setCustomValidity('Please enter a valid email address')" title="Por favor complete este campo" onchange="setCustomValidity('')">
+    </div>
+  </div>
+
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <!--<label for="job-title">Job Title</label>-->
+            <select type="text" id="job-title" name="job-title" onchange="jobTitleChanged()" title="Por favor seleccione un elemento en la lista" required="required">
+              <option value="" selected="true" disabled="disabled">Soy</option>
+     %%[
+    SET @JobTitleRowset = LookupRows("Job-Title_Spanish", "Active", "1")
+    SET @JobTitleRowsetCount = RowCount(@JobTitleRowset)
+    IF @JobTitleRowsetCount > 0 THEN 
+      FOR @i = 1 TO @JobTitleRowsetCount DO 
+     SET @JobTitleName = Field(Row(@JobTitleRowset, @i), "Job Title")
+     ]%%
+     <option value="%%=v(@JobTitleName)=%%">%%=v(@JobTitleName)=%%</option>
+     %%[
+      NEXT @i
+    ENDIF
+     ]%%
+      </select>
+    </div>
+  </div>
+  
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <label class="tc">
+     <input type="checkbox" id="tc-agree" title="Marque esta casilla si desea continuar." name="tc-agree" value="agree" required>&nbsp;
+Acepto los <a href="https://www.3plearning.com/terms/#espanol" alt="Términos y Condiciones" target="_blank"> t&eacute;rminos y condiciones</a> de 3P Learning.
+            </label>
+    </div>
+  </div>
+  
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+   <label class="opt-in">
+     <input type="checkbox" title="Marque esta casilla si desea continuar." id="sub-opt-in" name="sub-opt-in" value="receive">&nbsp;&iexcl;SI! Reg&iacute;strese para recibir boletines mensuales, contenido educativo, recursos y material promocional ocasional. (Puede darse de baja en cualquier momento).
+   </label>
+    </div>
+  </div>
+  
+  <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+      <input type="submit" name="myButton" value="Siguientea" class="btn btn-primary">
+    </div>
+  </div>
+
+ <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="form-group">
+   <label id="term-warning" style="color: red;" class="initHidden">Debe leer y aceptar los términos y condiciones de 3P Learning antes de enviar</label>
+    </div>
+  </div>
+  
+      </div>
+    </form>
+  </div>
+
+
+
+   <script type="text/javascript" src="https://pages.my.3plearning.com/002_AT_Js/"></script>
+</body>
+</html>

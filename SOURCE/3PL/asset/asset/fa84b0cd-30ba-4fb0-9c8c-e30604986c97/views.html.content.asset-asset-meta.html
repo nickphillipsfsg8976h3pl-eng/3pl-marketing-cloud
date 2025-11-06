@@ -1,0 +1,872 @@
+%%[
+
+  SET @page_version = "v2025.07.27.03"
+  VAR @renewalOption, @noRenewReason, @AccountName, @SubscriptionProduct, @SubscriptionStartDate
+  VAR @Territory, @COM_COUNTRY, @ADDRESS, @Banner
+
+  SET @renewalOption = RequestParameter("renewalOption")
+  SET @noRenewReason = RequestParameter("noRenewReason")
+  set @http_referrer = HTTPRequestHeader("referer")
+
+  SET @Territory   = RequestParameter("Region")
+  SET @COM_COUNTRY = RequestParameter("CountryCode")
+  SET @OpportunityId = RequestParameter("OID")
+
+  SET @rows = LookupRows("Renewal Quote Opportunity - LookUp Table", "opportunityid", @OpportunityId)
+  IF RowCount(@rows) > 0 THEN
+    SET @row = Row(@rows, 1)
+    SET @AccountName = Field(@row, "AccountName")
+    SET @PrimaryQuoteID = Field(@row, "quoteid")
+    SET @SubscriptionProduct = Field(@row, "Product_Name__c")
+    SET @SubscriptionStartDateRaw = Field(@row, "Current_Subscription_Start_Date__c")
+    SET @one_year_subscription_end_date_Raw = Field(@row, "one_year_subscription_end_date")
+    SET @two_year_subscription_end_date_Raw = Field(@row, "two_year_subscription_end_date")
+    SET @three_year_subscription_end_date_Raw = Field(@row, "three_year_subscription_end_date")
+    
+    IF NOT EMPTY(@SubscriptionStartDateRaw) THEN SET @SubscriptionStartDate = FormatDate(@SubscriptionStartDateRaw, "d MMM yyyy") ENDIF
+    IF NOT EMPTY(@one_year_subscription_end_date_Raw) THEN SET @one_year_subscription_end_date = FormatDate(@one_year_subscription_end_date_Raw, "d MMM yyyy") ENDIF
+    IF NOT EMPTY(@two_year_subscription_end_date_Raw) THEN SET @two_year_subscription_end_date = FormatDate(@two_year_subscription_end_date_Raw, "d MMM yyyy") ENDIF
+    IF NOT EMPTY(@three_year_subscription_end_date_Raw) THEN SET @three_year_subscription_end_date = FormatDate(@three_year_subscription_end_date_Raw, "d MMM yyyy") ENDIF
+  ELSE
+    SET @AccountName = ""
+    SET @SubscriptionProduct = ""
+    SET @SubscriptionStartDate = ""
+  ENDIF
+  VAR @updateStatus, @updateQuoteStatus
+  VAR @SubscriptionTerm, @EndDate
+
+  IF @renewalOption == "1-Year" THEN
+    SET @SubscriptionTerm = 12
+    SET @EndDate = @one_year_subscription_end_date_Raw
+  ELSEIF @renewalOption == "2-Year" THEN
+    SET @SubscriptionTerm = 24
+    SET @EndDate = @two_year_subscription_end_date_Raw
+  ELSEIF @renewalOption == "3-Year" THEN
+    SET @SubscriptionTerm = 36
+    SET @EndDate = @three_year_subscription_end_date_Raw
+  ELSE
+    SET @SubscriptionTerm = ""
+    SET @EndDate = ""
+  ENDIF
+
+  IF NOT EMPTY(@PrimaryQuoteID) AND NOT EMPTY(@SubscriptionTerm) AND NOT EMPTY(@EndDate) AND 1==0 THEN
+    SET @updateQuoteStatus = UpdateSingleSalesforceObject(
+      "SBQQ__Quote__c", 
+      @PrimaryQuoteID, 
+      "SBQQ__SubscriptionTerm__c", @SubscriptionTerm,
+      "SBQQ__EndDate__c", Format(@EndDate, "yyyy-MM-dd")
+    )
+  ELSE
+    SET @updateQuoteStatus = "Temporarily Blocked Updates to CRM"
+  ENDIF
+  VAR @subjectText
+
+IF EMPTY(@noRenewReason) THEN
+  SET @subjectText = "No Renewal Alert - [Reason Missing]"
+ELSE
+  SET @subjectText = Concat("No Renewal Alert - ", @noRenewReason)
+ENDIF
+
+  /* Only proceed if noRenewReason is empty and OpportunityId is valid */
+  IF EMPTY(@noRenewReason) AND NOT EMPTY(@OpportunityId) THEN
+
+  /* Lookup Opportunity OwnerId */
+  SET @opportunityRow = LookupRows("ENT.Opportunity_Salesforce", "Id", @OpportunityId)
+  IF RowCount(@opportunityRow) > 0 THEN
+    SET @ownerId = Field(Row(@opportunityRow, 1), "OwnerId")
+
+    /* Create Task in Salesforce */
+    SET @createTaskResult = CreateSalesforceObject(
+      "Task",
+      6,
+      "OwnerId", @ownerId,
+      "WhatId", @OpportunityId,
+      "Subject", @subjectText,
+      "Status", "Not Started",
+      "Priority", "Normal",
+      "Description", Concat(
+        "A renewal form was submitted without a renewal reason.",CHAR(10), CHAR(13),
+        "Account: ", @AccountName,CHAR(10), CHAR(13),
+        "Product: ", @SubscriptionProduct,CHAR(10), CHAR(13),
+        "Subscription Start Date: ", @SubscriptionStartDate,CHAR(10), CHAR(13),
+        "Renewal Option: ", @renewalOption, CHAR(10), CHAR(13),
+      )
+    )
+  ELSE
+    SET @createTaskResult = "Opportunity not found"
+  ENDIF
+ELSE
+  SET @createTaskResult = "Renew reason provided or OpportunityId missing"
+ENDIF
+
+  IF @debug == true THEN
+    OutputLine(Concat('<div style="padding: 8px 12px; background-color:#ffe0e0;"><strong>Quote Update Status:</strong> ', @updateQuoteStatus, '</div>'))
+  ENDIF
+  
+set @debug=true
+
+IF @debug == true THEN
+  OutputLine('<div style="font-family: monospace; border: 1px solid #ccc; border-radius: 5px; overflow: hidden; max-width: 800px;">')
+  OutputLine('<div style="padding: 10px; background-color: #f2f2f2;"><strong> Debug Output</strong></div>')
+
+  SET @i = 0
+  
+   SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>Debug Version:</strong> ', @page_version, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>OpportunityId:</strong> ', @OpportunityId, '</div>'))
+    SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>PrimaryQuoteId:</strong> ', @PrimaryQuoteID, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>Renewal Preference:</strong> ', @renewalOption, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>No Renewal Reason:</strong> ', @noRenewReason, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>Territory:</strong> ', @Territory, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>Country:</strong> ', @COM_COUNTRY, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>AccountName:</strong> ', @AccountName, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>SubscriptionProduct:</strong> ', @SubscriptionProduct, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>Subscription Start Date:</strong> ', @SubscriptionStartDate, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>1-Year End Date:</strong> ', @one_year_subscription_end_date, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>2-Year End Date:</strong> ', @two_year_subscription_end_date, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>3-Year End Date:</strong> ', @three_year_subscription_end_date, '</div>'))
+  
+    
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong style=""><strong>Update CRM</strong> </div>'))
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>SubscriptionTerm:</strong> ', @SubscriptionTerm, '</div>'))
+
+  SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>End Date:</strong> ', @EndDate, '</div>'))
+    SET @i = Add(@i,1)
+  SET @bg = IIF(Mod(@i,2) == 0, "#f9f9f9", "#ffffff")
+  OutputLine(Concat('<div style="padding: 8px 12px; background-color:', @bg, ';"><strong>UpdateQuoteStatus:</strong> ', @updateQuoteStatus, '</div>'))
+
+
+  OutputLine('</div>')
+ENDIF
+
+
+]%%
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Meta/SEO -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Form">
+    <!-- Title & Favicons -->
+    <title> 3PLearning | APAC MultipleProduct Renewals Form </title>
+    <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- Styles -->
+    <style>
+        /* font & colors
+ ******************/
+ :root {
+   font-size: 16px;
+   font-family: Open sans, helvetica, arial, sans-serif;
+   font-weight: 400;
+   color: #545454;
+
+   --submit_button__rest--backgroundColor: #CB378C;
+   --submit_button__rest--color :whitesmoke;
+   --submit_button__hover--backgroundColor: #d92f9c;
+   --submit_button__hover--color: white;
+   --checkbox__rest--backgroundColor: lightgrey;
+   --checkbox__hover--backgroundColor: #1981c4;
+   --checkbox__checked--backgroundColor: #308ECB ;
+   --valid_input--color: green;
+   --invalid_input--color: red;
+   --invalid_label--color: red;
+ }
+ .form-control {
+  display: block;
+  width: auto;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #545454;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #c4c4c4;
+  border-radius: 0.375rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+ }
+ /*
+ custom submit button
+ *********************/
+ .custom_submit_button {
+   background-color: var(--submit_button__rest--backgroundColor);
+   border-radius: 0.25rem;
+   padding: 12px 32px;
+   text-align: center;
+   color: var(--submit_button__rest--color);
+   font-weight: 700;
+   font-size: 1.125rem;
+   width: 100%;
+   border: 0;
+ }
+ .custom_submit_button:hover {
+   background-color: var(--submit_button__hover--backgroundColor);
+   color: var(--submit_button__hover--color);
+ }
+ .custom_submit_button:focus {
+   outline: 0;
+   box-shadow: 0 0 0 0.2rem rgb(0 0 0 / 12%);
+ }
+ @media screen and (min-width: 767px) {
+   .custom_submit_button {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  /* float: right; */
+   }
+ }
+ /*
+ custom check boxes
+ *******************/
+ .custom-checkbox {
+   display: block;
+   position: relative;
+   padding-left: 35px;
+   margin-bottom: 12px;
+   cursor: pointer;
+   font-size: 16px;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+ .custom-checkbox input {
+   position: absolute;
+   opacity: 0;
+   cursor: pointer;
+   height: 0;
+   width: 0;
+ }
+ .checkmark {
+   position: absolute;
+   top: 5px;
+   left: 0;
+   height: 25px;
+   width: 25px;
+   background-color: var(--checkbox__rest--backgroundColor);
+   border-radius: 5px;
+
+ }
+ .custom-checkbox:hover input~.checkmark {
+   background-color: var(--checkbox__hover--backgroundColor);
+ }
+ .custom-checkbox input:checked~.checkmark {
+   background-color: var(--checkbox__checked--backgroundColor);
+ }
+ .checkmark:after {
+   content: "";
+   position: absolute;
+   display: none;
+ }
+ .custom-checkbox input:checked~.checkmark:after {
+   display: block;
+ }
+ .custom-checkbox .checkmark:after {
+   left: 9px;
+   top: 5px;
+   width: 7px;
+   height: 15px;
+   border: solid white;
+   border-width: 0 3px 3px 0;
+   -webkit-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+   transform: rotate(45deg);
+ }
+ /* Fields
+ ****************/
+ .custom-field-label {
+   font-weight: bold;
+ }
+ .custom-field-terms {
+   font-weight: lighter;
+   color: #495057;
+ }
+ /* Utility
+ ****************/
+      
+ /* General styles for responsiveness and centering */
+.sg-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.sg-header img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sg-question {
+  text-align: left;
+  margin: 10 auto;
+  padding: 15px;
+    border-bottom: 2px solid #EEE;
+    line-height: 1;
+    clear: both
+}
+
+.sg-question1 {
+  text-align: center;
+margin: 10 auto;
+  padding: 15px;
+        border-bottom: 2px solid #EEE;
+    line-height: 1;
+    clear: both
+}
+.content-wrapper {
+  max-width: 1000px; /* Adjust based on your content's ideal width */
+  margin: 0 auto; /* Centers the wrapper */
+  padding: 20px; /* Adds some space inside the wrapper */
+  box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+  overflow: hidden; /* Prevents content from overflowing the wrapper */
+}
+#selectableTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: Arial, sans-serif;
+}
+
+#selectableTable th, #selectableTable td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Light grey border for rows */
+}
+
+#selectableTable th {
+  background-color: #4D8C57; /* Darker shade for header */
+  color: white;
+}
+
+
+.selected {
+  background-color: #007bff; /* Highlight color for selected row */
+}
+      
+.table-container {
+    max-width: 600px; /* Set the maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+    overflow-x: auto; /* Add horizontal scroll if the content exceeds the container width */
+}
+      
+  .card-container {
+    display: flex;
+    justify-content: center; /* Center cards horizontally */
+    gap: 20px; /* Space between cards */
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+}
+
+.subscription-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.content-wrapper {
+    max-width: 100%;
+    margin: auto;
+    padding: 20px; /* Adds padding around the entire content */
+}
+
+.sg-header img {
+    width: 100%; /* Makes the image responsive */
+    height: auto; /* Maintains the aspect ratio */
+}
+
+.text-content {
+    padding: 20px; /* Adds padding around the text content for readability */
+}
+
+.card-container {
+    padding: 20px 0; /* Adds vertical padding around the cards */
+}
+
+.card-title {
+    padding-bottom: 10px; /* Adds space below the title */
+    border-bottom: 2px solid #ccc; /* Adds a line under the title */
+    margin-bottom: 20px; /* Adds space below the line */
+    color: #007bff;
+}
+
+.card-detail {
+    display: table; /* Makes the .card-detail behave like a table */
+    width: 100%; /* Ensures it takes full width */
+}
+
+.detail-row {
+    display: table-row; /* Each row behaves like a table row */
+}
+
+.detail-title, .amount {
+    display: table-cell; /* Each item behaves like a table cell */
+    padding: 5px; /* Adds padding inside each cell */
+}
+
+.detail-title {
+    
+    width: 50%; /* Allocates 50% width to titles */
+}
+
+.amount {
+    text-align: right; /* Aligns amounts to the right */
+    color: #03045E;
+}
+
+@media (max-width: 768px) {
+    .detail-title, .amount {
+        display: block; /* Stacks the title and amount on smaller screens */
+        text-align: left; /* Aligns text to the left on smaller screens */
+        width: 100%; /* Takes full width */
+    }
+
+    .amount {
+        padding-top: 0; /* Removes top padding for amounts on smaller screens */
+    }
+}
+
+
+/* Style for selected card */
+.selected-card {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    border: 2px solid #007bff; /* Highlight selected card */
+}
+.card-detail {
+    font-size: 14px; /* Adjust the font size as needed */
+    margin: 10px 0; /* Add some space between each detail */
+    color: #333; /* Dark grey for better readability */
+}
+
+.amount {
+    font-weight: bold; /* Make the amount bold */
+    color: #03045E; /* Use a different color for amounts */
+}
+
+
+/* Responsive text size for smaller devices */
+@media screen and (max-width: 768px) {
+  .sg-title {
+    font-size: 16px;
+  }
+  
+  .sg-instructions p, .sg-instructions span {
+    font-size: 14px;
+  }
+}
+.subscription-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for hover and select effects */
+}
+
+.subscription-card:hover {
+    transform: translateY(-5px); /* Slightly raises the card */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adds shadow to make it pop */
+}
+
+.subscription-card:focus, .subscription-card.selected {
+    outline: none; /* Removes default focus outline */
+    border: 2px solid #3498db; /* Highlight color to indicate selection */
+}
+ .custom-hide { display: none; }
+ .custom-valid-input { border: 3px solid var(--valid_input--color) !important; }
+ .custom-invalid-input { border: 3px solid var(--invalid_input--color) !important; }
+ .custom-invalid-label { color: var(--invalid_label--color) !important; }
+.acceptance-fieldset {
+    padding: 15px;
+    margin-top: 20px;
+    border: none; /* Remove borders */
+}
+
+.acceptance-legend {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.acceptance-legend::before, .acceptance-legend::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.acceptance-legend::before {
+    top: -10px; /* Adjust as necessary for alignment */
+}
+
+.acceptance-legend::after {
+    bottom: -10px; /* Adjust as necessary for alignment */
+}
+
+.acceptance-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.acceptance-option {
+    margin-bottom: 10px;
+}
+
+.required-indicator {
+    color: #ff0000;
+}
+
+.updated-numbers-input, .additional-details-textarea {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensure padding does not add to the width */
+}
+
+.manager-details-section {
+    margin-top: 20px;
+    padding: 15px;
+}
+
+.manager-details-title {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.accept-details-title {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+
+.manager-details-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.manager-detail {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.manager-detail label {
+    margin-bottom: 5px;
+}
+
+.manager-detail input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.required-indicator {
+    color: #ff0000;
+}
+.payment-method-section {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.payment-method-title {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.payment-instructions {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #666;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-option {
+    margin-bottom: 10px;
+}
+
+.payment-option label {
+    margin-left: 5px;
+}
+
+.required-indicator {
+    color: #ff0000;
+}
+      .signature-section, .date-confirmation-section {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.signature-title, .date-confirmation-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.signature-pad-container {
+    border: 1px solid #000;
+    position: relative;
+    width: 100%; /* Full width of the parent */
+    height: auto; /* Height can be set to maintain aspect ratio */
+}
+
+.signature-pad {
+    border: 1px solid #000;
+    touch-action: none; /* This prevents scrolling on touch devices */
+        width: 100%;
+    height: 100%;
+}
+
+
+.clear-signature-btn {
+    margin-top: 10px;
+}
+
+.signature-name-field, .date-confirmation-area {
+    margin-top: 15px;
+}
+
+.date-picker {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.date-note {
+    margin-top: 10px;
+    font-style: italic;
+}
+.container {
+    width: 100%;
+}
+.container .form-section {
+    border-bottom: 1px solid #ccc; /* Lighter and more subtle than the container border */
+    padding-bottom: 15px; /* Adds padding to space out the content from the border */
+    margin-bottom: 15px; /* Adds space between sections */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tr.selected {
+    background-color: #a2d5f2;
+}
+
+.subtotal-container {
+    margin-top: 20px;
+}
+.summary-container {
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.summary-container h3, .summary-container h4 {
+    margin-bottom: 15px;
+}
+
+.summary-container p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+.summary-container {
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the container */
+    margin-top: 20px; /* Space above the container */
+    background-color: #f0f8ff; /* Light blue background */
+}
+
+.summary-item {
+    background-color: #ffffff; /* White background for each summary item */
+    padding: 10px; /* Padding inside each summary item */
+    margin-bottom: 10px; /* Space between summary items */
+    border-radius: 5px; /* Rounded corners for each summary item */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for each summary item */
+    display: flex; /* Enables flexbox layout */
+    justify-content: space-between; /* Space between content and price */
+    align-items: center; /* Aligns items vertically */
+}
+
+.summary-container h3, .summary-container h4 {
+    color: #007BFF; /* Blue text for headings */
+    margin-bottom: 15px; /* Space below headings */
+}
+.custom_submit_button {
+    background-color: #23a667;
+    color: var(--submit_button__rest--color);
+    padding: 12px 32px;  /* Adjust padding as needed */
+    border-radius: 0.25rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    width: auto;  /* Change width from 100% to auto */
+    border: none;
+    cursor: pointer;
+    display: inline-block;  /* Change from block to inline-block if necessary */
+    margin-top: 20px;
+    margin-bottom: 20px;  /* Added margin-bottom for spacing */
+    /* Optionally, you can center the button if it looks too small */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.custom_submit_button:hover {
+    background-color: #bdc3c7;
+    color: var(--submit_button__hover--color);
+}
+.form-label {
+    min-width: 90px;  /* Ensure labels have enough width and do not wrap */
+}
+
+.form-control {
+    flex-grow: 1;  /* Input fields take up remaining space */
+}
+@media (max-width: 576px) {
+    .form-label, .form-control {
+        flex-grow: 1;
+        width: 100%;  /* Makes label and input stack vertically on small screens */
+    }
+    .form-label {
+        margin-right: 0;  /* Removes margin on small screens */
+    }
+}
+
+.radio-option {
+ display: flex;
+    align-items: flex-start;  /* Aligns the radio button to the top */
+    margin-bottom: 10px;  /* Adds space between radio options */
+}
+
+.radio-option label {
+    margin-left: 5px;  /* Space between radio button and label */
+    cursor: pointer;  /* Indicates the label is clickable */
+}
+
+.sg-input-radio {
+    cursor: pointer;  /* Indicates the radio button is clickable */
+    margin: 0;  /* Removes default margin around radio buttons */
+    vertical-align: middle;  /* Aligns radio buttons vertically in the middle */
+}
+
+
+
+  </style>
+</head>
+<!-- =============================== BODY =========================== -->
+
+<body>
+    <!-- Wrapper -->
+    <div class=" container my-5">
+        <div class="row">
+            <div class="col">
+                <div class="content-wrapper">
+                    <div class="sg-header">
+                        <div class="sg-header-hook-1"></div>
+                        <img class="sg-header-image" src="https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/608a4117-0ee2-407e-963e-d6202d01520d.png" alt="" />
+                        <div class="sg-header-hook-2"></div>
+                    </div>
+                    <div id="sgE-7372889-9-2-box" class="sg-question1 sg-type-instruction ">
+                        <div class="sg-instructions">
+                            <p><span>Thank you for submitting your renewal preference. If you require any further information, please don't hesitate to contact us.
+<br><br>
+<strong>AU: 1300 850 331  |  customerservice@3plearning.com.au   <br><br>
+NZ: 0800 375 327  |  customerservice@3plearning.co.nz</strong></span></p>
+                        </div>
+                    </div>
+                    
+    </div>
+    </div>
+    </div>
+    <!-- ===========================  JAVASCRIPT  =========================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
+
+
+</html>

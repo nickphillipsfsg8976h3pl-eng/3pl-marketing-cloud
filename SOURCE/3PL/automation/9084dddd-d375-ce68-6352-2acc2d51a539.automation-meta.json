@@ -1,0 +1,28 @@
+{
+    "name": "exctract_subscribersStatus",
+    "key": "9084dddd-d375-ce68-6352-2acc2d51a539",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2022-03-20T00:00:00",
+        "endDate": "2022-03-20T00:00:00",
+        "icalRecur": "FREQ=DAILY;COUNT=1;INTERVAL=1",
+        "timezoneName": "AUS Eastern Standard Time"
+    },
+    "steps": [
+        {
+            "name": "",
+            "activities": [
+                {
+                    "r__type": "dataExtract",
+                    "r__key": "7CA27A93-4EFB-4AAA-B554-71FD8944CE5B"
+                }
+            ]
+        }
+    ],
+    "createdName": "Stephan Peniguel",
+    "createdDate": "2022-03-19T04:43:24.11Z",
+    "modifiedName": "Stephan Peniguel",
+    "modifiedDate": "2022-03-19T04:43:24.173Z",
+    "r__folder_Path": "my automations/000_Sandbox"
+}

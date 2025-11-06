@@ -1,0 +1,401 @@
+{
+    "type": "SalesforceObjectTriggerV2",
+    "name": "MXB2C_MX0001_GLOBAL-ENTRYSOURCE1651296479056",
+    "description": "",
+    "createdDate": "2022-04-29T23:28:00.58",
+    "createdBy": "Stephan Peniguel",
+    "modifiedDate": "2022-04-29T23:28:00.58",
+    "modifiedBy": "Stephan Peniguel",
+    "eventDefinitionKey": "eventDef1651296480535",
+    "schema": {
+        "fields": [
+            {
+                "name": "CampaignMember:CampaignId",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Country",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Title",
+                "dataType": "Text",
+                "maxLength": "128",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:CreatedDate",
+                "dataType": "Date",
+                "maxLength": "0",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Email",
+                "dataType": "EmailAddress",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:HasOptedOutOfEmail",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:FirstName",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Title",
+                "dataType": "Text",
+                "maxLength": "128",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:LastName",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:LeadSource",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Marketing_Interest__c",
+                "dataType": "multipicklist",
+                "maxLength": "4099",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Marketing_Product_Interest__c",
+                "dataType": "multipicklist",
+                "maxLength": "4099",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Territory__c",
+                "dataType": "Text",
+                "maxLength": "1300",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Campaign__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Content__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Medium__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Source__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Term__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Contact:C3_Id__c",
+                "dataType": "Text",
+                "maxLength": "30",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Contact:School_C3_Id__c",
+                "dataType": "Text",
+                "maxLength": "1300",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Contact:Stage__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Contact:Status__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:School__c",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:Create_Sandbox__c",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:Grade_Level__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "MemberRecordType",
+                "dataType": "Text",
+                "maxLength": "20",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            }
+        ],
+        "sendableCustomObjectField": "CampaignMember:Common:Id",
+        "sendableSubscriberField": "_SubscriberKey"
+    },
+    "sourceApplicationExtensionId": "90f5eca5-08bf-4006-a484-a2b32e4ecb80",
+    "filterDefinitionTemplate": "",
+    "iconUrl": "",
+    "arguments": {
+        "serializedObjectType": 0,
+        "useHighWatermark": false,
+        "automationId": "00000000-0000-0000-0000-000000000000",
+        "criteria": ""
+    },
+    "configurationArguments": {
+        "applicationExtensionKey": "SalesforceObjectTriggerV2",
+        "contactKey": {
+            "relationshipIdName": "Id",
+            "relationshipName": "Common",
+            "isPolymorphic": false,
+            "referenceObjectName": "Common"
+        },
+        "contactPersonType": "CampaignMember",
+        "evaluationCriteriaSummary": "Created;",
+        "eventDataConfig": {
+            "objects": [
+                {
+                    "dePrefix": "CampaignMember:",
+                    "isPolymorphic": false,
+                    "relationshipName": "",
+                    "referenceObject": "",
+                    "relationshipIdName": "",
+                    "fields": [
+                        "CampaignId",
+                        "Id",
+                        "Country",
+                        "Title"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Common:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Contacts and Leads",
+                    "relationshipName": "Common",
+                    "fields": [
+                        "Id",
+                        "CreatedDate",
+                        "Email",
+                        "HasOptedOutOfEmail",
+                        "FirstName",
+                        "Title",
+                        "LastName",
+                        "LeadSource",
+                        "Marketing_Interest__c",
+                        "Marketing_Product_Interest__c",
+                        "Territory__c",
+                        "UTM_Campaign__c",
+                        "UTM_Content__c",
+                        "UTM_Medium__c",
+                        "UTM_Source__c",
+                        "UTM_Term__c"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Contact:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Contact",
+                    "relationshipName": "Contact",
+                    "fields": [
+                        "C3_Id__c",
+                        "School_C3_Id__c",
+                        "Stage__c",
+                        "Status__c"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Lead:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Lead",
+                    "relationshipName": "Lead",
+                    "fields": [
+                        "School__c",
+                        "Create_Sandbox__c",
+                        "Grade_Level__c"
+                    ]
+                }
+            ]
+        },
+        "eventDataSummary": [
+            "CampaignMember:CampaignId",
+            "CampaignMember:Common:CreatedDate",
+            "CampaignMember:Common:Email",
+            "CampaignMember:Common:FirstName",
+            "CampaignMember:Common:HasOptedOutOfEmail",
+            "CampaignMember:Common:Id",
+            "CampaignMember:Common:LastName",
+            "CampaignMember:Common:LeadSource",
+            "CampaignMember:Common:Marketing_Interest__c",
+            "CampaignMember:Common:Marketing_Product_Interest__c",
+            "CampaignMember:Common:Territory__c",
+            "CampaignMember:Common:Title",
+            "CampaignMember:Common:UTM_Campaign__c",
+            "CampaignMember:Common:UTM_Content__c",
+            "CampaignMember:Common:UTM_Medium__c",
+            "CampaignMember:Common:UTM_Source__c",
+            "CampaignMember:Common:UTM_Term__c",
+            "CampaignMember:Contact:C3_Id__c",
+            "CampaignMember:Contact:School_C3_Id__c",
+            "CampaignMember:Contact:Stage__c",
+            "CampaignMember:Contact:Status__c",
+            "CampaignMember:Country",
+            "CampaignMember:Id",
+            "CampaignMember:Lead:Create_Sandbox__c",
+            "CampaignMember:Lead:Grade_Level__c",
+            "CampaignMember:Lead:School__c",
+            "CampaignMember:Title"
+        ],
+        "objectAPIName": "CampaignMember",
+        "passThroughArgument": {
+            "fields": {
+                "ContactKey": "CampaignMember:Common:Id",
+                "Email": "CampaignMember:Common:Email",
+                "HasOptedOutOfEmail": "CampaignMember:Common:HasOptedOutOfEmail"
+            }
+        },
+        "primaryObjectFilterCriteria": {
+            "operand": "OR",
+            "conditions": [
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "7012y000000Y6VQAA0"
+                }
+            ]
+        },
+        "primaryObjectFilterSummary": "CampaignMember:CampaignId = \"B2C_MX0001_GLOBAL\" (7012y000000Y6VQAA0)",
+        "relatedObjectFilterCriteria": {
+            "operand": "AND",
+            "conditions": []
+        },
+        "relatedObjectFilterSummary": "",
+        "salesforceTriggerCriteria": "Created",
+        "version": "3.0",
+        "whoToInject": "Contact ID/Lead ID (Contacts and Leads)"
+    },
+    "metaData": {
+        "criteriaDescription": "",
+        "scheduleState": "No Schedule"
+    },
+    "interactionCount": 1,
+    "isVisibleInPicker": false,
+    "category": "Event",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false
+}

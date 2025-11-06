@@ -1,0 +1,25 @@
+<!-- START OF PRODUCT STYLING SELECTION -->
+<!-- START OF FOOTER ADDRESS LOCATION -->
+<!--
+      %%[
+SET @COM_COUNTRY = AttributeValue("Contactlocale")
+      IF EMPTY (@COM_COUNTRY) THEN
+      SET @COM_COUNTRY = "Australia"
+      SET @ADDRESS = "3P Learning Ltd, 655 Parramatta Road, Leichhardt, NSW 2040."
+      ElSEIF @COM_COUNTRY == "New Zealand" OR @COM_COUNTRY == "NZ" THEN
+        SET @ADDRESS = "Unit 1B, 62 Paul Matthews Drive, North Harbour, Auckland, New Zealand"
+      ElSEIF @COM_COUNTRY == "Australia" OR @COM_COUNTRY == "AU" THEN
+        SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+      ELSEIF @COM_COUNTRY == "United States" OR @COM_COUNTRY == "US" THEN
+        SET @ADDRESS = "37 W 26th St Suite 201, NEW YORK, NY 10010-1144, United States"
+      ELSEIF @COM_COUNTRY == "Canada" OR @COM_COUNTRY == "CA" THEN
+        SET @ADDRESS = "Suite 1100, 550 11th Ave SW, Calgary, AB T2R 1M7"
+       ELSEIF @COM_COUNTRY == "United Kingdom" OR @COM_COUNTRY == "UK" THEN
+        SET @ADDRESS = "4th Floor, Bull Wharf, Redcliff Street, Bristol, BS1 6QR"
+       ELSEIF @COM_COUNTRY == "Ireland" OR @COM_COUNTRY == "IR" THEN
+        SET @ADDRESS = "4th Floor, Bull Wharf, Redcliff Street, Bristol, BS1 6QR"
+       ELSE
+        SET @ADDRESS = "3P Learning Ltd, 655 Parramatta Road, Leichhardt, NSW 2040."
+     ENDIF
+]%%
+--> 

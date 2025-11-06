@@ -1,0 +1,54 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!-- START OF PRODUCT STYLING SELECTION --> 
+
+
+
+
+
+<!-- START OF FOOTER ADDRESS LOCATION --> 
+
+<!--
+      %%[
+SET @COM_COUNTRY = AttributeValue("AccountBillingCountry")
+
+      IF EMPTY (@COM_COUNTRY) THEN
+      SET @COM_COUNTRY = "Australia" 
+      SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+      SET @heroimagedesktop = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/8dcc6885-261a-40c8-a51d-0e42de1f196b.png"
+        SET @heroimagemobile = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/2f54bbf0-7652-4c31-9e80-213fc3880236.png"
+        SET @abc = ""
+        SET @P1 = "With a presence in over 70% of Australian schools, ABC Reading Eggs has been continually improving students' reading skills for over two decades and could be just what your school needs."
+        SET @email = "customerservice@3plearning.com.au"
+        SET @phone = "1300 850 331"
+        
+      ElSEIF @COM_COUNTRY == "New Zealand" OR @COM_COUNTRY == "NZ" THEN
+        SET @ADDRESS = "Unit 1B, 62 Paul Matthews Drive, North Harbour, Auckland, New Zealand"
+        SET @heroimagedesktop = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/8dcc6885-261a-40c8-a51d-0e42de1f196b.png"
+        SET @heroimagemobile = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/2f54bbf0-7652-4c31-9e80-213fc3880236.png"
+        SET @abc = ""
+        SET @P1 = "Validated by extensive research, Reading Eggs has been continually improving students' reading skills for over two decades and could be just what your school needs."
+        SET @email = "customerservice@3plearning.co.nz"
+        SET @phone = "0800 375 327"
+        
+      ElSEIF @COM_COUNTRY == "Australia" OR @COM_COUNTRY == "AU" THEN
+        SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+        SET @heroimagedesktop = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/8dcc6885-261a-40c8-a51d-0e42de1f196b.png"
+        SET @heroimagemobile = "https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/2f54bbf0-7652-4c31-9e80-213fc3880236.png"
+        SET @abc = "ABC&nbsp;"
+        SET @P1 = "With a presence in over 70% of Australian schools, ABC Reading Eggs has been continually improving students' reading skills for over two decades and could be just what your school needs."
+        SET @email = "customerservice@3plearning.com.au"
+        SET @phone = "1300 850 331"
+        
+      ELSEIF @COM_COUNTRY == "United States" OR @COM_COUNTRY == "US" THEN
+        SET @ADDRESS = "37 W 26th St Suite 201, NEW YORK, NY 10010-1144, United States"
+      ELSEIF @COM_COUNTRY == "Canada" OR @COM_COUNTRY == "CA" THEN
+        SET @ADDRESS = "Suite 1100, 550 11th Ave SW, Calgary, AB T2R 1M7"
+       ELSEIF @COM_COUNTRY == "United Kingdom" OR @COM_COUNTRY == "UK" THEN
+        SET @ADDRESS = "4th Floor, Bull Wharf, Redcliff Street, Bristol, BS1 6QR"
+       ELSEIF @COM_COUNTRY == "Ireland" OR @COM_COUNTRY == "IR" THEN
+        SET @ADDRESS = "4th Floor, Bull Wharf, Redcliff Street, Bristol, BS1 6QR"
+       ELSE
+        SET @ADDRESS = "3P Learning Ltd, 655 Parramatta rd, Leichhardt, NSW 2040."
+     ENDIF
+]%%
+ 
+--></td></tr></table>

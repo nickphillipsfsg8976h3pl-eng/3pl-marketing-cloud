@@ -1,0 +1,29 @@
+{
+    "type": "EmailAudience",
+    "name": "APAC_B2C_MX0001_ONBOARDING (Copy)",
+    "description": "",
+    "createdDate": "2023-04-28T00:06:02.78",
+    "createdBy": "Sarah Santangelo",
+    "modifiedDate": "2023-04-28T00:06:02.78",
+    "modifiedBy": "Sarah Santangelo",
+    "eventDefinitionKey": "DEAudience-53e5c600-c013-46e5-1121-c42061b052fc",
+    "sourceApplicationExtensionId": "97e942ee-6914-4d3d-9e52-37ecb71f79ed",
+    "filterDefinitionId": "6e437d54-b053-439c-9909-1b5b741f4640",
+    "filterDefinitionTemplate": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Trial_Start__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d0855237-d21d-ed11-b846-48df37d68272&quot;}\"><AttributePath RelationshipID=\"1ba98de9-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;-;1;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>",
+    "iconUrl": "/images/icon-data-extension.svg",
+    "arguments": {
+        "serializedObjectType": 3,
+        "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"chargebeeapps__CB_Subscription__c_Salesforce.chargebeeapps__Trial_Start__c\" Operator=\"Equal\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d0855237-d21d-ed11-b846-48df37d68272&quot;}\"><AttributePath RelationshipID=\"1ba98de9-8e43-ed11-b846-48df37d68272\"><Value><![CDATA[;-;1;days]]></Value></AttributePath></Condition></ConditionSet></FilterDefinition>"
+    },
+    "configurationArguments": {},
+    "metaData": {
+        "criteriaDescription": "chargebeeapps__Trial_Start__c equal Today Minus 1 days",
+        "scheduleState": "No Schedule"
+    },
+    "interactionCount": 0,
+    "isVisibleInPicker": false,
+    "category": "Audience",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false,
+    "r__automation_key": "4ef08d39-b57b-4e44-9bef-c069e1bdd9a8"
+}

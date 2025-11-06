@@ -1,0 +1,667 @@
+{
+    "key": "71fb997c-3f25-0f4c-ee84-cb76b192f1e2",
+    "name": "AMER_MX0098_MMM2025_EM4 - Challenge Launch",
+    "lastPublishedDate": "2025-03-10T10:33:26",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2025-03-10T09:59:52.803",
+    "modifiedDate": "2025-03-10T10:33:26.447",
+    "activities": [
+        {
+            "key": "EMAILV2-1",
+            "name": "AMER_MX0098_MMM2025_EM1 (Comp)",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "195585b5-d77a-460f-8b81-2790bfd0f21d",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "March Math Mania Week One Is Here!🎉",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "categoryId": 462712,
+                    "ccEmail": [],
+                    "created": {
+                        "name": "5fdc029c-8f64-44f0-b64e-596e6dc1d4a8 app user",
+                        "date": "2025-03-07T07:57:00Z"
+                    },
+                    "description": "AMER_MX0098_MMM2025_EM1 - c22a367ed47d4973aab75b3b610a8b33",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "March Math Mania Week One Is Here!🎉",
+                    "emailSubject": "March Math Mania Week One Is Here!🎉",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": false,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "keyword": "",
+                    "modified": {
+                        "name": "Kelly Sykes",
+                        "date": "2025-03-08T09:06:00Z"
+                    },
+                    "name": "AMER_MX0098_MMM2025_EM3 (Prom - aaaa5df6a26a47eea1187ec361d36e4f",
+                    "preHeader": "It's time to start earning those points + World Math Day registration is open!",
+                    "publicationListId": 187,
+                    "r__asset_key": "8965d3f5-5585-4239-a798-2174ececdefa",
+                    "r__asset_name_readOnly": "AMER_MX0098_MMM2025_EM1 (Comp)",
+                    "r__sendClassification_key": 1078,
+                    "r__triggeredSend_key": "255051",
+                    "replyToAddress": "",
+                    "replyToDisplayName": "",
+                    "suppressTracking": false,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active",
+                    "version": 4
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "255051"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": "",
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "AMER_MX0098_MMM2025_EM1",
+            "description": "",
+            "type": "EmailAudience",
+            "outcomes": [],
+            "arguments": {
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "true"
+            },
+            "configurationArguments": {
+                "schemaVersionId": 0,
+                "criteria": ""
+            },
+            "metaData": {
+                "scheduleState": "No Schedule",
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/images/icon-data-extension.svg",
+                "title": "Data Extension",
+                "category": "Audience",
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
+                "r__event_key": "DEAudience-ddb0c8ef-e1e5-6415-074c-0631f8e6e48a"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "MultipleEntries",
+    "definitionType": "Quicksend",
+    "channel": "email",
+    "defaults": {
+        "email": [
+            "{{Event.DEAudience-ddb0c8ef-e1e5-6415-074c-0631f8e6e48a.\"ContactEmail\"}}"
+        ],
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "dataSource": "ContactsModel",
+        "eventDefinition": {
+            "id": "21A293B1-1E32-4055-95F5-38EAAE810DBF",
+            "name": "AMER_MX0098_MMM2025_EM4 - Challenge Launch",
+            "description": "",
+            "mode": "Production",
+            "isVisibleInPicker": false,
+            "type": "DEAudience",
+            "interactionCount": 1,
+            "publishedInteractionCount": 0,
+            "iconUrl": "/images/icon-data-extension.svg",
+            "eventDefinitionKey": "DEAudience-ddb0c8ef-e1e5-6415-074c-0631f8e6e48a",
+            "dataExtensionId": "e8ba1bab-05eb-ef11-a5d5-5cba2c704758",
+            "schema": null,
+            "createdDate": "2025-03-10T13:59:51Z",
+            "createdBy": 717543497,
+            "modifiedDate": "2025-03-10T13:59:51Z",
+            "modifiedBy": 717543497,
+            "dataExtensionName": "AMER_MX0098_MMM2025",
+            "sourceApplicationExtensionId": "a62ff9df-dc1c-4e9a-87cd-c05841d79f38",
+            "filterDefinitionId": "00000000-0000-0000-0000-000000000000",
+            "filterDefinitionTemplate": "",
+            "isPlatformObject": false,
+            "category": "Audience",
+            "disableDEDataLogging": false,
+            "criteriaDescription": "",
+            "metaData": {
+                "scheduleState": "No Schedule"
+            },
+            "criteria": "",
+            "useHighWatermark": false,
+            "documentArguments": {
+                "serializedObjectType": 3,
+                "eventDefinitionId": "21a293b1-1e32-4055-95f5-38eaae810dbf",
+                "eventDefinitionKey": "DEAudience-ddb0c8ef-e1e5-6415-074c-0631f8e6e48a",
+                "dataExtensionId": "e8ba1bab-05eb-ef11-a5d5-5cba2c704758",
+                "automationId": "61b1abce-1c8c-4c42-8b7d-c3fa2e0f06e7"
+            },
+            "unconfigured": false,
+            "_originalDeAudienceType": "EmailAudience",
+            "frequency": "never",
+            "event": {
+                "id": "A62FF9DF-DC1C-4E9A-87CD-C05841D79F38",
+                "name": "Data Extension",
+                "description": "",
+                "type": "DEAudience",
+                "category": "audience",
+                "key": "deaudience",
+                "iconUrl": "/images/icon-data-extension.svg",
+                "config": {
+                    "internal": true,
+                    "scheduleEnabled": true,
+                    "scheduleTile": true,
+                    "supportsAutomationSchedule": true,
+                    "configurableHighWatermark": true,
+                    "userInterfaces": {
+                        "summary": [
+                            {
+                                "fieldName": "startDateTime",
+                                "valuePath": "schedule.startDateTime",
+                                "label": "Start",
+                                "timezoneOffsetPath": "timezoneOffset",
+                                "type": "date",
+                                "momentFormat": "LLL"
+                            },
+                            {
+                                "fieldName": "timeZone",
+                                "valuePath": "schedule.timeZone",
+                                "label": "Time Zone"
+                            },
+                            {
+                                "fieldName": "frequency",
+                                "valuePath": "schedule.frequency",
+                                "label": "Repeat",
+                                "valueInLang": true
+                            },
+                            {
+                                "fieldName": "interval",
+                                "valuePath": "schedule.interval",
+                                "label": "Repeat Every"
+                            },
+                            {
+                                "fieldName": "customDayOfTheWeek",
+                                "valuePath": "schedule",
+                                "label": "Day(s) of the Week"
+                            },
+                            {
+                                "fieldName": "scheduledDay",
+                                "valuePath": "schedule.scheduledDay",
+                                "label": "Scheduled Day"
+                            },
+                            {
+                                "fieldName": "scheduledDayOfWeek",
+                                "valuePath": "schedule.scheduledDayOfWeek",
+                                "label": "Scheduled Day of the Week",
+                                "valueInLang": true
+                            },
+                            {
+                                "fieldName": "scheduledMonth",
+                                "valuePath": "schedule.scheduledMonth",
+                                "label": "Scheduled Month",
+                                "valueInLang": true
+                            },
+                            {
+                                "fieldName": "scheduledWeek",
+                                "valuePath": "schedule.scheduledWeek",
+                                "label": "Scheduled Week",
+                                "valueInLang": true
+                            },
+                            {
+                                "fieldName": "endDateTime",
+                                "valuePath": "schedule.endDateTime",
+                                "label": "End",
+                                "type": "date",
+                                "momentFormat": "LL"
+                            },
+                            {
+                                "fieldName": "occurrences",
+                                "valuePath": "schedule.occurrences",
+                                "label": "End"
+                            },
+                            {
+                                "fieldName": "useHighWatermark",
+                                "valuePath": "useHighWatermark",
+                                "label": "Evaluate new records only"
+                            },
+                            {
+                                "fieldName": "automationName",
+                                "valuePath": "automation.name",
+                                "label": "Automation Name"
+                            },
+                            {
+                                "fieldName": "activityName",
+                                "valuePath": "activityName",
+                                "label": "Activity Name"
+                            },
+                            {
+                                "fieldName": "deRecordCount",
+                                "valuePath": "deRecordCount",
+                                "label": "Record Count"
+                            },
+                            {
+                                "fieldName": "fileTriggerActive",
+                                "valuePath": "automation.fileTrigger.triggerActive",
+                                "label": "File Trigger Active"
+                            },
+                            {
+                                "fieldName": "fileTriggerFolder",
+                                "valuePath": "automation.fileTrigger.folderLocationText",
+                                "label": "File Trigger Directory"
+                            },
+                            {
+                                "fieldName": "automationStatus",
+                                "valuePath": "automation.status",
+                                "label": "Automation Status"
+                            }
+                        ]
+                    },
+                    "lang": {
+                        "en-US": {
+                            "never": "Never",
+                            "hourly": "Hourly",
+                            "daily": "Daily",
+                            "weekly": "Weekly",
+                            "monthly": "Monthly",
+                            "yearly": "Yearly",
+                            "sunday": "Sunday",
+                            "monday": "Monday",
+                            "tuesday": "Tuesday",
+                            "wednesday": "Wednesday",
+                            "thursday": "Thursday",
+                            "friday": "Friday",
+                            "saturday": "Saturday",
+                            "First": "First",
+                            "Second": "Second",
+                            "Third": "Third",
+                            "Fourth": "Fourth",
+                            "Last": "Last",
+                            "January": "January",
+                            "February": "February",
+                            "March": "March",
+                            "April": "April",
+                            "May": "May",
+                            "June": "June",
+                            "July": "July",
+                            "August": "August",
+                            "September": "September",
+                            "October": "October",
+                            "November": "November",
+                            "December": "December",
+                            "true": "Scheduled",
+                            "00:00": "12:00 AM",
+                            "01:00": "1:00 AM",
+                            "02:00": "2:00 AM",
+                            "03:00": "3:00 AM",
+                            "04:00": "4:00 AM",
+                            "05:00": "5:00 AM",
+                            "06:00": "6:00 AM",
+                            "07:00": "7:00 AM",
+                            "08:00": "8:00 AM",
+                            "09:00": "9:00 AM",
+                            "10:00": "10:00 AM",
+                            "11:00": "11:00 AM",
+                            "12:00": "12:00 PM",
+                            "13:00": "1:00 PM",
+                            "14:00": "2:00 PM",
+                            "15:00": "3:00 PM",
+                            "16:00": "4:00 PM",
+                            "17:00": "5:00 PM",
+                            "18:00": "6:00 PM",
+                            "19:00": "7:00 PM",
+                            "20:00": "8:00 PM",
+                            "21:00": "9:00 PM",
+                            "22:00": "10:00 PM",
+                            "23:00": "11:00 PM"
+                        }
+                    },
+                    "entrySourceGroupConfigUrl": "jb:///data/entry/audience/"
+                },
+                "builtIn": true
+            },
+            "config": {
+                "internal": true,
+                "scheduleEnabled": true,
+                "scheduleTile": true,
+                "supportsAutomationSchedule": true,
+                "configurableHighWatermark": true,
+                "userInterfaces": {
+                    "summary": [
+                        {
+                            "fieldName": "startDateTime",
+                            "valuePath": "schedule.startDateTime",
+                            "label": "Start",
+                            "timezoneOffsetPath": "timezoneOffset",
+                            "type": "date",
+                            "momentFormat": "LLL"
+                        },
+                        {
+                            "fieldName": "timeZone",
+                            "valuePath": "schedule.timeZone",
+                            "label": "Time Zone"
+                        },
+                        {
+                            "fieldName": "frequency",
+                            "valuePath": "schedule.frequency",
+                            "label": "Repeat",
+                            "valueInLang": true
+                        },
+                        {
+                            "fieldName": "interval",
+                            "valuePath": "schedule.interval",
+                            "label": "Repeat Every"
+                        },
+                        {
+                            "fieldName": "customDayOfTheWeek",
+                            "valuePath": "schedule",
+                            "label": "Day(s) of the Week"
+                        },
+                        {
+                            "fieldName": "scheduledDay",
+                            "valuePath": "schedule.scheduledDay",
+                            "label": "Scheduled Day"
+                        },
+                        {
+                            "fieldName": "scheduledDayOfWeek",
+                            "valuePath": "schedule.scheduledDayOfWeek",
+                            "label": "Scheduled Day of the Week",
+                            "valueInLang": true
+                        },
+                        {
+                            "fieldName": "scheduledMonth",
+                            "valuePath": "schedule.scheduledMonth",
+                            "label": "Scheduled Month",
+                            "valueInLang": true
+                        },
+                        {
+                            "fieldName": "scheduledWeek",
+                            "valuePath": "schedule.scheduledWeek",
+                            "label": "Scheduled Week",
+                            "valueInLang": true
+                        },
+                        {
+                            "fieldName": "endDateTime",
+                            "valuePath": "schedule.endDateTime",
+                            "label": "End",
+                            "type": "date",
+                            "momentFormat": "LL"
+                        },
+                        {
+                            "fieldName": "occurrences",
+                            "valuePath": "schedule.occurrences",
+                            "label": "End"
+                        },
+                        {
+                            "fieldName": "useHighWatermark",
+                            "valuePath": "useHighWatermark",
+                            "label": "Evaluate new records only"
+                        },
+                        {
+                            "fieldName": "automationName",
+                            "valuePath": "automation.name",
+                            "label": "Automation Name"
+                        },
+                        {
+                            "fieldName": "activityName",
+                            "valuePath": "activityName",
+                            "label": "Activity Name"
+                        },
+                        {
+                            "fieldName": "deRecordCount",
+                            "valuePath": "deRecordCount",
+                            "label": "Record Count"
+                        },
+                        {
+                            "fieldName": "fileTriggerActive",
+                            "valuePath": "automation.fileTrigger.triggerActive",
+                            "label": "File Trigger Active"
+                        },
+                        {
+                            "fieldName": "fileTriggerFolder",
+                            "valuePath": "automation.fileTrigger.folderLocationText",
+                            "label": "File Trigger Directory"
+                        },
+                        {
+                            "fieldName": "automationStatus",
+                            "valuePath": "automation.status",
+                            "label": "Automation Status"
+                        }
+                    ]
+                },
+                "lang": {
+                    "en-US": {
+                        "never": "Never",
+                        "hourly": "Hourly",
+                        "daily": "Daily",
+                        "weekly": "Weekly",
+                        "monthly": "Monthly",
+                        "yearly": "Yearly",
+                        "sunday": "Sunday",
+                        "monday": "Monday",
+                        "tuesday": "Tuesday",
+                        "wednesday": "Wednesday",
+                        "thursday": "Thursday",
+                        "friday": "Friday",
+                        "saturday": "Saturday",
+                        "First": "First",
+                        "Second": "Second",
+                        "Third": "Third",
+                        "Fourth": "Fourth",
+                        "Last": "Last",
+                        "January": "January",
+                        "February": "February",
+                        "March": "March",
+                        "April": "April",
+                        "May": "May",
+                        "June": "June",
+                        "July": "July",
+                        "August": "August",
+                        "September": "September",
+                        "October": "October",
+                        "November": "November",
+                        "December": "December",
+                        "true": "Scheduled",
+                        "00:00": "12:00 AM",
+                        "01:00": "1:00 AM",
+                        "02:00": "2:00 AM",
+                        "03:00": "3:00 AM",
+                        "04:00": "4:00 AM",
+                        "05:00": "5:00 AM",
+                        "06:00": "6:00 AM",
+                        "07:00": "7:00 AM",
+                        "08:00": "8:00 AM",
+                        "09:00": "9:00 AM",
+                        "10:00": "10:00 AM",
+                        "11:00": "11:00 AM",
+                        "12:00": "12:00 PM",
+                        "13:00": "1:00 PM",
+                        "14:00": "2:00 PM",
+                        "15:00": "3:00 PM",
+                        "16:00": "4:00 PM",
+                        "17:00": "5:00 PM",
+                        "18:00": "6:00 PM",
+                        "19:00": "7:00 PM",
+                        "20:00": "8:00 PM",
+                        "21:00": "9:00 PM",
+                        "22:00": "10:00 PM",
+                        "23:00": "11:00 PM"
+                    }
+                },
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/"
+            },
+            "deRecordCount": 10989,
+            "sendableCustomObjectField": "ContactKey",
+            "scheduleFlowMode": "runOnce",
+            "runOnceScheduleMode": "onPublish"
+        },
+        "isScheduleSet": true,
+        "highThroughputSending": {
+            "email": false
+        }
+    },
+    "executionMode": "Production",
+    "status": "Published",
+    "scheduledStatus": "Sent",
+    "lastSendDate": "2025-03-10T10:33:27",
+    "r__folder_Path": "my journeys"
+}

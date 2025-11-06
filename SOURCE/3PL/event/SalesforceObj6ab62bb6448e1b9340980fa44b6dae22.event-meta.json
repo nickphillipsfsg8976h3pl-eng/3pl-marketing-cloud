@@ -1,0 +1,580 @@
+{
+    "type": "SalesforceObjectTriggerV2",
+    "name": "AMER_RE0095_EdWeek_Whitepaper_Emails_Admin",
+    "description": "",
+    "createdDate": "2024-09-13T14:04:56.683",
+    "createdBy": "Kelly Sykes",
+    "modifiedDate": "2024-09-13T14:04:56.683",
+    "modifiedBy": "Kelly Sykes",
+    "eventDefinitionKey": "SalesforceObj6ab62bb6448e1b9340980fa44b6dae22",
+    "schema": {
+        "fields": [
+            {
+                "name": "CampaignMember:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:CampaignId",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:et4ae5__Activity__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:City",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:CompanyOrAccount",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:ContactId",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Country",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:CreatedById",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:CreatedDate",
+                "dataType": "Date",
+                "maxLength": "0",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Email",
+                "dataType": "EmailAddress",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:HasOptedOutOfEmail",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:FirstName",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Title",
+                "dataType": "Text",
+                "maxLength": "128",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:LastName",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:LeadId",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:State",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:UTM_Campaign__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:UTM_Content__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:UTM_Medium__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:UTM_Source__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:UTM_Term__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:PostalCode",
+                "dataType": "Text",
+                "maxLength": "20",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Email",
+                "dataType": "EmailAddress",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:HasOptedOutOfEmail",
+                "dataType": "Boolean",
+                "isNullable": true,
+                "defaultValue": "False",
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:ClickToDial__Country_Code__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:FirstName",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Name",
+                "dataType": "Text",
+                "maxLength": "121",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Job_Function__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Title",
+                "dataType": "Text",
+                "maxLength": "128",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:LastName",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:Tech_GUID__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Campaign__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Content__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Medium__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Source__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Common:UTM_Term__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Campaign:School_Type__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Campaign:Id",
+                "dataType": "Text",
+                "maxLength": "18",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:Campaign_Code__c",
+                "dataType": "Text",
+                "maxLength": "100",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:Campaign_Name__c",
+                "dataType": "Text",
+                "maxLength": "150",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:City",
+                "dataType": "Text",
+                "maxLength": "40",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:Country",
+                "dataType": "Text",
+                "maxLength": "80",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:Country__c",
+                "dataType": "Text",
+                "maxLength": "255",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "CampaignMember:Lead:CountryCode",
+                "dataType": "Text",
+                "maxLength": "10",
+                "isNullable": true,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            },
+            {
+                "name": "MemberRecordType",
+                "dataType": "Text",
+                "maxLength": "20",
+                "isNullable": false,
+                "isPrimaryKey": false,
+                "isDevicePreference": false
+            }
+        ],
+        "sendableCustomObjectField": "CampaignMember:Common:Id",
+        "sendableSubscriberField": "_SubscriberKey"
+    },
+    "sourceApplicationExtensionId": "90f5eca5-08bf-4006-a484-a2b32e4ecb80",
+    "filterDefinitionTemplate": "",
+    "iconUrl": "/jbint-events/events/CampaignMember/images/SF-Event-Icon.svg",
+    "arguments": {
+        "serializedObjectType": 0,
+        "useHighWatermark": false,
+        "criteria": ""
+    },
+    "configurationArguments": {
+        "applicationExtensionKey": "SalesforceObjectTriggerV2",
+        "contactKey": {
+            "relationshipIdName": "Id",
+            "relationshipName": "Common",
+            "isPolymorphic": false,
+            "referenceObjectName": "Common"
+        },
+        "contactPersonType": "CampaignMember",
+        "evaluationCriteriaSummary": "Created;",
+        "eventDataConfig": {
+            "objects": [
+                {
+                    "dePrefix": "CampaignMember:",
+                    "isPolymorphic": false,
+                    "relationshipName": "",
+                    "referenceObject": "",
+                    "relationshipIdName": "",
+                    "fields": [
+                        "Id",
+                        "CampaignId",
+                        "et4ae5__Activity__c",
+                        "City",
+                        "CompanyOrAccount",
+                        "ContactId",
+                        "Country",
+                        "CreatedById",
+                        "CreatedDate",
+                        "Email",
+                        "HasOptedOutOfEmail",
+                        "FirstName",
+                        "Title",
+                        "LastName",
+                        "LeadId",
+                        "State",
+                        "UTM_Campaign__c",
+                        "UTM_Content__c",
+                        "UTM_Medium__c",
+                        "UTM_Source__c",
+                        "UTM_Term__c",
+                        "PostalCode"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Common:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Contacts and Leads",
+                    "relationshipName": "Common",
+                    "fields": [
+                        "Id",
+                        "Email",
+                        "HasOptedOutOfEmail",
+                        "ClickToDial__Country_Code__c",
+                        "FirstName",
+                        "Name",
+                        "Job_Function__c",
+                        "Title",
+                        "LastName",
+                        "Tech_GUID__c",
+                        "UTM_Campaign__c",
+                        "UTM_Content__c",
+                        "UTM_Medium__c",
+                        "UTM_Source__c",
+                        "UTM_Term__c"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Campaign:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Campaign",
+                    "relationshipName": "Campaign",
+                    "fields": [
+                        "School_Type__c",
+                        "Id"
+                    ]
+                },
+                {
+                    "dePrefix": "CampaignMember:Lead:",
+                    "isPolymorphic": false,
+                    "referenceObject": "Lead",
+                    "relationshipName": "Lead",
+                    "fields": [
+                        "Campaign_Code__c",
+                        "Campaign_Name__c",
+                        "City",
+                        "Country",
+                        "Country__c",
+                        "CountryCode"
+                    ]
+                }
+            ]
+        },
+        "eventDataSummary": [
+            "CampaignMember:Campaign:Id",
+            "CampaignMember:Campaign:School_Type__c",
+            "CampaignMember:CampaignId",
+            "CampaignMember:City",
+            "CampaignMember:Common:ClickToDial__Country_Code__c",
+            "CampaignMember:Common:Email",
+            "CampaignMember:Common:FirstName",
+            "CampaignMember:Common:HasOptedOutOfEmail",
+            "CampaignMember:Common:Id",
+            "CampaignMember:Common:Job_Function__c",
+            "CampaignMember:Common:LastName",
+            "CampaignMember:Common:Name",
+            "CampaignMember:Common:Tech_GUID__c",
+            "CampaignMember:Common:Title",
+            "CampaignMember:Common:UTM_Campaign__c",
+            "CampaignMember:Common:UTM_Content__c",
+            "CampaignMember:Common:UTM_Medium__c",
+            "CampaignMember:Common:UTM_Source__c",
+            "CampaignMember:Common:UTM_Term__c",
+            "CampaignMember:CompanyOrAccount",
+            "CampaignMember:ContactId",
+            "CampaignMember:Country",
+            "CampaignMember:CreatedById",
+            "CampaignMember:CreatedDate",
+            "CampaignMember:Email",
+            "CampaignMember:FirstName",
+            "CampaignMember:HasOptedOutOfEmail",
+            "CampaignMember:Id",
+            "CampaignMember:LastName",
+            "CampaignMember:Lead:Campaign_Code__c",
+            "CampaignMember:Lead:Campaign_Name__c",
+            "CampaignMember:Lead:City",
+            "CampaignMember:Lead:Country",
+            "CampaignMember:Lead:CountryCode",
+            "CampaignMember:Lead:Country__c",
+            "CampaignMember:LeadId",
+            "CampaignMember:PostalCode",
+            "CampaignMember:State",
+            "CampaignMember:Title",
+            "CampaignMember:UTM_Campaign__c",
+            "CampaignMember:UTM_Content__c",
+            "CampaignMember:UTM_Medium__c",
+            "CampaignMember:UTM_Source__c",
+            "CampaignMember:UTM_Term__c",
+            "CampaignMember:et4ae5__Activity__c"
+        ],
+        "objectAPIName": "CampaignMember",
+        "passThroughArgument": {
+            "fields": {
+                "ContactKey": "CampaignMember:Common:Id",
+                "Email": "CampaignMember:Common:Email",
+                "HasOptedOutOfEmail": "CampaignMember:Common:HasOptedOutOfEmail"
+            }
+        },
+        "primaryObjectFilterCriteria": {
+            "operand": "OR",
+            "conditions": [
+                {
+                    "_length": 18,
+                    "dataType": "reference",
+                    "fieldName": "CampaignId",
+                    "folderId": "CampaignMember-CampaignMember",
+                    "id": "CampaignMember-CampaignId",
+                    "isPolymorphic": false,
+                    "name": "Campaign ID",
+                    "operator": "EQUALS",
+                    "precision": 0,
+                    "referenceObjectName": "CampaignMember",
+                    "relationshipIdName": "",
+                    "relationshipName": "CampaignMember",
+                    "scale": 0,
+                    "text": "Campaign ID",
+                    "value": "701Mp00000NGro2IAD"
+                }
+            ]
+        },
+        "primaryObjectFilterSummary": "CampaignMember:CampaignId = \"AMER_RE0095_EdWeek_Whitepaper_Emails_Admin\" (701Mp00000NGro2IAD)",
+        "relatedObjectFilterCriteria": {
+            "operand": "AND",
+            "conditions": []
+        },
+        "relatedObjectFilterSummary": "",
+        "salesforceTriggerCriteria": "Created",
+        "version": "3.0",
+        "whoToInject": "Contact ID/Lead ID (Contacts and Leads)"
+    },
+    "metaData": {
+        "criteriaDescription": "",
+        "scheduleState": "No Schedule"
+    },
+    "interactionCount": 1,
+    "isVisibleInPicker": false,
+    "category": "Event",
+    "publishedInteractionCount": 0,
+    "disableDEDataLogging": false
+}

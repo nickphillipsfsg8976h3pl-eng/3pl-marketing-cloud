@@ -1,0 +1,136 @@
+
+
+%%[/*
+****************************************************
+-------- UPDATE SFMC SUBSCRIBER PROFILE ---------
+****************************************************
+
+Script functions
+
+- Recieve form data from the preference centre
+- Update Marketing Cloud Subscriber, Profile & Preference attributes
+- Respond with
+  -- Update response and attributes of each subscriber
+
+
+  NB: this function currently has the feature
+  of not updating any of the profile/preference 
+  attributes if the status is set to 
+  'Unsubscribed'. This causes the quirk in the
+  prefrences UI of not update anything if 
+  'Subscribe to all Emails' is set to off.
+  
+
+
+****************************************************
+*/]%%
+
+
+
+
+
+
+<script runat="server">
+  Platform.Load("Core", "1")
+
+
+
+  ///////////////////////////////
+  //Get Request Parameters
+  ///////////////////////////////
+
+
+
+  var params = {}
+
+  //Hidden Inputs
+  //params.subscriber_key = Request.GetFormField("subscriber_key");  
+  params.subscriber_keys = Request.GetFormField("subscriber_keys").split(',');
+  //params.email_address = Request.GetFormField("email_address");
+  //params.previous_birthdate = Request.GetFormField("previous_birthdate");
+  //params.previous_mobile_number = Request.GetFormField("previous_mobile_number");
+  //params.previous_product_information =  Request.GetFormField("previous_product_information")? true: false;
+  //params.previous_newsletter =  Request.GetFormField("previous_newsletter")? true: false;
+  //params.previous_promotions =  Request.GetFormField("previous_promotions")? true: false;
+  //params.previous_mathletics =  Request.GetFormField("previous_mathletics")? true: false;
+  //params.previous_mathseeds =  Request.GetFormField("previous_mathseeds")? true: false;
+  //params.previous_reading_eggs =  Request.GetFormField("previous_reading_eggs")? true: false;
+  //params.previous_status =  Request.GetFormField("previous_status")? true: false;
+
+  //Form Inputs
+  //params.next_mobile_number =  Request.GetFormField("next_mobile_number");
+  params.next_birthdate =  Request.GetFormField("next_birthdate");
+  params.next_product_information =  Request.GetFormField("next_product_information")? true: false;
+  params.next_newsletter =  Request.GetFormField("next_newsletter")? true: false;
+  params.next_promotions =  Request.GetFormField("next_promotions")? true: false;
+  params.next_mathletics =  Request.GetFormField("next_mathletics")? true: false;
+  params.next_mathseeds =  Request.GetFormField("next_mathseeds")? true: false;
+  params.next_reading_eggs =  Request.GetFormField("next_reading_eggs")? true: false;
+  params.next_brightpath_progress =  Request.GetFormField("next_brightpath_progress")? true: false;
+  params.next_writing_legends =  Request.GetFormField("next_writing_legends")? true: false;
+  params.next_status =  Request.GetFormField("next_status")? true: false;
+
+
+
+
+
+  ///////////////////////////////
+  //Update Subscriber Attributes
+  ///////////////////////////////
+
+  var responseLog = {};
+
+  for (var i=0; i<params.subscriber_keys.length; i++) {
+    var responseStatus = Subscriber.Init(params.subscriber_keys[i]).Update({
+      "Status": params.next_status?'Active': 'Unsubscribed',
+      Attributes:{
+        //   "Mobile Number": params.next_mobile_number,
+        "Birthdate": new Date(params.next_birthdate),
+        "3PL_Newsletter": params.next_newsletter, 
+        "3PL_ProductInformation": params.next_product_information, 
+        "3PL_Promotions": params.next_promotions,
+        "3PL_Mathletics": params.next_mathletics, 
+        "3PL_ReadingEggs": params.next_reading_eggs, 
+        "3PL_Mathseeds": params.next_mathseeds,
+        "3PL_BrightpathProgress": params.next_brightpath_progress, 
+        "3PL_WritingLegends": params.next_writing_legends
+      }
+    }); 
+
+    responseLog[params.subscriber_keys[i]] = responseStatus;
+  }//for
+
+
+
+
+
+  ///////////////////////////////
+  //Response
+  ///////////////////////////////
+
+
+  Write('<b>SFMC Subscriber(s) Updated</b> <br><br>');
+  
+  for (var i=0; i<params.subscriber_keys.length; i++) {
+    Write('SubscriberKey: '+params.subscriber_keys[i]+'<br>')
+    Write('  -- Update: '+responseLog[params.subscriber_keys[i]]+'<br>')
+
+    var subStatus = Subscriber.Retrieve({Property:"SubscriberKey",SimpleOperator:"equals",Value: params.subscriber_keys[i]})[0].Status;
+    Write('  -- Status: '+subStatus+'<br>')
+
+    var subAttributes = Subscriber.Init(params.subscriber_keys[i]).Attributes.Retrieve(); 
+    for (var j=0; j<subAttributes.length; j++) {
+      Write('  -- '+subAttributes[j].Name+': '+subAttributes[j].Value+'<br>')
+    }//forAttributes
+
+    Write('<br>')
+
+  }//forSubscribers
+
+
+
+
+
+
+
+</script>

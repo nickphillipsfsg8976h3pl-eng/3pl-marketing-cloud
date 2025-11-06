@@ -1,0 +1,110 @@
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!-- START OF PRODUCT STYLING SELECTION --> 
+%%[/* Defining Variables and Email Select*/]%%  
+<!-- %%[
+
+SET @discount_desktop = 'https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/fdcfbab3-3325-4563-bc1c-f7a31df841e4.jpg'
+SET @discount_mobile = 'https://image.my.3plearning.com/lib/fe3211717d640479701476/m/1/31170b38-a104-4d93-b9cf-8c3f1f211965.jpg'
+
+var @rows, @row, @rowCount, @region, @sendCurrency, @fPrice, @savings, @coupon, @discount,@sWeekly,@sMonthly, @MailingCountry
+
+SET @MailingCountry = trim(AttributeValue("MailingCountry")) 
+SET @currency_data = LookupRows("B2C_Country2Currency","MailingCountry", @MailingCountry)
+SET @rowCount = rowcount(@currency_data)
+
+if @rowCount > 0 then
+
+  for @i = 1 to @rowCount do
+    var @curr_data
+    SET @row = row(@currency_data, @i) /* get row based on counter */
+    SET @curr_data = trim(field(@row,"CurrencyIsoCode"))
+
+
+next @i
+endif
+
+SET @sendCurrency = AttributeValue("CurrencyIsoCode")
+SET @region = AttributeValue("Region") /* value from attribute or DE column in send context */
+
+SET @rows = LookupRows("GLOBAL_B2C_MX0001_Offers","Currency", @curr_data)
+SET @rowCount = rowcount(@rows)
+
+if @rowCount > 0 then
+
+  for @i = 1 to @rowCount do
+
+    var @fPrice, @savings, @rrp, @coupon, @discount
+    SET @row = row(@rows, @i) /* get row based on counter */
+    SET @fPrice = trim(field(@row,"FinalPrice"))
+    SET @savings = trim(field(@row,"Savings"))
+    SET @sWeekly = trim(field(@row,"sWeekly"))
+    SET @sMonthly = trim(field(@row,"sMonthly"))
+    SET @coupon = trim(field(@row,"chargebeeCoupon"))
+    SET @dicount = trim(field(@row,"Discount"))
+    SET @rrp = trim(field(@row,"RRP"))
+
+
+next @i
+endif
+
+/*  Customer Service Section  */
+
+IF @curr_data == "USD" OR @curr_data == "CAD" THEN
+SET @serviceStatment = "Need assistance? Call our friendly customer service team on <br>
+1-877-661-4898 or email customerservice@mathletics.com.<br>
+The Mathletics Team"
+ELSEIF @curr_data == "AUD" OR @curr_data == "NZD" THEN
+SET @serviceStatment = "Need assistance? Call our friendly customer service team on <br>1300 457 271 or email customerservice@mathletics.com.au.<br>
+The Mathletics Team"
+ELSEIF @curr_data == "ZAR" OR @curr_data == "GBP" OR @curr_data == "EUR" THEN
+SET @serviceStatment = "Need assistance? Call our friendly customer service team on <br>0117 3600248 or email customerservice@mathletics.co.uk.<br>
+The Mathletics Team"
+ENDIF
+]%% -->
+
+%%[/* Gramatics */]%%  
+
+<!-- %%[
+SET @sendCurrency = AttributeValue("CurrencyIsoCode")
+
+IF @sendCurrency == 'CAD' OR @sendCurrency == 'USD' THEN
+SET @gMathematics = 1
+ENDIF
+SET @gMaths = IIF(not empty(@gMathematics), 'math', 'maths') 
+IF (@sendCurrency == 'CAD' OR @sendCurrency == 'USD' OR @sendCurrency == 'AUD') THEN
+SET @programUSAeCAeAU = 1
+ENDIF
+SET @gProgram = IIF(not empty(@programUSAeCAeAU), 'program', 'programme') 
+
+]%%
+
+CurrenciesByCountry
+%%[
+var @email
+
+SET @email = 'e2'
+
+      if @email == 'e1' THEN
+SET @e1h1HeroTitle = "Black Friday Early Access Offer: Claim 65% OFF Now!"
+SET @e1h1HeroHeading = concat("Save a MASSIVE 65% on a 12-month Mathletics subscription – valued at ", @rrp, "*", ", you pay only ", @fPrice,".")
+SET @e1title1H1 = "Hurry, sale ends 30th November!"
+SET @e1title2H1 = "Hurry, sale ends 30th November!"
+SET @CTA1 = "CLAIM DISCOUNT"
+SET @CTA2 = "CLAIM DISCOUNT"
+      elseif @email == 'e2' THEN
+SET @e1h1HeroTitle = "Black Friday Sale on Now!"
+SET @e1h1HeroHeading = concat("Save a MASSIVE 65% on a 12-month Mathletics subscription – valued at ", @rrp, "*", ", you pay only ", @fPrice,".")
+SET @e1title1H1 = "Don't miss out! Sale ends 30th November."
+SET @e1title2H1 = "Hurry, sale ends 30th November!"
+SET @CTA1 = "CLAIM DISCOUNT"
+SET @CTA2 = "CLAIM DISCOUNT"
+      elseif @email == 'e3' THEN
+SET @e1h1HeroTitle = "Massive Black Friday Sale Ends Midnight!"
+SET @e1h1HeroHeading = concat("Claim 65% OFF a 12-month Mathletics subscription – valued at ", @rrp, "*", ", you pay only ", @fPrice,".")
+SET @e1title1H1 = "Final chance! Black Friday sale ends midnight tonight, 30th November."
+SET @e1title2H1 = "Act fast! Sale ends midnight tonight, 30th November."
+SET @CTA1 = "CLAIM DISCOUNT"
+SET @CTA2 = "CLAIM DISCOUNT"
+endif
+]%% 
+-->
+</td></tr></table>

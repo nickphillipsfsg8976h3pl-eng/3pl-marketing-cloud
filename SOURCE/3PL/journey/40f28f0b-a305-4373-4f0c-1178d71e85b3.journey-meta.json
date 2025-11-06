@@ -1,0 +1,718 @@
+{
+    "key": "40f28f0b-a305-4373-4f0c-1178d71e85b3",
+    "name": "AMER_CF0027ISTE2024_BoothInvite (2022 2023 ISTE Leads) ",
+    "lastPublishedDate": "2024-06-07T12:40:37",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2024-06-05T16:57:09.887",
+    "modifiedDate": "2024-06-07T12:40:37.503",
+    "activities": [
+        {
+            "key": "EMAILV2-1",
+            "name": "AMER_CF0027ISTE2024_BoothInvite",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "acd2c48a-5585-468a-bbe3-4d080fdf6082",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityId": "{{Activity.Id}}",
+                "definitionId": "{{Context.DefinitionId}}",
+                "emailSubjectDataBound": "We’re giving away SIX $50 Amazon gift cards!",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": [],
+                    "c__priority": "Medium",
+                    "categoryId": 450976,
+                    "ccEmail": [],
+                    "created": {
+                        "name": "5fdc029c-8f64-44f0-b64e-596e6dc1d4a8 app user",
+                        "date": "2024-05-28T12:14:00Z"
+                    },
+                    "description": "AMER_CF0027ISTE2024_BoothInvi - 8846a0bbb745414981e0321fecb4f5bd",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "We’re giving away SIX $50 Amazon gift cards!",
+                    "emailSubject": "We’re giving away SIX $50 Amazon gift cards!",
+                    "exclusionFilter": "",
+                    "isMultipart": true,
+                    "isSalesforceTracking": true,
+                    "isSendLogging": false,
+                    "isStoppedOnJobError": false,
+                    "isTrackingClicks": true,
+                    "keyword": "",
+                    "modified": {
+                        "name": "Kelly Sykes",
+                        "date": "2024-05-28T12:14:00Z"
+                    },
+                    "name": "AMER_CF0027ISTE2024_BoothInvi - 8846a0bbb745414981e0321fecb4f5bd",
+                    "preHeader": "",
+                    "publicationListId": 187,
+                    "r__asset_key": "b5ff8c5c-e12d-4cb9-ac3a-146ede9f0d3f",
+                    "r__asset_name_readOnly": "ISTE Booth Invite",
+                    "r__sendClassification_key": "Default Commercial",
+                    "r__triggeredSend_key": "240098",
+                    "replyToAddress": "",
+                    "replyToDisplayName": "",
+                    "suppressTracking": false,
+                    "throttleCloses": "1/1/0001 12:00:00 AM",
+                    "throttleOpens": "1/1/0001 12:00:00 AM",
+                    "triggeredSendStatus": "Active",
+                    "version": 2
+                },
+                "applicationExtensionKey": "jb-email-activity",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "fuelAgentRequested": true,
+                "r__triggeredSend_key": "240098"
+            },
+            "metaData": {
+                "category": "message",
+                "version": "1.0",
+                "icon": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "iconSmall": "https://jb-email-activity.s7.marketingcloudapps.com/img/email-icon.svg",
+                "statsContactIcon": "",
+                "original_icon": "/img/email-icon.svg",
+                "original_iconSmall": "/img/email-icon.svg",
+                "sections": {},
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "AMER_CF0027ISTE2024_BoothInvite (2022 2023 ISTE Leads) ",
+            "description": "",
+            "type": "EmailAudience",
+            "outcomes": [],
+            "arguments": {
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "true"
+            },
+            "configurationArguments": {
+                "schemaVersionId": 0,
+                "criteria": ""
+            },
+            "metaData": {
+                "scheduleState": "No Schedule",
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/images/icon-data-extension.svg",
+                "title": "Data Extension",
+                "category": "Audience",
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
+                "r__event_key": "DEAudience-02c0fb09-e0d7-c39d-3935-3d2cb9c7e6e9"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "MultipleEntries",
+    "definitionType": "Quicksend",
+    "channel": "email",
+    "defaults": {
+        "email": [
+            "{{Event.DEAudience-02c0fb09-e0d7-c39d-3935-3d2cb9c7e6e9.\"Email\"}}"
+        ],
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "dataSource": "ContactsModel",
+        "isScheduleSet": true,
+        "eventDefinition": {
+            "id": "FD2AAA27-9497-4FAF-B072-E28B97B488D9",
+            "name": "AMER_CF0027ISTE2024_BoothInvite (2022 2023 ISTE Leads) ",
+            "description": "",
+            "mode": "Production",
+            "isVisibleInPicker": false,
+            "type": "DEAudience",
+            "interactionCount": 1,
+            "publishedInteractionCount": 0,
+            "iconUrl": "/images/icon-data-extension.svg",
+            "eventDefinitionKey": "DEAudience-02c0fb09-e0d7-c39d-3935-3d2cb9c7e6e9",
+            "dataExtensionId": "e83884d9-8f23-ef11-a5c8-5cba2c704758",
+            "schema": null,
+            "createdDate": "2024-06-05T22:57:08Z",
+            "createdBy": 717418046,
+            "modifiedDate": "2024-06-05T23:12:09Z",
+            "modifiedBy": 717418046,
+            "dataExtensionName": "ISTE 2022 2023 Leads",
+            "sourceApplicationExtensionId": "a62ff9df-dc1c-4e9a-87cd-c05841d79f38",
+            "filterDefinitionId": "00000000-0000-0000-0000-000000000000",
+            "filterDefinitionTemplate": "",
+            "isPlatformObject": false,
+            "category": "Audience",
+            "automationId": "2f4bdfdf-17af-4d49-b981-66c9c551fa0b",
+            "disableDEDataLogging": false,
+            "criteriaDescription": "",
+            "scheduleFlowMode": "runOnce",
+            "runOnceScheduleMode": "onSchedule",
+            "metaData": {
+                "scheduleState": "No Schedule"
+            },
+            "criteria": "",
+            "useHighWatermark": false,
+            "documentArguments": {
+                "serializedObjectType": 3,
+                "eventDefinitionId": "fd2aaa27-9497-4faf-b072-e28b97b488d9",
+                "eventDefinitionKey": "DEAudience-02c0fb09-e0d7-c39d-3935-3d2cb9c7e6e9",
+                "dataExtensionId": "e83884d9-8f23-ef11-a5c8-5cba2c704758",
+                "automationId": "c0452c7c-953e-4487-95f7-54718b34b900"
+            },
+            "unconfigured": false,
+            "_originalDeAudienceType": "EmailAudience",
+            "event": {
+                "id": "A62FF9DF-DC1C-4E9A-87CD-C05841D79F38",
+                "name": "Data Extension",
+                "description": "",
+                "type": "DEAudience",
+                "category": "audience",
+                "key": "deaudience",
+                "iconUrl": "/images/icon-data-extension.svg",
+                "config": {
+                    "internal": true,
+                    "scheduleEnabled": true,
+                    "scheduleTile": true,
+                    "supportsAutomationSchedule": true,
+                    "configurableHighWatermark": true,
+                    "userInterfaces": {
+                        "summary": [
+                            {
+                                "fieldName": "startDateTime",
+                                "valuePath": "schedule.startDateTime",
+                                "label": "Start",
+                                "timezoneOffsetPath": "timezoneOffset",
+                                "type": "date",
+                                "momentFormat": "LLL"
+                            },
+                            {
+                                "fieldName": "timeZone",
+                                "valuePath": "schedule.timeZone",
+                                "label": "Time Zone"
+                            },
+                            {
+                                "fieldName": "frequency",
+                                "valuePath": "schedule.frequency",
+                                "label": "Repeat",
+                                "valueInLang": true
+                            },
+                            {
+                                "fieldName": "interval",
+                                "valuePath": "schedule.interval",
+                                "label": "Repeat Every"
+                            },
+                            {
+                                "fieldName": "customDayOfTheWeek",
+                                "valuePath": "schedule",
+                                "label": "Day(s) of the Week"
+                            },
+                            {
+                                "fieldName": "scheduledDay",
+                                "valuePath": "schedule.scheduledDay",
+                                "label": "Scheduled Day"
+                            },
+                            {
+                                "fieldName": "scheduledDayOfWeek",
+                                "valuePath": "schedule.scheduledDayOfWeek",
+                                "label": "Scheduled Day of the Week",
+                                "valueInLang": true
+                            },
+                            {
+                                "fieldName": "scheduledMonth",
+                                "valuePath": "schedule.scheduledMonth",
+                                "label": "Scheduled Month",
+                                "valueInLang": true
+                            },
+                            {
+                                "fieldName": "scheduledWeek",
+                                "valuePath": "schedule.scheduledWeek",
+                                "label": "Scheduled Week",
+                                "valueInLang": true
+                            },
+                            {
+                                "fieldName": "endDateTime",
+                                "valuePath": "schedule.endDateTime",
+                                "label": "End",
+                                "type": "date",
+                                "momentFormat": "LL"
+                            },
+                            {
+                                "fieldName": "occurrences",
+                                "valuePath": "schedule.occurrences",
+                                "label": "End"
+                            },
+                            {
+                                "fieldName": "useHighWatermark",
+                                "valuePath": "useHighWatermark",
+                                "label": "Evaluate new records only"
+                            },
+                            {
+                                "fieldName": "automationName",
+                                "valuePath": "automation.name",
+                                "label": "Automation Name"
+                            },
+                            {
+                                "fieldName": "activityName",
+                                "valuePath": "activityName",
+                                "label": "Activity Name"
+                            },
+                            {
+                                "fieldName": "deRecordCount",
+                                "valuePath": "deRecordCount",
+                                "label": "Record Count"
+                            },
+                            {
+                                "fieldName": "fileTriggerActive",
+                                "valuePath": "automation.fileTrigger.triggerActive",
+                                "label": "File Trigger Active"
+                            },
+                            {
+                                "fieldName": "fileTriggerFolder",
+                                "valuePath": "automation.fileTrigger.folderLocationText",
+                                "label": "File Trigger Directory"
+                            },
+                            {
+                                "fieldName": "automationStatus",
+                                "valuePath": "automation.status",
+                                "label": "Automation Status"
+                            }
+                        ]
+                    },
+                    "lang": {
+                        "en-US": {
+                            "never": "Never",
+                            "hourly": "Hourly",
+                            "daily": "Daily",
+                            "weekly": "Weekly",
+                            "monthly": "Monthly",
+                            "yearly": "Yearly",
+                            "sunday": "Sunday",
+                            "monday": "Monday",
+                            "tuesday": "Tuesday",
+                            "wednesday": "Wednesday",
+                            "thursday": "Thursday",
+                            "friday": "Friday",
+                            "saturday": "Saturday",
+                            "First": "First",
+                            "Second": "Second",
+                            "Third": "Third",
+                            "Fourth": "Fourth",
+                            "Last": "Last",
+                            "January": "January",
+                            "February": "February",
+                            "March": "March",
+                            "April": "April",
+                            "May": "May",
+                            "June": "June",
+                            "July": "July",
+                            "August": "August",
+                            "September": "September",
+                            "October": "October",
+                            "November": "November",
+                            "December": "December",
+                            "true": "Scheduled",
+                            "00:00": "12:00 AM",
+                            "01:00": "1:00 AM",
+                            "02:00": "2:00 AM",
+                            "03:00": "3:00 AM",
+                            "04:00": "4:00 AM",
+                            "05:00": "5:00 AM",
+                            "06:00": "6:00 AM",
+                            "07:00": "7:00 AM",
+                            "08:00": "8:00 AM",
+                            "09:00": "9:00 AM",
+                            "10:00": "10:00 AM",
+                            "11:00": "11:00 AM",
+                            "12:00": "12:00 PM",
+                            "13:00": "1:00 PM",
+                            "14:00": "2:00 PM",
+                            "15:00": "3:00 PM",
+                            "16:00": "4:00 PM",
+                            "17:00": "5:00 PM",
+                            "18:00": "6:00 PM",
+                            "19:00": "7:00 PM",
+                            "20:00": "8:00 PM",
+                            "21:00": "9:00 PM",
+                            "22:00": "10:00 PM",
+                            "23:00": "11:00 PM"
+                        }
+                    },
+                    "entrySourceGroupConfigUrl": "jb:///data/entry/audience/"
+                },
+                "builtIn": true
+            },
+            "config": {
+                "internal": true,
+                "scheduleEnabled": true,
+                "scheduleTile": true,
+                "supportsAutomationSchedule": true,
+                "configurableHighWatermark": true,
+                "userInterfaces": {
+                    "summary": [
+                        {
+                            "fieldName": "startDateTime",
+                            "valuePath": "schedule.startDateTime",
+                            "label": "Start",
+                            "timezoneOffsetPath": "timezoneOffset",
+                            "type": "date",
+                            "momentFormat": "LLL"
+                        },
+                        {
+                            "fieldName": "timeZone",
+                            "valuePath": "schedule.timeZone",
+                            "label": "Time Zone"
+                        },
+                        {
+                            "fieldName": "frequency",
+                            "valuePath": "schedule.frequency",
+                            "label": "Repeat",
+                            "valueInLang": true
+                        },
+                        {
+                            "fieldName": "interval",
+                            "valuePath": "schedule.interval",
+                            "label": "Repeat Every"
+                        },
+                        {
+                            "fieldName": "customDayOfTheWeek",
+                            "valuePath": "schedule",
+                            "label": "Day(s) of the Week"
+                        },
+                        {
+                            "fieldName": "scheduledDay",
+                            "valuePath": "schedule.scheduledDay",
+                            "label": "Scheduled Day"
+                        },
+                        {
+                            "fieldName": "scheduledDayOfWeek",
+                            "valuePath": "schedule.scheduledDayOfWeek",
+                            "label": "Scheduled Day of the Week",
+                            "valueInLang": true
+                        },
+                        {
+                            "fieldName": "scheduledMonth",
+                            "valuePath": "schedule.scheduledMonth",
+                            "label": "Scheduled Month",
+                            "valueInLang": true
+                        },
+                        {
+                            "fieldName": "scheduledWeek",
+                            "valuePath": "schedule.scheduledWeek",
+                            "label": "Scheduled Week",
+                            "valueInLang": true
+                        },
+                        {
+                            "fieldName": "endDateTime",
+                            "valuePath": "schedule.endDateTime",
+                            "label": "End",
+                            "type": "date",
+                            "momentFormat": "LL"
+                        },
+                        {
+                            "fieldName": "occurrences",
+                            "valuePath": "schedule.occurrences",
+                            "label": "End"
+                        },
+                        {
+                            "fieldName": "useHighWatermark",
+                            "valuePath": "useHighWatermark",
+                            "label": "Evaluate new records only"
+                        },
+                        {
+                            "fieldName": "automationName",
+                            "valuePath": "automation.name",
+                            "label": "Automation Name"
+                        },
+                        {
+                            "fieldName": "activityName",
+                            "valuePath": "activityName",
+                            "label": "Activity Name"
+                        },
+                        {
+                            "fieldName": "deRecordCount",
+                            "valuePath": "deRecordCount",
+                            "label": "Record Count"
+                        },
+                        {
+                            "fieldName": "fileTriggerActive",
+                            "valuePath": "automation.fileTrigger.triggerActive",
+                            "label": "File Trigger Active"
+                        },
+                        {
+                            "fieldName": "fileTriggerFolder",
+                            "valuePath": "automation.fileTrigger.folderLocationText",
+                            "label": "File Trigger Directory"
+                        },
+                        {
+                            "fieldName": "automationStatus",
+                            "valuePath": "automation.status",
+                            "label": "Automation Status"
+                        }
+                    ]
+                },
+                "lang": {
+                    "en-US": {
+                        "never": "Never",
+                        "hourly": "Hourly",
+                        "daily": "Daily",
+                        "weekly": "Weekly",
+                        "monthly": "Monthly",
+                        "yearly": "Yearly",
+                        "sunday": "Sunday",
+                        "monday": "Monday",
+                        "tuesday": "Tuesday",
+                        "wednesday": "Wednesday",
+                        "thursday": "Thursday",
+                        "friday": "Friday",
+                        "saturday": "Saturday",
+                        "First": "First",
+                        "Second": "Second",
+                        "Third": "Third",
+                        "Fourth": "Fourth",
+                        "Last": "Last",
+                        "January": "January",
+                        "February": "February",
+                        "March": "March",
+                        "April": "April",
+                        "May": "May",
+                        "June": "June",
+                        "July": "July",
+                        "August": "August",
+                        "September": "September",
+                        "October": "October",
+                        "November": "November",
+                        "December": "December",
+                        "true": "Scheduled",
+                        "00:00": "12:00 AM",
+                        "01:00": "1:00 AM",
+                        "02:00": "2:00 AM",
+                        "03:00": "3:00 AM",
+                        "04:00": "4:00 AM",
+                        "05:00": "5:00 AM",
+                        "06:00": "6:00 AM",
+                        "07:00": "7:00 AM",
+                        "08:00": "8:00 AM",
+                        "09:00": "9:00 AM",
+                        "10:00": "10:00 AM",
+                        "11:00": "11:00 AM",
+                        "12:00": "12:00 PM",
+                        "13:00": "1:00 PM",
+                        "14:00": "2:00 PM",
+                        "15:00": "3:00 PM",
+                        "16:00": "4:00 PM",
+                        "17:00": "5:00 PM",
+                        "18:00": "6:00 PM",
+                        "19:00": "7:00 PM",
+                        "20:00": "8:00 PM",
+                        "21:00": "9:00 PM",
+                        "22:00": "10:00 PM",
+                        "23:00": "11:00 PM"
+                    }
+                },
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/"
+            },
+            "schedule": {
+                "startDateTime": "2024-06-10T09:30",
+                "timeZone": "Mountain Standard Time",
+                "recurrencePattern": "interval",
+                "frequency": "daily",
+                "interval": 1,
+                "endType": "occurrences",
+                "occurrences": 1
+            },
+            "automation": {
+                "id": "2f4bdfdf-17af-4d49-b981-66c9c551fa0b",
+                "name": "AMER_CF0027ISTE2024_BoothInvite (2022 2023 ISTE Leads)  - 2024-06-05T165708.930",
+                "description": "Event Definition Automation",
+                "key": "6613be93-8544-496b-af1b-94eacccba8bb",
+                "typeId": 1,
+                "type": "scheduled",
+                "statusId": 4,
+                "status": "PausedSchedule",
+                "categoryId": 365421,
+                "schedule": {
+                    "id": "eeb23903-04eb-4025-b991-f53e2c224fd7",
+                    "typeId": 3,
+                    "startDate": "2024-06-06T10:00:00",
+                    "endDate": "2024-06-06T10:00:00",
+                    "scheduledTime": "0001-01-01T00:00:00",
+                    "rangeTypeId": 0,
+                    "occurrences": 1,
+                    "pattern": "<Pattern><PatternType>0</PatternType><DayInterval>1</DayInterval></Pattern>",
+                    "icalRecur": "FREQ=DAILY;COUNT=1;INTERVAL=1",
+                    "timezoneName": "Mountain Standard Time",
+                    "scheduleStatus": "paused",
+                    "timezoneId": 86
+                },
+                "steps": [
+                    {
+                        "id": "10a00055-272d-411c-97c2-b6b05f38a5bb",
+                        "name": "",
+                        "description": "",
+                        "step": 1,
+                        "activities": [
+                            {
+                                "id": "6c0ceb0a-9e40-4620-aae2-eb13a03cec96",
+                                "name": "ISTE 2022 2023 Leads",
+                                "activityObjectId": "fd2aaa27-9497-4faf-b072-e28b97b488d9",
+                                "objectTypeId": 952,
+                                "displayOrder": 1
+                            }
+                        ]
+                    }
+                ]
+            },
+            "deRecordCount": 325,
+            "sendableCustomObjectField": "ContactID18"
+        },
+        "highThroughputSending": {
+            "email": false
+        }
+    },
+    "executionMode": "Production",
+    "status": "Published",
+    "scheduledStatus": "Sent",
+    "lastSendDate": "2024-06-10T09:30:03",
+    "r__folder_Path": "my journeys"
+}

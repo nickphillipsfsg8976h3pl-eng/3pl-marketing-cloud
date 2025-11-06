@@ -1,0 +1,32 @@
+## C1BEBAAB-8CDF-4E29-BC11-EFCF731F445B
+
+**Name** (not equal to External Key)**:** canada-usa-2-prod-edm6-25-06-2025-june expiry
+
+**Description:** n/a
+
+**Folder:** Data Extensions/01_B2B/04_GLOBAL/Adhoc Lists/FY25/AMER/SalesSupport/earlycommit_2025/edm6/
+
+**Fields in table:** 14
+
+**Sendable:** Yes (`cid18` to `Subscriber Key`)
+
+**Testable:** No
+
+**Retention Policy:** none
+
+| Name | FieldType | MaxLength | IsPrimaryKey | IsNullable | DefaultValue |
+| --- | --- | --- | --- | --- | --- |
+| contactlocale | Text | 50 | - | + |  |
+| contactfirstname | Text | 500 | - | + |  |
+| email | EmailAddress | 254 | - | - |  |
+| cid18 | Text | 50 | + | - |  |
+| renewallink1 | Text | 1500 | - | - |  |
+| opportunityid18 | Text | 50 | - | + |  |
+| opportunityowner | Text | 500 | - | - |  |
+| username | Text | 300 | - | - |  |
+| accountname | Text | 2000 | - | + |  |
+| productsubscription | Text | 50 | - | - |  |
+| productsubscription2 | Text | 50 | - | + |  |
+| renewallink2 | Text | 2500 | - | + |  |
+| expirydate2 | Text | 50 | - | + |  |
+| expirydate1 | Text | 50 | - | + |  |
