@@ -1,5 +1,3 @@
-// https://mateuszdabrowski.pl/docs/salesforce/marketing-cloud-engagement/ssjs/snippets/sfmc-cloud-page-apps/
-
 <script runat="server">
     /* -------------------------------------------------------------------------
 
