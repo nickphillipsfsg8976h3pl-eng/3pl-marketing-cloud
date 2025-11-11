@@ -115,18 +115,19 @@
       /*set @existingLeadRows = LookupOrderedRows("ENT.Lead_Salesforce", 3, "CreatedDate DESC", "Email", @lead_Email)
       set @leadFound        = RowCount(@existingLeadRows)*/
 
-      set @existingLeadRows = RetrieveSalesforceObjects("Lead", "Id, Status, Description, Marketing_Interest__c,Campaign_Name__c, Marketing_Product_Interest__c, Product_Interest__c", "Email", "=", @lead_Email)
+      set @existingLeadRows = RetrieveSalesforceObjects("Lead", "Id, Status, Description, Marketing_Interest__c,Campaign_Name__c, Marketing_Product_Interest__c, Product_Interest__c, Job_Function__c", "Email", "=", @lead_Email)
       set @leadFound = RowCount(@existingLeadRows)
 
       if @leadFound > 0 then
-        set @existingLead   = Row(@existingLeadRows, 1)
-        set @existingLeadId = Field(@existingLead, "Id")
-        set @existing_Status = Field(@existingLead, "Status")
-        set @existing_Description = Field(@existingLead, "Description")
-        set @existing_MarketingInterest = Field(@existingLead, "Marketing_Interest__c")
-        set @existing_MktProductInterest = Field(@existingLead, "Marketing_Product_Interest__c")
-        set @existing_ProductInterest = Field(@existingLead, "Product_Interest__c")
-        set @existing_CampaignName    = Field(@existingLead,"Campaign_Name__c")
+        set @existingLead                   = Row(@existingLeadRows, 1)
+        set @existingLeadId                 = Field(@existingLead, "Id")
+        set @existing_Status                = Field(@existingLead, "Status")
+        set @existing_Description           = Field(@existingLead, "Description")
+        set @existing_MarketingInterest     = Field(@existingLead, "Marketing_Interest__c")
+        set @existing_MktProductInterest    = Field(@existingLead, "Marketing_Product_Interest__c")
+        set @existing_ProductInterest       = Field(@existingLead, "Product_Interest__c")
+        set @existing_CampaignName          = Field(@existingLead,"Campaign_Name__c")
+        set @existing_JobFunction           = Field(@existingLead,"Job_Function__c")
 
         if @debug == true then
           output(concat(
@@ -257,7 +258,8 @@
                "Description", @merged_Description,
                "Marketing_Interest__c", @merged_MarketingInterest,
                "Marketing_Product_Interest__c", @merged_MktProductInterest,
-               "Product_Interest__c", @merged_ProductInterest
+               "Product_Interest__c", @merged_ProductInterest,
+               "Job_Function__c", IIF(NOT EMPTY(@existing_JobFunction), @existing_JobFunction, @lead_JobFunction)
             )
 
             /* Optional debug */
@@ -291,7 +293,8 @@
               "Description", @merged_Description,
               "Marketing_Interest__c", @merged_MarketingInterest,
               "Marketing_Product_Interest__c", @merged_MktProductInterest,
-              "Product_Interest__c", @merged_ProductInterest
+              "Product_Interest__c", @merged_ProductInterest,
+              "Job_Function__c", IIF(NOT EMPTY(@existing_JobFunction), @existing_JobFunction, @lead_JobFunction)
             )
           endif
 
