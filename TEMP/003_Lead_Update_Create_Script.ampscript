@@ -1,0 +1,448 @@
+%%[
+  set @DebugEmail = "" /* Leave blank to process all */
+
+  if not empty(@DebugEmail) then
+    set @rows = LookupRows("002_Lead_Ready_For_CRM_Last_3Days", "Email", @DebugEmail)
+  else
+    set @rows = LookupOrderedRows("002_Lead_Ready_For_CRM_Last_3Days", 0, "SubmittedDate DESC", "IsProcessed", "false")
+  endif
+
+  set @recordCount = RowCount(@rows)
+  set @debug = false
+
+  if @recordCount > 0 then
+
+    for @r = 1 to @recordCount do
+
+
+      set @mainrow = Row(@rows, @r)
+      set @SubmissionId               = Field(@mainrow, "SubmissionId")
+      set @SubmittedDate              = Field(@mainrow, "SubmittedDate")
+      set @ErrorCode                  = Field(@mainrow, "ErrorCode")
+      set @ErrorDetails               = Field(@mainrow, "ErrorDetails")
+      set @IsProcessed                = Field(@mainrow, "IsProcessed")
+      set @FormCampaignId             = Field(@mainrow, "FormCampaignId")
+      set @lead_isInvalid             = Field(@mainrow, "Invalid_Lead__c")
+      set @lead_Territory             = Field(@mainrow, "Territory__c")
+      set @lead_MktProductInterest    = Field(@mainrow, "Marketing_Product_Interest__c")
+      set @lead_ProductInterest       = Field(@mainrow, "Product_Interest__c")
+      set @lead_CampaignCode          = Field(@mainrow, "Campaign_Code__c")
+      set @lead_CampaignName          = Field(@mainrow, "Campaign_Name__c")
+      set @lead_Subject               = Field(@mainrow, "Subject__c")
+      set @lead_State_c               = Field(@mainrow, "State__c")
+      set @lead_State                 = Field(@mainrow, "State")
+      set @lead_EnquiryType           = Field(@mainrow, "Enquiry_Type__c")
+      set @lead_Description           = Field(@mainrow, "Description")
+      set @lead_JobFunction           = Field(@mainrow, "Job_Function__c")
+      set @lead_ExistingCustomer      = Field(@mainrow, "Existing_Customer__c")
+      set @lead_Status                = Field(@mainrow, "Status")
+      set @lead_Source                = Field(@mainrow, "LeadSource")
+      set @lead_MarketingInterest     = Field(@mainrow, "Marketing_Interest__c")
+      set @lead_MSCLKID               = Field(@mainrow, "MSCLKID__c")
+      set @lead_FBCLID                = Field(@mainrow, "FBCLID__c")
+      set @lead_GCLID                 = Field(@mainrow, "GCLID__c")
+      set @lead_UTMTerm               = Field(@mainrow, "UTM_Term__c")
+      set @lead_UTMContent            = Field(@mainrow, "UTM_Content__c")
+      set @lead_UTMCampaign           = Field(@mainrow, "UTM_Campaign__c")
+      set @lead_UTMMedium             = Field(@mainrow, "UTM_Medium__c")
+      set @lead_UTMSource             = Field(@mainrow, "UTM_Source__c")
+      set @lead_Licenses              = Field(@mainrow, "No_of_licences__c")
+      set @lead_Company               = Field(@mainrow, "Company")
+      set @lead_PostalCode            = Field(@mainrow, "PostalCode")
+      set @lead_Country               = Field(@mainrow, "Country")
+      set @lead_Title                 = Field(@mainrow, "Title")
+      set @lead_GradeLevel            = Field(@mainrow, "Grade_Level__c")
+      set @lead_Phone                 = Field(@mainrow, "Phone")
+      set @lead_Email                 = Field(@mainrow, "Email")
+      set @lead_LastName              = Field(@mainrow, "LastName")
+      set @lead_FirstName             = Field(@mainrow, "FirstName")
+
+      set @errorMessage               = ""
+
+      set @lead_UTMContent = Replace(@lead_UTMContent, Char(16), " ")
+      if Length(@lead_PostalCode) > 20 then
+        set @lead_PostalCode = ""
+      endif
+
+
+      if @debug == true then
+          output(concat(
+                  "<div style='font-family: Arial, sans-serif; font-size:14px; line-height:1.6; padding:10px; border-bottom:1px solid #ccc;'>",
+
+                  "<strong style='color:#444;'>SubmissionId:</strong> <span style='color:#0070c0;'>", @SubmissionId, "</span><br>",
+                  "<strong style='color:#444;'>SubmittedDate:</strong> <span style='color:#0070c0;'>", @SubmittedDate, "</span><br>",
+                  "<strong style='color:#444;'>ErrorCode:</strong> <span style='color:#cc0000;'>", @ErrorCode, "</span><br>",
+                  "<strong style='color:#444;'>ErrorDetails:</strong> <span style='color:#cc0000;'>", @ErrorDetails, "</span><br><br>",
+
+                  "<strong style='color:#444;'>lead_FirstName:</strong> <span style='color:#0070c0;'>", @lead_FirstName, "</span><br>",
+                  "<strong style='color:#444;'>lead_LastName:</strong> <span style='color:#0070c0;'>", @lead_LastName, "</span><br>",
+                  "<strong style='color:#444;'>lead_Email:</strong> <span style='color:#0070c0;'>", @lead_Email, "</span><br>",
+                  "<strong style='color:#444;'>lead_Phone:</strong> <span style='color:#0070c0;'>", @lead_Phone, "</span><br>",
+                  "<strong style='color:#444;'>lead_GradeLevel:</strong> <span style='color:#0070c0;'>", @lead_GradeLevel, "</span><br>",
+                  "<strong style='color:#444;'>lead_Title:</strong> <span style='color:#0070c0;'>", @lead_Title, "</span><br>",
+                  "<strong style='color:#444;'>lead_Country:</strong> <span style='color:#0070c0;'>", @lead_Country, "</span><br>",
+                  "<strong style='color:#444;'>lead_PostalCode:</strong> <span style='color:#0070c0;'>", @lead_PostalCode, "</span><br>",
+                  "<strong style='color:#444;'>lead_Company:</strong> <span style='color:#0070c0;'>", @lead_Company, "</span><br>",
+                  "<strong style='color:#444;'>lead_Licenses:</strong> <span style='color:#0070c0;'>", @lead_Licenses, "</span><br>",
+                  "<strong style='color:#444;'>lead_UTMSource:</strong> <span style='color:#0070c0;'>", @lead_UTMSource, "</span><br>",
+                  "<strong style='color:#444;'>lead_UTMMedium:</strong> <span style='color:#0070c0;'>", @lead_UTMMedium, "</span><br>",
+                  "<strong style='color:#444;'>lead_UTMCampaign:</strong> <span style='color:#0070c0;'>", @lead_UTMCampaign, "</span><br>",
+                  "<strong style='color:#444;'>lead_UTMContent:</strong> <span style='color:#0070c0;'>", @lead_UTMContent, "</span><br>",
+                  "<strong style='color:#444;'>lead_UTMTerm:</strong> <span style='color:#0070c0;'>", @lead_UTMTerm, "</span><br>",
+                  "<strong style='color:#444;'>lead_GCLID:</strong> <span style='color:#0070c0;'>", @lead_GCLID, "</span><br>",
+                  "<strong style='color:#444;'>lead_MarketingInterest:</strong> <span style='color:#0070c0;'>", @lead_MarketingInterest, "</span><br>",
+                  "<strong style='color:#444;'>lead_Source:</strong> <span style='color:#0070c0;'>", @lead_Source, "</span><br>",
+                  "<strong style='color:#444;'>lead_Status:</strong> <span style='color:#0070c0;'>", @lead_Status, "</span><br>",
+                  "<strong style='color:#444;'>lead_ExistingCustomer:</strong> <span style='color:#0070c0;'>", @lead_ExistingCustomer, "</span><br>",
+                  "<strong style='color:#444;'>lead_JobFunction:</strong> <span style='color:#0070c0;'>", @lead_JobFunction, "</span><br>",
+                  "<strong style='color:#444;'>lead_Description:</strong> <span style='color:#0070c0;'>", @lead_Description, "</span><br>",
+                  "<strong style='color:#444;'>lead_EnquiryType:</strong> <span style='color:#0070c0;'>", @lead_EnquiryType, "</span><br>",
+                  "<strong style='color:#444;'>lead_State:</strong> <span style='color:#0070c0;'>", @lead_State, "</span><br>",
+                  "<strong style='color:#444;'>lead_State_c:</strong> <span style='color:#0070c0;'>", @lead_State_c, "</span><br>",
+                  "<strong style='color:#444;'>lead_Subject:</strong> <span style='color:#0070c0;'>", @lead_Subject, "</span><br>",
+                  "<strong style='color:#444;'>lead_CampaignName:</strong> <span style='color:#0070c0;'>", @lead_CampaignName, "</span><br>",
+                  "<strong style='color:#444;'>lead_CampaignCode:</strong> <span style='color:#0070c0;'>", @lead_CampaignCode, "</span><br>",
+                  "<strong style='color:#444;'>lead_ProductInterest:</strong> <span style='color:#0070c0;'>", @lead_ProductInterest, "</span><br>",
+                  "<strong style='color:#444;'>lead_MktProductInterest:</strong> <span style='color:#0070c0;'>", @lead_MktProductInterest, "</span><br>",
+                  "<strong style='color:#444;'>lead_Territory:</strong> <span style='color:#0070c0;'>", @lead_Territory, "</span><br>",
+                  "<strong style='color:#444;'>lead_isInvalid:</strong> <span style='color:#cc0000;'>", @lead_isInvalid, "</span><br>",
+
+                  "<hr style='border: none; height: 4px; background-color: #FFCC00; margin: 20px 0;'>",
+                "</div>"
+                ))
+      endif
+
+      /*set @existingLeadRows = LookupOrderedRows("ENT.Lead_Salesforce", 3, "CreatedDate DESC", "Email", @lead_Email)
+      set @leadFound        = RowCount(@existingLeadRows)*/
+
+      set @existingLeadRows = RetrieveSalesforceObjects("Lead", "Id, Status, Description, Marketing_Interest__c,Campaign_Name__c, Marketing_Product_Interest__c, Product_Interest__c", "Email", "=", @lead_Email)
+      set @leadFound = RowCount(@existingLeadRows)
+
+      if @leadFound > 0 then
+        set @existingLead   = Row(@existingLeadRows, 1)
+        set @existingLeadId = Field(@existingLead, "Id")
+        set @existing_Status = Field(@existingLead, "Status")
+        set @existing_Description = Field(@existingLead, "Description")
+        set @existing_MarketingInterest = Field(@existingLead, "Marketing_Interest__c")
+        set @existing_MktProductInterest = Field(@existingLead, "Marketing_Product_Interest__c")
+        set @existing_ProductInterest = Field(@existingLead, "Product_Interest__c")
+        set @existing_CampaignName    = Field(@existingLead,"Campaign_Name__c")
+
+        if @debug == true then
+          output(concat(
+                  "<div style='font-family: Arial, sans-serif; font-size:14px; line-height:1.6; padding:10px; border-bottom:1px solid #ccc;'>",
+
+                  "<strong style='color:#444;'>Existing Lead Email:</strong> <span style='color:#0070c0;'>", @Lead_Email, "</span><br>",
+                  "<strong style='color:#444;'>Existing Lead ID:</strong> <span style='color:#0070c0;'>", @existingLeadId, "</span><br>",
+                  "<strong style='color:#444;'>Existing Status:</strong> <span style='color:#0070c0;'>", @existing_Status, " | New Status: ", @lead_Status, "</span><br>",
+                  "<strong style='color:#444;'>Existing Description:</strong> <span style='color:#0070c0;'>", @existing_Description," | New Description: ", @lead_Description, "</span><br><br>",
+                  "<strong style='color:#444;'>Existing MarketingInterest:</strong> <span style='color:#0070c0;'>", @existing_MarketingInterest," | New MktInterest: ", @lead_MarketingInterest, "</span><br>",
+                  "<strong style='color:#444;'>Existing MktProductInterest:</strong> <span style='color:#0070c0;'>", @existing_MktProductInterest," | New MktProductInterest: ", @lead_MktProductInterest, "</span><br>",
+                  "<strong style='color:#444;'>Existing ProductInterest:</strong> <span style='color:#0070c0;'>", @existing_ProductInterest," | New ProductInterest: ", @lead_ProductInterest, "</span><br><br>",
+                  "<strong style='color:#444;'>Existing CampaignName:</strong> <span style='color:#0070c0;'>", @existing_CampaignName," | New Campaign: ", @lead_CampaignName, "</span><br><br>",
+
+
+                  "<hr style='border: none; height: 4px; background-color: #FFCC00; margin: 20px 0;'>",
+                "</div>"
+                ))
+        endif
+
+        set @updateStatus ="Ignore"
+        if (@existing_CampaignName == @lead_CampaignName) or (@existing_Status == 'Converted') then
+          if @debug then
+            output(concat("<br><strong>Existing Campign and New Campaign are same:</strong> ", @existing_CampaignName, "<br>"))
+          endif
+        else
+          if IndexOf("Marketing Prospect,MQL,SQL,Converted,Unqualified", @lead_Status) > 0 and @lead_Status != @existing_Status then
+            if @existing_Status == "Marketing Prospect" and @lead_Status == "MQL" then
+              set @statusToUpdate = @lead_Status
+            elseif @existing_Status == "Unqualified" and @lead_Status == "Marketing Prospect" then
+              set @statusToUpdate = "Marketing Prospect"
+            elseif @existing_Status == "Unqualified" and @lead_Status == "MQL" then
+              set @statusToUpdate = "MQL"
+            else
+              set @statusToUpdate = @existing_Status
+            endif
+          else
+            set @statusToUpdate = @existing_Status
+          endif
+
+          set @NewlineChar        = char(10,2)
+          set @merged_Description = IIF(empty(@existing_Description), @lead_Description, Concat(@existing_Description, @NewlineChar,@SubmittedDate,' | ', @lead_Description, " In relation to the campaign ",@lead_CampaignName))
+
+          set @merged_MarketingInterest = @existing_MarketingInterest
+          set @miRowSet = BuildRowSetFromString(@lead_MarketingInterest, ";")
+          set @miCount = RowCount(@miRowSet)
+          for @i = 1 to @miCount do
+            set @val = Field(Row(@miRowSet, @i), 1)
+            if IndexOf(@existing_MarketingInterest, @val) == 0 then
+              set @merged_MarketingInterest = Concat(@merged_MarketingInterest, ";", @val)
+            endif
+          next @i
+
+          set @merged_MktProductInterest = @existing_MktProductInterest
+          set @mpRowSet = BuildRowSetFromString(@lead_MktProductInterest, ";")
+          set @mpCount = RowCount(@mpRowSet)
+          for @i = 1 to @mpCount do
+            set @val = Field(Row(@mpRowSet, @i), 1)
+            if IndexOf(@existing_MktProductInterest, @val) == 0 then
+              set @merged_MktProductInterest = Concat(@merged_MktProductInterest, ";", @val)
+            endif
+          next @i
+
+          set @merged_ProductInterest = @existing_ProductInterest
+          set @piRowSet = BuildRowSetFromString(@lead_ProductInterest, ";")
+          set @piCount = RowCount(@piRowSet)
+          for @i = 1 to @piCount do
+            set @val = Field(Row(@piRowSet, @i), 1)
+            if IndexOf(@existing_ProductInterest, @val) == 0 then
+              set @merged_ProductInterest = Concat(@merged_ProductInterest, ";", @val)
+            endif
+          next @i
+
+          if @debug then
+            output(concat("<br><strong>Final Status to Update:</strong> ", @statusToUpdate, "<br>"))
+            output(concat("<strong>Merged Marketing Interest:</strong> ", @merged_MarketingInterest, "<br>"))
+            output(concat("<strong>Merged Marketing Product Interest:</strong> ", @merged_MktProductInterest, "<br>"))
+            output(concat("<strong>Merged Product Interest:</strong> ", @merged_ProductInterest, "<br>"))
+            output(concat("<strong>Merged Description:</strong> ", @merged_Description, "<br><hr>"))
+          endif
+
+          /* Log if more than one lead exists */
+          set @allLeadIds = ""
+          for @x = 1 to @leadFound do
+            set @leadRow = Row(@existingLeadRows, @x)
+            set @leadId = Field(@leadRow, "Id")
+            set @allLeadIds = Concat(@allLeadIds, IIF(@x > 1, ",", ""), @leadId)
+          next @x
+
+          /* Log in Duplicate Log DE */
+          UpsertData("Lead_Duplicate_Log",1,
+                     "SubmissionId", @SubmissionId,
+                     "Email", @lead_Email,
+                     "ExistingLeadId", @existingLeadId,
+                     "AllLeadIds", @allLeadIds,
+                     "LoggedDate", Now(),
+                     "existing_Status",@existing_Status,
+                     "new_Status",@lead_Status,
+                     "statusToUpdate",@statusToUpdate,
+                     "existing_MarketingInterest",@existing_MarketingInterest,
+                     "new_MarketingInterest",@lead_MarketingInterest,
+                     "merged_MarketingInterest",@merged_MarketingInterest,
+                     "existing_ProductInterest",@existing_ProductInterest,
+                     "new_ProductInterest",@lead_ProductInterest,
+                     "merged_ProductInterest",@merged_ProductInterest,
+                     "existing_MktProductInterest",@existing_MktProductInterest,
+                     "new_MktProductInterest",@lead_MktProductInterest,
+                     "merged_MktProductInterest",@merged_MktProductInterest
+
+                    )
+          ]%%
+              <script runat="server">
+              Platform.Load("core", "1");
+              try {
+              </script>
+          %%[
+          if @existing_Status == "Unqualified" and @lead_Status == "MQL" then
+
+            /* Step 1: Update all fields with intermediate status 'Marketing Prospect' */
+            set @firstUpdate = UpdateSingleSalesforceObject("Lead", @existingLeadId,
+               "Campaign_Name__c", @lead_CampaignName,
+               "Campaign_Code__c", @lead_CampaignCode,
+               "UTM_Source__c", @lead_UTMSource,
+               "UTM_Campaign__c", @lead_UTMCampaign,
+               "Invalid_Lead__c", @lead_isInvalid,
+               "Country", @lead_Country,
+               "Status", "Marketing Prospect",
+               "Description", @merged_Description,
+               "Marketing_Interest__c", @merged_MarketingInterest,
+               "Marketing_Product_Interest__c", @merged_MktProductInterest,
+               "Product_Interest__c", @merged_ProductInterest
+            )
+
+            /* Optional debug */
+            if @debug then
+              output(concat("<br><strong>Step 1 Update to Marketing Prospect → Result:</strong> ", @firstUpdate, "<br>"))
+            endif
+
+            /* Step 2: Just update Status to MQL */
+            set @secondUpdate = UpdateSingleSalesforceObject("Lead", @existingLeadId,
+              "Status", "MQL"
+            )
+
+            if @debug then
+              output(concat("<strong>Step 2 Update to MQL → Result:</strong> ", @secondUpdate, "<br>"))
+            endif
+
+            set @updateStatus = "Two-Step-MQL"
+            set @statusToUpdate = "MQL" /* for downstream logging */
+
+          else
+
+            /* Normal update for other scenarios */
+            set @updateStatus = UpdateSingleSalesforceObject("Lead", @existingLeadId,
+              "Campaign_Name__c", @lead_CampaignName,
+              "Campaign_Code__c", @lead_CampaignCode,
+              "UTM_Source__c", @lead_UTMSource,
+              "UTM_Campaign__c", @lead_UTMCampaign,
+              "Invalid_Lead__c", @lead_isInvalid,
+              "Country", @lead_Country,
+              "Status", @statusToUpdate,
+              "Description", @merged_Description,
+              "Marketing_Interest__c", @merged_MarketingInterest,
+              "Marketing_Product_Interest__c", @merged_MktProductInterest,
+              "Product_Interest__c", @merged_ProductInterest
+            )
+          endif
+
+
+          ]%%
+              <script runat="server">
+              } catch (err) {
+                      var errorMessage = "Error Message: " + Stringify(err.message || err.toString());
+                      Variable.SetValue("@errorMessage", errorMessage);
+              }
+              </script>
+          %%[
+        endif
+          set @ResultStatus = "Updated"
+          set @LeadIdFinal = @existingLeadId
+          if @debug then
+            output(concat("<br><strong style='color:#444;'>Lead update status :</strong> <span style='color:#0070c0;'>", @updateStatus,"</span><br>"))
+          endif
+
+      else
+        if @debug then
+            output(concat("<br>New Lead -- No existing lead. Would create new Lead for: ", @lead_Email))
+        endif
+
+
+        ]%%
+            <script runat="server">
+            Platform.Load("core", "1");
+            try {
+            </script>
+        %%[
+        set @LEAD__New_Id = CreateSalesforceObject("Lead", 34,
+          "FirstName", @lead_FirstName,
+          "LastName", @lead_LastName,
+          "Email", @lead_Email,
+          "Phone", @lead_Phone,
+          "Grade_Level__c", @lead_GradeLevel,
+          "Title", @lead_Title,
+          "Country", @lead_Country,
+          "PostalCode", @lead_PostalCode,
+          "Company", @lead_Company,
+          "No_of_licences__c", @lead_Licenses,
+          "UTM_Source__c", @lead_UTMSource,
+          "UTM_Medium__c", @lead_UTMMedium,
+          "UTM_Campaign__c", @lead_UTMCampaign,
+          "UTM_Content__c", @lead_UTMContent,
+          "UTM_Term__c", @lead_UTMTerm,
+          "GCLID__c", @lead_GCLID,
+          "FBCLID__c", @lead_FBCLID,
+          "MSCLKID__c", @lead_MSCLKID,
+          "Marketing_Interest__c", @lead_MarketingInterest,
+          "LeadSource", @lead_Source,
+          "Status", @lead_Status,
+          "Existing_Customer__c", @lead_ExistingCustomer,
+          "Job_Function__c", @lead_JobFunction,
+          "Description", @lead_Description,
+          "Enquiry_Type__c", @lead_EnquiryType,
+          "State", @lead_State,
+          "State__c", @lead_State_c,
+          "Subject__c", @lead_Subject,
+          "Campaign_Name__c", @lead_CampaignName,
+          "Campaign_Code__c", @lead_CampaignCode,
+          "Product_Interest__c", @lead_ProductInterest,
+          "Marketing_Product_Interest__c", @lead_MktProductInterest,
+          "Territory__c", @lead_Territory,
+          "Invalid_Lead__c", @lead_isInvalid
+        )
+
+        set @LeadIdFinal = @LEAD__New_Id
+        set @ResultStatus = "Created"
+        ]%%
+            <script runat="server">
+            } catch (err) {
+                    var errorMessage = "Error Message: " + Stringify(err.message || err.toString());
+                    Variable.SetValue("@errorMessage", errorMessage);
+            }
+            </script>
+        %%[
+
+      endif
+
+      ]%%
+            <script runat="server">
+            Platform.Load("core", "1");
+            try {
+            </script>
+      %%[
+
+      if @lead_CampaignCode == "NOT-DEFINED" then
+        set @isCMAlready    = RetrieveSalesforceObjects("CampaignMember", "Id", "LeadId", "=",@LeadIdFinal)
+        if (RowCount(@isCMAlready)>0) then
+          if @debug then
+            output(concat("<strong>Already a Campaign Member:</strong> ", @merged_Description, "<br><hr>"))
+          endif
+        else
+          set @CAMPAIGN_MEMBER__Status        = 'Sent'
+          if ((Not Empty(@lead_CampaignName)) AND (Not Empty(@LeadIdFinal))) then
+            set @_Campaign_Objects = RetrieveSalesforceObjects("Campaign", "Id", "Name", "=",@lead_CampaignName)
+            if (RowCount(@_Campaign_Objects)>0) then
+                set @CAMPAIGN_MEMBER__CampaignId = Field(Row(@_Campaign_Objects, 1), "Id")
+                set @CAMPAIGN_MEMBER__New_Id     = CreateSalesforceObject("CampaignMember", 2,
+                                                         "CampaignId", @CAMPAIGN_MEMBER__CampaignId,
+                                                         "LeadId", @LeadIdFinal
+                                                     )
+            endif
+          endif
+        endif
+      endif
+      ]%%
+            <script runat="server">
+            } catch (err) {
+                    var errorMessage = "Error Message: " + Stringify(err.message || err.toString());
+                    Variable.SetValue("@errorMessage", errorMessage);
+            }
+            </script>
+      %%[
+
+      if @updateStatus =="Ignore" then
+          set @errorMessage = 'Ignored due to same campaign LP used by lead'
+      endif
+
+      if not empty(@LeadIdFinal) and (@updateStatus ==1 or @updateStatus =="Ignore" or ( not empty(@LEAD__New_Id))) then
+
+        UpdateData("002_Lead_Ready_For_CRM_Last_3Days", 1, "SubmissionId", @SubmissionId,
+                    "IsProcessed", "true",
+                    "ResultStatus", @ResultStatus,
+                    "LeadIdCreated", IIF(@ResultStatus == "Created", @LeadIdFinal, ""),
+                    "LeadIdUpdated", IIF(@ResultStatus == "Updated" or @updateStatus =="Ignore", @LeadIdFinal, ""),
+                    "CRMErrorDetails", IIF(Not Empty(@errorMessage), @errorMessage, "")
+                )
+        UpdateData("001_Lead_Procesing_Queue_CRM_LAST_3DAYS", 1, "SubmissionId", @SubmissionId,
+                    "IsProcessed", "true",
+                    "ResultStatus", @ResultStatus,
+                    "LeadIdCreated", IIF(@ResultStatus == "Created", @LeadIdFinal, ""),
+                    "LeadIdUpdated", IIF(@ResultStatus == "Updated", @LeadIdFinal, "")
+                )
+      endif
+
+      if empty(@LeadIdFinal) and (not empty(@errorMessage)) then
+
+        UpdateData("002_Lead_Ready_For_CRM_Last_3Days", 1, "SubmissionId", @SubmissionId,
+                    "CRMErrorDetails", IIF(Not Empty(@errorMessage), @errorMessage, "")
+                )
+
+      endif
+
+      set @LeadIdFinal =""
+      set @LEAD__New_Id=""
+    next @r
+
+  else
+    output("No unprocessed records found.")
+  endif
+]%%
