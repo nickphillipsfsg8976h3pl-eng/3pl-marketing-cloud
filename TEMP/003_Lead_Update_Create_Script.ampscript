@@ -170,6 +170,7 @@
 
           set @NewlineChar        = char(10,2)
           set @merged_Description = IIF(empty(@existing_Description), @lead_Description, Concat(@existing_Description, @NewlineChar,@SubmittedDate,' | ', @lead_Description, " In relation to the campaign ",@lead_CampaignName))
+          set @lead_EnquirySummary = Substring(Concat(@SubmittedDate,' | ', @lead_Description, " In relation to the campaign ",@lead_CampaignName), 0, 255)
 
           set @merged_MarketingInterest = @existing_MarketingInterest
           set @miRowSet = BuildRowSetFromString(@lead_MarketingInterest, ";")
@@ -256,6 +257,7 @@
                "Country", @lead_Country,
                "Status", "Marketing Prospect",
                "Description", @merged_Description,
+               "Enquiry_Summary__c", @lead_EnquirySummary,
                "Marketing_Interest__c", @merged_MarketingInterest,
                "Marketing_Product_Interest__c", @merged_MktProductInterest,
                "Product_Interest__c", @merged_ProductInterest,
@@ -291,6 +293,7 @@
               "Country", @lead_Country,
               "Status", @statusToUpdate,
               "Description", @merged_Description,
+              "Enquiry_Summary__c", @lead_EnquirySummary,
               "Marketing_Interest__c", @merged_MarketingInterest,
               "Marketing_Product_Interest__c", @merged_MktProductInterest,
               "Product_Interest__c", @merged_ProductInterest,
@@ -351,6 +354,7 @@
           "Existing_Customer__c", @lead_ExistingCustomer,
           "Job_Function__c", @lead_JobFunction,
           "Description", @lead_Description,
+          "Enquiry_Summary__c", @lead_EnquirySummary,
           "Enquiry_Type__c", @lead_EnquiryType,
           "State", @lead_State,
           "State__c", @lead_State_c,
