@@ -57,6 +57,8 @@
       set @lead_LastName              = Field(@mainrow, "LastName")
       set @lead_FirstName             = Field(@mainrow, "FirstName")
 
+      set @lead_EnquirySummary = Substring(Concat(@SubmittedDate,' | ', @lead_Description, " In relation to the campaign ",@lead_CampaignName), 0, 255)
+
       set @errorMessage               = ""
 
       set @lead_UTMContent = Replace(@lead_UTMContent, Char(16), " ")
@@ -170,7 +172,6 @@
 
           set @NewlineChar        = char(10,2)
           set @merged_Description = IIF(empty(@existing_Description), @lead_Description, Concat(@existing_Description, @NewlineChar,@SubmittedDate,' | ', @lead_Description, " In relation to the campaign ",@lead_CampaignName))
-          set @lead_EnquirySummary = Substring(Concat(@SubmittedDate,' | ', @lead_Description, " In relation to the campaign ",@lead_CampaignName), 0, 255)
 
           set @merged_MarketingInterest = @existing_MarketingInterest
           set @miRowSet = BuildRowSetFromString(@lead_MarketingInterest, ";")
