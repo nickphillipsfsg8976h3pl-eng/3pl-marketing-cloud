@@ -86,7 +86,7 @@
     var TEMPLATES = {
 
       //?form=master
-      ALL_FIELDS: [
+      master: [
         "PRODUCT_INTEREST",
         "FIRST_NAME",
         "LAST_NAME",
