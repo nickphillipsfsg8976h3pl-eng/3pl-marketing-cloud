@@ -757,6 +757,36 @@ set @form = queryparameter('form')
 
                             </div>
                         </div>
+
+                        <!------------- State/Province ----------------->
+
+                        %%[IF @STATE_NAME THEN
+
+                        /* Fetch State/Province Data
+                        **************************************/
+
+                        IF (@Redirect == "116") THEN
+
+                        SET @Country_Name_Preset = "Canada"
+                        SET @Country_Code_For_States_Lookup= "CA"
+                        SET @State_Province_Placeholder_Option = "Province"
+
+                        ELSE
+
+                        SET @Country_Name_Preset = "United States"
+                        SET @Country_Code_For_States_Lookup = "US"
+                        SET @State_Province_Placeholder_Option = "State"
+
+                        ENDIF
+
+                        Set @state_data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", @Country_Code_For_States_Lookup)
+
+                        ]%%
+
+
+                        <input type="hidden" name="country-name" value="%%=v(@Country_Name_Preset)=%%">
+
+
                         <div class="col-sm-6">
                             <div class="form-group" id="state_name_form_group">
 
@@ -766,17 +796,17 @@ set @form = queryparameter('form')
                                     onchange=jobTitleChanged()
                                     required
                                     style="color:#495057c7; font-weight: 400;">
-                                    <option disabled selected>State</option>
+
+                                    <option disabled selected>%%=v(@State_Province_Placeholder_Option)=%%</option>
 
                                     %%[
 
-                                    /* Populate Job Title Options and Redirect
-                                    ********************************/
+                                    /* Populate States/Provinces Options
+                                    **************************************/
 
-                                    Set @ca_states = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
-                                    For @i = 1 TO RowCount(@ca_states) DO
-                                    Set @CA_state = Field(Row(@ca_states, @i), "State Name")
-                                    OutputLine(Concat('<option value="',@CA_state,'">',@CA_state,'</option>'))
+                                    For @i = 1 TO RowCount(@state_data) DO
+                                    Set @state_option = Field(Row(@state_data, @i), "State Name")
+                                    OutputLine(Concat('<option value="',@state_option,'">',@state_option,'</option>'))
                                     Next @i
 
                                     ]%%
@@ -784,6 +814,8 @@ set @form = queryparameter('form')
                                 <div id="state_invalid" class="custom-invalid-label custom-hide text-right">Province is required</div>
                             </div>
                         </div>
+                        %%[ENDIF]%%
+
                     </div>
                     %%[EndIf]%%
 
