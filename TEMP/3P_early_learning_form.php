@@ -773,11 +773,13 @@ set @form = queryparameter('form')
 
                         IF (@Redirect == "115") THEN
 
-                        SET @Country_Code_For_States_Lookup = "CA"
+                        SET @Country_Name_Preset = "Canada"
+                        SET @Country_Code_For_States_Lookup= "CA"
                         SET @State_Province_Placeholder_Option = "Province"
 
                         ELSE
 
+                        SET @Country_Name_Preset = "United States"
                         SET @Country_Code_For_States_Lookup = "US"
                         SET @State_Province_Placeholder_Option = "State"
 
@@ -786,6 +788,9 @@ set @form = queryparameter('form')
                         Set @state_data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", @Country_Code_For_States_Lookup)
 
                         ]%%
+
+
+                        <input type="hidden" name="country-name" value="%%=v(@Country_Name_Preset)=%%">
 
 
                         <div class="col-sm-6">

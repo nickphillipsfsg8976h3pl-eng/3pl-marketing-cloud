@@ -1,4 +1,8 @@
 
+<script runat="server">
+ Platform.Load("core","1");
+ try {
+</script>
 %%[
 
         /*************************************************************
@@ -53,7 +57,7 @@
         set @_Job_Title           = RequestParameter("job_title_select")
         set @_Other_Job_Title     = RequestParameter("other_job_title")
         set @_re_interest         = RequestParameter("re_interest")
-        set @_Country_Name        = "United States"
+        set @_Country_Name        = RequestParameter("country-name")
         set @_State_Name          = RequestParameter("state-name")
         set @_Postal_Code         = RequestParameter("postal-code")
         set @_School_Name         = RequestParameter("school-name")
@@ -84,14 +88,7 @@
         set @rows        = LookupRows("state","State Code", @_State_Name,"Country Code", @countrycode)
         set @rowCount    = rowcount(@rows)
         set @stateName   =  @_State_Name
-        if @rowCount > 0 then
 
-            for @i = 1 to @rowCount do
-                var @stateName
-                set @row = row(@rows, @i) /* get row based on counter */
-                set @stateName = field(@row,"State Name")
-            next @i
-        endif
 
         if indexOf(@_re_interest,'quote')>0 then
             set @enquiry = 'Quote'
@@ -206,14 +203,11 @@
    OutputLine(Concat('<pre style="background-color:#ccc;"><code>@_Job_Title: ', @_Job_Title, '</code></pre>'))
    OutputLine(Concat('<pre style="background-color:#ccc;"><code>@LeadStage: ', @LeadStage, '</code></pre>'))
    OutputLine(Concat('<pre style="background-color:#ccc;"><code>@Description: ', @Description, '</code></pre>'))
-  else]%%
 
-<script runat="server">
- Platform.Load("core","1");
- try {
-</script>
-%%[
-         set @LEAD__New_Id = CreateSalesforceObject("Lead", 30,
+
+  else
+
+  set @LEAD__New_Id = CreateSalesforceObject("Lead", 30,
 
               "Marketing_Product_Interest__c", @_Product_Interest,
               "FirstName", IIF(Not Empty(@_First_Name), @_First_Name, ""),
@@ -250,15 +244,6 @@
           )
 
 
-]%%
-<script runat="server">
- }
- catch (err) {
-  Write("Error Message: " + Stringify(err.message) + Stringify(err.description));
- }
-</script>
-
-%%[
 
         /*************************************************************
         -- CREATE SALESFORCE CAMPAIGN MEMBER OBJECT
@@ -300,4 +285,11 @@
      endif
 
 ]%%
+
+<script runat="server">
+ }
+ catch (err) {
+  Write("Error Message: " + Stringify(err.message) + Stringify(err.description));
+ }
+</script>
 
