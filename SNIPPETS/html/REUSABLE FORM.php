@@ -260,6 +260,7 @@
     Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
     Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
 
+
   } catch (error) {
     Write("Error: " + Stringify(error.message));
   }
@@ -302,7 +303,6 @@
   <!-- //Meta/SEO -->
 
 
-
   <!-- Title & Favicons -->
   <title> 3PLearning </title>
   <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon" />
@@ -313,13 +313,11 @@
   <!-- //Title & Favicons -->
 
 
-
   <!-- CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
   <!-- //CSS -->
-
 
 
   <!-- Styles -->
@@ -458,34 +456,20 @@
   </style>
 
 
-
-
 </head>
-
-
 
 
 <!-- =============================== BODY =========================== -->
 
+
 <body>
 
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T97DM2H"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
-  <form id="globalForm"
-    action="https://web.my.3plearning.com/processing_v2"
-    method="POST"
-    target="_parent"
-    onsubmit="return checkForm(this);">
-
-
-
-
+  <form method="POST">
 
 
     <!------------- Hidden ----------------->
+
 
     <input type="hidden" name="debug" value="%%=v(@debug)=%%">
 
@@ -507,13 +491,8 @@
 
 
 
-
-
-
-
-
-
     <!-- Wrapper -->
+
     <div class=" container my-5">
       <div class="row">
         <div class="col">
@@ -987,15 +966,22 @@
   <!-- ===========================  JAVASCRIPT  =========================== -->
 
 
+  <noscript>
+
+    <!-- Google Tag Manager (noscript) -->
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T97DM2H"
+      height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+
+  </noscript>
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js "></script>
   <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
   <script src="https://web.my.3plearning.com/formFieldFunctions"></script>
 
-
-
-  <!-- Custom Javascript -->
 
   <script>
     /**************************************************
@@ -1021,6 +1007,7 @@
       return "";
     }
     var referrer = getCookie("__gtm_referrer");
+
     // Parse the URL inside Cookie
     function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -1029,6 +1016,7 @@
       results = regex.exec(getCookie("setURLParamsCookie"));
       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
+
     // Pass the values to hidden field
     var cookieCheck = document.cookie.indexOf('setURLParamsCookie')
     if (cookieCheck > 0) {
@@ -1040,27 +1028,6 @@
       document.querySelector("#gclid").value = getParameterByName('gclid');
       document.querySelector("#referrer").value = referrer;
     };
-  </script>
-
-  <script>
-    /****************************
-          ----- On Submit -----
-          *****************************/
-
-    function checkForm(form) // Submit button clicked
-    {
-      //
-      // check form input values
-      //
-      let x = document.getElementById("submit_button");
-      setTimeout(function() {
-        x.innerHTML = "Processing..."
-      }, 2000);
-      form.myButton.innerHTML = "Please wait...";
-      form.myButton.disabled = true;
-      form.myButton.value = "Please wait...";
-      return true;
-    }
 
 
     /****************************
@@ -1119,8 +1086,6 @@
 
     } //handleChange()
   </script>
-
-
 
 
 </body>
