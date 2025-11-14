@@ -1,274 +1,279 @@
-<!-- 
-=========================================
------------ GLOBAL FORM HTML ------------
-=========================================
+<script>
+  /**
+   * =========== REUSABLE FORM =============
+   * 
+   * Query Parameters
+   * -----------------
+   * @parameter: form - the name of a template used to display preconfigured form inputs
+   * @parameter: fields - a list of individual form inputs to display
+   * @parameter: cid - the salesforce campaign id where the lead will be attached
+   * @parameter: rid - the id of a redirect url located in marketing cloud
+   * @parameter: pid - the 3P Learning product name (ie. mathletics, readingeggs etc)
+   * @parameter: gclid - ???
+   * 
+   */
+</script>
 
-NOTES:
-- clean up
-- refine job titles and coutries ampscript
-- add bootstrap validation
-- clean up 3p js
-- add in request parameter logic (?type=BOF/TOF -> BOF=2346 etc.)
-- discuss multiple select box alternatives (simple checkboxes, selectable icons, no multiple, multiple options instead of multiple select, other pre-mades, bootstrap standard)
-- dicuss hidden parametres to pass through
-- redirectTO form
-- XSRF Token
-- add custom validation (joi.js)
-- remove custom hides, change to d-none's
--->
-
-
-
-<script runat="server">
+<script runat="server" executioncontexttype="Post">
   Platform.Load("core", "1");
+  /**
+   * POST-SSJS
+   * @description: ssjs that runs when the form is submitted on the backend
+   */
+  try {
+
+  } catch (error) {
+    Write("Error: " + Stringify(error.message));
+  }
+</script>
+
+
+<script runat="server" executioncontexttype="Get">
+  Platform.Load("core", "1");
+  /**
+   * GET-SSJS
+   * @description: ssjs that runs when the form is displayed on the frontend
+   */
+
+  try {
+    /************************* 
+    --------- TEMPLATES ----------
+    **************************/
+
+
+    var TEMPLATES = {
+
+      //?form=master
+      master: [
+        "PRODUCT_INTEREST",
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "PHONE_NUMBER",
+        "GRADE_LEVEL",
+        "JOB_TITLE",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "POSTAL_CODE",
+        "SCHOOL_NAME",
+        "NO_OF_LICENCES",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?form=basic
+      required: [
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "SCHOOL_NAME",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?form=tof
+      tof: [
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "JOB_TITLE",
+        "SCHOOL_NAME",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?form=bof
+      bof: [
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "PHONE_NUMBER",
+        "JOB_TITLE",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "POSTAL_CODE",
+        "SCHOOL_NAME",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?form=quote
+      quote: [
+        "PRODUCT_INTEREST",
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "POSTAL_CODE",
+        "SCHOOL_NAME",
+        "PHONE_NUMBER",
+        "JOB_TITLE",
+        "GRADE_LEVEL",
+        "NO_OF_LICENCES",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?form=us_form
+      us_form: [
+        "PRODUCT_INTEREST",
+        "USER_INTEREST",
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "POSTAL_CODE",
+        "SCHOOL_NAME",
+        "PHONE_NUMBER",
+        "JOB_TITLE",
+        "GRADE_LEVEL",
+        "NO_OF_LICENCES",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?form=trial
+      trial: [
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "PHONE_NUMBER",
+        "SCHOOL_NAME",
+        "JOB_TITLE",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "POSTAL_CODE",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?form=info
+      info: [
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "PHONE_NUMBER",
+        "SCHOOL_NAME",
+        "JOB_TITLE",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "POSTAL_CODE",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?from=demo
+      demo: [
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "PHONE_NUMBER",
+        "SCHOOL_NAME",
+        "JOB_TITLE",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "POSTAL_CODE",
+        "NO_OF_LICENCES",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ]
+
+    } //TEMPLATES
 
 
 
-
-  /************************* 
-  --------- FORMS ----------
-  **************************/
-
-
-  var FORM_TEMPLATES = {
-
-    //?form=master
-    master: [
-      "PRODUCT_INTEREST",
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "PHONE_NUMBER",
-      "GRADE_LEVEL",
-      "JOB_TITLE",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "POSTAL_CODE",
-      "SCHOOL_NAME",
-      "NO_OF_LICENCES",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
-
-    //?form=basic
-    required: [
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "SCHOOL_NAME",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
-
-    //?form=tof
-    tof: [
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "JOB_TITLE",
-      "SCHOOL_NAME",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
-
-    //?form=bof
-    bof: [
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "PHONE_NUMBER",
-      "JOB_TITLE",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "POSTAL_CODE",
-      "SCHOOL_NAME",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
-
-    //?form=quote
-    quote: [
-      "PRODUCT_INTEREST",
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "POSTAL_CODE",
-      "SCHOOL_NAME",
-      "PHONE_NUMBER",
-      "JOB_TITLE",
-      "GRADE_LEVEL",
-      "NO_OF_LICENCES",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
-    us_form: [
-      "PRODUCT_INTEREST",
-      "USER_INTEREST",
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "POSTAL_CODE",
-      "SCHOOL_NAME",
-      "PHONE_NUMBER",
-      "JOB_TITLE",
-      "GRADE_LEVEL",
-      "NO_OF_LICENCES",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
-
-    //?form=trial
-    trial: [
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "PHONE_NUMBER",
-      "SCHOOL_NAME",
-      "JOB_TITLE",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "POSTAL_CODE",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
-    //?form=info
-    info: [
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "PHONE_NUMBER",
-      "SCHOOL_NAME",
-      "JOB_TITLE",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "POSTAL_CODE",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
-
-    demo: [
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "PHONE_NUMBER",
-      "SCHOOL_NAME",
-      "JOB_TITLE",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "POSTAL_CODE",
-      "NO_OF_LICENCES",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ]
-
-  } //FORM_TEMPLATE
+    /*******************************
+    ----- CHOOSE FORM TEMPLATE -----
+    ********************************/
 
 
-
-  /*******************************
-  ----- CHOOSE FORM TEMPLATE -----
-  ********************************/
-
-
-  //?form=( master | tof | bof )...etc
-  var _form = Request.GetQueryStringParameter("form")
-  _form = _form && _form.toLowerCase();
-  if (_form) {
-    var formFields = FORM_TEMPLATES[_form]
-    for (var i = 0; i < formFields.length; i++) {
-      Variable.SetValue(formFields[i], "true");
-    } //for
-  } //if
+    //?form=( master | tof | bof )...etc
+    var _form = Request.GetQueryStringParameter("form")
+    _form = _form && _form.toLowerCase();
+    if (_form) {
+      var formFields = TEMPLATES[_form]
+      for (var i = 0; i < formFields.length; i++) {
+        Variable.SetValue(formFields[i], "true");
+      } //for
+    } //if
 
 
+    /************************************
+    ----- &/OR CHOOSE SINGLE FIELDS -----
+    *************************************/
 
 
-  /************************************
-  ----- &/OR CHOOSE SINGLE FIELDS -----
-  *************************************/
+    //?fields=etc,etc,etc
+    var _fields = Request.GetQueryStringParameter("fields")
+    _fields = _fields && _fields.toUpperCase().split(',');
+    if (_fields) {
+      for (var i = 0; i < _fields.length; i++) {
+        var _fields_field = _fields[i]
+        Variable.SetValue(_fields_field, "true")
+      } //for    
+    } //if
 
 
-  //?fields=etc,etc,etc
-  var _fields = Request.GetQueryStringParameter("fields")
-  _fields = _fields && _fields.toUpperCase().split(',');
-  if (_fields) {
-    for (var i = 0; i < _fields.length; i++) {
-      var _fields_field = _fields[i]
-      Variable.SetValue(_fields_field, "true")
-    } //for    
-  } //if
+    /*******************************
+    -- GENERAL REQUEST PARAMETER ---
+    ********************************/
 
 
+    Variable.SetValue('debug', Request.GetQueryStringParameter("debug"))
+
+    Variable.SetValue('cid', Request.GetQueryStringParameter("cid"))
+    Variable.SetValue('rid', Request.GetQueryStringParameter("rid"))
+    Variable.SetValue('pid', Request.GetQueryStringParameter("pid"))
+    Variable.SetValue('gclid', Request.GetQueryStringParameter("gclid"))
+
+    Variable.SetValue('utm_source', Request.GetQueryStringParameter("utm_source"))
+    Variable.SetValue('utm_medium', Request.GetQueryStringParameter("utm_medium"))
+    Variable.SetValue('utm_campaign', Request.GetQueryStringParameter("utm_campaign"))
+    Variable.SetValue('utm_content', Request.GetQueryStringParameter("utm_content"))
+    Variable.SetValue('utm_term', Request.GetQueryStringParameter("utm_term"))
 
 
-  /*******************************
-  -- GENERAL REQUEST PARAMETER ---
-  ********************************/
+    /*******************************
+    ----------- SECURITY -----------
+    ********************************/
 
 
-  Variable.SetValue('_Debug', Request.GetQueryStringParameter("debug"))
+    // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+    // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+    Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
+    Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
+    Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
+    Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
 
-  Variable.SetValue('_Campaign_Name', Request.GetQueryStringParameter("cid"))
-  Variable.SetValue('_Triggered_Send_Key', Request.GetQueryStringParameter("triggered_send_key"))
-  Variable.SetValue('_Redirect_To_Page', Request.GetQueryStringParameter("redirect_to_page"))
-
-  Variable.SetValue('_UTM_Source', Request.GetQueryStringParameter("utm_source"))
-  Variable.SetValue('_UTM_Medium', Request.GetQueryStringParameter("utm_medium"))
-  Variable.SetValue('_UTM_Campaign', Request.GetQueryStringParameter("utm_campaign"))
-  Variable.SetValue('_UTM_Content', Request.GetQueryStringParameter("utm_content"))
-  Variable.SetValue('_UTM_Term', Request.GetQueryStringParameter("utm_term"))
-  Variable.SetValue('gclid', Request.GetQueryStringParameter("gclid"))
-
-
-
-
-
-
-  /*******************************
-  ----------- SECURITY -----------
-  ********************************/
-
-
-  Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
-  Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
-  // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
-  Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
-  Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-  //Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+  } catch (error) {
+    Write("Error: " + Stringify(error.message));
+  }
 </script>
 
 
 <!-- =============================== HTML =============================== -->
-%%[
 
-SET @Redirect = RequestParameter('rid')
-SET @pid = ProperCase(RequestParameter('pid'))
-SET @Product = LowerCase(RequestParameter('pid'))
-set @fields = queryparameter('fields')
-set @form = queryparameter('form')
-]%%
 
 <!doctype html>
 <html lang="en">
 
 <head>
+
   <!-- Google Tag Manager -->
   <script>
     (function(w, d, s, l, i) {
@@ -298,7 +303,7 @@ set @form = queryparameter('form')
 
 
   <!-- Title & Favicons -->
-  <title> 3PLearning | Global Form </title>
+  <title> 3PLearning </title>
   <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon" />
   <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
@@ -491,7 +496,7 @@ set @form = queryparameter('form')
 
     <!------------- Hidden ----------------->
 
-    <input type="hidden" name="debug" value="%%=v(@_Debug)=%%">
+    <input type="hidden" name="debug" value="%%=v(@debug)=%%">
 
     <input type="hidden" name="campaign-name" value="%%=v(@_Campaign_Name)=%%">
     <input type="hidden" name="triggered-send-key" value="%%=v(@_Triggered_Send_Key)=%%">
@@ -500,7 +505,7 @@ set @form = queryparameter('form')
     <input type="hidden" id="rid" name="rid" value="%%=v(@Redirect)=%%">
     <input type="hidden" name="redirect-to-page" value="%%=v(@_Redirect_To_Page)=%%">
     <input type="hidden" id="form" name="form" value="%%=v(@form)=%%">
-    <input type="hidden" id="utm-source" name="utm-source" value="%%=v(@_UTM_Source)=%%">
+    <input type="hidden" id="utm-source" name="utm-source" value="%%=v(@utm_source)=%%">
     <input type="hidden" id="utm-medium" name="utm-medium" value="%%=v(@_UTM_Medium)=%%">
     <input type="hidden" id="utm-campaign" name="utm-campaign" value="%%=v(@_UTM_Campaign)=%%">
     <input type="hidden" id="utm-content" name="utm-content" value="%%=v(@_UTM_Content)=%%">
@@ -1001,41 +1006,41 @@ set @form = queryparameter('form')
 
   <!-- Custom Javascript -->
 
-  %%=Concat('<','script>')=%%
-
+  <script>
     /**************************************************
     ----- Parse Cookie Data to hidden form fields -----
     ***************************************************/
 
     // Parse the Cookie
     var cname = "setURLParamsCookie"
-    function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c=ca[i];
-      while (c.charAt(0)==' ' ) {
-      c=c.substring(1);
-      }
-      if (c.indexOf(name)==0) {
-      return c.substring(name.length, c.length);
-      }
-      }
-      return "" ;
-      }
-      var referrer=getCookie("__gtm_referrer");
-      // Parse the URL inside Cookie
-      function getParameterByName(name) {
-      name=name.replace(/[\[]/, "\\[" ).replace(/[\]]/, "\\]" );
-      var regex=new RegExp("[\\?&]" + name + "=([^&#]*)" );
 
-      results=regex.exec(getCookie("setURLParamsCookie"));
-      return results===null ? "" : decodeURIComponent(results[1].replace(/\+/g, " " ));
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
       }
-      // Pass the values to hidden field
-      var cookieCheck=document.cookie.indexOf('setURLParamsCookie')
-      if (cookieCheck> 0) {
+      return "";
+    }
+    var referrer = getCookie("__gtm_referrer");
+    // Parse the URL inside Cookie
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+
+      results = regex.exec(getCookie("setURLParamsCookie"));
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    // Pass the values to hidden field
+    var cookieCheck = document.cookie.indexOf('setURLParamsCookie')
+    if (cookieCheck > 0) {
       document.querySelector("#utm-source").value = getParameterByName('utm_source');
       document.querySelector("#utm-medium").value = getParameterByName('utm_medium');
       document.querySelector("#utm-campaign").value = getParameterByName('utm_campaign');
@@ -1043,89 +1048,86 @@ set @form = queryparameter('form')
       document.querySelector("#utm-term").value = getParameterByName('utm_term');
       document.querySelector("#gclid").value = getParameterByName('gclid');
       document.querySelector("#referrer").value = referrer;
-      };
+    };
+  </script>
 
-      %%=Concat('<',' /script>')=%%
-
-        %%=Concat('<','script>')=%%
-
-          /****************************
+  <script>
+    /****************************
           ----- On Submit -----
           *****************************/
 
-          function checkForm(form) // Submit button clicked
-          {
-          //
-          // check form input values
-          //
-          let x = document.getElementById("submit_button");
-          setTimeout(function(){ x.innerHTML="Processing..." }, 2000);
-          form.myButton.innerHTML = "Please wait...";
-          form.myButton.disabled = true;
-          form.myButton.value = "Please wait...";
-          return true;
-          }
+    function checkForm(form) // Submit button clicked
+    {
+      //
+      // check form input values
+      //
+      let x = document.getElementById("submit_button");
+      setTimeout(function() {
+        x.innerHTML = "Processing..."
+      }, 2000);
+      form.myButton.innerHTML = "Please wait...";
+      form.myButton.disabled = true;
+      form.myButton.value = "Please wait...";
+      return true;
+    }
 
 
-          /****************************
-          ----- On Country Change -----
-          *****************************/
+    /****************************
+    ----- On Country Change -----
+    *****************************/
 
 
-          //CONSTANTS
-          let allStateNameData;
+    //CONSTANTS
+    let allStateNameData;
 
-          //DOM ELEMENTS
-          const thisDocument = $(document);
-          const countryNameSelect = $('#country_name_select');
-          const stateNameFormGroup = $('#state_name_form_group');
-          const stateNameSelect = $('#state_name_select');
-
-
-          //EVENTS
-          thisDocument.on('ready', getStateNameData)
-          countryNameSelect.on('change', handleChangeCountryName);
+    //DOM ELEMENTS
+    const thisDocument = $(document);
+    const countryNameSelect = $('#country_name_select');
+    const stateNameFormGroup = $('#state_name_form_group');
+    const stateNameSelect = $('#state_name_select');
 
 
-          //HANDLERS
+    //EVENTS
+    thisDocument.on('ready', getStateNameData)
+    countryNameSelect.on('change', handleChangeCountryName);
 
-          function getStateNameData() {
-          let allStatesURLPath = "/gf_states"
-          axios.get(allStatesURLPath)
-          .then(response => {
+
+    //HANDLERS
+
+    function getStateNameData() {
+      let allStatesURLPath = "/gf_states"
+      axios.get(allStatesURLPath)
+        .then(response => {
           allStateNameData = response.data
-          }).catch(console.error)
-          }//
+        }).catch(console.error)
+    } //
 
-          function handleChangeCountryName(e) {
-          //choose states
-          let countryCode = e.target[e.target.selectedIndex].dataset.countrycode
-          let countryStateData = allStateNameData.filter((option) => option["Country Code"] == countryCode)
+    function handleChangeCountryName(e) {
+      //choose states
+      let countryCode = e.target[e.target.selectedIndex].dataset.countrycode
+      let countryStateData = allStateNameData.filter((option) => option["Country Code"] == countryCode)
 
-          //reset options
-          stateNameSelect.val('')
-          stateNameSelect.find("option").remove();
-          stateNameSelect.append(`<option disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
+      //reset options
+      stateNameSelect.val('')
+      stateNameSelect.find("option").remove();
+      stateNameSelect.append(`<option disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
 
-          //populate options or hide select
-          if (countryStateData.length > 0) {
-          //states found
-          stateNameFormGroup.show();
-          stateNameSelect.attr("required", "true");
-          countryStateData.forEach((state) => {
+      //populate options or hide select
+      if (countryStateData.length > 0) {
+        //states found
+        stateNameFormGroup.show();
+        stateNameSelect.attr("required", "true");
+        countryStateData.forEach((state) => {
           stateNameSelect.append(`<option value="${state['State Code']}">${state['State Name']}</option>`)
-          })//forEach
-          } else {
-          //no states found
-          stateNameFormGroup.hide();
-          stateNameSelect.removeAttr("required");
-          }//if
+        }) //forEach
+      } else {
+        //no states found
+        stateNameFormGroup.hide();
+        stateNameSelect.removeAttr("required");
+      } //if
 
-          }//handleChange()
-
-
-
-          %%=Concat('<',' /script>')=%%
+    } //handleChange()
+  </script>
 
 
 
