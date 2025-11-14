@@ -57,16 +57,14 @@
     ********************************/
 
 
-    Variable.SetValue('debug', Request.GetQueryStringParameter("debug"))
-
-    Variable.SetValue('cid', Request.GetQueryStringParameter("cid"))
-    Variable.SetValue('rid', Request.GetQueryStringParameter("rid"))
-
-    Variable.SetValue('utm_source', Request.GetQueryStringParameter("utm_source"))
-    Variable.SetValue('utm_medium', Request.GetQueryStringParameter("utm_medium"))
-    Variable.SetValue('utm_campaign', Request.GetQueryStringParameter("utm_campaign"))
-    Variable.SetValue('utm_content', Request.GetQueryStringParameter("utm_content"))
-    Variable.SetValue('utm_term', Request.GetQueryStringParameter("utm_term"))
+    Variable.SetValue('debug', Request.GetQueryStringParameter("debug"));
+    Variable.SetValue('cid', Request.GetQueryStringParameter("cid"));
+    Variable.SetValue('rid', Request.GetQueryStringParameter("rid"));
+    Variable.SetValue('utm_source', Request.GetQueryStringParameter("utm_source"));
+    Variable.SetValue('utm_medium', Request.GetQueryStringParameter("utm_medium"));
+    Variable.SetValue('utm_campaign', Request.GetQueryStringParameter("utm_campaign"));
+    Variable.SetValue('utm_content', Request.GetQueryStringParameter("utm_content"));
+    Variable.SetValue('utm_term', Request.GetQueryStringParameter("utm_term"));
 
 
     /*******************************
