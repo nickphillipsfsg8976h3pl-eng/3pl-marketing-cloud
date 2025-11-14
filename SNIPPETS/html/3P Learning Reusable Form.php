@@ -6,105 +6,123 @@
 
 
 
-<script runat="server">
+<!-- BACKEND-SSJS -->
+<script runat="server" executioncontexttype="Post">
   Platform.Load("core", "1");
-  //SERVER-SIDE SCRIPT START
-
-
-  /*******************************
-  ----------- SECURITY -----------
-  ********************************/
-
-  // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
-  // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
-  Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
-  Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
-  Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
-  Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-
-
-  /*******************************
-  -- GENERAL REQUEST PARAMETER ---
-  ********************************/
-
-
-  Variable.SetValue('_debug', Request.GetQueryStringParameter("debug"))
-  Variable.SetValue('_campaignId', Request.GetQueryStringParameter("cid"))
-  Variable.SetValue('_redirectId', Request.GetQueryStringParameter("rid"))
-  Variable.SetValue('_productId', Request.GetQueryStringParameter("[pid]"))
-
-  Variable.SetValue('_utmSource', Request.GetQueryStringParameter("utm_source"))
-  Variable.SetValue('_utmMedium', Request.GetQueryStringParameter("utm_medium"))
-  Variable.SetValue('_utmCampaign', Request.GetQueryStringParameter("utm_campaign"))
-  Variable.SetValue('_utmContent', Request.GetQueryStringParameter("utm_content"))
-  Variable.SetValue('_utmTerm', Request.GetQueryStringParameter("utm_term"))
-
-
-  /*******************************
-  ----- CHOOSE A FORM TEMPLATE -----
-  
-  @description:  This section will choose the form template based on the query parameter 'form' 
-  @example: https://3plearning.com?form=master
-  ********************************/
-
-
-  // PRECONFIGURED FORMS TO REUSE
-  var FORM_TEMPLATES = {
-
-    //?form=master
-    master: [
-      "PRODUCT_INTEREST",
-      "FIRST_NAME",
-      "LAST_NAME",
-      "EMAIL_ADDRESS",
-      "PHONE_NUMBER",
-      "GRADE_LEVEL",
-      "JOB_TITLE",
-      "COUNTRY_NAME",
-      "STATE_NAME",
-      "POSTAL_CODE",
-      "SCHOOL_NAME",
-      "NO_OF_LICENCES",
-      "TERMS_AND_CONDITIONS",
-      "SUBSCRIBER_OPT_IN",
-      "SUBMIT_BUTTON"
-    ],
+  try {
+    Write('...Processing');
+  } catch (error) {
 
   }
-
-  //LOGIC TO AUTOMATCALLY CREATE FORM TEMPLATE FIELDS
-  var _form = Request.GetQueryStringParameter("form")
-  _form = _form && _form.toLowerCase();
-  if (_form) {
-    var formFields = FORM_TEMPLATES[_form]
-    for (var i = 0; i < formFields.length; i++) {
-      Variable.SetValue(formFields[i], "true");
-    } //for
-  } //if
-
-
-  /************************************
-  ----- &/OR CHOOSE INDIVIDUAL FIELDS -----
-
-  @description:  This section will add fields one by one based on the query parameter 'fields'
-  @example: https://3plearning.com?fields=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,CAPTCHA,TERMS_AND_CONDITIONS,SUBMIT_BUTTTON
-
-  *************************************/
-
-
-  //LOGIC TO AUTOMATICALLY CREATE INDIVIDUAL FIELDS
-  var _fields = Request.GetQueryStringParameter("fields")
-  _fields = _fields && _fields.toUpperCase().split(',');
-  if (_fields) {
-    for (var i = 0; i < _fields.length; i++) {
-      var _fields_field = _fields[i]
-      Variable.SetValue(_fields_field, "true")
-    }
-  }
-
-
-  //SERVE-SIDE SCRIPT END
 </script>
+
+<!-- FRONTEND-SSJS -->
+<script runat="server" executioncontexttype="Get">
+  Platform.Load("core", "1");
+  try {
+
+
+
+    /*******************************
+    ----------- SECURITY -----------
+    ********************************/
+
+    // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+    // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+    Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
+    Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
+    Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
+    Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+
+
+    /*******************************
+    -- GENERAL REQUEST PARAMETER ---
+
+    @description:  This section is used to capture all query parameters and make them avaiable to ampscript.
+
+    @example: https://www.3plearning.com?cid=029184790897a249&rid=83&pid=mathletics
+
+    ********************************/
+
+
+    Variable.SetValue('_debug', Request.GetQueryStringParameter("debug"))
+    Variable.SetValue('_campaignId', Request.GetQueryStringParameter("cid"))
+    Variable.SetValue('_redirectId', Request.GetQueryStringParameter("rid"))
+    Variable.SetValue('_productId', Request.GetQueryStringParameter("pid"))
+
+    Variable.SetValue('_utmSource', Request.GetQueryStringParameter("utm_source"))
+    Variable.SetValue('_utmMedium', Request.GetQueryStringParameter("utm_medium"))
+    Variable.SetValue('_utmCampaign', Request.GetQueryStringParameter("utm_campaign"))
+    Variable.SetValue('_utmContent', Request.GetQueryStringParameter("utm_content"))
+    Variable.SetValue('_utmTerm', Request.GetQueryStringParameter("utm_term"))
+
+
+    /*******************************
+    ----- CHOOSE A FIELDS -----
+    
+    @description:  This section will choose all the fields to display based on "form" and/or "fields query parameters.
+    You can use "form" or "fields" query parameters seperately or together. Create more templates below for common
+    configurations as needed. Ie. Top-of-funnel, Bottom of funnel, Product-based etc.
+
+    @example: https://3plearning.com?form=master
+    @example: https://3plearning.com?form=master&fields=PRODUCT_INTEREST,FIRST_NAME
+    @example: https://3plearning.com?fields=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,CAPTCHA,TERMS_AND_CONDITIONS,SUBMIT_BUTTTON
+
+    ********************************/
+
+    // PRECONFIGURED FORMS TO REUSE
+    var TEMPLATES = {
+
+      //?form=master
+      master: [
+        "PRODUCT_INTEREST",
+        "FIRST_NAME",
+        "LAST_NAME",
+        "EMAIL_ADDRESS",
+        "PHONE_NUMBER",
+        "GRADE_LEVEL",
+        "JOB_TITLE",
+        "COUNTRY_NAME",
+        "STATE_NAME",
+        "POSTAL_CODE",
+        "SCHOOL_NAME",
+        "NO_OF_LICENCES",
+        "TERMS_AND_CONDITIONS",
+        "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ]
+
+    }
+
+    // SET COMPONENTS TO RENDER
+    var RENDER_COMPONENTS = [];
+
+    // ADD TEMPLATE INPUTS TO RENDER COMPONENTS
+    var _form = Request.GetQueryStringParameter("form")
+    _form = _form && _form.toLowerCase();
+    if (_form) {
+      var _templateComponents = TEMPLATES[_form];
+      RENDER_COMPONENTS.concat(_templateComponents);
+    } //if
+
+    // ADD INDIVIDUAL INPTUS TO RENDER COMPONENTS
+    var _fields = Request.GetQueryStringParameter("fields")
+    _fields = _fields && _fields.toUpperCase().split(',');
+    if (_fields) {
+      for (var i = 0; i < _fields.length; i++) {
+        var _fieldComponent = _fields[i]
+        RENDER_COMPONENTS.push(_fieldComponent);
+      }
+    }
+
+    // PASS RENDER COMPONENTS TO AMPSCRIPT
+    Variable.SetValue('RENDER_COMPONENTS', RENDER_COMPONENTS)
+
+  } catch (error) {
+    Write(Stringify(error.message));
+  }
+</script>
+<!-- //GET-SSJS-->
 
 
 <!--
