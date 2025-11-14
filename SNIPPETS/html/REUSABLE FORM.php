@@ -435,6 +435,7 @@
               <option value="readingeggs">Reading Eggs</option>
 
             </select>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">Select a product interest</div> -->
           </div>
         </div>
@@ -453,6 +454,7 @@
               name="_first_name"
               placeholder="First Name"
               required>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">First name is required</div> -->
           </div>
         </div>
@@ -471,6 +473,7 @@
               name="_last_name"
               placeholder="Last Name"
               required>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">Last name is required</div> -->
           </div>
         </div>
@@ -489,6 +492,7 @@
               name="_email_address"
               placeholder="Email Address"
               required>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">Please provide a valid email address.</div> -->
           </div>
         </div>
@@ -507,6 +511,7 @@
               name="_phone_number"
               placeholder="Phone Number"
               required>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">Phone number is required</div> -->
           </div>
         </div>
@@ -542,6 +547,7 @@
               <option value="I do not teach specific grades">I do not teach specific grades</option>
 
             </select>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">Grade level is required</div> -->
           </div>
         </div>
@@ -576,7 +582,9 @@
               OutputLine('<option value="Other">Other</option>')
 
               ]%%
+
             </select>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">Role is required</div> -->
 
           </div>
@@ -591,7 +599,8 @@
               type="text"
               id="_other_job_title_role"
               name="_other_job_title_role"
-              placeholder="Please specify your role">
+              placeholder="Please specify your role"
+              required>
           </div>
         </div>
 
@@ -613,8 +622,8 @@
 
             <select
               class="form-control"
-              id="country-name"
-              name="country-name"
+              id="_country_nane"
+              name="_country_nane"
               required>
 
               <option selected disabled>Country</option>
@@ -642,6 +651,7 @@
               ]%%
 
             </select>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">Country is required</div> -->
           </div>
         </div>
@@ -654,8 +664,8 @@
           <div class="form-group">
 
             <select class="form-control"
-              id="state-name"
-              name="state-name"
+              id="_state_name"
+              name="_state_name"
               disabled
               required>
 
@@ -673,7 +683,9 @@
               Next @i
 
               ]%%
+
             </select>
+
             <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
           </div>
         </div>
@@ -692,8 +704,8 @@
         <div class="form-group">
 
           <select class="form-control"
-            id="state_name_select"
-            name="state-name"
+            id="_state_name"
+            name="_state_name"
             required>
 
             <option disabled selected>State/Province</option>
@@ -710,7 +722,9 @@
             Next @i
 
             ]%%
+
           </select>
+
           <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
         </div>
       </div>
@@ -724,8 +738,8 @@
       <div class="form-group">
 
         <select class="form-control"
-          id="state_name_select"
-          name="state-name"
+          id="_state_name"
+          name="_state_name"
           required>
 
           <option disabled selected>State/Province</option>
@@ -742,7 +756,9 @@
           Next @i
 
           ]%%
+
         </select>
+
         <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
@@ -756,8 +772,8 @@
       <div class="form-group">
 
         <select class="form-control"
-          id="state_name_select"
-          name="state-name"
+          id="_state_name"
+          name="_state_name"
           required>
 
           <option disabled selected>State/Province</option>
@@ -774,7 +790,9 @@
           Next @i
 
           ]%%
+
         </select>
+
         <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
@@ -788,8 +806,8 @@
       <div class="form-group">
 
         <select class="form-control"
-          id="state_name_select"
-          name="state-name"
+          id="_state_name"
+          name="_state_name"
           required>
 
           <option disabled selected>State/Province</option>
@@ -806,7 +824,9 @@
           Next @i
 
           ]%%
+
         </select>
+
         <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
@@ -820,8 +840,8 @@
       <div class="form-group">
 
         <select class="form-control"
-          id="state_name_select"
-          name="state-name"
+          id="_state_name"
+          name="_state_name"
           required>
 
           <option disabled selected>State/Province</option>
@@ -838,8 +858,10 @@
           Next @i
 
           ]%%
+
         </select>
-        <div id="state_invalid" class="custom-invalid-label custom-hide text-right">Province is required</div>
+
+        <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
     </div>
@@ -852,8 +874,8 @@
       <div class="form-group">
 
         <select class="form-control"
-          id="state_name_select"
-          name="state-name"
+          id="_state_name"
+          name="_state_name"
           required>
 
           <option disabled selected>State/Province</option>
@@ -870,7 +892,9 @@
           Next @i
 
           ]%%
+
         </select>
+
         <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
@@ -885,26 +909,26 @@
 
         <input class="form-control"
           type="text"
-          id="postal_code_input"
-          name="postal-code"
-          placeholder="Postcode"
-          title="Postcode is 4 digits with no spaces"
+          id="_postal_code"
+          name="_postal_code"
+          placeholder="Postal Code/Zip Code"
           required>
+
         <!-- <div class="custom-invalid-label custom-hide text-right">Postcode is required</div> -->
       </div>
     </div>
     %%[ENDIF]%%
 
 
-    <!------------- Postal Code ----------------->
+    <!------------- School Name ----------------->
     %%[IF (@COMPONENT == "SCHOOL_NAME") THEN]%%
     <div class="col">
       <div class="form-group">
 
         <input type="text"
           class="form-control"
-          id="school_name_input"
-          name="school-name"
+          id="_school_name"
+          name="_school_name"
           placeholder="School Name"
           required>
 
@@ -922,8 +946,8 @@
         <input
           class="form-control"
           type="checkbox"
-          id="terms_and_conditions_input"
-          name="terms-and-conditions"
+          id="_terms_and_conditions"
+          name="_terms_and_conditions"
           value="true"
           required
           tabindex="-1" />
@@ -947,8 +971,8 @@
         <input
           class="form-control"
           type="checkbox"
-          id="subscriber_opt_in_input"
-          name="subscriber-opt-in"
+          id="_subscriber_opt_in"
+          name="_subscriber_opt_in"
           value="true"
           tabindex="-1" />
 
@@ -969,9 +993,9 @@
 
         <button class="custom_submit_button"
           type="submit"
-          id="submit_button"
-          name="myButton"
-          value="submit">Get 12 eBooks free!
+          id="_submit_button"
+          name="_submit_button"
+          value="submit">Submit
         </button>
 
       </div>
