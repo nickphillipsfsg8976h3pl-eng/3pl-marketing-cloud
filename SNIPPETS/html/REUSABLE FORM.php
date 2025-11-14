@@ -16,7 +16,7 @@
   try {
     Write('...Processing');
   } catch (error) {
-    Write("Error: " + error.message);
+    Write("Error: " + error.message + " " + error.description);
   }
 
   //do not render the below on post requests
@@ -131,7 +131,7 @@
     Variable.SetValue('RENDER_COMPONENTS', RENDER_COMPONENTS);
 
   } catch (error) {
-    Write("Error: " + error.message);
+    Write("Error: " + error.message + " " + error.description);
   }
 
   //render the below form on get requests
