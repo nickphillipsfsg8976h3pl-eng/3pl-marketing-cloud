@@ -435,7 +435,7 @@
               <option value="readingeggs">Reading Eggs</option>
 
             </select>
-            <div class="custom-invalid-label custom-hide text-right">Select a product interest</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">Select a product interest</div> -->
           </div>
         </div>
         %%[ENDIF]%%
@@ -453,7 +453,7 @@
               name="_first_name"
               placeholder="First Name"
               required>
-            <div class="custom-invalid-label custom-hide text-right">First name is required</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">First name is required</div> -->
           </div>
         </div>
         %%[ENDIF]%%
@@ -471,7 +471,7 @@
               name="_last_name"
               placeholder="Last Name"
               required>
-            <div class="custom-invalid-label custom-hide text-right">Last name is required</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">Last name is required</div> -->
           </div>
         </div>
         %%[ENDIF]%%
@@ -489,7 +489,7 @@
               name="_email_address"
               placeholder="Email Address"
               required>
-            <div class="custom-invalid-label custom-hide text-right">Please provide a valid email address.</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">Please provide a valid email address.</div> -->
           </div>
         </div>
         %%[ENDIF]%%
@@ -507,7 +507,7 @@
               name="_phone_number"
               placeholder="Phone Number"
               required>
-            <div class="custom-invalid-label custom-hide text-right">Phone number is required</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">Phone number is required</div> -->
           </div>
         </div>
         %%[ENDIF]%%
@@ -542,7 +542,7 @@
               <option value="I do not teach specific grades">I do not teach specific grades</option>
 
             </select>
-            <div class="custom-invalid-label custom-hide text-right">Grade level is required</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">Grade level is required</div> -->
           </div>
         </div>
         %%[ENDIF]%%
@@ -577,7 +577,7 @@
 
               ]%%
             </select>
-            <div class="custom-invalid-label custom-hide text-right">Role is required</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">Role is required</div> -->
 
           </div>
         </div>
@@ -642,7 +642,7 @@
               ]%%
 
             </select>
-            <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">Country is required</div> -->
           </div>
         </div>
         %%[ENDIF]%%
@@ -674,7 +674,7 @@
 
               ]%%
             </select>
-            <div id="state_invalid" class="custom-invalid-label custom-hide text-right">Province is required</div>
+            <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
           </div>
         </div>
       </div>
@@ -711,7 +711,7 @@
 
             ]%%
           </select>
-          <div id="state_invalid" class="custom-invalid-label custom-hide text-right">Province is required</div>
+          <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
         </div>
       </div>
     </div>
@@ -743,7 +743,7 @@
 
           ]%%
         </select>
-        <div id="state_invalid" class="custom-invalid-label custom-hide text-right">Province is required</div>
+        <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
     </div>
@@ -775,7 +775,7 @@
 
           ]%%
         </select>
-        <div id="state_invalid" class="custom-invalid-label custom-hide text-right">Province is required</div>
+        <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
     </div>
@@ -807,7 +807,7 @@
 
           ]%%
         </select>
-        <div id="state_invalid" class="custom-invalid-label custom-hide text-right">Province is required</div>
+        <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
     </div>
@@ -871,7 +871,7 @@
 
           ]%%
         </select>
-        <div id="state_invalid" class="custom-invalid-label custom-hide text-right">Province is required</div>
+        <!-- <div class="custom-invalid-label custom-hide text-right">Province is required</div> -->
       </div>
     </div>
     </div>
@@ -890,7 +890,7 @@
           placeholder="Postcode"
           title="Postcode is 4 digits with no spaces"
           required>
-        <div id="postcode_invalid" class="custom-invalid-label custom-hide text-right">Postcode is required</div>
+        <!-- <div class="custom-invalid-label custom-hide text-right">Postcode is required</div> -->
       </div>
     </div>
     %%[ENDIF]%%
@@ -908,7 +908,7 @@
           placeholder="School Name"
           required>
 
-        <div id="school_name_invalid" class="custom-invalid-label custom-hide text-right">School name is required</div>
+        <!-- <div class="custom-invalid-label custom-hide text-right">School name is required</div> -->
       </div>
     </div>
     %%[ENDIF]%%
@@ -933,8 +933,7 @@
           Reading Eggs and 3P Learning may process your personal information for its legitimate business purposes, including to enable us to provide, personalise and enhance our services for the benefit of our customers. Please see our <a target="_parent" href="https://www.3plearning.com/privacy" style="text-decoration: underline;">Privacy Policy</a> and <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms</a> to learn more. *Mandatory field.
         </label>
 
-        <div id="terms_and_conditions_invalid" class="custom-invalid-label custom-hide text-right">Please agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">terms and conditions</a>.
-        </div>
+        <!-- <div class="custom-invalid-label custom-hide text-right">Please agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">terms and conditions</a>.</div> -->
       </div>
     </div>
     %%[ENDIF]%%
