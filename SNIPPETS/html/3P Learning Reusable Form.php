@@ -6,18 +6,30 @@
 
 
 
-<!-- BACKEND-SSJS -->
 <script runat="server" executioncontexttype="Post">
+  /**
+   * BACKEND-SSJS
+   * 
+   * @description: This code will run on the backend when the form is submitted
+   */
   Platform.Load("core", "1");
   try {
     Write('...Processing');
   } catch (error) {
-
+    Write("Error: " + error.message);
   }
+
+  //do not render the below on post requests
+  if (false)
 </script>
 
-<!-- FRONTEND-SSJS -->
+
 <script runat="server" executioncontexttype="Get">
+  /**
+   * FRONTEND-SSJS
+   * 
+   * @description: This code will run on the frontend when the form is displayed
+   */
   Platform.Load("core", "1");
   try {
 
@@ -46,9 +58,10 @@
 
 
     Variable.SetValue('_debug', Request.GetQueryStringParameter("debug"))
-    Variable.SetValue('_campaignId', Request.GetQueryStringParameter("cid"))
-    Variable.SetValue('_redirectId', Request.GetQueryStringParameter("rid"))
-    Variable.SetValue('_productId', Request.GetQueryStringParameter("pid"))
+
+    Variable.SetValue('_campaignId', Request.GetQueryStringParameter("campaign_id"))
+    Variable.SetValue('_redirectId', Request.GetQueryStringParameter("redirect_id"))
+    Variable.SetValue('_productId', Request.GetQueryStringParameter("product_id"))
 
     Variable.SetValue('_utmSource', Request.GetQueryStringParameter("utm_source"))
     Variable.SetValue('_utmMedium', Request.GetQueryStringParameter("utm_medium"))
@@ -116,13 +129,15 @@
     }
 
     // PASS RENDER COMPONENTS TO AMPSCRIPT
-    Variable.SetValue('RENDER_COMPONENTS', RENDER_COMPONENTS)
+    Variable.SetValue('RENDER_COMPONENTS', RENDER_COMPONENTS);
 
   } catch (error) {
-    Write(Stringify(error.message));
+    Write("Error: " + error.message);
   }
+
+  //render the below form on get requests
+  if (true)
 </script>
-<!-- //GET-SSJS-->
 
 
 <!--
@@ -366,22 +381,21 @@
   </noscript>
   <!-- /Google Tag Manager (noscript) -->
 
-  <form
-    action="https://web.readingeggs.co.uk/emea_re_sor_form_processing"
-    method="POST">
+
+  <form method="POST">
 
 
-    <!------------- Hidden ----------------->
+    <!------------- Hidden Inputs ----------------->
 
 
     <input type="hidden" name="debug" value="%%=v(@_debug)=%%">
-    <input type="hidden" name="campaign-name" value="%%=v(@_campaignId)=%%">
-    <input type="hidden" name="triggered-send-key" value="%%=v(@_Triggered_Send_Key)=%%">
+
+    <input type="hidden" name="campaignId" value="%%=v(@_campaignId)=%%">
     <input type="hidden" id="pid" name="pid" value="%%=v(@Product)=%%">
-    <input type="hidden" id="eid" name="eid" value="%%=v(@enquiry)=%%">
     <input type="hidden" id="rid" name="rid" value="%%=v(@Redirect)=%%">
     <input type="hidden" name="redirect-to-page" value="%%=v(@_redirectURL)=%%">
     <input type="hidden" id="form" name="form" value="%%=v(@form)=%%">
+
     <input type="hidden" id="utm-source" name="utm-source" value="%%=v(@_utmSource)=%%">
     <input type="hidden" id="utm-medium" name="utm-medium" value="%%=v(@_utmMedium)=%%">
     <input type="hidden" id="utm-campaign" name="utm-campaign" value="%%=v(@_utmCampaign)=%%">
@@ -397,434 +411,397 @@
         <div class="col">
 
 
+          %%[
+          /************************************
+          LOOPING OVER RENDER_COMPONENTS
+          *************************************/
+          SET @LENGTH = RowCount(@RENDER_COMPONENTS)
+          FOR @i = 1 TO @LENGTH DO
+          SET @COMPONENT = Row(@RENDER_COMPONENTS, @i)
+          ]%%
+
+
           <!------------- Product Interest ----------------->
-          %%[If @PRODUCT_INTEREST Then]%%
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label for="product_interest_select" class="custom-field-label">
-                  PRODUCT INTERESTS
-                </label>
-                <select class="form-control selectpicker show-tick"
-                  id="product_interest_select"
-                  name="product-interest"
-                  multiple
-                  title="Select Your Product Interests"
-                  data-selected-text-format="values"
-                  data-actions-box="true"
-                  required
-                  style="color:#495057c7; font-weight: 400;">
+          %%[IF (@COMPONENT == "PRODUCT_INTEREST") THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <label for="product_interest_select" class="custom-field-label">
+                PRODUCT INTERESTS
+              </label>
+              <select class="form-control selectpicker show-tick"
+                id="product_interest_select"
+                name="product-interest"
+                multiple
+                title="Select Your Product Interests"
+                data-selected-text-format="values"
+                data-actions-box="true"
+                required
+                style="color:#495057c7; font-weight: 400;">
 
-                  <option value="mathletics" %%=IIF(not empty(@mathletics), "Selected" , "" )=%%>Mathletics</option>
-                  <option value="mathseeds" %%=IIF(not empty(@mathseeds), "Selected" , "" )=%%>Mathseeds</option>
-                  <option value="readingeggs" %%=IIF(not empty(@readingeggs), "Selected" , "" )=%%>Reading Eggs</option>
+                <option value="mathletics">Mathletics</option>
+                <option value="mathseeds">Mathseeds</option>
+                <option value="readingeggs">Reading Eggs</option>
 
-                </select>
-                <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
-              </div>
+              </select>
+              <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Grade Level ----------------->
-          %%[If @RE_INTEREST Then]%%
-          <div class="row">
-            <div class="col">
-              <div class="form-group" style="margin-bottom: 30px;">
-
-                <select class="form-control"
-                  id="re_interest_select"
-                  name="re_interest"
-                  required
-                  autofocus
-                  style="color:#495057c7; font-weight: 400;">
-                  <option disabled selected hidden>What are you interested in?</option>
-                  <option value="trial">30-day trial</option>
-                  <option value="demo">15-minute demo</option>
-                  <option value="quote">Quote</option>
-
-
-                </select>
-                <div id="re_interest_invalid" class="custom-invalid-label custom-hide text-right">Your Interest in ReadingEggs is required</div>
-              </div>
+          %%[IF (@COMPONENT == "RE_INTEREST") THEN]%%
+          <div class="col">
+            <div class="form-group" style="margin-bottom: 30px;">
+              <select class="form-control"
+                id="re_interest_select"
+                name="re_interest"
+                required
+                autofocus
+                style="color:#495057c7; font-weight: 400;">
+                <option disabled selected hidden>What are you interested in?</option>
+                <option value="trial">30-day trial</option>
+                <option value="demo">15-minute demo</option>
+                <option value="quote">Quote</option>
+              </select>
+              <div id="re_interest_invalid" class="custom-invalid-label custom-hide text-right">Your Interest in ReadingEggs is required</div>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- First Name ----------------->
-          %%[If @FIRST_NAME Then]%%
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-
-                <input type="text"
-                  class="form-control"
-                  id="first_name_input"
-                  name="first-name"
-                  placeholder="First Name"
-
-                  required>
-                <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First name is required</div>
-
-
-              </div>
+          %%[IF (@COMPONENT == "FIRST_NAME") THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <input type="text"
+                class="form-control"
+                id="first_name_input"
+                name="first-name"
+                placeholder="First Name"
+                required>
+              <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First name is required</div>
             </div>
-
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- First Name ----------------->
-          %%[If @FIRST_NAME Then]%%
-          <div class="row">
-
-            <div class="col">
-              <div class="form-group">
-
-                <input type="text"
-                  class="form-control"
-                  id="last_name_input"
-                  name="last-name"
-                  placeholder="Last Name"
-                  required>
-                <div id="last_name_invalid" class="custom-invalid-label custom-hide text-right">Last name is required</div>
-              </div>
+          %%[IF (@COMPONENT == "LAST_NAME") THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <input type="text"
+                class="form-control"
+                id="last_name_input"
+                name="last-name"
+                placeholder="Last Name"
+                required>
+              <div id="last_name_invalid" class="custom-invalid-label custom-hide text-right">Last name is required</div>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Email Addres----------------->
-          %%[If @EMAIL_ADDRESS Then]%%
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-
-                <input type="email"
-                  class="form-control"
-                  id="email_address_input"
-                  name="email-address"
-                  placeholder="Email Address"
-                  required>
-                <div id="email_address_invalid" class="custom-invalid-label custom-hide text-right">Please provide a valid email address.</div>
-              </div>
-            </div>
-
-          </div>
-          %%[EndIf]%%
-
-
-          <!------------- Email Addres----------------->
-          %%[If @PHONE_NUMBER Then]%%
-          <div class="row">
-
-            <div class="col">
-              <div class="form-group">
-
-                <input type="text"
-                  class="form-control"
-                  id="phone_number_input"
-                  name="phone-number"
-                  placeholder="Mobile"
-                  required>
-                <div id="phone_number_invalid" class="custom-invalid-label custom-hide text-right">Phone number is required</div>
-              </div>
+          %%[IF (@COMPONENT == "EMAIL_ADDRESS") THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <input type="email"
+                class="form-control"
+                id="email_address_input"
+                name="email-address"
+                placeholder="Email Address"
+                required>
+              <div id="email_address_invalid" class="custom-invalid-label custom-hide text-right">Please provide a valid email address.</div>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
+
+
+          <!------------- Phone Number ----------------->
+          %%[IF (@COMPONENT == PHONE_NUMBER) THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <input type="text"
+                class="form-control"
+                id="phone_number_input"
+                name="phone-number"
+                placeholder="Mobile"
+                required>
+              <div id="phone_number_invalid" class="custom-invalid-label custom-hide text-right">Phone number is required</div>
+            </div>
+          </div>
+          %%[ENDIF]%%
 
 
           <!------------- Grade Level ----------------->
-          %%[If @GRADE_LEVEL Then]%%
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
+          %%[IF (@COMPONENT == GRADE_LEVEL) THEN]%%
+          <div class="col">
+            <div class="form-group">
 
-                <select class="form-control"
-                  id="grade_level_select"
-                  name="grade-level"
-                  required
-                  style="color:#495057c7; font-weight: 400;">
-                  <option disabled selected>Select Grade Level</option>
-                  <option value="K/R">K/R</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="I do not teach specific grades">I do not teach specific grades</option>
-                </select>
-                <div id="grade_level_invalid" class="custom-invalid-label custom-hide text-right">Grade level is required</div>
-              </div>
+              <select class="form-control"
+                id="grade_level_select"
+                name="grade-level"
+                required
+                style="color:#495057c7; font-weight: 400;">
+                <option disabled selected>Select Grade Level</option>
+                <option value="K/R">K/R</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="I do not teach specific grades">I do not teach specific grades</option>
+              </select>
+              <div id="grade_level_invalid" class="custom-invalid-label custom-hide text-right">Grade level is required</div>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Job Title ----------------->
-          %%[If @JOB_TITLE Then]%%
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <select class="form-control"
-                  id="job_title_select"
-                  name="job_title_select"
-                  required
-                  onchange="showOtherTitleInput(this.value);" <!-- Added onchange event handler -->
-                  style="color:#495057c7; font-weight: 400;" >
-                  <option value="" selected disabled>Select Job Title</option>
+          %%[IF (@COMPONENT == JOB_TITLE) THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <select class="form-control"
+                id="job_title_select"
+                name="job_title_select"
+                required
+                onchange="showOtherTitleInput(this.value);" <!-- Added onchange event handler -->
+                style="color:#495057c7; font-weight: 400;" >
+                <option value="" selected disabled>Select Job Title</option>
 
-                  %%[
-                  /* Populate Job Title Options and Redirect
-                  ********************************/
+                %%[
+                /* Populate Job Title Options and Redirect
+                ********************************/
 
-                  Set @Job_Titles = LookupRows("jobTitle_ENG_B2S", "Active", "1")
-                  For @i = 1 TO RowCount(@Job_Titles) DO
-                  Set @Job_Title = Field(Row(@Job_Titles, @i), "Job Title")
-                  OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
-                  Next @i
+                Set @Job_Titles = LookupRows("jobTitle_ENG_B2S", "Active", "1")
+                For @i = 1 TO RowCount(@Job_Titles) DO
+                Set @Job_Title = Field(Row(@Job_Titles, @i), "Job Title")
+                OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
+                Next @i
 
-                  /* Add an option for 'Other' */
-                  OutputLine('<option value="Other">Other</option>')
-                  ]%%
-                </select>
-                <div id="job_title_invalid" class="custom-invalid-label custom-hide text-right">Role is required</div>
+                /* Add an option for 'Other' */
+                OutputLine('<option value="Other">Other</option>')
+                ]%%
+              </select>
+              <div id="job_title_invalid" class="custom-invalid-label custom-hide text-right">Role is required</div>
 
-                <!-- Additional input for 'Other' job title, initially hidden -->
-                <div class="row" id="other_job_title_div" style="display:none; margin-top: 10px;">
-                  <div class="col">
-                    <div class="form-group">
-                      <input type="text" id="other_job_title" name="other_job_title" class="form-control" placeholder="Please specify your role">
-                    </div>
+              <!-- Additional input for 'Other' job title, initially hidden -->
+              <div class="row" id="other_job_title_div" style="display:none; margin-top: 10px;">
+                <div class="col">
+                  <div class="form-group">
+                    <input type="text" id="other_job_title" name="other_job_title" class="form-control" placeholder="Please specify your role">
                   </div>
                 </div>
-
               </div>
-            </div>
 
+            </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Job Title ----------------->
-          %%[If @JOB_TITLE Then]%%
-          <div class="row">
+          %%[IF (@COMPONENT == JOB_TITLE) THEN]%%
+          <div class="col">
+            <div class="form-group">
 
-            <div class="col">
-              <div class="form-group">
+              <select class="form-control"
+                id="country_name_select"
+                name="country-name"
+                required
+                style="color:#495057c7; font-weight: 400;">
+                <option value="" selected disabled>Select Country</option>
+                %%[
 
-                <select class="form-control"
-                  id="country_name_select"
-                  name="country-name"
-                  required
-                  style="color:#495057c7; font-weight: 400;">
-                  <option value="" selected disabled>Select Country</option>
-                  %%[
+                /* Populate Country Options
+                ******************************/
 
-                  /* Populate Country Options
-                  ******************************/
+                Set @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                For @i = 1 to RowCount(@Countries_Main) Do
+                Set @Country_Name = field(row(@Countries_Main, @i),"CountryName")
+                Set @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
+                OutputLine(Concat('<option value="', @Country_Name,'"',' data-code="',@Country_Code,'">',@Country_Name,'</option>'))
+                Next @i
 
-                  Set @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
-                  For @i = 1 to RowCount(@Countries_Main) Do
-                  Set @Country_Name = field(row(@Countries_Main, @i),"CountryName")
-                  Set @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
-                  OutputLine(Concat('<option value="', @Country_Name,'"',' data-code="',@Country_Code,'">',@Country_Name,'</option>'))
-                  Next @i
+                OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                  OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
+                Set @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
+                For @i = 1 to RowCount(@Countries_All) Do
+                Set @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                Set @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                OutputLine(Concat('<option value="', @Country_Name,'"',' data-code="',@Country_Code,'">',@Country_Name,'</option>'))
+                NEXT @i
+                ]%%
 
-                  Set @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
-                  For @i = 1 to RowCount(@Countries_All) Do
-                  Set @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                  Set @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                  OutputLine(Concat('<option value="', @Country_Name,'"',' data-code="',@Country_Code,'">',@Country_Name,'</option>'))
-                  NEXT @i
-                  ]%%
-
-                </select>
-                <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>
-              </div>
+              </select>
+              <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Country ----------------->
-          %%[If @COUNTRY_NAME Then]%%
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
+          %%[IF (@COMPONENT == COUNTRY_NAME) THEN]%%
+          <div class="col">
+            <div class="form-group">
 
-                <select class="form-control"
-                  id="country_name_select"
-                  name="country-name"
-                  required
-                  style="color:#495057c7; font-weight: 400;">
-                  <option value="" selected disabled>Select Country</option>
-                  %%[
+              <select class="form-control"
+                id="country_name_select"
+                name="country-name"
+                required
+                style="color:#495057c7; font-weight: 400;">
+                <option value="" selected disabled>Select Country</option>
+                %%[
 
-                  /* Populate Country Options
-                  ******************************/
+                /* Populate Country Options
+                ******************************/
 
-                  Set @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
-                  For @i = 1 to RowCount(@Countries_Main) Do
-                  Set @Country_Name = field(row(@Countries_Main, @i),"CountryName")
-                  Set @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
-                  OutputLine(Concat('<option value="', @Country_Name,'" data-code="',@Country_Code,'">',@Country_Name,'</option>'))
-                  Next @i
+                Set @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                For @i = 1 to RowCount(@Countries_Main) Do
+                Set @Country_Name = field(row(@Countries_Main, @i),"CountryName")
+                Set @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
+                OutputLine(Concat('<option value="', @Country_Name,'" data-code="',@Country_Code,'">',@Country_Name,'</option>'))
+                Next @i
 
-                  OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
+                OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                  Set @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
-                  For @i = 1 to RowCount(@Countries_All) Do
-                  Set @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                  Set @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                  OutputLine(Concat('<option value="', @Country_Name,'" data-code="',@Country_Code,'">',@Country_Name,'</option>'))
-                  NEXT @i
-                  ]%%
+                Set @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
+                For @i = 1 to RowCount(@Countries_All) Do
+                Set @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                Set @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                OutputLine(Concat('<option value="', @Country_Name,'" data-code="',@Country_Code,'">',@Country_Name,'</option>'))
+                NEXT @i
+                ]%%
 
-                </select>
-                <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>
-              </div>
+              </select>
+              <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Postal Code ----------------->
-          %%[If @POSTAL_CODE Then]%%
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
+          %%[IF (@COMPONENT == POSTAL_CODE) THEN]%%
+          <div class="col">
+            <div class="form-group">
 
-                <input class="form-control"
-                  type="text"
-                  id="postal_code_input"
-                  name="postal-code"
-                  placeholder="Postcode"
-                  title="Postcode is 4 digits with no spaces"
-                  required>
-                <div id="postcode_invalid" class="custom-invalid-label custom-hide text-right">Postcode is required</div>
-              </div>
+              <input class="form-control"
+                type="text"
+                id="postal_code_input"
+                name="postal-code"
+                placeholder="Postcode"
+                title="Postcode is 4 digits with no spaces"
+                required>
+              <div id="postcode_invalid" class="custom-invalid-label custom-hide text-right">Postcode is required</div>
             </div>
-
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Postal Code ----------------->
-          %%[If @SCHOOL_NAME Then]%%
-          <div class="row">
+          %%[IF (@COMPONENT == SCHOOL_NAME) THEN]%%
+          <div class="col">
+            <div class="form-group">
 
-            <div class="col">
-              <div class="form-group">
-
-                <input type="text"
-                  class="form-control"
-                  id="school_name_input"
-                  name="school-name"
-                  placeholder="School Name"
-                  required>
-                <div id="school_name_invalid" class="custom-invalid-label custom-hide text-right">School name is required</div>
-              </div>
+              <input type="text"
+                class="form-control"
+                id="school_name_input"
+                name="school-name"
+                placeholder="School Name"
+                required>
+              <div id="school_name_invalid" class="custom-invalid-label custom-hide text-right">School name is required</div>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- WL_or_RE_INTEREST ----------------->
-          %%[If @WL_or_RE_INTEREST Then]%%
-          <div class="row mt-0">
-            <div class="col">
-              <div class="form-group">
-
-                <input
-                  type="checkbox"
-                  id="WL_or_RE_INTEREST"
-                  name="WL_or_RE_INTEREST"
-                  value="true"
-                  required
-                  tabindex="-1" />
-                <label for="WL_or_RE_INTEREST" class="custom-field-terms form-check-label">
-                  Would you be interested in Writing legends or Reading Eggs?
-                </label>
-
-              </div>
+          %%[IF (@COMPONENT == WL_or_RE_INTEREST) THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="WL_or_RE_INTEREST"
+                name="WL_or_RE_INTEREST"
+                value="true"
+                required
+                tabindex="-1" />
+              <label for="WL_or_RE_INTEREST" class="custom-field-terms form-check-label">
+                Would you be interested in Writing legends or Reading Eggs?
+              </label>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Terms & Conditions ----------------->
-          %%[If @TERMS_AND_CONDITIONS Then]%%
-          <div id="emea_terms" class="row mt-0">
-            <div class="col">
-              <div class="form-group">
+          %%[IF (@COMPONENT == TERMS_AND_CONDITIONS) THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="terms_and_conditions_input"
+                name="terms-and-conditions"
+                value="true"
+                required
+                tabindex="-1" />
+              <label for="terms_and_conditions_input" class="custom-field-terms form-check-label" style="display: inline;">
+                I agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms of Use</a> and I have read and accept the <a target="_parent" href="https://www.3plearning.com/privacy" style="text-decoration: underline;">Privacy Policy*</a><br>
+                Reading Eggs and 3P Learning may process your personal information for its legitimate business purposes, including to enable us to provide, personalise and enhance our services for the benefit of our customers. Please see our <a target="_parent" href="https://www.3plearning.com/privacy" style="text-decoration: underline;">Privacy Policy</a> and <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms</a> to learn more. *Mandatory field.</label>
 
-                <input
-                  type="checkbox"
-                  id="terms_and_conditions_input"
-                  name="terms-and-conditions"
-                  value="true"
-                  required
-                  tabindex="-1" />
-                <label for="terms_and_conditions_input" class="custom-field-terms form-check-label" style="display: inline;">
-                  I agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms of Use</a> and I have read and accept the <a target="_parent" href="https://www.3plearning.com/privacy" style="text-decoration: underline;">Privacy Policy*</a><br>
-                  Reading Eggs and 3P Learning may process your personal information for its legitimate business purposes, including to enable us to provide, personalise and enhance our services for the benefit of our customers. Please see our <a target="_parent" href="https://www.3plearning.com/privacy" style="text-decoration: underline;">Privacy Policy</a> and <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms</a> to learn more. *Mandatory field.</label>
-
-                <div id="terms_and_conditions_invalid" class="custom-invalid-label custom-hide text-right">Please agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">terms and
-                    conditions</a>. </div>
-
-              </div>
+              <div id="terms_and_conditions_invalid" class="custom-invalid-label custom-hide text-right">Please agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">terms and
+                  conditions</a>. </div>
             </div>
           </div>
-
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Subscriber Opt In ----------------->
-          %%[If @SUBSCRIBER_OPT_IN Then]%%
-          <div class="row mt-0">
-            <div class="col">
-              <div class="form-group">
-                <input type="checkbox"
-                  id="subscriber_opt_in_input"
-                  name="subscriber-opt-in"
-                  value="true"
-                  tabindex="-1" />
-                <label for="subscriber_opt_in_input" class="custom-field-terms form-check-label" style="display: inline;">
-                  YES! Sign me up for educational content, resources and occasional promotional material.
-                </label>
-                <!-- <div id="subscriber_opt_in_invalid" class="custom-invalid-label custom-hide text-right">...</div> -->
-              </div>
+          %%[IF (@COMPONENT == SUBSCRIBER_OPT_IN) THEN]%%
+          <div class="col">
+            <div class="form-group">
+              <input type="checkbox"
+                id="subscriber_opt_in_input"
+                name="subscriber-opt-in"
+                value="true"
+                tabindex="-1" />
+              <label for="subscriber_opt_in_input" class="custom-field-terms form-check-label" style="display: inline;">
+                YES! Sign me up for educational content, resources and occasional promotional material.
+              </label>
+              <!-- <div id="subscriber_opt_in_invalid" class="custom-invalid-label custom-hide text-right">...</div> -->
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
 
 
           <!------------- Submit Button ----------------->
-          %%[If @SUBMIT_BUTTON Then]%%
-          <div class="row mt-4">
-            <div class="col text-center">
-              <div class="form-group">
-                <button class="custom_submit_button"
-                  type="submit"
-                  name="myButton"
-                  id="submit_button"
-                  value="submit">Get 12 eBooks free!</button>
-              </div>
+          %%[IF (@COMPONENT == SUBMIT_BUTTON) THEN]%%
+          <div class="col text-center">
+            <div class="form-group">
+              <button class="custom_submit_button"
+                type="submit"
+                name="myButton"
+                id="submit_button"
+                value="submit">Get 12 eBooks free!</button>
             </div>
           </div>
-          %%[EndIf]%%
+          %%[ENDIF]%%
+
+
+          %%[
+          /***************************************
+          CONTINUE LOOPING OVER RENDER_COMPONENTS
+          ****************************************/
+          NEXT @i
+          ]%%
 
 
         </div>
@@ -837,7 +814,9 @@
 
 
 
-  <!-- ===========================  JAVASCRIPT  =========================== -->
+
+
+  <!-- ===========================  CLENT-SIDE JAVASCRIPT  =========================== -->
 
 
   %%=Concat('<','script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js ">
