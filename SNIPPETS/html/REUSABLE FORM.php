@@ -7,12 +7,12 @@
 
 
 <script runat="server" executioncontexttype="Post">
+  Platform.Load("core", "1");
   /**
    * BACKEND-SSJS
    * 
    * @description: This code will run on the backend when the form is submitted
    */
-  Platform.Load("core", "1");
   try {
     Write('...Processing');
   } catch (error) {
@@ -20,17 +20,17 @@
   }
 
   //do not render the below on post requests
-  if (false)
+  // if (false)
 </script>
 
 
 <script runat="server" executioncontexttype="Get">
+  Platform.Load("core", "1");
   /**
    * FRONTEND-SSJS
    * 
    * @description: This code will run on the frontend when the form is displayed
    */
-  Platform.Load("core", "1");
   try {
 
 
@@ -135,7 +135,7 @@
   }
 
   //render the below form on get requests
-  if (true)
+  // if(true)
 </script>
 
 
