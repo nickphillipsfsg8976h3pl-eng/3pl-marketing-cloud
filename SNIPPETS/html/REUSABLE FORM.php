@@ -114,7 +114,7 @@
     _form = _form && _form.toLowerCase();
     if (_form) {
       var _templateComponents = TEMPLATES[_form];
-      RENDER_COMPONENTS.concat(_templateComponents);
+      RENDER_COMPONENTS = RENDER_COMPONENTS.concat(_templateComponents);
     } //if
 
     // ADD INDIVIDUAL INPTUS TO RENDER COMPONENTS
