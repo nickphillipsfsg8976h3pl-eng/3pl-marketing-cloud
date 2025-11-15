@@ -4,12 +4,14 @@
    * 
    * Query Parameters
    * -----------------
-   * @parameter: form - the name of a template used to display preconfigured form inputs
-   * @parameter: fields - a list of individual form inputs to display
+   *
    * @parameter: cid - the salesforce campaign id where the lead will be attached
    * @parameter: rid - the id of a redirect url located in marketing cloud
    * @parameter: pid - the 3P Learning product name (ie. mathletics, readingeggs etc)
    * @parameter: gclid - ???
+   * 
+   * @parameter: template - the name of a template used to display preconfigured form inputs
+   * @parameter: components - a list of individual form inputs to display
    * 
    */
 </script>
@@ -45,9 +47,10 @@
 
     var TEMPLATES = {
 
-      //?form=master
+      //?template=master
       master: [
         "PRODUCT_INTEREST",
+        "USER_INTEREST",
         "FIRST_NAME",
         "LAST_NAME",
         "EMAIL_ADDRESS",
@@ -64,7 +67,7 @@
         "SUBMIT_BUTTON"
       ],
 
-      //?form=basic
+      //?template=basic
       required: [
         "FIRST_NAME",
         "LAST_NAME",
@@ -77,7 +80,7 @@
         "SUBMIT_BUTTON"
       ],
 
-      //?form=tof
+      //?template=tof
       tof: [
         "FIRST_NAME",
         "LAST_NAME",
@@ -91,7 +94,7 @@
         "SUBMIT_BUTTON"
       ],
 
-      //?form=bof
+      //?template=bof
       bof: [
         "FIRST_NAME",
         "LAST_NAME",
@@ -107,7 +110,7 @@
         "SUBMIT_BUTTON"
       ],
 
-      //?form=quote
+      //?template=quote
       quote: [
         "PRODUCT_INTEREST",
         "FIRST_NAME",
@@ -126,7 +129,7 @@
         "SUBMIT_BUTTON"
       ],
 
-      //?form=us_form
+      //?template=us_form
       us_form: [
         "PRODUCT_INTEREST",
         "USER_INTEREST",
@@ -146,7 +149,7 @@
         "SUBMIT_BUTTON"
       ],
 
-      //?form=trial
+      //?template=trial
       trial: [
         "FIRST_NAME",
         "LAST_NAME",
@@ -162,7 +165,7 @@
         "SUBMIT_BUTTON"
       ],
 
-      //?form=info
+      //?template=info
       info: [
         "FIRST_NAME",
         "LAST_NAME",
@@ -178,7 +181,7 @@
         "SUBMIT_BUTTON"
       ],
 
-      //?from=demo
+      //?template=demo
       demo: [
         "FIRST_NAME",
         "LAST_NAME",
@@ -199,36 +202,36 @@
 
 
 
-    /*******************************
-    ----- CHOOSE FORM TEMPLATE -----
-    ********************************/
+    /**************************************
+    ----- CHOOSE COMPONENTS TO RENDER -----
+    ***************************************/
 
 
-    //?form=( master | tof | bof )...etc
-    var _form = Request.GetQueryStringParameter("form")
-    _form = _form && _form.toLowerCase();
-    if (_form) {
-      var formFields = TEMPLATES[_form]
-      for (var i = 0; i < formFields.length; i++) {
-        Variable.SetValue(formFields[i], "true");
-      } //for
+    // CONSTANTS
+    var COMPONENTS_TO_RENDER = [];
+
+
+    // ADD ALL TEMPLATE COMPONENTS
+    var templateQueryParameter = Request.GetQueryStringParameter("template")
+    if (templateQueryParameter) {
+      var templateComponentList = TEMPLATES[templateQueryParameter.toLowerCase()];
+      COMPONENTS_TO_RENDER = COMPONENTS_TO_RENDER.concat(templateComponentList);
     } //if
 
 
-    /************************************
-    ----- &/OR CHOOSE SINGLE FIELDS -----
-    *************************************/
-
-
-    //?fields=etc,etc,etc
-    var _fields = Request.GetQueryStringParameter("fields")
-    _fields = _fields && _fields.toUpperCase().split(',');
-    if (_fields) {
-      for (var i = 0; i < _fields.length; i++) {
-        var _fields_field = _fields[i]
-        Variable.SetValue(_fields_field, "true")
+    // ADD SINGLE FORM COMPONENTS
+    var components = Request.GetQueryStringParameter("components")
+    if (components) {
+      var singleComponentList = components.toUpperCase().split(',');
+      for (var i = 0; i < singleComponentList.length; i++) {
+        var singleComponent = singleComponentList[i];
+        COMPONENTS_TO_RENDER.push(singleComponent);
       } //for    
     } //if
+
+
+    // PASS COMPONENTS TO AMPSCRIPT
+    Variable.SetValue("COMPONENTS_TO_RENDER", COMPONENTS_TO_RENDER);
 
 
     /*******************************
@@ -278,6 +281,7 @@
 
 <head>
 
+
   <!-- Google Tag Manager -->
   <script>
     (function(w, d, s, l, i) {
@@ -306,7 +310,7 @@
 
   <!-- Title & Favicons -->
   <title> 3PLearning </title>
-  <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon">
   <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
@@ -470,192 +474,278 @@
     <!------------- Hidden ----------------->
 
 
-    <input type="hidden" name="debug" value="%%=v(@debug)=%%">
+    <input type="hidden" name="_debug" value="%%=v(@debug)=%%">
 
-    <input type="hidden" name="campaign-name" value="%%=v(@_Campaign_Name)=%%">
-    <input type="hidden" name="triggered-send-key" value="%%=v(@_Triggered_Send_Key)=%%">
-    <input type="hidden" id="pid" name="pid" value="%%=v(@Product)=%%">
-    <input type="hidden" id="eid" name="eid" value="%%=v(@enquiry)=%%">
-    <input type="hidden" id="rid" name="rid" value="%%=v(@Redirect)=%%">
-    <input type="hidden" name="redirect-to-page" value="%%=v(@_Redirect_To_Page)=%%">
-    <input type="hidden" id="form" name="form" value="%%=v(@form)=%%">
-    <input type="hidden" id="utm-source" name="utm-source" value="%%=v(@utm_source)=%%">
-    <input type="hidden" id="utm-medium" name="utm-medium" value="%%=v(@_UTM_Medium)=%%">
-    <input type="hidden" id="utm-campaign" name="utm-campaign" value="%%=v(@_UTM_Campaign)=%%">
-    <input type="hidden" id="utm-content" name="utm-content" value="%%=v(@_UTM_Content)=%%">
-    <input type="hidden" id="utm-term" name="utm-term" value="%%=v(@_UTM_Term)=%%">
-    <input type="hidden" id="countrycode" name="countrycode" value="%%=v(@Country_Code)=%%">
-    <input type="hidden" id="gclid" name="gclid" value="%%=v(@gclid)=%%">
-    <input type="hidden" id="referrer" name="referrer" value="">
+    <input type="hidden" name="_triggered_send_key" value="%%=v(@triggered_send_key)=%%">
 
+    <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
+    <input type="hidden" name="_pid" value="%%=v(@pid)=%%">
+    <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
+    <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
+    <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
+
+    <input type="hidden" name="_utm_source" value="%%=v(@utm_source)=%%">
+    <input type="hidden" name="_utm_medium" value="%%=v(@utm_medium)=%%">
+    <input type="hidden" name="_utm_campaign" value="%%=v(@utm_campaign)=%%">
+    <input type="hidden" name="_utm_content" value="%%=v(@utm_content)=%%">
+    <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
+
+    <input type="hidden" name="_referrer" value="">
+
+    <input type="hidden" name="_url">
+
+    <script>
+      // assign the form or website url to the hidden _url input
+      document.querySelector('input[name="_url"]').value = location.href;
+    </script>
+
+
+    <!------------- Form ----------------->
 
 
     <!-- Wrapper -->
-
     <div class=" container my-5">
       <div class="row">
 
 
-
-
-
         %%[
-        if indexOf(@product, "mathletics") > 0 then
-        set @mathletics = 1
-        endif
-        if indexOf(@product, "mathseeds") > 0 then
-        set @mathseeds = 1
-        endif
-        if indexOf(@product, "readingeggs") > 0 then
-        set @readingeggs = 1
-        endif
+        /***********************************
+        START LOOPING OVER RENDER COMPONENTS
+        ************************************/
+        SET @LENGTH = ROWCOUNT(@COMPONENTS_TO_RENDER)
+        FOR @index = 1 TO @LENGTH DO
+        SET @COMPONENT = ROW(@COMPONENTS_TO_RENDER, @index)
         ]%%
 
 
 
-
         <!------------- Product Interest ----------------->
-
-        %%[If @PRODUCT_INTEREST Then]%%
+        %%[IF (@COMPONENT == "PRODUCT_INTEREST") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
-            <label for="product_interest_select" class="custom-field-label">
-              PRODUCT INTERESTS
-            </label>
-            <select class="form-control selectpicker show-tick"
+
+            <select
+              class="form-control selectpicker show-tick"
               id="product_interest_select"
               name="product-interest"
               multiple
-              title="Select Your Product Interests"
+              title="Product Interests"
               data-selected-text-format="values"
               data-actions-box="true"
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option value="mathletics" %%=IIF(not empty(@mathletics), "Selected" , "" )=%%>Mathletics</option>
-              <option value="mathseeds" %%=IIF(not empty(@mathseeds), "Selected" , "" )=%%>Mathseeds</option>
-              <option value="readingeggs" %%=IIF(not empty(@readingeggs), "Selected" , "" )=%%>Reading Eggs</option>
+              <option value="mathletics">Mathletics</option>
+              <option value="mathseeds">Mathseeds</option>
+              <option value="readingEggs">Reading Eggs</option>
 
             </select>
+
             <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
           </div>
         </div>
-        %%[EndIf]%%
+        %%[ENDIF]%%
 
 
-        %%[If @USER_INTEREST Then]%%
+        <!------------- Product Interest (Mathletics Pre-Selected) ----------------->
+        %%[IF (@COMPONENT == "PRODUCT_INTEREST_MX") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <select class="form-control"
+            <select
+              class="form-control selectpicker show-tick"
+              id="product_interest_select"
+              name="product-interest"
+              multiple
+              title="Product Interests"
+              data-selected-text-format="values"
+              data-actions-box="true"
+              required
+              style="color:#495057c7; font-weight: 400;">
+
+              <option value="mathletics" selected>Mathletics</option>
+              <option value="mathseeds">Mathseeds</option>
+              <option value="readingEggs">Reading Eggs</option>
+
+            </select>
+
+            <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        <!------------- Product Interest (Mathseeds Pre-Selected) ----------------->
+        %%[IF (@COMPONENT == "PRODUCT_INTEREST_MS") THEN]%%
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <select
+              class="form-control selectpicker show-tick"
+              id="product_interest_select"
+              name="product-interest"
+              multiple
+              title="Product Interests"
+              data-selected-text-format="values"
+              data-actions-box="true"
+              required
+              style="color:#495057c7; font-weight: 400;">
+
+              <option value="mathletics">Mathletics</option>
+              <option value="mathseeds" selected>Mathseeds</option>
+              <option value="readingEggs">Reading Eggs</option>
+
+            </select>
+
+            <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        <!------------- Product Interest (Reading Eggs Pre-Selected) ----------------->
+        %%[IF (@COMPONENT == "PRODUCT_INTEREST_RE") THEN]%%
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <select
+              class="form-control selectpicker show-tick"
+              id="product_interest_select"
+              name="product-interest"
+              multiple
+              title="Product Interests"
+              data-selected-text-format="values"
+              data-actions-box="true"
+              required
+              style="color:#495057c7; font-weight: 400;">
+
+              <option value="mathletics">Mathletics</option>
+              <option value="mathseeds">Mathseeds</option>
+              <option value="readingEggs" selected>Reading Eggs</option>
+
+            </select>
+
+            <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        <!------------- User Interest ----------------->
+        %%[IF (@COMPONENT == "USER_INTEREST") THEN]%%
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <select
+              class="form-control"
               id="user_interest_select"
               name="user_interest"
               required
-              autofocus
               style="color:#495057c7; font-weight: 400;">
-              <option disabled selected hidden>What are you interested in?</option>
+
+              <option disabled selected>What are you interested in?</option>
               <option value="demo">Complimentary Consultation</option>
               <option value="quote">Quote</option>
 
             </select>
+
             <div id="user_interest_invalid" class="custom-invalid-label custom-hide text-right">Your Interest is required</div>
           </div>
         </div>
-        %%[EndIf]%%
+        %%[ENDIF]%%
+
 
         <!------------- First Name ----------------->
-
-        %%[If @FIRST_NAME Then]%%
+        %%[IF (@COMPONENT == "FIRST_NAME") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <input type="text"
+            <input
               class="form-control"
+              type="text"
               id="first_name_input"
               name="first-name"
               placeholder="First Name"
               autofocus
               required>
+
             <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First name is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
-
+        %%[ENDIF]%%
 
 
         <!------------- Last Name ----------------->
-
-        %%[If @LAST_NAME Then]%%
+        %%[IF (@COMPONENT == "LAST_NAME") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <input type="text"
+            <input
               class="form-control"
+              type="text"
               id="last_name_input"
               name="last-name"
               placeholder="Last Name"
               required>
+
             <div id="last_name_invalid" class="custom-invalid-label custom-hide text-right">Last name is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
-
+        %%[ENDIF]%%
 
 
         <!------------- Email Addres----------------->
-
-        %%[If @EMAIL_ADDRESS Then]%%
+        %%[IF (@COMPONENT == "EMAIL_ADDRESS") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <input type="email"
+            <input
               class="form-control"
+              type="email"
               id="email_address_input"
               name="email-address"
               placeholder="Email Address"
               required>
+
             <div id="email_address_invalid" class="custom-invalid-label custom-hide text-right">A valid email address is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
-
+        %%[ENDIF]%%
 
 
         <!------------- Phone Number ----------------->
-
-        %%[If @PHONE_NUMBER Then]%%
+        %%[IF (@COMPONENT == "PHONE_NUMBER") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <input type="text"
+            <input
               class="form-control"
+              type="text"
               id="phone_number_input"
               name="phone-number"
               placeholder="Mobile / Work Phone"
               required>
+
             <div id="phone_number_invalid" class="custom-invalid-label custom-hide text-right">Phone number is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
-
+        %%[ENDIF]%%
 
 
         <!------------- Grade Level ----------------->
-
-        %%[If @GRADE_LEVEL Then]%%
+        %%[IF (@COMPONENT == "GRADE_LEVEL") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <select class="form-control"
+            <select
+              class="form-control"
               id="grade_level_select"
               name="grade-level"
               required
               style="color:#495057c7; font-weight: 400;">
+
               <option disabled selected>Select Grade Level</option>
+
               <option value="K/R">K/R</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -670,26 +760,27 @@
               <option value="11">11</option>
               <option value="12">12</option>
               <option value="I do not teach specific grades">I do not teach specific grades</option>
+
             </select>
+
             <div id="grade_level_invalid" class="custom-invalid-label custom-hide text-right">Grade level is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
-
+        %%[ENDIF]%%
 
 
         <!------------- Job Title ----------------->
-
-        %%[If @JOB_TITLE Then]%%
+        %%[IF (@COMPONENT == "JOB_TITLE") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <select class="form-control"
+            <select
+              class="form-control"
               id="job_title_select"
               name="job_title_select"
               required
               style="color:#495057c7; font-weight: 400;">
+
               <option value="" selected disabled>Select Job Title</option>
 
               %%[
@@ -715,35 +806,30 @@
 
               ENDIF
 
-
-
-
               ]%%
 
-
-
-
             </select>
+
             <div id="job_title_invalid" class="custom-invalid-label custom-hide text-right">Job title is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
-
+        %%[ENDIF]%%
 
 
         <!------------- Country ----------------->
-
-        %%[If @COUNTRY_NAME Then]%%
+        %%[IF (@COMPONENT == "COUNTRY_NAME") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <select class="form-control"
+            <select
+              class="form-control"
               id="country_name_select"
               name="country-name"
               required
               style="color:#495057c7; font-weight: 400;">
+
               <option value="" selected disabled>Select Country</option>
+
               %%[
 
               /* Populate Country Options
@@ -767,100 +853,98 @@
               ]%%
 
             </select>
+
             <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
-
+        %%[ENDIF]%%
 
 
         <!------------- State ----------------->
-
-        %%[If @STATE_NAME Then]%%
+        %%[IF (@COMPONENT == "STATE_NAME") THEN]%%
         <div class="col-sm-12">
           <div class="form-group" id="state_name_form_group">
 
-            <select class="form-control"
+            <select
+              class="form-control"
               id="state_name_select"
               name="state-name"
               onchange=jobTitleChanged()
               required
               style="color:#495057c7; font-weight: 400;">
+
               <option disabled selected>Select State <small>&nbsp;(Please select a country first.)</small></option>
+
             </select>
+
             <div id="state_invalid" class="custom-invalid-label custom-hide text-right">State is required</div>
           </div>
         </div>
-        %%[EndIf]%%
+        %%[ENDIF]%%
 
 
         <!------------- Postal Code ----------------->
-
-        %%[If @POSTAL_CODE Then]%%
+        %%[IF (@COMPONENT == "POSTAL_CODE") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <input class="form-control"
+            <input
+              class="form-control"
               type="text"
               id="postal_code_input"
               name="postal-code"
               placeholder="Postcode / Zipcode"
               title="Postcode/Zipcode is 4 digits with no spaces"
               required>
+
             <div id="postcode_invalid" class="custom-invalid-label custom-hide text-right">Postcode is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
-
+        %%[ENDIF]%%
 
 
         <!------------- School Name ----------------->
-
-        %%[If @SCHOOL_NAME Then]%%
+        %%[IF (@COMPONENT == "SCHOOL_NAME") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <input type="text"
+            <input
               class="form-control"
+              type="text"
               id="school_name_input"
               name="school-name"
               placeholder="School or District Name"
               required>
+
             <div id="school_name_invalid" class="custom-invalid-label custom-hide text-right">School name is required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
+        %%[ENDIF]%%
 
 
         <!------------- No Of Licences  ----------------->
-
-        %%[
-        If @NO_OF_LICENCES OR @form == 'quote' Then
-        ]%%
+        %%[IF (@COMPONENT == "NO_OF_LICENCES") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
-            <input type="number"
+            <input
               class="form-control"
+              type="number"
               id="no_of_licences_input"
               name="no-of-licences"
               placeholder="Number of Student Licenses"
               required
               min="20"
               max="1000">
+
             <div id="no_of_licences_invalid" class="custom-invalid-label custom-hide text-right">Number of student licences required</div>
           </div>
         </div>
-        %%[EndIf]%%
-
+        %%[ENDIF]%%
 
 
         <!------------- Terms & Conditions ----------------->
-
-        %%[If @TERMS_AND_CONDITIONS Then]%%
+        %%[IF (@COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -868,64 +952,74 @@
               type="checkbox"
               id="terms_and_conditions_input"
               name="terms-and-conditions"
-              value="true"
-              required
-              tabindex="-1" />
-            <label for="terms_and_conditions_input" class="custom-field-terms form-check-label">
-              I agree to the 3P Learning <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">terms and
-                conditions</a>.</label>
+              checked
+              required>
 
-            <div id="terms_and_conditions_invalid" class="custom-invalid-label custom-hide text-right">Please agree to the <a target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">terms and
-                conditions</a>.</div>
+            <label
+              for="terms_and_conditions_input"
+              class="custom-field-terms form-check-label">
+              I agree to the 3P Learning.
+              <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
+            </label>
 
+            <div id="terms_and_conditions_invalid" class="custom-invalid-label custom-hide text-right">Please agree to the terms and conditions</div>
           </div>
         </div>
-        %%[EndIf]%%
-
+        %%[ENDIF]%%
 
 
         <!------------- Subscriber Opt In ----------------->
-
-        %%[If @SUBSCRIBER_OPT_IN Then]%%
+        %%[IF (@COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
-            <input type="checkbox"
+
+            <input
+              type="checkbox"
               id="subscriber_opt_in_input"
               name="subscriber-opt-in"
-              value="true"
-              tabindex="-1" />
+              checked>
+
             <label for="subscriber_opt_in_input" class="custom-field-terms form-check-label" style="display: inline;">
-              YES! Sign me up for monthly newsletters, educational content, resources and occasional promotional material.
+              YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
             </label>
+
             <!-- <div id="subscriber_opt_in_invalid" class="custom-invalid-label custom-hide text-right">...</div> -->
           </div>
         </div>
-        %%[EndIf]%%
-
+        %%[ENDIF]%%
 
 
         <!------------- Submit Button ----------------->
-
-        %%[If @SUBMIT_BUTTON Then]%%
+        %%[IF (@COMPONENT == "SUBMIT_BUTTON") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
-            <button class="custom_submit_button"
+
+            <button
+              class="custom_submit_button"
               type="submit"
-              name="myButton"
-              id="submit_button"
-              value="Submit">
+              name="_submit_buttom"
+              id="_submit_buttom">
               Submit
             </button>
+
           </div>
         </div>
-        %%[EndIf]%%
+        %%[ENDIF]%%
 
 
+        %%[
+        /************************************
+        FINISH LOOPING OVER RENDER COMPONENTS
+        *************************************/
+        NEXT @index
+        ]%%
 
 
       </div>
     </div>
     <!-- //wrapper -->
+
+
   </form>
 
 
