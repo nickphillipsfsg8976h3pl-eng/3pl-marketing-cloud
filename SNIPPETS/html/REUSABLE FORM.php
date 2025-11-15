@@ -1077,7 +1077,6 @@
               class="form-control"
               id="_state_province_name"
               name="_state_province_name"
-              onchange=jobTitleChanged()
               required
               style="color:#495057c7; font-weight: 400;">
 
@@ -1101,7 +1100,6 @@
               class="form-control"
               id="_state_province_name"
               name="_state_province_name"
-              onchange=jobTitleChanged()
               required
               style="color:#495057c7; font-weight: 400;">
 
@@ -1411,6 +1409,7 @@
   <script src="https://web.my.3plearning.com/formFieldFunctions"></script>
 
 
+  <!-- Validate -->
   <script>
     //
     /*******************
@@ -1451,10 +1450,11 @@
       }); //onsubmit
 
     }); //read
+  </script>
 
 
-
-
+  <!-- Get Cookies -->
+  <script>
     /**************************************************
     ----- Parse Cookie Data to hidden form fields -----
     ***************************************************/
@@ -1499,62 +1499,62 @@
       document.querySelector("#gclid").value = getParameterByName('gclid');
       document.querySelector("#referrer").value = referrer;
     };
+  </script>
 
 
+  <!-- Country & State Changes -->
+  <script>
     /****************************
     ----- On Country Change -----
     *****************************/
 
 
-    //CONSTANTS
-    let allStateNameData;
+    try {
 
-    //DOM ELEMENTS
-    const thisDocument = $(document);
-    const countryNameSelect = $('#_country_name');
-    const stateProvinceNameSelect = $('#_state_province_name');
+      //CONSTANTS
+      let allStateNameData;
 
-
-    //EVENTS
-    thisDocument.on('ready', getStateNameData);
-    countryNameSelect.on('change', handleChangeCountryName);
+      //DOM ELEMENTS
+      const thisDocument = $(document);
+      const countryNameSelect = $('#_country_name');
+      const stateProvinceNameSelect = $('#_state_province_name');
 
 
-    //HANDLERS
+      //EVENTS
+      thisDocument.on('ready', getStateNameData)
+      countryNameSelect.on('change', handleChangeCountryName);
 
-    function getStateNameData() {
-      let allStatesURLPath = "/gf_states"
-      axios.get(allStatesURLPath)
-        .then(response => {
-          allStateNameData = response.data
-        }).catch(console.error)
-    } //
 
-    function handleChangeCountryName(e) {
-      //choose states
-      let countryCode = e.target[e.target.selectedIndex].dataset.countrycode
-      let countryStateData = allStateNameData.filter((option) => option["Country Code"] == countryCode)
+      //HANDLERS
 
-      //reset options
-      stateProvinceNameSelect.val('')
-      stateProvinceNameSelect.find("option").remove();
-      stateProvinceNameSelect.append(`<option disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
+      function getStateNameData() {
+        let allStatesURLPath = "/gf_states"
+        axios.get(allStatesURLPath)
+          .then(response => {
+            allStateNameData = response.data
+          }).catch(console.error)
+      } //
 
-      //populate options or hide select
-      if (countryStateData.length > 0) {
-        //states found
-        stateNameFormGroup.show();
-        stateProvinceNameSelect.attr("required", "true");
+      function handleChangeCountryName(e) {
+        //choose states
+        let countryCode = e.target[e.target.selectedIndex].dataset.countrycode
+        let countryStateData = allStateNameData.filter((option) => option["Country Code"] == countryCode)
+
+        //reset options
+        stateProvinceNameSelect.val('')
+        stateProvinceNameSelect.find("option").remove();
+        stateProvinceNameSelect.append(`<option value="" disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
+
+        //populate options or hide select
         countryStateData.forEach((state) => {
           stateProvinceNameSelect.append(`<option value="${state['State Code']}">${state['State Name']}</option>`)
         }) //forEach
-      } else {
-        //no states found
-        stateNameFormGroup.hide();
-        stateProvinceNameSelect.removeAttr("required");
-      } //if
 
-    } //handleChange()
+      } //handleChange()
+
+    } catch (e) {
+      console.error(e.message);
+    }
   </script>
 
 
