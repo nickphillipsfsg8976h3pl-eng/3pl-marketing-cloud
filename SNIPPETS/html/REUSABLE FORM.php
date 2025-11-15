@@ -454,11 +454,6 @@
       font-weight: bold;
     }
 
-    .custom-field-terms {
-      font-weight: lighter;
-      color: #495057;
-    }
-
     .custom-hide {
       display: none;
     }
@@ -564,7 +559,7 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a product interest</div>
+            <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in before submitting</div>
 
           </div>
         </div>
@@ -581,7 +576,7 @@
               id="_product_interest"
               name="_product_interest"
               multiple
-              title="Product Interests"
+              title="Product Interest"
               data-selected-text-format="values"
               data-actions-box="true"
               required
@@ -593,9 +588,11 @@
 
             </select>
 
-            <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
+            <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in before submitting</div>
+
           </div>
         </div>
+
         %%[ENDIF]%%
 
 
@@ -605,19 +602,20 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="custom-select"
               id="_user_interest"
               name="_user_interest"
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option disabled selected>What are you interested in?</option>
+              <option value="" disabled selected>What are you interested in?</option>
               <option value="demo">Complimentary Consultation</option>
               <option value="quote">Quote</option>
 
             </select>
 
-            <div id="user_interest_invalid" class="custom-invalid-label custom-hide text-right">Your Interest is required</div>
+            <div class="invalid-feedback">Please select what you are interested in before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -635,13 +633,14 @@
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option disabled selected>What are you interested in?</option>
+              <option value="" disabled selected>What are you interested in?</option>
               <option value="demo">Complimentary Consultation</option>
               <option value="quote">Quote</option>
 
             </select>
 
-            <div id="user_interest_invalid" class="custom-invalid-label custom-hide text-right">Your Interest is required</div>
+            <div class="invalid-feedback">Please select what you are interested in before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -660,7 +659,8 @@
               placeholder="First Name"
               required>
 
-            <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First name is required</div>
+            <div class="invalid-feedback">Please enter a first name before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -679,7 +679,8 @@
               placeholder="First Name"
               required>
 
-            <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First name is required</div>
+            <div class="invalid-feedback">Please enter a first name before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -698,7 +699,8 @@
               placeholder="Last Name"
               required>
 
-            <div id="last_name_invalid" class="custom-invalid-label custom-hide text-right">Last name is required</div>
+            <div class="invalid-feedback">Please enter a last name before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -717,7 +719,8 @@
               placeholder="Last Name"
               required>
 
-            <div id="last_name_invalid" class="custom-invalid-label custom-hide text-right">Last name is required</div>
+            <div class="invalid-feedback">Please enter a last name before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -736,7 +739,8 @@
               placeholder="Email Address"
               required>
 
-            <div id="email_address_invalid" class="custom-invalid-label custom-hide text-right">A valid email address is required</div>
+            <div class="invalid-feedback">Please enter a valid email address before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -755,7 +759,8 @@
               placeholder="Email Address"
               required>
 
-            <div id="email_address_invalid" class="custom-invalid-label custom-hide text-right">A valid email address is required</div>
+            <div class="invalid-feedback">Please enter a valid email address before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -774,7 +779,8 @@
               placeholder="Mobile / Work Phone"
               required>
 
-            <div id="phone_number_invalid" class="custom-invalid-label custom-hide text-right">Phone number is required</div>
+            <div class="invalid-feedback">Please enter a phone number before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -793,7 +799,8 @@
               placeholder="Mobile / Work Phone"
               required>
 
-            <div id="phone_number_invalid" class="custom-invalid-label custom-hide text-right">Phone number is required</div>
+            <div class="invalid-feedback">Please enter a phone number before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -811,7 +818,7 @@
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option disabled selected>Select Grade Level</option>
+              <option value="" disabled selected>Select Grade Level</option>
 
               <option value="K/R">K/R</option>
               <option value="1">1</option>
@@ -830,7 +837,8 @@
 
             </select>
 
-            <div id="grade_level_invalid" class="custom-invalid-label custom-hide text-right">Grade level is required</div>
+            <div class="invalid-feedback">Please select a grade level before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -848,7 +856,7 @@
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option disabled selected>Select Grade Level</option>
+              <option value="" disabled selected>Select Grade Level</option>
 
               <option value="K/R">K/R</option>
               <option value="1">1</option>
@@ -867,7 +875,8 @@
 
             </select>
 
-            <div id="grade_level_invalid" class="custom-invalid-label custom-hide text-right">Grade level is required</div>
+            <div class="invalid-feedback">Please select a grade level before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -914,7 +923,8 @@
 
             </select>
 
-            <div id="job_title_invalid" class="custom-invalid-label custom-hide text-right">Job title is required</div>
+            <div class="invalid-feedback">Please select a job title before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -961,7 +971,8 @@
 
             </select>
 
-            <div id="job_title_invalid" class="custom-invalid-label custom-hide text-right">Job title is required</div>
+            <div class="invalid-feedback">Please select a job title before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1005,7 +1016,8 @@
 
             </select>
 
-            <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>
+            <div class="invalid-feedback">Please select a country before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1049,7 +1061,8 @@
 
             </select>
 
-            <div id="country_invalid" class="custom-invalid-label custom-hide text-right">Country is required</div>
+            <div class="invalid-feedback">Please select a country before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1058,21 +1071,22 @@
         <!------------- State / Province Name ----------------->
         %%[IF (@COMPONENT == "STATE_PROVINCE_NAME") THEN]%%
         <div class="col-sm-12">
-          <div class="form-group" id="state_name_form_group">
+          <div class="form-group">
 
             <select
               class="form-control"
-              id="_state_name"
-              name="_state_name"
+              id="_state_province_name"
+              name="_state_province_name"
               onchange=jobTitleChanged()
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
+              <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
             </select>
 
-            <div id="state_invalid" class="custom-invalid-label custom-hide text-right">State is required</div>
+            <div class="invalid-feedback">Please select a state or province before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1081,21 +1095,22 @@
         <!------------- State / Province Name HALF----------------->
         %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_HALF") THEN]%%
         <div class="col-sm-12 col-md-6">
-          <div class="form-group" id="state_name_form_group">
+          <div class="form-group">
 
             <select
               class="form-control"
-              id="_state_name"
-              name="_state_name"
+              id="_state_province_name"
+              name="_state_province_name"
               onchange=jobTitleChanged()
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
+              <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
             </select>
 
-            <div id="state_invalid" class="custom-invalid-label custom-hide text-right">State is required</div>
+            <div class="invalid-feedback">Please select a state or province before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1115,7 +1130,8 @@
               title="Postcode/Zipcode is 4 digits with no spaces"
               required>
 
-            <div id="postcode_invalid" class="custom-invalid-label custom-hide text-right">Postcode is required</div>
+            <div class="invalid-feedback">Please enter a postcode or zipcode before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1135,7 +1151,8 @@
               title="Postcode/Zipcode is 4 digits with no spaces"
               required>
 
-            <div id="postcode_invalid" class="custom-invalid-label custom-hide text-right">Postcode is required</div>
+            <div class="invalid-feedback">Please enter a postcode or zipcode before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1154,7 +1171,8 @@
               placeholder="School or District Name"
               required>
 
-            <div id="school_name_invalid" class="custom-invalid-label custom-hide text-right">School name is required</div>
+            <div class="invalid-feedback">Please enter a school name before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1173,7 +1191,8 @@
               placeholder="School or District Name"
               required>
 
-            <div id="school_name_invalid" class="custom-invalid-label custom-hide text-right">School name is required</div>
+            <div class="invalid-feedback">Please enter a school name before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1194,7 +1213,8 @@
               min="20"
               max="1000">
 
-            <div id="no_of_licences_invalid" class="custom-invalid-label custom-hide text-right">Number of student licences required</div>
+            <div class="invalid-feedback">Please enter how many licences are needed before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1215,7 +1235,8 @@
               min="20"
               max="1000">
 
-            <div id="no_of_licences_invalid" class="custom-invalid-label custom-hide text-right">Number of student licences required</div>
+            <div class="invalid-feedback">Please enter how many licences are needed before submitting</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -1225,47 +1246,57 @@
         %%[IF (@COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
+            <div class="form-check">
 
-            <input
-              type="checkbox"
-              id="_terms_and_conditions"
-              name="_terms_and_conditions"
-              checked
-              required>
 
-            <label
-              for="_terms_and_conditions"
-              class="custom-field-terms form-check-label">
-              I agree to the 3P Learning.
-              <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
-            </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="_terms_and_conditions"
+                name="_terms_and_conditions"
+                checked
+                required>
 
-            <div id="terms_and_conditions_invalid" class="custom-invalid-label custom-hide text-right">Please agree to the terms and conditions</div>
+              <label
+                class="form-check-label"
+                for="_terms_and_conditions">
+                I agree to the 3P Learning
+                <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
+              </label>
+
+              <div class="invalid-feedback">Please agree before submitting.</div>
+
+            </div>
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Terms & Conditions HALF----------------->
+        <!------------- Terms & Conditions HALF ----------------->
         %%[IF (@COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
+            <div class="form-check">
 
-            <input
-              type="checkbox"
-              id="_terms_and_conditions"
-              name="_terms_and_conditions"
-              checked
-              required>
 
-            <label
-              for="_terms_and_conditions"
-              class="custom-field-terms form-check-label">
-              I agree to the 3P Learning.
-              <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
-            </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="_terms_and_conditions"
+                name="_terms_and_conditions"
+                checked
+                required>
 
-            <div id="terms_and_conditions_invalid" class="custom-invalid-label custom-hide text-right">Please agree to the terms and conditions</div>
+              <label
+                class="form-check-label"
+                for="_terms_and_conditions">
+                I agree to the 3P Learning
+                <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
+              </label>
+
+              <div class="invalid-feedback">Please agree before submitting.</div>
+
+            </div>
           </div>
         </div>
         %%[ENDIF]%%
@@ -1275,39 +1306,51 @@
         %%[IF (@COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
+            <div class="form-check">
 
-            <input
-              type="checkbox"
-              id="_subscriber_opt_in"
-              name="_subscriber_opt_in"
-              checked>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="_subscriber_opt_in"
+                name="_subscriber_opt_in"
+                checked>
 
-            <label for="subscriber_opt_in_input" class="custom-field-terms form-check-label" style="display: inline;">
-              YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
-            </label>
+              <label
+                class="form-check-label"
+                for="subscriber_opt_in_input">
+                YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
+              </label>
 
-            <!-- <div id="subscriber_opt_in_invalid" class="custom-invalid-label custom-hide text-right">...</div> -->
+              <!-- <div class="invalid-feedback">Please opt in before submitting.</div> -->
+
+            </div>
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Subscriber Opt In HALF----------------->
+        <!------------- Subscriber Opt In HALF ----------------->
         %%[IF (@COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
+            <div class="form-check">
 
-            <input
-              type="checkbox"
-              id="_subscriber_opt_in"
-              name="_subscriber_opt_in"
-              checked>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="_subscriber_opt_in"
+                name="_subscriber_opt_in"
+                checked>
 
-            <label for="subscriber_opt_in_input" class="custom-field-terms form-check-label" style="display: inline;">
-              YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
-            </label>
+              <label
+                class="form-check-label"
+                for="subscriber_opt_in_input">
+                YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
+              </label>
 
-            <!-- <div id="subscriber_opt_in_invalid" class="custom-invalid-label custom-hide text-right">...</div> -->
+              <!-- <div class="invalid-feedback">Please opt in before submitting.</div> -->
+
+            </div>
           </div>
         </div>
         %%[ENDIF]%%
@@ -1371,27 +1414,45 @@
   <script>
     //
     /*******************
-    Bootstrap Validation
+    Validation
     @url: https://getbootstrap.com/docs/4.1/components/forms/#validation
+    @url: https://developer.snapappointments.com/bootstrap-select/options/#events
     ********************/
 
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
+    $(document).ready(() => {
+
+      function validateProductInterest() {
+        const productInterestFeedbackList = document.querySelectorAll('#product_interest_invalid_feedback');
+        if (!$('#_product_interest').selectpicker('val')) {
+          productInterestFeedbackList.forEach((feedback) => {
+            feedback.classList.add('d-block');
+          })
+        } else {
+          productInterestFeedbackList.forEach((feedback) => {
+            feedback.classList.remove('d-block');
+          })
+        }
+      }
+
+      var form = document.forms[0];
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+          form.classList.add('was-validated');
+
+          // manually configure custom validation fpr Bootstrap selectpicker library
+          validateProductInterest();
+          $('#_product_interest').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
+            validateProductInterest();
+          });
+        } //checkValidity
+
+      }); //onsubmit
+
+    }); //read
+
+
 
 
     /**************************************************
@@ -1450,13 +1511,12 @@
 
     //DOM ELEMENTS
     const thisDocument = $(document);
-    const countryNameSelect = $('#country_name_select');
-    const stateNameFormGroup = $('#state_name_form_group');
-    const stateNameSelect = $('#_state_name');
+    const countryNameSelect = $('#_country_name');
+    const stateProvinceNameSelect = $('#_state_province_name');
 
 
     //EVENTS
-    thisDocument.on('ready', getStateNameData)
+    thisDocument.on('ready', getStateNameData);
     countryNameSelect.on('change', handleChangeCountryName);
 
 
@@ -1476,22 +1536,22 @@
       let countryStateData = allStateNameData.filter((option) => option["Country Code"] == countryCode)
 
       //reset options
-      stateNameSelect.val('')
-      stateNameSelect.find("option").remove();
-      stateNameSelect.append(`<option disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
+      stateProvinceNameSelect.val('')
+      stateProvinceNameSelect.find("option").remove();
+      stateProvinceNameSelect.append(`<option disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
 
       //populate options or hide select
       if (countryStateData.length > 0) {
         //states found
         stateNameFormGroup.show();
-        stateNameSelect.attr("required", "true");
+        stateProvinceNameSelect.attr("required", "true");
         countryStateData.forEach((state) => {
-          stateNameSelect.append(`<option value="${state['State Code']}">${state['State Name']}</option>`)
+          stateProvinceNameSelect.append(`<option value="${state['State Code']}">${state['State Name']}</option>`)
         }) //forEach
       } else {
         //no states found
         stateNameFormGroup.hide();
-        stateNameSelect.removeAttr("required");
+        stateProvinceNameSelect.removeAttr("required");
       } //if
 
     } //handleChange()
