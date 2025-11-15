@@ -7,10 +7,11 @@
    * 
    * @parameter: template - the name of an array of preconfigured form inputs to display
    * @parameter: inputs - a comma-deliminated URL array of single form inputs to display
-   *
+   * 
    * @parameter: cid - the salesforce campaign id where the lead will be membered
    * @parameter: rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission
    * @parameter: pid - the 3P Learning product name (ie. mathletics, readingeggs etc)
+   * @parameter: fid - (optional) form ID to use in logic when making ammendments post go-live
    * 
    * @parameter: utm_source - marketing trackers retrieved from a browser cookie
    * @parameter: utm_medium - marketing trackers retrieved from a browser cookie
@@ -199,6 +200,7 @@
     Variable.SetValue('cid', Request.GetQueryStringParameter("cid"))
     Variable.SetValue('rid', Request.GetQueryStringParameter("rid"))
     Variable.SetValue('pid', Request.GetQueryStringParameter("pid"))
+    Variable.SetValue('fid', Request.GetQueryStringParameter("fid"))
 
     Variable.SetValue('template', Request.GetQueryStringParameter("template"))
     Variable.SetValue('inputs', Request.GetQueryStringParameter("inputs"))
@@ -320,8 +322,8 @@
 
     <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
     <input type="hidden" name="_pid" value="%%=v(@pid)=%%">
-    <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
     <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
+    <input type="hidden" name="_fid" value="%%=v(@fid)=%%">
 
     <input type="hidden" name="_template" value="%%=v(@template)=%%">
     <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
