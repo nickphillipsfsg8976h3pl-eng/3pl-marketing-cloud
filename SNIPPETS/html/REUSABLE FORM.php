@@ -65,7 +65,6 @@
 <!-- SSJS POST -->
 <script runat="server">
   Platform.Load("core", "1");
-
   try {
     if (Request.Method() != "POST") return;
 
@@ -82,6 +81,7 @@
     Write("Error: " + Stringify(error.message));
   }
 </script>
+
 
 
 <!-- SSJS GET -->
