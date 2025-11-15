@@ -1832,44 +1832,54 @@
   <!-- Validate -->
   <script>
     //
+    //
     /*******************
     Validation
     @url: https://getbootstrap.com/docs/4.1/components/forms/#validation
     @url: https://developer.snapappointments.com/bootstrap-select/options/#events
     ********************/
 
-    $(document).ready(() => {
+    document.addEventListener('DOMContentLoaded', () => {
 
-      function validateProductInterest() {
-        const productInterestFeedbackList = document.querySelectorAll('#product_interest_invalid_feedback');
-        if (!$('#_product_interest').selectpicker('val')) {
-          productInterestFeedbackList.forEach((feedback) => {
-            feedback.classList.add('d-block');
-          })
-        } else {
-          productInterestFeedbackList.forEach((feedback) => {
-            feedback.classList.remove('d-block');
-          })
-        }
-      }
+      //CONSTANTS
+      const form = document.forms[0];
+      const productInterestSelect = $('#_product_interest');
+      const productInterestFeedbackList = document.querySelectorAll('#product_interest_invalid_feedback');
 
-      var form = document.forms[0];
+      //EVENTS
       form.addEventListener('submit', function(event) {
         if (form.checkValidity() === false) {
+
           event.preventDefault();
           event.stopPropagation();
+
           form.classList.add('was-validated');
 
           // manually configure custom validation fpr Bootstrap selectpicker library
           validateProductInterest();
-          $('#_product_interest').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
+          productInterestSelect.on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
             validateProductInterest();
           });
         } //checkValidity
 
-      }); //onsubmit
+      }); //submit
 
-    }); //read
+
+      //HANDLERS
+      function validateProductInterest() {
+        if (!productInterestSelect.selectpicker('val')) {
+          productInterestFeedbackList.forEach((validationMessage) => {
+            validationMessage.classList.add('d-block');
+          })
+        } else {
+          productInterestFeedbackList.forEach((validationMessage) => {
+            validationMessage.classList.remove('d-block');
+          })
+        }
+      }
+
+
+    }); //DOMContentLoaded
   </script>
 
 
