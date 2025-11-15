@@ -486,7 +486,10 @@
 <body>
 
 
-  <form method="POST">
+  <form
+    class="needs-validation"
+    novalidate
+    method="POST">
 
 
     <!------------- Hidden ----------------->
@@ -525,7 +528,7 @@
 
     <!-- Wrapper -->
     <div class=" container my-5">
-      <div class="row">
+      <div class="form-row">
 
 
         %%[
@@ -561,7 +564,8 @@
 
             </select>
 
-            <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
+            <div class="invalid-feedback">Please select a product interest</div>
+
           </div>
         </div>
         %%[ENDIF]%%
@@ -654,7 +658,6 @@
               id="_first_name"
               name="_first_name"
               placeholder="First Name"
-              autofocus
               required>
 
             <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First name is required</div>
@@ -674,7 +677,6 @@
               id="_first_name"
               name="_first_name"
               placeholder="First Name"
-              autofocus
               required>
 
             <div id="first_name_invalid" class="custom-invalid-label custom-hide text-right">First name is required</div>
@@ -1077,7 +1079,7 @@
 
 
         <!------------- State / Province Name HALF----------------->
-        %%[IF (@COMPONENT == "STATE_PROVINCE_HALF") THEN]%%
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_HALF") THEN]%%
         <div class="col-sm-12 col-md-6">
           <div class="form-group" id="state_name_form_group">
 
@@ -1367,6 +1369,31 @@
 
 
   <script>
+    //
+    /*******************
+    Bootstrap Validation
+    @url: https://getbootstrap.com/docs/4.1/components/forms/#validation
+    ********************/
+
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+
+
     /**************************************************
     ----- Parse Cookie Data to hidden form fields -----
     ***************************************************/
