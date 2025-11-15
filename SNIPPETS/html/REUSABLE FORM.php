@@ -11,7 +11,7 @@
    * @parameter: cid - the salesforce campaign id where the lead will be membered
    * @parameter: rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission
    * @parameter: pid - the 3P Learning product name (ie. mathletics, readingeggs etc)
-   * @parameter: fid - (optional) form ID to use in logic when making ammendments post go-live
+   * @parameter: fid - (optional) form ID to use in logic when making changes post go-live
    * 
    * @parameter: utm_source - marketing trackers retrieved from a browser cookie
    * @parameter: utm_medium - marketing trackers retrieved from a browser cookie
