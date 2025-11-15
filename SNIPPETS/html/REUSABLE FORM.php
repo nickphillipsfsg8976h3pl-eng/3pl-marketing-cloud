@@ -350,39 +350,11 @@
   <style>
     :root {
       font-size: 16px;
-
-      --submit_button__rest--backgroundColor: #015F4E;
-      --submit_button__rest--color: whitesmoke;
-      --submit_button__hover--backgroundColor: #00473b;
-      --submit_button__hover--color: white;
     }
 
-    .custom_submit_button {
-      background-color: var(--submit_button__rest--backgroundColor);
-      border-radius: 25px;
-      padding: 15px 50px;
-      text-align: center;
-      color: var(--submit_button__rest--color);
-      font-weight: 600;
-      font-size: 1rem;
-      width: 100%;
-    }
-
-    .custom_submit_button:hover {
-      background-color: var(--submit_button__hover--backgroundColor);
-      color: var(--submit_button__hover--color);
-    }
-
-    .custom_submit_button:focus {
-      outline: 0;
-      box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
-    }
-
-    @media screen and (min-width: 767px) {
-      .custom_submit_button {
-        width: auto;
-        float: right;
-      }
+    .custom-reset-select-text {
+      color: #495057c7;
+      font-weight: 400;
     }
   </style>
 
@@ -458,15 +430,14 @@
           <div class="form-group">
 
             <select
-              class="form-control selectpicker show-tick"
+              class="form-control selectpicker show-tick custom-reset-select-text"
               id="_product_interest"
               name="_product_interest"
               multiple
               title="Product Interests"
               data-selected-text-format="values"
               data-actions-box="true"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="mathletics">Mathletics</option>
               <option value="mathseeds">Mathseeds</option>
@@ -487,15 +458,14 @@
           <div class="form-group">
 
             <select
-              class="form-control selectpicker show-tick"
+              class="form-control selectpicker show-tick custom-reset-select-text"
               id="_product_interest"
               name="_product_interest"
               multiple
               title="Product Interest"
               data-selected-text-format="values"
               data-actions-box="true"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="mathletics">Mathletics</option>
               <option value="mathseeds">Mathseeds</option>
@@ -517,11 +487,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_user_interest"
               name="_user_interest"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" disabled selected>What are you interested in?</option>
               <option value="demo">Complimentary Consultation</option>
@@ -542,11 +511,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_user_interest"
               name="_user_interest"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" disabled selected>What are you interested in?</option>
               <option value="demo">Complimentary Consultation</option>
@@ -727,11 +695,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_grade_level"
               name="_grade_level"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" disabled selected>Grade Level</option>
 
@@ -765,11 +732,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_grade_level"
               name="_grade_level"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" disabled selected>Grade Level</option>
 
@@ -803,11 +769,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_job_title"
               name="_job_title"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" selected disabled>Select Job Title</option>
 
@@ -851,11 +816,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_job_title"
               name="_job_title"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" selected disabled>Select Job Title</option>
 
@@ -899,11 +863,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_country_name"
               name="_country_name"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" selected disabled>Select Country</option>
 
@@ -944,11 +907,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_country_name"
               name="_country_name"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" selected disabled>Select Country</option>
 
@@ -989,11 +951,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_state_province_name"
               name="_state_province_name"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
@@ -1072,11 +1033,10 @@
           <div class="form-group">
 
             <select
-              class="form-control"
+              class="form-control custom-reset-select-text"
               id="_state_province_name"
               name="_state_province_name"
-              required
-              style="color:#495057c7; font-weight: 400;">
+              required>
 
               <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
@@ -1404,6 +1364,45 @@
 
           </div>
         </div>
+
+
+        <!-- custom_submit_button css -->
+        <style>
+          :root {
+            --submit_button__rest--backgroundColor: #015F4E;
+            --submit_button__rest--color: whitesmoke;
+            --submit_button__hover--backgroundColor: #00473b;
+            --submit_button__hover--color: white;
+          }
+
+          .custom_submit_button {
+            background-color: var(--submit_button__rest--backgroundColor);
+            border-radius: 25px;
+            padding: 15px 50px;
+            text-align: center;
+            color: var(--submit_button__rest--color);
+            font-weight: 600;
+            font-size: 1rem;
+            width: 100%;
+          }
+
+          .custom_submit_button:hover {
+            background-color: var(--submit_button__hover--backgroundColor);
+            color: var(--submit_button__hover--color);
+          }
+
+          .custom_submit_button:focus {
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+          }
+
+          @media screen and (min-width: 767px) {
+            .custom_submit_button {
+              width: auto;
+              float: right;
+            }
+          }
+        </style>
         %%[ENDIF]%%
 
 
