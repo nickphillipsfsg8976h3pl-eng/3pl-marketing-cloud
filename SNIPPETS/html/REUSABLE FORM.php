@@ -8,7 +8,6 @@
    * @parameter: cid - the salesforce campaign id where the lead will be attached
    * @parameter: rid - the id of a redirect url located in marketing cloud
    * @parameter: pid - the 3P Learning product name (ie. mathletics, readingeggs etc)
-   * @parameter: gclid - ???
    * 
    * @parameter: template - the name of a template used to display preconfigured form inputs
    * @parameter: inputs - a list of individual form inputs to display
@@ -281,7 +280,6 @@
     Variable.SetValue('cid', Request.GetQueryStringParameter("cid"))
     Variable.SetValue('rid', Request.GetQueryStringParameter("rid"))
     Variable.SetValue('pid', Request.GetQueryStringParameter("pid"))
-    Variable.SetValue('gclid', Request.GetQueryStringParameter("gclid"))
 
     Variable.SetValue('utm_source', Request.GetQueryStringParameter("utm_source"))
     Variable.SetValue('utm_medium', Request.GetQueryStringParameter("utm_medium"))
@@ -349,7 +347,7 @@
 
 
   <!-- Title & Favicons -->
-  <title> 3PLearning </title>
+  <title> 3P Learning </title>
   <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon">
   <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
@@ -402,23 +400,57 @@
     <input type="hidden" name="_pid" value="%%=v(@pid)=%%">
     <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
     <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
-    <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
+
+    <input type="hidden" name="_template" value="%%=v(@template)=%%">
+    <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
+    <input type="hidden" name="_form_url">
 
     <input type="hidden" name="_utm_source" value="%%=v(@utm_source)=%%">
     <input type="hidden" name="_utm_medium" value="%%=v(@utm_medium)=%%">
     <input type="hidden" name="_utm_campaign" value="%%=v(@utm_campaign)=%%">
     <input type="hidden" name="_utm_content" value="%%=v(@utm_content)=%%">
     <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
+    <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
+    <input type="hidden" name="_referrer" value="%%=v(@referrer)=%%">
 
-    <input type="hidden" name="_template" value="%%=v(@template)=%%">
-    <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
 
-    <input type="hidden" name="_referrer">
-    <input type="hidden" name="_url">
-
+    <!-- Set Form URL -->
     <script>
-      // assign the form or website url to the hidden _url input
-      document.querySelector('input[name="_url"]').value = location.href;
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('input[name="_form_url"]');
+      }); //DOMContentLoaded
+    </script>
+
+
+    <!-- Extract Marketing Tracking Parameters -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+
+        // Get cookie value
+        function getCookie(name) {
+          const value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+          return value ? decodeURIComponent(value.pop()) : '';
+        }
+
+        // Get parameter from cookie URL
+        function getParam(name) {
+          const cookie = getCookie('setURLParamsCookie');
+          const match = cookie.match(new RegExp('[?&]' + name + '=([^&#]*)'));
+          return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
+        }
+
+        // Fill form fields if cookie exists
+        if (document.cookie.includes('setURLParamsCookie')) {
+          document.querySelector('#utm-source').value = getParam('utm_source');
+          document.querySelector('#utm-medium').value = getParam('utm_medium');
+          document.querySelector('#utm-campaign').value = getParam('utm_campaign');
+          document.querySelector('#utm-content').value = getParam('utm_content');
+          document.querySelector('#utm-term').value = getParam('utm_term');
+          document.querySelector('#gclid').value = getParam('gclid');
+          document.querySelector('#referrer').value = getCookie('__gtm_referrer');
+        }
+
+      }); //DOMContentLoaded
     </script>
 
 
@@ -1813,12 +1845,10 @@
 
 
   <noscript>
-
     <!-- Google Tag Manager (noscript) -->
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T97DM2H"
       height="0" width="0" style="display:none;visibility:hidden">
     </iframe>
-
   </noscript>
 
 
@@ -1829,15 +1859,10 @@
   <script src="https://web.my.3plearning.com/formFieldFunctions"></script>
 
 
-  <!-- Validate -->
+  <!-- Validate Form Submission-->
   <script>
-    //
-    //
-    /*******************
-    Validation
-    @url: https://getbootstrap.com/docs/4.1/components/forms/#validation
-    @url: https://developer.snapappointments.com/bootstrap-select/options/#events
-    ********************/
+    // @url: https://getbootstrap.com/docs/4.1/components/forms/#validation
+    // @url: https://developer.snapappointments.com/bootstrap-select/options/#events
 
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -1864,7 +1889,6 @@
 
       }); //submit
 
-
       //HANDLERS
       function validateProductInterest() {
         if (!productInterestSelect.selectpicker('val')) {
@@ -1878,60 +1902,8 @@
         }
       }
 
-
     }); //DOMContentLoaded
   </script>
-
-
-  <!-- Get Cookies -->
-  <script>
-    /**************************************************
-    ----- Parse Cookie Data to hidden form fields -----
-    ***************************************************/
-
-    // Parse the Cookie
-    var cname = "setURLParamsCookie"
-
-    function getCookie(cname) {
-      var name = cname + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
-    }
-    var referrer = getCookie("__gtm_referrer");
-
-    // Parse the URL inside Cookie
-    function getParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-
-      results = regex.exec(getCookie("setURLParamsCookie"));
-      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-
-    // Pass the values to hidden field
-    var cookieCheck = document.cookie.indexOf('setURLParamsCookie')
-    if (cookieCheck > 0) {
-      document.querySelector("#utm-source").value = getParameterByName('utm_source');
-      document.querySelector("#utm-medium").value = getParameterByName('utm_medium');
-      document.querySelector("#utm-campaign").value = getParameterByName('utm_campaign');
-      document.querySelector("#utm-content").value = getParameterByName('utm_content');
-      document.querySelector("#utm-term").value = getParameterByName('utm_term');
-      document.querySelector("#gclid").value = getParameterByName('gclid');
-      document.querySelector("#referrer").value = referrer;
-    };
-  </script>
-
-
 
 
 </body>
