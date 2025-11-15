@@ -47,37 +47,42 @@
 
     var TEMPLATES = {
 
-      //?template=master
-      master: [
+      //?template=test
+      test: [
         "PRODUCT_INTEREST",
-        "PRODUCT_INTEREST_HALF",
         "USER_INTEREST",
-        "USER_INTEREST_HALF",
         "FIRST_NAME",
-        "FIRST_NAME_HALF",
         "LAST_NAME",
-        "LAST_NAME_HALF",
         "EMAIL_ADDRESS",
-        "EMAIL_ADDRESS_HALF",
         "PHONE_NUMBER",
-        "PHONE_NUMBER_HALF",
         "GRADE_LEVEL",
-        "GRADE_LEVEL_HALF",
         "JOB_TITLE",
-        "JOB_TITLE_HALF",
         "COUNTRY_NAME",
-        "COUNTRY_NAME_HALF",
         "STATE_PROVINCE_NAME",
-        "STATE_PROVINCE_NAME_HALF",
         "POSTCODE_ZIPCODE",
-        "POSTCODE_ZIPCODE_HALF",
         "SCHOOL_NAME",
-        "SCHOOL_NAME_HALF",
         "NO_OF_LICENCES",
-        "NO_OF_LICENCES_HALF",
         "TERMS_AND_CONDITIONS",
-        "TERMS_AND_CONDITIONS_HALF",
         "SUBSCRIBER_OPT_IN",
+        "SUBMIT_BUTTON"
+      ],
+
+      //?template=test_half
+      test_half: [
+        "PRODUCT_INTEREST_HALF",
+        "USER_INTEREST_HALF",
+        "FIRST_NAME_HALF",
+        "LAST_NAME_HALF",
+        "EMAIL_ADDRESS_HALF",
+        "PHONE_NUMBER_HALF",
+        "GRADE_LEVEL_HALF",
+        "JOB_TITLE_HALF",
+        "COUNTRY_NAME_HALF",
+        "STATE_PROVINCE_NAME_HALF",
+        "POSTCODE_ZIPCODE_HALF",
+        "SCHOOL_NAME_HALF",
+        "NO_OF_LICENCES_HALF",
+        "TERMS_AND_CONDITIONS_HALF",
         "SUBSCRIBER_OPT_IN_HALF",
         "SUBMIT_BUTTON"
       ],
@@ -344,20 +349,12 @@
   <!-- Styles -->
   <style>
     :root {
-      font-size: 15px;
-      /*font-family: ;*/
-      /*font-weight: ;*/
+      font-size: 16px;
 
       --submit_button__rest--backgroundColor: #015F4E;
       --submit_button__rest--color: whitesmoke;
       --submit_button__hover--backgroundColor: #00473b;
       --submit_button__hover--color: white;
-      --checkbox__rest--backgroundColor: lightgrey;
-      --checkbox__hover--backgroundColor: #00473b;
-      --checkbox__checked--backgroundColor: #015f4e;
-      --valid_input--color: green;
-      --invalid_input--color: red;
-      --invalid_label--color: red;
     }
 
     .custom_submit_button {
@@ -386,88 +383,6 @@
         width: auto;
         float: right;
       }
-    }
-
-    .custom-checkbox {
-      display: block;
-      position: relative;
-      padding-left: 35px;
-      margin-bottom: 12px;
-      cursor: pointer;
-      font-size: 16px;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .custom-checkbox input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-    }
-
-    .checkmark {
-      position: absolute;
-      top: 5px;
-      left: 0;
-      height: 25px;
-      width: 25px;
-      background-color: var(--checkbox__rest--backgroundColor);
-      border-radius: 5px;
-
-    }
-
-    .custom-checkbox:hover input~.checkmark {
-      background-color: var(--checkbox__hover--backgroundColor);
-    }
-
-    .custom-checkbox input:checked~.checkmark {
-      background-color: var(--checkbox__checked--backgroundColor);
-    }
-
-    .checkmark:after {
-      content: "";
-      position: absolute;
-      display: none;
-    }
-
-    .custom-checkbox input:checked~.checkmark:after {
-      display: block;
-    }
-
-    .custom-checkbox .checkmark:after {
-      left: 9px;
-      top: 5px;
-      width: 7px;
-      height: 15px;
-      border: solid white;
-      border-width: 0 3px 3px 0;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-    }
-
-    .custom-field-label {
-      font-weight: bold;
-    }
-
-    .custom-hide {
-      display: none;
-    }
-
-    .custom-valid-input {
-      border: 3px solid var(--valid_input--color) !important;
-    }
-
-    .custom-invalid-input {
-      border: 3px solid var(--invalid_input--color) !important;
-    }
-
-    .custom-invalid-label {
-      color: var(--invalid_label--color) !important;
     }
   </style>
 
@@ -537,8 +452,8 @@
 
 
 
-        <!------------- Product Interest ----------------->
         %%[IF (@COMPONENT == "PRODUCT_INTEREST") THEN]%%
+        <!------------- Product Interest ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -559,15 +474,15 @@
 
             </select>
 
-            <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in before submitting</div>
+            <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Product Interest HALF ----------------->
         %%[IF (@COMPONENT == "PRODUCT_INTEREST_HALF") THEN]%%
+        <!------------- Product Interest HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -588,7 +503,7 @@
 
             </select>
 
-            <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in before submitting</div>
+            <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
 
           </div>
         </div>
@@ -596,13 +511,13 @@
         %%[ENDIF]%%
 
 
-        <!------------- User Interest ----------------->
         %%[IF (@COMPONENT == "USER_INTEREST") THEN]%%
+        <!------------- User Interest ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
             <select
-              class="custom-select"
+              class="form-control"
               id="_user_interest"
               name="_user_interest"
               required
@@ -614,15 +529,15 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select what you are interested in before submitting</div>
+            <div class="invalid-feedback">Please select what you are interested in</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- User Interest HALF ----------------->
         %%[IF (@COMPONENT == "USER_INTEREST_HALF") THEN]%%
+        <!------------- User Interest HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -639,15 +554,15 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select what you are interested in before submitting</div>
+            <div class="invalid-feedback">Please select what you are interested in</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- First Name ----------------->
         %%[IF (@COMPONENT == "FIRST_NAME") THEN]%%
+        <!------------- First Name ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -659,15 +574,15 @@
               placeholder="First Name"
               required>
 
-            <div class="invalid-feedback">Please enter a first name before submitting</div>
+            <div class="invalid-feedback">Please enter a first name</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- First Name HALF ----------------->
         %%[IF (@COMPONENT == "FIRST_NAME_HALF") THEN]%%
+        <!------------- First Name HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -679,15 +594,15 @@
               placeholder="First Name"
               required>
 
-            <div class="invalid-feedback">Please enter a first name before submitting</div>
+            <div class="invalid-feedback">Please enter a first name</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Last Name ----------------->
         %%[IF (@COMPONENT == "LAST_NAME") THEN]%%
+        <!------------- Last Name ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -699,15 +614,15 @@
               placeholder="Last Name"
               required>
 
-            <div class="invalid-feedback">Please enter a last name before submitting</div>
+            <div class="invalid-feedback">Please enter a last name</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Last Name HALF ----------------->
         %%[IF (@COMPONENT == "LAST_NAME_HALF") THEN]%%
+        <!------------- Last Name HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -719,15 +634,15 @@
               placeholder="Last Name"
               required>
 
-            <div class="invalid-feedback">Please enter a last name before submitting</div>
+            <div class="invalid-feedback">Please enter a last name</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Email Address----------------->
         %%[IF (@COMPONENT == "EMAIL_ADDRESS") THEN]%%
+        <!------------- Email Address----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -739,15 +654,15 @@
               placeholder="Email Address"
               required>
 
-            <div class="invalid-feedback">Please enter a valid email address before submitting</div>
+            <div class="invalid-feedback">Please enter a valid email address</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Email Address HALF ----------------->
         %%[IF (@COMPONENT == "EMAIL_ADDRESS_HALF") THEN]%%
+        <!------------- Email Address HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -759,15 +674,15 @@
               placeholder="Email Address"
               required>
 
-            <div class="invalid-feedback">Please enter a valid email address before submitting</div>
+            <div class="invalid-feedback">Please enter a valid email address</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Phone Number ----------------->
         %%[IF (@COMPONENT == "PHONE_NUMBER") THEN]%%
+        <!------------- Phone Number ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -779,15 +694,15 @@
               placeholder="Mobile / Work Phone"
               required>
 
-            <div class="invalid-feedback">Please enter a phone number before submitting</div>
+            <div class="invalid-feedback">Please enter a phone number</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Phone Number HALF ----------------->
         %%[IF (@COMPONENT == "PHONE_NUMBER_HALF") THEN]%%
+        <!------------- Phone Number HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -799,15 +714,15 @@
               placeholder="Mobile / Work Phone"
               required>
 
-            <div class="invalid-feedback">Please enter a phone number before submitting</div>
+            <div class="invalid-feedback">Please enter a phone number</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Grade Level ----------------->
         %%[IF (@COMPONENT == "GRADE_LEVEL") THEN]%%
+        <!------------- Grade Level ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -818,7 +733,7 @@
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option value="" disabled selected>Select Grade Level</option>
+              <option value="" disabled selected>Grade Level</option>
 
               <option value="K/R">K/R</option>
               <option value="1">1</option>
@@ -837,15 +752,15 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a grade level before submitting</div>
+            <div class="invalid-feedback">Please select a grade level</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Grade Level HALF----------------->
         %%[IF (@COMPONENT == "GRADE_LEVEL_HALF") THEN]%%
+        <!------------- Grade Level HALF----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -856,7 +771,7 @@
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option value="" disabled selected>Select Grade Level</option>
+              <option value="" disabled selected>Grade Level</option>
 
               <option value="K/R">K/R</option>
               <option value="1">1</option>
@@ -875,15 +790,15 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a grade level before submitting</div>
+            <div class="invalid-feedback">Please select a grade level</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Job Title ----------------->
         %%[IF (@COMPONENT == "JOB_TITLE") THEN]%%
+        <!------------- Job Title ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -923,15 +838,15 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a job title before submitting</div>
+            <div class="invalid-feedback">Please select a job title</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Job Title HALF ----------------->
         %%[IF (@COMPONENT == "JOB_TITLE_HALF") THEN]%%
+        <!------------- Job Title HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -971,15 +886,15 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a job title before submitting</div>
+            <div class="invalid-feedback">Please select a job title</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Country Name ----------------->
         %%[IF (@COMPONENT == "COUNTRY_NAME") THEN]%%
+        <!------------- Country Name ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -1016,15 +931,15 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a country before submitting</div>
+            <div class="invalid-feedback">Please select a country</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Country Name HALF ----------------->
         %%[IF (@COMPONENT == "COUNTRY_NAME_HALF") THEN]%%
+        <!------------- Country Name HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -1061,15 +976,15 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a country before submitting</div>
+            <div class="invalid-feedback">Please select a country</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- State / Province Name ----------------->
         %%[IF (@COMPONENT == "STATE_PROVINCE_NAME") THEN]%%
+        <!------------- State / Province Name ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -1084,15 +999,75 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a state or province before submitting</div>
+            <div class="invalid-feedback">Please select a state or province</div>
 
           </div>
         </div>
+
+
+        <!-- On Country Change -->
+        <script>
+          try {
+
+            // CONSTANTS
+            let allStateNameData;
+
+            // DOM ELEMENTS
+            const countryNameSelect = document.getElementById('_country_name');
+            const stateProvinceNameSelect = document.getElementById('_state_province_name');
+
+            // EVENTS
+            document.addEventListener('DOMContentLoaded', getStateNameData);
+            countryNameSelect.addEventListener('change', handleChangeCountryName);
+
+            // HANDLERS
+            function getStateNameData() {
+              const allStatesURLPath = "/gf_states";
+
+              fetch(allStatesURLPath)
+                .then(response => response.json())
+                .then(data => {
+                  allStateNameData = data;
+                })
+                .catch(error => console.error(error));
+            }
+
+            function handleChangeCountryName(e) {
+              // Choose states
+              const selectedOption = e.target.options[e.target.selectedIndex];
+              const countryCode = selectedOption.dataset.countrycode;
+              const countryStateData = allStateNameData.filter((option) => option["Country Code"] === countryCode);
+
+              // Reset options
+              stateProvinceNameSelect.value = '';
+              stateProvinceNameSelect.innerHTML = '';
+
+              const placeholderText = countryCode === "CA" ? 'Province' : 'State';
+              const placeholderOption = document.createElement('option');
+              placeholderOption.value = '';
+              placeholderOption.disabled = true;
+              placeholderOption.selected = true;
+              placeholderOption.textContent = placeholderText;
+              stateProvinceNameSelect.appendChild(placeholderOption);
+
+              // Populate options
+              countryStateData.forEach((state) => {
+                const option = document.createElement('option');
+                option.value = state['State Code'];
+                option.textContent = state['State Name'];
+                stateProvinceNameSelect.appendChild(option);
+              });
+            }
+
+          } catch (e) {
+            console.error(e.message);
+          }
+        </script>
         %%[ENDIF]%%
 
 
-        <!------------- State / Province Name HALF----------------->
         %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_HALF") THEN]%%
+        <!------------- State / Province Name HALF----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -1107,15 +1082,75 @@
 
             </select>
 
-            <div class="invalid-feedback">Please select a state or province before submitting</div>
+            <div class="invalid-feedback">Please select a state or province</div>
 
           </div>
         </div>
+
+
+        <!-- On Country Change -->
+        <script>
+          try {
+
+            // CONSTANTS
+            let allStateNameData;
+
+            // DOM ELEMENTS
+            const countryNameSelect = document.getElementById('_country_name');
+            const stateProvinceNameSelect = document.getElementById('_state_province_name');
+
+            // EVENTS
+            document.addEventListener('DOMContentLoaded', getStateNameData);
+            countryNameSelect.addEventListener('change', handleChangeCountryName);
+
+            // HANDLERS
+            function getStateNameData() {
+              const allStatesURLPath = "/gf_states";
+
+              fetch(allStatesURLPath)
+                .then(response => response.json())
+                .then(data => {
+                  allStateNameData = data;
+                })
+                .catch(error => console.error(error));
+            }
+
+            function handleChangeCountryName(e) {
+              // Choose states
+              const selectedOption = e.target.options[e.target.selectedIndex];
+              const countryCode = selectedOption.dataset.countrycode;
+              const countryStateData = allStateNameData.filter((option) => option["Country Code"] === countryCode);
+
+              // Reset options
+              stateProvinceNameSelect.value = '';
+              stateProvinceNameSelect.innerHTML = '';
+
+              const placeholderText = countryCode === "CA" ? 'Province' : 'State';
+              const placeholderOption = document.createElement('option');
+              placeholderOption.value = '';
+              placeholderOption.disabled = true;
+              placeholderOption.selected = true;
+              placeholderOption.textContent = placeholderText;
+              stateProvinceNameSelect.appendChild(placeholderOption);
+
+              // Populate options
+              countryStateData.forEach((state) => {
+                const option = document.createElement('option');
+                option.value = state['State Code'];
+                option.textContent = state['State Name'];
+                stateProvinceNameSelect.appendChild(option);
+              });
+            }
+
+          } catch (e) {
+            console.error(e.message);
+          }
+        </script>
         %%[ENDIF]%%
 
 
-        <!------------- Postcode / Zipcode ----------------->
         %%[IF (@COMPONENT == "POSTCODE_ZIPCODE") THEN]%%
+        <!------------- Postcode / Zipcode ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -1128,15 +1163,15 @@
               title="Postcode/Zipcode is 4 digits with no spaces"
               required>
 
-            <div class="invalid-feedback">Please enter a postcode or zipcode before submitting</div>
+            <div class="invalid-feedback">Please enter a postcode or zipcode</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Postcode / Zipcode HALF ----------------->
         %%[IF (@COMPONENT == "POSTCODE_ZIPCODE_HALF") THEN]%%
+        <!------------- Postcode / Zipcode HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -1149,15 +1184,15 @@
               title="Postcode/Zipcode is 4 digits with no spaces"
               required>
 
-            <div class="invalid-feedback">Please enter a postcode or zipcode before submitting</div>
+            <div class="invalid-feedback">Please enter a postcode or zipcode</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- School Name ----------------->
         %%[IF (@COMPONENT == "SCHOOL_NAME") THEN]%%
+        <!------------- School Name ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -1169,15 +1204,15 @@
               placeholder="School or District Name"
               required>
 
-            <div class="invalid-feedback">Please enter a school name before submitting</div>
+            <div class="invalid-feedback">Please enter a school name</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- School Name HALF----------------->
         %%[IF (@COMPONENT == "SCHOOL_NAME_HALF") THEN]%%
+        <!------------- School Name HALF----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -1189,15 +1224,15 @@
               placeholder="School or District Name"
               required>
 
-            <div class="invalid-feedback">Please enter a school name before submitting</div>
+            <div class="invalid-feedback">Please enter a school name</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- No. Of Licences  ----------------->
         %%[IF (@COMPONENT == "NO_OF_LICENCES") THEN]%%
+        <!------------- No. Of Licences  ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -1211,15 +1246,15 @@
               min="20"
               max="1000">
 
-            <div class="invalid-feedback">Please enter how many licences are needed before submitting</div>
+            <div class="invalid-feedback">Please enter how many licences are needed</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- No. Of Licences HALF ----------------->
         %%[IF (@COMPONENT == "NO_OF_LICENCES_HALF") THEN]%%
+        <!------------- No. Of Licences HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
 
@@ -1233,15 +1268,15 @@
               min="20"
               max="1000">
 
-            <div class="invalid-feedback">Please enter how many licences are needed before submitting</div>
+            <div class="invalid-feedback">Please enter how many licences are needed</div>
 
           </div>
         </div>
         %%[ENDIF]%%
 
 
-        <!------------- Terms & Conditions ----------------->
         %%[IF (@COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
+        <!------------- Terms & Conditions ----------------->
         <div class="col-sm-12">
           <div class="form-group">
             <div class="form-check">
@@ -1262,7 +1297,7 @@
                 <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
               </label>
 
-              <div class="invalid-feedback">Please agree before submitting.</div>
+              <div class="invalid-feedback">Please agree.</div>
 
             </div>
           </div>
@@ -1270,8 +1305,8 @@
         %%[ENDIF]%%
 
 
-        <!------------- Terms & Conditions HALF ----------------->
         %%[IF (@COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
+        <!------------- Terms & Conditions HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
             <div class="form-check">
@@ -1292,7 +1327,7 @@
                 <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
               </label>
 
-              <div class="invalid-feedback">Please agree before submitting.</div>
+              <div class="invalid-feedback">Please agree.</div>
 
             </div>
           </div>
@@ -1300,8 +1335,8 @@
         %%[ENDIF]%%
 
 
-        <!------------- Subscriber Opt In ----------------->
         %%[IF (@COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
+        <!------------- Subscriber Opt In ----------------->
         <div class="col-sm-12">
           <div class="form-group">
             <div class="form-check">
@@ -1319,7 +1354,7 @@
                 YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
               </label>
 
-              <!-- <div class="invalid-feedback">Please opt in before submitting.</div> -->
+              <!-- <div class="invalid-feedback">Please opt in.</div> -->
 
             </div>
           </div>
@@ -1327,8 +1362,8 @@
         %%[ENDIF]%%
 
 
-        <!------------- Subscriber Opt In HALF ----------------->
         %%[IF (@COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
+        <!------------- Subscriber Opt In HALF ----------------->
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
             <div class="form-check">
@@ -1346,7 +1381,7 @@
                 YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
               </label>
 
-              <!-- <div class="invalid-feedback">Please opt in before submitting.</div> -->
+              <!-- <div class="invalid-feedback">Please opt in.</div> -->
 
             </div>
           </div>
@@ -1354,8 +1389,8 @@
         %%[ENDIF]%%
 
 
-        <!------------- Submit Button ----------------->
         %%[IF (@COMPONENT == "SUBMIT_BUTTON") THEN]%%
+        <!------------- Submit Button ----------------->
         <div class="col-sm-12">
           <div class="form-group">
 
@@ -1502,60 +1537,6 @@
   </script>
 
 
-  <!-- Country & State Changes -->
-  <script>
-    /****************************
-    ----- On Country Change -----
-    *****************************/
-
-
-    try {
-
-      //CONSTANTS
-      let allStateNameData;
-
-      //DOM ELEMENTS
-      const thisDocument = $(document);
-      const countryNameSelect = $('#_country_name');
-      const stateProvinceNameSelect = $('#_state_province_name');
-
-
-      //EVENTS
-      thisDocument.on('ready', getStateNameData)
-      countryNameSelect.on('change', handleChangeCountryName);
-
-
-      //HANDLERS
-
-      function getStateNameData() {
-        let allStatesURLPath = "/gf_states"
-        axios.get(allStatesURLPath)
-          .then(response => {
-            allStateNameData = response.data
-          }).catch(console.error)
-      } //
-
-      function handleChangeCountryName(e) {
-        //choose states
-        let countryCode = e.target[e.target.selectedIndex].dataset.countrycode
-        let countryStateData = allStateNameData.filter((option) => option["Country Code"] == countryCode)
-
-        //reset options
-        stateProvinceNameSelect.val('')
-        stateProvinceNameSelect.find("option").remove();
-        stateProvinceNameSelect.append(`<option value="" disabled selected>Select ${countryCode==="CA"? 'Province': 'State'}</option>`)
-
-        //populate options or hide select
-        countryStateData.forEach((state) => {
-          stateProvinceNameSelect.append(`<option value="${state['State Code']}">${state['State Name']}</option>`)
-        }) //forEach
-
-      } //handleChange()
-
-    } catch (e) {
-      console.error(e.message);
-    }
-  </script>
 
 
 </body>
