@@ -11,7 +11,7 @@
    * @parameter: gclid - ???
    * 
    * @parameter: template - the name of a template used to display preconfigured form inputs
-   * @parameter: components - a list of individual form inputs to display
+   * @parameter: inputs - a list of individual form inputs to display
    * 
    */
 </script>
@@ -58,8 +58,8 @@
         "GRADE_LEVEL",
         "JOB_TITLE",
         "COUNTRY_NAME",
-        "STATE_NAME",
-        "POSTAL_CODE",
+        "STATE_PROVINCE",
+        "POSTCODE_ZIPCODE",
         "SCHOOL_NAME",
         "NO_OF_LICENCES",
         "TERMS_AND_CONDITIONS",
@@ -74,7 +74,7 @@
         "EMAIL_ADDRESS",
         "SCHOOL_NAME",
         "COUNTRY_NAME",
-        "STATE_NAME",
+        "STATE_PROVINCE",
         "TERMS_AND_CONDITIONS",
         "SUBSCRIBER_OPT_IN",
         "SUBMIT_BUTTON"
@@ -88,7 +88,7 @@
         "JOB_TITLE",
         "SCHOOL_NAME",
         "COUNTRY_NAME",
-        "STATE_NAME",
+        "STATE_PROVINCE",
         "TERMS_AND_CONDITIONS",
         "SUBSCRIBER_OPT_IN",
         "SUBMIT_BUTTON"
@@ -102,8 +102,8 @@
         "PHONE_NUMBER",
         "JOB_TITLE",
         "COUNTRY_NAME",
-        "STATE_NAME",
-        "POSTAL_CODE",
+        "STATE_PROVINCE",
+        "POSTCODE_ZIPCODE",
         "SCHOOL_NAME",
         "TERMS_AND_CONDITIONS",
         "SUBSCRIBER_OPT_IN",
@@ -117,8 +117,8 @@
         "LAST_NAME",
         "EMAIL_ADDRESS",
         "COUNTRY_NAME",
-        "STATE_NAME",
-        "POSTAL_CODE",
+        "STATE_PROVINCE",
+        "POSTCODE_ZIPCODE",
         "SCHOOL_NAME",
         "PHONE_NUMBER",
         "JOB_TITLE",
@@ -137,8 +137,8 @@
         "LAST_NAME",
         "EMAIL_ADDRESS",
         "COUNTRY_NAME",
-        "STATE_NAME",
-        "POSTAL_CODE",
+        "STATE_PROVINCE",
+        "POSTCODE_ZIPCODE",
         "SCHOOL_NAME",
         "PHONE_NUMBER",
         "JOB_TITLE",
@@ -158,8 +158,8 @@
         "SCHOOL_NAME",
         "JOB_TITLE",
         "COUNTRY_NAME",
-        "STATE_NAME",
-        "POSTAL_CODE",
+        "STATE_PROVINCE",
+        "POSTCODE_ZIPCODE",
         "TERMS_AND_CONDITIONS",
         "SUBSCRIBER_OPT_IN",
         "SUBMIT_BUTTON"
@@ -174,8 +174,8 @@
         "SCHOOL_NAME",
         "JOB_TITLE",
         "COUNTRY_NAME",
-        "STATE_NAME",
-        "POSTAL_CODE",
+        "STATE_PROVINCE",
+        "POSTCODE_ZIPCODE",
         "TERMS_AND_CONDITIONS",
         "SUBSCRIBER_OPT_IN",
         "SUBMIT_BUTTON"
@@ -190,8 +190,8 @@
         "SCHOOL_NAME",
         "JOB_TITLE",
         "COUNTRY_NAME",
-        "STATE_NAME",
-        "POSTAL_CODE",
+        "STATE_PROVINCE",
+        "POSTCODE_ZIPCODE",
         "NO_OF_LICENCES",
         "TERMS_AND_CONDITIONS",
         "SUBSCRIBER_OPT_IN",
@@ -219,13 +219,13 @@
     } //if
 
 
-    // ADD SINGLE FORM COMPONENTS
-    var components = Request.GetQueryStringParameter("components")
-    if (components) {
-      var singleComponentList = components.toUpperCase().split(',');
-      for (var i = 0; i < singleComponentList.length; i++) {
-        var singleComponent = singleComponentList[i];
-        COMPONENTS_TO_RENDER.push(singleComponent);
+    // ADD SINGLE INPUT COMPONENTS
+    var inputs = Request.GetQueryStringParameter("inputs")
+    if (inputs) {
+      var singleInputList = inputs.toUpperCase().split(',');
+      for (var i = 0; i < singleInputList.length; i++) {
+        var singleInput = singleInputList[i];
+        COMPONENTS_TO_RENDER.push(singleInput);
       } //for    
     } //if
 
@@ -251,6 +251,9 @@
     Variable.SetValue('utm_campaign', Request.GetQueryStringParameter("utm_campaign"))
     Variable.SetValue('utm_content', Request.GetQueryStringParameter("utm_content"))
     Variable.SetValue('utm_term', Request.GetQueryStringParameter("utm_term"))
+
+    Variable.SetValue('template', Request.GetQueryStringParameter("template"))
+    Variable.SetValue('inputs', Request.GetQueryStringParameter("inputs"))
 
 
     /*******************************
@@ -490,8 +493,10 @@
     <input type="hidden" name="_utm_content" value="%%=v(@utm_content)=%%">
     <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
 
-    <input type="hidden" name="_referrer" value="">
+    <input type="hidden" name="_template" value="%%=v(@template)=%%">
+    <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
 
+    <input type="hidden" name="_referrer">
     <input type="hidden" name="_url">
 
     <script>
@@ -526,8 +531,8 @@
 
             <select
               class="form-control selectpicker show-tick"
-              id="product_interest_select"
-              name="product-interest"
+              id="_product_interest"
+              name="_product_interest"
               multiple
               title="Product Interests"
               data-selected-text-format="values"
@@ -538,90 +543,6 @@
               <option value="mathletics">Mathletics</option>
               <option value="mathseeds">Mathseeds</option>
               <option value="readingEggs">Reading Eggs</option>
-
-            </select>
-
-            <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
-          </div>
-        </div>
-        %%[ENDIF]%%
-
-
-        <!------------- Product Interest (Mathletics Pre-Selected) ----------------->
-        %%[IF (@COMPONENT == "PRODUCT_INTEREST_MX") THEN]%%
-        <div class="col-sm-12">
-          <div class="form-group">
-
-            <select
-              class="form-control selectpicker show-tick"
-              id="product_interest_select"
-              name="product-interest"
-              multiple
-              title="Product Interests"
-              data-selected-text-format="values"
-              data-actions-box="true"
-              required
-              style="color:#495057c7; font-weight: 400;">
-
-              <option value="mathletics" selected>Mathletics</option>
-              <option value="mathseeds">Mathseeds</option>
-              <option value="readingEggs">Reading Eggs</option>
-
-            </select>
-
-            <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
-          </div>
-        </div>
-        %%[ENDIF]%%
-
-
-        <!------------- Product Interest (Mathseeds Pre-Selected) ----------------->
-        %%[IF (@COMPONENT == "PRODUCT_INTEREST_MS") THEN]%%
-        <div class="col-sm-12">
-          <div class="form-group">
-
-            <select
-              class="form-control selectpicker show-tick"
-              id="product_interest_select"
-              name="product-interest"
-              multiple
-              title="Product Interests"
-              data-selected-text-format="values"
-              data-actions-box="true"
-              required
-              style="color:#495057c7; font-weight: 400;">
-
-              <option value="mathletics">Mathletics</option>
-              <option value="mathseeds" selected>Mathseeds</option>
-              <option value="readingEggs">Reading Eggs</option>
-
-            </select>
-
-            <div id="product_interest_invalid" class="custom-invalid-label custom-hide text-right">Select a product interest</div>
-          </div>
-        </div>
-        %%[ENDIF]%%
-
-
-        <!------------- Product Interest (Reading Eggs Pre-Selected) ----------------->
-        %%[IF (@COMPONENT == "PRODUCT_INTEREST_RE") THEN]%%
-        <div class="col-sm-12">
-          <div class="form-group">
-
-            <select
-              class="form-control selectpicker show-tick"
-              id="product_interest_select"
-              name="product-interest"
-              multiple
-              title="Product Interests"
-              data-selected-text-format="values"
-              data-actions-box="true"
-              required
-              style="color:#495057c7; font-weight: 400;">
-
-              <option value="mathletics">Mathletics</option>
-              <option value="mathseeds">Mathseeds</option>
-              <option value="readingEggs" selected>Reading Eggs</option>
 
             </select>
 
@@ -638,8 +559,8 @@
 
             <select
               class="form-control"
-              id="user_interest_select"
-              name="user_interest"
+              id="_user_interest"
+              name="_user_interest"
               required
               style="color:#495057c7; font-weight: 400;">
 
@@ -663,8 +584,8 @@
             <input
               class="form-control"
               type="text"
-              id="first_name_input"
-              name="first-name"
+              id="_first_name"
+              name="_first_name"
               placeholder="First Name"
               autofocus
               required>
@@ -683,8 +604,8 @@
             <input
               class="form-control"
               type="text"
-              id="last_name_input"
-              name="last-name"
+              id="_last_name"
+              name="_last_name"
               placeholder="Last Name"
               required>
 
@@ -702,8 +623,8 @@
             <input
               class="form-control"
               type="email"
-              id="email_address_input"
-              name="email-address"
+              id="_email_address"
+              name="_email_address"
               placeholder="Email Address"
               required>
 
@@ -721,8 +642,8 @@
             <input
               class="form-control"
               type="text"
-              id="phone_number_input"
-              name="phone-number"
+              id="_phone_number"
+              name="_phone_number"
               placeholder="Mobile / Work Phone"
               required>
 
@@ -739,8 +660,8 @@
 
             <select
               class="form-control"
-              id="grade_level_select"
-              name="grade-level"
+              id="_grade_level"
+              name="_grade_level"
               required
               style="color:#495057c7; font-weight: 400;">
 
@@ -776,8 +697,8 @@
 
             <select
               class="form-control"
-              id="job_title_select"
-              name="job_title_select"
+              id="_job_title"
+              name="_job_title"
               required
               style="color:#495057c7; font-weight: 400;">
 
@@ -823,8 +744,8 @@
 
             <select
               class="form-control"
-              id="country_name_select"
-              name="country-name"
+              id="_country_name"
+              name="_country_name"
               required
               style="color:#495057c7; font-weight: 400;">
 
@@ -860,20 +781,20 @@
         %%[ENDIF]%%
 
 
-        <!------------- State ----------------->
-        %%[IF (@COMPONENT == "STATE_NAME") THEN]%%
+        <!------------- State / Province ----------------->
+        %%[IF (@COMPONENT == "STATE_PROVINCE") THEN]%%
         <div class="col-sm-12">
           <div class="form-group" id="state_name_form_group">
 
             <select
               class="form-control"
-              id="state_name_select"
-              name="state-name"
+              id="_state_name"
+              name="_state_name"
               onchange=jobTitleChanged()
               required
               style="color:#495057c7; font-weight: 400;">
 
-              <option disabled selected>Select State <small>&nbsp;(Please select a country first.)</small></option>
+              <option disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
             </select>
 
@@ -883,16 +804,16 @@
         %%[ENDIF]%%
 
 
-        <!------------- Postal Code ----------------->
-        %%[IF (@COMPONENT == "POSTAL_CODE") THEN]%%
+        <!------------- Postcode / Zipcode ----------------->
+        %%[IF (@COMPONENT == "POSTCODE_ZIPCODE") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
 
             <input
               class="form-control"
               type="text"
-              id="postal_code_input"
-              name="postal-code"
+              id="_postcode_zipcode"
+              name="_postcode_zipcode"
               placeholder="Postcode / Zipcode"
               title="Postcode/Zipcode is 4 digits with no spaces"
               required>
@@ -911,8 +832,8 @@
             <input
               class="form-control"
               type="text"
-              id="school_name_input"
-              name="school-name"
+              id="_school_name"
+              name="_school_name"
               placeholder="School or District Name"
               required>
 
@@ -930,8 +851,8 @@
             <input
               class="form-control"
               type="number"
-              id="no_of_licences_input"
-              name="no-of-licences"
+              id="_no_of_licences"
+              name="_no_of_licences"
               placeholder="Number of Student Licenses"
               required
               min="20"
@@ -950,13 +871,13 @@
 
             <input
               type="checkbox"
-              id="terms_and_conditions_input"
-              name="terms-and-conditions"
+              id="_terms_and_conditions"
+              name="_terms_and_conditions"
               checked
               required>
 
             <label
-              for="terms_and_conditions_input"
+              for="_terms_and_conditions"
               class="custom-field-terms form-check-label">
               I agree to the 3P Learning.
               <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
@@ -975,8 +896,8 @@
 
             <input
               type="checkbox"
-              id="subscriber_opt_in_input"
-              name="subscriber-opt-in"
+              id="_subscriber_opt_in"
+              name="_subscriber_opt_in"
               checked>
 
             <label for="subscriber_opt_in_input" class="custom-field-terms form-check-label" style="display: inline;">
@@ -997,8 +918,8 @@
             <button
               class="custom_submit_button"
               type="submit"
-              name="_submit_buttom"
-              id="_submit_buttom">
+              id="_submit_button"
+              name="_submit_button">
               Submit
             </button>
 
@@ -1103,7 +1024,7 @@
     const thisDocument = $(document);
     const countryNameSelect = $('#country_name_select');
     const stateNameFormGroup = $('#state_name_form_group');
-    const stateNameSelect = $('#state_name_select');
+    const stateNameSelect = $('#_state_name');
 
 
     //EVENTS
