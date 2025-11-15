@@ -4,47 +4,97 @@
    * 
    * Query Parameters
    * -----------------
+   * 
+   * @parameter: template - the name of an array of preconfigured form inputs to display
+   * @parameter: inputs - a comma-deliminated URL array of single form inputs to display
    *
-   * @parameter: cid - the salesforce campaign id where the lead will be attached
-   * @parameter: rid - the id of a redirect url located in marketing cloud
+   * @parameter: cid - the salesforce campaign id where the lead will be membered
+   * @parameter: rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission
    * @parameter: pid - the 3P Learning product name (ie. mathletics, readingeggs etc)
    * 
-   * @parameter: template - the name of a template used to display preconfigured form inputs
-   * @parameter: inputs - a list of individual form inputs to display
+   * @parameter: utm_source - marketing trackers retrieved from a browser cookie
+   * @parameter: utm_medium - marketing trackers retrieved from a browser cookie
+   * @parameter: utm_campaign - marketing trackers retrieved from a browser cookie
+   * @parameter: utm_content - marketing trackers retrieved from a browser cookie
+   * @parameter: utm_term - marketing trackers retrieved from a browser cookie
+   * @parameter: gclid - (google click ID) marketing trackers retrieved from a browser cookie
+   * @parameter: gtm_referrer - marketing trackers retrieved from a browser cookie
+   * 
+   * 
+   * Form Template URL Examples
+   * ---------------------------
+   * 
+   * 
+   * @example: Test
+   * https://webform.my.3plearning.com/REUSABLE_FORM?template=test
+   * 
+   * @example: Test Columns
+   * https://webform.my.3plearning.com/REUSABLE_FORM?template=test_columns
+   * 
+   * @example: Test States
+   * https://webform.my.3plearning.com/REUSABLE_FORM?template=test_states
+   * 
+   * @example: Basic Template
+   * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
+   * 
+   * @example: TOF Template
+   * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
+   * 
+   * @example: BOF Template
+   * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
+   * 
+   * @example: Quote Template
+   * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
+   * 
+   * @example: US Form Template
+   * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
+   * 
+   * @example: Trial Template
+   * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
+   * 
+   * @example: Info Template
+   * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
+   * 
+   * @example: Demo Template
+   * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
    * 
    */
 </script>
 
-<script runat="server" executioncontexttype="Post">
+<!-- SSJS POST -->
+<script runat="server">
   Platform.Load("core", "1");
-  /**
-   * POST-SSJS
-   * @description: ssjs that runs when the form is submitted on the backend
-   */
 
   try {
+    if (Request.Method() != "POST") return;
 
+    //GET FORM FIELDS
+
+    //STRINGIFY DATA
+
+    //ADD TO PIPELINE
+
+    //REDIRECT
+
+    Redirect('https://www.google.com', true);
   } catch (error) {
     Write("Error: " + Stringify(error.message));
   }
 </script>
 
 
-<script runat="server" executioncontexttype="Get">
+<!-- SSJS GET -->
+<script runat="server">
   Platform.Load("core", "1");
-  /**
-   * GET-SSJS
-   * @description: ssjs that runs when the form is displayed on the frontend
-   */
-
   try {
+
 
     /************************* 
     --------- TEMPLATES ------
     **************************/
 
 
-    var TEMPLATES = {
+    var PRECONFIGURED_TEMPLATES = {
 
       //?template=test
       test: [
@@ -67,7 +117,7 @@
       ],
 
       //?template=test_half
-      test_half: [
+      test_columns: [
         "PRODUCT_INTEREST_HALF",
         "USER_INTEREST_HALF",
         "FIRST_NAME_HALF",
@@ -101,140 +151,9 @@
         "STATE_PROVINCE_NAME_CA_HALF",
         "STATE_PROVINCE_NAME_ZA",
         "STATE_PROVINCE_NAME_ZA_HALF"
-      ],
-
-      //?template=basic
-      required: [
-        "FIRST_NAME",
-        "LAST_NAME",
-        "EMAIL_ADDRESS",
-        "SCHOOL_NAME",
-        "COUNTRY_NAME",
-        "STATE_PROVINCE_NAME",
-        "TERMS_AND_CONDITIONS",
-        "SUBSCRIBER_OPT_IN",
-        "SUBMIT_BUTTON"
-      ],
-
-      //?template=tof
-      tof: [
-        "FIRST_NAME",
-        "LAST_NAME",
-        "EMAIL_ADDRESS",
-        "JOB_TITLE",
-        "SCHOOL_NAME",
-        "COUNTRY_NAME",
-        "STATE_PROVINCE_NAME",
-        "TERMS_AND_CONDITIONS",
-        "SUBSCRIBER_OPT_IN",
-        "SUBMIT_BUTTON"
-      ],
-
-      //?template=bof
-      bof: [
-        "FIRST_NAME",
-        "LAST_NAME",
-        "EMAIL_ADDRESS",
-        "PHONE_NUMBER",
-        "JOB_TITLE",
-        "COUNTRY_NAME",
-        "STATE_PROVINCE_NAME",
-        "POSTCODE_ZIPCODE",
-        "SCHOOL_NAME",
-        "TERMS_AND_CONDITIONS",
-        "SUBSCRIBER_OPT_IN",
-        "SUBMIT_BUTTON"
-      ],
-
-      //?template=quote
-      quote: [
-        "PRODUCT_INTEREST",
-        "FIRST_NAME",
-        "LAST_NAME",
-        "EMAIL_ADDRESS",
-        "COUNTRY_NAME",
-        "STATE_PROVINCE_NAME",
-        "POSTCODE_ZIPCODE",
-        "SCHOOL_NAME",
-        "PHONE_NUMBER",
-        "JOB_TITLE",
-        "GRADE_LEVEL",
-        "NO_OF_LICENCES",
-        "TERMS_AND_CONDITIONS",
-        "SUBSCRIBER_OPT_IN",
-        "SUBMIT_BUTTON"
-      ],
-
-      //?template=us_form
-      us_form: [
-        "PRODUCT_INTEREST",
-        "USER_INTEREST",
-        "FIRST_NAME",
-        "LAST_NAME",
-        "EMAIL_ADDRESS",
-        "COUNTRY_NAME",
-        "STATE_PROVINCE_NAME",
-        "POSTCODE_ZIPCODE",
-        "SCHOOL_NAME",
-        "PHONE_NUMBER",
-        "JOB_TITLE",
-        "GRADE_LEVEL",
-        "NO_OF_LICENCES",
-        "TERMS_AND_CONDITIONS",
-        "SUBSCRIBER_OPT_IN",
-        "SUBMIT_BUTTON"
-      ],
-
-      //?template=trial
-      trial: [
-        "FIRST_NAME",
-        "LAST_NAME",
-        "EMAIL_ADDRESS",
-        "PHONE_NUMBER",
-        "SCHOOL_NAME",
-        "JOB_TITLE",
-        "COUNTRY_NAME",
-        "STATE_PROVINCE_NAME",
-        "POSTCODE_ZIPCODE",
-        "TERMS_AND_CONDITIONS",
-        "SUBSCRIBER_OPT_IN",
-        "SUBMIT_BUTTON"
-      ],
-
-      //?template=info
-      info: [
-        "FIRST_NAME",
-        "LAST_NAME",
-        "EMAIL_ADDRESS",
-        "PHONE_NUMBER",
-        "SCHOOL_NAME",
-        "JOB_TITLE",
-        "COUNTRY_NAME",
-        "STATE_PROVINCE_NAME",
-        "POSTCODE_ZIPCODE",
-        "TERMS_AND_CONDITIONS",
-        "SUBSCRIBER_OPT_IN",
-        "SUBMIT_BUTTON"
-      ],
-
-      //?template=demo
-      demo: [
-        "FIRST_NAME",
-        "LAST_NAME",
-        "EMAIL_ADDRESS",
-        "PHONE_NUMBER",
-        "SCHOOL_NAME",
-        "JOB_TITLE",
-        "COUNTRY_NAME",
-        "STATE_PROVINCE_NAME",
-        "POSTCODE_ZIPCODE",
-        "NO_OF_LICENCES",
-        "TERMS_AND_CONDITIONS",
-        "SUBSCRIBER_OPT_IN",
-        "SUBMIT_BUTTON"
       ]
 
-    } //TEMPLATES
+    } //PRECONFIGURED_TEMPLATES
 
 
 
@@ -248,9 +167,9 @@
 
 
     // ADD ALL TEMPLATE COMPONENTS
-    var templateQueryParameter = Request.GetQueryStringParameter("template")
-    if (templateQueryParameter) {
-      var templateComponentList = TEMPLATES[templateQueryParameter.toLowerCase()];
+    var template = Request.GetQueryStringParameter("template")
+    if (template) {
+      var templateComponentList = PRECONFIGURED_TEMPLATES[template.toLowerCase()];
       COMPONENTS_TO_RENDER = COMPONENTS_TO_RENDER.concat(templateComponentList);
     } //if
 
@@ -281,14 +200,17 @@
     Variable.SetValue('rid', Request.GetQueryStringParameter("rid"))
     Variable.SetValue('pid', Request.GetQueryStringParameter("pid"))
 
+    Variable.SetValue('template', Request.GetQueryStringParameter("template"))
+    Variable.SetValue('inputs', Request.GetQueryStringParameter("inputs"))
+
     Variable.SetValue('utm_source', Request.GetQueryStringParameter("utm_source"))
     Variable.SetValue('utm_medium', Request.GetQueryStringParameter("utm_medium"))
     Variable.SetValue('utm_campaign', Request.GetQueryStringParameter("utm_campaign"))
     Variable.SetValue('utm_content', Request.GetQueryStringParameter("utm_content"))
     Variable.SetValue('utm_term', Request.GetQueryStringParameter("utm_term"))
+    Variable.SetValue('utm_term', Request.GetQueryStringParameter("gclid"))
+    Variable.SetValue('gtm_referrer', Request.GetQueryStringParameter("gtm_referrer"))
 
-    Variable.SetValue('template', Request.GetQueryStringParameter("template"))
-    Variable.SetValue('inputs', Request.GetQueryStringParameter("inputs"))
 
 
     /*******************************
@@ -411,7 +333,7 @@
     <input type="hidden" name="_utm_content" value="%%=v(@utm_content)=%%">
     <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
     <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
-    <input type="hidden" name="_referrer" value="%%=v(@referrer)=%%">
+    <input type="hidden" name="_gtm_referrer" value="%%=v(@gtm_referrer)=%%">
 
 
     <!-- Set Form URL -->
@@ -441,13 +363,13 @@
 
         // Fill form fields if cookie exists
         if (document.cookie.includes('setURLParamsCookie')) {
-          document.querySelector('#utm-source').value = getParam('utm_source');
-          document.querySelector('#utm-medium').value = getParam('utm_medium');
-          document.querySelector('#utm-campaign').value = getParam('utm_campaign');
-          document.querySelector('#utm-content').value = getParam('utm_content');
-          document.querySelector('#utm-term').value = getParam('utm_term');
-          document.querySelector('#gclid').value = getParam('gclid');
-          document.querySelector('#referrer').value = getCookie('__gtm_referrer');
+          document.querySelector('input[name="_utm_source"]').value = getParam('utm_source');
+          document.querySelector('input[name="_utm_medium"]').value = getParam('utm_medium');
+          document.querySelector('input[name="_utm_campaign"]').value = getParam('utm_campaign');
+          document.querySelector('input[name="_utm_content"]').value = getParam('utm_content');
+          document.querySelector('input[name="_utm_term"]').value = getParam('utm_term');
+          document.querySelector('input[name="_gclid"]').value = getParam('gclid');
+          document.querySelector('input[name="_gtm_referrer"]').value = getCookie('__gtm_referrer');
         }
 
       }); //DOMContentLoaded
