@@ -5,13 +5,15 @@
    * QUERY PARAMETERS
    * -----------------
    * 
-   * @parameter: template - the name of an array of preconfigured form inputs to display
-   * @parameter: inputs - a comma-deliminated URL array of single form inputs to display
+   * @parameter: template (required) - the name of an array of preconfigured form inputs to display
+   * @parameter: inputs (required) - a comma-deliminated URL array of single form inputs to display
    * 
-   * @parameter: cid - the salesforce campaign id where the lead will be membered
-   * @parameter: rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission
-   * @parameter: pid - the 3P Learning product name (ie. mathletics, readingeggs etc)
-   * @parameter: fid - (optional) form ID to use in logic when making changes post go-live
+   * @parameter: cid (required) - the salesforce campaign id where the lead will be membered
+   * @parameter: rid (required) - the redirect id used to retrieve a url from a DE and redirect the user after form submission
+   * @parameter: eid (required) - a des cription of why the the lead enquired (ie. quote: requesting new mathletics licences)
+   * @parameter: pid (required) - the name of the 3P Learning software product (ie. mathletics, reading eggs, etc)
+   * @parameter: gid (required) - the name of the region (APAC, EMEA, AMER, GLOBAL)
+   * @parameter: fid (optional) - form ID to use in logic when making changes post go-live
    * 
    * @parameter: utm_source - marketing trackers retrieved from a browser cookie
    * @parameter: utm_medium - marketing trackers retrieved from a browser cookie
@@ -68,14 +70,15 @@
     if (Request.Method() != "POST") return;
 
     //GET FORM FIELDS
-
     var payload = {};
 
     payload.debug = Request.GetFormField("_debug");
 
     payload.cid = Request.GetFormField("_cid");
     payload.rid = Request.GetFormField("_rid");
+    payload.eid = Request.GetFormField("_eid");
     payload.pid = Request.GetFormField("_pid");
+    payload.gid = Request.GetFormField("_gid");
     payload.fid = Request.GetFormField("_fid");
 
     payload.inputs = Request.GetFormField("_inputs");
@@ -116,11 +119,22 @@
       return;
     }
 
-    //STRINGIFY DATA
+    //PRE-PROCESS
+    //1. Lookup Region (gid)
+    //2. Lookup Campaign (cid)
+    //3. Lookup Equiry Type (eid)
+    //4. Lookup Product Name (pid)
+    //3. Lookup Job Function
+    //3. Lookup Country Name??
+    //3. Lookup State/Province Name??
 
     //SUBMIT LEAD
+    //3. Create/Update Lead
+    //4. Create Campaign Member
 
     //REDIRECT
+    //1. Lookup RedirectURL (rid)
+    //2. Activate Redirect
     // Redirect('https://www.google.com', true);
 
   } catch (error) {
@@ -246,7 +260,9 @@
 
     Variable.SetValue('cid', Request.GetQueryStringParameter("cid"));
     Variable.SetValue('rid', Request.GetQueryStringParameter("rid"));
+    Variable.SetValue('eid', Request.GetQueryStringParameter("eid"));
     Variable.SetValue('pid', Request.GetQueryStringParameter("pid"));
+    Variable.SetValue('gid', Request.GetQueryStringParameter("gid"));
     Variable.SetValue('fid', Request.GetQueryStringParameter("fid"));
 
     Variable.SetValue('template', Request.GetQueryStringParameter("template"));
@@ -374,8 +390,10 @@
     <input type="hidden" name="_triggered_send_key" value="%%=v(@triggered_send_key)=%%">
 
     <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
-    <input type="hidden" name="_pid" value="%%=v(@pid)=%%">
     <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
+    <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
+    <input type="hidden" name="_pid" value="%%=v(@pid)=%%">
+    <input type="hidden" name="_gid" value="%%=v(@gid)=%%">
     <input type="hidden" name="_fid" value="%%=v(@fid)=%%">
 
     <input type="hidden" name="_template" value="%%=v(@template)=%%">
