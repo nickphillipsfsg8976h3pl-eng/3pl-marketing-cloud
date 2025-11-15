@@ -1177,7 +1177,7 @@
         %%[ENDIF]%%
 
 
-        <!------------- No Of Licences  ----------------->
+        <!------------- No. Of Licences  ----------------->
         %%[IF (@COMPONENT == "NO_OF_LICENCES") THEN]%%
         <div class="col-sm-12">
           <div class="form-group">
@@ -1198,7 +1198,7 @@
         %%[ENDIF]%%
 
 
-        <!------------- No Of Licences HALF ----------------->
+        <!------------- No. Of Licences HALF ----------------->
         %%[IF (@COMPONENT == "NO_OF_LICENCES_HALF") THEN]%%
         <div class="col-sm-12 col-md-6">
           <div class="form-group">
