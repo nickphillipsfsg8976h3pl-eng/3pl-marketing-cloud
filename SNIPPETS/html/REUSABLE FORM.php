@@ -2,7 +2,7 @@
   /**
    * =========== REUSABLE FORM =============
    * 
-   * Query Parameters
+   * QUERY PARAMETERS
    * -----------------
    * 
    * @parameter: template - the name of an array of preconfigured form inputs to display
@@ -22,9 +22,8 @@
    * @parameter: gtm_referrer - marketing trackers retrieved from a browser cookie
    * 
    * 
-   * Form Template URL Examples
+   * URL EXAMPLES
    * ---------------------------
-   * 
    * 
    * @example: Test
    * https://webform.my.3plearning.com/REUSABLE_FORM?template=test
@@ -70,13 +69,60 @@
 
     //GET FORM FIELDS
 
+    var payload = {};
+
+    payload.debug = Request.GetFormField("_debug");
+
+    payload.cid = Request.GetFormField("_cid");
+    payload.rid = Request.GetFormField("_rid");
+    payload.pid = Request.GetFormField("_pid");
+    payload.fid = Request.GetFormField("_fid");
+
+    payload.inputs = Request.GetFormField("_inputs");
+    payload.template = Request.GetFormField("_template");
+    payload.request_url = Request.GetFormField("_request_url");
+    payload.location_href = Request.GetFormField("_location_href");
+
+    payload.utm_source = Request.GetFormField("_utm_source");
+    payload.utm_medium = Request.GetFormField("_utm_medium");
+    payload.utm_campaign = Request.GetFormField("_utm_campaign");
+    payload.utm_content = Request.GetFormField("_utm_content");
+    payload.utm_term = Request.GetFormField("_utm_term");
+    payload.utm_term = Request.GetFormField("_gclid");
+    payload.gtm_referrer = Request.GetFormField("_gtm_referrer");
+
+    payload.product_interest = Request.GetFormField("_product_interest");
+    payload.user_interest = Request.GetFormField("_user_interest");
+    payload.first_name = Request.GetFormField("_first_name");
+    payload.last_name = Request.GetFormField("_last_name");
+    payload.email_address = Request.GetFormField("_email_address");
+    payload.phone_number = Request.GetFormField("_phone_number");
+    payload.grade_level = Request.GetFormField("_grade_level");
+    payload.job_title = Request.GetFormField("_job_title");
+    payload.country_name = Request.GetFormField("_country_name");
+    payload.state_province_name = Request.GetFormField("_state_province_name");
+    payload.postcode_zipcode = Request.GetFormField("_postcode_zipcode");
+    payload.school_name = Request.GetFormField("_school_name");
+    payload.no_of_licences = Request.GetFormField("_no_of_licences");
+    payload.terms_and_conditions = Request.GetFormField("_terms_and_conditions");
+    payload.subscriber_opt_in = Request.GetFormField("_subscriber_opt_in");
+
+
+    // ?debug=true
+    if (payload.debug) {
+      Write('=== DEBUG MODE ===')
+      Write('<br><br>')
+      Write('Payload: ' + Stringify(payload));
+      return;
+    }
+
     //STRINGIFY DATA
 
     //SUBMIT LEAD
 
     //REDIRECT
+    // Redirect('https://www.google.com', true);
 
-    Redirect('https://www.google.com', true);
   } catch (error) {
     Write("Error: " + Stringify(error.message));
   }
@@ -88,6 +134,7 @@
 <script runat="server">
   Platform.Load("core", "1");
   try {
+    if (Request.Method() != "GET") return;
 
 
     /************************* 
@@ -191,28 +238,34 @@
 
 
     /*******************************
-    -- GENERAL REQUEST PARAMETER ---
+    -- GENERAL REQUEST PARAMETERS ---
     ********************************/
 
 
     Variable.SetValue('debug', Request.GetQueryStringParameter("debug"))
 
-    Variable.SetValue('cid', Request.GetQueryStringParameter("cid"))
-    Variable.SetValue('rid', Request.GetQueryStringParameter("rid"))
-    Variable.SetValue('pid', Request.GetQueryStringParameter("pid"))
-    Variable.SetValue('fid', Request.GetQueryStringParameter("fid"))
+    Variable.SetValue('cid', Request.GetQueryStringParameter("cid"));
+    Variable.SetValue('rid', Request.GetQueryStringParameter("rid"));
+    Variable.SetValue('pid', Request.GetQueryStringParameter("pid"));
+    Variable.SetValue('fid', Request.GetQueryStringParameter("fid"));
 
-    Variable.SetValue('template', Request.GetQueryStringParameter("template"))
-    Variable.SetValue('inputs', Request.GetQueryStringParameter("inputs"))
+    Variable.SetValue('template', Request.GetQueryStringParameter("template"));
+    Variable.SetValue('inputs', Request.GetQueryStringParameter("inputs"));
 
-    Variable.SetValue('utm_source', Request.GetQueryStringParameter("utm_source"))
-    Variable.SetValue('utm_medium', Request.GetQueryStringParameter("utm_medium"))
-    Variable.SetValue('utm_campaign', Request.GetQueryStringParameter("utm_campaign"))
-    Variable.SetValue('utm_content', Request.GetQueryStringParameter("utm_content"))
-    Variable.SetValue('utm_term', Request.GetQueryStringParameter("utm_term"))
-    Variable.SetValue('utm_term', Request.GetQueryStringParameter("gclid"))
-    Variable.SetValue('gtm_referrer', Request.GetQueryStringParameter("gtm_referrer"))
+    Variable.SetValue('utm_source', Request.GetQueryStringParameter("utm_source"));
+    Variable.SetValue('utm_medium', Request.GetQueryStringParameter("utm_medium"));
+    Variable.SetValue('utm_campaign', Request.GetQueryStringParameter("utm_campaign"));
+    Variable.SetValue('utm_content', Request.GetQueryStringParameter("utm_content"));
+    Variable.SetValue('utm_term', Request.GetQueryStringParameter("utm_term"));
+    Variable.SetValue('utm_term', Request.GetQueryStringParameter("gclid"));
+    Variable.SetValue('gtm_referrer', Request.GetQueryStringParameter("gtm_referrer"));
 
+
+    /*******************************
+    -- SET ADDITIONAL VALUES ---
+    ********************************/
+
+    Variable.SetValue('request_url', Request.URL());
 
 
     /*******************************
@@ -327,7 +380,8 @@
 
     <input type="hidden" name="_template" value="%%=v(@template)=%%">
     <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
-    <input type="hidden" name="_form_url">
+    <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
+    <input type="hidden" name="_location_href">
 
     <input type="hidden" name="_utm_source" value="%%=v(@utm_source)=%%">
     <input type="hidden" name="_utm_medium" value="%%=v(@utm_medium)=%%">
@@ -338,10 +392,10 @@
     <input type="hidden" name="_gtm_referrer" value="%%=v(@gtm_referrer)=%%">
 
 
-    <!-- Set Form URL -->
+    <!-- Set Location Href -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        document.querySelector('input[name="_form_url"]');
+        document.querySelector('input[name="_location_href"]').value = location.href;
       }); //DOMContentLoaded
     </script>
 
