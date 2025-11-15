@@ -73,7 +73,7 @@
 
     //STRINGIFY DATA
 
-    //ADD TO PIPELINE
+    //SUBMIT LEAD
 
     //REDIRECT
 
