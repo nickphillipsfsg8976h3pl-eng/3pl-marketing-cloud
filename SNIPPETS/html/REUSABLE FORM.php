@@ -87,6 +87,23 @@
         "SUBMIT_BUTTON"
       ],
 
+      test_states: [
+        "COUNTRY_NAME",
+        "COUNTRY_NAME_HALF",
+        "STATE_PROVINCE_NAME",
+        "STATE_PROVINCE_NAME_HALF",
+        "STATE_PROVINCE_NAME_AU",
+        "STATE_PROVINCE_NAME_AU_HALF",
+        "STATE_PROVINCE_NAME_NZ",
+        "STATE_PROVINCE_NAME_NZ_HALF",
+        "STATE_PROVINCE_NAME_US",
+        "STATE_PROVINCE_NAME_US_HALF",
+        "STATE_PROVINCE_NAME_CA",
+        "STATE_PROVINCE_NAME_CA_HALF",
+        "STATE_PROVINCE_NAME_ZA",
+        "STATE_PROVINCE_NAME_ZA_HALF"
+      ],
+
       //?template=basic
       required: [
         "FIRST_NAME",
@@ -1105,6 +1122,376 @@
             console.error(e.message);
           }
         </script>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_US") THEN]%%
+        <!------------- State / Province Name (US) ----------------->
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>State (United States)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_US_HALF") THEN]%%
+        <!------------- State / Province Name (US) HALF ----------------->
+        <div class="col-sm-12 col-md-6">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>State (United States)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_CA") THEN]%%
+        <!------------- State / Province Name (CA) ----------------->
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>Province (Canada)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_CA_HALF") THEN]%%
+        <!------------- State / Province Name (CA) HALF ----------------->
+        <div class="col-sm-12 col-md-6">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>Province (Canada)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_AU") THEN]%%
+        <!------------- State / Province Name (AU) ----------------->
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>State (Australia)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_AU_HALF") THEN]%%
+        <!------------- State / Province Name (AU) HALF ----------------->
+        <div class="col-sm-12 col-md-6">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>State (Australia)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_NZ") THEN]%%
+        <!------------- State / Province Name (NZ) ----------------->
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>State (New Zealand)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_NZ_HALF") THEN]%%
+        <!------------- State / Province Name (NZ) HALF ----------------->
+        <div class="col-sm-12 col-md-6">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>State (New Zealand)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_ZA") THEN]%%
+        <!------------- State / Province Name (ZA) ----------------->
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>State (South Africa)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
+        %%[ENDIF]%%
+
+
+        %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_ZA_HALF") THEN]%%
+        <!------------- State / Province Name (ZA) HALF ----------------->
+        <div class="col-sm-12 col-md-6">
+          <div class="form-group">
+
+            <select
+              class="form-control custom-reset-select-text"
+              id="_state_province_name"
+              name="_state_province_name"
+              required>
+
+              <option value="" disabled selected>State (South Africa)</option>
+
+              %%[
+
+              /******************************
+              POPULATE STATE/PROVINCE OPTIONS
+              *******************************/
+
+              SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
+              FOR @i = 1 TO RowCount(@data) DO
+              SET @option = Field(Row(@data, @i), "State Name")
+              OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+              NEXT @i
+              VAR @data, @option
+
+              ]%%
+
+            </select>
+
+            <div class="invalid-feedback">Please select a state or province</div>
+
+          </div>
+        </div>
         %%[ENDIF]%%
 
 
