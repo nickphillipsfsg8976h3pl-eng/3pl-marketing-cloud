@@ -20,6 +20,7 @@
    * POST-SSJS
    * @description: ssjs that runs when the form is submitted on the backend
    */
+
   try {
 
   } catch (error) {
@@ -36,8 +37,9 @@
    */
 
   try {
+
     /************************* 
-    --------- TEMPLATES ----------
+    --------- TEMPLATES ------
     **************************/
 
 
@@ -273,6 +275,7 @@
 <!doctype html>
 <html lang="en">
 
+
 <head>
 
   <!-- Google Tag Manager -->
@@ -292,7 +295,6 @@
       f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-T97DM2H');
   </script>
-  <!-- End Google Tag Manager -->
 
 
   <!-- Meta/SEO -->
@@ -300,7 +302,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Form">
-  <!-- //Meta/SEO -->
 
 
   <!-- Title & Favicons -->
@@ -310,14 +311,12 @@
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
-  <!-- //Title & Favicons -->
 
 
   <!-- CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-  <!-- //CSS -->
 
 
   <!-- Styles -->
