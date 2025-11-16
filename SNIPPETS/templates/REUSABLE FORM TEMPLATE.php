@@ -2,17 +2,27 @@
   /**
    * =========== REUSABLE FORM =============
    * 
+   * @author: Nick Phillips
+   * 
+   * 
+   * CHANGE LOG
+   * ----------------------------------
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
    * QUERY PARAMETERS
-   * -----------------
+   * ----------------------------------
    * 
    * @parameter: template (required) - the name of an array of preconfigured form inputs to display
    * @parameter: inputs (required) - a comma-deliminated URL array of single form inputs to display
    * 
    * @parameter: cid (required) - the salesforce campaign id where the lead will be membered
    * @parameter: rid (required) - the redirect id used to retrieve a url from a DE and redirect the user after form submission
-   * @parameter: eid (required) - an equiry type (tof, bof, quote, info). Links to enquiry type picklist in Salesforce
-   * @parameter: pid (required) - 3PL 2 letter character codes for each product (MX, MS, RE, etc)
-   * @parameter: gid (required) - the name of the region (APAC, EMEA, AMER, GLOBAL)
+   * @parameter: eid (required) - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce
+   * @parameter: sid (optional) - lead status id - [UQ, MP, SP, MQL (default), SAL, SQL], 
    * @parameter: fid (optional) - form ID to use in logic when making changes post go-live
    * 
    * @parameter: utm_source - marketing trackers retrieved from a browser cookie
@@ -25,7 +35,7 @@
    * 
    * 
    * URL EXAMPLES
-   * ---------------------------
+   * ----------------------------------
    * 
    * @example: Test
    * https://webform.my.3plearning.com/REUSABLE_FORM?template=test
@@ -69,7 +79,11 @@
   try {
     if (Request.Method() != "POST") return;
 
-    //GET FORM FIELDS
+
+    /************************* 
+    ------- GET PAYLOAD ------
+    **************************/
+
     var payload = {};
 
     payload.debug = Request.GetFormField("_debug");
@@ -77,8 +91,7 @@
     payload.cid = Request.GetFormField("_cid");
     payload.rid = Request.GetFormField("_rid");
     payload.eid = Request.GetFormField("_eid");
-    payload.pid = Request.GetFormField("_pid");
-    payload.gid = Request.GetFormField("_gid");
+    payload.sid = Request.GetFormField("_sid");
     payload.fid = Request.GetFormField("_fid");
 
     payload.inputs = Request.GetFormField("_inputs");
@@ -102,8 +115,8 @@
     payload.phone_number = Request.GetFormField("_phone_number");
     payload.grade_level = Request.GetFormField("_grade_level");
     payload.job_title = Request.GetFormField("_job_title");
-    payload.country_name = Request.GetFormField("_country_name");
-    payload.state_province_name = Request.GetFormField("_state_province_name");
+    payload.country_code = Request.GetFormField("_country_code");
+    payload.state_code = Request.GetFormField("_state_code");
     payload.postcode_zipcode = Request.GetFormField("_postcode_zipcode");
     payload.school_name = Request.GetFormField("_school_name");
     payload.no_of_licences = Request.GetFormField("_no_of_licences");
@@ -111,6 +124,105 @@
     payload.subscriber_opt_in = Request.GetFormField("_subscriber_opt_in");
 
 
+    /************************* 
+    ------- PRE-PROCESS ------
+    **************************/
+
+    // Lookup Region, Country
+    if (payload.country_code) {
+      payload.lookupCountryData = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'CountryCode', payload.country_code);
+      payload.region = payload.lookupCountryData[0].Region;
+      payload.country_name = payload.lookupCountryData[0].CountryName;
+    }
+
+    // Lookup State
+    if (payload.state_code) {
+      payload.lookupStateData = Platform.Function.LookupRows('STATE_REFERENCE', 'CountryCode', payload.country_code);
+      payload.state_name = payload.lookupStateData[0].StateName;
+    }
+
+    // Lookup Campaign
+    if (payload.cid) {
+      paylaod.lookupCampaignData = Platform.Function.LookupRows('ENT.Campaign_Salesforce', 'Id', payload.cid);
+      payload.campaign_name = payload.lookupCampaignData[0].Name;
+    }
+
+    // Lookup Job Function
+    if (payload.job_title) {
+      paylaod.lookupJobData = Platform.Function.LookupRows('JOB_FUNCTION_REFERENCE', ['JobTitle', 'Region'], [payload.job_title, payload.region]);
+      payload.job_function = payload.lookupJobData[0].JobFunction;
+    }
+
+    // Lookup Campaign Resources
+    //
+    //  TODO - configure to pull from an object related to the campaign instead of having to maintain a reference DE
+    //
+
+    // Lookup Equiry Type
+    switch (payload.eid) {
+      case 'quote':
+        payload.enquiry = 'Quote';
+        payload.description = 'Customer has requested a quote for ' + payload.no_of_licences + ' licence(s). In relation to the campaign: ' + payload.campaign_name;
+        break;
+      case 'trial':
+        payload.enquiry = 'Trial';
+        payload.description = 'Customer has requested a trial. In relation to the campaign: ' + payload.campaign_name;
+        break;
+      case 'demo':
+        payload.enquiry = 'Demo';
+        payload.description = 'Customer has requested a demo. In relation to the campaign: ' + payload.campaign_name;
+        break;
+      case 'info':
+        payload.enquiry = 'Information';
+        payload.description = 'Customer has requested a information. In relation to the campaign: ' + payload.campaign_name;
+        break;
+      default:
+        payload.description = 'Customer has requested a resource. In relation to the campaign: ' + payload.campaign_name;
+    }
+
+    // Lookup Lead Status
+    switch (payload.sid) {
+      case 'UQ':
+        payload.status = "Unqualified";
+        break;
+      case 'MP':
+        payload.status = "Marketing Prospect";
+        break;
+      case 'SP':
+        payload.status = "Sales Prospect";
+        break;
+      case 'SAL':
+        payload.status = "SAL";
+        break;
+      case 'SQL':
+        payload.status = "SQL";
+        break;
+      default:
+        payload.status = "MQL";
+        break;
+    }
+
+    //6. Lookup Product Name
+    set @_Product_Interest = Replace(@pid, "brightpath", "Brightpath Writing")
+    set @_Product_Interest_c = Replace(@pid, "brightpath", "Brightpath Progress Writing")
+    set @_Product_Interest_c = Replace(@_Product_Interest_c, ",", ";")
+    set @_Product_Interest = Replace(@_Product_Interest, ",", ";")
+    set @pid = Replace(@pid, "brightpath", "Brightpath Writing")
+    set @pid1 = Replace(@pid, "Brightpath Writing", "Brightpath Progress Writing")
+
+    //SUBMIT LEAD
+    //1. Create/Update Lead
+    //2. Create Campaign Member
+
+
+    //REDIRECT
+    //1. Lookup RedirectURL (rid)
+    if (payload.rid) {
+      // Redirect('https://www.google.com', true);
+    }
+
+
+    //DEBUG
     // ?debug=true
     if (payload.debug) {
       Write('=== DEBUG MODE ===')
@@ -119,28 +231,24 @@
       return;
     }
 
-    //PRE-PROCESS
-    //1. Lookup Region (gid)
-    //2. Lookup Campaign (cid)
-    //3. Lookup Equiry Type (eid)
-    //4. Lookup Product Name (pid)
-    //3. Lookup Job Function
-    //3. Lookup Country Name??
-    //3. Lookup State/Province Name?? 
 
-    //SUBMIT LEAD
-    //3. Create/Update Lead
-    //4. Create Campaign Member
+    //ACKNOWLEDGE
+    Write("<br><br>");
+    Write("<p>Thank you for submitting your information. We will be in contact with   you shortly</p>");
 
-    //REDIRECT
-    //1. Lookup RedirectURL (rid)
-    //2. Activate Redirect
-    // Redirect('https://www.google.com', true);
 
   } catch (error) {
     Write("Error: " + Stringify(error.message));
   }
 </script>
+
+
+
+<!-- 
+****************************
+ 
+****************************
+-->
 
 
 
@@ -262,8 +370,7 @@
     Variable.SetValue('cid', Request.GetQueryStringParameter("cid"));
     Variable.SetValue('rid', Request.GetQueryStringParameter("rid"));
     Variable.SetValue('eid', Request.GetQueryStringParameter("eid"));
-    Variable.SetValue('pid', Request.GetQueryStringParameter("pid"));
-    Variable.SetValue('gid', Request.GetQueryStringParameter("gid"));
+    Variable.SetValue('sid', Request.GetQueryStringParameter("sid"));
     Variable.SetValue('fid', Request.GetQueryStringParameter("fid"));
 
     Variable.SetValue('template', Request.GetQueryStringParameter("template"));
@@ -393,8 +500,7 @@
     <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
     <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
     <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
-    <input type="hidden" name="_pid" value="%%=v(@pid)=%%">
-    <input type="hidden" name="_gid" value="%%=v(@gid)=%%">
+    <input type="hidden" name="_sid" value="%%=v(@sid)=%%">
     <input type="hidden" name="_fid" value="%%=v(@fid)=%%">
 
     <input type="hidden" name="_template" value="%%=v(@template)=%%">
@@ -909,8 +1015,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_country_name"
-              name="_country_name"
+              id="_country_code"
+              name="_country_code"
               required>
 
               <option value="" selected disabled>Select Country</option>
@@ -953,8 +1059,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_country_name"
-              name="_country_name"
+              id="_country_code"
+              name="_country_code"
               required>
 
               <option value="" selected disabled>Select Country</option>
@@ -997,8 +1103,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
@@ -1016,37 +1122,37 @@
           try {
 
             // CONSTANTS
-            let allStateNameData;
+            let statesData;
 
             // DOM ELEMENTS
-            const countryNameSelect = document.getElementById('_country_name');
-            const stateProvinceNameSelect = document.getElementById('_state_province_name');
+            const countrySelect = document.getElementById('_country_code');
+            const stateProvinceSelect = document.getElementById('_state_code');
 
             // EVENTS
-            document.addEventListener('DOMContentLoaded', getStateNameData);
-            countryNameSelect.addEventListener('change', handleChangeCountryName);
+            document.addEventListener('DOMContentLoaded', getStatesData);
+            countrySelect.addEventListener('change', handleCountryChange);
 
             // HANDLERS
-            function getStateNameData() {
-              const allStatesURLPath = "/gf_states";
+            function getStatesData() {
+              const getStatesApi = "/getStates";
 
-              fetch(allStatesURLPath)
+              fetch(getStatesApi)
                 .then(response => response.json())
                 .then(data => {
-                  allStateNameData = data;
+                  statesData = data;
                 })
                 .catch(error => console.error(error));
             }
 
-            function handleChangeCountryName(e) {
+            function handleCountryChange(e) {
               // Choose states
               const selectedOption = e.target.options[e.target.selectedIndex];
               const countryCode = selectedOption.dataset.countrycode;
-              const countryStateData = allStateNameData.filter((option) => option["Country Code"] === countryCode);
+              const countryStateData = statesData.filter((option) => option["CountryCode"] === countryCode);
 
               // Reset options
-              stateProvinceNameSelect.value = '';
-              stateProvinceNameSelect.innerHTML = '';
+              stateProvinceSelect.value = '';
+              stateProvinceSelect.innerHTML = '';
 
               const placeholderText = countryCode === "CA" ? 'Province' : 'State';
               const placeholderOption = document.createElement('option');
@@ -1054,14 +1160,14 @@
               placeholderOption.disabled = true;
               placeholderOption.selected = true;
               placeholderOption.textContent = placeholderText;
-              stateProvinceNameSelect.appendChild(placeholderOption);
+              stateProvinceSelect.appendChild(placeholderOption);
 
               // Populate options
               countryStateData.forEach((state) => {
                 const option = document.createElement('option');
-                option.value = state['State Code'];
-                option.textContent = state['State Name'];
-                stateProvinceNameSelect.appendChild(option);
+                option.value = state['StateCode'];
+                option.textContent = state['StateName'];
+                stateProvinceSelect.appendChild(option);
               });
             }
 
@@ -1079,8 +1185,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
@@ -1098,37 +1204,37 @@
           try {
 
             // CONSTANTS
-            let allStateNameData;
+            let statesData;
 
             // DOM ELEMENTS
-            const countryNameSelect = document.getElementById('_country_name');
-            const stateProvinceNameSelect = document.getElementById('_state_province_name');
+            const countrySelect = document.getElementById('_country_code');
+            const stateProvinceSelect = document.getElementById('_state_code');
 
             // EVENTS
-            document.addEventListener('DOMContentLoaded', getStateNameData);
-            countryNameSelect.addEventListener('change', handleChangeCountryName);
+            document.addEventListener('DOMContentLoaded', getStatesData);
+            countrySelect.addEventListener('change', handleCountryChange);
 
             // HANDLERS
-            function getStateNameData() {
-              const allStatesURLPath = "/gf_states";
+            function getStatesData() {
+              const getStatesApi = "/getStates";
 
-              fetch(allStatesURLPath)
+              fetch(getStatesApi)
                 .then(response => response.json())
                 .then(data => {
-                  allStateNameData = data;
+                  statesData = data;
                 })
                 .catch(error => console.error(error));
             }
 
-            function handleChangeCountryName(e) {
+            function handleCountryChange(e) {
               // Choose states
               const selectedOption = e.target.options[e.target.selectedIndex];
               const countryCode = selectedOption.dataset.countrycode;
-              const countryStateData = allStateNameData.filter((option) => option["Country Code"] === countryCode);
+              const countryStateData = statesData.filter((option) => option["CountryCode"] === countryCode);
 
               // Reset options
-              stateProvinceNameSelect.value = '';
-              stateProvinceNameSelect.innerHTML = '';
+              stateProvinceSelect.value = '';
+              stateProvinceSelect.innerHTML = '';
 
               const placeholderText = countryCode === "CA" ? 'Province' : 'State';
               const placeholderOption = document.createElement('option');
@@ -1136,14 +1242,14 @@
               placeholderOption.disabled = true;
               placeholderOption.selected = true;
               placeholderOption.textContent = placeholderText;
-              stateProvinceNameSelect.appendChild(placeholderOption);
+              stateProvinceSelect.appendChild(placeholderOption);
 
               // Populate options
               countryStateData.forEach((state) => {
                 const option = document.createElement('option');
-                option.value = state['State Code'];
-                option.textContent = state['State Name'];
-                stateProvinceNameSelect.appendChild(option);
+                option.value = state['StateCode'];
+                option.textContent = state['StateName'];
+                stateProvinceSelect.appendChild(option);
               });
             }
 
@@ -1161,8 +1267,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State (United States)</option>
@@ -1198,8 +1304,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State (United States)</option>
@@ -1235,8 +1341,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>Province (Canada)</option>
@@ -1272,8 +1378,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>Province (Canada)</option>
@@ -1309,8 +1415,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State (Australia)</option>
@@ -1346,8 +1452,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State (Australia)</option>
@@ -1383,8 +1489,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State (New Zealand)</option>
@@ -1420,8 +1526,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State (New Zealand)</option>
@@ -1457,8 +1563,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State (South Africa)</option>
@@ -1494,8 +1600,8 @@
 
             <select
               class="form-control custom-reset-select-text"
-              id="_state_province_name"
-              name="_state_province_name"
+              id="_state_code"
+              name="_state_code"
               required>
 
               <option value="" disabled selected>State (South Africa)</option>
