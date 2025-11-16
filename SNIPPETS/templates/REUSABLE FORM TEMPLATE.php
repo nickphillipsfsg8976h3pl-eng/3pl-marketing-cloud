@@ -73,6 +73,8 @@
    */
 </script>
 
+
+
 <!-- SSJS POST -->
 <script runat="server">
   Platform.Load("core", "1");
@@ -80,12 +82,27 @@
     if (Request.Method() != "POST") return;
 
 
+    /*******************************
+    ----------- SECURITY -----------
+    ********************************/
+
+
+    // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+    // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+    // Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
+    // Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
+    // Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
+    // Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+
+
     /************************* 
-    ------- GET PAYLOAD ------
+    --------- PAYLOAD --------
     **************************/
 
+    //initiate
     var payload = {};
 
+    //retrieve data
     payload.debug = Request.GetFormField("_debug");
 
     payload.cid = Request.GetFormField("_cid");
@@ -124,8 +141,86 @@
 
 
     /************************* 
-    ------- PRE-PROCESS ------
+    ---------- DEBUG ---------
     **************************/
+
+
+    //show info when ?debug=true
+    if (payload.debug) {
+      Write('=== DEBUG MODE ===')
+      Write('<br><br>')
+      Write('Payload: ' + Stringify(payload));
+      return;
+    }
+
+
+    /************************* 
+    --------- SUBMIT --------
+    **************************/
+
+
+    //push to queue
+    var pipeline = DataExtension.Init("FORM_SUBMISSION_QUEUE");
+    pipeline.Rows.Add({
+      "submission_id": Platform.Function.GUID(),
+      "submission_name": payload.first_name + ' ' + payload.last_name,
+      "submission_email": payload.email_address,
+      "submission_url": payload.request_url,
+      "submission_data": Stringify(payload),
+      "submission_date": Datetime.SystemDateToLocalString()
+      // "queue_error": //set when submission record fails processing in pipeline
+      // "queue_method": //the method used to upsert the salesforce lead [CREATE/UPDATE]
+      // "queue_lead_id": //the saleforce recoordId of the lead upserted via the pipeline
+      // "queue_completed": //a datetime set when the pipeline has run and the record has been processed
+    });
+
+
+    /************************* 
+    -------- REDIRECT --------
+    **************************/
+
+
+    //navigate to redirect
+    if (payload.rid) {
+      paylaod.lookupRedirectData = Platform.Function.LookupRows('REDIRECT_REFERENCE', 'Id', payload.rid);
+      payload.redirect_url = payload.lookupRedirectData[0].Url;
+      Redirect(payload.redirect_url);
+    }
+
+
+    /************************* 
+    ------- ACKNOWLEDGE ------
+    **************************/
+
+
+    //otherwise, feedback
+    Write("<br><br>");
+    Write("<p>Thank you for submitting your information. We will be in contact with you shortly</p>");
+    Write("<br><br>");
+
+
+
+    //=====================================================================================================
+    //========================================== PIPELINE =================================================
+    //=====================================================================================================
+
+
+
+    /************************* 
+    --------- VALIDATE --------
+    **************************/
+
+
+    //profanity
+    //valid email
+    //known email
+    //student/parents
+
+
+    /************************* 
+    --------- PROCESS --------
+    **************************/
+
 
     // Lookup Region, Country
     if (payload.country_code) {
@@ -140,16 +235,30 @@
       payload.state_name = payload.lookupStateData[0].StateName;
     }
 
-    // Lookup Campaign
-    if (payload.cid) {
-      paylaod.lookupCampaignData = Platform.Function.LookupRows('ENT.Campaign_Salesforce', 'Id', payload.cid);
-      payload.campaign_name = payload.lookupCampaignData[0].Name;
-    }
-
     // Lookup Job Function
     if (payload.job_title) {
       paylaod.lookupJobData = Platform.Function.LookupRows('JOB_FUNCTION_REFERENCE', ['JobTitle', 'Region'], [payload.job_title, payload.region]);
       payload.job_function = payload.lookupJobData[0].JobFunction;
+    }
+
+    // Lookup Enquiry Type
+    if (payload.eid) {
+      paylaod.lookupEnquiryData = Platform.Function.LookupRows('ENQUIRY_REFERENCE', ['Id'], [payload.eid]);
+      payload.enquiry = payload.lookupEnquiryData[0].Enquiry;
+      payload.description = payload.lookupEnquiryData[0].Description;
+      payload.enquiry_summary = payload.lookupEnquiryData[0].Description;
+    }
+
+    // Lookup Lead Status
+    if (payload.sid) {
+      paylaod.lookupLeadStatusData = Platform.Function.LookupRows('LEAD_STATUS_REFERENCE', ['Id'], [payload.sid]);
+      payload.status = payload.lookupLeadStatusData[0].Status;
+    }
+
+    // Lookup Campaign
+    if (payload.cid) {
+      paylaod.lookupCampaignData = Platform.Function.LookupRows('ENT.Campaign_Salesforce', 'Id', payload.cid);
+      payload.campaign_name = payload.lookupCampaignData[0].Name;
     }
 
     // Lookup Campaign Resources
@@ -157,83 +266,15 @@
     //  TODO - configure to pull from an object related to the campaign instead of having to maintain a reference DE
     //
 
-    // Lookup Equiry Type
-    switch (payload.eid) {
-      case 'quote':
-        payload.enquiry = 'Quote';
-        payload.description = 'Customer has requested a quote for ' + payload.no_of_licences + ' licence(s). In relation to the campaign: ' + payload.campaign_name;
-        break;
-      case 'trial':
-        payload.enquiry = 'Trial';
-        payload.description = 'Customer has requested a trial. In relation to the campaign: ' + payload.campaign_name;
-        break;
-      case 'demo':
-        payload.enquiry = 'Demo';
-        payload.description = 'Customer has requested a demo. In relation to the campaign: ' + payload.campaign_name;
-        break;
-      case 'info':
-        payload.enquiry = 'Information';
-        payload.description = 'Customer has requested a information. In relation to the campaign: ' + payload.campaign_name;
-        break;
-      default:
-        payload.description = 'Customer has requested a resource. In relation to the campaign: ' + payload.campaign_name;
-    }
 
-    // Lookup Lead Status
-    switch (payload.sid) {
-      case 'UQ':
-        payload.status = "Unqualified";
-        break;
-      case 'MP':
-        payload.status = "Marketing Prospect";
-        break;
-      case 'SP':
-        payload.status = "Sales Prospect";
-        break;
-      case 'SAL':
-        payload.status = "SAL";
-        break;
-      case 'SQL':
-        payload.status = "SQL";
-        break;
-      default:
-        payload.status = "MQL";
-        break;
-    }
-
-    //6. Lookup Product Name
-    set @_Product_Interest = Replace(@pid, "brightpath", "Brightpath Writing")
-    set @_Product_Interest_c = Replace(@pid, "brightpath", "Brightpath Progress Writing")
-    set @_Product_Interest_c = Replace(@_Product_Interest_c, ",", ";")
-    set @_Product_Interest = Replace(@_Product_Interest, ",", ";")
-    set @pid = Replace(@pid, "brightpath", "Brightpath Writing")
-    set @pid1 = Replace(@pid, "Brightpath Writing", "Brightpath Progress Writing")
-
-    //SUBMIT LEAD
-    //1. Create/Update Lead
-    //2. Create Campaign Member
+    /************************* 
+    ---------- UPSERT --------
+    **************************/
 
 
-    //REDIRECT
-    //1. Lookup RedirectURL (rid)
-    if (payload.rid) {
-      // Redirect('https://www.google.com', true);
-    }
+    // Upsert Lead
+    // Upsert Campaign Member
 
-
-    //DEBUG
-    // ?debug=true
-    if (payload.debug) {
-      Write('=== DEBUG MODE ===')
-      Write('<br><br>')
-      Write('Payload: ' + Stringify(payload));
-      return;
-    }
-
-
-    //ACKNOWLEDGE
-    Write("<br><br>");
-    Write("<p>Thank you for submitting your information. We will be in contact with   you shortly</p>");
 
 
   } catch (error) {
@@ -258,12 +299,63 @@
     if (Request.Method() != "GET") return;
 
 
+    /*******************************
+    ----------- SECURITY -----------
+    ********************************/
+
+
+    // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+    // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+    Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
+    Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
+    Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
+    Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+
+
+    /*******************************
+    ------- QUERY PARAMETERS -------
+    ********************************/
+
+    //initiate
+    var config = {};
+
+
+    //retrieve data
+    config.debug = Request.GetQueryStringParameter("debug");
+
+    config.cid = Request.GetQueryStringParameter("cid");
+    config.rid = Request.GetQueryStringParameter("rid");
+    config.eid = Request.GetQueryStringParameter("eid");
+    config.sid = Request.GetQueryStringParameter("sid");
+    config.fid = Request.GetQueryStringParameter("fid");
+
+    config.template = Request.GetQueryStringParameter("template");
+    config.inputs = Request.GetQueryStringParameter("inputs");
+
+    config.utm_source = Request.GetQueryStringParameter("utm_source");
+    config.utm_medium = Request.GetQueryStringParameter("utm_medium");
+    config.utm_campaign = Request.GetQueryStringParameter("utm_campaign");
+    config.utm_content = Request.GetQueryStringParameter("utm_content");
+    config.utm_term = Request.GetQueryStringParameter("utm_term");
+    config.utm_term = Request.GetQueryStringParameter("gclid");
+    config.gtm_referrer = Request.GetQueryStringParameter("gtm_referrer");
+
+
+    /*******************************
+     --------- PRE-PROCESS ---------
+    ********************************/
+
+
+    //request url
+    config.request_url = Request.URL();
+
+
     /************************* 
-    --------- TEMPLATES ------
+    -------- TEMPLATES -------
     **************************/
 
 
-    var PRECONFIGURED_TEMPLATES = {
+    config.PRECONFIGURED_TEMPLATES = {
 
       //?template=test
       test: [
@@ -323,7 +415,7 @@
         "STATE_PROVINCE_NAME_ZA_HALF"
       ]
 
-    } //PRECONFIGURED_TEMPLATES
+    } //config.PRECONFIGURED_TEMPLATES
 
 
 
@@ -333,14 +425,14 @@
 
 
     // CONSTANTS
-    var COMPONENTS_TO_RENDER = [];
+    config.COMPONENTS_TO_RENDER = [];
 
 
     // ADD ALL TEMPLATE COMPONENTS
     var template = Request.GetQueryStringParameter("template")
     if (template) {
-      var templateComponentList = PRECONFIGURED_TEMPLATES[template.toLowerCase()];
-      COMPONENTS_TO_RENDER = COMPONENTS_TO_RENDER.concat(templateComponentList);
+      var templateComponentList = config.PRECONFIGURED_TEMPLATES[template.toLowerCase()];
+      config.COMPONENTS_TO_RENDER = config.COMPONENTS_TO_RENDER.concat(templateComponentList);
     } //if
 
 
@@ -350,58 +442,30 @@
       var singleInputList = inputs.toUpperCase().split(',');
       for (var i = 0; i < singleInputList.length; i++) {
         var singleInput = singleInputList[i];
-        COMPONENTS_TO_RENDER.push(singleInput);
+        config.COMPONENTS_TO_RENDER.push(singleInput);
       } //for    
     } //if
 
 
-    // PASS COMPONENTS TO AMPSCRIPT
-    Variable.SetValue("COMPONENTS_TO_RENDER", COMPONENTS_TO_RENDER);
+    // PASS CONFIGURATION TO AMPSCRIPT
+    for (var key in config) {
+      if (config.hasOwnProperty(key)) {
+        Variable.SetValue(key, config[key]);
+      }
+    }
 
 
     /*******************************
-    -- GENERAL REQUEST PARAMETERS ---
+    ------------ DEBUG -------------
     ********************************/
 
 
-    Variable.SetValue('debug', Request.GetQueryStringParameter("debug"))
-
-    Variable.SetValue('cid', Request.GetQueryStringParameter("cid"));
-    Variable.SetValue('rid', Request.GetQueryStringParameter("rid"));
-    Variable.SetValue('eid', Request.GetQueryStringParameter("eid"));
-    Variable.SetValue('sid', Request.GetQueryStringParameter("sid"));
-    Variable.SetValue('fid', Request.GetQueryStringParameter("fid"));
-
-    Variable.SetValue('template', Request.GetQueryStringParameter("template"));
-    Variable.SetValue('inputs', Request.GetQueryStringParameter("inputs"));
-
-    Variable.SetValue('utm_source', Request.GetQueryStringParameter("utm_source"));
-    Variable.SetValue('utm_medium', Request.GetQueryStringParameter("utm_medium"));
-    Variable.SetValue('utm_campaign', Request.GetQueryStringParameter("utm_campaign"));
-    Variable.SetValue('utm_content', Request.GetQueryStringParameter("utm_content"));
-    Variable.SetValue('utm_term', Request.GetQueryStringParameter("utm_term"));
-    Variable.SetValue('utm_term', Request.GetQueryStringParameter("gclid"));
-    Variable.SetValue('gtm_referrer', Request.GetQueryStringParameter("gtm_referrer"));
-
-
-    /*******************************
-    -- SET ADDITIONAL VALUES ---
-    ********************************/
-
-    Variable.SetValue('request_url', Request.URL());
-
-
-    /*******************************
-    ----------- SECURITY -----------
-    ********************************/
-
-
-    // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
-    // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
-    Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
-    Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
-    Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
-    Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+    //show info when ?debug=true
+    if (debug) {
+      Write('=== DEBUG MODE ===')
+      Write('<br><br>')
+      Write('Configuration: ' + Stringify(config));
+    }
 
 
   } catch (error) {
@@ -584,6 +648,7 @@
               <option value="mathletics">Mathletics</option>
               <option value="mathseeds">Mathseeds</option>
               <option value="readingEggs">Reading Eggs</option>
+              <!-- <option value="Brightpath Progress Writing">Brightpath Writing</option> -->
 
             </select>
 
