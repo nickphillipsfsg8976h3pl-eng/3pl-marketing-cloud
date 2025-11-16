@@ -97,7 +97,6 @@
     payload.inputs = Request.GetFormField("_inputs");
     payload.template = Request.GetFormField("_template");
     payload.request_url = Request.GetFormField("_request_url");
-    payload.location_href = Request.GetFormField("_location_href");
 
     payload.utm_source = Request.GetFormField("_utm_source");
     payload.utm_medium = Request.GetFormField("_utm_medium");
@@ -506,7 +505,6 @@
     <input type="hidden" name="_template" value="%%=v(@template)=%%">
     <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
     <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
-    <input type="hidden" name="_location_href">
 
     <input type="hidden" name="_utm_source" value="%%=v(@utm_source)=%%">
     <input type="hidden" name="_utm_medium" value="%%=v(@utm_medium)=%%">
@@ -515,14 +513,6 @@
     <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
     <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
     <input type="hidden" name="_gtm_referrer" value="%%=v(@gtm_referrer)=%%">
-
-
-    <!-- Set Location Href -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelector('input[name="_location_href"]').value = location.href;
-      }); //DOMContentLoaded
-    </script>
 
 
     <!-- Extract Marketing Tracking Parameters -->
