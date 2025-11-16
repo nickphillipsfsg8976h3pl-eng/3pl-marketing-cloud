@@ -4,20 +4,15 @@
     try {
 
         // get params
-        var country_code = Request.GetQueryStringParameter("country_code");
+        var job_title = Request.GetQueryStringParameter("job_title");
 
 
         // find table
-        var table = DataExtension.Init("state");
+        var table = DataExtension.Init("JobTitle_Mapping_JobFunction");
 
 
         // run query
-        var data;
-        if (country_code) {
-            data = table.Rows.Lookup(["Country Code", "Active"], [country_code, "True"], 1000, "State Code ASC");
-        } else {
-            data = table.Rows.Lookup(["Active"], ["True"], 1000, "State Code ASC");
-        }
+        var data = table.Rows.Lookup(["Job Title"], [job_title], 99999999, "_CustomObjectKey DESC");
 
 
         // sanitize data

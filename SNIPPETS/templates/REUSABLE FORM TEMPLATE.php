@@ -10,8 +10,8 @@
    * 
    * @parameter: cid (required) - the salesforce campaign id where the lead will be membered
    * @parameter: rid (required) - the redirect id used to retrieve a url from a DE and redirect the user after form submission
-   * @parameter: eid (required) - a des cription of why the the lead enquired (ie. quote: requesting new mathletics licences)
-   * @parameter: pid (required) - the name of the 3P Learning software product (ie. mathletics, reading eggs, etc)
+   * @parameter: eid (required) - an equiry type (tof, bof, quote, info). Links to enquiry type picklist in Salesforce
+   * @parameter: pid (required) - 3PL 2 letter character codes for each product (MX, MS, RE, etc)
    * @parameter: gid (required) - the name of the region (APAC, EMEA, AMER, GLOBAL)
    * @parameter: fid (optional) - form ID to use in logic when making changes post go-live
    * 
