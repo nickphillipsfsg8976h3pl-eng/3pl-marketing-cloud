@@ -126,7 +126,7 @@
     //4. Lookup Product Name (pid)
     //3. Lookup Job Function
     //3. Lookup Country Name??
-    //3. Lookup State/Province Name??
+    //3. Lookup State/Province Name?? 
 
     //SUBMIT LEAD
     //3. Create/Update Lead
@@ -198,6 +198,7 @@
         "SUBMIT_BUTTON"
       ],
 
+      //?template=test_states
       test_states: [
         "COUNTRY_NAME",
         "COUNTRY_NAME_HALF",
