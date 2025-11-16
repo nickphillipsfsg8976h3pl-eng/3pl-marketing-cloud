@@ -20,28 +20,25 @@
         }
 
 
-        //sanitize data
+        // sanitize data
         for (var i = 0; i < data.length; i++) {
             delete data[i]._CustomObjectKey;
             delete data[i]._CreatedDate;
         } //for
 
 
-        //set response headers
+        // set headers
         Platform.Response.SetResponseHeader("Content-Type", "application/json");
 
 
-        // Return results
+        // return results
         Write(Stringify(data));
 
 
     } catch (error) {
 
-        Platform.Response.SetResponseHeader("Status", "500 Internal Server Error");
-
-
         Write(Stringify({
-            error: error.message
+            error: error
         }));
 
     }
