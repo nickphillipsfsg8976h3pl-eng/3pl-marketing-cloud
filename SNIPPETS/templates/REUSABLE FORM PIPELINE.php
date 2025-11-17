@@ -80,9 +80,6 @@
      * terms_and_conditions
      * subscriber_opt_in
      * 
-     * 
-     * 
-     * 
      */
 </script>
 
@@ -113,12 +110,14 @@
     /************************* 
     ------- PARSE JSON -------
     **************************/
+
+
     try {
 
         //loop
         for (var i = 0; i < queue.length; i++) {
 
-            queue[i].record = Platform.Function.ParseJSON(queue[0].submission_data);
+            queue[i].submitted = Platform.Function.ParseJSON(queue[0].submission_data);
 
         } //for
 
@@ -129,26 +128,34 @@
 
 
     /************************* 
+    ------ GET LOOKUPS -------
+    **************************/
+
+
+    // get reference data
+    var COUNTRY_REFERENCE = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true);
+    var PROFANITY_REFERENCE = Platform.Function.LookupRows('PROFANITY_REFERENCE', 'Active', true);
+    var BLOCKED_EMAIL_REFERENCE = Platform.Function.LookupRows('BLOCKED_EMAIL_REFERENCE', 'Active', true);
+
+
+    /************************* 
     --------- VALIDATE --------
     **************************/
+
+
     try {
-
-
-        // get reference tables
-        var COUNTRY_REFERENCE = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true);
-        var PROFANITY_REFERENCE = Platform.Function.LookupRows('PROFANITY_REFERENCE', 'Active', true);
-        var BLOCKED_EMAIL_REFERENCE = Platform.Function.LookupRows('BLOCKED_EMAIL_REFERENCE', 'Active', true);
 
 
         //loop
         outerLoop: for (var i = 0; i < queue.length; i++) {
 
+            //extract queued item
             var queueable = queue[i];
-            var submitted = queue[i].record;
+
 
             //INVALID_EMAIL_FORMAT
             if (
-                submitted.email_address &&
+                queueable.submitted.email_address &&
                 !Platform.Function.isEmailAddress(submitted.email_address)
             ) {
                 queueable.queue_error_message = 'INVALID_EMAIL_FORMAT: email_address is missing or not valid';
@@ -158,8 +165,8 @@
 
             //STUDENT_JOB_TITLE
             if (
-                submitted.job_title &&
-                submitted.job_title.toLowerCase().indexOf('student') !== -1
+                queueable.submitted.job_title &&
+                queueable.submitted.job_title.toLowerCase().indexOf('student') !== -1
             ) {
                 queueable.queue_error_message = 'STUDENT_JOB_TITLE: job_title contains the word "student"';
                 queueable.queue_completed_date = Datetime.SystemDateToLocalString();
@@ -168,8 +175,8 @@
 
             //PARENT_JOB_TITLE
             if (
-                submitted.job_title &&
-                submitted.job_title.toLowerCase().indexOf('parent') !== -1
+                queueable.submitted.job_title &&
+                queueable.submitted.job_title.toLowerCase().indexOf('parent') !== -1
             ) {
                 queueable.queue_error_message = 'PARENT_JOB_TITLE: job_title contains the word "parent"';
                 queueable.queue_completed_date = Datetime.SystemDateToLocalString();
@@ -178,8 +185,8 @@
 
             //STUDENT_EMAIL_DOMAIN
             if (
-                submitted.email_address &&
-                submitted.email_address.toLowerCase().indexOf('student') !== -1
+                queueable.submitted.email_address &&
+                queueable.submitted.email_address.toLowerCase().indexOf('student') !== -1
             ) {
                 queueable.queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
                 queueable.queue_completed_date = Datetime.SystemDateToLocalString();
@@ -187,74 +194,80 @@
             }
 
             //BLOCKED_EMAIL_ADDRESS
-            if (submitted.email_address) {
+            if (queueable.submitted.email_address) {
                 innerLoop: for (var j = 0; j < BLOCKED_EMAIL_REFERENCE.length; j++) {
                     if (
-                        submitted.email_address.toLowerCase() === BLOCKED_EMAIL_REFERENCE[j].EmailAddress.toLowerCase()
+                        queueable.submitted.email_address.toLowerCase() === BLOCKED_EMAIL_REFERENCE[j].EmailAddress.toLowerCase()
                     ) {
                         queueable.queue_error_message = 'BLOCKED_EMAIL_ADDRESS: email_address is blacklisted';
                         queueable.queue_completed_date = Datetime.SystemDateToLocalString();
                         continue outerLoop;
                     }
-                } //for(j)
+                } //for(j)innerLoop
             }
 
             //SANCTIONED_COUNTRY
-            if (submitted.country_code) {
+            if (queueable.submitted.country_code) {
                 innnerLoop: for (var j = 0; j < COUNTRY_REFERENCE.length; j++) {
                     if (
-                        submitted.country_code.toLowerCase() === COUNTRY_REFERENCE[j].CountryCode.toLowerCase() &&
+                        queueable.submitted.country_code.toLowerCase() === COUNTRY_REFERENCE[j].CountryCode.toLowerCase() &&
                         COUNTRY_REFERENCE[j].IsSanctionedCountry
                     ) {
                         queueable.queue_error_message = 'SANCTIONED_COUNTRY: country is sanctioned, we are unable to provide services';
                         queueable.queue_completed_date = Datetime.SystemDateToLocalString();
                         continue outerLoop;
                     }
-                } //for(j)
+                } //for(j)innerLoop
             }
 
             //RESTRICTED_COUNTRY
-            if (submitted.country_code) {
+            if (queueable.submitted.country_code) {
                 innerLoop: for (var j = 0; j < COUNTRY_REFERENCE.length; j++) {
                     if (
-                        submitted.country_code.toLowerCase() === COUNTRY_REFERENCE[j].CountryCode.toLowerCase() &&
+                        queueable.submitted.country_code.toLowerCase() === COUNTRY_REFERENCE[j].CountryCode.toLowerCase() &&
                         COUNTRY_REFERENCE[j].IsCountryRestricted
                     ) {
                         queueable.queue_error_message = 'RESTRICTED_COUNTRY: country is restricted, we are unable to provide services';
                         queueable.queue_completed_date = Datetime.SystemDateToLocalString();
                         continue outerLoop;
                     }
-                } //for(j)
+                } //for(j)innerLoop
             }
 
             //PROFANITY_DETECTED
-            if (submitted.first_name || submitted.last_name) {
+            if (queueable.submitted.first_name || queueable.submitted.last_name) {
                 for (var j = 0; j < PROFANITY_REFERENCE.length; j++) {
                     if (
-                        submitted.first_name.toLowerCase() === PROFANITY_REFERENCE[j].Name.toLowerCase() ||
-                        submitted.last_name.toLowerCase() === PROFANITY_REFERENCE[j].Name.toLowerCase()
+                        queueable.submitted.first_name.toLowerCase() === PROFANITY_REFERENCE[j].Name.toLowerCase() ||
+                        queueable.submitted.last_name.toLowerCase() === PROFANITY_REFERENCE[j].Name.toLowerCase()
                     ) {
                         queueable.queue_error_message = 'PROFANITY_DETECTED: swear words were equal to the first_name or last_name';
                         queueable.queue_completed_date = Datetime.SystemDateToLocalString();
                         continue outerLoop;
                     }
-                } //for(j)
+                } //for(j)innerLoop
             }
 
 
-        } //for(i)
+            //update queued item
+            queue[i] = queueable;
 
 
-    } catch (error) {
+        } //for(i)outerLoop
+
+
+    }
+    catch (error) {
         Write("Error: " + Stringify(error.message));
     }
-
 
 
 
     /************************* 
     ------ PRE-PROCESS -------
     **************************/
+
+
     try {
 
 
