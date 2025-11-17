@@ -1,6 +1,7 @@
 <script runat="server">
     Platform.Load("core", "1");
     /**
+     * 
      * ==========================================================================================================
      * ========================================= REUSABLE FORM PIPELINE =========================================
      * ==========================================================================================================
@@ -31,6 +32,11 @@
      * submission_url
      * submission_data
      * submission_date
+     * 
+     * queue_record_id
+     * queue_upsert_method
+     * queue_error_message
+     * queue_completed_date
      * 
      *
      * 
@@ -81,50 +87,83 @@
 </script>
 
 
-<script runat="server" language="Javascript">
+<script runat="server">
+    // 
+    // 
+    /************************* 
+    ------- GET DATA -------
+    **************************/
+
+
+    var records = [];
     try {
 
-        /************************* 
-        ------- PARSE DATA -------
-        **************************/
+        //lookup new records
+        records = Platform.Function.LookupOrderedRows('REUSABLE_FORM_QUEUE', 0, 'submission_date ASC', 'queue_completed_date', null);
 
-
-        //parse json data
+        //exit early
+        if (!records) return;
 
 
     } catch (error) {
         Write("Error: " + Stringify(error.message));
     }
-</script>
 
 
-<script runat="server" language="Javascript">
+    /************************* 
+    ------- PARSE JSON -------
+    **************************/
     try {
 
-        /************************* 
-        --------- VALIDATE --------
-        **************************/
+        for (var i = 0; i < records.length; i++) {
 
+            records[i].parsed_json_submission_data = Platform.Function.ParseJSON(records[0].submission_data);
 
-        //profanity
-        //valid email
-        //known email
-        //student/parents
+        } //for
 
 
     } catch (error) {
         Write("Error: " + Stringify(error.message));
     }
-</script>
 
 
-<script runat="server" language="Javascript">
+    /************************* 
+    --------- VALIDATE --------
+    **************************/
     try {
 
 
-        /************************* 
-        --------- PROCESS --------
-        **************************/
+        for (var i = 0; i < records.length; i++) {
+            records[i].parsed_json_submission_data = Platform.Function.ParseJSON(records[0].submission_data);
+
+
+            //profanity
+            //valid email
+            //known email
+            //student/parents
+
+
+
+
+
+
+
+        } //for
+
+
+    } catch (error) {
+        Write("Error: " + Stringify(error.message));
+    }
+
+
+
+
+    /************************* 
+    ------ PRE-PROCESS -------
+    **************************/
+    try {
+
+
 
 
         // Lookup Region, Country
@@ -178,12 +217,17 @@
 </script>
 
 
-<script runat="server" language="AMPscript">
-    /************************* 
-    ---------- UPSERT --------
-    **************************/
 
 
-    // Upsert Lead
-    // Upsert Campaign Member
-</script>
+%%[
+
+/*************************
+---------- UPSERT --------
+**************************/
+
+
+// Upsert Lead
+// Upsert Campaign Member
+
+
+]%%
