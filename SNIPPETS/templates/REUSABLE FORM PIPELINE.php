@@ -95,10 +95,10 @@
     var queue = [];
     try {
 
-        //lookup new queue entries
+        //get unprocessed queue entries ordered by first in first out
         queue = Platform.Function.LookupOrderedRows('REUSABLE_FORM_QUEUE', 0, 'submission_date ASC', 'queue_completed_date', null);
 
-        //exit early if no records
+        //exit early if none
         if (!queue) return;
 
 
@@ -117,7 +117,7 @@
         //loop
         for (var i = 0; i < queue.length; i++) {
 
-            queue[i].submitted = Platform.Function.ParseJSON(queue[0].submission_data);
+            queue[i].record = Platform.Function.ParseJSON(queue[0].submission_data);
 
         } //for
 
@@ -127,15 +127,6 @@
     }
 
 
-    /************************* 
-    ------ GET LOOKUPS -------
-    **************************/
-
-
-    // get reference data
-    var COUNTRY_REFERENCE = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true);
-    var PROFANITY_REFERENCE = Platform.Function.LookupRows('PROFANITY_REFERENCE', 'Active', true);
-    var BLOCKED_EMAIL_REFERENCE = Platform.Function.LookupRows('BLOCKED_EMAIL_REFERENCE', 'Active', true);
 
 
     /************************* 
@@ -147,113 +138,104 @@
 
 
         //loop
-        outerLoop: for (var i = 0; i < queue.length; i++) {
-
-            //extract queued item
-            var queueable = queue[i];
+        nextItemInQueue: for (var i = 0; i < queue.length; i++) {
 
 
             //INVALID_EMAIL_FORMAT
             if (
-                queueable.submitted.email_address &&
-                !Platform.Function.isEmailAddress(submitted.email_address)
+                queue[i].record.email_address &&
+                !Platform.Function.isEmailAddress(record.email_address)
             ) {
-                queueable.queue_error_message = 'INVALID_EMAIL_FORMAT: email_address is missing or not valid';
-                queueable.queue_completed_date = Datetime.SystemDateToLocalString();
-                continue outerLoop;
+                queue[i].queue_error_message = 'INVALID_EMAIL_FORMAT: email_address is missing or not valid';
+                queue[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                continue nextItemInQueue;
             }
+
 
             //STUDENT_JOB_TITLE
             if (
-                queueable.submitted.job_title &&
-                queueable.submitted.job_title.toLowerCase().indexOf('student') !== -1
+                queue[i].record.job_title &&
+                queue[i].record.job_title.toLowerCase().indexOf('student') !== -1
             ) {
-                queueable.queue_error_message = 'STUDENT_JOB_TITLE: job_title contains the word "student"';
-                queueable.queue_completed_date = Datetime.SystemDateToLocalString();
-                continue outerLoop;
+                queue[i].queue_error_message = 'STUDENT_JOB_TITLE: job_title contains the word "student"';
+                queue[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                continue nextItemInQueue;
             }
+
 
             //PARENT_JOB_TITLE
             if (
-                queueable.submitted.job_title &&
-                queueable.submitted.job_title.toLowerCase().indexOf('parent') !== -1
+                queue[i].record.job_title &&
+                queue[i].record.job_title.toLowerCase().indexOf('parent') !== -1
             ) {
-                queueable.queue_error_message = 'PARENT_JOB_TITLE: job_title contains the word "parent"';
-                queueable.queue_completed_date = Datetime.SystemDateToLocalString();
-                continue outerLoop;
+                queue[i].queue_error_message = 'PARENT_JOB_TITLE: job_title contains the word "parent"';
+                queue[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                continue nextItemInQueue;
             }
+
 
             //STUDENT_EMAIL_DOMAIN
             if (
-                queueable.submitted.email_address &&
-                queueable.submitted.email_address.toLowerCase().indexOf('student') !== -1
+                queue[i].record.email_address &&
+                queue[i].record.email_address.toLowerCase().indexOf('student') !== -1
             ) {
-                queueable.queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
-                queueable.queue_completed_date = Datetime.SystemDateToLocalString();
-                continue outerLoop;
+                queue[i].queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
+                queue[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                continue nextItemInQueue;
             }
+
 
             //BLOCKED_EMAIL_ADDRESS
-            if (queueable.submitted.email_address) {
-                innerLoop: for (var j = 0; j < BLOCKED_EMAIL_REFERENCE.length; j++) {
-                    if (
-                        queueable.submitted.email_address.toLowerCase() === BLOCKED_EMAIL_REFERENCE[j].EmailAddress.toLowerCase()
-                    ) {
-                        queueable.queue_error_message = 'BLOCKED_EMAIL_ADDRESS: email_address is blacklisted';
-                        queueable.queue_completed_date = Datetime.SystemDateToLocalString();
-                        continue outerLoop;
-                    }
-                } //for(j)innerLoop
+            if (
+                queue[i].record.email_address &&
+                Platform.Function.Lookup('BLOCKED_EMAIL_REFERENCE', 'Name', 'EmailAddress', queue[i].record.email_address.toLowerCase())
+            ) {
+                queue[i].queue_error_message = 'BLOCKED_EMAIL_ADDRESS: email_address is blacklisted';
+                queue[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                continue nextItemInQueue;
             }
+
 
             //SANCTIONED_COUNTRY
-            if (queueable.submitted.country_code) {
-                innnerLoop: for (var j = 0; j < COUNTRY_REFERENCE.length; j++) {
-                    if (
-                        queueable.submitted.country_code.toLowerCase() === COUNTRY_REFERENCE[j].CountryCode.toLowerCase() &&
-                        COUNTRY_REFERENCE[j].IsSanctionedCountry
-                    ) {
-                        queueable.queue_error_message = 'SANCTIONED_COUNTRY: country is sanctioned, we are unable to provide services';
-                        queueable.queue_completed_date = Datetime.SystemDateToLocalString();
-                        continue outerLoop;
-                    }
-                } //for(j)innerLoop
+            if (
+                queue[i].record.country_code &&
+                Platform.Function.Lookup('COUNTRY_REFERENCE', 'IsSanctionedCountry', 'CountryCode', queue[i].record.country_code.toLowerCase())
+            ) {
+                queue[i].queue_error_message = 'SANCTIONED_COUNTRY: country is sanctioned, we are unable to provide services';
+                queue[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                continue nextItemInQueue;
             }
+
 
             //RESTRICTED_COUNTRY
-            if (queueable.submitted.country_code) {
-                innerLoop: for (var j = 0; j < COUNTRY_REFERENCE.length; j++) {
-                    if (
-                        queueable.submitted.country_code.toLowerCase() === COUNTRY_REFERENCE[j].CountryCode.toLowerCase() &&
-                        COUNTRY_REFERENCE[j].IsCountryRestricted
-                    ) {
-                        queueable.queue_error_message = 'RESTRICTED_COUNTRY: country is restricted, we are unable to provide services';
-                        queueable.queue_completed_date = Datetime.SystemDateToLocalString();
-                        continue outerLoop;
-                    }
-                } //for(j)innerLoop
+            if (
+                queue[i].record.country_code &&
+                Platform.Function.Lookup('COUNTRY_REFERENCE', 'IsCountryRestricted', 'CountryCode', queue[i].record.country_code.toLowerCase())
+            ) {
+                queue[i].queue_error_message = 'RESTRICTED_COUNTRY: country is restricted, we are unable to provide services';
+                queue[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                continue nextItemInQueue;
             }
+
 
             //PROFANITY_DETECTED
-            if (queueable.submitted.first_name || queueable.submitted.last_name) {
-                for (var j = 0; j < PROFANITY_REFERENCE.length; j++) {
-                    if (
-                        queueable.submitted.first_name.toLowerCase() === PROFANITY_REFERENCE[j].Name.toLowerCase() ||
-                        queueable.submitted.last_name.toLowerCase() === PROFANITY_REFERENCE[j].Name.toLowerCase()
-                    ) {
-                        queueable.queue_error_message = 'PROFANITY_DETECTED: swear words were equal to the first_name or last_name';
-                        queueable.queue_completed_date = Datetime.SystemDateToLocalString();
-                        continue outerLoop;
-                    }
-                } //for(j)innerLoop
+            if (
+                (
+                    queue[i].record.first_name &&
+                    Platform.Function.Lookup('PROFANITY_REFERENCE', 'Name', 'Name', queue[i].record.first_name.toLowerCase())
+                ) ||
+                (
+                    queue[i].record.last_name &&
+                    Platform.Function.Lookup('PROFANITY_REFERENCE', 'Name', 'Name', queue[i].record.last_name.toLowerCase())
+                )
+            ) {
+                queue[i].queue_error_message = 'PROFANITY_DETECTED: swear words were equal to the first_name or last_name';
+                queue[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                continue nextItemInQueue;
             }
 
 
-            //update queued item
-            queue[i] = queueable;
-
-
-        } //for(i)outerLoop
+        } //for(i)nextItemInQueue
 
 
     }
@@ -264,59 +246,74 @@
 
 
     /************************* 
-    ------ PRE-PROCESS -------
+    -------- ENRICH ---------
     **************************/
 
 
     try {
 
-
-        // Lookup Region, Country
-        if (payload.country_code) {
-            payload.lookupCountryData = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'CountryCode', payload.country_code);
-            payload.region = payload.lookupCountryData[0].Region;
-            payload.country_name = payload.lookupCountryData[0].CountryName;
-        }
-
-        // Lookup State
-        if (payload.state_code) {
-            payload.lookupStateData = Platform.Function.LookupRows('STATE_REFERENCE', 'CountryCode', payload.country_code);
-            payload.state_name = payload.lookupStateData[0].StateName;
-        }
-
-        // Lookup Job Function
-        if (payload.job_title) {
-            paylaod.lookupJobData = Platform.Function.LookupRows('JOB_FUNCTION_REFERENCE', ['JobTitle', 'Region'], [payload.job_title, payload.region]);
-            payload.job_function = payload.lookupJobData[0].JobFunction;
-        }
-
-        // Lookup Enquiry Type
-        if (payload.eid) {
-            paylaod.lookupEnquiryData = Platform.Function.LookupRows('ENQUIRY_REFERENCE', ['Id'], [payload.eid]);
-            payload.enquiry = payload.lookupEnquiryData[0].Enquiry;
-            payload.description = payload.lookupEnquiryData[0].Description;
-            payload.enquiry_summary = payload.lookupEnquiryData[0].Description;
-        }
-
-        // Lookup Lead Status
-        if (payload.sid) {
-            paylaod.lookupLeadStatusData = Platform.Function.LookupRows('LEAD_STATUS_REFERENCE', ['Id'], [payload.sid]);
-            payload.status = payload.lookupLeadStatusData[0].Status;
-        }
-
-        // Lookup Campaign
-        if (payload.cid) {
-            paylaod.lookupCampaignData = Platform.Function.LookupRows('ENT.Campaign_Salesforce', 'Id', payload.cid);
-            payload.campaign_name = payload.lookupCampaignData[0].Name;
-        }
-
-        // Lookup Campaign Resources
-        //
-        //  TODO - configure to pull from an object related to the campaign instead of having to maintain a reference DE
-        //
+        //loop
+        nextItemInQueue: for (var i = 0; i < queue.length; i++) {
 
 
-    } catch (error) {
+            //skip if already processed
+            if (queue[i].queue_completed_date) continue nextItemInQueue;
+
+
+            // Lookup Region, Country
+            if (queue[i].record.country_code) {
+                var country = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'CountryCode', queue[i].record.country_code);
+                queue[i].record.region = country[0].Region;
+                queue[i].record.country_name = country.CountryName;
+            }
+
+            // Lookup State
+            if (queue[i].record.state_code) {
+                queue[i].record.lookupStateData = Platform.Function.LookupRows('STATE_REFERENCE', 'CountryCode', queue[i].record.country_code);
+                queue[i].record.state_name = queue[i].record.lookupStateData[0].StateName;
+            }
+
+            // Lookup Job Function
+            if (queue[i].record.job_title) {
+                paylaod.lookupJobData = Platform.Function.LookupRows('JOB_FUNCTION_REFERENCE', ['JobTitle', 'Region'], [queue[i].record.job_title, queue[i].record.region]);
+                queue[i].record.job_function = queue[i].record.lookupJobData[0].JobFunction;
+            }
+
+            // Lookup Enquiry Type
+            if (queue[i].record.eid) {
+                paylaod.lookupEnquiryData = Platform.Function.LookupRows('ENQUIRY_REFERENCE', ['Id'], [queue[i].record.eid]);
+                queue[i].record.enquiry = queue[i].record.lookupEnquiryData[0].Enquiry;
+                queue[i].record.description = queue[i].record.lookupEnquiryData[0].Description;
+                queue[i].record.enquiry_summary = queue[i].record.lookupEnquiryData[0].Description;
+            }
+
+            // Lookup Lead Status
+            if (queue[i].record.sid) {
+                paylaod.lookupLeadStatusData = Platform.Function.LookupRows('LEAD_STATUS_REFERENCE', ['Id'], [queue[i].record.sid]);
+                queue[i].record.status = queue[i].record.lookupLeadStatusData[0].Status;
+            }
+
+            // Lookup Campaign
+            if (queue[i].record.cid) {
+                paylaod.lookupCampaignData = Platform.Function.LookupRows('ENT.Campaign_Salesforce', 'Id', queue[i].record.cid);
+                queue[i].record.campaign_name = queue[i].record.lookupCampaignData[0].Name;
+            }
+
+            // Lookup Campaign Resources
+            //
+            //  TODO - configure to pull from an object related to the campaign instead of having to maintain a reference DE
+            //
+
+
+            //return item to queue
+            queue[i] = queue[i];
+
+
+        } //for(i)nextItemInQueue
+
+
+    }
+    catch (error) {
         Write("Error: " + Stringify(error.message));
     }
 </script>
