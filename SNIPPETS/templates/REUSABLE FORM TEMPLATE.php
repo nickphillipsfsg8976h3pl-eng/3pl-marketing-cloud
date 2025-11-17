@@ -1,12 +1,21 @@
-<script>
+<script runat="server">
+  Platform.Load("core", "1");
   /**
-   * =========== REUSABLE FORM =============
+   * ==========================================================================================================
+   * ========================================= REUSABLE FORM TEMPLATE =========================================
+   * ==========================================================================================================
+   * 
    * 
    * @author: Nick Phillips
+   * @version: 1.0.0
+   * 
    * 
    * 
    * CHANGE LOG
-   * ----------------------------------
+   * -------------------------------------------
+   * 
+   * 
+   * 
    * 
    * 
    * 
@@ -14,7 +23,7 @@
    * 
    * 
    * QUERY PARAMETERS
-   * ----------------------------------
+   * -------------------------------------------
    * 
    * @parameter: template (required) - the name of an array of preconfigured form inputs to display
    * @parameter: inputs (required) - a comma-deliminated URL array of single form inputs to display
@@ -34,8 +43,11 @@
    * @parameter: gtm_referrer - marketing trackers retrieved from a browser cookie
    * 
    * 
+   * 
+   * 
+   *
    * URL EXAMPLES
-   * ----------------------------------
+   * -------------------------------------------
    * 
    * @example: Test
    * https://webform.my.3plearning.com/REUSABLE_FORM?template=test
@@ -75,11 +87,12 @@
 
 
 
-<!-- SSJS POST -->
 <script runat="server">
-  Platform.Load("core", "1");
+  /**
+   * SUBMIT FORM
+   */
+  if (Request.Method() != "POST") return;
   try {
-    if (Request.Method() != "POST") return;
 
 
     /*******************************
@@ -98,6 +111,7 @@
     /************************* 
     --------- PAYLOAD --------
     **************************/
+
 
     //initiate
     var payload = {};
@@ -175,6 +189,15 @@
     });
 
 
+
+    /************************************ 
+    --------- TRIGGER AUTOMATION --------
+    *************************************/
+
+
+    //TODO: Trigger automation studio to run REUSABLE_FORM_AUTOMATION via api rather than based on a schedule
+
+
     /************************* 
     -------- REDIRECT --------
     **************************/
@@ -211,19 +234,13 @@
 
 
 
-<!-- 
-****************************
- 
-****************************
--->
 
-
-
-<!-- SSJS GET -->
 <script runat="server">
-  Platform.Load("core", "1");
+  /**
+   * CREATE FORM
+   */
+  if (Request.Method() != "GET") return;
   try {
-    if (Request.Method() != "GET") return;
 
 
     /*******************************
@@ -242,6 +259,7 @@
     /*******************************
     ------- QUERY PARAMETERS -------
     ********************************/
+
 
     //initiate
     var config = {};
@@ -343,7 +361,6 @@
       ]
 
     } //config.PRECONFIGURED_TEMPLATES
-
 
 
     /**************************************

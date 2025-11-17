@@ -1,13 +1,105 @@
 <script runat="server">
     Platform.Load("core", "1");
+    /**
+     * ==========================================================================================================
+     * ========================================= REUSABLE FORM PIPELINE =========================================
+     * ==========================================================================================================
+     * 
+     * 
+     * @author: Nick Phillips
+     * @version: 1.0.0
+     * 
+     * 
+     * 
+     * 
+     * CHANGE LOG
+     * -------------------------------------------
+     *
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * DATA EXTENSION COLUMNS CURRENTLY IN USE
+     * -------------------------------------------
+     * 
+     * submission_id
+     * submission_name
+     * submission_email
+     * submission_url
+     * submission_data
+     * submission_date
+     * 
+     *
+     * 
+     * 
+     * SUBMITTED FORM FIELDS CURRENTLY IN USE
+     * --------------------------------------------
+     * 
+     * debug
+     * 
+     * cid
+     * rid
+     * eid
+     * sid
+     * fid
+     *
+     * inputs
+     * template
+     * request_url
+     *
+     * utm_source
+     * utm_medium
+     * utm_campaign
+     * utm_content
+     * utm_term
+     * gclid
+     * gtm_referrer
+     *
+     * product_interest
+     * user_interest
+     * first_name
+     * last_name
+     * email_address
+     * phone_number
+     * grade_level
+     * job_title
+     * country_code
+     * state_code
+     * postcode_zipcode
+     * school_name
+     * no_of_licences
+     * terms_and_conditions
+     * subscriber_opt_in
+     * 
+     * 
+     * 
+     * 
+     */
+</script>
+
+
+<script runat="server" language="Javascript">
     try {
 
+        /************************* 
+        ------- PARSE DATA -------
+        **************************/
 
-        //==========================================================================================================
-        //========================================= REUSABLE FORM  PIPELINE =========================================
-        //===========================================================================================================
+
+        //parse json data
 
 
+    } catch (error) {
+        Write("Error: " + Stringify(error.message));
+    }
+</script>
+
+
+<script runat="server" language="Javascript">
+    try {
 
         /************************* 
         --------- VALIDATE --------
@@ -18,6 +110,16 @@
         //valid email
         //known email
         //student/parents
+
+
+    } catch (error) {
+        Write("Error: " + Stringify(error.message));
+    }
+</script>
+
+
+<script runat="server" language="Javascript">
+    try {
 
 
         /************************* 
@@ -70,22 +172,18 @@
         //
 
 
-        /************************* 
-        ---------- UPSERT --------
-        **************************/
-
-
-        // Upsert Lead
-        // Upsert Campaign Member
-
-
-
-        /*******************************
-        ------------ ERROR -------------
-        ********************************/
-
-
     } catch (error) {
         Write("Error: " + Stringify(error.message));
     }
+</script>
+
+
+<script runat="server" language="AMPscript">
+    /************************* 
+    ---------- UPSERT --------
+    **************************/
+
+
+    // Upsert Lead
+    // Upsert Campaign Member
 </script>
