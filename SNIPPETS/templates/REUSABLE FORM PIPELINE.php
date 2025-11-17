@@ -133,14 +133,7 @@
     **************************/
     try {
 
-
-        var BLOCKED_EMAIL_ADDRESSES = [
-            'x@x.com',
-            'xx@xx.com',
-            'xxx@xxx.com',
-            'xxxx@xxxx.com',
-            'xxxxx@xxxxx.com',
-        ]
+        var BLOCKED_EMAIL_ADDRESSES = Platform.Function.LookupRows('BLOCKED_EMAIL_REFERENCE', 'Active', true);
 
 
         //loop
@@ -154,24 +147,34 @@
             }
 
             //STUDENT_JOB_TITLE
-            if (records[i].data.job_title && records[i].data.job_title.toLowerCase().indexOf('student')) {
+            if (records[i].data.job_title && records[i].data.job_title.toLowerCase().indexOf('student') !== -1) {
                 records[i].queue_error_message = 'STUDENT_JOB_TITLE: job_title contains the word "student"';
                 records[i].queue_completed_date = Datetime.SystemDateToLocalString();
             }
 
             //PARENT_JOB_TITLE
-            if (records[i].data.job_title && records[i].data.job_title.toLowerCase().indexOf('parent')) {
+            if (records[i].data.job_title && records[i].data.job_title.toLowerCase().indexOf('parent') !== -1) {
                 records[i].queue_error_message = 'PARENT_JOB_TITLE: job_title contains the word "parent"';
                 records[i].queue_completed_date = Datetime.SystemDateToLocalString();
             }
 
             //STUDENT_EMAIL_DOMAIN
-            if (records[i].data.email_address && records[i].data.email_address.toLowerCase().indexOf('student')) {
+            if (records[i].data.email_address && records[i].data.email_address.toLowerCase().indexOf('student') !== -1) {
                 records[i].queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
                 records[i].queue_completed_date = Datetime.SystemDateToLocalString();
             }
 
             //BLOCKED_EMAIL_ADDRESS
+            for (var j = 0; j < BLOCKED_EMAIL_ADDRESSES.length; j++) {
+                if (
+                    records[i].email_address &&
+                    records[i].email_address.toLowerCase() === BLOCKED_EMAIL_ADDRESSES[j].EmailAddress
+                ) {
+                    records[i].queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
+                    records[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                }
+            } //for(j)
+
 
             //SANCTIONED_COUNTRY
             //RESTRICTED_COUNTRY
@@ -183,7 +186,7 @@
 
 
 
-        } //for
+        } //for(i)
 
 
     } catch (error) {
