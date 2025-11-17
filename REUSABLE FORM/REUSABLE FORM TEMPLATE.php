@@ -182,8 +182,9 @@
             "submission_url": payload.request_url,
             "submission_data": Stringify(payload),
             "submission_date": Datetime.SystemDateToLocalString()
-            // "queue_record_id": //the saleforce recoordId of the lead upserted via the pipeline
-            // "queue_upsert_method": //the method used to upsert the salesforce lead [CREATE/UPDATE]
+            // "queue_method": //the method used to upsert the salesforce lead [CREATE/UPDATE]
+            // "queue_record_id": //the saleforce recoordId of the lead (or contact) sync'd with salesforce
+            // "queue_campaign_member_id": //the saleforce campaign member id after lead is upserted to campaign
             // "queue_error_message": //the error message set when record fails processing in pipeline
             // "queue_completed_date": //a datetime set when the pipeline has run and the record has been processed
         });

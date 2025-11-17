@@ -373,6 +373,22 @@
             }
 
 
+
+            // UTM_
+            if (
+                QUEUED[i].record.cid
+            ) {
+                var campaign = Platform.Function.LookupRows('ENT.Campaign_Salesforce', ['Id'], [QUEUED[i].record.cid])[0];
+                if (campaign) {
+                    QUEUED[i].record.campaign_name = campaign.Name;
+                }
+            }
+
+
+
+
+
+
         } //for(i)nextItemInQueue
 
 
