@@ -34,7 +34,7 @@
      * submission_date
      * 
      * queue_record_id
-     * queue_upsert_method
+     * queue_method
      * queue_error_message
      * queue_completed_date
      * 
@@ -84,7 +84,7 @@
 </script>
 
 
-<script runat="server" section="helpers">
+<script runat="server">
     /************************* 
     --------- HELPERS --------
     **************************/
@@ -99,13 +99,13 @@
     /************************* 
     ------- GET QUEUED ------
     **************************/
-
-
     var QUEUED = [];
     try {
 
+
         //get unprocessed records orderd by first-in
         QUEUED = Platform.Function.LookupOrderedRows('REUSABLE_FORM_QUEUE', 0, 'submission_date ASC', 'queue_completed_date', null);
+
 
         //exit early if none
         if (!QUEUED) return;
@@ -121,19 +121,25 @@
     /************************* 
     ------- PARSE JSON -------
     **************************/
-
-
     try {
 
+
         //loop
-        for (var i = 0; i < QUEUED.length; i++) {
+        nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
+
+
+            //skip if already processed
+            // if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
+
 
             QUEUED[i].record = Platform.Function.ParseJSON(QUEUED[0].submission_data);
 
-        } //for
+
+        } //for(i)nextItemInQueue
 
 
-    } catch (error) {
+    }
+    catch (error) {
         logError('PARSE JSON', error);
     }
 </script>
@@ -143,13 +149,15 @@
     /**************************************
     --------- VALIDATE SUBMISSION ---------
     ***************************************/
-
-
     try {
 
 
         //loop
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
+
+
+            //skip if already processed
+            // if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
             //INVALID_EMAIL_FORMAT
@@ -377,15 +385,21 @@
 
 <script runat="server">
     /**************************************
-    ----------- SALESFROCE SYNC -----------
+    ----------- SYNC SALESFROCE -----------
     ***************************************/
-
     try {
+
+
         //create proxy
         var api = new Script.Util.WSProxy();
 
 
+        //loop
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
+
+
+            //skip if already processed
+            if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
             //reset
@@ -407,14 +421,15 @@
             });
 
 
+            //CHECK RESULTS
             if (result.Status == "OK" && result.Results.length) {
-                isLeadAlreadyExist = true;
+                isLeadExists = true;
                 LEAD.record = result.Results[0];
             }
 
 
             //UPDATE EXISTING LEAD
-            if (isLeadExists && LEAD.record) {
+            if (isLeadExists) {
 
                 var leadUpdate = {
                     ID: LEAD.record.Id,
@@ -424,21 +439,93 @@
 
                 var result = api.updateItem("Lead", leadUpdate);
 
+                if (result.Status == "OK") {
+                    QUEUED[i].queue_method = 'UPDATE'
+                    QUEUED[i].queue_record_id = result.Results[0].Object.ID;
+                }
+
             }
 
 
             //CREATE NEW LEAD
             if (!isLeadExists) {
+                var lead = {
+                    FirstName: "John",
+                    LastName: "Doe",
+                    Email: "john@example.com",
+                    Company: "Acme Corp",
+                    Status: "Open"
+                };
 
+                var result = api.createItem("Lead", lead);
+
+                if (result.Status == "OK") {
+                    QUEUED[i].queue_method = 'CREATE'
+                    QUEUED[i].queue_record_id = result.Results[0].Object.ID;
+                }
             }
 
             //UPSERT CAMPAIGN MEMBER
+            if (
+                QUEUED[i].record.cid &&
+                LEAD.record.id
+            ) {
+                var campaignMember = {
+                    CampaignId: QUEUED[i].record.cid,
+                    LeadId: LEAD.record.id,
+                    Status: "Sent"
+                };
+
+                var options = {
+                    SaveOptions: [{
+                        PropertyName: "*",
+                        SaveAction: "UpdateAdd" // upsert
+                    }]
+                };
+
+                var result = api.updateItem("CampaignMember", campaignMember, options);
+
+                if (result.Status == "OK") {
+                    QUEUED[i].queue_campaign_member_id = result.Results[0].Object.ID;
+                }
+            }
 
 
         } //for(i)nextItemInQueue
 
 
     } catch (error) {
+        logError('SYNC SALESFORCE', error);
+    }
+</script>
+
+
+<script runat="server">
+    /**************************************
+    ------------ UPDATE QUEUED ------------
+    ***************************************/
+    try {
+
+
+        //loop
+        nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
+
+
+            // Or using UpdateData()
+            Platform.Function.UpdateData(
+                "REUSABLE_FORM_QUEUE",
+                ["submission_id"], [QUEUED[i].submission_id],
+                ["queue_method"], [QUEUED[i].queue_method]
+                ["queue_record_id"], [QUEUED[i].queue_record_id]
+                ["queue_campaign_member_id"], [QUEUED[i].queue_campaign_member_id]
+                ["queue_error_message"], [QUEUED[i].queue_error_message]
+                ["queue_completed_date"], [QUEUED[i].queue_completed_date]
+            );
+
+
+        } //for(i)nextItemInQueue
+    }
+    catch (error) {
         logError('SALESFORCE SYNC', error);
     }
 </script>
