@@ -160,7 +160,7 @@
 
 
     //push to queue
-    var queue = DataExtension.Init("REUSABLE_FORM_SUBMISSION_QUEUE");
+    var queue = DataExtension.Init("REUSABLE_FORM_QUEUE");
     queue.Rows.Add({
       "submission_id": Platform.Function.GUID(),
       "submission_name": payload.first_name + ' ' + payload.last_name,
