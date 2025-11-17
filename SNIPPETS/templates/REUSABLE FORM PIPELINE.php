@@ -133,7 +133,9 @@
     **************************/
     try {
 
-        var BLOCKED_EMAIL_ADDRESSES = Platform.Function.LookupRows('BLOCKED_EMAIL_REFERENCE', 'Active', true);
+
+        var BLOCKED_EMAIL_REFERENCE = Platform.Function.LookupRows('BLOCKED_EMAIL_REFERENCE', 'Active', true);
+        var COUNTRY_REFERENCE = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true);
 
 
         //loop
@@ -141,43 +143,81 @@
 
 
             //INVALID_EMAIL_FORMAT
-            if (!Platform.Function.isEmailAddress(records[i].data.email_address)) {
+            if (
+                records[i].data.email_address &&
+                !Platform.Function.isEmailAddress(records[i].data.email_address)
+            ) {
                 records[i].queue_error_message = 'INVALID_EMAIL_FORMAT: email_address is missing or not valid';
                 records[i].queue_completed_date = Datetime.SystemDateToLocalString();
             }
 
             //STUDENT_JOB_TITLE
-            if (records[i].data.job_title && records[i].data.job_title.toLowerCase().indexOf('student') !== -1) {
+            if (
+                records[i].data.job_title &&
+                records[i].data.job_title.toLowerCase().indexOf('student') !== -1
+            ) {
                 records[i].queue_error_message = 'STUDENT_JOB_TITLE: job_title contains the word "student"';
                 records[i].queue_completed_date = Datetime.SystemDateToLocalString();
             }
 
             //PARENT_JOB_TITLE
-            if (records[i].data.job_title && records[i].data.job_title.toLowerCase().indexOf('parent') !== -1) {
+            if (
+                records[i].data.job_title &&
+                records[i].data.job_title.toLowerCase().indexOf('parent') !== -1
+            ) {
                 records[i].queue_error_message = 'PARENT_JOB_TITLE: job_title contains the word "parent"';
                 records[i].queue_completed_date = Datetime.SystemDateToLocalString();
             }
 
             //STUDENT_EMAIL_DOMAIN
-            if (records[i].data.email_address && records[i].data.email_address.toLowerCase().indexOf('student') !== -1) {
+            if (
+                records[i].data.email_address &&
+                records[i].data.email_address.toLowerCase().indexOf('student') !== -1
+            ) {
                 records[i].queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
                 records[i].queue_completed_date = Datetime.SystemDateToLocalString();
             }
 
             //BLOCKED_EMAIL_ADDRESS
-            for (var j = 0; j < BLOCKED_EMAIL_ADDRESSES.length; j++) {
-                if (
-                    records[i].email_address &&
-                    records[i].email_address.toLowerCase() === BLOCKED_EMAIL_ADDRESSES[j].EmailAddress
-                ) {
-                    records[i].queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
-                    records[i].queue_completed_date = Datetime.SystemDateToLocalString();
-                }
-            } //for(j)
+            if (records[i].email_address) {
+                for (var j = 0; j < BLOCKED_EMAIL_REFERENCE.length; j++) {
+                    if (
+                        records[i].email_address.toLowerCase() === BLOCKED_EMAIL_REFERENCE[j].EmailAddress.toLowerCase()
+                    ) {
+                        records[i].queue_error_message = 'BLOCKED_EMAIL_ADDRESS: email_address is blacklisted';
+                        records[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                    }
+                } //for(j)
+            }
 
 
             //SANCTIONED_COUNTRY
+            if (records[i].country_code) {
+                for (var j = 0; j < COUNTRY_REFERENCE.length; j++) {
+                    if (
+                        records[i].country_code.toLowerCase() === COUNTRY_REFERENCE[j].CountryCode.toLowerCase() &&
+                        COUNTRY_REFERENCE[j].IsSanctionedCountry
+                    ) {
+                        records[i].queue_error_message = 'SANCTIONED_COUNTRY: country is sanctioned, we are unable to provide services"';
+                        records[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                    }
+                } //for(j)
+            }
+
             //RESTRICTED_COUNTRY
+            if (records[i].country_code) {
+                for (var j = 0; j < COUNTRY_REFERENCE.length; j++) {
+                    if (
+                        records[i].country_code.toLowerCase() === COUNTRY_REFERENCE[j].CountryCode.toLowerCase() &&
+                        COUNTRY_REFERENCE[j].IsCountryRestricted
+                    ) {
+                        records[i].queue_error_message = 'RESTRICTED_COUNTRY: country is restricted, we are unable to provide services"';
+                        records[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                    }
+                } //for(j)
+            }
+
+
             //PROFANITY_CHECK
 
 
