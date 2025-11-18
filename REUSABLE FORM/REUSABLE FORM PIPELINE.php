@@ -473,20 +473,20 @@
 
 
             // UTM_PARAMETERS
-            // if (
-            //     QUEUED[i].record.utm_source &&
-            //     QUEUED[i].record.utm_medium &&
-            //     QUEUED[i].record.utm_campaign &&
-            //     QUEUED[i].record.utm_content &&
-            //     QUEUED[i].record.utm_term
-            // ) {
-            //     QUEUED[i].record.utm_source = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_source);
-            //     QUEUED[i].record.utm_medium = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_medium);
-            //     QUEUED[i].record.utm_campaign = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_campaign);
-            //     QUEUED[i].record.utm_content = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_content);
-            //     QUEUED[i].record.utm_term = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_term);
+            if (
+                QUEUED[i].record.utm_source &&
+                QUEUED[i].record.utm_medium &&
+                QUEUED[i].record.utm_campaign &&
+                QUEUED[i].record.utm_content &&
+                QUEUED[i].record.utm_term
+            ) {
+                QUEUED[i].record.utm_source = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_source);
+                QUEUED[i].record.utm_medium = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_medium);
+                QUEUED[i].record.utm_campaign = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_campaign);
+                QUEUED[i].record.utm_content = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_content);
+                QUEUED[i].record.utm_term = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_term);
 
-            // }
+            }
 
 
 
