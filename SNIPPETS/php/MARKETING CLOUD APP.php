@@ -49,11 +49,11 @@
     /* ---------------------- 2.1. Debugging --------------------------------- */
 
     /**
-    * @function debugValue
-    * @description Outputs provided description and SSJS value to front-end in a type-safe & consistent way
-    * @param {string} description - Describes meaning of the second parameter in the output
-    * @param {*} value - The value that needs to be debugged
-    */
+     * @function debugValue
+     * @description Outputs provided description and SSJS value to front-end in a type-safe & consistent way
+     * @param {string} description - Describes meaning of the second parameter in the output
+     * @param {*} value - The value that needs to be debugged
+     */
     function debugValue(description, value) {
         Write(description + ': ' + (typeof value == 'object' ? Stringify(value) : value) + '<br><br>');
     };
@@ -61,12 +61,12 @@
     /* ---------------------- 2.2. Error handling ---------------------------- */
 
     /**
-    * @function handleError
-    * @description Adds the error with context to error logging Data Extension and redirects to error page.
-    * @param {Object} error - The caught error object. Can come from the try/catch block or be manually created.
-    * @param {string} error.message - First error key stores short error message describing the issue.
-    * @param {string} error.description - Second error key stores detailed error path helping with root cause analysis
-    */
+     * @function handleError
+     * @description Adds the error with context to error logging Data Extension and redirects to error page.
+     * @param {Object} error - The caught error object. Can come from the try/catch block or be manually created.
+     * @param {string} error.message - First error key stores short error message describing the issue.
+     * @param {string} error.description - Second error key stores detailed error path helping with root cause analysis
+     */
     function handleError(error) {
         if (debugging) {
             debugValue('Found error', error);
@@ -87,7 +87,7 @@
         state = GUID();
         Platform.Response.Redirect('https://' + clientBase + '.auth.marketingcloudapis.com/v2/authorize?response_type=code&client_id=' + clientID + '&redirect_uri=' + appURL + '&state=' + state);
 
-    /* ---------------------- 3.2. Authentication ---------------------------- */
+        /* ---------------------- 3.2. Authentication ---------------------------- */
 
     } else if (state && !errorMessage) {
         /* 3.2.1. Build token request payload */
@@ -121,15 +121,21 @@
                 [appName, accessToken, tokenExpire, userName, userEmail]
             );
 
-        /* 3.2.6. Handle authentication error */
+            /* 3.2.6. Handle authentication error */
         } else {
-            handleError({message: 'Authentication Failed', description: 'Status: ' + response.StatusCode})
+            handleError({
+                message: 'Authentication Failed',
+                description: 'Status: ' + response.StatusCode
+            })
         };
 
-    /* ---------------------- 3.3. Authorization Error ----------------------- */
+        /* ---------------------- 3.3. Authorization Error ----------------------- */
 
     } else {
-        handleError({message: errorMessage, description: errorDescription});
+        handleError({
+            message: errorMessage,
+            description: errorDescription
+        });
     };
 </script>
 
