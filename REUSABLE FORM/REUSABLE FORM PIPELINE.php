@@ -25,7 +25,7 @@
      * 
      * DATA EXTENSION COLUMNS CURRENTLY IN USE
      * -------------------------------------------
-     * 
+     *   
      * submission_id
      * submission_name
      * submission_email
@@ -96,6 +96,10 @@
 
     function logError(section, error) {
         Write("\nERROR in " + section + ": " + Stringify(error.message) + "\n");
+    }
+
+    function uniqueValues(stringArray) {
+        
     }
 </script>
 
@@ -441,7 +445,21 @@
             }
 
 
-            // UTM_
+            // UTM_PARAMETERS
+            if (
+                QUEUED[i].record.utm_source &&
+                QUEUED[i].record.utm_medium &&
+                QUEUED[i].record.utm_campaign &&
+                QUEUED[i].record.utm_content &&
+                QUEUED[i].record.utm_term
+            ) {
+                QUEUED[i].record.utm_source = uniqueValues(QUEUED[i].record.utm_source);
+                QUEUED[i].record.utm_medium = uniqueValues(QUEUED[i].record.utm_medium);
+                QUEUED[i].record.utm_campaign = uniqueValues(QUEUED[i].record.utm_campaign);
+                QUEUED[i].record.utm_content = uniqueValues(QUEUED[i].record.utm_content);
+                QUEUED[i].record.utm_term = uniqueValues(QUEUED[i].record.utm_term);
+
+            }
 
 
 
