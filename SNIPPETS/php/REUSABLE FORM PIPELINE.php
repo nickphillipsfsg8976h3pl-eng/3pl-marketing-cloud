@@ -334,10 +334,19 @@
                 if (country) {
                     QUEUED[i].record.region = country.Region;
                     QUEUED[i].record.country_name = country.CountryName;
-
                 }
             }
 
+            // STATE NAME
+            if (
+                QUEUED[i].record.country_code &&
+                QUEUED[i].record.state_code
+            ) {
+                var state = Platform.Function.LookupRows('STATE_REFERENCE', ['StateCode', 'CountryCode'], [QUEUED[i].record.country_code, QUEUED[i].record.state_code])[0];
+                if (state) {
+                    QUEUED[i].record.state_name = state.Name;
+                }
+            }
 
             // TERRITORY
             if (
@@ -352,30 +361,20 @@
                 QUEUED[i].record.territory = regionToTerritoryMapping[QUEUED[i].record.region];
             }
 
-
-            // STATE NAME
-            if (
-                QUEUED[i].record.country_code &&
-                QUEUED[i].record.state_code
-            ) {
-                var state = Platform.Function.LookupRows('STATE_REFERENCE', ['StateCode', 'CountryCode'], [QUEUED[i].record.country_code, QUEUED[i].record.state_code])[0];
-                if (state) {
-                    QUEUED[i].record.state_name = state.Name;
-                }
-            }
-
-
             // JOB FUNCTION
+            // @desc - matches external customer job title to internal job functions picklist values. Job functions are mapped in lead conversion
+            // and therfore other job functions fields also exist on contact, opportunity and opportunity-contact-role/relationship records. Job Function
+            // values in Salesforce cannot be changed easily without having to alter related automations so job title picklist values in forms should
+            // be kept as static as possible otherwise mapping issues arise and job function values fail to be set correctly.
             if (
-                QUEUED[i].record.job_title &&
-                QUEUED[i].record.region
+                QUEUED[i].record.region &&
+                QUEUED[i].record.job_title
             ) {
-                var job = Platform.Function.LookupRows('JOB_REFERENCE', ['JobTitle', 'Region'], [QUEUED[i].record.job_title, QUEUED[i].record.region])[0];
-                if (job) {
-                    QUEUED[i].record.job_function = job.JobFunction;
-                }
+                var job = Platform.Function.LookupRows('JOB_REFERENCE', ['Region', 'JobTitle'], [QUEUED[i].record.region, QUEUED[i].record.job_title])[0];
+                QUEUED[i].record.job_function = job ?
+                    job.JobFunction :
+                    "Other";
             }
-
 
             // CAMPAIGN ID
             if (
@@ -395,7 +394,6 @@
                     regionToCidMapping['DEFAULT'];
             }
 
-
             // CAMPAIGN NAME
             if (
                 QUEUED[i].record.campaign_id
@@ -406,12 +404,10 @@
                 }
             }
 
-
             // CAMPAIGN RESOURCES
             //
-            //  TODO - configure to pull from an object related to the campaign instead of having to maintain a reference DE
+            //  TODO - configure to pull from a fields on the campaign record or related object instead of having to maintain a reference DE
             //
-
 
             // STATUS
             if (
@@ -428,7 +424,6 @@
                 QUEUED[i].record.status = sidToStatusMapping[QUEUED[i].record.sid];
             }
 
-
             // ENQUIRY TYPE
             if (
                 QUEUED[i].record.eid &&
@@ -443,7 +438,6 @@
                 };
                 QUEUED[i].record.enquiry_type = sidToStatusMapping[QUEUED[i].record.eid];
             }
-
 
             //DESCRIPTION, ENQUIRY SUMMARY
             if (
@@ -471,7 +465,6 @@
                 QUEUED[i].record.enquiry_summary = description.substring(0, 255);
             }
 
-
             // UTM_PARAMETERS
             if (
                 QUEUED[i].record.utm_source &&
@@ -486,10 +479,6 @@
                 QUEUED[i].record.utm_content = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_content);
                 QUEUED[i].record.utm_term = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_term);
             }
-
-
-
-
 
 
         } //for(i)nextItemInQueue

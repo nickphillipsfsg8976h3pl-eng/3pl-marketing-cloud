@@ -1,99 +1,98 @@
 <script runat="server">
     Platform.Load("core", "1");
-    /**
-     * ==========================================================================================================
-     * ========================================= REUSABLE FORM TEMPLATE =========================================
-     * ==========================================================================================================
-     * 
-     * 
-     * @author: Nick Phillips
-     * @version: 1.0.0
-     * 
-     * 
-     * 
-     * CHANGE LOG
-     * -------------------------------------------
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * QUERY PARAMETERS
-     * -------------------------------------------
-     * 
-     * @parameter: template (required) - the name of an array of preconfigured form inputs to display
-     * @parameter: inputs (required) - a comma-deliminated URL array of single form inputs to display
-     * 
-     * @parameter: apac_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an APAC based country 
-     * @parameter: amer_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an AMER based country
-     * @parameter: emea_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an EMEA based country  
-     * @parameter: cid (required) - the default salesforce campaign id regardless of country or region.
-     * @parameter: rid (required) - the redirect id used to retrieve a url from a DE and redirect the user after form submission
-     * @parameter: eid (required) - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce
-     * @parameter: sid (optional) - lead status id - [UQ, MP, SP, MQL (default), SAL, SQL], 
-     * @parameter: fid (optional) - form ID to use in logic when making changes post go-live
-     * 
-     * @parameter: utm_source - marketing trackers retrieved from a browser cookie
-     * @parameter: utm_medium - marketing trackers retrieved from a browser cookie
-     * @parameter: utm_campaign - marketing trackers retrieved from a browser cookie
-     * @parameter: utm_content - marketing trackers retrieved from a browser cookie
-     * @parameter: utm_term - marketing trackers retrieved from a browser cookie
-     * @parameter: gclid - (google click ID) marketing trackers retrieved from a browser cookie
-     * @parameter: gtm_referrer - marketing trackers retrieved from a browser cookie
-     * 
-     * 
-     * 
-     * 
-     *
-     * URL EXAMPLES
-     * -------------------------------------------
-     * 
-     * @example: Test
-     * https://webform.my.3plearning.com/REUSABLE_FORM?template=test
-     * 
-     * @example: Test Columns
-     * https://webform.my.3plearning.com/REUSABLE_FORM?template=test_columns
-     * 
-     * @example: Test States
-     * https://webform.my.3plearning.com/REUSABLE_FORM?template=test_states
-     * 
-     * @example: Basic Template
-     * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
-     * 
-     * @example: TOF Template
-     * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
-     * 
-     * @example: BOF Template
-     * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
-     * 
-     * @example: Quote Template
-     * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
-     * 
-     * @example: US Form Template
-     * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
-     * 
-     * @example: Trial Template
-     * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
-     * 
-     * @example: Info Template
-     * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
-     * 
-     * @example: Demo Template
-     * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON
-     * 
-     */
+
+    var documentation = ''.concat(
+        '/** ',
+        ' * ========================================================================================================== ',
+        ' * ========================================= REUSABLE FORM TEMPLATE ========================================= ',
+        ' * ========================================================================================================== ',
+        ' *  ',
+        ' *  ',
+        ' * @author: Nick Phillips ',
+        ' * @version: 1.0.0 ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' * CHANGE LOG ',
+        ' * ------------------------------------------- ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' * QUERY PARAMETERS ',
+        ' * ------------------------------------------- ',
+        ' *  ',
+        ' * @parameter: template (required) - the name of an array of preconfigured form inputs to display ',
+        ' * @parameter: inputs (required) - a comma-deliminated URL array of single form inputs to display ',
+        ' *  ',
+        ' * @parameter: apac_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an APAC based country  ',
+        ' * @parameter: amer_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an AMER based country ',
+        ' * @parameter: emea_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an EMEA based country   ',
+        ' * @parameter: cid (required) - the default salesforce campaign id regardless of country or region. ',
+        ' * @parameter: rid (required) - the redirect id used to retrieve a url from a DE and redirect the user after form submission ',
+        ' * @parameter: eid (required) - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce ',
+        ' * @parameter: sid (optional) - lead status id - [UQ, MP, SP, MQL (default), SAL, SQL],  ',
+        ' * @parameter: fid (optional) - form ID to use in logic when making changes post go-live ',
+        ' *  ',
+        ' * @parameter: utm_source - marketing trackers retrieved from a browser cookie ',
+        ' * @parameter: utm_medium - marketing trackers retrieved from a browser cookie ',
+        ' * @parameter: utm_campaign - marketing trackers retrieved from a browser cookie ',
+        ' * @parameter: utm_content - marketing trackers retrieved from a browser cookie ',
+        ' * @parameter: utm_term - marketing trackers retrieved from a browser cookie ',
+        ' * @parameter: gclid - (google click ID) marketing trackers retrieved from a browser cookie ',
+        ' * @parameter: gtm_referrer - marketing trackers retrieved from a browser cookie ',
+        ' *  ',
+        ' *  ',
+        ' *  ',
+        ' * ',
+        ' * URL EXAMPLES ',
+        ' * ------------------------------------------- ',
+        ' *  ',
+        ' * @example: Test ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?template=test ',
+        ' *  ',
+        ' * @example: Test Columns ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?template=test_columns ',
+        ' *  ',
+        ' * @example: Test States ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?template=test_states ',
+        ' *  ',
+        ' * @example: Basic Template ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON ',
+        ' *  ',
+        ' * @example: TOF Template ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON ',
+        ' *  ',
+        ' * @example: BOF Template ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON ',
+        ' *  ',
+        ' * @example: Quote Template ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON ',
+        ' *  ',
+        ' * @example: US Form Template ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON ',
+        ' *  ',
+        ' * @example: Trial Template ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON ',
+        ' *  ',
+        ' * @example: Info Template ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON ',
+        ' *  ',
+        ' * @example: Demo Template ',
+        ' * https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON ',
+        ' *  ',
+        ' */ ',
+    );
 </script>
 
 
 
 <script runat="server">
-    /**
-     * SUBMIT FORM
-     */
     if (Request.Method() != "POST") return;
     try {
 
@@ -248,11 +247,7 @@
 
 
 
-
 <script runat="server">
-    /**
-     * CREATE FORM
-     */
     if (Request.Method() != "GET") return;
     try {
 
@@ -387,17 +382,15 @@
 
 
         // ADD ALL TEMPLATE COMPONENTS
-        var template = Request.GetQueryStringParameter("template")
-        if (template) {
-            var templateComponentList = config.PRECONFIGURED_TEMPLATES[template.toLowerCase()];
+        if (congig.template) {
+            var templateComponentList = config.PRECONFIGURED_TEMPLATES[config.template.toLowerCase()];
             config.COMPONENTS_TO_RENDER = config.COMPONENTS_TO_RENDER.concat(templateComponentList);
         } //if
 
 
         // ADD SINGLE INPUT COMPONENTS
-        var inputs = Request.GetQueryStringParameter("inputs")
-        if (inputs) {
-            var singleInputList = inputs.toUpperCase().split(',');
+        if (config.inputs) {
+            var singleInputList = config.inputs.toUpperCase().split(',');
             for (var i = 0; i < singleInputList.length; i++) {
                 var singleInput = singleInputList[i];
                 config.COMPONENTS_TO_RENDER.push(singleInput);
@@ -414,15 +407,25 @@
 
 
         /*******************************
-        ------------ DEBUG -------------
+        ------------ INFO -------------
         ********************************/
 
+        //show info when required params are missinng
+        if (
+            config.debug ||
+            (
+                !config.template &&
+                !config.inputs
+            )
+        ) {
 
-        //show info when ?debug=true
-        if (debug) {
             Write('=== DEBUG MODE ===')
             Write('<br><br>')
-            Write('Configuration: ' + Stringify(config));
+            Write('Please enter the required query params in the URL');
+            Write('<br><br>')
+            Write('Documentation: ' + documentation);
+            Write('<br><br>')
+            Write('Current Configuration: ' + Stringify(config));
         }
 
 
