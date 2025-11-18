@@ -2,90 +2,98 @@
     Platform.Load("core", "1");
 
     var documentation = ''.concat(
-        '   <div style="padding: 15px; font-weight:bold">',
-        '   <br>',
-        '   <br>',
-        '   ========================================================================================================== <br>',
-        '   ========================================= REUSABLE FORM TEMPLATE ========================================= <br>',
-        '   ========================================================================================================== <br>',
-        '   <br>',
-        '   <br>',
-        '   @Template Author: Nick Phillips <br>',
-        '   @Template Version: 1.0.0 <br>',
-        '   @Template Version: 1.0.0 <br>',
-        '   <br>',
-        '   <br>',
-        '   CHANGE LOG <br>',
-        '   ------------------------------------------- <br>',
-        '   <br>',
-        '   Region: <br>',
-        '   Campaign(s): <br>',
-        '   Form Created By: <br>',
-        '   Form Created Date: <br>',
-        '   <br>',
-        '   <br>',
-        '   QUERY PARAMETERS <br>',
-        '   ------------------------------------------- <br>',
-        '   <br>',
-        '   @parameter: (required) template - the name of an array of preconfigured form inputs to display <br>',
-        '   @parameter: (required) inputs - a comma-deliminated URL array of single form inputs to display <br>',
-        '   <br>',
-        '   @parameter: (optional) apac_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an APAC based country  <br>',
-        '   @parameter: (optional) amer_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an AMER based country <br>',
-        '   @parameter: (optional) emea_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an EMEA based country   <br>',
-        '   @parameter: (required) cid - the default salesforce campaign id regardless of country or region. <br>',
-        '   @parameter: (required) rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission <br>',
-        '   @parameter: (required) eid - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce <br>',
-        '   @parameter: (optional) sid - lead status id - [UQ, MP, SP, MQL (default), SAL, SQL],  <br>',
-        '   @parameter: (optional) fid - form ID to use in logic when making changes post go-live <br>',
-        '   <br>',
-        '   @parameter: (optional) utm_source - marketing trackers retrieved from a browser cookie <br>',
-        '   @parameter: (optional) utm_medium - marketing trackers retrieved from a browser cookie <br>',
-        '   @parameter: (optional) utm_campaign - marketing trackers retrieved from a browser cookie <br>',
-        '   @parameter: (optional) utm_content - marketing trackers retrieved from a browser cookie <br>',
-        '   @parameter: (optional) utm_term - marketing trackers retrieved from a browser cookie <br>',
-        '   @parameter: (optional) gclid - (google click ID) marketing trackers retrieved from a browser cookie <br>',
-        '   @parameter: (optional) gtm_referrer - marketing trackers retrieved from a browser cookie <br>',
-        '   <br>',
-        '   <br>',
-        '   EXAMPLE URLS <br>',
-        '   ------------------------------------------- <br>',
-        '   <br>',
-        '   @example: Test <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?template=test <br>',
-        '   <br>',
-        '   @example: Test Columns <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?template=test_columns <br>',
-        '   <br>',
-        '   @example: Test States <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?template=test_states <br>',
-        '   <br>',
-        '   @example: Basic Template <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '   <br>',
-        '   @example: TOF Template <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '   <br>',
-        '   @example: BOF Template <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '   <br>',
-        '   @example: Quote Template <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '   <br>',
-        '   @example: US Form Template <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '   <br>',
-        '   @example: Trial Template <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '   <br>',
-        '   @example: Info Template <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '   <br>',
-        '   @example: Demo Template <br>',
-        '   https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '   <br>',
-        '   <br> ',
-        '   </div>'
+        '<div style="padding: 15px; font-weight:bold">',
+        '<br>',
+        '========================================================================================================== <br>',
+        '========================================= REUSABLE FORM TEMPLATE ========================================= <br>',
+        '========================================================================================================== <br>',
+        '<br>',
+        '<br>',
+        '<span style="color:green;">Congratulations! Your form is working.</span><br>',
+        '<br>',
+        '<br>',
+        'Please configure all the required query parameters below to hide this documentaiton<br>',
+        '<br>',
+        '<br>',
+        '@Template Author: Nick Phillips <br>',
+        '@Template Version: 1.0.0 <br>',
+        '<br>',
+        '<br>',
+        'CHANGE LOG <br>',
+        '------------------------------------------- <br>',
+        '<br>',
+        'Region: <br>',
+        'Campaign(s): <br>',
+        'Form Created By: <br>',
+        'Form Created Date: <br>',
+        '<br>',
+        '<br>',
+        'QUERY PARAMETERS <br>',
+        '------------------------------------------- <br>',
+        '<br>',
+        '@parameter: (optional) debug - Used to output debug information when testing the form <br>',
+        '<br>',
+        '@parameter: (required) template - the name of an array of preconfigured form inputs to display OR...<br>',
+        '@parameter: (required) inputs - a comma-deliminated string of single form inputs to display <br>',
+        '<br>',
+        '@parameter: (optional) cid - the default salesforce campaign id regardless of country or region. <br>',
+        '@parameter: (optional) rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission <br>',
+        '@parameter: (optional) eid - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce <br>',
+        '@parameter: (optional) sid - lead status id - [UQ, MP, SP, MQL, SAL, SQL] <br>',
+        '@parameter: (optional) fid - form Id - a random bunch of characters that makes the url unique in comparison to other configurations<br>',
+        '<br>',
+        '@parameter: (optional) apac_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an APAC based country  <br>',
+        '@parameter: (optional) amer_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an AMER based country <br>',
+        '@parameter: (optional) emea_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an EMEA based country   <br>',
+        '<br>',
+        '@parameter: (optional) utm_source - marketing trackers retrieved from a browser cookie <br>',
+        '@parameter: (optional) utm_medium - marketing trackers retrieved from a browser cookie <br>',
+        '@parameter: (optional) utm_campaign - marketing trackers retrieved from a browser cookie <br>',
+        '@parameter: (optional) utm_content - marketing trackers retrieved from a browser cookie <br>',
+        '@parameter: (optional) utm_term - marketing trackers retrieved from a browser cookie <br>',
+        '<br>',
+        '@parameter: (optional) gclid - (google click ID) marketing trackers retrieved from a browser cookie <br>',
+        '@parameter: (optional) gtm_referrer - marketing trackers retrieved from a browser cookie <br>',
+        '<br>',
+        '<br>',
+        'EXAMPLE URLS <br>',
+        '------------------------------------------- <br>',
+        '<br>',
+        '@example: Test <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?template=test <br>',
+        '<br>',
+        '@example: Test Columns <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?template=test_columns <br>',
+        '<br>',
+        '@example: Test States <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?template=test_states <br>',
+        '<br>',
+        '@example: Basic Template <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        '<br>',
+        '@example: TOF Template <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        '<br>',
+        '@example: BOF Template <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        '<br>',
+        '@example: Quote Template <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        '<br>',
+        '@example: US Form Template <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        '<br>',
+        '@example: Trial Template <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        '<br>',
+        '@example: Info Template <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        '<br>',
+        '@example: Demo Template <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        '<br>',
+        '<br> ',
+        '</div>'
     );
 </script>
 
@@ -163,7 +171,7 @@
         **************************/
 
 
-        //show info when ?debug=true
+        //show debug info when ?debug=true
         if (payload.debug) {
             Write('=== DEBUG MODE ===')
             Write('<br>')
@@ -367,7 +375,7 @@
             ],
 
             //?template=test_half
-            test_2_column: [
+            test_2_columns: [
                 "PRODUCT_INTEREST_HALF",
                 "USER_INTEREST_HALF",
                 "FIRST_NAME_HALF",
@@ -445,19 +453,18 @@
         ------------ INFO -------------
         ********************************/
 
-        //show info when required params are missinng
+        //show config documentation when required query parameters are missing
         if (
-            config.debug ||
-            (
-                !config.template &&
-                !config.inputs
-            )
+            !config.template &&
+            !config.inputs
         ) {
-            Write('<div style="padding:15px">[DEBUG MODE] <br><br> Current Cofiguration: <br><br>' + Stringify(config) + '</div>');
             Write(documentation);
         }
 
-
+        //show  debug info when debug is true
+        if (debug) {
+            Write('<div style="padding:15px">[DEBUG MODE] <br><br> Current Cofiguration: <br><br>' + Stringify(config) + '</div>');
+        }
 
         /*******************************
         ------------ ERROR -------------
