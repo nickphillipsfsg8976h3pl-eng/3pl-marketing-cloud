@@ -201,8 +201,15 @@
         --------- TRIGGER AUTOMATION --------
         *************************************/
 
-
-        //TODO: Trigger automation studio to run REUSABLE_FORM_AUTOMATION via api rather than based on a schedule
+        //triggers a script activity to run but waits 5 mins if already running
+        var content = Platform.Function.ContentBlockByKey('ssjs-lib-wsproxy');
+        var proxy = new wsproxy();
+        var config = {
+            AUTOMATION_NAME: 'REUSABLE_PIPELINE_AUTOMATION',
+            NUMBER_OF_REPEATS: 3,
+            WAIT_MILLISECONDS: 5 * 60 * 1000 //5mins
+        }
+        proxy.triggerAutomationWait(config.AUTOMATION_NAME, config.NUMBER_OF_REPEATS, config.WAIT_MILLISECONDS)
 
 
         /************************* 

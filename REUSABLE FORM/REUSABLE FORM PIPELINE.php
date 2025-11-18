@@ -90,10 +90,9 @@
 
 
 <script runat="server">
-    /************************* 
-    ----- HELPER LIBRARY -----
-    **************************/
-
+    /************************** 
+    --------- HELPERS ---------
+    ***************************/
     /**
      * LOG ERROR
      * 
@@ -123,7 +122,7 @@
         var keySet = {};
         for (let i = 0; i < valueList.length; i++) {
             if (valueList[i]) {
-                var trimmedValue = valueList[i].trim();
+                var trimmedValue = valueList[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '')
                 keySet[trimmedValue] = true;
             }
         }
