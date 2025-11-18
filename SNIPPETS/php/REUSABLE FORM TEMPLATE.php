@@ -201,7 +201,7 @@
         --------- TRIGGER AUTOMATION --------
         *************************************/
 
-        //triggers a script activity to run but waits 5 mins if already running
+        //triggers a script activity to run but waits and repeats if already running
         var content = Platform.Function.ContentBlockByKey('ssjs-lib-wsproxy');
         var proxy = new wsproxy();
         var config = {
