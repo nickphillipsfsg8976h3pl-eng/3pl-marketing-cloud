@@ -91,52 +91,53 @@
 
 <script runat="server">
     /************************** 
-    --------- HELPERS ---------
-    ***************************/
-    /**
-     * LOG ERROR
-     * 
-     * Displays formatted error messages
-     * 
-     * @param - name of script section
-     * @param - caught ssjs error object
-     * @return void
-     */
-    function logError(section, error) {
-        Write("\nERROR in " + section + ": " + Stringify(error.message) + "\n");
-    }
+     --------- HELPERS ---------
+     ***************************/
+    var lib = {
 
-    /**
-     * UNIQUE VALUES IN DELIMITED STRING
-     * 
-     * Returns a delimiter-separated string with unique values 
-     * mainly used to remove duplicates from UTM fields.
-     * 
-     * @param - delimiter-separated string
-     * @param - delimiter used in string
-     * @return - delimiter-separated string with unique values
-     */
-    function uniqueValuesInDelimiteredString(string, delimiter) {
-        if (!string || !delimiter) return '';
-        var valueList = string.split(delimiter);
-        var keySet = {};
-        for (let i = 0; i < valueList.length; i++) {
-            if (valueList[i]) {
-                var trimmedValue = valueList[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '')
-                keySet[trimmedValue] = true;
+        /**
+         * LOG ERROR
+         * 
+         * Displays formatted error messages
+         * 
+         * @param - name of script section
+         * @param - caught ssjs error object
+         * @return void
+         */
+        log: function(section, error) {
+            Write("\nERROR in " + section + ": " + Stringify(error.message) + "\n");
+        },
+
+        /**
+         * UNIQUE VALUES IN DELIMITED STRING
+         * 
+         * Returns a delimiter-separated string with unique values 
+         * mainly used to remove duplicates from UTM fields.
+         * 
+         * @param - delimiter-separated string
+         * @param - delimiter used in string
+         * @return - delimiter-separated string with unique values
+         */
+        uniqueValuesInDelimiteredString: function(string, delimiter) {
+            if (!string || !delimiter) return '';
+            var valueList = string.split(delimiter);
+            var keySet = {};
+            for (let i = 0; i < valueList.length; i++) {
+                if (valueList[i]) {
+                    var trimmedValue = valueList[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '')
+                    keySet[trimmedValue] = true;
+                }
             }
+            keyList = [];
+            for (const key in keySet) {
+                if (!Object.hasOwn(keySet, key)) continue;
+                keyList.push(keySet[key]);
+            }
+            var result = keyList.join(delimiter);
+            return result;
         }
-        keyList = [];
-        for (const key in keySet) {
-            if (!Object.hasOwn(keySet, key)) continue;
-            keyList.push(keySet[key]);
-        }
-        var result = keyList.join(delimiter);
-        return result;
-    }
 
-    //
-    //
+    } //lib
 </script>
 
 
@@ -157,7 +158,7 @@
 
 
     } catch (error) {
-        logError('GET QUEUED', error);
+        lib.log('GET QUEUED', error);
     }
 </script>
 
@@ -185,7 +186,7 @@
 
     }
     catch (error) {
-        logError('PARSE JSON', error);
+        lib.log('PARSE JSON', error);
     }
 </script>
 
@@ -303,7 +304,7 @@
 
     }
     catch (error) {
-        logError('VALIDATE SUBMISSION', error);
+        lib.log('VALIDATE SUBMISSION', error);
     }
 </script>
 
@@ -479,12 +480,11 @@
                 QUEUED[i].record.utm_content &&
                 QUEUED[i].record.utm_term
             ) {
-                QUEUED[i].record.utm_source = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_source);
-                QUEUED[i].record.utm_medium = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_medium);
-                QUEUED[i].record.utm_campaign = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_campaign);
-                QUEUED[i].record.utm_content = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_content);
-                QUEUED[i].record.utm_term = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_term);
-
+                QUEUED[i].record.utm_source = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_source);
+                QUEUED[i].record.utm_medium = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_medium);
+                QUEUED[i].record.utm_campaign = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_campaign);
+                QUEUED[i].record.utm_content = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_content);
+                QUEUED[i].record.utm_term = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_term);
             }
 
 
@@ -497,7 +497,7 @@
 
     }
     catch (error) {
-        logError('PROCESS DATA', error);
+        lib.log('PROCESS DATA', error);
     }
 </script>
 
@@ -624,7 +624,7 @@
 
 
     } catch (error) {
-        logError('SYNC SALESFORCE', error);
+        lib.log('SYNC SALESFORCE', error);
     }
 </script>
 
@@ -664,6 +664,6 @@
         } //for(i)nextItemInQueue
     }
     catch (error) {
-        logError('SALESFORCE SYNC', error);
+        lib.log('SALESFORCE SYNC', error);
     }
 </script>
