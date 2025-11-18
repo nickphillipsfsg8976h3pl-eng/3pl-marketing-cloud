@@ -99,7 +99,7 @@
     }
 
     function uniqueValues(stringArray) {
-        
+
     }
 </script>
 
@@ -446,20 +446,20 @@
 
 
             // UTM_PARAMETERS
-            if (
-                QUEUED[i].record.utm_source &&
-                QUEUED[i].record.utm_medium &&
-                QUEUED[i].record.utm_campaign &&
-                QUEUED[i].record.utm_content &&
-                QUEUED[i].record.utm_term
-            ) {
-                QUEUED[i].record.utm_source = uniqueValues(QUEUED[i].record.utm_source);
-                QUEUED[i].record.utm_medium = uniqueValues(QUEUED[i].record.utm_medium);
-                QUEUED[i].record.utm_campaign = uniqueValues(QUEUED[i].record.utm_campaign);
-                QUEUED[i].record.utm_content = uniqueValues(QUEUED[i].record.utm_content);
-                QUEUED[i].record.utm_term = uniqueValues(QUEUED[i].record.utm_term);
+            // if (
+            //     QUEUED[i].record.utm_source &&
+            //     QUEUED[i].record.utm_medium &&
+            //     QUEUED[i].record.utm_campaign &&
+            //     QUEUED[i].record.utm_content &&
+            //     QUEUED[i].record.utm_term
+            // ) {
+            //     QUEUED[i].record.utm_source = uniqueValues(QUEUED[i].record.utm_source);
+            //     QUEUED[i].record.utm_medium = uniqueValues(QUEUED[i].record.utm_medium);
+            //     QUEUED[i].record.utm_campaign = uniqueValues(QUEUED[i].record.utm_campaign);
+            //     QUEUED[i].record.utm_content = uniqueValues(QUEUED[i].record.utm_content);
+            //     QUEUED[i].record.utm_term = uniqueValues(QUEUED[i].record.utm_term);
 
-            }
+            // }
 
 
 
