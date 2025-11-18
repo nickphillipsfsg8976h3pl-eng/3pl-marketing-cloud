@@ -91,27 +91,53 @@
 
 <script runat="server">
     /************************* 
-    ---- HELPER FUNCTIONS ----
+    ----- HELPER LIBRARY -----
     **************************/
 
+    /**
+     * LOG ERROR
+     * 
+     * Displays formatted error messages
+     * 
+     * @param - name of script section
+     * @param - caught ssjs error object
+     * @return void
+     */
     function logError(section, error) {
         Write("\nERROR in " + section + ": " + Stringify(error.message) + "\n");
     }
 
+    /**
+     * UNIQUE VALUES IN DELIMITED STRING
+     * 
+     * Returns a delimiter-separated string with unique values 
+     * mainly used to remove duplicates from UTM fields.
+     * 
+     * @param - delimiter-separated string
+     * @param - delimiter used in string
+     * @return - delimiter-separated string with unique values
+     */
     function uniqueValuesInDelimiteredString(string, delimiter) {
-        if (!string || !delimiter) {
-            return [];
-        }
-        var values = string.split(delimiter);
-        var uniqueValues = [];
-        for (var i = 0; i < values.length; i++) {
-            var trimmedValue = values[i].trim();
-            if (trimmedValue && uniqueValues.indexOf(trimmedValue) === -1) {
-                uniqueValues.push(trimmedValue);
+        if (!string || !delimiter) return '';
+        var valueList = string.split(delimiter);
+        var keySet = {};
+        for (let i = 0; i < valueList.length; i++) {
+            if (valueList[i]) {
+                var trimmedValue = valueList[i].trim();
+                keySet[trimmedValue] = true;
             }
         }
-        return uniqueValues;
+        keyList = [];
+        for (const key in keySet) {
+            if (!Object.hasOwn(keySet, key)) continue;
+            keyList.push(keySet[key]);
+        }
+        var result = keyList.join(delimiter);
+        return result;
     }
+
+    //
+    //
 </script>
 
 
@@ -162,16 +188,6 @@
     catch (error) {
         logError('PARSE JSON', error);
     }
-</script>
-
-
-<script runat="server">
-    /**************************************
-    -------------- MAP FIELDS -------------
-    ***************************************/
-
-    //todo: identify the mapping of data submitted in the queue vs fields on the lead to create/update
-    // try to include this section as early in the pipeline as possible to reduce mental load when making adjustments
 </script>
 
 
@@ -484,6 +500,16 @@
     catch (error) {
         logError('PROCESS DATA', error);
     }
+</script>
+
+
+<script runat="server">
+    /**************************************
+    -------------- MAP FIELDS -------------
+    ***************************************/
+
+    //todo: identify the mapping of data submitted in the queue vs fields on the lead to create/update
+    // try to include this section as early in the pipeline as possible to reduce mental load when making adjustments
 </script>
 
 
