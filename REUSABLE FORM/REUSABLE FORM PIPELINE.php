@@ -98,8 +98,19 @@
         Write("\nERROR in " + section + ": " + Stringify(error.message) + "\n");
     }
 
-    function uniqueValues(stringArray) {
-
+    function uniqueValuesInDelimiteredString(string, delimiter) {
+        if (!string || !delimiter) {
+            return [];
+        }
+        var values = string.split(delimiter);
+        var uniqueValues = [];
+        for (var i = 0; i < values.length; i++) {
+            var trimmedValue = values[i].trim();
+            if (trimmedValue && uniqueValues.indexOf(trimmedValue) === -1) {
+                uniqueValues.push(trimmedValue);
+            }
+        }
+        return uniqueValues;
     }
 </script>
 
@@ -453,11 +464,11 @@
             //     QUEUED[i].record.utm_content &&
             //     QUEUED[i].record.utm_term
             // ) {
-            //     QUEUED[i].record.utm_source = uniqueValues(QUEUED[i].record.utm_source);
-            //     QUEUED[i].record.utm_medium = uniqueValues(QUEUED[i].record.utm_medium);
-            //     QUEUED[i].record.utm_campaign = uniqueValues(QUEUED[i].record.utm_campaign);
-            //     QUEUED[i].record.utm_content = uniqueValues(QUEUED[i].record.utm_content);
-            //     QUEUED[i].record.utm_term = uniqueValues(QUEUED[i].record.utm_term);
+            //     QUEUED[i].record.utm_source = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_source);
+            //     QUEUED[i].record.utm_medium = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_medium);
+            //     QUEUED[i].record.utm_campaign = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_campaign);
+            //     QUEUED[i].record.utm_content = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_content);
+            //     QUEUED[i].record.utm_term = uniqueValuesInDelimiteredString(QUEUED[i].record.utm_term);
 
             // }
 
@@ -603,16 +614,25 @@
         //loop
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
 
-
-            // Or using UpdateData()
+            //UPDATE QUEUED
             Platform.Function.UpdateData(
                 "REUSABLE_FORM_QUEUE",
-                ["submission_id"], [QUEUED[i].submission_id],
-                ["queue_method"], [QUEUED[i].queue_method]
-                ["queue_record_id"], [QUEUED[i].queue_record_id]
-                ["queue_campaign_member_id"], [QUEUED[i].queue_campaign_member_id]
-                ["queue_error_message"], [QUEUED[i].queue_error_message]
-                ["queue_completed_date"], [QUEUED[i].queue_completed_date]
+                ["submission_id", "submission_date"], [QUEUED[i].submission_id, QUEUED[i].submission_date], //composite key
+                [
+                    "queue_method",
+                    "queue_record_id",
+                    "queue_campaign_member_id",
+                    "queue_error_message",
+                    "queue_completed_date"
+
+                ],
+                [
+                    QUEUED[i].queue_method,
+                    QUEUED[i].queue_record_id,
+                    QUEUED[i].queue_campaign_member_id,
+                    QUEUED[i].queue_error_message,
+                    QUEUED[i].queue_completed_date
+                ]
             );
 
 
