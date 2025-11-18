@@ -33,8 +33,9 @@
      * submission_data
      * submission_date
      * 
-     * queue_record_id
      * queue_method
+     * queue_record_id
+     * queue_campaign_member_id
      * queue_error_message
      * queue_completed_date
      * 
