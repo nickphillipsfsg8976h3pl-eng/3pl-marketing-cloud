@@ -28,7 +28,10 @@
      * @parameter: template (required) - the name of an array of preconfigured form inputs to display
      * @parameter: inputs (required) - a comma-deliminated URL array of single form inputs to display
      * 
-     * @parameter: cid (required) - the salesforce campaign id where the lead will be membered
+     * @parameter: apac_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an APAC based country 
+     * @parameter: amer_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an AMER based country
+     * @parameter: emea_cid (optional) - Used on GLOBAL forms to choose the campaign id when the lead submits from an EMEA based country  
+     * @parameter: cid (required) - the default salesforce campaign id regardless of country or region.
      * @parameter: rid (required) - the redirect id used to retrieve a url from a DE and redirect the user after form submission
      * @parameter: eid (required) - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce
      * @parameter: sid (optional) - lead status id - [UQ, MP, SP, MQL (default), SAL, SQL], 
@@ -119,6 +122,9 @@
         //retrieve data
         payload.debug = Request.GetFormField("_debug");
 
+        payload.apac_cid = Request.GetFormField("_apac_cid");
+        payload.amer_cid = Request.GetFormField("_amer_cid");
+        payload.emea_cid = Request.GetFormField("_emea_cid");
         payload.cid = Request.GetFormField("_cid");
         payload.rid = Request.GetFormField("_rid");
         payload.eid = Request.GetFormField("_eid");
@@ -511,6 +517,9 @@
 
         <input type="hidden" name="_triggered_send_key" value="%%=v(@triggered_send_key)=%%">
 
+        <input type="hidden" name="_apac_cid" value="%%=v(@apac_cid)=%%">
+        <input type="hidden" name="_amer_cid" value="%%=v(@amer_cid)=%%">
+        <input type="hidden" name="_emea_cid" value="%%=v(@emea_cid)=%%">
         <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
         <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
         <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
