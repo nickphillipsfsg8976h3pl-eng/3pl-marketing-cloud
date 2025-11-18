@@ -421,7 +421,7 @@
                     "SAL": "SAL",
                     "SQL": "SQL"
                 };
-                QUEUED[i].record.status = sidToStatusMapping[QUEUED[i].record.sid];
+                QUEUED[i].record.status = sidToStatusMapping[QUEUED[i].record.sid] || 'MQL';
             }
 
             // ENQUIRY TYPE
