@@ -10,6 +10,11 @@ the Job Title form field, to the appropriate B2C landing page
         - "Are you a parent/student? Click here" link
         - optional popup?
 
+implement job function region static and global dynamic values components
+
+fill out missing EMEA mapping for job title -> job functions mappings
+
+create job title hidden override inputs (look at mapping for common values - teacher etc)
 
 -->
 
