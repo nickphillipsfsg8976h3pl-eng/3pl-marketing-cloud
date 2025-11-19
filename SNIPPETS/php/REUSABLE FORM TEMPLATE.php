@@ -3,7 +3,7 @@
 
 TODO: 
 
-automatic redirect when a person enters “Parent” or “student” into 
+Automatic redirect when a person enters “Parent” or “student” into 
 the Job Title form field, to the appropriate B2C landing page
 - What is the landing page based or region or query param
 - Is there a better way to do this 
@@ -12,9 +12,6 @@ the Job Title form field, to the appropriate B2C landing page
 
 
 -->
-
-
-
 
 
 
@@ -149,6 +146,7 @@ the Job Title form field, to the appropriate B2C landing page
         payload.apac_cid = Request.GetFormField("_apac_cid");
         payload.amer_cid = Request.GetFormField("_amer_cid");
         payload.emea_cid = Request.GetFormField("_emea_cid");
+
         payload.cid = Request.GetFormField("_cid");
         payload.rid = Request.GetFormField("_rid");
         payload.eid = Request.GetFormField("_eid");
@@ -157,15 +155,19 @@ the Job Title form field, to the appropriate B2C landing page
 
         payload.inputs = Request.GetFormField("_inputs");
         payload.template = Request.GetFormField("_template");
-        payload.request_url = Request.GetFormField("_request_url");
 
         payload.utm_source = Request.GetFormField("_utm_source");
         payload.utm_medium = Request.GetFormField("_utm_medium");
         payload.utm_campaign = Request.GetFormField("_utm_campaign");
         payload.utm_content = Request.GetFormField("_utm_content");
         payload.utm_term = Request.GetFormField("_utm_term");
-        payload.utm_term = Request.GetFormField("_gclid");
+
+        payload.glcid = Request.GetFormField("_gclid");
         payload.gtm_referrer = Request.GetFormField("_gtm_referrer");
+
+        payload.request_url = Request.GetFormField("_request_url");
+        payload.location_href = Request.GetFormField("_location_href");
+        payload.document_referrer = Request.GetFormField("_document_referrer");
 
         payload.product_interest = Request.GetFormField("_product_interest");
         payload.user_interest = Request.GetFormField("_user_interest");
@@ -316,6 +318,7 @@ the Job Title form field, to the appropriate B2C landing page
         config.utm_campaign = Request.GetQueryStringParameter("utm_campaign");
         config.utm_content = Request.GetQueryStringParameter("utm_content");
         config.utm_term = Request.GetQueryStringParameter("utm_term");
+
         config.utm_term = Request.GetQueryStringParameter("gclid");
         config.gtm_referrer = Request.GetQueryStringParameter("gtm_referrer");
 
@@ -610,15 +613,26 @@ the Job Title form field, to the appropriate B2C landing page
 
             <input type="hidden" name="_template" value="%%=v(@template)=%%">
             <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
-            <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
 
             <input type="hidden" name="_utm_source" value="%%=v(@utm_source)=%%">
             <input type="hidden" name="_utm_medium" value="%%=v(@utm_medium)=%%">
             <input type="hidden" name="_utm_campaign" value="%%=v(@utm_campaign)=%%">
             <input type="hidden" name="_utm_content" value="%%=v(@utm_content)=%%">
             <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
+
             <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
             <input type="hidden" name="_gtm_referrer" value="%%=v(@gtm_referrer)=%%">
+
+            <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
+            <input type="hidden" name="_location_href">
+            <input type="hidden" name="_document_referrer">
+
+
+            <!-- Assign client side location and referrer urls -->
+            <script>
+                document.querySelector('input[name="_location_href"]').value = window.location.href;
+                document.querySelector('input[name="_document_referrer"]').value = document.referrer;
+            </script>
 
 
             <!-- Extract Marketing Tracking Parameters -->
