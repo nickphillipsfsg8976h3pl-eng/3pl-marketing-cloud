@@ -383,19 +383,23 @@
             }
 
             // JOB FUNCTION
-            // @description: matches external customer job titlea to internal job functions picklist values. Job functions are mapped in lead conversion
-            // and therfore other job functions fields also exist on contact, opportunity and opportunity-contact-role/relationship records. Job Function
-            // values in Salesforce cannot be changed easily without having to alter related automations so job title picklist values in forms should
-            // be kept as static as possible otherwise mapping issues arise and job function values fail to be set correctly.
+            // @description: matches external customer job titlea to internal job functions picklist values based on region
+            // Job functions are mapped in lead conversion and therfore job functions fields exist on, lead, contact, 
+            // and opportunity and opportunity-contact-role records. They cannot be changes in salesforce easily, so 
+            // mapping should be kept simple, consistent accross form, and only vary by region. Missing mappings will 
+            // default to "Other" and then the sales team will have to follow up to correct when speaking to the customer.
+            var job;
             if (
                 QUEUED[i].record.region &&
                 QUEUED[i].record.job_title
             ) {
-                var job = Platform.Function.LookupRows('JOB_REFERENCE', ['Region', 'JobTitle'], [QUEUED[i].record.region, QUEUED[i].record.job_title])[0];
-                QUEUED[i].record.job_function = job ?
-                    job.JobFunction :
-                    "Other";
+                job = Platform.Function.LookupRows('JOB_REFERENCE', ['Region', 'JobTitle'], [QUEUED[i].record.region, QUEUED[i].record.job_title])[0];
             }
+            QUEUED[i].record.job_function = job && job.Function ?
+                job.Function :
+                "Other";
+
+
 
             // CAMPAIGN ID
             // @description: the campaign salesforce recordId is needed to assign leads to a campaign.
