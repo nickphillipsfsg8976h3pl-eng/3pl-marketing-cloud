@@ -12,7 +12,7 @@ the Job Title form field, to the appropriate B2C landing page
 
 implement job function region static and global dynamic values components
 
-fill out missing EMEA mapping for job title -> job functions mappings
+follow up on  missing EMEA mapping for job title -> job functions mappings
 
 create job title hidden override inputs (look at mapping for common values - teacher etc)
 
@@ -471,13 +471,13 @@ test. test, test
 
 
         // CONSTANTS
-        config.COMPONENTS_TO_RENDER = [];
+        config.FORM_COMPONENT_LIST = [];
 
 
         // ADD ALL TEMPLATE COMPONENTS
         if (congig.template) {
             var templateComponentList = config.TEMPLATES[config.template.toLowerCase()];
-            config.COMPONENTS_TO_RENDER = config.COMPONENTS_TO_RENDER.concat(templateComponentList);
+            config.FORM_COMPONENT_LIST = config.FORM_COMPONENT_LIST.concat(templateComponentList);
         } //if
 
 
@@ -486,7 +486,7 @@ test. test, test
             var singleInputList = config.inputs.toUpperCase().split(',');
             for (var i = 0; i < singleInputList.length; i++) {
                 var singleInput = singleInputList[i];
-                config.COMPONENTS_TO_RENDER.push(singleInput);
+                config.FORM_COMPONENT_LIST.push(singleInput);
             } //for    
         } //if
 
@@ -693,29 +693,30 @@ test. test, test
                 /***********************************
                 START LOOPING OVER RENDER COMPONENTS
                 ************************************/
-                SET @LENGTH = ROWCOUNT(@COMPONENTS_TO_RENDER)
+                SET @LENGTH = ROWCOUNT(@FORM_COMPONENT_LIST)
                 FOR @index = 1 TO @LENGTH DO
-                SET @COMPONENT = ROW(@COMPONENTS_TO_RENDER, @index)
+                SET @FORM_COMPONENT = ROW(@FORM_COMPONENT_LIST, @index)
                 ]%%
 
 
                 <!-- HIDDEN (Overrides) -->
 
-                IIF(@COMPONENT == "OVERRIDE_REGION_APAC", OutputLine("<input type="hidden" name="override_region" value='APAC'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_REGION_AMER", OutputLine("<input type="hidden" name="override_region" value='AMER'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_REGION_EMEA", OutputLine("<input type="hidden" name="override_region" value='EMEA'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='AU'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_NZ", OutputLine("<input type="hidden" name="override_country_code" value='NZ'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_US", OutputLine("<input type="hidden" name="override_country_code" value='US'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_CA", OutputLine("<input type="hidden" name="override_country_code" value='CA'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_UK", OutputLine("<input type="hidden" name="override_country_code" value='UK'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_ZA", OutputLine("<input type="hidden" name="override_country_code" value='ZA'>"),"")
+                IIF(@FORM_COMPONENT == "OVERRIDE_REGION_APAC", OutputLine("<input type="hidden" name="override_region" value='APAC'>"),"")
+                IIF(@FORM_COMPONENT == "OVERRIDE_REGION_AMER", OutputLine("<input type="hidden" name="override_region" value='AMER'>"),"")
+                IIF(@FORM_COMPONENT == "OVERRIDE_REGION_EMEA", OutputLine("<input type="hidden" name="override_region" value='EMEA'>"),"")
+
+                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='AU'>"),"")
+                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_NZ", OutputLine("<input type="hidden" name="override_country_code" value='NZ'>"),"")
+                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_US", OutputLine("<input type="hidden" name="override_country_code" value='US'>"),"")
+                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_CA", OutputLine("<input type="hidden" name="override_country_code" value='CA'>"),"")
+                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_UK", OutputLine("<input type="hidden" name="override_country_code" value='UK'>"),"")
+                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_ZA", OutputLine("<input type="hidden" name="override_country_code" value='ZA'>"),"")
 
 
                 <!-- FIEDS -->
 
 
-                %%[IF (@COMPONENT == "PRODUCT_INTEREST") THEN]%%
+                %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST") THEN]%%
                 <!------------- Product Interest ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -744,7 +745,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "PRODUCT_INTEREST_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST_HALF") THEN]%%
                 <!------------- Product Interest HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -772,7 +773,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "USER_INTEREST") THEN]%%
+                %%[IF (@FORM_COMPONENT == "USER_INTEREST") THEN]%%
                 <!------------- User Interest ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -796,7 +797,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "USER_INTEREST_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "USER_INTEREST_HALF") THEN]%%
                 <!------------- User Interest HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -820,7 +821,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "FIRST_NAME") THEN]%%
+                %%[IF (@FORM_COMPONENT == "FIRST_NAME") THEN]%%
                 <!------------- First Name ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -840,7 +841,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "FIRST_NAME_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "FIRST_NAME_HALF") THEN]%%
                 <!------------- First Name HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -860,7 +861,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "LAST_NAME") THEN]%%
+                %%[IF (@FORM_COMPONENT == "LAST_NAME") THEN]%%
                 <!------------- Last Name ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -880,7 +881,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "LAST_NAME_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "LAST_NAME_HALF") THEN]%%
                 <!------------- Last Name HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -900,7 +901,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "EMAIL_ADDRESS") THEN]%%
+                %%[IF (@FORM_COMPONENT == "EMAIL_ADDRESS") THEN]%%
                 <!------------- Email Address----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -920,7 +921,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "EMAIL_ADDRESS_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "EMAIL_ADDRESS_HALF") THEN]%%
                 <!------------- Email Address HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -940,7 +941,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "PHONE_NUMBER") THEN]%%
+                %%[IF (@FORM_COMPONENT == "PHONE_NUMBER") THEN]%%
                 <!------------- Phone Number ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -960,7 +961,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "PHONE_NUMBER_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "PHONE_NUMBER_HALF") THEN]%%
                 <!------------- Phone Number HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -980,7 +981,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "GRADE_LEVEL") THEN]%%
+                %%[IF (@FORM_COMPONENT == "GRADE_LEVEL") THEN]%%
                 <!------------- Grade Level ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1017,7 +1018,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "GRADE_LEVEL_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "GRADE_LEVEL_HALF") THEN]%%
                 <!------------- Grade Level HALF----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1054,7 +1055,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "JOB_TITLE_APAC") THEN]%%
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC") THEN]%%
                 <!------------- Job Title ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1065,25 +1066,25 @@ test. test, test
                             name="_job_title"
                             required>
 
-                            <option value="" selected disabled>Select Job Title</option>
+                            <option value="" selected disabled>Job Title</option>
 
                             %%[
 
                             /* Populate Job Title Options
                             ********************************/
 
-                            Set @Job_Titles = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                            For @i = 1 TO RowCount(@Job_Titles) DO
-                            Set @Job_Title = Field(Row(@Job_Titles, @i), "Job Title")
+                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                            FOR @i = 1 TO RowCount(@JOB_LIST) DO
+                            SET @Job_Title = Field(Row(@JOB_LIST, @i), "Job Title")
                             OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
-                            Next @i
+                            NEXT @i
 
                             ELSE
-                            Set @Job_Titles = LookupRows("jobTitle_ENG", "Active", "1")
-                            For @i = 1 TO RowCount(@Job_Titles) DO
-                            Set @Job_Title = Field(Row(@Job_Titles, @i), "Job Title")
+                            SET @JOB_LIST = LookupRows("jobTitle_ENG", "Active", "1")
+                            FOR @i = 1 TO RowCount(@JOB_LIST) DO
+                            SET @Job_Title = Field(Row(@JOB_LIST, @i), "Job Title")
                             OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
-                            Next @i
+                            NEXT @i
 
                             ENDIF
 
@@ -1098,7 +1099,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
                 <!------------- Job Title HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1109,7 +1110,7 @@ test. test, test
                             name="_job_title"
                             required>
 
-                            <option value="" selected disabled>Select Job Title</option>
+                            <option value="" selected disabled>Job Title</option>
 
                             %%[
 
@@ -1119,18 +1120,18 @@ test. test, test
                             @_Campaign_Name == "701Mp00000VCznXIAT" OR @_Campaign_Name == "701Mp00000VCz4MIAT" OR
                             @_Campaign_Name == "701Mp00000VD5CyIAL" OR @_Campaign_Name == "701Mp00000VCvVWIA1" OR
                             @_Campaign_Name == "701Mp00000W03N2IAJ") THEN
-                            Set @Job_Titles = LookupRows("jobTitle_USA_District_Forms", "Active", "1")
-                            For @i = 1 TO RowCount(@Job_Titles) DO
-                            Set @Job_Title = Field(Row(@Job_Titles, @i), "Job Title")
+                            SET @JOB_LIST = LookupRows("jobTitle_USA_District_Forms", "Active", "1")
+                            FOR @i = 1 TO RowCount(@JOB_LIST) DO
+                            SET @Job_Title = Field(Row(@JOB_LIST, @i), "Job Title")
                             OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
-                            Next @i
+                            NEXT @i
 
                             ELSE
-                            Set @Job_Titles = LookupRows("jobTitle_ENG", "Active", "1")
-                            For @i = 1 TO RowCount(@Job_Titles) DO
-                            Set @Job_Title = Field(Row(@Job_Titles, @i), "Job Title")
+                            SET @JOB_LIST = LookupRows("jobTitle_ENG", "Active", "1")
+                            FOR @i = 1 TO RowCount(@JOB_LIST) DO
+                            SET @Job_Title = Field(Row(@JOB_LIST, @i), "Job Title")
                             OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
-                            Next @i
+                            NEXT @i
 
                             ENDIF
 
@@ -1145,7 +1146,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "COUNTRY_NAME") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_NAME") THEN]%%
                 <!------------- Country Name ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1163,19 +1164,19 @@ test. test, test
                             /* Populate Country Options
                             ******************************/
 
-                            Set @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
-                            For @i = 1 to RowCount(@Countries_Main) Do
-                            Set @Country_Name = field(row(@Countries_Main, @i),"CountryName")
-                            Set @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
+                            SET @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                            FOR @i = 1 to RowCount(@Countries_Main) Do
+                            SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
                             OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
-                            Next @i
+                            NEXT @i
 
                             OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                            Set @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
-                            For @i = 1 to RowCount(@Countries_All) Do
-                            Set @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            Set @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            SET @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
+                            FOR @i = 1 to RowCount(@Countries_All) Do
+                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
                             OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
                             NEXT @i
                             ]%%
@@ -1189,7 +1190,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "COUNTRY_NAME_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_NAME_HALF") THEN]%%
                 <!------------- Country Name HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1207,19 +1208,19 @@ test. test, test
                             /* Populate Country Options
                             ******************************/
 
-                            Set @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
-                            For @i = 1 to RowCount(@Countries_Main) Do
-                            Set @Country_Name = field(row(@Countries_Main, @i),"CountryName")
-                            Set @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
+                            SET @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                            FOR @i = 1 to RowCount(@Countries_Main) Do
+                            SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
                             OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
-                            Next @i
+                            NEXT @i
 
                             OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                            Set @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
-                            For @i = 1 to RowCount(@Countries_All) Do
-                            Set @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            Set @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            SET @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
+                            FOR @i = 1 to RowCount(@Countries_All) Do
+                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
                             OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
                             NEXT @i
                             ]%%
@@ -1233,7 +1234,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME") THEN]%%
                 <!------------- State / Province Name ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1315,7 +1316,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_HALF") THEN]%%
                 <!------------- State / Province Name HALF----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1397,7 +1398,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_US") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_US") THEN]%%
                 <!------------- State / Province Name (US) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1434,7 +1435,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_US_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_US_HALF") THEN]%%
                 <!------------- State / Province Name (US) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1471,7 +1472,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_CA") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_CA") THEN]%%
                 <!------------- State / Province Name (CA) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1508,7 +1509,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_CA_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_CA_HALF") THEN]%%
                 <!------------- State / Province Name (CA) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1545,7 +1546,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_AU") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_AU") THEN]%%
                 <!------------- State / Province Name (AU) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1582,7 +1583,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_AU_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_AU_HALF") THEN]%%
                 <!------------- State / Province Name (AU) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1619,7 +1620,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_NZ") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_NZ") THEN]%%
                 <!------------- State / Province Name (NZ) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1656,7 +1657,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_NZ_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_NZ_HALF") THEN]%%
                 <!------------- State / Province Name (NZ) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1693,7 +1694,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_ZA") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_ZA") THEN]%%
                 <!------------- State / Province Name (ZA) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1730,7 +1731,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "STATE_PROVINCE_NAME_ZA_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_ZA_HALF") THEN]%%
                 <!------------- State / Province Name (ZA) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1767,7 +1768,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "POSTCODE_ZIPCODE") THEN]%%
+                %%[IF (@FORM_COMPONENT == "POSTCODE_ZIPCODE") THEN]%%
                 <!------------- Postcode / Zipcode ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1788,7 +1789,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "POSTCODE_ZIPCODE_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "POSTCODE_ZIPCODE_HALF") THEN]%%
                 <!------------- Postcode / Zipcode HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1809,7 +1810,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "SCHOOL_NAME") THEN]%%
+                %%[IF (@FORM_COMPONENT == "SCHOOL_NAME") THEN]%%
                 <!------------- School Name ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1829,7 +1830,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "SCHOOL_NAME_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "SCHOOL_NAME_HALF") THEN]%%
                 <!------------- School Name HALF----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1849,7 +1850,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "NO_OF_LICENCES") THEN]%%
+                %%[IF (@FORM_COMPONENT == "NO_OF_LICENCES") THEN]%%
                 <!------------- No. Of Licences  ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1871,7 +1872,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "NO_OF_LICENCES_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "NO_OF_LICENCES_HALF") THEN]%%
                 <!------------- No. Of Licences HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1893,7 +1894,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
+                %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
                 <!------------- Terms & Conditions ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1923,7 +1924,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
                 <!------------- Terms & Conditions HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1953,7 +1954,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
+                %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
                 <!------------- Subscriber Opt In ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1980,7 +1981,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
                 <!------------- Subscriber Opt In HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -2007,7 +2008,7 @@ test. test, test
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "SUBMIT_BUTTON") THEN]%%
+                %%[IF (@FORM_COMPONENT == "SUBMIT_BUTTON") THEN]%%
                 <!------------- Submit Button ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
