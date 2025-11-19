@@ -429,13 +429,16 @@
                 }
             }
 
+
             // CAMPAIGN RESOURCES
-            // @TODO: configure to pull from a fields on the campaign record 
+            // @description: configured to pull from a fields on the campaign record 
             // or a related object instead of having to maintain a reference DE
             //
             //
             //
             //
+            ///////////////////////////////////////////////////////////////////////////////////////
+
 
             // STATUS
             // @description: lead status is assigned based on the sid query parameter. Most forms
