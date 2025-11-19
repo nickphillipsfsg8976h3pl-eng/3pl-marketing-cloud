@@ -1,3 +1,23 @@
+<!-- 
+ 
+
+TODO: 
+
+automatic redirect when a person enters “Parent” or “student” into 
+the Job Title form field, to the appropriate B2C landing page
+- What is the landing page based or region or query param
+- Is there a better way to do this 
+        - "Are you a parent/student? Click here" link
+        - optional popup?
+
+
+-->
+
+
+
+
+
+
 <script runat="server">
     Platform.Load("core", "1");
 
