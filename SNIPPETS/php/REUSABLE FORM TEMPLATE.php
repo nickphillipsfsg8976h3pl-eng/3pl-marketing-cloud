@@ -4,14 +4,12 @@
     var documentation = ''.concat(
         '<div style="padding: 15px; font-weight:bold">',
         '<br>',
-        '========================================================================================================== <br>',
-        '========================================= REUSABLE FORM TEMPLATE ========================================= <br>',
-        '========================================================================================================== <br>',
+        '//========================================================================================================== <br>',
+        '// REUSABLE FORM TEMPLATE <br>',
+        '// ========================================================================================================== <br>',
         '<br>',
         '<br>',
         '<span style="color:green;">Congratulations! Your form is working.</span><br>',
-        '<br>',
-        '<br>',
         'Please configure all the required query parameters below to hide this documentaiton<br>',
         '<br>',
         '<br>',
@@ -318,44 +316,21 @@
 
         config.TEMPLATES = {
 
-            //?template=all_inputs
-            all_inputs: [
-                "PRODUCT_INTEREST",
-                "PRODUCT_INTEREST_HALF",
-                "USER_INTEREST",
-                "USER_INTEREST_HALF",
-                "FIRST_NAME",
-                "FIRST_NAME_HALF",
-                "LAST_NAME",
-                "LAST_NAME_HALF",
-                "EMAIL_ADDRESS",
-                "EMAIL_ADDRESS_HALF",
-                "PHONE_NUMBER",
-                "PHONE_NUMBER_HALF",
-                "GRADE_LEVEL",
-                "GRADE_LEVEL_HALF",
-                "JOB_TITLE",
-                "JOB_TITLE_HALF",
-                "COUNTRY_NAME",
-                "COUNTRY_NAME_HALF",
-                "STATE_PROVINCE_NAME",
-                "STATE_PROVINCE_NAME_HALF",
-                "POSTCODE_ZIPCODE",
-                "POSTCODE_ZIPCODE_HALF",
-                "SCHOOL_NAME",
-                "SCHOOL_NAME_HALF",
-                "NO_OF_LICENCES",
-                "NO_OF_LICENCES_HALF",
-                "TERMS_AND_CONDITIONS",
-                "TERMS_AND_CONDITIONS_HALF",
-                "SUBSCRIBER_OPT_IN",
-                "SUBSCRIBER_OPT_IN_HALF",
-                "SUBMIT_BUTTON",
-                "SUBMIT_BUTTO_HALF"
+            //?template=test_overrides
+            test_overrides: [
+                "OVERRIDE_REGION_APAC",
+                "OVERRIDE_REGION_AMER",
+                "OVERRIDE_REGION_EMEA",
+                "OVERRIDE_COUNTRY_COUNTRY_CODE_AU",
+                "OVERRIDE_COUNTRY_COUNTRY_CODE_NZ",
+                "OVERRIDE_COUNTRY_COUNTRY_CODE_US",
+                "OVERRIDE_COUNTRY_COUNTRY_CODE_CA",
+                "OVERRIDE_COUNTRY_COUNTRY_CODE_UK",
+                "OVERRIDE_COUNTRY_COUNTRY_CODE_ZA"
             ],
 
-            //?template=test
-            test: [
+            //?template=test_full
+            test_full: [
                 "PRODUCT_INTEREST",
                 "USER_INTEREST",
                 "FIRST_NAME",
@@ -374,8 +349,9 @@
                 "SUBMIT_BUTTON"
             ],
 
-            //?template=test_half
-            test_2_columns: [
+
+            //?template=test_full_half
+            test_full_half: [
                 "PRODUCT_INTEREST_HALF",
                 "USER_INTEREST_HALF",
                 "FIRST_NAME_HALF",
@@ -410,6 +386,42 @@
                 "STATE_PROVINCE_NAME_CA_HALF",
                 "STATE_PROVINCE_NAME_ZA",
                 "STATE_PROVINCE_NAME_ZA_HALF"
+            ],
+
+            //?template=test_all
+            test_all: [
+                "PRODUCT_INTEREST",
+                "PRODUCT_INTEREST_HALF",
+                "USER_INTEREST",
+                "USER_INTEREST_HALF",
+                "FIRST_NAME",
+                "FIRST_NAME_HALF",
+                "LAST_NAME",
+                "LAST_NAME_HALF",
+                "EMAIL_ADDRESS",
+                "EMAIL_ADDRESS_HALF",
+                "PHONE_NUMBER",
+                "PHONE_NUMBER_HALF",
+                "GRADE_LEVEL",
+                "GRADE_LEVEL_HALF",
+                "JOB_TITLE",
+                "JOB_TITLE_HALF",
+                "COUNTRY_NAME",
+                "COUNTRY_NAME_HALF",
+                "STATE_PROVINCE_NAME",
+                "STATE_PROVINCE_NAME_HALF",
+                "POSTCODE_ZIPCODE",
+                "POSTCODE_ZIPCODE_HALF",
+                "SCHOOL_NAME",
+                "SCHOOL_NAME_HALF",
+                "NO_OF_LICENCES",
+                "NO_OF_LICENCES_HALF",
+                "TERMS_AND_CONDITIONS",
+                "TERMS_AND_CONDITIONS_HALF",
+                "SUBSCRIBER_OPT_IN",
+                "SUBSCRIBER_OPT_IN_HALF",
+                "SUBMIT_BUTTON",
+                "SUBMIT_BUTTO_HALF"
             ]
 
         } //config.TEMPLATES
@@ -550,74 +562,77 @@
 <body>
 
 
+    <!------------- FORM ----------------->
+
+
     <form
         class="needs-validation"
         novalidate
         method="POST">
 
 
-        <!------------- Hidden ----------------->
+        <!------------- HIDDEN (Static) ----------------->
+
+        <div>
+
+            <input type="hidden" name="_debug" value="%%=v(@debug)=%%">
+
+            <input type="hidden" name="_triggered_send_key" value="%%=v(@triggered_send_key)=%%">
+
+            <input type="hidden" name="_apac_cid" value="%%=v(@apac_cid)=%%">
+            <input type="hidden" name="_amer_cid" value="%%=v(@amer_cid)=%%">
+            <input type="hidden" name="_emea_cid" value="%%=v(@emea_cid)=%%">
+            <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
+            <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
+            <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
+            <input type="hidden" name="_sid" value="%%=v(@sid)=%%">
+            <input type="hidden" name="_fid" value="%%=v(@fid)=%%">
+
+            <input type="hidden" name="_template" value="%%=v(@template)=%%">
+            <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
+            <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
+
+            <input type="hidden" name="_utm_source" value="%%=v(@utm_source)=%%">
+            <input type="hidden" name="_utm_medium" value="%%=v(@utm_medium)=%%">
+            <input type="hidden" name="_utm_campaign" value="%%=v(@utm_campaign)=%%">
+            <input type="hidden" name="_utm_content" value="%%=v(@utm_content)=%%">
+            <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
+            <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
+            <input type="hidden" name="_gtm_referrer" value="%%=v(@gtm_referrer)=%%">
 
 
-        <input type="hidden" name="_debug" value="%%=v(@debug)=%%">
+            <!-- Extract Marketing Tracking Parameters -->
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
 
-        <input type="hidden" name="_triggered_send_key" value="%%=v(@triggered_send_key)=%%">
+                    // Get cookie value
+                    function getCookie(name) {
+                        const value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+                        return value ? decodeURIComponent(value.pop()) : '';
+                    }
 
-        <input type="hidden" name="_apac_cid" value="%%=v(@apac_cid)=%%">
-        <input type="hidden" name="_amer_cid" value="%%=v(@amer_cid)=%%">
-        <input type="hidden" name="_emea_cid" value="%%=v(@emea_cid)=%%">
-        <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
-        <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
-        <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
-        <input type="hidden" name="_sid" value="%%=v(@sid)=%%">
-        <input type="hidden" name="_fid" value="%%=v(@fid)=%%">
+                    // Get parameter from cookie URL
+                    function getParam(name) {
+                        const cookie = getCookie('setURLParamsCookie');
+                        const match = cookie.match(new RegExp('[?&]' + name + '=([^&#]*)'));
+                        return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
+                    }
 
-        <input type="hidden" name="_template" value="%%=v(@template)=%%">
-        <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
-        <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
+                    // Fill form fields if cookie exists
+                    if (document.cookie.includes('setURLParamsCookie')) {
+                        document.querySelector('input[name="_utm_source"]').value = getParam('utm_source');
+                        document.querySelector('input[name="_utm_medium"]').value = getParam('utm_medium');
+                        document.querySelector('input[name="_utm_campaign"]').value = getParam('utm_campaign');
+                        document.querySelector('input[name="_utm_content"]').value = getParam('utm_content');
+                        document.querySelector('input[name="_utm_term"]').value = getParam('utm_term');
+                        document.querySelector('input[name="_gclid"]').value = getParam('gclid');
+                        document.querySelector('input[name="_gtm_referrer"]').value = getCookie('__gtm_referrer');
+                    }
 
-        <input type="hidden" name="_utm_source" value="%%=v(@utm_source)=%%">
-        <input type="hidden" name="_utm_medium" value="%%=v(@utm_medium)=%%">
-        <input type="hidden" name="_utm_campaign" value="%%=v(@utm_campaign)=%%">
-        <input type="hidden" name="_utm_content" value="%%=v(@utm_content)=%%">
-        <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
-        <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
-        <input type="hidden" name="_gtm_referrer" value="%%=v(@gtm_referrer)=%%">
+                }); //DOMContentLoaded
+            </script>
 
-
-        <!-- Extract Marketing Tracking Parameters -->
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-
-                // Get cookie value
-                function getCookie(name) {
-                    const value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-                    return value ? decodeURIComponent(value.pop()) : '';
-                }
-
-                // Get parameter from cookie URL
-                function getParam(name) {
-                    const cookie = getCookie('setURLParamsCookie');
-                    const match = cookie.match(new RegExp('[?&]' + name + '=([^&#]*)'));
-                    return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
-                }
-
-                // Fill form fields if cookie exists
-                if (document.cookie.includes('setURLParamsCookie')) {
-                    document.querySelector('input[name="_utm_source"]').value = getParam('utm_source');
-                    document.querySelector('input[name="_utm_medium"]').value = getParam('utm_medium');
-                    document.querySelector('input[name="_utm_campaign"]').value = getParam('utm_campaign');
-                    document.querySelector('input[name="_utm_content"]').value = getParam('utm_content');
-                    document.querySelector('input[name="_utm_term"]').value = getParam('utm_term');
-                    document.querySelector('input[name="_gclid"]').value = getParam('gclid');
-                    document.querySelector('input[name="_gtm_referrer"]').value = getCookie('__gtm_referrer');
-                }
-
-            }); //DOMContentLoaded
-        </script>
-
-
-        <!------------- Form ----------------->
+        </div>
 
 
         <!-- Wrapper -->
@@ -634,6 +649,22 @@
                 SET @COMPONENT = ROW(@COMPONENTS_TO_RENDER, @index)
                 ]%%
 
+
+                <!-- HIDDEN (Overrides) -->
+
+                IIF(@COMPONENT == "OVERRIDE_REGION_APAC", OutputLine("<input type="hidden" name="override_region" value='APAC'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_REGION_AMER", OutputLine("<input type="hidden" name="override_region" value='AMER'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_REGION_EMEA", OutputLine("<input type="hidden" name="override_region" value='EMEA'>"),"")
+
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='AU'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='NZ'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='US'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='CA'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='UK'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='ZA'>"),"")
+
+
+                <!-- FIEDS -->
 
 
                 %%[IF (@COMPONENT == "PRODUCT_INTEREST") THEN]%%
@@ -975,7 +1006,7 @@
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "JOB_TITLE") THEN]%%
+                %%[IF (@COMPONENT == "JOB_TITLE_APAC") THEN]%%
                 <!------------- Job Title ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -990,13 +1021,10 @@
 
                             %%[
 
-                            /* Populate Job Title Options and Redirect
+                            /* Populate Job Title Options
                             ********************************/
-                            IF (@_Campaign_Name == "701Mp00000NfPA9IAN" OR @_Campaign_Name == "701Mp00000Te4FYIAZ" OR
-                            @_Campaign_Name == "701Mp00000VCznXIAT" OR @_Campaign_Name == "701Mp00000VCz4MIAT" OR
-                            @_Campaign_Name == "701Mp00000VD5CyIAL" OR @_Campaign_Name == "701Mp00000VCvVWIA1" OR
-                            @_Campaign_Name == "701Mp00000W03N2IAJ") THEN
-                            Set @Job_Titles = LookupRows("jobTitle_USA_District_Forms", "Active", "1")
+
+                            Set @Job_Titles = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
                             For @i = 1 TO RowCount(@Job_Titles) DO
                             Set @Job_Title = Field(Row(@Job_Titles, @i), "Job Title")
                             OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
@@ -1022,7 +1050,7 @@
                 %%[ENDIF]%%
 
 
-                %%[IF (@COMPONENT == "JOB_TITLE_HALF") THEN]%%
+                %%[IF (@COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
                 <!------------- Job Title HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">

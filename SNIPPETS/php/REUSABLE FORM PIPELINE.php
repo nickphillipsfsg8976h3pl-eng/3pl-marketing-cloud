@@ -326,6 +326,8 @@
             if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
+            // RE
+
             // REGION, COUNTRY NAME
             if (
                 QUEUED[i].record.country_code
@@ -362,7 +364,7 @@
             }
 
             // JOB FUNCTION
-            // @desc - matches external customer job title to internal job functions picklist values. Job functions are mapped in lead conversion
+            // @description: matches external customer job titlea to internal job functions picklist values. Job functions are mapped in lead conversion
             // and therfore other job functions fields also exist on contact, opportunity and opportunity-contact-role/relationship records. Job Function
             // values in Salesforce cannot be changed easily without having to alter related automations so job title picklist values in forms should
             // be kept as static as possible otherwise mapping issues arise and job function values fail to be set correctly.
@@ -488,16 +490,6 @@
     catch (error) {
         lib.log('PROCESS DATA', error);
     }
-</script>
-
-
-<script runat="server">
-    /**************************************
-    -------------- MAP FIELDS -------------
-    ***************************************/
-
-    //todo: identify the mapping of data submitted in the queue vs fields on the lead to create/update
-    // try to include this section as early in the pipeline as possible to reduce mental load when making adjustments
 </script>
 
 
