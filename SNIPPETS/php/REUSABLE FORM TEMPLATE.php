@@ -16,6 +16,14 @@ fill out missing EMEA mapping for job title -> job functions mappings
 
 create job title hidden override inputs (look at mapping for common values - teacher etc)
 
+look into gclid, fbclid mscclid functionality and pass valus through perhaps
+
+finish processing script porting from automation into here with ssjs
+
+implement full wsproxy/wrapped ampscript salesforce sync section
+
+run everything through cl-ai to simplify, fix errors, seek advice, etc
+
 -->
 
 
