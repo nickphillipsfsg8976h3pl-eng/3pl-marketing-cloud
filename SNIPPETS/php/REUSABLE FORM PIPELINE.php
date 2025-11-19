@@ -326,15 +326,33 @@
             if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
-            // RE
+            // COUNTRY CODE
+            // @description: Country code is required for region, country_name & state_name assignments
+            if (
+                QUEUED[i].record.override_country_code
+            ) {
+                QUEUED[i].record.country_code = QUEUED[i].record.override_country_code;
+            }
 
-            // REGION, COUNTRY NAME
+
+            // REGION
+            // @description: APAC, AMER, or EMEA region selection is assign based on the country code 
+            // if provided otherwise a value can be forced by the override_region hidden field
+            if (
+                QUEUED[i].record.override_region ||
+                QUEUED[i].record.country_code
+            ) {
+                QUEUED[i].record.region = QUEUED[i].record.override_region ?
+                    QUEUED[i].record.override_region :
+                    Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].record.country_code])[0].Region;
+            }
+
+            // COUNTRY NAME
             if (
                 QUEUED[i].record.country_code
             ) {
                 var country = Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].record.country_code])[0];
                 if (country) {
-                    QUEUED[i].record.region = country.Region;
                     QUEUED[i].record.country_name = country.CountryName;
                 }
             }

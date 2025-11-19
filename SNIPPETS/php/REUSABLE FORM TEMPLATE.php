@@ -321,12 +321,12 @@
                 "OVERRIDE_REGION_APAC",
                 "OVERRIDE_REGION_AMER",
                 "OVERRIDE_REGION_EMEA",
-                "OVERRIDE_COUNTRY_COUNTRY_CODE_AU",
-                "OVERRIDE_COUNTRY_COUNTRY_CODE_NZ",
-                "OVERRIDE_COUNTRY_COUNTRY_CODE_US",
-                "OVERRIDE_COUNTRY_COUNTRY_CODE_CA",
-                "OVERRIDE_COUNTRY_COUNTRY_CODE_UK",
-                "OVERRIDE_COUNTRY_COUNTRY_CODE_ZA"
+                "OVERRIDE_COUNTRY_CODE_AU",
+                "OVERRIDE_COUNTRY_CODE_NZ",
+                "OVERRIDE_COUNTRY_CODE_US",
+                "OVERRIDE_COUNTRY_CODE_CA",
+                "OVERRIDE_COUNTRY_CODE_UK",
+                "OVERRIDE_COUNTRY_CODE_ZA"
             ],
 
             //?template=test_full
@@ -655,13 +655,12 @@
                 IIF(@COMPONENT == "OVERRIDE_REGION_APAC", OutputLine("<input type="hidden" name="override_region" value='APAC'>"),"")
                 IIF(@COMPONENT == "OVERRIDE_REGION_AMER", OutputLine("<input type="hidden" name="override_region" value='AMER'>"),"")
                 IIF(@COMPONENT == "OVERRIDE_REGION_EMEA", OutputLine("<input type="hidden" name="override_region" value='EMEA'>"),"")
-
                 IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='AU'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='NZ'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='US'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='CA'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='UK'>"),"")
-                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='ZA'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_NZ", OutputLine("<input type="hidden" name="override_country_code" value='NZ'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_US", OutputLine("<input type="hidden" name="override_country_code" value='US'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_CA", OutputLine("<input type="hidden" name="override_country_code" value='CA'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_UK", OutputLine("<input type="hidden" name="override_country_code" value='UK'>"),"")
+                IIF(@COMPONENT == "OVERRIDE_COUNTRY_CODE_ZA", OutputLine("<input type="hidden" name="override_country_code" value='ZA'>"),"")
 
 
                 <!-- FIEDS -->
