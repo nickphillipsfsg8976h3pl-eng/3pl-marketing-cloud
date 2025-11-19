@@ -327,7 +327,8 @@
 
 
             // COUNTRY CODE
-            // @description: Country code is required for region, country_name & state_name assignments
+            // @description: Country code is required for region, country_name & state_name assignments.
+            // Its required in most forms but can be forced by the override_country_code hidden field.
             if (
                 QUEUED[i].record.override_country_code
             ) {
@@ -337,7 +338,7 @@
 
             // REGION
             // @description: APAC, AMER, or EMEA region selection is assign based on the country code 
-            // if provided otherwise a value can be forced by the override_region hidden field
+            // if provided otherwise a value can be forced by the override_region hidden field.
             if (
                 QUEUED[i].record.override_region ||
                 QUEUED[i].record.country_code
@@ -397,6 +398,9 @@
             }
 
             // CAMPAIGN ID
+            // @description: the campaign salesforce recordId is needed to assign leads to a campaign.
+            // If the form is global the region specific campaign ids should be provided otherwise along
+            // with a region, otherwise the default cid value will be used.
             if (
                 QUEUED[i].record.apac_cid ||
                 QUEUED[i].record.amer_cid ||
@@ -415,6 +419,7 @@
             }
 
             // CAMPAIGN NAME
+            // @description: the campaign name is used in the description and enquiry summary
             if (
                 QUEUED[i].record.campaign_id
             ) {
@@ -425,11 +430,17 @@
             }
 
             // CAMPAIGN RESOURCES
+            // @TODO: configure to pull from a fields on the campaign record 
+            // or a related object instead of having to maintain a reference DE
             //
-            //  TODO - configure to pull from a fields on the campaign record or related object instead of having to maintain a reference DE
+            //
+            //
             //
 
             // STATUS
+            // @description: lead status is assigned based on the sid query parameter. Most forms
+            // can be left blank, except TOF type form which usually require a status of 
+            // Marketing Prospect to be selected. 
             if (
                 QUEUED[i].record.sid
             ) {
@@ -445,6 +456,9 @@
             }
 
             // ENQUIRY TYPE
+            // @description: Enquiry type is used in the description, enquiry_summary fields
+            // to determine select how the lead shoudld be described. Sales will use this to 
+            // prioritize lead processing, and assign value.
             if (
                 QUEUED[i].record.eid &&
                 QUEUED[i].record.campaign_name &&
@@ -460,6 +474,8 @@
             }
 
             //DESCRIPTION, ENQUIRY SUMMARY
+            // @description: dynamically generated based on enquiry_type, campagin_name, and the request_url
+            // This helps Sales people quickly filter leads or categorizing them during follow up.
             if (
                 QUEUED[i].record.enquiry_type
             ) {
@@ -486,6 +502,16 @@
             }
 
             // UTM_PARAMETERS
+            // @description: Utm parameters are marketing tracking query parameters used
+            // to elucidate the pathways travelled through digital content and track 
+            // marketing content attribution and campaign effectiveness.
+            // 
+            //The parameters are:
+            // utm_source: identifies the source of the traffic (e.g., google, newsletter, social_media)
+            // utm_medium: specifies the medium of the traffic (e.g., email, cpc, banner)
+            // utm_campaign: identifies the specific campaign name (e.g., summer_sale, black_friday)
+            // utm_term: used for paid search keywords
+            // utm_content: differentiates similar content or links within the same ad or campaign
             if (
                 QUEUED[i].record.utm_source &&
                 QUEUED[i].record.utm_medium &&
