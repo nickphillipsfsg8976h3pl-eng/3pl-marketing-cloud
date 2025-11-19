@@ -445,9 +445,9 @@
 
 
             // STATUS
-            // @description: lead status is assigned based on the sid query parameter. Most forms
-            // can be left blank, except TOF type form which usually require a status of 
-            // Marketing Prospect to be selected. 
+            // @description: lead status is assigned based on the sid query parameter. As a general
+            // rule of thumb, forms related to tof,sign-ups, conferences minor engagenment will be 
+            // a Marketing Prospect and forms related to quotes, demo, callback etc will become MQL.  
             if (
                 QUEUED[i].record.sid
             ) {
@@ -455,9 +455,9 @@
                     "UQ": "Unqualified",
                     "MP": "Marketing Prospect",
                     "SP": "Sales Prospect",
-                    "MQL": "MQL",
-                    "SAL": "SAL",
-                    "SQL": "SQL"
+                    "MQL": "MQL", //Marketing Qualified Lead
+                    "SAL": "SAL", //Sales Accepted Lead
+                    "SQL": "SQL" //Sales Qualified Lead
                 };
                 QUEUED[i].record.status = sidToStatusMapping[QUEUED[i].record.sid] || 'MQL';
             }
