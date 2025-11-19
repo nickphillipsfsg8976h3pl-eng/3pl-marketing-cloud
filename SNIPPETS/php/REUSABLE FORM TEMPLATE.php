@@ -701,16 +701,16 @@ test. test, test
 
                 <!-- HIDDEN (Overrides) -->
 
-                IIF(@FORM_COMPONENT == "OVERRIDE_REGION_APAC", OutputLine("<input type="hidden" name="override_region" value='APAC'>"),"")
-                IIF(@FORM_COMPONENT == "OVERRIDE_REGION_AMER", OutputLine("<input type="hidden" name="override_region" value='AMER'>"),"")
-                IIF(@FORM_COMPONENT == "OVERRIDE_REGION_EMEA", OutputLine("<input type="hidden" name="override_region" value='EMEA'>"),"")
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_REGION_APAC", OutputLine(Concat('<input type="hidden" name="override_region" value="APAC">')),"")=%%
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_REGION_AMER", OutputLine(Concat('<input type="hidden" name="override_region" value="AMER">')),"")=%%
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_REGION_EMEA", OutputLine(Concat('<input type="hidden" name="override_region" value="EMEA">')),"")=%%
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine(Concat('<input type="hidden" name="override_country_code" value="AU">')),"")=%%''
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_NZ", OutputLine(Concat('<input type="hidden" name="override_country_code" value="NZ">')),"")=%%''
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_US", OutputLine(Concat('<input type="hidden" name="override_country_code" value="US">')),"")=%%''
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_CA", OutputLine(Concat('<input type="hidden" name="override_country_code" value="CA">')),"")=%%''
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_UK", OutputLine(Concat('<input type="hidden" name="override_country_code" value="UK">')),"")=%%''
+                %%=IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_ZA", OutputLine(Concat('<input type="hidden" name="override_country_code" value="ZA">')),"")=%%''
 
-                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_AU", OutputLine("<input type="hidden" name="override_country_code" value='AU'>"),"")
-                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_NZ", OutputLine("<input type="hidden" name="override_country_code" value='NZ'>"),"")
-                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_US", OutputLine("<input type="hidden" name="override_country_code" value='US'>"),"")
-                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_CA", OutputLine("<input type="hidden" name="override_country_code" value='CA'>"),"")
-                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_UK", OutputLine("<input type="hidden" name="override_country_code" value='UK'>"),"")
-                IIF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_ZA", OutputLine("<input type="hidden" name="override_country_code" value='ZA'>"),"")
 
 
                 <!-- FIEDS -->
@@ -1075,18 +1075,9 @@ test. test, test
 
                             SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
                             FOR @i = 1 TO RowCount(@JOB_LIST) DO
-                            SET @Job_Title = Field(Row(@JOB_LIST, @i), "Job Title")
-                            OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
+                            SET @jobTitle = Field(Row(@JOB_LIST, @i), "Job Title")
+                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                             NEXT @i
-
-                            ELSE
-                            SET @JOB_LIST = LookupRows("jobTitle_ENG", "Active", "1")
-                            FOR @i = 1 TO RowCount(@JOB_LIST) DO
-                            SET @Job_Title = Field(Row(@JOB_LIST, @i), "Job Title")
-                            OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
-                            NEXT @i
-
-                            ENDIF
 
                             ]%%
 
@@ -1114,26 +1105,14 @@ test. test, test
 
                             %%[
 
-                            /* Populate Job Title Options and Redirect
+                            /* Populate Job Title Options
                             ********************************/
-                            IF (@_Campaign_Name == "701Mp00000NfPA9IAN" OR @_Campaign_Name == "701Mp00000Te4FYIAZ" OR
-                            @_Campaign_Name == "701Mp00000VCznXIAT" OR @_Campaign_Name == "701Mp00000VCz4MIAT" OR
-                            @_Campaign_Name == "701Mp00000VD5CyIAL" OR @_Campaign_Name == "701Mp00000VCvVWIA1" OR
-                            @_Campaign_Name == "701Mp00000W03N2IAJ") THEN
-                            SET @JOB_LIST = LookupRows("jobTitle_USA_District_Forms", "Active", "1")
-                            FOR @i = 1 TO RowCount(@JOB_LIST) DO
-                            SET @Job_Title = Field(Row(@JOB_LIST, @i), "Job Title")
-                            OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
-                            NEXT @i
 
-                            ELSE
-                            SET @JOB_LIST = LookupRows("jobTitle_ENG", "Active", "1")
+                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
                             FOR @i = 1 TO RowCount(@JOB_LIST) DO
-                            SET @Job_Title = Field(Row(@JOB_LIST, @i), "Job Title")
-                            OutputLine(Concat('<option value="',@Job_Title,'">',@Job_Title,'</option>'))
+                            SET @jobTitle = Field(Row(@JOB_LIST, @i), "Job Title")
+                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                             NEXT @i
-
-                            ENDIF
 
                             ]%%
 
