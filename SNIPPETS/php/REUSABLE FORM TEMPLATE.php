@@ -24,6 +24,8 @@ implement full wsproxy/wrapped ampscript salesforce sync section
 
 run everything through cl-ai to simplify, fix errors, seek advice, etc
 
+test. test, test
+
 -->
 
 
