@@ -1,3 +1,8 @@
+<script runat="server">
+    Platform.Load("core", "1");
+</script>
+
+
 <!-- 
  
 
@@ -31,270 +36,101 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
 
 <script runat="server">
-    Platform.Load("core", "1");
-
-    var documentation = ''.concat(
-        '<div style="padding: 15px; font-weight:bold">',
-        '<br>',
-        '//========================================================================================================== <br>',
-        '// REUSABLE FORM TEMPLATE <br>',
-        '// ========================================================================================================== <br>',
-        '<br>',
-        '<br>',
-        '<span style="color:green;">Congratulations! Your form is working.</span><br>',
-        'Please configure all the required query parameters below to hide this documentaiton<br>',
-        '<br>',
-        '<br>',
-        '@Template Author: Nick Phillips <br>',
-        '@Template Version: 1.0.0 <br>',
-        '<br>',
-        '<br>',
-        'CHANGE LOG <br>',
-        '------------------------------------------- <br>',
-        '<br>',
-        'Region: <br>',
-        'Campaign(s): <br>',
-        'Form Created By: <br>',
-        'Form Created Date: <br>',
-        '<br>',
-        '<br>',
-        'QUERY PARAMETERS <br>',
-        '------------------------------------------- <br>',
-        '<br>',
-        '@parameter: (optional) debug - Used to output debug information when testing the form <br>',
-        '<br>',
-        '@parameter: (required) template - the name of an array of preconfigured form inputs to display OR...<br>',
-        '@parameter: (required) inputs - a comma-deliminated string of single form inputs to display <br>',
-        '<br>',
-        '@parameter: (optional) cid - the default salesforce campaign id regardless of country or region. <br>',
-        '@parameter: (optional) rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission <br>',
-        '@parameter: (optional) eid - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce <br>',
-        '@parameter: (optional) sid - lead status id - [UQ, MP, SP, MQL, SAL, SQL] <br>',
-        '@parameter: (optional) fid - form Id - a random bunch of characters that makes the url unique in comparison to other configurations<br>',
-        '<br>',
-        '@parameter: (optional) apac_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an APAC based country  <br>',
-        '@parameter: (optional) amer_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an AMER based country <br>',
-        '@parameter: (optional) emea_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an EMEA based country   <br>',
-        '<br>',
-        '@parameter: (optional) utm_source - marketing trackers retrieved from a browser cookie <br>',
-        '@parameter: (optional) utm_medium - marketing trackers retrieved from a browser cookie <br>',
-        '@parameter: (optional) utm_campaign - marketing trackers retrieved from a browser cookie <br>',
-        '@parameter: (optional) utm_content - marketing trackers retrieved from a browser cookie <br>',
-        '@parameter: (optional) utm_term - marketing trackers retrieved from a browser cookie <br>',
-        '<br>',
-        '@parameter: (optional) gclid - (google click ID) marketing trackers retrieved from a browser cookie <br>',
-        '@parameter: (optional) gtm_referrer - marketing trackers retrieved from a browser cookie <br>',
-        '<br>',
-        '<br>',
-        'EXAMPLE URLS <br>',
-        '------------------------------------------- <br>',
-        '<br>',
-        '@example: Test <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test <br>',
-        '<br>',
-        '@example: Test Columns <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test_columns <br>',
-        '<br>',
-        '@example: Test States <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test_states <br>',
-        '<br>',
-        '@example: Basic Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '<br>',
-        '@example: TOF Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '<br>',
-        '@example: BOF Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '<br>',
-        '@example: Quote Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '<br>',
-        '@example: US Form Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '<br>',
-        '@example: Trial Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '<br>',
-        '@example: Info Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '<br>',
-        '@example: Demo Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
-        '<br>',
-        '<br> ',
-        '</div>'
-    );
-</script>
-
-
-
-<script runat="server">
-    if (Request.Method() != "POST") return;
-    try {
-
-
-        /*******************************
-        ----------- SECURITY -----------
-        ********************************/
-
-
-        // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
-        // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
-        // Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
-        // Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
-        // Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
-        // Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-
-
-        /************************* 
-        --------- PAYLOAD --------
-        **************************/
-
-
-        //initiate
-        var payload = {};
-
-        //retrieve data
-        payload.debug = Request.GetFormField("_debug");
-
-        payload.apac_cid = Request.GetFormField("_apac_cid");
-        payload.amer_cid = Request.GetFormField("_amer_cid");
-        payload.emea_cid = Request.GetFormField("_emea_cid");
-
-        payload.cid = Request.GetFormField("_cid");
-        payload.rid = Request.GetFormField("_rid");
-        payload.eid = Request.GetFormField("_eid");
-        payload.sid = Request.GetFormField("_sid");
-        payload.fid = Request.GetFormField("_fid");
-
-        payload.inputs = Request.GetFormField("_inputs");
-        payload.template = Request.GetFormField("_template");
-
-        payload.utm_source = Request.GetFormField("_utm_source");
-        payload.utm_medium = Request.GetFormField("_utm_medium");
-        payload.utm_campaign = Request.GetFormField("_utm_campaign");
-        payload.utm_content = Request.GetFormField("_utm_content");
-        payload.utm_term = Request.GetFormField("_utm_term");
-
-        payload.glcid = Request.GetFormField("_gclid");
-        payload.gtm_referrer = Request.GetFormField("_gtm_referrer");
-
-        payload.request_url = Request.GetFormField("_request_url");
-        payload.location_href = Request.GetFormField("_location_href");
-        payload.document_referrer = Request.GetFormField("_document_referrer");
-
-        payload.override_region = Request.GetFormField("_override_region");
-        payload.override_country_code = Request.GetFormField("_override_country_code");
-
-        payload.product_interest = Request.GetFormField("_product_interest");
-        payload.user_interest = Request.GetFormField("_user_interest");
-        payload.first_name = Request.GetFormField("_first_name");
-        payload.last_name = Request.GetFormField("_last_name");
-        payload.email_address = Request.GetFormField("_email_address");
-        payload.phone_number = Request.GetFormField("_phone_number");
-        payload.grade_level = Request.GetFormField("_grade_level");
-        payload.job_title = Request.GetFormField("_job_title");
-        payload.country_code = Request.GetFormField("_country_code");
-        payload.state_code = Request.GetFormField("_state_code");
-        payload.postcode_zipcode = Request.GetFormField("_postcode_zipcode");
-        payload.school_name = Request.GetFormField("_school_name");
-        payload.no_of_licences = Request.GetFormField("_no_of_licences");
-        payload.terms_and_conditions = Request.GetFormField("_terms_and_conditions");
-        payload.subscriber_opt_in = Request.GetFormField("_subscriber_opt_in");
-
-
-        /************************* 
-        ---------- DEBUG ---------
-        **************************/
-
-
-        //show debug info when ?debug=true
-        if (payload.debug) {
-            Write('=== DEBUG MODE ===')
-            Write('<br>')
-            Write('Payload: ' + Stringify(payload));
-            return;
-        }
-
-
-        /************************* 
-        --------- SUBMIT --------
-        **************************/
-
-
-        //push to queue
-        var queue = DataExtension.Init("REUSABLE_FORM_QUEUE");
-        queue.Rows.Add({
-            "submission_id": Platform.Function.GUID(),
-            "submission_name": payload.first_name + ' ' + payload.last_name,
-            "submission_email": payload.email_address,
-            "submission_url": payload.request_url,
-            "submission_data": Stringify(payload),
-            "submission_date": Datetime.SystemDateToLocalString()
-            // "queue_method": //the method used to upsert the salesforce lead [CREATE/UPDATE]
-            // "queue_record_id": //the saleforce recoordId of the lead (or contact) sync'd with salesforce
-            // "queue_campaign_member_id": //the saleforce campaign member id after lead is upserted to campaign
-            // "queue_error_message": //the error message set when record fails processing in pipeline
-            // "queue_completed_date": //a datetime set when the pipeline has run and the record has been processed
-        });
-
-
-
-        /************************************ 
-        --------- TRIGGER AUTOMATION --------
-        *************************************/
-
-        //triggers a script activity to run but waits and repeats if already running
-        var content = Platform.Function.ContentBlockByKey('ssjs-lib-wsproxy');
-        var proxy = new wsproxy();
-        var config = {
-            AUTOMATION_NAME: 'REUSABLE_FORM_PIPELINE',
-            NUMBER_OF_REPEATS: 3,
-            WAIT_MILLISECONDS: 5 * 60 * 1000 //5mins
-        }
-        proxy.triggerAutomationWait(config.AUTOMATION_NAME, config.NUMBER_OF_REPEATS, config.WAIT_MILLISECONDS)
-
-
-        /************************* 
-        -------- REDIRECT --------
-        **************************/
-
-
-        //navigate to redirect
-        if (payload.rid) {
-            paylaod.lookupRedirectData = Platform.Function.LookupRows('REDIRECT_REFERENCE', 'Id', payload.rid);
-            payload.redirect_url = payload.lookupRedirectData[0].Url;
-            Redirect(payload.redirect_url);
-        }
-
-
-        /************************* 
-        ------- ACKNOWLEDGE ------
-        **************************/
-
-
-        //otherwise, feedback
-        Write("<br>");
-        Write("<p>Thank you for submitting your information. We will be in contact with you shortly</p>");
-        Write("<br>");
-
-
-        /*******************************
-        ------------ ERROR -------------
-        ********************************/
-
-
-    } catch (error) {
-        Write("Error: " + Stringify(error.message));
-    }
-</script>
-
-
-
-<script runat="server">
     if (Request.Method() != "GET") return;
     try {
+
+        var documentation = ''.concat(
+            '<div style="padding: 15px; font-weight:bold">',
+            '<br>',
+            '//========================================================================================================== <br>',
+            '// REUSABLE FORM TEMPLATE <br>',
+            '// ========================================================================================================== <br>',
+            '<br>',
+            '<br>',
+            '<span style="color:green;">Congratulations! Your form is working.</span><br>',
+            'Please configure all the required query parameters below to hide this documentaiton<br>',
+            '<br>',
+            '<br>',
+            '@Template Author: Nick Phillips <br>',
+            '@Template Version: 1.0.0 <br>',
+            '<br>',
+            '<br>',
+            'CHANGE LOG <br>',
+            '------------------------------------------- <br>',
+            '<br>',
+            'Region: <br>',
+            'Campaign(s): <br>',
+            'Form Created By: <br>',
+            'Form Created Date: <br>',
+            '<br>',
+            '<br>',
+            'QUERY PARAMETERS <br>',
+            '------------------------------------------- <br>',
+            '<br>',
+            '@parameter: (optional) debug - Used to output debug information when testing the form <br>',
+            '<br>',
+            '@parameter: (required) template - the name of an array of preconfigured form inputs to display OR...<br>',
+            '@parameter: (required) inputs - a comma-deliminated string of single form inputs to display <br>',
+            '<br>',
+            '@parameter: (optional) cid - the default salesforce campaign id regardless of country or region. <br>',
+            '@parameter: (optional) rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission <br>',
+            '@parameter: (optional) eid - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce <br>',
+            '@parameter: (optional) sid - lead status id - [UQ, MP, SP, MQL, SAL, SQL] <br>',
+            '@parameter: (optional) fid - form Id - a random bunch of characters that makes the url unique in comparison to other configurations<br>',
+            '<br>',
+            '@parameter: (optional) apac_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an APAC based country  <br>',
+            '@parameter: (optional) amer_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an AMER based country <br>',
+            '@parameter: (optional) emea_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an EMEA based country   <br>',
+            '<br>',
+            '@parameter: (optional) utm_source - marketing trackers retrieved from a browser cookie <br>',
+            '@parameter: (optional) utm_medium - marketing trackers retrieved from a browser cookie <br>',
+            '@parameter: (optional) utm_campaign - marketing trackers retrieved from a browser cookie <br>',
+            '@parameter: (optional) utm_content - marketing trackers retrieved from a browser cookie <br>',
+            '@parameter: (optional) utm_term - marketing trackers retrieved from a browser cookie <br>',
+            '<br>',
+            '@parameter: (optional) gclid - (google click ID) marketing trackers retrieved from a browser cookie <br>',
+            '@parameter: (optional) gtm_referrer - marketing trackers retrieved from a browser cookie <br>',
+            '<br>',
+            '<br>',
+            'EXAMPLE URLS <br>',
+            '------------------------------------------- <br>',
+            '<br>',
+            '@example: Test <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test <br>',
+            '<br>',
+            '@example: Test Columns <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test_columns <br>',
+            '<br>',
+            '@example: Test States <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test_states <br>',
+            '<br>',
+            '@example: Basic Template <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            '<br>',
+            '@example: TOF Template <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            '<br>',
+            '@example: BOF Template <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            '<br>',
+            '@example: Quote Template <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            '<br>',
+            '@example: US Form Template <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            '<br>',
+            '@example: Trial Template <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            '<br>',
+            '@example: Info Template <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            '<br>',
+            '@example: Demo Template <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            '<br>',
+            '<br> ',
+            '</div>'
+        );
 
 
         /*******************************
@@ -422,6 +258,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
             //?template=job_titles
             test_job_titles: [
+                "JOB_TITLE_GLOBAL",
+                "JOB_TITLE_GLOBAL_HALF",
                 "JOB_TITLE_APAC",
                 "JOB_TITLE_APAC_HALF",
                 "JOB_TITLE_AMER",
@@ -1067,371 +905,6 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 </div>
                 %%[ENDIF]%%
 
-
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL") THEN]%%
-                <!------------- Job Title ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
-
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
-
-                            <optgroup label="APAC" class="custom-select-opt-group">
-
-                                <option value="" selected disabled>Job Title</option>
-
-                                //
-
-                            </optgroup>
-
-                        </select>
-
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-                </div>
-
-
-                <!-- On Country Change -->
-                <script>
-                    try {
-
-                        // CONSTANTS
-                        let statesData;
-
-                        // DOM ELEMENTS
-                        const countrySelect = document.getElementById('_country_code');
-                        const stateProvinceSelect = document.getElementById('_state_code');
-
-                        // EVENTS
-                        document.addEventListener('DOMContentLoaded', getStatesData);
-                        countrySelect.addEventListener('change', handleCountryChange);
-
-                        // HANDLERS
-                        function getStatesData() {
-                            const getStatesApi = "/getStates";
-
-                            fetch(getStatesApi)
-                                .then(response => response.json())
-                                .then(data => {
-                                    statesData = data;
-                                })
-                                .catch(error => console.error(error));
-                        }
-
-                        function handleCountryChange(e) {
-                            // Choose states
-                            const selectedOption = e.target.options[e.target.selectedIndex];
-                            const countryCode = selectedOption.dataset.countrycode;
-                            const countryStateData = statesData.filter((option) => option["CountryCode"] === countryCode);
-
-                            // Reset options
-                            stateProvinceSelect.value = '';
-                            stateProvinceSelect.innerHTML = '';
-
-                            const placeholderText = countryCode === "CA" ? 'Province' : 'State';
-                            const placeholderOption = document.createElement('option');
-                            placeholderOption.value = '';
-                            placeholderOption.disabled = true;
-                            placeholderOption.selected = true;
-                            placeholderOption.textContent = placeholderText;
-                            stateProvinceSelect.appendChild(placeholderOption);
-
-                            // Populate options
-                            countryStateData.forEach((state) => {
-                                const option = document.createElement('option');
-                                option.value = state['StateCode'];
-                                option.textContent = state['StateName'];
-                                stateProvinceSelect.appendChild(option);
-                            });
-                        }
-
-                    } catch (e) {
-                        console.error(e.message);
-                    }
-                </script>
-
-
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL_HALF") THEN]%%
-                <!------------- Job Title ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
-
-                            <optgroup label="APAC" class="custom-select-opt-group">
-
-                                <option value="" selected disabled>Job Title</option>
-
-                                %%[
-
-                                /* Populate Job Title Options
-                                ********************************/
-
-                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                                FOR @i = 1 TO RowCount(@jobList) DO
-                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                                NEXT @i
-
-                                ]%%
-
-                            </optgroup>
-
-                        </select>
-
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC") THEN]%%
-                <!------------- Job Title ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
-
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
-
-                            <optgroup label="APAC" class="custom-select-opt-group">
-
-                                <option value="" selected disabled>Job Title</option>
-
-                                %%[
-
-                                /* Populate Job Title Options
-                                ********************************/
-
-                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                                FOR @i = 1 TO RowCount(@jobList) DO
-                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                                NEXT @i
-
-                                ]%%
-
-                            </optgroup>
-
-                        </select>
-
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
-                <!------------- Job Title HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
-
-                            <optgroup label="APAC" class="custom-select-opt-group">
-
-
-                                <option value="" selected disabled>Job Title</option>
-
-                                %%[
-
-                                /* Populate Job Title Options
-                                ********************************/
-
-                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                                FOR @i = 1 TO RowCount(@jobList) DO
-                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                                NEXT @i
-
-                                ]%%
-
-                            </optgroup>
-
-                        </select>
-
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER") THEN]%%
-                <!------------- Job Title ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
-
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
-
-                            <optgroup label="AMER" class="custom-select-opt-group">
-
-
-                                <option value="" selected disabled>Job Title</option>
-
-                                %%[
-
-                                /* Populate Job Title Options
-                                ********************************/
-
-                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
-                                FOR @i = 1 TO RowCount(@jobList) DO
-                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                                NEXT @i
-
-                                ]%%
-
-                            </optgroup>
-
-                        </select>
-
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER_HALF") THEN]%%
-                <!------------- Job Title HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
-
-                            <optgroup label="AMER" class="custom-select-opt-group">
-
-                                <option value="" selected disabled>Job Title</option>
-
-                                %%[
-
-                                /* Populate Job Title Options
-                                ********************************/
-
-                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
-                                FOR @i = 1 TO RowCount(@jobList) DO
-                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                                NEXT @i
-
-                                ]%%
-
-                            </optgroup>
-
-                        </select>
-
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA") THEN]%%
-                <!------------- Job Title ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
-
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
-
-                            <optgroup label="EMEA" class="custom-select-opt-group">
-
-
-                                <option value="" selected disabled>Job Title</option>
-
-                                %%[
-
-                                /* Populate Job Title Options
-                                ********************************/
-
-                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
-                                FOR @i = 1 TO RowCount(@jobList) DO
-                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                                NEXT @i
-
-                                ]%%
-
-                            </optgroup>
-
-                        </select>
-
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA_HALF") THEN]%%
-                <!------------- Job Title HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
-
-                            <optgroup label="EMEA" class="custom-select-opt-group">
-
-                                <option value="" selected disabled>Job Title</option>
-
-                                %%[
-
-                                /* Populate Job Title Options
-                                ********************************/
-
-                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
-                                FOR @i = 1 TO RowCount(@jobList) DO
-                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                                NEXT @i
-
-                                ]%%
-
-                            </optgroup>
-
-                        </select>
-
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-                </div>
-                %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL") THEN]%%
@@ -2138,6 +1611,345 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="" class="custom-select-opt-group">
+
+                                <option value="" selected disabled>Job Title</option>
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+
+
+
+                <!-- On Country Change -->
+                %%[SET @jobList = LookupRows("JOB_REFERENCE", "Active", 1)]%%
+                <script>
+                    try {
+
+                        document.addEventListener('DOMContentLoaded', () => {
+
+                            // CONSTANTS
+                            let records = "%%=v(@jobList)=%%"
+                            console.log('records', records);
+
+                            // DOM ELEMENTS
+                            const countrySelect = document.getElementById('_country_code');
+                            const jobTitleSelect = document.getElementById('_job_title');
+
+                            // EVENT LISTENERS
+                            countrySelect.addEventListener('change', () => {
+
+
+
+
+                            }); //onChange
+
+
+
+                        }); //DOMContentLoaded
+
+
+                    } catch (e) {
+                        console.error(e.message);
+                    }
+                </script>
+
+
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL_HALF") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="APAC" class="custom-select-opt-group">
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="APAC" class="custom-select-opt-group">
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
+                <!------------- Job Title HALF ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="APAC" class="custom-select-opt-group">
+
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="AMER" class="custom-select-opt-group">
+
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER_HALF") THEN]%%
+                <!------------- Job Title HALF ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="AMER" class="custom-select-opt-group">
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="EMEA" class="custom-select-opt-group">
+
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA_HALF") THEN]%%
+                <!------------- Job Title HALF ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="EMEA" class="custom-select-opt-group">
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
                 %%[IF (@FORM_COMPONENT == "SCHOOL_NAME") THEN]%%
                 <!------------- School Name ----------------->
                 <div class="col-sm-12">
@@ -2478,3 +2290,165 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 </body>
 
 </html>
+
+
+<script runat="server">
+    if (Request.Method() != "POST") return;
+    try {
+
+
+        /*******************************
+        ----------- SECURITY -----------
+        ********************************/
+
+
+        // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+        // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+        // Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
+        // Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
+        // Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
+        // Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+
+
+        /************************* 
+        --------- PAYLOAD --------
+        **************************/
+
+
+        //initiate
+        var payload = {};
+
+        //retrieve data
+        payload.debug = Request.GetFormField("_debug");
+
+        payload.apac_cid = Request.GetFormField("_apac_cid");
+        payload.amer_cid = Request.GetFormField("_amer_cid");
+        payload.emea_cid = Request.GetFormField("_emea_cid");
+
+        payload.cid = Request.GetFormField("_cid");
+        payload.rid = Request.GetFormField("_rid");
+        payload.eid = Request.GetFormField("_eid");
+        payload.sid = Request.GetFormField("_sid");
+        payload.fid = Request.GetFormField("_fid");
+
+        payload.inputs = Request.GetFormField("_inputs");
+        payload.template = Request.GetFormField("_template");
+
+        payload.utm_source = Request.GetFormField("_utm_source");
+        payload.utm_medium = Request.GetFormField("_utm_medium");
+        payload.utm_campaign = Request.GetFormField("_utm_campaign");
+        payload.utm_content = Request.GetFormField("_utm_content");
+        payload.utm_term = Request.GetFormField("_utm_term");
+
+        payload.glcid = Request.GetFormField("_gclid");
+        payload.gtm_referrer = Request.GetFormField("_gtm_referrer");
+
+        payload.request_url = Request.GetFormField("_request_url");
+        payload.location_href = Request.GetFormField("_location_href");
+        payload.document_referrer = Request.GetFormField("_document_referrer");
+
+        payload.override_region = Request.GetFormField("_override_region");
+        payload.override_country_code = Request.GetFormField("_override_country_code");
+
+        payload.product_interest = Request.GetFormField("_product_interest");
+        payload.user_interest = Request.GetFormField("_user_interest");
+        payload.first_name = Request.GetFormField("_first_name");
+        payload.last_name = Request.GetFormField("_last_name");
+        payload.email_address = Request.GetFormField("_email_address");
+        payload.phone_number = Request.GetFormField("_phone_number");
+        payload.grade_level = Request.GetFormField("_grade_level");
+        payload.job_title = Request.GetFormField("_job_title");
+        payload.country_code = Request.GetFormField("_country_code");
+        payload.state_code = Request.GetFormField("_state_code");
+        payload.postcode_zipcode = Request.GetFormField("_postcode_zipcode");
+        payload.school_name = Request.GetFormField("_school_name");
+        payload.no_of_licences = Request.GetFormField("_no_of_licences");
+        payload.terms_and_conditions = Request.GetFormField("_terms_and_conditions");
+        payload.subscriber_opt_in = Request.GetFormField("_subscriber_opt_in");
+
+
+        /************************* 
+        ---------- DEBUG ---------
+        **************************/
+
+
+        //show debug info when ?debug=true
+        if (payload.debug) {
+            Write('=== DEBUG MODE ===')
+            Write('<br>')
+            Write('Payload: ' + Stringify(payload));
+            return;
+        }
+
+
+        /************************* 
+        --------- SUBMIT --------
+        **************************/
+
+
+        //push to queue
+        var queue = DataExtension.Init("REUSABLE_FORM_QUEUE");
+        queue.Rows.Add({
+            "submission_id": Platform.Function.GUID(),
+            "submission_name": payload.first_name + ' ' + payload.last_name,
+            "submission_email": payload.email_address,
+            "submission_url": payload.request_url,
+            "submission_data": Stringify(payload),
+            "submission_date": Datetime.SystemDateToLocalString()
+            // "queue_method": //the method used to upsert the salesforce lead [CREATE/UPDATE]
+            // "queue_record_id": //the saleforce recoordId of the lead (or contact) sync'd with salesforce
+            // "queue_campaign_member_id": //the saleforce campaign member id after lead is upserted to campaign
+            // "queue_error_message": //the error message set when record fails processing in pipeline
+            // "queue_completed_date": //a datetime set when the pipeline has run and the record has been processed
+        });
+
+
+
+        /************************************ 
+        --------- TRIGGER AUTOMATION --------
+        *************************************/
+
+        //triggers a script activity to run but waits and repeats if already running
+        var content = Platform.Function.ContentBlockByKey('ssjs-lib-wsproxy');
+        var proxy = new wsproxy();
+        var config = {
+            AUTOMATION_NAME: 'REUSABLE_FORM_PIPELINE',
+            NUMBER_OF_REPEATS: 3,
+            WAIT_MILLISECONDS: 5 * 60 * 1000 //5mins
+        }
+        proxy.triggerAutomationWait(config.AUTOMATION_NAME, config.NUMBER_OF_REPEATS, config.WAIT_MILLISECONDS)
+
+
+        /************************* 
+        -------- REDIRECT --------
+        **************************/
+
+
+        //navigate to redirect
+        if (payload.rid) {
+            paylaod.lookupRedirectData = Platform.Function.LookupRows('REDIRECT_REFERENCE', 'Id', payload.rid);
+            payload.redirect_url = payload.lookupRedirectData[0].Url;
+            Redirect(payload.redirect_url);
+        }
+
+
+        /************************* 
+        ------- ACKNOWLEDGE ------
+        **************************/
+
+
+        //otherwise, feedback
+        Write("<br>");
+        Write("<p>Thank you for submitting your information. We will be in contact with you shortly</p>");
+        Write("<br>");
+
+
+        /*******************************
+        ------------ ERROR -------------
+        ********************************/
+
+
+    } catch (error) {
+        Write("Error: " + Stringify(error.message));
+    }
+</script>
