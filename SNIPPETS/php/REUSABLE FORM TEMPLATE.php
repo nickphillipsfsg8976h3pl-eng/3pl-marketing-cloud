@@ -99,28 +99,28 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         'https://webform.my.3plearning.com/REUSABLE_FORM?template=test_states <br>',
         '<br>',
         '@example: Basic Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: TOF Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: BOF Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Quote Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: US Form Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Trial Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Info Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Demo Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_NAME,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '<br> ',
         '</div>'
@@ -378,7 +378,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "GRADE_LEVEL",
                 "JOB_TITLE",
                 "COUNTRY_NAME",
-                "STATE_PROVINCE_NAME",
+                "STATE_PROVINCE",
                 "POSTCODE_ZIPCODE",
                 "SCHOOL_NAME",
                 "NO_OF_LICENCES",
@@ -399,7 +399,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "GRADE_LEVEL_HALF",
                 "JOB_TITLE_HALF",
                 "COUNTRY_NAME_HALF",
-                "STATE_PROVINCE_NAME_HALF",
+                "STATE_PROVINCE_HALF",
                 "POSTCODE_ZIPCODE_HALF",
                 "SCHOOL_NAME_HALF",
                 "NO_OF_LICENCES_HALF",
@@ -412,18 +412,18 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             test_states: [
                 "COUNTRY_NAME",
                 "COUNTRY_NAME_HALF",
-                "STATE_PROVINCE_NAME",
-                "STATE_PROVINCE_NAME_HALF",
-                "STATE_PROVINCE_NAME_AU",
-                "STATE_PROVINCE_NAME_AU_HALF",
-                "STATE_PROVINCE_NAME_NZ",
-                "STATE_PROVINCE_NAME_NZ_HALF",
-                "STATE_PROVINCE_NAME_US",
-                "STATE_PROVINCE_NAME_US_HALF",
-                "STATE_PROVINCE_NAME_CA",
-                "STATE_PROVINCE_NAME_CA_HALF",
-                "STATE_PROVINCE_NAME_ZA",
-                "STATE_PROVINCE_NAME_ZA_HALF"
+                "STATE_PROVINCE",
+                "STATE_PROVINCE_HALF",
+                "STATE_PROVINCE_AU",
+                "STATE_PROVINCE_AU_HALF",
+                "STATE_PROVINCE_NZ",
+                "STATE_PROVINCE_NZ_HALF",
+                "STATE_PROVINCE_US",
+                "STATE_PROVINCE_US_HALF",
+                "STATE_PROVINCE_CA",
+                "STATE_PROVINCE_CA_HALF",
+                "STATE_PROVINCE_ZA",
+                "STATE_PROVINCE_ZA_HALF"
             ],
 
             //?template=job_titles
@@ -456,8 +456,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "JOB_TITLE_HALF",
                 "COUNTRY_NAME",
                 "COUNTRY_NAME_HALF",
-                "STATE_PROVINCE_NAME",
-                "STATE_PROVINCE_NAME_HALF",
+                "STATE_PROVINCE",
+                "STATE_PROVINCE_HALF",
                 "POSTCODE_ZIPCODE",
                 "POSTCODE_ZIPCODE_HALF",
                 "SCHOOL_NAME",
@@ -1071,6 +1071,84 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="APAC" class="custom-select-opt-group">
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL_HALF") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <optgroup label="APAC" class="custom-select-opt-group">
+
+                                <option value="" selected disabled>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC") THEN]%%
                 <!------------- Job Title ----------------->
                 <div class="col-sm-12">
@@ -1107,7 +1185,6 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                     </div>
                 </div>
-
                 %%[ENDIF]%%
 
 
@@ -1397,7 +1474,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE") THEN]%%
                 <!------------- State / Province Name ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1479,7 +1556,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_HALF") THEN]%%
                 <!------------- State / Province Name HALF----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1559,9 +1636,9 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                     }
                 </script>
                 %%[ENDIF]%%
+                B
 
-
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_US") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US") THEN]%%
                 <!------------- State / Province Name (US) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1602,7 +1679,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_US_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US_HALF") THEN]%%
                 <!------------- State / Province Name (US) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1643,7 +1720,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_CA") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA") THEN]%%
                 <!------------- State / Province Name (CA) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1684,7 +1761,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_CA_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA_HALF") THEN]%%
                 <!------------- State / Province Name (CA) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1725,7 +1802,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_AU") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU") THEN]%%
                 <!------------- State / Province Name (AU) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1766,7 +1843,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_AU_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU_HALF") THEN]%%
                 <!------------- State / Province Name (AU) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1807,7 +1884,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_NZ") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ") THEN]%%
                 <!------------- State / Province Name (NZ) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1848,7 +1925,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_NZ_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ_HALF") THEN]%%
                 <!------------- State / Province Name (NZ) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1889,7 +1966,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_ZA") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA") THEN]%%
                 <!------------- State / Province Name (ZA) ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1930,7 +2007,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NAME_ZA_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA_HALF") THEN]%%
                 <!------------- State / Province Name (ZA) HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
