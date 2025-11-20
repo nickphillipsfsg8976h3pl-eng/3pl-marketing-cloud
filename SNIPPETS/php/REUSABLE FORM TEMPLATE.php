@@ -24,7 +24,7 @@ implement full wsproxy/wrapped ampscript salesforce sync section
 
 run everything through cl-ai to simplify, fix errors, seek advice, etc
 
-test. test, test
+test. test, test ===> batte-test for all variatioons and 150 form planned rollout!!!!
 
 -->
 
@@ -1074,8 +1074,8 @@ test. test, test
                             ********************************/
 
                             SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                            FOR @i = 1 TO RowCount(@JOB_LIST) DO
-                            SET @jobTitle = Field(Row(@JOB_LIST, @i), "Job Title")
+                            FOR @i = 1 TO RowCount(@jobList) DO
+                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
                             OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                             NEXT @i
 
@@ -1109,8 +1109,8 @@ test. test, test
                             ********************************/
 
                             SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                            FOR @i = 1 TO RowCount(@JOB_LIST) DO
-                            SET @jobTitle = Field(Row(@JOB_LIST, @i), "Job Title")
+                            FOR @i = 1 TO RowCount(@jobList) DO
+                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
                             OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                             NEXT @i
 
