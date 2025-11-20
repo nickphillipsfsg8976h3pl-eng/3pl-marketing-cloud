@@ -99,28 +99,28 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         'https://webform.my.3plearning.com/REUSABLE_FORM?template=test_states <br>',
         '<br>',
         '@example: Basic Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: TOF Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_NAME,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: BOF Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Quote Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: US Form Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_NAME,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Trial Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Info Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Demo Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_NAME,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '<br> ',
         '</div>'
@@ -378,7 +378,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "GRADE_LEVEL",
                 "JOB_TITLE",
                 "COUNTRY_NAME",
-                "STATE_PROVINCE",
+                "STATE_PROVINCE_GLOBAL",
                 "POSTCODE_ZIPCODE",
                 "SCHOOL_NAME",
                 "NO_OF_LICENCES",
@@ -399,7 +399,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "GRADE_LEVEL_HALF",
                 "JOB_TITLE_HALF",
                 "COUNTRY_NAME_HALF",
-                "STATE_PROVINCE_HALF",
+                "STATE_PROVINCE_GLOBAL_HALF",
                 "POSTCODE_ZIPCODE_HALF",
                 "SCHOOL_NAME_HALF",
                 "NO_OF_LICENCES_HALF",
@@ -412,8 +412,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             test_states: [
                 "COUNTRY_NAME",
                 "COUNTRY_NAME_HALF",
-                "STATE_PROVINCE",
-                "STATE_PROVINCE_HALF",
+                "STATE_PROVINCE_GLOBAL",
+                "STATE_PROVINCE_GLOBAL_HALF",
                 "STATE_PROVINCE_AU",
                 "STATE_PROVINCE_AU_HALF",
                 "STATE_PROVINCE_NZ",
@@ -456,8 +456,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "JOB_TITLE_HALF",
                 "COUNTRY_NAME",
                 "COUNTRY_NAME_HALF",
-                "STATE_PROVINCE",
-                "STATE_PROVINCE_HALF",
+                "STATE_PROVINCE_GLOBAL",
+                "STATE_PROVINCE_GLOBAL_HALF",
                 "POSTCODE_ZIPCODE",
                 "POSTCODE_ZIPCODE_HALF",
                 "SCHOOL_NAME",
@@ -1474,7 +1474,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL") THEN]%%
                 <!------------- State / Province Name ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -1556,7 +1556,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL_HALF") THEN]%%
                 <!------------- State / Province Name HALF----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1636,7 +1636,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                     }
                 </script>
                 %%[ENDIF]%%
-                B
+
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US") THEN]%%
                 <!------------- State / Province Name (US) ----------------->
