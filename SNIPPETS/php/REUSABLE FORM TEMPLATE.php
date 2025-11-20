@@ -426,6 +426,16 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "STATE_PROVINCE_NAME_ZA_HALF"
             ],
 
+            //?template=job_titles
+            test_job_titles: [
+                "JOB_TITLE_APAC",
+                "JOB_TITLE_APAC_HALF",
+                "JOB_TITLE_AMER",
+                "JOB_TITLE_AMER_HALF",
+                "JOB_TITLE_EMEA",
+                "JOB_TITLE_EMEA_HALF",
+            ],
+
             //?template=test_all
             test_all: [
                 "PRODUCT_INTEREST",
@@ -475,7 +485,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
 
         // ADD ALL TEMPLATE COMPONENTS
-        if (congig.template) {
+        if (config.template) {
             var templateComponentList = config.TEMPLATES[config.template.toLowerCase()];
             config.FORM_COMPONENT_LIST = config.FORM_COMPONENT_LIST.concat(templateComponentList);
         } //if
@@ -1066,6 +1076,46 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
+                            <optgroup label="APAC" style="font-weight: normal; font-size: .8rem; color: rgba(0,0,0,.5);">
+
+                                <option value="" selected disabled hidden>Job Title</option>
+
+                                %%[
+
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
+                <!------------- Job Title HALF ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
                             <option value="" selected disabled>Job Title</option>
 
                             %%[
@@ -1090,7 +1140,42 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <option value="" selected disabled>Job Title</option>
+
+                            %%[
+
+                            /* Populate Job Title Options
+                            ********************************/
+
+                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
+                            FOR @i = 1 TO RowCount(@jobList) DO
+                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                            NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER_HALF") THEN]%%
                 <!------------- Job Title HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -1108,7 +1193,77 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             /* Populate Job Title Options
                             ********************************/
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
+                            FOR @i = 1 TO RowCount(@jobList) DO
+                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                            NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA") THEN]%%
+                <!------------- Job Title ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <option value="" selected disabled>Job Title</option>
+
+                            %%[
+
+                            /* Populate Job Title Options
+                            ********************************/
+
+                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
+                            FOR @i = 1 TO RowCount(@jobList) DO
+                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                            NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a job title</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA_HALF") THEN]%%
+                <!------------- Job Title HALF ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_job_title"
+                            name="_job_title"
+                            required>
+
+                            <option value="" selected disabled>Job Title</option>
+
+                            %%[
+
+                            /* Populate Job Title Options
+                            ********************************/
+
+                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
                             FOR @i = 1 TO RowCount(@jobList) DO
                             SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
                             OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
