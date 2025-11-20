@@ -598,6 +598,12 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             color: #495057c7;
             font-weight: 400;
         }
+
+        .custom-select-opt-group {
+            font-weight: normal;
+            font-size: .8rem;
+            color: rgba(0, 0, 0, .5);
+        }
     </style>
 
 
@@ -1076,9 +1082,9 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
-                            <optgroup label="APAC" style="font-weight: normal; font-size: .8rem; color: rgba(0,0,0,.5);">
+                            <optgroup label="APAC" class="custom-select-opt-group">
 
-                                <option value="" selected disabled hidden>Job Title</option>
+                                <option value="" selected disabled>Job Title</option>
 
                                 %%[
 
@@ -1116,20 +1122,25 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
-                            <option value="" selected disabled>Job Title</option>
+                            <optgroup label="APAC" class="custom-select-opt-group">
 
-                            %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                                <option value="" selected disabled>Job Title</option>
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                                %%[
 
-                            ]%%
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1151,20 +1162,25 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
-                            <option value="" selected disabled>Job Title</option>
+                            <optgroup label="AMER" class="custom-select-opt-group">
 
-                            %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                                <option value="" selected disabled>Job Title</option>
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                                %%[
 
-                            ]%%
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1186,20 +1202,24 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
-                            <option value="" selected disabled>Job Title</option>
+                            <optgroup label="AMER" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" selected disabled>Job Title</option>
 
-                            /* Populate Job Title Options
-                            ********************************/
+                                %%[
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                                /* Populate Job Title Options
+                                ********************************/
 
-                            ]%%
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1221,20 +1241,25 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
-                            <option value="" selected disabled>Job Title</option>
+                            <optgroup label="EMEA" class="custom-select-opt-group">
 
-                            %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                                <option value="" selected disabled>Job Title</option>
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                                %%[
 
-                            ]%%
+                                /* Populate Job Title Options
+                                ********************************/
+
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1256,20 +1281,24 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
-                            <option value="" selected disabled>Job Title</option>
+                            <optgroup label="EMEA" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" selected disabled>Job Title</option>
 
-                            /* Populate Job Title Options
-                            ********************************/
+                                %%[
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                                /* Populate Job Title Options
+                                ********************************/
 
-                            ]%%
+                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
+                                FOR @i = 1 TO RowCount(@jobList) DO
+                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                                NEXT @i
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1543,22 +1572,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>State (United States)</option>
+                            <optgroup label="United States" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>State</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1580,22 +1613,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>State (United States)</option>
+                            <optgroup label="United States" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>State</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1617,22 +1654,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>Province (Canada)</option>
+                            <optgroup label="Canada" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>Province</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1654,22 +1695,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>Province (Canada)</option>
+                            <optgroup label="Canada" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>Province</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1691,22 +1736,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>State (Australia)</option>
+                            <optgroup label="Australia" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>State</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1728,22 +1777,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>State (Australia)</option>
+                            <optgroup label="Australia" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>State</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1765,22 +1818,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>State (New Zealand)</option>
+                            <optgroup label="New Zealand" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>State</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1802,22 +1859,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>State (New Zealand)</option>
+                            <optgroup label="New Zealand" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>State</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            <optgroup>
 
                         </select>
 
@@ -1839,22 +1900,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>State (South Africa)</option>
+                            <optgroup label="South Africa" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>State</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
@@ -1876,22 +1941,26 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_state_code"
                             required>
 
-                            <option value="" disabled selected>State (South Africa)</option>
+                            <optgroup label="Canada" class="custom-select-opt-group">
 
-                            %%[
+                                <option value="" disabled selected>State</option>
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                                %%[
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                                /******************************
+                                POPULATE STATE/PROVINCE OPTIONS
+                                *******************************/
 
-                            ]%%
+                                SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
+                                FOR @i = 1 TO RowCount(@data) DO
+                                SET @option = Field(Row(@data, @i), "State Name")
+                                OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                                NEXT @i
+                                VAR @data, @option
+
+                                ]%%
+
+                            </optgroup>
 
                         </select>
 
