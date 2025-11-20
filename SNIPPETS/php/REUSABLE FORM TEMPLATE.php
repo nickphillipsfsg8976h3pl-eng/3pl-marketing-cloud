@@ -277,6 +277,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
             //?template=job_titles
             test_job_titles: [
+                "COUNTRY_GLOBAL",
+                "COUNTRY_GLOBAL_HALF",
                 "JOB_TITLE_GLOBAL",
                 "JOB_TITLE_GLOBAL_HALF",
                 "JOB_TITLE_APAC",
@@ -1630,56 +1632,29 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                     <!-- On Country Change -->
                     <script>
-                        try {
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const countrySelect = document.getElementById('_country_code');
+                            const jobTitleSelect = document.getElementById('_job_title');
 
-                            document.addEventListener('DOMContentLoaded', () => {
-
-                                // DOM ELEMENTS
-                                const countrySelect = document.getElementById('_country_code');
-                                const jobTitleSelect = document.getElementById('_job_title');
-
-                                // EVENT LISTENERS
-                                countrySelect.addEventListener('change', (event) => {
-
-                                    // get country code
-                                    const selectedOption = event.target.options[event.target.selectedIndex];
-                                    const selectedCountryCode = selectedOption.value;
-
-                                    console.log('selectedCountryCode', selectedCountryCode);
-
-                                    // get country region
-                                    const selectedRegion = countryRegionRecords.filter((i) => {
-                                        return i.CountryCode === selectedCountryCode;
-                                    })[0].Region;
-
-                                    console.log('selectedRegion', selectedRegion);
-
-                                    // get job titles
-                                    const jobTitles = jobTitleRecords.filter((i) => {
-                                        return i.Region === selectedRegion;
-                                    });
-
-                                    // reset values
-                                    jobTitleSelect.value = '';
-                                    jobTitleSelect.innerHTML = '';
-
-                                    // repopulate options
-                                    let html = '<option value="" disabled selected>Job Title</option>';
-                                    jobTitles.forEach(i => {
-                                        html += `<option value="${i.JobTitle}">${i.JobTitle}</option>`;
-                                    });
-
-                                    jobTitleSelect.innerHTML = html;
-
-                                }); //onChange
-
-
-                            }); //DOMContentLoaded
-
-
-                        } catch (e) {
-                            console.error(e.message);
-                        }
+                            countrySelect.addEventListener('change', (event) => {
+                                //get selected country code
+                                const selectedCountryCode = event.target.value;
+                                //get region
+                                const selectedRegion = countryRegionRecords.find(i => {
+                                    return i.CountryCode === selectedCountryCode
+                                }).Region;
+                                //filter
+                                const jobTitlesFiltered = jobTitleRecords.filter(i => i.Region === selectedRegion);
+                                //clear
+                                jobTitleSelect.innerHTML = '';
+                                //placeholder
+                                jobTitleSelect.innerHTML = '<option value="" disabled selected>Job Title</option>'
+                                //append
+                                jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
+                                    return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
+                                }).join('');
+                            });
+                        });
                     </script>
 
 
@@ -1698,7 +1673,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
-                            <option value="" selected disabled>Job Title</option>
+                            <option value="" selected disabled>Job Title (Please select a country)</option>
 
                         </select>
 
@@ -1727,57 +1702,31 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                     <!-- On Country Change -->
                     <script>
-                        try {
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const countrySelect = document.getElementById('_country_code');
+                            const jobTitleSelect = document.getElementById('_job_title');
 
-                            document.addEventListener('DOMContentLoaded', () => {
-
-                                // DOM ELEMENTS
-                                const countrySelect = document.getElementById('_country_code');
-                                const jobTitleSelect = document.getElementById('_job_title');
-
-                                // EVENT LISTENERS
-                                countrySelect.addEventListener('change', (event) => {
-
-                                    // get country code
-                                    const selectedOption = event.target.options[event.target.selectedIndex];
-                                    const selectedCountryCode = selectedOption.value;
-
-                                    console.log('selectedCountryCode', selectedCountryCode);
-
-                                    // get country region
-                                    const selectedRegion = countryRegionRecords.filter((i) => {
-                                        return i.CountryCode === selectedCountryCode;
-                                    })[0].Region;
-
-                                    console.log('selectedRegion', selectedRegion);
-
-                                    // get job titles
-                                    const jobTitles = jobTitleRecords.filter((i) => {
-                                        return i.Region === selectedRegion;
-                                    });
-
-                                    // reset values
-                                    jobTitleSelect.value = '';
-                                    jobTitleSelect.innerHTML = '';
-
-                                    // repopulate options
-                                    let html = '<option value="" disabled selected>Job Title</option>';
-                                    jobTitles.forEach(i => {
-                                        html += `<option value="${i.JobTitle}">${i.JobTitle}</option>`;
-                                    });
-
-                                    jobTitleSelect.innerHTML = html;
-
-                                }); //onChange
-
-
-                            }); //DOMContentLoaded
-
-
-                        } catch (e) {
-                            console.error(e.message);
-                        }
+                            countrySelect.addEventListener('change', (event) => {
+                                //get selected country code
+                                const selectedCountryCode = event.target.value;
+                                //get region
+                                const selectedRegion = countryRegionRecords.find(i => {
+                                    return i.CountryCode === selectedCountryCode
+                                }).Region;
+                                //filter
+                                const jobTitlesFiltered = jobTitleRecords.filter(i => i.Region === selectedRegion);
+                                //clear
+                                jobTitleSelect.innerHTML = '';
+                                //placeholder
+                                jobTitleSelect.innerHTML = '<option value="" disabled selected>Job Title</option>'
+                                //append
+                                jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
+                                    return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
+                                }).join('');
+                            });
+                        });
                     </script>
+
 
                 </div>
                 %%[ENDIF]%%
