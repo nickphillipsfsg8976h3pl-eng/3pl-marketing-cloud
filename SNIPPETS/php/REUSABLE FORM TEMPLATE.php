@@ -175,7 +175,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         config.utm_content = Request.GetQueryStringParameter("utm_content");
         config.utm_term = Request.GetQueryStringParameter("utm_term");
 
-        config.utm_term = Request.GetQueryStringParameter("gclid");
+        config.gclid = Request.GetQueryStringParameter("gclid");
         config.gtm_referrer = Request.GetQueryStringParameter("gtm_referrer");
 
         config.override_region = Request.GetQueryStringParameter("override_region");
@@ -561,7 +561,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%=IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_AU") THEN]%%
+                %%[IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_AU") THEN]%%
                 <input type="hidden" name="_override_country_code" value="%%=v(@override_country_code)=%%">
                 %%[ENDIF]%%
 
@@ -2452,7 +2452,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
         //navigate to redirect
         if (payload.rid) {
-            paylaod.lookupRedirectData = Platform.Function.LookupRows('REDIRECT_REFERENCE', 'Id', payload.rid);
+            payload.lookupRedirectData = Platform.Function.LookupRows('REDIRECT_REFERENCE', 'Id', payload.rid);
             payload.redirect_url = payload.lookupRedirectData[0].Url;
             Redirect(payload.redirect_url);
         }
