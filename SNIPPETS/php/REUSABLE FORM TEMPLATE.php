@@ -246,7 +246,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         var content = Platform.Function.ContentBlockByKey('ssjs-lib-wsproxy');
         var proxy = new wsproxy();
         var config = {
-            AUTOMATION_NAME: 'REUSABLE_PIPELINE_AUTOMATION',
+            AUTOMATION_NAME: 'REUSABLE_FORM_PIPELINE',
             NUMBER_OF_REPEATS: 3,
             WAIT_MILLISECONDS: 5 * 60 * 1000 //5mins
         }
@@ -398,7 +398,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "PHONE_NUMBER_HALF",
                 "GRADE_LEVEL_HALF",
                 "JOB_TITLE_HALF",
-                "COUNTRY_NAME_HALF",
+                "COUNTRY_GLOBAL_HALF",
                 "STATE_PROVINCE_GLOBAL_HALF",
                 "POSTCODE_ZIPCODE_HALF",
                 "SCHOOL_NAME_HALF",
@@ -411,7 +411,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             //?template=test_states
             test_states: [
                 "COUNTRY_GLOBAL",
-                "COUNTRY_NAME_HALF",
+                "COUNTRY_GLOBAL_HALF",
                 "STATE_PROVINCE_GLOBAL",
                 "STATE_PROVINCE_GLOBAL_HALF",
                 "STATE_PROVINCE_AU",
@@ -455,7 +455,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "JOB_TITLE",
                 "JOB_TITLE_HALF",
                 "COUNTRY_GLOBAL",
-                "COUNTRY_NAME_HALF",
+                "COUNTRY_GLOBAL_HALF",
                 "STATE_PROVINCE_GLOBAL",
                 "STATE_PROVINCE_GLOBAL_HALF",
                 "POSTCODE_ZIPCODE",
@@ -1430,7 +1430,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_NAME_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL_HALF") THEN]%%
                 <!------------- Country Name HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
