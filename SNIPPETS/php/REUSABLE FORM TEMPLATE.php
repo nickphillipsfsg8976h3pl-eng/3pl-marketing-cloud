@@ -257,6 +257,18 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "SUBMIT_BUTTON"
             ],
 
+            //?template=test_countries
+            test_countries: [
+                "COUNTRY_GLOBAL",
+                "COUNTRY_GLOBAL_HALF",
+                "COUNTRY_APAC",
+                "COUNTRY_APAC_HALF",
+                "COUNTRY_AMER",
+                "COUNTRY_AMER_HALF",
+                "COUNTRY_EMEA",
+                "COUNTRY_EMEA_HALF",
+            ],
+
             //?template=test_states
             test_states: [
                 "COUNTRY_GLOBAL",
@@ -927,7 +939,6 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL") THEN]%%
                 <!------------- Country Name ----------------->
                 <div class="col-sm-12">
@@ -943,10 +954,10 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                             %%[
 
-                            /* Populate Country Options
+                            /* POPULATE COUNTRY OPTIONS
                             ******************************/
 
-                            SET @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                            SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
                             FOR @i = 1 to RowCount(@Countries_Main) Do
                             SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
                             SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
@@ -955,12 +966,13 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                             OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                            SET @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
+                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
                             FOR @i = 1 to RowCount(@Countries_All) Do
                             SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
                             SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
                             OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
                             NEXT @i
+
                             ]%%
 
                         </select>
@@ -987,10 +999,10 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                             %%[
 
-                            /* Populate Country Options
+                            /* POPULATE COUNTRY OPTIONS
                             ******************************/
 
-                            SET @Countries_Main = LookupOrderedRows("Country_DE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                            SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
                             FOR @i = 1 to RowCount(@Countries_Main) Do
                             SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
                             SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
@@ -999,12 +1011,229 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                             OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                            SET @Countries_All = LookupOrderedRows("Country_DE", 0, "CountryName asc", "Active", "True")
+                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
                             FOR @i = 1 to RowCount(@Countries_All) Do
                             SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
                             SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
                             OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
                             NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a country</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "COUNTRY_APAC") THEN]%%
+                <!------------- Country Name ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_country_code"
+                            name="_country_code"
+                            required>
+
+                            <option value="" selected disabled>Select Country</option>
+
+                            %%[
+
+                            /* POPULATE COUNTRY OPTIONS
+                            ******************************/
+
+                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "APAC")
+                            FOR @i = 1 to RowCount(@Countries_All) Do
+                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                            NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a country</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "COUNTRY_APAC_HALF") THEN]%%
+                <!------------- Country Name HALF ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_country_code"
+                            name="_country_code"
+                            required>
+
+                            <option value="" selected disabled>Select Country</option>
+
+                            %%[
+
+                            /* POPULATE COUNTRY OPTIONS
+                            ******************************/
+
+                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "APAC")
+                            FOR @i = 1 to RowCount(@Countries_All) Do
+                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                            NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a country</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "COUNTRY_AMER") THEN]%%
+                <!------------- Country Name ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_country_code"
+                            name="_country_code"
+                            required>
+
+                            <option value="" selected disabled>Select Country</option>
+
+                            %%[
+
+                            /* POPULATE COUNTRY OPTIONS
+                            ******************************/
+
+                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "AMER")
+                            FOR @i = 1 to RowCount(@Countries_All) Do
+                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                            NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a country</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "COUNTRY_AMER_HALF") THEN]%%
+                <!------------- Country Name HALF ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_country_code"
+                            name="_country_code"
+                            required>
+
+                            <option value="" selected disabled>Select Country</option>
+
+                            %%[
+
+                            /* POPULATE COUNTRY OPTIONS
+                            ******************************/
+
+                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "AMER")
+                            FOR @i = 1 to RowCount(@Countries_All) Do
+                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                            NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a country</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA") THEN]%%
+                <!------------- Country Name ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_country_code"
+                            name="_country_code"
+                            required>
+
+                            <option value="" selected disabled>Select Country</option>
+
+                            %%[
+
+                            /* POPULATE COUNTRY OPTIONS
+                            ******************************/
+
+                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "EMEA")
+                            FOR @i = 1 to RowCount(@Countries_All) Do
+                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                            NEXT @i
+
+                            ]%%
+
+                        </select>
+
+                        <div class="invalid-feedback">Please select a country</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA_HALF") THEN]%%
+                <!------------- Country Name HALF ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control custom-reset-select-text"
+                            id="_country_code"
+                            name="_country_code"
+                            required>
+
+                            <option value="" selected disabled>Select Country</option>
+
+                            %%[
+
+                            /* POPULATE COUNTRY OPTIONS
+                            ******************************/
+
+                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "EMEA")
+                            FOR @i = 1 to RowCount(@Countries_All) Do
+                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                            NEXT @i
+
                             ]%%
 
                         </select>
