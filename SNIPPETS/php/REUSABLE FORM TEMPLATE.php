@@ -140,11 +140,28 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         ********************************/
 
 
+        // Prevents the page from being iframed into another site.
+        // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
         // Platform.Response.SetResponseHeader("X-Frame-Options","Deny");
+
+        // Prevents loading of malicious content.
+        // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
         // Platform.Response.SetResponseHeader("Content-Security-Policy","default-src 'self'");
+
+        // Prevents man-in-the-middle attacks by ensuring traffic is HTTPS.
+        // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
         Platform.Response.SetResponseHeader("Strict-Transport-Security", "max-age=200");
-        Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
+
+        // Prevents MIME sniffing attacks.
+        // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
         Platform.Response.SetResponseHeader("X-Content-Type-Options", "nosniff");
+
+        // Prevents cross-site scripting attacks.
+        // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection
+        Platform.Response.SetResponseHeader("X-XSS-Protection", "1; mode=block");
+
+        // Prevents referrer leakage.
+        // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
         Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
 
 
