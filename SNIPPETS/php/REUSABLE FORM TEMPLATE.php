@@ -8,6 +8,8 @@
 
 TODO: 
 
+Add is active flag in search criteria for all lookups to they can be centrally managed
+
 Automatic redirect when a person enters “Parent” or “student” into 
 the Job Title form field, to the appropriate B2C landing page
 - What is the landing page based or region or query param
