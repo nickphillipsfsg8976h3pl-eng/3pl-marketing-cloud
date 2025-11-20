@@ -929,7 +929,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             FOR @i = 1 to RowCount(@Countries_Main) Do
                             SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
                             SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
+                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
                             NEXT @i
 
                             OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
@@ -938,7 +938,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             FOR @i = 1 to RowCount(@Countries_All) Do
                             SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
                             SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
+                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
                             NEXT @i
                             ]%%
 
@@ -1054,12 +1054,12 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             stateProvinceSelect.innerHTML = '';
 
                             const placeholderText = countryCode === "CA" ? 'Province' : 'State';
-                            const placeholderOption = document.createElement('option');
-                            placeholderOption.value = '';
-                            placeholderOption.disabled = true;
-                            placeholderOption.selected = true;
-                            placeholderOption.textContent = placeholderText;
-                            stateProvinceSelect.appendChild(placeholderOption);
+                            const option = document.createElement('option');
+                            option.value = '';
+                            option.disabled = true;
+                            option.selected = true;
+                            option.textContent = placeholderText;
+                            stateProvinceSelect.appendChild(option);
 
                             // Populate options
                             countryStateData.forEach((state) => {
@@ -1136,12 +1136,12 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             stateProvinceSelect.innerHTML = '';
 
                             const placeholderText = countryCode === "CA" ? 'Province' : 'State';
-                            const placeholderOption = document.createElement('option');
-                            placeholderOption.value = '';
-                            placeholderOption.disabled = true;
-                            placeholderOption.selected = true;
-                            placeholderOption.textContent = placeholderText;
-                            stateProvinceSelect.appendChild(placeholderOption);
+                            const option = document.createElement('option');
+                            option.value = '';
+                            option.disabled = true;
+                            option.selected = true;
+                            option.textContent = placeholderText;
+                            stateProvinceSelect.appendChild(option);
 
                             // Populate options
                             countryStateData.forEach((state) => {
@@ -1622,7 +1622,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             name="_job_title"
                             required>
 
-                            <optgroup label="" class="custom-select-opt-group">
+                            <optgroup label="Please select a country first" class="custom-select-opt-group">
 
                                 <option value="" selected disabled>Job Title</option>
 
@@ -1636,30 +1636,73 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 </div>
 
 
+                <script runat="server">
+                    /**
+                     * GET ALL COUNTRY RECORDS
+                     *****************************/
+                    var countryRegionRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
+                    Write('<script>let countryRegionRecords = ' + Stringify(countryRegionRecords) + '</' + 'script>');
+                </script>
+
+
+                <script runat="server">
+                    /**
+                     * GET ALL JOB TITLE RECORDS
+                     *****************************/
+                    var jobTitleRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
+                    Write('<script>let jobTitleRecords = ' + Stringify(jobTitleRecords) + '</' + 'script>');
+                </script>
+
 
                 <!-- On Country Change -->
-                %%[SET @jobList = LookupRows("JOB_REFERENCE", "Active", 1)]%%
                 <script>
                     try {
 
                         document.addEventListener('DOMContentLoaded', () => {
 
-                            // CONSTANTS
-                            let records = "%%=v(@jobList)=%%"
-                            console.log('records', records);
-
                             // DOM ELEMENTS
                             const countrySelect = document.getElementById('_country_code');
                             const jobTitleSelect = document.getElementById('_job_title');
+                            const jobTitleOptGroup = jobTitleSelect.getElementsByTagName('optgroup')[0];
 
                             // EVENT LISTENERS
-                            countrySelect.addEventListener('change', () => {
+                            countrySelect.addEventListener('change', (event) => {
 
+                                // get country code
+                                const selectedOption = event.target.options[event.target.selectedIndex];
+                                const selectedCountryCode = selectedOption.value;
 
+                                console.log('selectedCountryCode', selectedCountryCode);
 
+                                // get country region
+                                const selectedRegion = countryRegionRecords.filter((i) => {
+                                    return i.CountryCode === selectedCountryCode;
+                                })[0].Region;
+
+                                console.log('selectedRegion', selectedRegion);
+
+                                // get job titles
+                                const jobTitles = jobTitleRecords.filter((i) => {
+                                    return i.Region === selectedRegion;
+                                });
+
+                                // reset values
+                                jobTitleSelect.value = '';
+                                jobTitleSelect.innerHTML = '';
+
+                                // repopulate options
+                                let html = `
+                                <optgroup label="${selectedRegion}" class="custom-select-opt-group">
+                                <option value="" disabled selected>Job Title</option>
+                                `;
+                                jobTitles.forEach(i => {
+                                    html += `<option value="${i.JobTitle}">${i.JobTitle}</option>`;
+                                });
+                                html += `</optgroup>`;
+
+                                jobTitleSelect.innerHTML = html;
 
                             }); //onChange
-
 
 
                         }); //DOMContentLoaded
