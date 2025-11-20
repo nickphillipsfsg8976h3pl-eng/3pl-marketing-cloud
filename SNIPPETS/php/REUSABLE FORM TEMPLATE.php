@@ -90,37 +90,37 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         '------------------------------------------- <br>',
         '<br>',
         '@example: Test <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?template=test <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test <br>',
         '<br>',
         '@example: Test Columns <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?template=test_columns <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test_columns <br>',
         '<br>',
         '@example: Test States <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?template=test_states <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test_states <br>',
         '<br>',
         '@example: Basic Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: TOF Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: BOF Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Quote Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: US Form Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Trial Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Info Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '@example: Demo Template <br>',
-        'https://webform.my.3plearning.com/REUSABLE_FORM?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+        'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
         '<br>',
         '<br> ',
         '</div>'
@@ -183,6 +183,9 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         payload.request_url = Request.GetFormField("_request_url");
         payload.location_href = Request.GetFormField("_location_href");
         payload.document_referrer = Request.GetFormField("_document_referrer");
+
+        payload.override_region = Request.GetFormField("_override_region");
+        payload.override_country_code = Request.GetFormField("_override_country_code");
 
         payload.product_interest = Request.GetFormField("_product_interest");
         payload.user_interest = Request.GetFormField("_user_interest");
@@ -337,6 +340,9 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         config.utm_term = Request.GetQueryStringParameter("gclid");
         config.gtm_referrer = Request.GetQueryStringParameter("gtm_referrer");
 
+        config.override_region = Request.GetQueryStringParameter("override_region");
+        config.override_country_code = Request.GetQueryStringParameter("override_country_code");
+
 
         /*******************************
          ------ ADDITIONAL VALUES ------
@@ -354,18 +360,6 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
         config.TEMPLATES = {
 
-            //?template=test_overrides
-            test_overrides: [
-                "OVERRIDE_REGION_APAC",
-                "OVERRIDE_REGION_AMER",
-                "OVERRIDE_REGION_EMEA",
-                "OVERRIDE_COUNTRY_CODE_AU",
-                "OVERRIDE_COUNTRY_CODE_NZ",
-                "OVERRIDE_COUNTRY_CODE_US",
-                "OVERRIDE_COUNTRY_CODE_CA",
-                "OVERRIDE_COUNTRY_CODE_UK",
-                "OVERRIDE_COUNTRY_CODE_ZA"
-            ],
 
             //?template=test_full
             test_full: [
@@ -625,7 +619,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         method="POST">
 
 
-        <!------------- HIDDEN (Static) ----------------->
+        <!------------- HIDDEN ----------------->
 
         <div>
 
@@ -636,6 +630,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             <input type="hidden" name="_apac_cid" value="%%=v(@apac_cid)=%%">
             <input type="hidden" name="_amer_cid" value="%%=v(@amer_cid)=%%">
             <input type="hidden" name="_emea_cid" value="%%=v(@emea_cid)=%%">
+
             <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
             <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
             <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
@@ -657,6 +652,10 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
             <input type="hidden" name="_location_href">
             <input type="hidden" name="_document_referrer">
+
+            <input type="hidden" name="_override_region" value="%%=v(@override_region)=%%">
+            <input type="hidden" name="_override_country_code" value="%%=v(@override_country_code)=%%">
+
 
 
             <!-- Assign client side location and referrer urls -->
@@ -706,9 +705,9 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
 
                 %%[
-                /***********************************
+                /************************************
                 START LOOPING OVER RENDER COMPONENTS
-                ************************************/
+                *************************************/
                 SET @LENGTH = ROWCOUNT(@FORM_COMPONENT_LIST)
                 FOR @index = 1 TO @LENGTH DO
                 SET @FORM_COMPONENT = ROW(@FORM_COMPONENT_LIST, @index)
@@ -717,19 +716,17 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                 <!-- HIDDEN (Overrides) -->
 
-                %%[IF(@FORM_COMPONENT == "OVERRIDE_REGION_APAC") THEN]%%<input type="hidden" name="override_region" value="APAC">%%[ENDIF]%%
-                %%[IF(@FORM_COMPONENT == "OVERRIDE_REGION_AMER") THEN]%%<input type="hidden" name="override_region" value="AMER">%%[ENDIF]%%
-                %%[IF(@FORM_COMPONENT == "OVERRIDE_REGION_EMEA") THEN]%%<input type="hidden" name="override_region" value="EMEA">%%[ENDIF]%%
-
-                %%=IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_AU") THEN]%%<input type="hidden" name="override_country_code" value="AU">%%[ENDIF]%%
-                %%=IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_NZ") THEN]%%<input type="hidden" name="override_country_code" value="NZ">%%[ENDIF]%%
-                %%=IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_US") THEN]%%<input type="hidden" name="override_country_code" value="US">%%[ENDIF]%%
-                %%=IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_CA") THEN]%%<input type="hidden" name="override_country_code" value="CA">%%[ENDIF]%%
-                %%=IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_UK") THEN]%%<input type="hidden" name="override_country_code" value="UK">%%[ENDIF]%%
-                %%=IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_ZA") THEN]%%<input type="hidden" name="override_country_code" value="ZA">%%[ENDIF]%%
+                %%[IF(@FORM_COMPONENT == "OVERRIDE_REGION_APAC") THEN]%%
+                <input type="hidden" name="_override_region" value="%%=v(@override_region)=%%">
+                %%[ENDIF]%%
 
 
-                <!-- FIEDS -->
+                %%=IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_AU") THEN]%%
+                <input type="hidden" name="_override_country_code" value="%%=v(@override_country_code)=%%">
+                %%[ENDIF]%%
+
+
+                <!-- FILEDS -->
 
 
                 %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST") THEN]%%
@@ -1086,18 +1083,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                                 <option value="" selected disabled>Job Title</option>
 
-                                %%[
-
-                                /* Populate Job Title Options
-                                ********************************/
-
-                                SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                                FOR @i = 1 TO RowCount(@jobList) DO
-                                SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                                OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                                NEXT @i
-
-                                ]%%
+                                //
 
                             </optgroup>
 
@@ -1107,6 +1093,68 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                     </div>
                 </div>
+
+
+                <!-- On Country Change -->
+                <script>
+                    try {
+
+                        // CONSTANTS
+                        let statesData;
+
+                        // DOM ELEMENTS
+                        const countrySelect = document.getElementById('_country_code');
+                        const stateProvinceSelect = document.getElementById('_state_code');
+
+                        // EVENTS
+                        document.addEventListener('DOMContentLoaded', getStatesData);
+                        countrySelect.addEventListener('change', handleCountryChange);
+
+                        // HANDLERS
+                        function getStatesData() {
+                            const getStatesApi = "/getStates";
+
+                            fetch(getStatesApi)
+                                .then(response => response.json())
+                                .then(data => {
+                                    statesData = data;
+                                })
+                                .catch(error => console.error(error));
+                        }
+
+                        function handleCountryChange(e) {
+                            // Choose states
+                            const selectedOption = e.target.options[e.target.selectedIndex];
+                            const countryCode = selectedOption.dataset.countrycode;
+                            const countryStateData = statesData.filter((option) => option["CountryCode"] === countryCode);
+
+                            // Reset options
+                            stateProvinceSelect.value = '';
+                            stateProvinceSelect.innerHTML = '';
+
+                            const placeholderText = countryCode === "CA" ? 'Province' : 'State';
+                            const placeholderOption = document.createElement('option');
+                            placeholderOption.value = '';
+                            placeholderOption.disabled = true;
+                            placeholderOption.selected = true;
+                            placeholderOption.textContent = placeholderText;
+                            stateProvinceSelect.appendChild(placeholderOption);
+
+                            // Populate options
+                            countryStateData.forEach((state) => {
+                                const option = document.createElement('option');
+                                option.value = state['StateCode'];
+                                option.textContent = state['StateName'];
+                                stateProvinceSelect.appendChild(option);
+                            });
+                        }
+
+                    } catch (e) {
+                        console.error(e.message);
+                    }
+                </script>
+
+
                 %%[ENDIF]%%
 
 

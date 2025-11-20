@@ -178,7 +178,7 @@
             // if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
-            QUEUED[i].record = Platform.Function.ParseJSON(QUEUED[0].submission_data);
+            QUEUED[i].payload = Platform.Function.ParseJSON(QUEUED[0].submission_data);
 
 
         } //for(i)nextItemInQueue
@@ -208,8 +208,8 @@
 
             //INVALID_EMAIL_FORMAT
             if (
-                QUEUED[i].record.email_address &&
-                !Platform.Function.isEmailAddress(record.email_address)
+                QUEUED[i].payload.email_address &&
+                !Platform.Function.isEmailAddress(QUEUED[i].payload.email_address)
             ) {
                 QUEUED[i].queue_error_message = 'INVALID_EMAIL_FORMAT: email_address is missing or not valid';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
@@ -219,8 +219,8 @@
 
             //STUDENT_JOB_TITLE
             if (
-                QUEUED[i].record.job_title &&
-                QUEUED[i].record.job_title.toLowerCase().indexOf('student') !== -1
+                QUEUED[i].payload.job_title &&
+                QUEUED[i].payload.job_title.toLowerCase().indexOf('student') !== -1
             ) {
                 QUEUED[i].queue_error_message = 'STUDENT_JOB_TITLE: job_title contains the word "student"';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
@@ -230,8 +230,8 @@
 
             //PARENT_JOB_TITLE
             if (
-                QUEUED[i].record.job_title &&
-                QUEUED[i].record.job_title.toLowerCase().indexOf('parent') !== -1
+                QUEUED[i].payload.job_title &&
+                QUEUED[i].payload.job_title.toLowerCase().indexOf('parent') !== -1
             ) {
                 QUEUED[i].queue_error_message = 'PARENT_JOB_TITLE: job_title contains the word "parent"';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
@@ -241,8 +241,8 @@
 
             //STUDENT_EMAIL_DOMAIN
             if (
-                QUEUED[i].record.email_address &&
-                QUEUED[i].record.email_address.toLowerCase().indexOf('student') !== -1
+                QUEUED[i].payload.email_address &&
+                QUEUED[i].payload.email_address.toLowerCase().indexOf('student') !== -1
             ) {
                 QUEUED[i].queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
@@ -252,8 +252,8 @@
 
             //BLOCKED_EMAIL_ADDRESS
             if (
-                QUEUED[i].record.email_address &&
-                Platform.Function.Lookup('BLOCKED_EMAIL_REFERENCE', 'Name', 'EmailAddress', QUEUED[i].record.email_address.toLowerCase())
+                QUEUED[i].payload.email_address &&
+                Platform.Function.Lookup('BLOCKED_EMAIL_REFERENCE', 'Name', 'EmailAddress', QUEUED[i].payload.email_address.toLowerCase())
             ) {
                 QUEUED[i].queue_error_message = 'BLOCKED_EMAIL_ADDRESS: email_address is blacklisted';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
@@ -263,8 +263,8 @@
 
             //SANCTIONED_COUNTRY
             if (
-                QUEUED[i].record.country_code &&
-                Platform.Function.Lookup('COUNTRY_REFERENCE', 'IsSanctionedCountry', 'CountryCode', QUEUED[i].record.country_code.toLowerCase())
+                QUEUED[i].payload.country_code &&
+                Platform.Function.Lookup('COUNTRY_REFERENCE', 'IsSanctionedCountry', 'CountryCode', QUEUED[i].payload.country_code.toLowerCase())
             ) {
                 QUEUED[i].queue_error_message = 'SANCTIONED_COUNTRY: country is sanctioned, we are unable to provide services';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
@@ -274,8 +274,8 @@
 
             //RESTRICTED_COUNTRY
             if (
-                QUEUED[i].record.country_code &&
-                Platform.Function.Lookup('COUNTRY_REFERENCE', 'IsCountryRestricted', 'CountryCode', QUEUED[i].record.country_code.toLowerCase())
+                QUEUED[i].payload.country_code &&
+                Platform.Function.Lookup('COUNTRY_REFERENCE', 'IsCountryRestricted', 'CountryCode', QUEUED[i].payload.country_code.toLowerCase())
             ) {
                 QUEUED[i].queue_error_message = 'RESTRICTED_COUNTRY: country is restricted, we are unable to provide services';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
@@ -286,12 +286,12 @@
             //PROFANITY_DETECTED
             if (
                 (
-                    QUEUED[i].record.first_name &&
-                    Platform.Function.Lookup('PROFANITY_REFERENCE', 'Name', 'Name', QUEUED[i].record.first_name.toLowerCase())
+                    QUEUED[i].payload.first_name &&
+                    Platform.Function.Lookup('PROFANITY_REFERENCE', 'Name', 'Name', QUEUED[i].payload.first_name.toLowerCase())
                 ) ||
                 (
-                    QUEUED[i].record.last_name &&
-                    Platform.Function.Lookup('PROFANITY_REFERENCE', 'Name', 'Name', QUEUED[i].record.last_name.toLowerCase())
+                    QUEUED[i].payload.last_name &&
+                    Platform.Function.Lookup('PROFANITY_REFERENCE', 'Name', 'Name', QUEUED[i].payload.last_name.toLowerCase())
                 )
             ) {
                 QUEUED[i].queue_error_message = 'PROFANITY_DETECTED: swear words were equal to the first_name or last_name';
@@ -330,9 +330,9 @@
             // @description: Country code is required for region, country_name & state_name assignments.
             // Its required in most forms but can be forced by the override_country_code hidden field.
             if (
-                QUEUED[i].record.override_country_code
+                QUEUED[i].payload.override_country_code
             ) {
-                QUEUED[i].record.country_code = QUEUED[i].record.override_country_code;
+                QUEUED[i].payload.country_code = QUEUED[i].payload.override_country_code;
             }
 
 
@@ -340,38 +340,38 @@
             // @description: APAC, AMER, or EMEA region selection is assign based on the country code 
             // if provided otherwise a value can be forced by the override_region hidden field.
             if (
-                QUEUED[i].record.override_region ||
-                QUEUED[i].record.country_code
+                QUEUED[i].payload.override_region ||
+                QUEUED[i].payload.country_code
             ) {
-                QUEUED[i].record.region = QUEUED[i].record.override_region ?
-                    QUEUED[i].record.override_region :
-                    Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].record.country_code])[0].Region;
+                QUEUED[i].payload.region = QUEUED[i].payload.override_region ?
+                    QUEUED[i].payload.override_region :
+                    Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].payload.country_code])[0].Region;
             }
 
             // COUNTRY NAME
             if (
-                QUEUED[i].record.country_code
+                QUEUED[i].payload.country_code
             ) {
-                var country = Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].record.country_code])[0];
+                var country = Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].payload.country_code])[0];
                 if (country) {
-                    QUEUED[i].record.country_name = country.CountryName;
+                    QUEUED[i].payload.country_name = country.CountryName;
                 }
             }
 
             // STATE NAME
             if (
-                QUEUED[i].record.country_code &&
-                QUEUED[i].record.state_code
+                QUEUED[i].payload.country_code &&
+                QUEUED[i].payload.state_code
             ) {
-                var state = Platform.Function.LookupRows('STATE_REFERENCE', ['StateCode', 'CountryCode'], [QUEUED[i].record.country_code, QUEUED[i].record.state_code])[0];
+                var state = Platform.Function.LookupRows('STATE_REFERENCE', ['StateCode', 'CountryCode'], [QUEUED[i].payload.country_code, QUEUED[i].payload.state_code])[0];
                 if (state) {
-                    QUEUED[i].record.state_name = state.Name;
+                    QUEUED[i].payload.state_name = state.Name;
                 }
             }
 
             // TERRITORY
             if (
-                QUEUED[i].record.region
+                QUEUED[i].payload.region
             ) {
                 var regionToTerritoryMapping = {
                     "EMEA": "EME",
@@ -379,7 +379,7 @@
                     "AMER": "AMER",
                     "CANADA": "AMER"
                 };
-                QUEUED[i].record.territory = regionToTerritoryMapping[QUEUED[i].record.region];
+                QUEUED[i].payload.territory = regionToTerritoryMapping[QUEUED[i].payload.region];
             }
 
             // JOB FUNCTION
@@ -390,12 +390,12 @@
             // default to "Other" and then the sales team will have to follow up to correct when speaking to the customer.
             var job;
             if (
-                QUEUED[i].record.region &&
-                QUEUED[i].record.job_title
+                QUEUED[i].payload.region &&
+                QUEUED[i].payload.job_title
             ) {
-                job = Platform.Function.LookupRows('JOB_REFERENCE', ['Region', 'JobTitle'], [QUEUED[i].record.region, QUEUED[i].record.job_title])[0];
+                job = Platform.Function.LookupRows('JOB_REFERENCE', ['Region', 'JobTitle'], [QUEUED[i].payload.region, QUEUED[i].payload.job_title])[0];
             }
-            QUEUED[i].record.job_function = job && job.Function ?
+            QUEUED[i].payload.job_function = job && job.Function ?
                 job.Function :
                 "Other";
 
@@ -406,30 +406,30 @@
             // If the form is global the region specific campaign ids should be provided otherwise along
             // with a region, otherwise the default cid value will be used.
             if (
-                QUEUED[i].record.apac_cid ||
-                QUEUED[i].record.amer_cid ||
-                QUEUED[i].record.emea_cid ||
-                QUEUED[i].record.cid
+                QUEUED[i].payload.apac_cid ||
+                QUEUED[i].payload.amer_cid ||
+                QUEUED[i].payload.emea_cid ||
+                QUEUED[i].payload.cid
             ) {
                 var regionToCidMapping = {
-                    "APAC": QUEUED[i].record.apac_cid,
-                    "AMER": QUEUED[i].record.amer_cid,
-                    "EMEA": QUEUED[i].record.emea_cid,
-                    "DEFAULT": QUEUED[i].record.cid
+                    "APAC": QUEUED[i].payload.apac_cid,
+                    "AMER": QUEUED[i].payload.amer_cid,
+                    "EMEA": QUEUED[i].payload.emea_cid,
+                    "DEFAULT": QUEUED[i].payload.cid
                 };
-                QUEUED[i].record.campaign_id = QUEUED[i].record.region ?
-                    regionToCidMapping[QUEUED[i].record.region] :
+                QUEUED[i].payload.campaign_id = QUEUED[i].payload.region ?
+                    regionToCidMapping[QUEUED[i].payload.region] :
                     regionToCidMapping['DEFAULT'];
             }
 
             // CAMPAIGN NAME
             // @description: the campaign name is used in the description and enquiry summary
             if (
-                QUEUED[i].record.campaign_id
+                QUEUED[i].payload.campaign_id
             ) {
-                var campaign = Platform.Function.LookupRows('ENT.Campaign_Salesforce', ['Id'], [QUEUED[i].record.cid])[0];
+                var campaign = Platform.Function.LookupRows('ENT.Campaign_Salesforce', ['Id'], [QUEUED[i].payload.cid])[0];
                 if (campaign) {
-                    QUEUED[i].record.campaign_name = campaign.Name;
+                    QUEUED[i].payload.campaign_name = campaign.Name;
                 }
             }
 
@@ -449,7 +449,7 @@
             // rule of thumb, forms related to tof,sign-ups, conferences minor engagenment will be 
             // a Marketing Prospect and forms related to quotes, demo, callback etc will become MQL.  
             if (
-                QUEUED[i].record.sid
+                QUEUED[i].payload.sid
             ) {
                 var sidToStatusMapping = {
                     "UQ": "Unqualified",
@@ -459,7 +459,7 @@
                     "SAL": "SAL", //Sales Accepted Lead
                     "SQL": "SQL" //Sales Qualified Lead
                 };
-                QUEUED[i].record.status = sidToStatusMapping[QUEUED[i].record.sid] || 'MQL';
+                QUEUED[i].payload.status = sidToStatusMapping[QUEUED[i].payload.sid] || 'MQL';
             }
 
             // ENQUIRY TYPE
@@ -467,9 +467,9 @@
             // to determine select how the lead shoudld be described. Sales will use this to 
             // prioritize lead processing, and assign value.
             if (
-                QUEUED[i].record.eid &&
-                QUEUED[i].record.campaign_name &&
-                QUEUED[i].record.request_url
+                QUEUED[i].payload.eid &&
+                QUEUED[i].payload.campaign_name &&
+                QUEUED[i].payload.request_url
             ) {
                 var eidToEnquiryTypeMapping = {
                     "quote": "Quote",
@@ -477,35 +477,35 @@
                     "demo": "Demo",
                     "Info": "Information",
                 };
-                QUEUED[i].record.enquiry_type = sidToStatusMapping[QUEUED[i].record.eid];
+                QUEUED[i].payload.enquiry_type = sidToStatusMapping[QUEUED[i].payload.eid];
             }
 
             //DESCRIPTION, ENQUIRY SUMMARY
             // @description: dynamically generated based on enquiry_type, campagin_name, and the request_url
             // This helps Sales people quickly filter leads or categorizing them during follow up.
             if (
-                QUEUED[i].record.enquiry_type
+                QUEUED[i].payload.enquiry_type
             ) {
 
                 var description;
                 description += Datetime.SystemDateToLocalString();
                 description += " | ";
-                description += QUEUED[i].record.enquiry_type.toLowerCase() === 'information' ?
+                description += QUEUED[i].payload.enquiry_type.toLowerCase() === 'information' ?
                     'the customer has requested ' :
                     'The customer has requested a ';
-                description += QUEUED[i].record.enquiry_type.toUpperCase() + " ";
-                description += QUEUED[i].record.enquiry_type.toLowerCase() === 'quote' && QUEUED[i].no_of_licences ?
+                description += QUEUED[i].payload.enquiry_type.toUpperCase() + " ";
+                description += QUEUED[i].payload.enquiry_type.toLowerCase() === 'quote' && QUEUED[i].no_of_licences ?
                     'for ' + QUEUED[i].no_of_licences + ' licence(s)' :
                     '';
                 description += " | ";
                 description += 'Related to campaign -- ';
-                description += QUEUED[i].record.campaign_name ? QUEUED[i].record.campaign_name : 'Not Specified';
+                description += QUEUED[i].payload.campaign_name ? QUEUED[i].payload.campaign_name : 'Not Specified';
                 description += " | ";
                 description += "Generated by Salesforce Marketing Cloud Page URL -- ";
-                description += QUEUED[i].record.request_url ? QUEUED[i].record.request_url : 'Not Specified';
+                description += QUEUED[i].payload.request_url ? QUEUED[i].payload.request_url : 'Not Specified';
 
-                QUEUED[i].record.description = description
-                QUEUED[i].record.enquiry_summary = description.substring(0, 255);
+                QUEUED[i].payload.description = description
+                QUEUED[i].payload.enquiry_summary = description.substring(0, 255);
             }
 
             // UTM_PARAMETERS
@@ -520,17 +520,17 @@
             // utm_term: used for paid search keywords
             // utm_content: differentiates similar content or links within the same ad or campaign
             if (
-                QUEUED[i].record.utm_source &&
-                QUEUED[i].record.utm_medium &&
-                QUEUED[i].record.utm_campaign &&
-                QUEUED[i].record.utm_content &&
-                QUEUED[i].record.utm_term
+                QUEUED[i].payload.utm_source &&
+                QUEUED[i].payload.utm_medium &&
+                QUEUED[i].payload.utm_campaign &&
+                QUEUED[i].payload.utm_content &&
+                QUEUED[i].payload.utm_term
             ) {
-                QUEUED[i].record.utm_source = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_source);
-                QUEUED[i].record.utm_medium = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_medium);
-                QUEUED[i].record.utm_campaign = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_campaign);
-                QUEUED[i].record.utm_content = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_content);
-                QUEUED[i].record.utm_term = lib.uniqueValuesInDelimiteredString(QUEUED[i].record.utm_term);
+                QUEUED[i].payload.utm_source = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_source);
+                QUEUED[i].payload.utm_medium = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_medium);
+                QUEUED[i].payload.utm_campaign = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_campaign);
+                QUEUED[i].payload.utm_content = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_content);
+                QUEUED[i].payload.utm_term = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_term);
             }
 
 
@@ -578,7 +578,7 @@
             ], {
                 Property: "Email",
                 SimpleOperator: "equals",
-                Value: QUEUED[i].record.email_address
+                Value: QUEUED[i].payload.email_address
             });
 
 
@@ -628,11 +628,11 @@
 
             //UPSERT CAMPAIGN MEMBER
             if (
-                QUEUED[i].record.campaign_id &&
+                QUEUED[i].payload.campaign_id &&
                 LEAD.record.id
             ) {
                 var campaignMember = {
-                    CampaignId: QUEUED[i].record.campaign_id,
+                    CampaignId: QUEUED[i].payload.campaign_id,
                     LeadId: LEAD.record.id,
                     Status: "Sent"
                 };
