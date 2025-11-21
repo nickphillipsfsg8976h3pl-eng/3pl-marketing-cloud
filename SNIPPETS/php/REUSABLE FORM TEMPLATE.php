@@ -43,27 +43,36 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
         var documentation = ''.concat(
             '<div style="padding: 15px; font-weight:bold">',
-            '<br>',
             '//========================================================================================================== <br>',
             '// REUSABLE FORM TEMPLATE <br>',
+            '// <br>',
+            '// @Template Author: Nick Phillips <br>',
+            '// @Template Version: 1.0.0 <br>',
+            '// <br>',
+            '// CHANGE LOG <br>',
+            '// ------------------------------------------- <br>',
+            '// <br>',
+            '// Version: 1.0.0... ',
+            '// Date: ... ',
+            '// Change: ... <br>',
+            '// Version: ?.?.?... ',
+            '// Date: ... ',
+            '// Change: ... <br>',
+            '// <br>',
             '// ========================================================================================================== <br>',
             '<br>',
             '<br>',
-            '<span style="color:green;">Congratulations! Your form is working.</span><br>',
-            'Please configure all the required query parameters below to hide this documentaiton<br>',
-            '<br>',
-            '<br>',
-            '@Template Author: Nick Phillips <br>',
-            '@Template Version: 1.0.0 <br>',
-            '<br>',
-            '<br>',
-            'CHANGE LOG <br>',
+            'FORM DETAILS <br>',
             '------------------------------------------- <br>',
             '<br>',
             'Region: <br>',
             'Campaign(s): <br>',
             'Form Created By: <br>',
             'Form Created Date: <br>',
+            '<br>',
+            '<br>',
+            '<span style="color:green; font-size:20px">Congratulations, Your form is working!</span><br>',
+            'Please configure all the required query parameters below to hide this documentaiton<br>',
             '<br>',
             '<br>',
             'QUERY PARAMETERS <br>',
@@ -705,6 +714,33 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
+                %%[IF (@FORM_COMPONENT == "SUBJECT") THEN]%%
+                <!------------- Product Interest ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            id="_product_interest"
+                            name="_product_interest"
+                            multiple
+                            title="Product Interests"
+                            data-selected-text-format="values"
+                            data-actions-box="true"
+                            required>
+
+                            <option value="mathletics">Literacy</option>
+                            <option value="mathseeds">Mathematics</option>
+
+                        </select>
+
+                        <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
                 %%[IF (@FORM_COMPONENT == "FIRST_NAME") THEN]%%
                 <!------------- First Name ----------------->
                 <div class="col-sm-12">
@@ -937,6 +973,9 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                     </div>
                 </div>
                 %%[ENDIF]%%
+
+
+
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL") THEN]%%
