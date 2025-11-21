@@ -733,8 +733,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                             <option value="" disabled selected>Subject</option>
 
-                            <option value="mathletics">Literacy</option>
-                            <option value="mathseeds">Mathematics</option>
+                            <option value="literacy">Literacy</option>
+                            <option value="mathematics">Mathematics</option>
 
                         </select>
 
@@ -762,8 +762,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                             <option value="" disabled selected>Subject</option>
 
-                            <option value="mathletics">Literacy</option>
-                            <option value="mathseeds">Mathematics</option>
+                            <option value="literacy">Literacy</option>
+                            <option value="mathematics">Mathematics</option>
 
                         </select>
 
