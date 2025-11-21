@@ -206,17 +206,25 @@
             // if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
-            //RESET ERROR MESSAGE
-            QUEUED[i].queue_error_message = '';
-
-
             //TEST_RECORD_DETECTED
             if (
-                QUEUED[i].payload.email_address &&
-                !Platform.Function.isEmailAddress(QUEUED[i].payload.email_address)
+                QUEUED[i].payload.first_name ||
+                QUEUED[i].payload.last_name
             ) {
-                QUEUED[i].queue_error_message += '- WARNING - TEST_RECORD_DETECTED: set IsTest checkbox to true as first_name, last_name or email_address contained "test". Records will not be Sync\'d to Marketing Cloud';
+                QUEUED[i].queue_error_message += '- WARNING - TEST_RECORD_DETECTED: setting IsTest checkbox to true as first_name, last_name or email_address contained "test". Records will not be Sync\'d to Marketing Cloud';
                 QUEUED[i].payload.is_test = true;
+                // QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                // continue nextItemInQueue;
+            }
+
+
+            //PERSONAL_EMAIL_DOMAIN
+            if (
+                QUEUED[i].payload.email_address &&
+                Platform.Function.Lookup('EMAIL_DOMAIN_REFERENCE', 'Name', ['Name', 'Type', 'Active'], [Platform.Function.RegexMatch(QUEUED[i].payload.email_address, /@(.*)$/)[1].toLowerCase(), 'personal', true])
+            ) {
+                QUEUED[i].queue_error_message += '- WARNING - PERSONAL_EMAIL_DOMAIN: setting HasPersonalEmail checkbox to true due to recognised email domain. Records will not be Sync\'d to Marketing Cloud';
+                QUEUED[i].payload.has_personal_email = true;
                 // QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 // continue nextItemInQueue;
             }
@@ -266,12 +274,12 @@
             }
 
 
-            //BLOCKED_EMAIL_ADDRESS
+            //KNOWN_EMAIL_ADDRESS
             if (
                 QUEUED[i].payload.email_address &&
                 Platform.Function.Lookup('KNOWN_EMAIL_REFERENCE', 'Name', 'EmailAddress', QUEUED[i].payload.email_address.toLowerCase())
             ) {
-                QUEUED[i].queue_error_message += '- BLOCKED - KNOWN_EMAIL_ADDRESS: email_address is blacklisted';
+                QUEUED[i].queue_error_message += '- BLOCKED - KNOWN_EMAIL_ADDRESS: email address is blacklisted';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
