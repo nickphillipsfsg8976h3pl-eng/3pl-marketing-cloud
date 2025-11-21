@@ -93,7 +93,7 @@
     /************************** 
      --------- HELPERS ---------
      ***************************/
-    var lib = {
+    var pipeline = {
 
         /**
          * LOG ERROR
@@ -118,7 +118,7 @@
          * @param - delimiter used in string
          * @return - delimiter-separated string with unique values
          */
-        uniqueValuesInDelimiteredString: function(string, delimiter) {
+        getUniqueFromDelimitedString: function(string, delimiter) {
             if (!string || !delimiter) return '';
             var valueList = string.split(delimiter);
             var keySet = {};
@@ -137,7 +137,7 @@
             return result;
         }
 
-    } //lib
+    } //pipeline
 </script>
 
 
@@ -158,7 +158,7 @@
 
 
     } catch (error) {
-        lib.log('GET QUEUED', error);
+        pipeline.log('GET QUEUED', error);
     }
 </script>
 
@@ -186,7 +186,7 @@
 
     }
     catch (error) {
-        lib.log('PARSE JSON', error);
+        pipeline.log('PARSE JSON', error);
     }
 </script>
 
@@ -206,12 +206,28 @@
             // if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
+            //RESET ERROR MESSAGE
+            QUEUED[i].queue_error_message = '';
+
+
+            //TEST_RECORD_DETECTED
+            if (
+                QUEUED[i].payload.email_address &&
+                !Platform.Function.isEmailAddress(QUEUED[i].payload.email_address)
+            ) {
+                QUEUED[i].queue_error_message += '- WARNING - TEST_RECORD_DETECTED: set IsTest checkbox to true as first_name, last_name or email_address contained "test". Records will not be Sync\'d to Marketing Cloud';
+                QUEUED[i].payload.is_test = true;
+                // QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
+                // continue nextItemInQueue;
+            }
+
+
             //INVALID_EMAIL_FORMAT
             if (
                 QUEUED[i].payload.email_address &&
                 !Platform.Function.isEmailAddress(QUEUED[i].payload.email_address)
             ) {
-                QUEUED[i].queue_error_message = 'INVALID_EMAIL_FORMAT: email_address is missing or not valid';
+                QUEUED[i].queue_error_message += '- BLOCKED - INVALID_EMAIL_FORMAT: email_address is missing or not valid';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
@@ -222,7 +238,7 @@
                 QUEUED[i].payload.job_title &&
                 QUEUED[i].payload.job_title.toLowerCase().indexOf('student') !== -1
             ) {
-                QUEUED[i].queue_error_message = 'STUDENT_JOB_TITLE: job_title contains the word "student"';
+                QUEUED[i].queue_error_message += '- BLOCKED - STUDENT_JOB_TITLE: job_title contains the word "student"';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
@@ -233,7 +249,7 @@
                 QUEUED[i].payload.job_title &&
                 QUEUED[i].payload.job_title.toLowerCase().indexOf('parent') !== -1
             ) {
-                QUEUED[i].queue_error_message = 'PARENT_JOB_TITLE: job_title contains the word "parent"';
+                QUEUED[i].queue_error_message += '- BLOCKED - PARENT_JOB_TITLE: job_title contains the word "parent"';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
@@ -244,7 +260,7 @@
                 QUEUED[i].payload.email_address &&
                 QUEUED[i].payload.email_address.toLowerCase().indexOf('student') !== -1
             ) {
-                QUEUED[i].queue_error_message = 'STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
+                QUEUED[i].queue_error_message += '- BLOCKED -STUDENT_EMAIL_DOMAIN: email_address contains the word "student"';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
@@ -253,9 +269,9 @@
             //BLOCKED_EMAIL_ADDRESS
             if (
                 QUEUED[i].payload.email_address &&
-                Platform.Function.Lookup('BLOCKED_EMAIL_REFERENCE', 'Name', 'EmailAddress', QUEUED[i].payload.email_address.toLowerCase())
+                Platform.Function.Lookup('KNOWN_EMAIL_REFERENCE', 'Name', 'EmailAddress', QUEUED[i].payload.email_address.toLowerCase())
             ) {
-                QUEUED[i].queue_error_message = 'BLOCKED_EMAIL_ADDRESS: email_address is blacklisted';
+                QUEUED[i].queue_error_message += '- BLOCKED - KNOWN_EMAIL_ADDRESS: email_address is blacklisted';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
@@ -266,7 +282,7 @@
                 QUEUED[i].payload.country_code &&
                 Platform.Function.Lookup('COUNTRY_REFERENCE', 'IsSanctionedCountry', 'CountryCode', QUEUED[i].payload.country_code.toLowerCase())
             ) {
-                QUEUED[i].queue_error_message = 'SANCTIONED_COUNTRY: country is sanctioned, we are unable to provide services';
+                QUEUED[i].queue_error_message += '- BLOCKED - SANCTIONED_COUNTRY: country is sanctioned, we are unable to provide services';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
@@ -277,7 +293,7 @@
                 QUEUED[i].payload.country_code &&
                 Platform.Function.Lookup('COUNTRY_REFERENCE', 'IsCountryRestricted', 'CountryCode', QUEUED[i].payload.country_code.toLowerCase())
             ) {
-                QUEUED[i].queue_error_message = 'RESTRICTED_COUNTRY: country is restricted, we are unable to provide services';
+                QUEUED[i].queue_error_message += '- BLOCKED - RESTRICTED_COUNTRY: country is restricted, we are unable to provide services';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
@@ -294,7 +310,7 @@
                     Platform.Function.Lookup('PROFANITY_REFERENCE', 'Name', 'Name', QUEUED[i].payload.last_name.toLowerCase())
                 )
             ) {
-                QUEUED[i].queue_error_message = 'PROFANITY_DETECTED: swear words were equal to the first_name or last_name';
+                QUEUED[i].queue_error_message += '- BLOCKED - PROFANITY_DETECTED: first_name or last_name contains a swear words';
                 QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 continue nextItemInQueue;
             }
@@ -304,7 +320,7 @@
 
     }
     catch (error) {
-        lib.log('VALIDATE SUBMISSION', error);
+        pipeline.log('VALIDATE SUBMISSION', error);
     }
 </script>
 
@@ -526,11 +542,11 @@
                 QUEUED[i].payload.utm_content &&
                 QUEUED[i].payload.utm_term
             ) {
-                QUEUED[i].payload.utm_source = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_source);
-                QUEUED[i].payload.utm_medium = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_medium);
-                QUEUED[i].payload.utm_campaign = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_campaign);
-                QUEUED[i].payload.utm_content = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_content);
-                QUEUED[i].payload.utm_term = lib.uniqueValuesInDelimiteredString(QUEUED[i].payload.utm_term);
+                QUEUED[i].payload.utm_source = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_source, ',');
+                QUEUED[i].payload.utm_medium = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_medium, ',');
+                QUEUED[i].payload.utm_campaign = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_campaign, ',');
+                QUEUED[i].payload.utm_content = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_content, ',');
+                QUEUED[i].payload.utm_term = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_term, ',');
             }
 
 
@@ -539,7 +555,7 @@
 
     }
     catch (error) {
-        lib.log('PROCESS DATA', error);
+        pipeline.log('PROCESS DATA', error);
     }
 </script>
 
@@ -656,7 +672,7 @@
 
 
     } catch (error) {
-        lib.log('SYNC SALESFORCE', error);
+        pipeline.log('SYNC SALESFORCE', error);
     }
 </script>
 
@@ -696,6 +712,6 @@
         } //for(i)nextItemInQueue
     }
     catch (error) {
-        lib.log('SALESFORCE SYNC', error);
+        pipeline.log('SALESFORCE SYNC', error);
     }
 </script>

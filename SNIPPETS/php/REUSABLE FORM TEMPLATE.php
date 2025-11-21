@@ -678,6 +678,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             required>
 
                             <option value="" disabled selected>What are you interested in?</option>
+
                             <option value="demo">Complimentary Consultation</option>
                             <option value="quote">Quote</option>
 
@@ -702,6 +703,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                             required>
 
                             <option value="" disabled selected>What are you interested in?</option>
+
                             <option value="demo">Complimentary Consultation</option>
                             <option value="quote">Quote</option>
 
@@ -715,19 +717,50 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
 
                 %%[IF (@FORM_COMPONENT == "SUBJECT") THEN]%%
-                <!------------- Product Interest ----------------->
+                <!------------- Subject ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
 
                         <select
                             class="form-control selectpicker show-tick custom-reset-select-text"
-                            id="_product_interest"
-                            name="_product_interest"
+                            id="_subject"
+                            name="_subject"
                             multiple
-                            title="Product Interests"
+                            title="Subject"
                             data-selected-text-format="values"
                             data-actions-box="true"
                             required>
+
+                            <option value="" disabled selected>Subject</option>
+
+                            <option value="mathletics">Literacy</option>
+                            <option value="mathseeds">Mathematics</option>
+
+                        </select>
+
+                        <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "SUBJECT_HALF") THEN]%%
+                <!------------- Subject ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            id="_subject"
+                            name="_subject"
+                            multiple
+                            title="Subject"
+                            data-selected-text-format="values"
+                            data-actions-box="true"
+                            required>
+
+                            <option value="" disabled selected>Subject</option>
 
                             <option value="mathletics">Literacy</option>
                             <option value="mathseeds">Mathematics</option>
