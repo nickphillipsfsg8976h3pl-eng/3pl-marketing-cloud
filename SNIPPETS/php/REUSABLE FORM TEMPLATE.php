@@ -33,6 +33,10 @@ run everything through cl-ai to simplify, fix errors, seek advice, etc
 
 test. test, test ===> batte-test for all variatioons and 150 form planned rollout!!!!
 
+confirm a solid list of finalized form fields (and there overrides) with teams
+
+confirm all form fields are mapped to the correct field in salesforce
+
 -->
 
 
@@ -128,7 +132,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: US Form Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,USER_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Trial Template <br>',
             'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
@@ -189,7 +193,6 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         config.cid = Request.GetQueryStringParameter("cid");
         config.rid = Request.GetQueryStringParameter("rid");
         config.eid = Request.GetQueryStringParameter("eid");
-        config.sid = Request.GetQueryStringParameter("sid");
         config.fid = Request.GetQueryStringParameter("fid");
 
         config.template = Request.GetQueryStringParameter("template");
@@ -206,6 +209,10 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
         config.override_region = Request.GetQueryStringParameter("override_region");
         config.override_country_code = Request.GetQueryStringParameter("override_country_code");
+        config.override_product_interest = Request.GetQueryStringParameter("override_product_interest");
+        config.override_marketing_interest = Request.GetQueryStringParameter("override_marketing_interest");
+        config.override_enquiry_type = Request.GetQueryStringParameter("override_enquiry_type");
+        config.override_status = Request.GetQueryStringParameter("override_status");
 
 
         /*******************************
@@ -229,7 +236,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             test_full: [
                 "PRODUCT_INTEREST",
                 "MARKETING_INTEREST",
-                "USER_INTEREST",
+                "ENQUIRY_TYPE",
                 "FIRST_NAME",
                 "LAST_NAME",
                 "EMAIL_ADDRESS",
@@ -252,7 +259,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             test_full_half: [
                 "PRODUCT_INTEREST_HALF",
                 "MARKETING_INTEREST_HALF",
-                "USER_INTEREST_HALF",
+                "ENQUIRY_TYPE_HALF",
                 "FIRST_NAME_HALF",
                 "LAST_NAME_HALF",
                 "EMAIL_ADDRESS_HALF",
@@ -320,8 +327,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 "PRODUCT_INTEREST_HALF",
                 "MARKETING_INTEREST",
                 "MARKETING_INTEREST_HALF",
-                "USER_INTEREST",
-                "USER_INTEREST_HALF",
+                "ENQUIRY_TYPE",
+                "ENQUIRY_TYPE_HALF",
                 "FIRST_NAME",
                 "FIRST_NAME_HALF",
                 "LAST_NAME",
@@ -522,7 +529,6 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
             <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
             <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
-            <input type="hidden" name="_sid" value="%%=v(@sid)=%%">
             <input type="hidden" name="_fid" value="%%=v(@fid)=%%">
 
             <input type="hidden" name="_template" value="%%=v(@template)=%%">
@@ -543,6 +549,11 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
             <input type="hidden" name="_override_region" value="%%=v(@override_region)=%%">
             <input type="hidden" name="_override_country_code" value="%%=v(@override_country_code)=%%">
+            <input type="hidden" name="_override_product_interest" value="%%=v(@override_product_interest)=%%">
+            <input type="hidden" name="_override_marketing_interest" value="%%=v(@override_marketing_interest)=%%">
+            <input type="hidden" name="_override_enquiry_type" value="%%=v(@override_enquiry_type)=%%">
+            <input type="hidden" name="_override_status" value="%%=v(@override_status)=%%">
+
 
 
             <!-- Assign client side location and referrer urls -->
@@ -668,8 +679,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                         <select
                             class="form-control selectpicker show-tick custom-reset-select-text"
-                            id="_product_interest"
-                            name="_product_interest"
+                            id="_marketing_interest"
+                            name="_marketing_interest"
                             multiple
                             title="Which marketing material would you be interested in?"
                             data-selected-text-format="values"
@@ -695,8 +706,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
                         <select
                             class="form-control selectpicker show-tick custom-reset-select-text"
-                            id="_product_interest"
-                            name="_product_interest"
+                            id="_marketing_interest"
+                            name="_marketing_interest"
                             multiple
                             title="Which marketing material would you be interested in?"
                             data-selected-text-format="values"
@@ -715,21 +726,23 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "USER_INTEREST") THEN]%%
+                %%[IF (@FORM_COMPONENT == "ENQUIRY_TYPE") THEN]%%
                 <!------------- User Interest ----------------->
                 <div class="col-sm-12">
                     <div class="form-group">
 
                         <select
                             class="form-control custom-reset-select-text"
-                            id="_user_interest"
-                            name="_user_interest"
+                            id="_enquiry_type"
+                            name="_enquiry_type"
                             required>
 
-                            <option value="" disabled selected>What are you interested in?</option>
+                            <option value="" disabled selected>What would you like to enquire about?</option>
 
-                            <option value="demo">Complimentary Consultation</option>
-                            <option value="quote">Quote</option>
+                            <option value="Demo">Product Demonstration</option>
+                            <option value="Quote">Quote</option>
+                            <option value="Trial">Trial</option>
+                            <option value="Information">Information</option>
 
                         </select>
 
@@ -740,21 +753,23 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "USER_INTEREST_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "ENQUIRY_TYPE_HALF") THEN]%%
                 <!------------- User Interest HALF ----------------->
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
 
                         <select
                             class="form-control custom-reset-select-text"
-                            id="_user_interest"
-                            name="_user_interest"
+                            id="_enquiry_type"
+                            name="_enquiry_type"
                             required>
 
-                            <option value="" disabled selected>What are you interested in?</option>
+                            <option value="" disabled selected>What would you like to enquire about?</option>
 
-                            <option value="demo">Complimentary Consultation</option>
-                            <option value="quote">Quote</option>
+                            <option value="Demo">Product Demonstration</option>
+                            <option value="Quote">Quote</option>
+                            <option value="Trial">Trial</option>
+                            <option value="Information">Information</option>
 
                         </select>
 
@@ -2674,8 +2689,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
         payload.sid = Request.GetFormField("_sid");
         payload.fid = Request.GetFormField("_fid");
 
-        payload.inputs = Request.GetFormField("_inputs");
         payload.template = Request.GetFormField("_template");
+        payload.inputs = Request.GetFormField("_inputs");
 
         payload.utm_source = Request.GetFormField("_utm_source");
         payload.utm_medium = Request.GetFormField("_utm_medium");
@@ -2692,14 +2707,18 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
         payload.override_region = Request.GetFormField("_override_region");
         payload.override_country_code = Request.GetFormField("_override_country_code");
+        payload.override_product_interest = Request.GetFormField("_override_product_interest");
+        payload.override_marketing_interest = Request.GetFormField("_override_marketing_interest");
 
         payload.product_interest = Request.GetFormField("_product_interest");
-        payload.user_interest = Request.GetFormField("_user_interest");
+        payload._market_interest = Request.GetFormField("_market_interest");
+        payload.user_interest = Request.GetFormField("_enquiry_type");
         payload.first_name = Request.GetFormField("_first_name");
         payload.last_name = Request.GetFormField("_last_name");
         payload.email_address = Request.GetFormField("_email_address");
         payload.phone_number = Request.GetFormField("_phone_number");
         payload.grade_level = Request.GetFormField("_grade_level");
+        payload.subject = Request.GetFormField("_subject");
         payload.job_title = Request.GetFormField("_job_title");
         payload.country_code = Request.GetFormField("_country_code");
         payload.state_code = Request.GetFormField("_state_code");

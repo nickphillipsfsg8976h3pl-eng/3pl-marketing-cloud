@@ -66,11 +66,19 @@
      * utm_campaign
      * utm_content
      * utm_term
+     * 
      * gclid
      * gtm_referrer
+     * 
+     * override_region
+     * override_country_code
+     * override_product_interest
+     * override_marketing_interest
+     * override_equiry_type
      *
      * product_interest
-     * user_interest
+     * market_interest
+     * enquiry_type
      * first_name
      * last_name
      * email_address
@@ -490,17 +498,12 @@
             // to determine select how the lead shoudld be described. Sales will use this to 
             // prioritize lead processing, and assign value.
             if (
-                QUEUED[i].payload.eid &&
-                QUEUED[i].payload.campaign_name &&
-                QUEUED[i].payload.request_url
+                QUEUED[i].payload.enquiry_type ||
+                QUEUED[i].payload.override_enquiry_type
             ) {
-                var eidToEnquiryTypeMapping = {
-                    "quote": "Quote",
-                    "trial": "Trial",
-                    "demo": "Demo",
-                    "Info": "Information",
-                };
-                QUEUED[i].payload.enquiry_type = sidToStatusMapping[QUEUED[i].payload.eid];
+                QUEUED[i].payload.enquiry_type = QUEUED[i].payload.override_enquiry_type ?
+                    QUEUED[i].payload.override_enquiry_type :
+                    QUEUED[i].payload.enquiry_type;
             }
 
             //DESCRIPTION, ENQUIRY SUMMARY
@@ -563,6 +566,30 @@
             ) {
                 //replace commas with semicolons
                 QUEUED[i].payload.subject = QUEUED[i].payload.subject.replace(/,/g, ';').concat(';');
+            }
+
+
+            //PRODUCT INTEREST
+            if (
+                QUEUED[i].payload.product_interest ||
+                QUEUED[i].payload.override_product_interest
+            ) {
+                //replace commas with semicolons
+                QUEUED[i].payload.product_interest = QUEUED[i].payload.override_product_interest ?
+                    QUEUED[i].payload.override_product_interest.replace(/,/g, ';').concat(';') :
+                    QUEUED[i].payload.product_interest.replace(/,/g, ';').concat(';');
+            }
+
+
+            //MARKETING INTEREST
+            if (
+                QUEUED[i].payload.marketing_interest ||
+                QUEUED[i].payload.override_marketing_interest
+            ) {
+                //replace commas with semicolons
+                QUEUED[i].payload.marketing_interest = QUEUED[i].payload.override_marketing_interest ?
+                    QUEUED[i].payload.override_marketing_interest.replace(/,/g, ';').concat(';') :
+                    QUEUED[i].payload.marketing_interest.replace(/,/g, ';').concat(';');
             }
 
 
