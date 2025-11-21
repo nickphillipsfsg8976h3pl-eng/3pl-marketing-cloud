@@ -209,7 +209,7 @@
           var @Campaign_Name_Lead, @Campaign_Code, @UTM_Campaign_entry
 
           /* Primary campaign lookup */
-          if not empty(@CampaignId) then
+          if not empty(@CampaignId) then  
             set @campaignNameLookup = Lookup("ENT.Campaign_Salesforce", "Name", "Id", @CampaignId)
             set @campaignCodeLookup = Lookup("ENT.Campaign_Salesforce", "Campaign_Code__c", "Id", @CampaignId)
             set @Campaign_Name_Lead = IIF(not empty(@campaignNameLookup), @campaignNameLookup, "NOT-DEFINED")

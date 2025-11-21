@@ -93,7 +93,7 @@
     /************************** 
      --------- HELPERS ---------
      ***************************/
-    var pipeline = {
+    var helper = {
 
         /**
          * LOG ERROR
@@ -137,7 +137,7 @@
             return result;
         }
 
-    } //pipeline
+    } //helper
 </script>
 
 
@@ -158,7 +158,7 @@
 
 
     } catch (error) {
-        pipeline.log('GET QUEUED', error);
+        helper.log('GET QUEUED', error);
     }
 </script>
 
@@ -186,7 +186,7 @@
 
     }
     catch (error) {
-        pipeline.log('PARSE JSON', error);
+        helper.log('PARSE JSON', error);
     }
 </script>
 
@@ -223,7 +223,7 @@
                 QUEUED[i].payload.email_address &&
                 Platform.Function.Lookup('EMAIL_DOMAIN_REFERENCE', 'Name', ['Name', 'Type', 'Active'], [Platform.Function.RegexMatch(QUEUED[i].payload.email_address, /@(.*)$/)[1].toLowerCase(), 'personal', true])
             ) {
-                QUEUED[i].queue_error_message += '- WARNING - PERSONAL_EMAIL_DOMAIN: setting HasPersonalEmail checkbox to true due to recognised email domain. Records will not be Sync\'d to Marketing Cloud';
+                QUEUED[i].queue_error_message += '- WARNING - PERSONAL_EMAIL_DOMAIN: setting HasPersonalEmail checkbox to true due to recognised personal email domain. Records will not be Sync\'d to Marketing Cloud';
                 QUEUED[i].payload.has_personal_email = true;
                 // QUEUED[i].queue_completed_date = Datetime.SystemDateToLocalString();
                 // continue nextItemInQueue;
@@ -328,14 +328,14 @@
 
     }
     catch (error) {
-        pipeline.log('VALIDATE SUBMISSION', error);
+        helper.log('VALIDATE SUBMISSION', error);
     }
 </script>
 
 
 <script runat="server">
     /**************************************
-    ------------ PROCESS DATA -------------
+    ---------- PROCESS & MAP DATA ---------
     ***************************************/
 
 
@@ -432,18 +432,17 @@
             if (
                 QUEUED[i].payload.apac_cid ||
                 QUEUED[i].payload.amer_cid ||
-                QUEUED[i].payload.emea_cid ||
-                QUEUED[i].payload.cid
+                QUEUED[i].payload.emea_cid
             ) {
-                var regionToCidMapping = {
+                var regiontoCampaignIdMapping = {
                     "APAC": QUEUED[i].payload.apac_cid,
                     "AMER": QUEUED[i].payload.amer_cid,
                     "EMEA": QUEUED[i].payload.emea_cid,
-                    "DEFAULT": QUEUED[i].payload.cid
                 };
-                QUEUED[i].payload.campaign_id = QUEUED[i].payload.region ?
-                    regionToCidMapping[QUEUED[i].payload.region] :
-                    regionToCidMapping['DEFAULT'];
+                QUEUED[i].payload.campaign_id = regiontoCampaignIdMapping[QUEUED[i].payload.region];
+
+            } else {
+                QUEUED[i].payload.campaign_id = QUEUED[i].payload.cid;
             }
 
             // CAMPAIGN NAME
@@ -451,7 +450,7 @@
             if (
                 QUEUED[i].payload.campaign_id
             ) {
-                var campaign = Platform.Function.LookupRows('ENT.Campaign_Salesforce', ['Id'], [QUEUED[i].payload.cid])[0];
+                var campaign = Platform.Function.LookupRows('ENT.Campaign_Salesforce', ['Id'], [QUEUED[i].payload.campaign_id])[0];
                 if (campaign) {
                     QUEUED[i].payload.campaign_name = campaign.Name;
                 }
@@ -459,9 +458,9 @@
 
 
             // CAMPAIGN RESOURCES
-            // @description: configured to pull from a fields on the campaign record 
-            // or a related object instead of having to maintain a reference DE
-            //
+            // @description: changge this to pull from a field on the campaign record 
+            // or a related object instead if necessary rathen than having to maintain 
+            // a mapping in another data extension
             //
             //
             //
@@ -510,7 +509,7 @@
             if (
                 QUEUED[i].payload.enquiry_type
             ) {
-
+                //dynamically format description
                 var description;
                 description += Datetime.SystemDateToLocalString();
                 description += " | ";
@@ -550,11 +549,20 @@
                 QUEUED[i].payload.utm_content &&
                 QUEUED[i].payload.utm_term
             ) {
-                QUEUED[i].payload.utm_source = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_source, ',');
-                QUEUED[i].payload.utm_medium = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_medium, ',');
-                QUEUED[i].payload.utm_campaign = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_campaign, ',');
-                QUEUED[i].payload.utm_content = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_content, ',');
-                QUEUED[i].payload.utm_term = pipeline.getUniqueFromDelimitedString(QUEUED[i].payload.utm_term, ',');
+                QUEUED[i].payload.utm_source = helper.getUniqueFromDelimitedString(QUEUED[i].payload.utm_source, ',');
+                QUEUED[i].payload.utm_medium = helper.getUniqueFromDelimitedString(QUEUED[i].payload.utm_medium, ',');
+                QUEUED[i].payload.utm_campaign = helper.getUniqueFromDelimitedString(QUEUED[i].payload.utm_campaign, ',');
+                QUEUED[i].payload.utm_content = helper.getUniqueFromDelimitedString(QUEUED[i].payload.utm_content, ',');
+                QUEUED[i].payload.utm_term = helper.getUniqueFromDelimitedString(QUEUED[i].payload.utm_term, ',');
+            }
+
+
+            //SUBJECT
+            if (
+                QUEUED[i].payload.subject
+            ) {
+                //replace commas with semicolons
+                QUEUED[i].payload.subject = QUEUED[i].payload.subject.replace(/,/g, ';').concat(';');
             }
 
 
@@ -563,14 +571,14 @@
 
     }
     catch (error) {
-        pipeline.log('PROCESS DATA', error);
+        helper.log('PROCESS & MAP DATA', error);
     }
 </script>
 
 
 <script runat="server">
     /**************************************
-    ----------- SYNC SALESFROCE -----------
+    ---------- SYNC TO SALESFROCE ---------
     ***************************************/
     try {
 
@@ -680,7 +688,7 @@
 
 
     } catch (error) {
-        pipeline.log('SYNC SALESFORCE', error);
+        helper.log('SYNC TO SALESFORCE', error);
     }
 </script>
 
@@ -720,6 +728,6 @@
         } //for(i)nextItemInQueue
     }
     catch (error) {
-        pipeline.log('SALESFORCE SYNC', error);
+        helper.log('SALESFORCE SYNC', error);
     }
 </script>

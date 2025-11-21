@@ -228,6 +228,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             //?template=test_full
             test_full: [
                 "PRODUCT_INTEREST",
+                "MARKETING_INTEREST",
                 "USER_INTEREST",
                 "FIRST_NAME",
                 "LAST_NAME",
@@ -250,6 +251,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             //?template=test_full_half
             test_full_half: [
                 "PRODUCT_INTEREST_HALF",
+                "MARKETING_INTEREST_HALF",
                 "USER_INTEREST_HALF",
                 "FIRST_NAME_HALF",
                 "LAST_NAME_HALF",
@@ -316,6 +318,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             test_all: [
                 "PRODUCT_INTEREST",
                 "PRODUCT_INTEREST_HALF",
+                "MARKETING_INTEREST",
+                "MARKETING_INTEREST_HALF",
                 "USER_INTEREST",
                 "USER_INTEREST_HALF",
                 "FIRST_NAME",
@@ -522,7 +526,7 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
             <input type="hidden" name="_fid" value="%%=v(@fid)=%%">
 
             <input type="hidden" name="_template" value="%%=v(@template)=%%">
-            <input type="hidden" name="_components" value="%%=v(@inputs)=%%">
+            <input type="hidden" name="_inputs" value="%%=v(@inputs)=%%">
 
             <input type="hidden" name="_utm_source" value="%%=v(@utm_source)=%%">
             <input type="hidden" name="_utm_medium" value="%%=v(@utm_medium)=%%">
@@ -539,7 +543,6 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 
             <input type="hidden" name="_override_region" value="%%=v(@override_region)=%%">
             <input type="hidden" name="_override_country_code" value="%%=v(@override_country_code)=%%">
-
 
 
             <!-- Assign client side location and referrer urls -->
@@ -598,18 +601,6 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                 ]%%
 
 
-                <!-- HIDDEN (Overrides) -->
-
-                %%[IF(@FORM_COMPONENT == "OVERRIDE_REGION_APAC") THEN]%%
-                <input type="hidden" name="_override_region" value="%%=v(@override_region)=%%">
-                %%[ENDIF]%%
-
-
-                %%[IF(@FORM_COMPONENT == "OVERRIDE_COUNTRY_CODE_AU") THEN]%%
-                <input type="hidden" name="_override_country_code" value="%%=v(@override_country_code)=%%">
-                %%[ENDIF]%%
-
-
                 <!-- FILEDS -->
 
 
@@ -664,6 +655,60 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
                         </select>
 
                         <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "MARKETING_INTEREST") THEN]%%
+                <!------------- Product Interest ----------------->
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            id="_product_interest"
+                            name="_product_interest"
+                            multiple
+                            title="Which marketing material would you be interested in?"
+                            data-selected-text-format="values"
+                            data-actions-box="true">
+
+                            <option value="Product Information">Product Information</option>
+                            <option value="Newsletter">Newsletter</option>
+                            <option value="Promotions">Promotions</option>
+
+                        </select>
+
+                        <!-- <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div> -->
+
+                    </div>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "MARKETING_INTEREST_HALF") THEN]%%
+                <!------------- Product Interest ----------------->
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+
+                        <select
+                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            id="_product_interest"
+                            name="_product_interest"
+                            multiple
+                            title="Which marketing material would you be interested in?"
+                            data-selected-text-format="values"
+                            data-actions-box="true">
+
+                            <option value="Product Information">Product Information</option>
+                            <option value="Newsletter">Newsletter</option>
+                            <option value="Promotions">Promotions</option>
+
+                        </select>
+
+                        <!-- <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div> -->
 
                     </div>
                 </div>
