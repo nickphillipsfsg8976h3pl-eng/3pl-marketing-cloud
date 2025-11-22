@@ -54,7 +54,7 @@
      * cid
      * rid
      * eid
-     * sid
+     * override_lead_status
      * fid
      *
      * inputs
@@ -75,6 +75,7 @@
      * override_product_interest
      * override_marketing_interest
      * override_equiry_type
+     * override_lead_status
      *
      * product_interest
      * market_interest
@@ -380,6 +381,7 @@
                     Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].payload.country_code])[0].Region;
             }
 
+
             // COUNTRY NAME
             if (
                 QUEUED[i].payload.country_code
@@ -389,6 +391,7 @@
                     QUEUED[i].payload.country_name = country.CountryName;
                 }
             }
+
 
             // STATE NAME
             if (
@@ -400,6 +403,7 @@
                     QUEUED[i].payload.state_name = state.Name;
                 }
             }
+
 
             // TERRITORY
             if (
@@ -413,6 +417,7 @@
                 };
                 QUEUED[i].payload.territory = regionToTerritoryMapping[QUEUED[i].payload.region];
             }
+
 
             // JOB FUNCTION
             // @description: matches external customer job titlea to internal job functions picklist values based on region
@@ -430,7 +435,6 @@
             QUEUED[i].payload.job_function = job && job.Function ?
                 job.Function :
                 "Other";
-
 
 
             // CAMPAIGN ID
@@ -453,7 +457,8 @@
                 QUEUED[i].payload.campaign_id = QUEUED[i].payload.cid;
             }
 
-            // CAMPAIGN NAME
+
+            // CAMPAIGN NAME, //CAMPAIGN SUMMARY
             // @description: the campaign name is used in the description and enquiry summary
             if (
                 QUEUED[i].payload.campaign_id
@@ -461,12 +466,13 @@
                 var campaign = Platform.Function.LookupRows('ENT.Campaign_Salesforce', ['Id'], [QUEUED[i].payload.campaign_id])[0];
                 if (campaign) {
                     QUEUED[i].payload.campaign_name = campaign.Name;
+                    // QUEUED[i].payload.campaign_summary = campaign.Summary;
                 }
             }
 
 
             // CAMPAIGN RESOURCES
-            // @description: changge this to pull from a field on the campaign record 
+            // @description: change this to pull from a field on the campaign record 
             // or a related object instead if necessary rathen than having to maintain 
             // a mapping in another data extension
             //
@@ -475,14 +481,14 @@
             ///////////////////////////////////////////////////////////////////////////////////////
 
 
-            // STATUS
-            // @description: lead status is assigned based on the sid query parameter. As a general
+            // LEAD STATUS
+            // @description: lead status is assigned based on the override_lead_status query parameter. As a general
             // rule of thumb, forms related to tof,sign-ups, conferences minor engagenment will be 
             // a Marketing Prospect and forms related to quotes, demo, callback etc will become MQL.  
             if (
-                QUEUED[i].payload.sid
+                QUEUED[i].payload.override_lead_status
             ) {
-                var sidToStatusMapping = {
+                var LEAD_STATUS_MAPPING = {
                     "UQ": "Unqualified",
                     "MP": "Marketing Prospect",
                     "SP": "Sales Prospect",
@@ -490,66 +496,56 @@
                     "SAL": "SAL", //Sales Accepted Lead
                     "SQL": "SQL" //Sales Qualified Lead
                 };
-                QUEUED[i].payload.status = sidToStatusMapping[QUEUED[i].payload.sid] || 'MQL';
+                QUEUED[i].payload.status = LEAD_STATUS_MAPPING[QUEUED[i].payload.override_lead_status];
+            } else {
+                QUEUED[i].payload.status = 'MQL';
             }
+
 
             // ENQUIRY TYPE
             // @description: Enquiry type is used in the description, enquiry_summary fields
             // to determine select how the lead shoudld be described. Sales will use this to 
             // prioritize lead processing, and assign value.
             if (
-                QUEUED[i].payload.enquiry_type ||
                 QUEUED[i].payload.override_enquiry_type
             ) {
-                QUEUED[i].payload.enquiry_type = QUEUED[i].payload.override_enquiry_type ?
-                    QUEUED[i].payload.override_enquiry_type :
-                    QUEUED[i].payload.enquiry_type;
+                QUEUED[i].payload.enquiry_type = QUEUED[i].payload.override_enquiry_type
             }
+
 
             //DESCRIPTION, ENQUIRY SUMMARY
             // @description: dynamically generated based on enquiry_type, campagin_name, and the request_url
             // This helps Sales people quickly filter leads or categorizing them during follow up.
             if (
-                QUEUED[i].payload.enquiry_type
+                QUEUED[i].payload.enquiry_type ||
+                QUEUED[i].payload.override_enquiry_type ||
+                QUEUED[i].payload.campaign_name ||
+                QUEUED[i].payload.request_url ||
+                QUEUED[i].payload.no_of_licences
             ) {
                 //dynamically format description
                 var description;
                 description += Datetime.SystemDateToLocalString();
-                description += " | ";
-                description += QUEUED[i].payload.enquiry_type.toLowerCase() === 'information' ?
-                    'the customer has requested ' :
-                    'The customer has requested a ';
-                description += QUEUED[i].payload.enquiry_type.toUpperCase() + " ";
-                description += QUEUED[i].payload.enquiry_type.toLowerCase() === 'quote' && QUEUED[i].no_of_licences ?
-                    'for ' + QUEUED[i].no_of_licences + ' licence(s)' :
-                    '';
-                description += " | ";
-                description += 'Related to campaign -- ';
-                description += QUEUED[i].payload.campaign_name ? QUEUED[i].payload.campaign_name : 'Not Specified';
-                description += " | ";
-                description += "Generated by Salesforce Marketing Cloud Page URL -- ";
-                description += QUEUED[i].payload.request_url ? QUEUED[i].payload.request_url : 'Not Specified';
+                // description += QUEUED[i].payload.campaign_summary && ' | ' + QUEUED[i].payload.campaign_summary;
+                description += QUEUED[i].payload.override_enquiry_type || QUEUED[i].payload.enquiry_type && ' | The lead enquired about -- ' + QUEUED[i].payload.override_enquiry_type || QUEUED[i].payload.enquiry_type;
+                description += QUEUED[i].payload.no_of_licences > 0 && ' | Number of licences -- ' + QUEUED[i].payload.no_of_licences;
+                description += QUEUED[i].payload.campaign_name && ' | Related to campaign -- ' + QUEUED[i].payload.campaign_name;
+                description += QUEUED[i].payload.request_url && ' | Generated by form -- ' + QUEUED[i].payload.request_url;
 
                 QUEUED[i].payload.description = description
                 QUEUED[i].payload.enquiry_summary = description.substring(0, 255);
             }
 
+
             // UTM_PARAMETERS
             // @description: Utm parameters are marketing tracking query parameters used
             // to elucidate the pathways travelled through digital content and track 
             // marketing content attribution and campaign effectiveness.
-            // 
-            //The parameters are:
-            // utm_source: identifies the source of the traffic (e.g., google, newsletter, social_media)
-            // utm_medium: specifies the medium of the traffic (e.g., email, cpc, banner)
-            // utm_campaign: identifies the specific campaign name (e.g., summer_sale, black_friday)
-            // utm_term: used for paid search keywords
-            // utm_content: differentiates similar content or links within the same ad or campaign
             if (
-                QUEUED[i].payload.utm_source &&
-                QUEUED[i].payload.utm_medium &&
-                QUEUED[i].payload.utm_campaign &&
-                QUEUED[i].payload.utm_content &&
+                QUEUED[i].payload.utm_source ||
+                QUEUED[i].payload.utm_medium ||
+                QUEUED[i].payload.utm_campaign ||
+                QUEUED[i].payload.utm_content ||
                 QUEUED[i].payload.utm_term
             ) {
                 QUEUED[i].payload.utm_source = helper.getUniqueFromDelimitedString(QUEUED[i].payload.utm_source, ',');
@@ -591,6 +587,10 @@
                     QUEUED[i].payload.override_marketing_interest.replace(/,/g, ';').concat(';') :
                     QUEUED[i].payload.marketing_interest.replace(/,/g, ';').concat(';');
             }
+
+
+            //LEAD SOURCE
+            QUEUED[i].payload.lead_source = 'Marketing Cloud (Form Submission Pipeline)';
 
 
         } //for(i)nextItemInQueue

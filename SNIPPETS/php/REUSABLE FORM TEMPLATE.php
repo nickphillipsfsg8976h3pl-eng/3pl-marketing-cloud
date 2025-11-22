@@ -87,15 +87,12 @@ confirm all form fields are mapped to the correct field in salesforce
             '@parameter: (required) template - the name of an array of preconfigured form inputs to display OR...<br>',
             '@parameter: (required) inputs - a comma-deliminated string of single form inputs to display <br>',
             '<br>',
-            '@parameter: (optional) cid - the default salesforce campaign id regardless of country or region. <br>',
-            '@parameter: (optional) rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission <br>',
-            '@parameter: (optional) eid - enquiry id -  (tof, bof, quote, info). Links to enquiry type picklist in Salesforce <br>',
-            '@parameter: (optional) sid - lead status id - [UQ, MP, SP, MQL, SAL, SQL] <br>',
-            '@parameter: (optional) fid - form Id - a random bunch of characters that makes the url unique in comparison to other configurations<br>',
-            '<br>',
             '@parameter: (optional) apac_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an APAC based country  <br>',
             '@parameter: (optional) amer_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an AMER based country <br>',
             '@parameter: (optional) emea_cid - Used on GLOBAL forms to choose the campaign id when the lead submits from an EMEA based country   <br>',
+            '<br>',
+            '@parameter: (optional) cid - the default salesforce campaign id regardless of country or region. <br>',
+            '@parameter: (optional) rid - the redirect id used to retrieve a url from a DE and redirect the user after form submission <br>',
             '<br>',
             '@parameter: (optional) utm_source - marketing trackers retrieved from a browser cookie <br>',
             '@parameter: (optional) utm_medium - marketing trackers retrieved from a browser cookie <br>',
@@ -183,7 +180,6 @@ confirm all form fields are mapped to the correct field in salesforce
         ********************************/
 
 
-        //initiate
         var config = {};
 
 
@@ -192,8 +188,6 @@ confirm all form fields are mapped to the correct field in salesforce
 
         config.cid = Request.GetQueryStringParameter("cid");
         config.rid = Request.GetQueryStringParameter("rid");
-        config.eid = Request.GetQueryStringParameter("eid");
-        config.fid = Request.GetQueryStringParameter("fid");
 
         config.template = Request.GetQueryStringParameter("template");
         config.inputs = Request.GetQueryStringParameter("inputs");
@@ -205,14 +199,15 @@ confirm all form fields are mapped to the correct field in salesforce
         config.utm_term = Request.GetQueryStringParameter("utm_term");
 
         config.gclid = Request.GetQueryStringParameter("gclid");
-        config.gtm_referrer = Request.GetQueryStringParameter("gtm_referrer");
+        config.fbclid = Request.GetQueryStringParameter("fbclid");
+        config.msclikd = Request.GetQueryStringParameter("msclikd");
 
         config.override_region = Request.GetQueryStringParameter("override_region");
         config.override_country_code = Request.GetQueryStringParameter("override_country_code");
         config.override_product_interest = Request.GetQueryStringParameter("override_product_interest");
         config.override_marketing_interest = Request.GetQueryStringParameter("override_marketing_interest");
         config.override_enquiry_type = Request.GetQueryStringParameter("override_enquiry_type");
-        config.override_status = Request.GetQueryStringParameter("override_status");
+        config.override_lead_status = Request.GetQueryStringParameter("override_lead_status");
 
 
         /*******************************
@@ -528,8 +523,6 @@ confirm all form fields are mapped to the correct field in salesforce
 
             <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
             <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
-            <input type="hidden" name="_eid" value="%%=v(@eid)=%%">
-            <input type="hidden" name="_fid" value="%%=v(@fid)=%%">
 
             <input type="hidden" name="_template" value="%%=v(@template)=%%">
             <input type="hidden" name="_inputs" value="%%=v(@inputs)=%%">
@@ -541,7 +534,8 @@ confirm all form fields are mapped to the correct field in salesforce
             <input type="hidden" name="_utm_term" value="%%=v(@utm_term)=%%">
 
             <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
-            <input type="hidden" name="_gtm_referrer" value="%%=v(@gtm_referrer)=%%">
+            <input type="hidden" name="_fbclid" value="%%=v(@fbclid)=%%">
+            <input type="hidden" name="_msclkid" value="%%=v(@msclikd)=%%">
 
             <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
             <input type="hidden" name="_location_href">
@@ -552,7 +546,7 @@ confirm all form fields are mapped to the correct field in salesforce
             <input type="hidden" name="_override_product_interest" value="%%=v(@override_product_interest)=%%">
             <input type="hidden" name="_override_marketing_interest" value="%%=v(@override_marketing_interest)=%%">
             <input type="hidden" name="_override_enquiry_type" value="%%=v(@override_enquiry_type)=%%">
-            <input type="hidden" name="_override_status" value="%%=v(@override_status)=%%">
+            <input type="hidden" name="_override_lead_status" value="%%=v(@override_lead_status)=%%">
 
 
 
@@ -630,10 +624,12 @@ confirm all form fields are mapped to the correct field in salesforce
                             data-actions-box="true"
                             required>
 
-                            <option value="mathletics">Mathletics</option>
-                            <option value="mathseeds">Mathseeds</option>
-                            <option value="readingEggs">Reading Eggs</option>
-                            <!-- <option value="Brightpath Progress Writing">Brightpath Writing</option> -->
+                            SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc, "Active", "True")
+                            FOR @i = 1 TO RowCount(@productsList) DO
+                            SET @productName = field(row(@productsList, @i),"Name")
+                            SET @productValue = field(row(@productsList, @i),"Value")
+                            OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
+                            NEXT @i
 
                         </select>
 
@@ -659,9 +655,12 @@ confirm all form fields are mapped to the correct field in salesforce
                             data-actions-box="true"
                             required>
 
-                            <option value="mathletics">Mathletics</option>
-                            <option value="mathseeds">Mathseeds</option>
-                            <option value="readingEggs">Reading Eggs</option>
+                            SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc, "Active", "True")
+                            FOR @i = 1 TO RowCount(@productsList) DO
+                            SET @productName = field(row(@productsList, @i),"Name")
+                            SET @productValue = field(row(@productsList, @i),"Value")
+                            OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
+                            NEXT @i
 
                         </select>
 
@@ -739,7 +738,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                             <option value="" disabled selected>What would you like to enquire about?</option>
 
-                            <option value="Demo">Product Demonstration</option>
+                            <option value="Demo">Demonstration</option>
                             <option value="Quote">Quote</option>
                             <option value="Trial">Trial</option>
                             <option value="Information">Information</option>
@@ -766,7 +765,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                             <option value="" disabled selected>What would you like to enquire about?</option>
 
-                            <option value="Demo">Product Demonstration</option>
+                            <option value="Demo">Demonstration</option>
                             <option value="Quote">Quote</option>
                             <option value="Trial">Trial</option>
                             <option value="Information">Information</option>
@@ -2685,9 +2684,6 @@ confirm all form fields are mapped to the correct field in salesforce
 
         payload.cid = Request.GetFormField("_cid");
         payload.rid = Request.GetFormField("_rid");
-        payload.eid = Request.GetFormField("_eid");
-        payload.sid = Request.GetFormField("_sid");
-        payload.fid = Request.GetFormField("_fid");
 
         payload.template = Request.GetFormField("_template");
         payload.inputs = Request.GetFormField("_inputs");
