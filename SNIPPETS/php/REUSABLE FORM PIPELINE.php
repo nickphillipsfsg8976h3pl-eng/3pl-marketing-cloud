@@ -70,7 +70,6 @@
      * gclid
      * gtm_referrer
      * 
-     * override_region
      * override_country_code
      * override_product_interest
      * override_marketing_interest
@@ -359,36 +358,22 @@
             if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
-            // COUNTRY CODE
-            // @description: Country code is required for region, country_name & state_name assignments.
-            // Its required in most forms but can be forced by the override_country_code hidden field.
-            if (
-                QUEUED[i].payload.override_country_code
-            ) {
-                QUEUED[i].payload.country_code = QUEUED[i].payload.override_country_code;
-            }
+            //OVERRIDES
+            QUEUED[i].payload.country_code = QUEUED[i].payload.override_country_code || QUEUED[i].payload.country_code;
+            QUEUED[i].payload.product_interest = QUEUED[i].payload.override_product_interest || QUEUED[i].payload.product_interest;
+            QUEUED[i].payload.marketing_interest = QUEUED[i].payload.override_marketing_interest || QUEUED[i].payload.marketing_interest;
+            QUEUED[i].payload.enquiry_type = QUEUED[i].payload.override_enquiry_type || QUEUED[i].payload.enquiry_type;
+            QUEUED[i].payload.lead_status = QUEUED[i].payload.override_lead_status || QUEUED[i].payload.lead_status;
 
 
-            // REGION
-            // @description: APAC, AMER, or EMEA region selection is assign based on the country code 
-            // if provided otherwise a value can be forced by the override_region hidden field.
-            if (
-                QUEUED[i].payload.override_region ||
-                QUEUED[i].payload.country_code
-            ) {
-                QUEUED[i].payload.region = QUEUED[i].payload.override_region ?
-                    QUEUED[i].payload.override_region :
-                    Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].payload.country_code])[0].Region;
-            }
-
-
-            // COUNTRY NAME
+            // COUNTRY NAME, REGION
             if (
                 QUEUED[i].payload.country_code
             ) {
                 var country = Platform.Function.LookupRows('COUNTRY_REFERENCE', ['CountryCode'], [QUEUED[i].payload.country_code])[0];
                 if (country) {
                     QUEUED[i].payload.country_name = country.CountryName;
+                    QUEUED[i].payload.region = country.Region;
                 }
             }
 
@@ -593,6 +578,7 @@
             QUEUED[i].payload.lead_source = 'Marketing Cloud (Form Submission Pipeline)';
 
 
+
         } //for(i)nextItemInQueue
 
 
@@ -667,14 +653,44 @@
             }
 
 
-            //CREATE NEW LEAD
+            //OTHERWISE CREATE NEW LEAD
             if (!isLeadExists) {
                 var lead = {
-                    FirstName: "John",
-                    LastName: "Doe",
-                    Email: "john@example.com",
-                    Company: "Acme Corp",
-                    Status: "Open"
+                    FirstName: QUEUED[i].payload.first_name,
+                    LastName: QUEUED[i].payload.last_name,
+                    Email: QUEUED[i].payload.email_address,
+                    Phone: QUEUED[i].payload.phone_number,
+                    Grade_Level__c: QUEUED[i].payload.grade_level,
+                    Title: QUEUED[i].payload.job_title,
+                    Country: QUEUED[i].payload.country,
+                    PostalCode: QUEUED[i].payload.___________,
+                    Company: QUEUED[i].payload.___________,
+                    No_of_licences__c: QUEUED[i].payload.___________,
+                    UTM_Source__c: QUEUED[i].payload.___________,
+                    UTM_Medium__c: QUEUED[i].payload.___________,
+                    UTM_Campaign__c: QUEUED[i].payload.___________,
+                    UTM_Content__c: QUEUED[i].payload.___________,
+                    UTM_Term__c: QUEUED[i].payload.___________,
+                    GCLID__c: QUEUED[i].payload.___________,
+                    FBCLID__c: QUEUED[i].payload.___________,
+                    MSCLKID__c: QUEUED[i].payload.___________,
+                    Marketing_Interest__c: QUEUED[i].payload.___________,
+                    LeadSource: QUEUED[i].payload.___________,
+                    Status: QUEUED[i].payload.___________,
+                    Existing_Customer__c: QUEUED[i].payload.___________,
+                    Job_Function__c: QUEUED[i].payload.___________,
+                    Description: QUEUED[i].payload.___________,
+                    Enquiry_Summary__c: QUEUED[i].payload.___________,
+                    Enquiry_Type__c: QUEUED[i].payload.___________,
+                    State: QUEUED[i].payload.___________,
+                    State__c: QUEUED[i].payload.___________,
+                    Subject__c: QUEUED[i].payload.___________,
+                    Campaign_Name__c: QUEUED[i].payload.___________,
+                    Campaign_Code__c: QUEUED[i].payload.___________,
+                    Product_Interest__c: QUEUED[i].payload.___________,
+                    Marketing_Product_Interest__c: QUEUED[i].payload.___________,
+                    Territory__c: QUEUED[i].payload.___________,
+                    Invalid_Lead__c: QUEUED[i].payload.___________,
                 };
 
                 var result = api.createItem("Lead", lead);

@@ -202,7 +202,6 @@ confirm all form fields are mapped to the correct field in salesforce
         config.fbclid = Request.GetQueryStringParameter("fbclid");
         config.msclikd = Request.GetQueryStringParameter("msclikd");
 
-        config.override_region = Request.GetQueryStringParameter("override_region");
         config.override_country_code = Request.GetQueryStringParameter("override_country_code");
         config.override_product_interest = Request.GetQueryStringParameter("override_product_interest");
         config.override_marketing_interest = Request.GetQueryStringParameter("override_marketing_interest");
@@ -541,7 +540,6 @@ confirm all form fields are mapped to the correct field in salesforce
             <input type="hidden" name="_location_href">
             <input type="hidden" name="_document_referrer">
 
-            <input type="hidden" name="_override_region" value="%%=v(@override_region)=%%">
             <input type="hidden" name="_override_country_code" value="%%=v(@override_country_code)=%%">
             <input type="hidden" name="_override_product_interest" value="%%=v(@override_product_interest)=%%">
             <input type="hidden" name="_override_marketing_interest" value="%%=v(@override_marketing_interest)=%%">
@@ -2701,7 +2699,6 @@ confirm all form fields are mapped to the correct field in salesforce
         payload.location_href = Request.GetFormField("_location_href");
         payload.document_referrer = Request.GetFormField("_document_referrer");
 
-        payload.override_region = Request.GetFormField("_override_region");
         payload.override_country_code = Request.GetFormField("_override_country_code");
         payload.override_product_interest = Request.GetFormField("_override_product_interest");
         payload.override_marketing_interest = Request.GetFormField("_override_marketing_interest");
