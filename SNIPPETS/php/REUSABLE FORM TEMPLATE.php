@@ -101,7 +101,6 @@ confirm all form fields are mapped to the correct field in salesforce
             '@parameter: (optional) utm_term - marketing trackers retrieved from a browser cookie <br>',
             '<br>',
             '@parameter: (optional) gclid - (google click ID) marketing trackers retrieved from a browser cookie <br>',
-            '@parameter: (optional) gtm_referrer - marketing trackers retrieved from a browser cookie <br>',
             '<br>',
             '<br>',
             'EXAMPLE URLS <br>',
@@ -186,7 +185,11 @@ confirm all form fields are mapped to the correct field in salesforce
         //retrieve data
         config.debug = Request.GetQueryStringParameter("debug");
 
+        config.apac_cid = Request.GetQueryStringParameter("apac_cid");
+        config.amer_cid = Request.GetQueryStringParameter("amer_cid");
+        config.emea_cid = Request.GetQueryStringParameter("emea_cid");
         config.cid = Request.GetQueryStringParameter("cid");
+
         config.rid = Request.GetQueryStringParameter("rid");
 
         config.template = Request.GetQueryStringParameter("template");
@@ -200,7 +203,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
         config.gclid = Request.GetQueryStringParameter("gclid");
         config.fbclid = Request.GetQueryStringParameter("fbclid");
-        config.msclikd = Request.GetQueryStringParameter("msclikd");
+        config.msclkid = Request.GetQueryStringParameter("msclkid");
 
         config.override_country_code = Request.GetQueryStringParameter("override_country_code");
         config.override_product_interest = Request.GetQueryStringParameter("override_product_interest");
@@ -449,27 +452,34 @@ confirm all form fields are mapped to the correct field in salesforce
     </script>
 
 
+    <!-- No Script -->
+    <noscript>
+        <!-- Google Tag Manager  -->
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T97DM2H"
+            height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+
+
     <!-- Meta/SEO -->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Form">
 
 
-    <!-- Title & Favicons -->
-    <title> 3P Learning </title>
-    <link rel="shortcut icon" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-16px.png" type="image/x-icon">
-    <link rel="apple-touch-icon-precomposed" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-57px.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-114px.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-72px.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://image.mc1.3plearning.com/lib/fe95137375660d7974/m/1/Mathletics-Favicon-144.png">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        //initialze select inputs: https://materializecss.com/select.html
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var options = {};
+            var instances = M.FormSelect.init(elems, options);
+        });
+    </script>
 
 
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
-    <!-- Styles -->
+    <!-- Global Styles -->
     <style>
         :root {
             font-size: 16px;
@@ -478,12 +488,6 @@ confirm all form fields are mapped to the correct field in salesforce
         .custom-reset-select-text {
             color: #495057c7;
             font-weight: 400;
-        }
-
-        .custom-select-opt-group {
-            font-weight: normal;
-            font-size: .8rem;
-            color: rgba(0, 0, 0, .5);
         }
     </style>
 
@@ -501,8 +505,6 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
     <form
-        class="needs-validation"
-        novalidate
         method="POST">
 
 
@@ -512,13 +514,11 @@ confirm all form fields are mapped to the correct field in salesforce
 
             <input type="hidden" name="_debug" value="%%=v(@debug)=%%">
 
-            <input type="hidden" name="_triggered_send_key" value="%%=v(@triggered_send_key)=%%">
-
             <input type="hidden" name="_apac_cid" value="%%=v(@apac_cid)=%%">
             <input type="hidden" name="_amer_cid" value="%%=v(@amer_cid)=%%">
             <input type="hidden" name="_emea_cid" value="%%=v(@emea_cid)=%%">
-
             <input type="hidden" name="_cid" value="%%=v(@cid)=%%">
+
             <input type="hidden" name="_rid" value="%%=v(@rid)=%%">
 
             <input type="hidden" name="_template" value="%%=v(@template)=%%">
@@ -532,7 +532,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
             <input type="hidden" name="_gclid" value="%%=v(@gclid)=%%">
             <input type="hidden" name="_fbclid" value="%%=v(@fbclid)=%%">
-            <input type="hidden" name="_msclkid" value="%%=v(@msclikd)=%%">
+            <input type="hidden" name="_msclkid" value="%%=v(@msclkid)=%%">
 
             <input type="hidden" name="_request_url" value="%%=v(@request_url)=%%">
             <input type="hidden" name="_location_href">
@@ -543,7 +543,6 @@ confirm all form fields are mapped to the correct field in salesforce
             <input type="hidden" name="_override_marketing_interest" value="%%=v(@override_marketing_interest)=%%">
             <input type="hidden" name="_override_enquiry_type" value="%%=v(@override_enquiry_type)=%%">
             <input type="hidden" name="_override_lead_status" value="%%=v(@override_lead_status)=%%">
-
 
 
             <!-- Assign client side location and referrer urls -->
@@ -578,7 +577,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         document.querySelector('input[name="_utm_content"]').value = getParam('utm_content');
                         document.querySelector('input[name="_utm_term"]').value = getParam('utm_term');
                         document.querySelector('input[name="_gclid"]').value = getParam('gclid');
-                        document.querySelector('input[name="_gtm_referrer"]').value = getCookie('__gtm_referrer');
+                        document.querySelector('input[name="_fbclid"]').value = getParam('fbclid');
+                        document.querySelector('input[name="_msclkid"]').value = getParam('msclkid');
                     }
 
                 }); //DOMContentLoaded
@@ -589,7 +589,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
         <!-- Wrapper -->
         <div class=" container my-5">
-            <div class="form-row">
+            <div class="row g-3">
 
 
                 %%[
@@ -607,783 +607,707 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST") THEN]%%
                 <!------------- Product Interest ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_product_interest"
-                            name="_product_interest"
-                            multiple
-                            required>
+                    <select
+                        id="_product_interest"
+                        name="_product_interest"
+                        multiple
+                        required>
 
-                            <option value="" disabled selected>Product Interest</option>
+                        <option value="" disabled selected>Product Interest</option>
 
-                            SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc, "Active", "True")
-                            FOR @i = 1 TO RowCount(@productsList) DO
-                            SET @productName = field(row(@productsList, @i),"Name")
-                            SET @productValue = field(row(@productsList, @i),"Value")
-                            OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
-                            NEXT @i
+                        SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc", "Active", "True")
+                        FOR @i = 1 TO RowCount(@productsList) DO
+                        SET @productName = field(row(@productsList, @i),"Name")
+                        SET @productValue = field(row(@productsList, @i),"Value")
+                        OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
+                        NEXT @i
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select the products you are interested in</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST_HALF") THEN]%%
                 <!------------- Product Interest HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_product_interest"
-                            name="_product_interest"
-                            multiple
-                            required>
+                    <select
+                        id="_product_interest"
+                        name="_product_interest"
+                        multiple
+                        required>
 
-                            <option value="" disabled selected>Product Interest</option>
+                        <option value="" disabled selected>Product Interest</option>
 
-                            SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc, "Active", "True")
-                            FOR @i = 1 TO RowCount(@productsList) DO
-                            SET @productName = field(row(@productsList, @i),"Name")
-                            SET @productValue = field(row(@productsList, @i),"Value")
-                            OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
-                            NEXT @i
+                        SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc", "Active", "True")
+                        FOR @i = 1 TO RowCount(@productsList) DO
+                        SET @productName = field(row(@productsList, @i),"Name")
+                        SET @productValue = field(row(@productsList, @i),"Value")
+                        OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
+                        NEXT @i
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select the products you are interested in</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "MARKETING_INTEREST") THEN]%%
                 <!------------- Product Interest ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_marketing_interest"
-                            name="_marketing_interest"
-                            multiple>
+                    <select
+                        id="_marketing_interest"
+                        name="_marketing_interest"
+                        multiple>
 
-                            <option value="" disabled selected>Marketing Interest</option>
+                        <option value="" disabled selected>Marketing Interest</option>
 
-                            <option value="Product Information">Product Information</option>
-                            <option value="Newsletter">Newsletter</option>
-                            <option value="Promotions">Promotions</option>
+                        <option value="Product Information">Product Information</option>
+                        <option value="Newsletter">Newsletter</option>
+                        <option value="Promotions">Promotions</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select the marketing materials you are interested in</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "MARKETING_INTEREST_HALF") THEN]%%
                 <!------------- Product Interest ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_marketing_interest"
-                            name="_marketing_interest"
-                            multiple>
+                    <select
+                        id="_marketing_interest"
+                        name="_marketing_interest"
+                        multiple>
 
-                            <option value="" disabled selected>Marketing Interest</option>
+                        <option value="" disabled selected>Marketing Interest</option>
 
-                            <option value="Product Information">Product Information</option>
-                            <option value="Newsletter">Newsletter</option>
-                            <option value="Promotions">Promotions</option>
+                        <option value="Product Information">Product Information</option>
+                        <option value="Newsletter">Newsletter</option>
+                        <option value="Promotions">Promotions</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select the marketing materials you are interested in</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "ENQUIRY_TYPE") THEN]%%
                 <!------------- User Interest ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_enquiry_type"
-                            name="_enquiry_type"
-                            required>
+                    <select
+                        id="_enquiry_type"
+                        name="_enquiry_type"
+                        required>
 
-                            <option value="" disabled selected>What would you like to enquire about?</option>
+                        <option value="" disabled selected>What would you like to enquire about?</option>
 
-                            <option value="Demo">Demonstration</option>
-                            <option value="Quote">Quote</option>
-                            <option value="Trial">Trial</option>
-                            <option value="Information">Information</option>
+                        <option value="Demo">Demonstration</option>
+                        <option value="Quote">Quote</option>
+                        <option value="Trial">Trial</option>
+                        <option value="Information">Information</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a type of enquiry</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "ENQUIRY_TYPE_HALF") THEN]%%
                 <!------------- User Interest HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_enquiry_type"
-                            name="_enquiry_type"
-                            required>
+                    <select
+                        id="_enquiry_type"
+                        name="_enquiry_type"
+                        required>
 
-                            <option value="" disabled selected>What would you like to enquire about?</option>
+                        <option value="" disabled selected>What would you like to enquire about?</option>
 
-                            <option value="Demo">Demonstration</option>
-                            <option value="Quote">Quote</option>
-                            <option value="Trial">Trial</option>
-                            <option value="Information">Information</option>
+                        <option value="Demo">Demonstration</option>
+                        <option value="Quote">Quote</option>
+                        <option value="Trial">Trial</option>
+                        <option value="Information">Information</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a type of enquiry</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "SUBJECT") THEN]%%
                 <!------------- Subject ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_subject"
-                            name="_subject"
-                            multiple
-                            required>
+                    <select
+                        id="_subject"
+                        name="_subject"
+                        multiple
+                        required>
 
-                            <option value="" disabled selected>Subject</option>
+                        <option value="" disabled selected>Subject</option>
 
-                            <option value="literacy">Literacy</option>
-                            <option value="mathematics">Mathematics</option>
+                        <option value="literacy">Literacy</option>
+                        <option value="mathematics">Mathematics</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a subject</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "SUBJECT_HALF") THEN]%%
                 <!------------- Subject ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_subject"
-                            name="_subject"
-                            multiple
-                            required>
+                    <select
+                        id="_subject"
+                        name="_subject"
+                        multiple
+                        required>
 
-                            <option value="" disabled selected>Subject</option>
+                        <option value="" disabled selected>Subject</option>
 
-                            <option value="literacy">Literacy</option>
-                            <option value="mathematics">Mathematics</option>
+                        <option value="literacy">Literacy</option>
+                        <option value="mathematics">Mathematics</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a subject</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "FIRST_NAME") THEN]%%
                 <!------------- First Name ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_first_name"
-                            name="_first_name"
-                            placeholder="First Name"
-                            required>
+                    <label for="_first_name">First Name</label>
+                    <input
+                        type="text"
+                        id="_first_name"
+                        name="_first_name"
+                        placeholder="First Name"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a first name</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "FIRST_NAME_HALF") THEN]%%
                 <!------------- First Name HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_first_name"
-                            name="_first_name"
-                            placeholder="First Name"
-                            required>
+                    <label for="_first_name">First Name</label>
+                    <input
+                        type="text"
+                        id="_first_name"
+                        name="_first_name"
+                        placeholder="First Name"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a first name</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "LAST_NAME") THEN]%%
                 <!------------- Last Name ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_last_name"
-                            name="_last_name"
-                            placeholder="Last Name"
-                            required>
+                    <label for="_last_name">Last Name</label>
+                    <input
+                        type="text"
+                        id="_last_name"
+                        name="_last_name"
+                        placeholder="Last Name"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a last name</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "LAST_NAME_HALF") THEN]%%
                 <!------------- Last Name HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_last_name"
-                            name="_last_name"
-                            placeholder="Last Name"
-                            required>
+                    <label for="_last_name">Last Name</label>
+                    <input
+                        type="text"
+                        id="_last_name"
+                        name="_last_name"
+                        placeholder="Last Name"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a last name</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "EMAIL_ADDRESS") THEN]%%
                 <!------------- Email Address----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <input
-                            class="form-control"
-                            type="email"
-                            id="_email_address"
-                            name="_email_address"
-                            placeholder="Email Address"
-                            required>
+                    <label for="_email_address">Email Address</label>
+                    <input
+                        type="email"
+                        id="_email_address"
+                        name="_email_address"
+                        placeholder="Email Address"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a valid email address</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "EMAIL_ADDRESS_HALF") THEN]%%
                 <!------------- Email Address HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <input
-                            class="form-control"
-                            type="email"
-                            id="_email_address"
-                            name="_email_address"
-                            placeholder="Email Address"
-                            required>
+                    <label for="_email_address">Email Address</label>
+                    <input
+                        type="email"
+                        id="_email_address"
+                        name="_email_address"
+                        placeholder="Email Address"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a valid email address</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "PHONE_NUMBER") THEN]%%
                 <!------------- Phone Number ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_phone_number"
-                            name="_phone_number"
-                            placeholder="Mobile / Work Phone"
-                            required>
+                    <label for="_phone_number">Mobile / Work Phone</label>
+                    <input
+                        type="text"
+                        id="_phone_number"
+                        name="_phone_number"
+                        placeholder="Mobile / Work Phone"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a phone number</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "PHONE_NUMBER_HALF") THEN]%%
                 <!------------- Phone Number HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_phone_number"
-                            name="_phone_number"
-                            placeholder="Mobile / Work Phone"
-                            required>
+                    <label for="_phone_number">Mobile / Work Phone</label>
+                    <input
+                        type="text"
+                        id="_phone_number"
+                        name="_phone_number"
+                        placeholder="Mobile / Work Phone"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a phone number</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "GRADE_LEVEL") THEN]%%
                 <!------------- Grade Level ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_grade_level"
-                            name="_grade_level"
-                            required>
+                    <select
+                        id="_grade_level"
+                        name="_grade_level"
+                        required>
 
-                            <option value="" disabled selected>Grade Level</option>
+                        <option value="" disabled selected>Grade Level</option>
 
-                            <option value="K/R">K/R</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="I do not teach specific grades">I do not teach specific grades</option>
+                        <option value="K/R">K/R</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="I do not teach specific grades">I do not teach specific grades</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a grade level</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "GRADE_LEVEL_HALF") THEN]%%
                 <!------------- Grade Level HALF----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_grade_level"
-                            name="_grade_level"
-                            required>
+                    <select
+                        id="_grade_level"
+                        name="_grade_level"
+                        required>
 
-                            <option value="" disabled selected>Grade Level</option>
+                        <option value="" disabled selected>Grade Level</option>
 
-                            <option value="K/R">K/R</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="I do not teach specific grades">I do not teach specific grades</option>
+                        <option value="K/R">K/R</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="I do not teach specific grades">I do not teach specific grades</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a grade level</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
-
-
-
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL") THEN]%%
                 <!------------- Country Name ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_country_code"
-                            name="_country_code"
-                            required>
+                    <select
+                        id="_country_code"
+                        name="_country_code"
+                        required>
 
-                            <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Select Country</option>
 
-                            %%[
+                        %%[
 
-                            /* POPULATE COUNTRY OPTIONS
-                            ******************************/
+                        /* POPULATE COUNTRY OPTIONS
+                        ******************************/
 
-                            SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
-                            FOR @i = 1 to RowCount(@Countries_Main) Do
-                            SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                        FOR @i = 1 to RowCount(@Countries_Main) Do
+                        SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
+                        OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
-                            FOR @i = 1 to RowCount(@Countries_All) Do
-                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
+                        FOR @i = 1 to RowCount(@Countries_All) Do
+                        SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a country</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL_HALF") THEN]%%
                 <!------------- Country Name HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_country_code"
-                            name="_country_code"
-                            required>
+                    <select
+                        id="_country_code"
+                        name="_country_code"
+                        required>
 
-                            <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Select Country</option>
 
-                            %%[
+                        %%[
 
-                            /* POPULATE COUNTRY OPTIONS
-                            ******************************/
+                        /* POPULATE COUNTRY OPTIONS
+                        ******************************/
 
-                            SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
-                            FOR @i = 1 to RowCount(@Countries_Main) Do
-                            SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                        FOR @i = 1 to RowCount(@Countries_Main) Do
+                        SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
+                        OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
-                            FOR @i = 1 to RowCount(@Countries_All) Do
-                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
+                        FOR @i = 1 to RowCount(@Countries_All) Do
+                        SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a country</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_APAC") THEN]%%
                 <!------------- Country Name ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_country_code"
-                            name="_country_code"
-                            required>
+                    <select
+                        id="_country_code"
+                        name="_country_code"
+                        required>
 
-                            <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Select Country</option>
 
-                            %%[
+                        %%[
 
-                            /* POPULATE COUNTRY OPTIONS
-                            ******************************/
+                        /* POPULATE COUNTRY OPTIONS
+                        ******************************/
 
-                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "APAC")
-                            FOR @i = 1 to RowCount(@Countries_All) Do
-                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "APAC")
+                        FOR @i = 1 to RowCount(@Countries_All) Do
+                        SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a country</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_APAC_HALF") THEN]%%
                 <!------------- Country Name HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_country_code"
-                            name="_country_code"
-                            required>
+                    <select
+                        id="_country_code"
+                        name="_country_code"
+                        required>
 
-                            <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Select Country</option>
 
-                            %%[
+                        %%[
 
-                            /* POPULATE COUNTRY OPTIONS
-                            ******************************/
+                        /* POPULATE COUNTRY OPTIONS
+                        ******************************/
 
-                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "APAC")
-                            FOR @i = 1 to RowCount(@Countries_All) Do
-                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "APAC")
+                        FOR @i = 1 to RowCount(@Countries_All) Do
+                        SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a country</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_AMER") THEN]%%
                 <!------------- Country Name ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_country_code"
-                            name="_country_code"
-                            required>
+                    <select
+                        id="_country_code"
+                        name="_country_code"
+                        required>
 
-                            <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Select Country</option>
 
-                            %%[
+                        %%[
 
-                            /* POPULATE COUNTRY OPTIONS
-                            ******************************/
+                        /* POPULATE COUNTRY OPTIONS
+                        ******************************/
 
-                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "AMER")
-                            FOR @i = 1 to RowCount(@Countries_All) Do
-                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "AMER")
+                        FOR @i = 1 to RowCount(@Countries_All) Do
+                        SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a country</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_AMER_HALF") THEN]%%
                 <!------------- Country Name HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_country_code"
-                            name="_country_code"
-                            required>
+                    <select
+                        id="_country_code"
+                        name="_country_code"
+                        required>
 
-                            <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Select Country</option>
 
-                            %%[
+                        %%[
 
-                            /* POPULATE COUNTRY OPTIONS
-                            ******************************/
+                        /* POPULATE COUNTRY OPTIONS
+                        ******************************/
 
-                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "AMER")
-                            FOR @i = 1 to RowCount(@Countries_All) Do
-                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "AMER")
+                        FOR @i = 1 to RowCount(@Countries_All) Do
+                        SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a country</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA") THEN]%%
                 <!------------- Country Name ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_country_code"
-                            name="_country_code"
-                            required>
+                    <select
+                        id="_country_code"
+                        name="_country_code"
+                        required>
 
-                            <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Select Country</option>
 
-                            %%[
+                        %%[
 
-                            /* POPULATE COUNTRY OPTIONS
-                            ******************************/
+                        /* POPULATE COUNTRY OPTIONS
+                        ******************************/
 
-                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "EMEA")
-                            FOR @i = 1 to RowCount(@Countries_All) Do
-                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "EMEA")
+                        FOR @i = 1 to RowCount(@Countries_All) Do
+                        SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a country</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA_HALF") THEN]%%
                 <!------------- Country Name HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_country_code"
-                            name="_country_code"
-                            required>
+                    <select
+                        id="_country_code"
+                        name="_country_code"
+                        required>
 
-                            <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Select Country</option>
 
-                            %%[
+                        %%[
 
-                            /* POPULATE COUNTRY OPTIONS
-                            ******************************/
+                        /* POPULATE COUNTRY OPTIONS
+                        ******************************/
 
-                            SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "EMEA")
-                            FOR @i = 1 to RowCount(@Countries_All) Do
-                            SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
-                            SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                            OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
-                            NEXT @i
+                        SET @Countries_All = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "EMEA")
+                        FOR @i = 1 to RowCount(@Countries_All) Do
+                        SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
+                        SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a country</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL") THEN]%%
                 <!------------- State / Province Name ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
+                        <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
 
 
@@ -1450,22 +1374,19 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL_HALF") THEN]%%
                 <!------------- State / Province Name HALF----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
+                        <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
 
 
@@ -1532,876 +1453,800 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US") THEN]%%
                 <!------------- State / Province Name (US) ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State</option>
+                        <option value="" disabled selected>State</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US_HALF") THEN]%%
                 <!------------- State / Province Name (US) HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State</option>
+                        <option value="" disabled selected>State</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA") THEN]%%
                 <!------------- State / Province Name (CA) ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>Province</option>
+                        <option value="" disabled selected>Province</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA_HALF") THEN]%%
                 <!------------- State / Province Name (CA) HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>Province</option>
+                        <option value="" disabled selected>Province</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU") THEN]%%
                 <!------------- State / Province Name (AU) ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State</option>
+                        <option value="" disabled selected>State</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU_HALF") THEN]%%
                 <!------------- State / Province Name (AU) HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State</option>
+                        <option value="" disabled selected>State</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ") THEN]%%
                 <!------------- State / Province Name (NZ) ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State</option>
+                        <option value="" disabled selected>State</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ_HALF") THEN]%%
                 <!------------- State / Province Name (NZ) HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State</option>
+                        <option value="" disabled selected>State</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA") THEN]%%
                 <!------------- State / Province Name (ZA) ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State</option>
+                        <option value="" disabled selected>State</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA_HALF") THEN]%%
                 <!------------- State / Province Name (ZA) HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_state_code"
-                            name="_state_code"
-                            required>
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        required>
 
-                            <option value="" disabled selected>State</option>
+                        <option value="" disabled selected>State</option>
 
-                            %%[
+                        %%[
 
-                            /******************************
-                            POPULATE STATE/PROVINCE OPTIONS
-                            *******************************/
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
 
-                            SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
-                            FOR @i = 1 TO RowCount(@data) DO
-                            SET @option = Field(Row(@data, @i), "State Name")
-                            OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                            NEXT @i
-                            VAR @data, @option
+                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
+                        FOR @i = 1 TO RowCount(@data) DO
+                        SET @option = Field(Row(@data, @i), "State Name")
+                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        NEXT @i
+                        VAR @data, @option
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a state or province</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "POSTCODE_ZIPCODE") THEN]%%
                 <!------------- Postcode / Zipcode ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_postcode_zipcode"
-                            name="_postcode_zipcode"
-                            placeholder="Postcode / Zipcode"
-                            title="Postcode/Zipcode is 4 digits with no spaces"
-                            required>
+                    <label for="_postcode_zipcode">Postcode / Zipcode</label>
+                    <input
+                        type="text"
+                        id="_postcode_zipcode"
+                        name="_postcode_zipcode"
+                        placeholder="Postcode / Zipcode"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a postcode or zipcode</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "POSTCODE_ZIPCODE_HALF") THEN]%%
                 <!------------- Postcode / Zipcode HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_postcode_zipcode"
-                            name="_postcode_zipcode"
-                            placeholder="Postcode / Zipcode"
-                            title="Postcode/Zipcode is 4 digits with no spaces"
-                            required>
+                    <label for="_postcode_zipcode">Postcode / Zipcode</label>
+                    <input
+                        type="text"
+                        id="_postcode_zipcode"
+                        name="_postcode_zipcode"
+                        placeholder="Postcode / Zipcode"
+                        title="Postcode/Zipcode is 4 digits with no spaces"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a postcode or zipcode</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
+                    <select
+                        id="_job_title"
+                        name="_job_title"
+                        required>
 
-                            <option value="" selected disabled>Job Title (Please select a country)</option>
+                        <option value="" selected disabled>Job Title (Please select a country)</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-
-
-                    <script runat="server">
-                        /**
-                         * GET ALL COUNTRY RECORDS
-                         *****************************/
-                        var countryRegionRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
-                        Write('<script>let countryRegionRecords = ' + Stringify(countryRegionRecords) + '</' + 'script>');
-                    </script>
-
-
-                    <script runat="server">
-                        /**
-                         * GET ALL JOB TITLE RECORDS
-                         *****************************/
-                        var jobTitleRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
-                        Write('<script>let jobTitleRecords = ' + Stringify(jobTitleRecords) + '</' + 'script>');
-                    </script>
-
-
-                    <!-- On Country Change -->
-                    <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            const countrySelect = document.getElementById('_country_code');
-                            const jobTitleSelect = document.getElementById('_job_title');
-
-                            countrySelect.addEventListener('change', (event) => {
-                                //get selected country code
-                                const selectedCountryCode = event.target.value;
-                                //get region
-                                const selectedRegion = countryRegionRecords.find(i => {
-                                    return i.CountryCode === selectedCountryCode
-                                }).Region;
-                                //filter
-                                const jobTitlesFiltered = jobTitleRecords.filter(i => i.Region === selectedRegion);
-                                //clear
-                                jobTitleSelect.innerHTML = '';
-                                //placeholder
-                                jobTitleSelect.innerHTML = '<option value="" disabled selected>Job Title</option>'
-                                //append
-                                jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
-                                    return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
-                                }).join('');
-                            });
-                        });
-                    </script>
-
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
                 </div>
+
+
+                <script runat="server">
+                    /**
+                     * GET ALL COUNTRY RECORDS
+                     *****************************/
+                    var countryRegionRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
+                    Write('<script>let countryRegionRecords = ' + Stringify(countryRegionRecords) + '</' + 'script>');
+                </script>
+
+
+                <script runat="server">
+                    /**
+                     * GET ALL JOB TITLE RECORDS
+                     *****************************/
+                    var jobTitleRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
+                    Write('<script>let jobTitleRecords = ' + Stringify(jobTitleRecords) + '</' + 'script>');
+                </script>
+
+
+                <!-- On Country Change -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const countrySelect = document.getElementById('_country_code');
+                        const jobTitleSelect = document.getElementById('_job_title');
+
+                        countrySelect.addEventListener('change', (event) => {
+                            //get selected country code
+                            const selectedCountryCode = event.target.value;
+                            //get region
+                            const selectedRegion = countryRegionRecords.find(i => {
+                                return i.CountryCode === selectedCountryCode
+                            }).Region;
+                            //filter
+                            const jobTitlesFiltered = jobTitleRecords.filter(i => i.Region === selectedRegion);
+                            //clear
+                            jobTitleSelect.innerHTML = '';
+                            //placeholder
+                            jobTitleSelect.innerHTML = '<option value="" disabled selected>Job Title</option>'
+                            //append
+                            jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
+                                return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
+                            }).join('');
+                        });
+                    });
+                </script>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL_HALF") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
+                    <select
+                        id="_job_title"
+                        name="_job_title"
+                        required>
 
-                            <option value="" selected disabled>Job Title (Please select a country)</option>
+                        <option value="" selected disabled>Job Title (Please select a country)</option>
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a job title</div>
-
-                    </div>
-
-
-                    <script runat="server">
-                        /**
-                         * GET ALL COUNTRY RECORDS
-                         *****************************/
-                        var countryRegionRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
-                        Write('<script>let countryRegionRecords = ' + Stringify(countryRegionRecords) + '</' + 'script>');
-                    </script>
-
-
-                    <script runat="server">
-                        /**
-                         * GET ALL JOB TITLE RECORDS
-                         *****************************/
-                        var jobTitleRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
-                        Write('<script>let jobTitleRecords = ' + Stringify(jobTitleRecords) + '</' + 'script>');
-                    </script>
-
-
-                    <!-- On Country Change -->
-                    <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            const countrySelect = document.getElementById('_country_code');
-                            const jobTitleSelect = document.getElementById('_job_title');
-
-                            countrySelect.addEventListener('change', (event) => {
-                                //get selected country code
-                                const selectedCountryCode = event.target.value;
-                                //get region
-                                const selectedRegion = countryRegionRecords.find(i => {
-                                    return i.CountryCode === selectedCountryCode
-                                }).Region;
-                                //filter
-                                const jobTitlesFiltered = jobTitleRecords.filter(i => i.Region === selectedRegion);
-                                //clear
-                                jobTitleSelect.innerHTML = '';
-                                //placeholder
-                                jobTitleSelect.innerHTML = '<option value="" disabled selected>Job Title</option>'
-                                //append
-                                jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
-                                    return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
-                                }).join('');
-                            });
-                        });
-                    </script>
-
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
                 </div>
+
+
+                <script runat="server">
+                    /**
+                     * GET ALL COUNTRY RECORDS
+                     *****************************/
+                    var countryRegionRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
+                    Write('<script>let countryRegionRecords = ' + Stringify(countryRegionRecords) + '</' + 'script>');
+                </script>
+
+
+                <script runat="server">
+                    /**
+                     * GET ALL JOB TITLE RECORDS
+                     *****************************/
+                    var jobTitleRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
+                    Write('<script>let jobTitleRecords = ' + Stringify(jobTitleRecords) + '</' + 'script>');
+                </script>
+
+
+                <!-- On Country Change -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const countrySelect = document.getElementById('_country_code');
+                        const jobTitleSelect = document.getElementById('_job_title');
+
+                        countrySelect.addEventListener('change', (event) => {
+                            //get selected country code
+                            const selectedCountryCode = event.target.value;
+                            //get region
+                            const selectedRegion = countryRegionRecords.find(i => {
+                                return i.CountryCode === selectedCountryCode
+                            }).Region;
+                            //filter
+                            const jobTitlesFiltered = jobTitleRecords.filter(i => i.Region === selectedRegion);
+                            //clear
+                            jobTitleSelect.innerHTML = '';
+                            //placeholder
+                            jobTitleSelect.innerHTML = '<option value="" disabled selected>Job Title</option>'
+                            //append
+                            jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
+                                return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
+                            }).join('');
+                        });
+                    });
+                </script>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
+                    <select
+                        id="_job_title"
+                        name="_job_title"
+                        required>
 
-                            <option value="" selected disabled>Job Title</option>
+                        <option value="" selected disabled>Job Title</option>
 
-                            %%[
+                        %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                        /* Populate Job Title Options
+                        ********************************/
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobList) DO
+                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a job title</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
                 <!------------- Job Title HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
+                    <select
+                        id="_job_title"
+                        name="_job_title"
+                        required>
 
 
-                            <option value="" selected disabled>Job Title</option>
+                        <option value="" selected disabled>Job Title</option>
 
-                            %%[
+                        %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                        /* Populate Job Title Options
+                        ********************************/
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobList) DO
+                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a job title</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
+                    <select
+                        id="_job_title"
+                        name="_job_title"
+                        required>
 
-                            <option value="" selected disabled>Job Title</option>
+                        <option value="" selected disabled>Job Title</option>
 
-                            %%[
+                        %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                        /* Populate Job Title Options
+                        ********************************/
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobList) DO
+                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a job title</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER_HALF") THEN]%%
                 <!------------- Job Title HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
+                    <select
+                        id="_job_title"
+                        name="_job_title"
+                        required>
 
-                            <option value="" selected disabled>Job Title</option>
+                        <option value="" selected disabled>Job Title</option>
 
-                            %%[
+                        %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                        /* Populate Job Title Options
+                        ********************************/
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobList) DO
+                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a job title</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
+                    <select
+                        id="_job_title"
+                        name="_job_title"
+                        required>
 
-                            <option value="" selected disabled>Job Title</option>
+                        <option value="" selected disabled>Job Title</option>
 
-                            %%[
+                        %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                        /* Populate Job Title Options
+                        ********************************/
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobList) DO
+                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a job title</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA_HALF") THEN]%%
                 <!------------- Job Title HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <select
-                            class="form-control custom-reset-select-text"
-                            id="_job_title"
-                            name="_job_title"
-                            required>
+                    <select
+                        id="_job_title"
+                        name="_job_title"
+                        required>
 
-                            <option value="" selected disabled>Job Title</option>
+                        <option value="" selected disabled>Job Title</option>
 
-                            %%[
+                        %%[
 
-                            /* Populate Job Title Options
-                            ********************************/
+                        /* Populate Job Title Options
+                        ********************************/
 
-                            SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
-                            FOR @i = 1 TO RowCount(@jobList) DO
-                            SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
-                            OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
-                            NEXT @i
+                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobList) DO
+                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
+                        NEXT @i
 
-                            ]%%
+                        ]%%
 
-                        </select>
+                    </select>
 
-                        <div class="invalid-feedback">Please select a job title</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "SCHOOL_NAME") THEN]%%
                 <!------------- School Name ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_school_name"
-                            name="_school_name"
-                            placeholder="School or District Name"
-                            required>
+                    <label for="_school_name">School or District Name</label>
+                    <input
+                        type="text"
+                        id="_school_name"
+                        name="_school_name"
+                        placeholder="School or District Name"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a school name</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "SCHOOL_NAME_HALF") THEN]%%
                 <!------------- School Name HALF----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="_school_name"
-                            name="_school_name"
-                            placeholder="School or District Name"
-                            required>
+                    <label for="_school_name">School or District Name</label>
+                    <input
+                        type="text"
+                        id="_school_name"
+                        name="_school_name"
+                        placeholder="School or District Name"
+                        required>
 
-                        <div class="invalid-feedback">Please enter a school name</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "NO_OF_LICENCES") THEN]%%
                 <!------------- No. Of Licences  ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <input
-                            class="form-control"
-                            type="number"
-                            id="_no_of_licences"
-                            name="_no_of_licences"
-                            placeholder="Number of Student Licenses"
-                            required
-                            min="20"
-                            max="1000">
+                    <label for="_no_of_licences">Number of Student Licenses</label>
+                    <input
+                        type="number"
+                        id="_no_of_licences"
+                        name="_no_of_licences"
+                        placeholder="Number of Student Licenses"
+                        required
+                        min="20"
+                        max="1000">
 
-                        <div class="invalid-feedback">Please enter how many licences are needed</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "NO_OF_LICENCES_HALF") THEN]%%
                 <!------------- No. Of Licences HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
+                <div class="input-field col s12 m6">
 
-                        <input
-                            class="form-control"
-                            type="number"
-                            id="_no_of_licences"
-                            name="_no_of_licences"
-                            placeholder="Number of Student Licenses"
-                            required
-                            min="20"
-                            max="1000">
+                    <label for="_no_of_licences">Number of Student Licenses</label>
+                    <input
+                        type="number"
+                        id="_no_of_licences"
+                        name="_no_of_licences"
+                        placeholder="Number of Student Licenses"
+                        required
+                        min="20"
+                        max="1000">
 
-                        <div class="invalid-feedback">Please enter how many licences are needed</div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
                 <!------------- Terms & Conditions ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-check">
+                <div class="input-field col s12">
+                    <div class="form-check">
 
-
+                        <label>
                             <input
-                                class="form-check-input"
                                 type="checkbox"
                                 id="_terms_and_conditions"
                                 name="_terms_and_conditions"
                                 checked
                                 required>
-
-                            <label
-                                class="form-check-label"
-                                for="_terms_and_conditions">
+                            <span>
                                 I agree to the 3P Learning
                                 <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
-                            </label>
+                            </span>
+                        </label>
 
-                            <div class="invalid-feedback">Please agree.</div>
+                        <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                        </div>
                     </div>
                 </div>
                 %%[ENDIF]%%
@@ -2409,29 +2254,24 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
                 <!------------- Terms & Conditions HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <div class="form-check">
+                <div class="input-field col s12 m6">
+                    <div class="form-check">
 
-
+                        <label>
                             <input
-                                class="form-check-input"
                                 type="checkbox"
                                 id="_terms_and_conditions"
                                 name="_terms_and_conditions"
                                 checked
                                 required>
-
-                            <label
-                                class="form-check-label"
-                                for="_terms_and_conditions">
+                            <span>
                                 I agree to the 3P Learning
                                 <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
-                            </label>
+                            </span>
+                        </label>
 
-                            <div class="invalid-feedback">Please agree.</div>
+                        <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                        </div>
                     </div>
                 </div>
                 %%[ENDIF]%%
@@ -2439,26 +2279,22 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
                 <!------------- Subscriber Opt In ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-check">
+                <div class="input-field col s12">
+                    <div class="form-check">
 
+                        <label>
                             <input
-                                class="form-check-input"
                                 type="checkbox"
                                 id="_subscriber_opt_in"
                                 name="_subscriber_opt_in"
                                 checked>
-
-                            <label
-                                class="form-check-label"
-                                for="subscriber_opt_in_input">
+                            <span>
                                 YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
-                            </label>
+                            </span>
+                        </label>
 
-                            <!-- <div class="invalid-feedback">Please opt in.</div> -->
+                        <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
 
-                        </div>
                     </div>
                 </div>
                 %%[ENDIF]%%
@@ -2466,26 +2302,22 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
                 <!------------- Subscriber Opt In HALF ----------------->
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <div class="form-check">
+                <div class="input-field col s12 m6">
+                    <div class="form-check">
 
+                        <label>
                             <input
-                                class="form-check-input"
                                 type="checkbox"
                                 id="_subscriber_opt_in"
                                 name="_subscriber_opt_in"
                                 checked>
-
-                            <label
-                                class="form-check-label"
-                                for="subscriber_opt_in_input">
+                            <span>
                                 YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
-                            </label>
+                            </span>
+                        </label>
 
-                            <!-- <div class="invalid-feedback">Please opt in.</div> -->
+                        <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
 
-                        </div>
                     </div>
                 </div>
                 %%[ENDIF]%%
@@ -2493,18 +2325,16 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBMIT_BUTTON") THEN]%%
                 <!------------- Submit Button ----------------->
-                <div class="col-sm-12">
-                    <div class="form-group">
+                <div class="input-field col s12">
 
-                        <button
-                            class="custom_submit_button"
-                            type="submit"
-                            id="_submit_button"
-                            name="_submit_button">
-                            Submit
-                        </button>
+                    <button
+                        class="custom_submit_button"
+                        type="submit"
+                        id="_submit_button"
+                        name="_submit_button">
+                        Submit
+                    </button>
 
-                    </div>
                 </div>
 
 
@@ -2519,6 +2349,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     .custom_submit_button {
                         background-color: var(--submit_button__rest--backgroundColor);
+                        border: none;
                         border-radius: 25px;
                         padding: 15px 50px;
                         text-align: center;
@@ -2526,6 +2357,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         font-weight: 600;
                         font-size: 1rem;
                         width: 100%;
+                        cursor: pointer;
                     }
 
                     .custom_submit_button:hover {
@@ -2568,50 +2400,11 @@ confirm all form fields are mapped to the correct field in salesforce
     <!-- ===========================  JAVASCRIPT  =========================== -->
 
 
-    <noscript>
-        <!-- Google Tag Manager (noscript) -->
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T97DM2H"
-            height="0" width="0" style="display:none;visibility:hidden">
-        </iframe>
-    </noscript>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
-    <!-- Validate Form Submission-->
-    <script>
-        // @url: https://getbootstrap.com/docs/4.1/components/forms/#validation
-        // @url: https://developer.snapappointments.com/bootstrap-select/options/#events
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            //CONSTANTS
-            const form = document.forms[0];
-            const productInterestSelect = $('#_product_interest');
-            const productInterestFeedbackList = document.querySelectorAll('#product_interest_invalid_feedback');
-
-            //EVENTS
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    form.classList.add('was-validated');
-
-                } //checkValidity
-
-            }); //submit
-
-        }); //DOMContentLoaded
-    </script>
-
-
 </body>
 
 </html>
+
+
 
 
 <script runat="server">
@@ -2659,8 +2452,9 @@ confirm all form fields are mapped to the correct field in salesforce
         payload.utm_content = Request.GetFormField("_utm_content");
         payload.utm_term = Request.GetFormField("_utm_term");
 
-        payload.glcid = Request.GetFormField("_gclid");
-        payload.gtm_referrer = Request.GetFormField("_gtm_referrer");
+        payload.gclid = Request.GetFormField("_gclid");
+        payload.fbclid = Request.GetFormField("_fbclid");
+        payload.msclkid = Request.GetFormField("_msclkid");
 
         payload.request_url = Request.GetFormField("_request_url");
         payload.location_href = Request.GetFormField("_location_href");
@@ -2711,12 +2505,12 @@ confirm all form fields are mapped to the correct field in salesforce
         //push to queue
         var queue = DataExtension.Init("REUSABLE_FORM_QUEUE");
         queue.Rows.Add({
-            "submission_id": Platform.Function.GUID(),
-            "submission_name": payload.first_name + ' ' + payload.last_name,
-            "submission_email": payload.email_address,
-            "submission_url": payload.request_url,
-            "submission_data": Stringify(payload),
-            "submission_date": Datetime.SystemDateToLocalString()
+            "queue_submission_id": Platform.Function.GUID(),
+            "queue_submission_name": payload.first_name + ' ' + payload.last_name,
+            "queue_submission_email": payload.email_address,
+            "queue_submission_url": payload.request_url,
+            "queue_submission_data": Stringify(payload),
+            "queue_submission_date": Datetime.SystemDateToLocalString()
             // "queue_method": //the method used to upsert the salesforce lead [CREATE/UPDATE]
             // "queue_record_id": //the saleforce recoordId of the lead (or contact) sync'd with salesforce
             // "queue_campaign_member_id": //the saleforce campaign member id after lead is upserted to campaign
