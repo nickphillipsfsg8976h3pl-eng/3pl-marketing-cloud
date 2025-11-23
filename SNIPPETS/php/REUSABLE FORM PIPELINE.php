@@ -26,16 +26,16 @@
      * DATA EXTENSION COLUMNS CURRENTLY IN USE
      * -------------------------------------------
      *   
-     * submission_id
-     * submission_name
-     * submission_email
-     * submission_url
-     * submission_data
-     * submission_date
-     * 
-     * queue_method
-     * queue_record_id
+     * queue_submission_id
+     * queue_submission_name
+     * queue_submission_email
+     * queue_submission_url
+     * queue_submission_data
+     * queue_queue_submission_date
+     * queue_lead_id
+     * queue_lead_sync_method
      * queue_campaign_member_id
+     * queue_campaign_member_sync_method
      * queue_error_message
      * queue_completed_date
      * 
@@ -50,15 +50,15 @@
      * apac_cid
      * amer_cid
      * emea_cid
-     * cid
+     * 
      * cid
      * rid
-     * eid
-     * override_lead_status
-     * fid
      *
-     * inputs
      * template
+     * inputs
+     * 
+     * location_href
+     * document_referrer
      * request_url
      *
      * utm_source
@@ -68,7 +68,8 @@
      * utm_term
      * 
      * gclid
-     * gtm_referrer
+     * fbclid
+     * msclkid
      * 
      * override_country_code
      * override_product_interest
@@ -158,7 +159,7 @@
 
 
         //get unprocessed records orderd by first-in
-        QUEUED = Platform.Function.LookupOrderedRows('REUSABLE_FORM_QUEUE', 0, 'submission_date ASC', 'queue_completed_date', null);
+        QUEUED = Platform.Function.LookupOrderedRows('REUSABLE_FORM_QUEUE', 0, 'queue_submission_date ASC', 'queue_completed_date', null);
 
 
         //exit early if none
@@ -182,11 +183,7 @@
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
 
 
-            //skip if already processed
-            // if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
-
-
-            QUEUED[i].payload = Platform.Function.ParseJSON(QUEUED[0].submission_data);
+            QUEUED[i].payload = Platform.Function.ParseJSON(QUEUED[0].queue_submission_data);
 
 
         } //for(i)nextItemInQueue
@@ -208,10 +205,6 @@
 
         //loop
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
-
-
-            //skip if already processed
-            // if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
             //TEST_RECORD_DETECTED
@@ -354,7 +347,7 @@
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
 
 
-            //skip if already processed
+            //skip completed
             if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
 
@@ -595,6 +588,7 @@
     ***************************************/
     try {
 
+
         //get ssjs libraries
         Platform.Function.ContentBlockByKey("ssjs-library-amp")
 
@@ -603,45 +597,39 @@
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
 
 
-            //LOG FAILED 
-            if (
-                QUEUED[i].queue_error_message &&
-                QUEUED[i].queue_completed_date
-            ) {
+            //skip completed
+            if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
 
-
-
-
-                continue nextItemInQueue;
-            }
 
             //GET LEAD
-            var LEAD = retrieveSingleSaleforceObject(
+            var OLD_LEAD = RetrieveSingleSaleforceObject(
                 "Lead",
                 [
                     "Id",
                     "Status"
                 ],
-                ["Email", '=', QUEUED[i].payload.email_address],
+                ["Email", '=', QUEUED[i].payload.email_address]
             );
 
 
             //UPSERT LEAD
             if (
-                LEAD &&
-                LEAD.status != 'Converted'
+                OLD_LEAD &&
+                OLD_LEAD.status != 'Converted'
             ) {
                 //UPDATE LEAD
                 UpdateSingleSaleforceObject(
                     "Lead",
-                    LEAD.Id, {
+                    OLD_LEAD.Id, {
                         Status: "Qualified",
                         Rating: "Hot"
                     }
                 );
+                QUEUED[i].queue_lead_id = OLD_LEAD.Id;
+                QUEUED[i].queue_lead_sync_method = 'UPDATE';
             } else {
                 //CREATE LEAD
-                CreateSaleforceObject(
+                var NEW_LEAD = CreateSaleforceObject(
                     "Lead", {
                         FirstName: QUEUED[i].payload.first_name,
                         LastName: QUEUED[i].payload.last_name,
@@ -677,17 +665,19 @@
                         Invalid_Lead__: QUEUED[i].payload.invalid_lead
                     }
                 );
+                QUEUED[i].queue_lead_id = NEW_LEAD.Id;
+                QUEUED[i].queue_lead_sync_method = 'CREATE';
             }
 
 
             //GET CAMPAIGN MEMBER
-            var CAMPAIGN_MEMBER = retrieveSingleSaleforceObject(
+            var OLD_CAMPAIGN_MEMBER = retrieveSingleSaleforceObject(
                 "CampaignMember",
                 [
                     "Id"
                 ],
                 [
-                    "LeadId", '=', LEAD.Id,
+                    "LeadId", '=', QUEUED[i].queue_lead_id,
                     "CampaignId", '=', QUEUED[i].payload.campaign_id
                 ],
             );
@@ -695,25 +685,28 @@
 
             //UPSERT CAMPAIGN MEMBER
             if (
-                CAMPAIGN_MEMBER
+                OLD_CAMPAIGN_MEMBER
             ) {
                 //UPDATE CAMPAIGN MEMBER
                 UpdateSingleSaleforceObject(
                     "CampaignMember",
-                    LEAD.Id, {
-                        Status: "Qualified",
-                        Rating: "Hot"
+                    OLD_CAMPAIGN_MEMBER.Id, {
+                        Status: "Sent",
                     }
                 );
+                QUEUED[i].queue_campaign_member_id = OLD_CAMPAIGN_MEMBER.Id;
+                QUEUED[i].queue_campaign_member_sync_method = 'UPDATE';
             } else {
                 //CREATE CAMPAIGN MEMBER
-                CreateSaleforceObject(
+                var NEW_CAMPAIGN_MEMBER = CreateSaleforceObject(
                     "CampaignMember", {
-                        FirstName: QUEUED[i].payload.first_name,
-                        LastName: QUEUED[i].payload.last_name,
-                        Email: QUEUED[i].payload.email_address
+                        LeadId: QUEUED[i].queue_lead_id,
+                        CampaignId: QUEUED[i].payload.campaign_id,
+                        Status: 'Sent'
                     }
                 );
+                QUEUED[i].queue_campaign_member_id = NEW_CAMPAIGN_MEMBER.Id;
+                QUEUED[i].queue_campaign_member_sync_method = 'CREATE';
             }
 
 
@@ -728,7 +721,7 @@
 
 <script runat="server">
     /**************************************
-    ------------ UPDATE QUEUED ------------
+    ------------ UPDATE QUEUE ------------
     ***************************************/
     try {
 
@@ -739,19 +732,21 @@
             //UPDATE QUEUED
             Platform.Function.UpdateData(
                 "REUSABLE_FORM_QUEUE",
-                ["submission_id", "submission_date"], [QUEUED[i].submission_id, QUEUED[i].submission_date], //composite key
+                ["queue_submission_id", "queue_submission_date"], [QUEUED[i].queue_submission_id, QUEUED[i].queue_submission_date], //composite key
                 [
-                    "queue_method",
-                    "queue_record_id",
+                    "queue_lead_id",
+                    "queue_lead_upsert_method",
                     "queue_campaign_member_id",
+                    "queue_campaign_member_upsert_method",
                     "queue_error_message",
                     "queue_completed_date"
 
                 ],
                 [
-                    QUEUED[i].queue_method,
-                    QUEUED[i].queue_record_id,
+                    QUEUED[i].queue_lead_id,
+                    QUEUED[i].queue_lead_sync_method,
                     QUEUED[i].queue_campaign_member_id,
+                    QUEUED[i].queue_campaign_member_sync_method,
                     QUEUED[i].queue_error_message,
                     QUEUED[i].queue_completed_date
                 ]
@@ -761,6 +756,6 @@
         } //for(i)nextItemInQueue
     }
     catch (error) {
-        helper.log('SALESFORCE SYNC', error);
+        helper.log('UPDATE QUEUE', error);
     }
 </script>
