@@ -122,27 +122,27 @@
          * Returns a delimiter-separated string with unique values 
          * mainly used to remove duplicates from UTM fields.
          * 
-         * @param - delimiter-separated string
-         * @param - delimiter used in string
-         * @return - delimiter-separated string with unique values
+         * @param {string} string - delimiter-separated string
+         * @param {string} delimiter - delimiter used in string (default: '|')
+         * @return {string} - delimiter-separated string with unique values
          */
         getUniqueFromDelimitedString: function(string, delimiter) {
-            if (!string || !delimiter) return '';
+            if (!string) return '';
+            delimiter = delimiter || '|';
+
             var valueList = string.split(delimiter);
-            var keySet = {};
-            for (let i = 0; i < valueList.length; i++) {
-                if (valueList[i]) {
-                    var trimmedValue = valueList[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '')
-                    keySet[trimmedValue] = true;
+            var uniqueValues = [];
+            var seen = {};
+
+            for (var i = 0; i < valueList.length; i++) {
+                var trimmedValue = valueList[i].trim();
+                if (trimmedValue && !seen[trimmedValue]) {
+                    seen[trimmedValue] = true;
+                    uniqueValues.push(trimmedValue);
                 }
             }
-            keyList = [];
-            for (const key in keySet) {
-                if (!Object.hasOwn(keySet, key)) continue;
-                keyList.push(keySet[key]);
-            }
-            var result = keyList.join(delimiter);
-            return result;
+
+            return uniqueValues.join(delimiter);
         }
 
     } //helper
@@ -595,6 +595,9 @@
     ***************************************/
     try {
 
+        //get ssjs libraries
+        Platform.Function.ContentBlockByKey("ssjs-library-amp")
+
 
         //create proxy
         var api = new Script.Util.WSProxy();
@@ -610,96 +613,114 @@
 
             //reset
             var LEAD = {};
-            var isLeadExists = false;
+            var METHOD; //CREATE OR UPDATE
 
 
-            //RETRIEVE EXISTING LEAD (VIA EMAIL)
-            var result = api.retrieve("Lead", [
-                "Id",
-                "FirstName",
-                "LastName",
-                "Email",
-                "Status"
-            ], {
-                Property: "Email",
-                SimpleOperator: "equals",
-                Value: QUEUED[i].payload.email_address
-            });
+            //GET EXISTING LEAD
+            var LEAD = retrieveSingleSaleforceObject(
+                "Lead",
+                [
+                    "Id",
+                    "Email",
+                    "Status"
+                ],
+                ["Email", '=', QUEUED[i].payload.email_address],
+            );
 
 
-            //CHECK RESULTS
-            if (result.Status == "OK" && result.Results.length) {
-                isLeadExists = true;
-                LEAD.record = result.Results[0];
+            //SYNC LEAD TO SALESFORCE
+            if (
+                LEAD &&
+                LEAD.status != 'Converted'
+            ) {
+                //UPDATE LEAD
+                UpdateSingleSaleforceObject(
+                    "Lead",
+                    LEAD.Id, {
+                        Status: "Qualified",
+                        Rating: "Hot"
+                    }
+                );
+            } else {
+                //CREATE LEAD
+                CreateSaleforceObject(
+                    "Lead",
+                    [
+                        FirstName,
+                        LastName,
+                        Email,
+                        Phone,
+                        Grade_Level__c,
+                        Title,
+                        Country,
+                        PostalCode,
+                        Company,
+                        No_of_licences__c,
+                        UTM_Source__c,
+                        UTM_Medium__c,
+                        UTM_Campaign__c,
+                        UTM_Content__c,
+                        UTM_Term__c,
+                        GCLID__c,
+                        FBCLID__c,
+                        MSCLKID__c,
+                        Marketing_Interest__c,
+                        LeadSource,
+                        Status,
+                        Existing_Customer__c,
+                        Job_Function__c,
+                        Description,
+                        Enquiry_Summary__c,
+                        Enquiry_Type__c,
+                        State,
+                        State__c,
+                        Subject__c,
+                        Campaign_Name__c,
+                        Campaign_Code__c,
+                        Product_Interest__c,
+                        Marketing_Product_Interest__c,
+                        Territory__c,
+                        Invalid_Lead__c
+                    ], [
+                        QUEUED[i].payload.first_name,
+                        QUEUED[i].payload.last_name,
+                        QUEUED[i].payload.email_address,
+                        QUEUED[i].payload.phone_number,
+                        QUEUED[i].payload.grade_level,
+                        QUEUED[i].payload.job_title,
+                        QUEUED[i].payload.country,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                        QUEUED[i].payload.___________,
+                    ]
+                );
             }
 
-
-            //UPDATE EXISTING LEAD
-            if (isLeadExists) {
-
-                var leadUpdate = {
-                    ID: LEAD.record.Id,
-                    Status: "Qualified",
-                    Rating: "Hot"
-                };
-
-                var result = api.updateItem("Lead", leadUpdate);
-
-                if (result.Status == "OK") {
-                    QUEUED[i].queue_method = 'UPDATE'
-                    QUEUED[i].queue_record_id = result.Results[0].Object.ID;
-                }
-
-            }
-
-
-            //OTHERWISE CREATE NEW LEAD
-            if (!isLeadExists) {
-                var lead = {
-                    FirstName: QUEUED[i].payload.first_name,
-                    LastName: QUEUED[i].payload.last_name,
-                    Email: QUEUED[i].payload.email_address,
-                    Phone: QUEUED[i].payload.phone_number,
-                    Grade_Level__c: QUEUED[i].payload.grade_level,
-                    Title: QUEUED[i].payload.job_title,
-                    Country: QUEUED[i].payload.country,
-                    PostalCode: QUEUED[i].payload.___________,
-                    Company: QUEUED[i].payload.___________,
-                    No_of_licences__c: QUEUED[i].payload.___________,
-                    UTM_Source__c: QUEUED[i].payload.___________,
-                    UTM_Medium__c: QUEUED[i].payload.___________,
-                    UTM_Campaign__c: QUEUED[i].payload.___________,
-                    UTM_Content__c: QUEUED[i].payload.___________,
-                    UTM_Term__c: QUEUED[i].payload.___________,
-                    GCLID__c: QUEUED[i].payload.___________,
-                    FBCLID__c: QUEUED[i].payload.___________,
-                    MSCLKID__c: QUEUED[i].payload.___________,
-                    Marketing_Interest__c: QUEUED[i].payload.___________,
-                    LeadSource: QUEUED[i].payload.___________,
-                    Status: QUEUED[i].payload.___________,
-                    Existing_Customer__c: QUEUED[i].payload.___________,
-                    Job_Function__c: QUEUED[i].payload.___________,
-                    Description: QUEUED[i].payload.___________,
-                    Enquiry_Summary__c: QUEUED[i].payload.___________,
-                    Enquiry_Type__c: QUEUED[i].payload.___________,
-                    State: QUEUED[i].payload.___________,
-                    State__c: QUEUED[i].payload.___________,
-                    Subject__c: QUEUED[i].payload.___________,
-                    Campaign_Name__c: QUEUED[i].payload.___________,
-                    Campaign_Code__c: QUEUED[i].payload.___________,
-                    Product_Interest__c: QUEUED[i].payload.___________,
-                    Marketing_Product_Interest__c: QUEUED[i].payload.___________,
-                    Territory__c: QUEUED[i].payload.___________,
-                    Invalid_Lead__c: QUEUED[i].payload.___________,
-                };
-
-                var result = api.createItem("Lead", lead);
-
-                if (result.Status == "OK") {
-                    QUEUED[i].queue_method = 'CREATE'
-                    QUEUED[i].queue_record_id = result.Results[0].Object.ID;
-                }
-            }
 
             //UPSERT CAMPAIGN MEMBER
             if (
@@ -722,7 +743,7 @@
                 var result = api.updateItem("CampaignMember", campaignMember, options);
 
                 if (result.Status == "OK") {
-                    QUEUED[i].queue_campaign_member_id = result.Results[0].Object.ID;
+                    QUEUED[i].queue_campaign_member_id = result.[0].Object.ID;
                 }
             }
 

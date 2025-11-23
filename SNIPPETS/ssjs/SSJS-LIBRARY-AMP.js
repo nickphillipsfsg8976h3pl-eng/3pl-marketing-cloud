@@ -18,85 +18,6 @@
     // CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
     // DEALINGS IN THE SOFTWARE.
 
-    /**
-     * Enables the AMP function HTTPRequestHeader in SSJS
-     *
-     * This function returns a specified header from an HTTP request. This function 
-     * is only available in landing pages, microsites and CloudPages. It cannot be used 
-     * in other Marketing Cloud applications.
-     *
-     * NOTE: Only headers that are available in the page request return a value. For example, 
-     * if a user pastes a URL into a web browser instead of clicking on a page hyperlink 
-     * (from another web page), the Referer header value will be empty.
-     *
-     * @param  {string}    key  An HTTP header as defined in {@link https://tools.ietf.org/html/rfc7231|RFC 7231}
-     *
-     * @see {@link https://ampscript.guide/httprequestheader/|HTTPRequestHeader}
-     */
-  
-    function HTTPRequestHeader(key) {
-        var varName = '@amp__HTTPRequestHeader';
-
-        // AMP decleration
-        var amp = "\%\%[ ";
-        // function open        
-        amp += "set "+varName+" = HTTPRequestHeader(";
-        // parameter
-        amp += "'" + key + "'";
-        // function close
-        amp += ") ";
-        // output
-        amp += "output(v("+varName+"))";
-        // end of AMP
-        amp += "]\%\%";
-
-        return Platform.Function.TreatAsContent(amp);
-    }
-
-    /**
-     * Enables the AMP function UpdateSingleSalesforceObject in SSJS
-     *
-     * This function updates a record in a Sales or Service Cloud standard or 
-     * custom object. The function returns 1 if the record is updated successfully 
-     * or 0if it fails.
-     *
-     * NOTE: Additional API field name and value pairs can be appended as arguments.
-     *
-     * NOTE: Certain Salesforce objects enforce record-locking when a record is modified,
-     * to ensure the referential integrity of data. This applies to records that have a 
-     * relationship to lookup records in a different object. If the function is used to 
-     * asynchronously update multiple records (for example, the function is included in 
-     * an email) and the object has lock contention, the records may fail to update.
-     *
-     * @param  {string}    sfObject        API name of the Salesforce object.
-     * @param  {string}    id              Record identifier to update
-     * @param  {array}     parameters      Array of name-valiue pair to update
-     *
-     * @see {@link https://ampscript.guide/updatesinglesalesforceobject/|UpdateSingleSalesforceObject}
-     */
-    function UpdateSingleSalesforceObject(sfObject,id,parameters) {
-        var varName = '@amp__UpdateSingleSalesforceObject';
-
-        // AMP decleration
-        var amp = "\%\%[ ";
-        // function open        
-        amp += "set "+varName+" = UpdateSingleSalesforceObject(";
-        // parameters
-        amp += "'" + sfObject + "'";
-        amp += ",'" + id + "'";
-        // n parameters to update
-        for( var k in parameters ) {
-            amp += ",'"+k+"','"+parameters[k]+"'";
-        }
-        // function close
-        amp += ") ";
-        // output
-        amp += "output(v("+varName+"))";
-        // end of AMP
-        amp += "]\%\%";
-
-        return Platform.Function.TreatAsContent(amp);
-    }
 
     /**
      * Enables the AMP function RetrieveSalesforceObjects in SSJS
@@ -136,55 +57,160 @@
      *
      * @see {@link https://ampscript.guide/retrievesalesforceobjects/|RetrieveSalesforceObjects}
      */
-    function RetrieveSalesforceObjects(sfObject,fieldNames,parameters) {
+    function RetrieveSalesforceObjects(sfObject, fieldNames, parameters) {
         var varName = '@amp__RetrieveSalesforceObjects';
 
         // AMP decleration
         var amp = "\%\%[ ";
         // function open        
-        amp += "SET "+varName+" = RetrieveSalesforceObjects(";
+        amp += "SET " + varName + " = RetrieveSalesforceObjects(";
         // parameters
         amp += "'" + sfObject + "'";
         amp += ",'" + fieldNames.join(",") + "'";
         // n parameters to update
         //for (var i = 0; i < parameters.length; i++) {
-            amp += ",'" + parameters.join("','") + "'";
+        amp += ",'" + parameters.join("','") + "'";
         //}
         // function close
         amp += ") ";
 
         // build json from rowset
-        amp += "SET "+varName+"_output = '{ \"Status\": \"OK\", \"Results\": [' ";
+        amp += "SET " + varName + "_output = '{ \"Status\": \"OK\", \"Results\": [' ";
 
         // iterate over RowCount
-        amp += "FOR "+varName+"_i = 1 TO RowCount("+varName+") DO ";
-        amp += "SET "+varName+"_output = Concat("+varName+"_output,'{') ";
+        amp += "FOR " + varName + "_i = 1 TO RowCount(" + varName + ") DO ";
+        amp += "SET " + varName + "_output = Concat(" + varName + "_output,'{') ";
 
         // iterate over each fieldNames
         for (var n = 0; n < fieldNames.length; n++) {
-            amp += "SET "+varName+"_output = Concat("+varName+"_output,'\""+fieldNames[n]+"\":\"', Field(Row("+varName+", "+varName+"_i) ,'"+fieldNames[n]+"',0),'\"') ";
-            amp += (n<(fieldNames.length-1)) ? "SET "+varName+"_output = Concat("+varName+"_output,', ') " : " ";
+            amp += "SET " + varName + "_output = Concat(" + varName + "_output,'\"" + fieldNames[n] + "\":\"', Field(Row(" + varName + ", " + varName + "_i) ,'" + fieldNames[n] + "',0),'\"') ";
+            amp += (n < (fieldNames.length - 1)) ? "SET " + varName + "_output = Concat(" + varName + "_output,', ') " : " ";
         }
-        
+
         // close for loop
-        amp += "SET "+varName+"_output = Concat("+varName+"_output,'}') ";
-        amp += "IF "+varName+"_i < RowCount("+varName+") THEN SET "+varName+"_output = Concat("+varName+"_output,',') ENDIF ";
-        amp += "NEXT "+varName+"_i ";
+        amp += "SET " + varName + "_output = Concat(" + varName + "_output,'}') ";
+        amp += "IF " + varName + "_i < RowCount(" + varName + ") THEN SET " + varName + "_output = Concat(" + varName + "_output,',') ENDIF ";
+        amp += "NEXT " + varName + "_i ";
 
         // close ouput object
-        amp += "SET "+varName+"_output = Concat("+varName+"_output,'] }') ";
+        amp += "SET " + varName + "_output = Concat(" + varName + "_output,'] }') ";
 
         // output
-        amp += "Output(v("+varName+"_output)) ";
+        amp += "Output(v(" + varName + "_output)) ";
         // end of AMP
         amp += "]\%\%";
 
         try {
-            return Platform.Function.ParseJSON(Platform.Function.TreatAsContent(amp)); 
-        } catch(e) {
-            return Platform.Function.ParseJSON('{"Status": "Error cannot retrieve Salesforce Object", "Results": ['+Platform.Function.Stringify(amp)+']}');
+            return Platform.Function.ParseJSON(Platform.Function.TreatAsContent(amp));
+        } catch (e) {
+            return Platform.Function.ParseJSON('{"Status": "Error cannot retrieve Salesforce Object", "Results": [' + Platform.Function.Stringify(amp) + ']}');
         }
     }
+
+
+    /**
+     * Enables the AMP function CreateSalesforceObject in SSJS
+     *
+     * This function creates a record in a Sales Cloud or Service Cloud
+     * object and returns the ID of the record created.
+     *
+     * NOTE: Certain Salesforce objects enforce record-locking when a record is modified,
+     *
+     * @param  {string}    sObject          API name of the Salesforce object.
+     * @param  {string}    fieldNames       Array of field names to insert
+     * @param  {array}     fieldValues      Array of values to insert
+     *
+     * @see {@link https://developer.salesforce.com/docs/marketing/marketing-cloud-ampscript/references/mc-ampscript-salesforce/mc-ampscript-reference-salesforce-create-object.html}
+     */
+    function createSalesforceObject(sObject, fieldNames, fieldValues) {
+        var varName = '@amp__CreateSalesforceObject';
+
+        // AMP declaration
+        var amp = "\%\%[ ";
+
+        // Set variables for each field value
+        for (var i = 0; i < fieldValues.length; i++) {
+            amp += "SET " + varName + "_val" + i + " = '" + String(fieldValues[i]).replace(/'/g, "''") + "' ";
+        }
+
+        // function open
+        amp += "SET " + varName + " = CreateSalesforceObject(";
+        // parameters
+        amp += "'" + sObject + "'";
+        amp += "," + fieldNames.length;
+
+        // add field name/value pairs
+        for (var i = 0; i < fieldNames.length; i++) {
+            amp += ",'" + fieldNames[i] + "'," + varName + "_val" + i;
+        }
+
+        // function close
+        amp += ") ";
+
+        // build json output
+        amp += "IF " + varName + " == 'OK' THEN ";
+        amp += "SET " + varName + "_output = '{\"Status\": \"OK\", \"Message\": \"Salesforce object created successfully\"}' ";
+        amp += "ELSE ";
+        amp += "SET " + varName + "_output = Concat('{\"Status\": \"Error\", \"Message\": \"', " + varName + ", '\"}') ";
+        amp += "ENDIF ";
+
+        // output
+        amp += "Output(v(" + varName + "_output)) ";
+        // end of AMP
+        amp += "]\%\%";
+
+        try {
+            return Platform.Function.ParseJSON(Platform.Function.TreatAsContent(amp));
+        } catch (e) {
+            return Platform.Function.ParseJSON('{"Status": "Error", "Message": "Cannot create Salesforce Object", "Debug": ' + Platform.Function.Stringify(amp) + '}');
+        }
+    }
+
+    /**
+     * Enables the AMP function UpdateSingleSalesforceObject in SSJS
+     *
+     * This function updates a record in a Sales or Service Cloud standard or 
+     * custom object. The function returns 1 if the record is updated successfully 
+     * or 0if it fails.
+     *
+     * NOTE: Additional API field name and value pairs can be appended as arguments.
+     *
+     * NOTE: Certain Salesforce objects enforce record-locking when a record is modified,
+     * to ensure the referential integrity of data. This applies to records that have a 
+     * relationship to lookup records in a different object. If the function is used to 
+     * asynchronously update multiple records (for example, the function is included in 
+     * an email) and the object has lock contention, the records may fail to update.
+     *
+     * @param  {string}    sfObject        API name of the Salesforce object.
+     * @param  {string}    id              Record identifier to update
+     * @param  {array}     parameters      Array of name-valiue pair to update
+     *
+     * @see {@link https://ampscript.guide/updatesinglesalesforceobject/|UpdateSingleSalesforceObject}
+     */
+    function UpdateSingleSalesforceObject(sfObject, id, parameters) {
+        var varName = '@amp__UpdateSingleSalesforceObject';
+
+        // AMP decleration
+        var amp = "\%\%[ ";
+        // function open        
+        amp += "set " + varName + " = UpdateSingleSalesforceObject(";
+        // parameters
+        amp += "'" + sfObject + "'";
+        amp += ",'" + id + "'";
+        // n parameters to update
+        for (var k in parameters) {
+            amp += ",'" + k + "','" + parameters[k] + "'";
+        }
+        // function close
+        amp += ") ";
+        // output
+        amp += "output(v(" + varName + "))";
+        // end of AMP
+        amp += "]\%\%";
+
+        return Platform.Function.TreatAsContent(amp);
+    }
+
 
     /**
      * Enables the AMP function CloudPagesURL in SSJS
@@ -204,28 +230,29 @@
      *
      * @returns {string} A full URL 
      */
-    function CloudPagesURL(pid,parameters) {
+    function CloudPagesURL(pid, parameters) {
         var varName = '@amp__CloudPagesURL';
 
         // AMP decleration
         var amp = "\%\%[ ";
         // function open        
-        amp += "set "+varName+" = CloudPagesURL(";
+        amp += "set " + varName + " = CloudPagesURL(";
         // parameters
         amp += "'" + pid + "'";
         // n parameters
-        for( var k in parameters ) {
-            amp += ",'"+k+"','"+parameters[k]+"'";
+        for (var k in parameters) {
+            amp += ",'" + k + "','" + parameters[k] + "'";
         }
         // function close
         amp += ") ";
         // output
-        amp += "output(concat("+varName+")) ";
+        amp += "output(concat(" + varName + ")) ";
         // end of AMP
         amp += "]\%\%";
 
         return Platform.Function.TreatAsContent(amp);
     }
+
 
     /**
      * Enables the AMP function SHA1 in SSJS
@@ -239,27 +266,28 @@
      *
      * @returns {string}    The string as a SHA1 hex value hashed
      */
-     function SHA1(string,encoding) {
+    function SHA1(string, encoding) {
         var varName = '@amp__SHA1';
 
         // AMP decleration
         var amp = "\%\%[ ";
         // function open        
-        amp += "set "+varName+" = SHA1(";
+        amp += "set " + varName + " = SHA1(";
         // parameters
         amp += "'" + string + "'";
-        if(encoding) {
+        if (encoding) {
             amp += "'" + encoding + "'";
         }
         // function close
         amp += ") ";
         // output
-        amp += "output(v("+varName+")) ";
+        amp += "output(v(" + varName + ")) ";
         // end of AMP
         amp += "]\%\%";
 
         return Platform.Function.TreatAsContent(amp);
-     }
+    }
+
 
     /**
      * Enables the AMP function SHA256 in SSJS
@@ -273,27 +301,28 @@
      *
      * @returns {string}    The string as a SHA256 hex value hashed
      */
-     function SHA256(string,encoding) {
+    function SHA256(string, encoding) {
         var varName = '@amp__SHA256';
 
         // AMP decleration
         var amp = "\%\%[ ";
         // function open        
-        amp += "set "+varName+" = SHA256(";
+        amp += "set " + varName + " = SHA256(";
         // parameters
         amp += "'" + string + "'";
-        if(encoding) {
+        if (encoding) {
             amp += "'" + encoding + "'";
         }
         // function close
         amp += ") ";
         // output
-        amp += "output(concat("+varName+")) ";
+        amp += "output(concat(" + varName + ")) ";
         // end of AMP
         amp += "]\%\%";
 
         return Platform.Function.TreatAsContent(amp);
-     }
+    }
+
 
     /**
      * Enables the AMP function SHA512 in SSJS
@@ -307,27 +336,28 @@
      *
      * @returns {string}    The string as a SHA512 hex value hashed
      */
-     function SHA512(string,encoding) {
+    function SHA512(string, encoding) {
         var varName = '@amp__SHA512';
 
         // AMP decleration
         var amp = "\%\%[ ";
         // function open        
-        amp += "set "+varName+" = SHA512(";
+        amp += "set " + varName + " = SHA512(";
         // parameters
         amp += "'" + string + "'";
-        if(encoding) {
+        if (encoding) {
             amp += "'" + encoding + "'";
         }
         // function close
         amp += ") ";
         // output
-        amp += "output(concat("+varName+")) ";
+        amp += "output(concat(" + varName + ")) ";
         // end of AMP
         amp += "]\%\%";
 
         return Platform.Function.TreatAsContent(amp);
-     }
+    }
+
 
     /**
      * Enables the AMP function DataExtensionRowCount in SSJS
@@ -340,24 +370,25 @@
      *
      * @see {@link https://ampscript.guide/dataextensionrowcount/|DataExtensionRowCount}
      */
-     function DataExtensionRowCount(dataExtensionName) {
+    function DataExtensionRowCount(dataExtensionName) {
         var varName = '@amp__DataExtensionRowCount';
 
         // AMP decleration
         var amp = "\%\%[ ";
         // function open        
-        amp += "set "+varName+" = DataExtensionRowCount(";
+        amp += "set " + varName + " = DataExtensionRowCount(";
         // parameters
         amp += "'" + dataExtensionName + "'";
         // function close
         amp += ") ";
         // output
-        amp += "output(concat("+varName+")) ";
+        amp += "output(concat(" + varName + ")) ";
         // end of AMP
         amp += "]\%\%";
 
         return Platform.Function.TreatAsContent(amp);
-     }
+    }
+
 
     /**
      * Enables the AMP function EncryptSymmetric in SSJS
@@ -375,31 +406,32 @@
      *
      * @see {@link https://ampscript.guide/encryptsymmetric|EncryptSymmetric}
      */
-     function EncryptSymmetric(string,algorithm,password_key,password,salt_key,salt,vector_key,vector) {
+    function EncryptSymmetric(string, algorithm, password_key, password, salt_key, salt, vector_key, vector) {
         var varName = '@amp__EncryptSymmetric',
-            param = [algorithm,password_key,password,salt_key,salt,vector_key,vector];
+            param = [algorithm, password_key, password, salt_key, salt, vector_key, vector];
 
         // AMP decleration
         var amp = "\%\%[ ";
         // function open        
-        amp += "set "+varName+" = EncryptSymmetric(";
+        amp += "set " + varName + " = EncryptSymmetric(";
         // string parameter
         amp += "'" + string + "'";
 
         for (var i = 0; i < param.length; i++) {
-            var value = (param[i]) ? "'"+param[i]+"'" : '@null';
-            amp += "," + value;    
+            var value = (param[i]) ? "'" + param[i] + "'" : '@null';
+            amp += "," + value;
         }
 
         // function close
         amp += ") ";
         // output
-        amp += "output(concat("+varName+")) ";
+        amp += "output(concat(" + varName + ")) ";
         // end of AMP
         amp += "]\%\%";
 
         return Platform.Function.TreatAsContent(amp);
     }
+
 
     /**
      * Enables the AMP function DecryptSymmetric in SSJS
@@ -417,30 +449,64 @@
      *
      * @see {@link https://ampscript.guide/decryptsymmetric/|DecryptSymmetric}
      */
-     function DecryptSymmetric(string,algorithm,password_key,password,salt_key,salt,vector_key,vector) {
+    function DecryptSymmetric(string, algorithm, password_key, password, salt_key, salt, vector_key, vector) {
         var varName = '@amp__DecryptSymmetric',
-            param = [algorithm,password_key,password,salt_key,salt,vector_key,vector];
+            param = [algorithm, password_key, password, salt_key, salt, vector_key, vector];
 
         // AMP decleration
         var amp = "\%\%[ ";
         // function open        
-        amp += "set "+varName+" = DecryptSymmetric(";
+        amp += "set " + varName + " = DecryptSymmetric(";
         // string parameter
         amp += "'" + string + "'";
 
         for (var i = 0; i < param.length; i++) {
-            var value = (param[i]) ? "'"+param[i]+"'" : '@null';
-            amp += "," + value;    
+            var value = (param[i]) ? "'" + param[i] + "'" : '@null';
+            amp += "," + value;
         }
 
         // function close
         amp += ") ";
         // output
-        amp += "output(concat("+varName+")) ";
+        amp += "output(concat(" + varName + ")) ";
         // end of AMP
         amp += "]\%\%";
 
         return Platform.Function.TreatAsContent(amp);
     }
 
+    /**
+     * Enables the AMP function HTTPRequestHeader in SSJS
+     *
+     * This function returns a specified header from an HTTP request. This function 
+     * is only available in landing pages, microsites and CloudPages. It cannot be used 
+     * in other Marketing Cloud applications.
+     *
+     * NOTE: Only headers that are available in the page request return a value. For example, 
+     * if a user pastes a URL into a web browser instead of clicking on a page hyperlink 
+     * (from another web page), the Referer header value will be empty.
+     *
+     * @param  {string}    key  An HTTP header as defined in {@link https://tools.ietf.org/html/rfc7231|RFC 7231}
+     *
+     * @see {@link https://ampscript.guide/httprequestheader/|HTTPRequestHeader}
+     */
+
+    function HTTPRequestHeader(key) {
+        var varName = '@amp__HTTPRequestHeader';
+
+        // AMP decleration
+        var amp = "\%\%[ ";
+        // function open        
+        amp += "set " + varName + " = HTTPRequestHeader(";
+        // parameter
+        amp += "'" + key + "'";
+        // function close
+        amp += ") ";
+        // output
+        amp += "output(v(" + varName + "))";
+        // end of AMP
+        amp += "]\%\%";
+
+        return Platform.Function.TreatAsContent(amp);
+    }
 </script>
