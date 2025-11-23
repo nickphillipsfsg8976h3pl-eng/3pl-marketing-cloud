@@ -470,25 +470,12 @@ confirm all form fields are mapped to the correct field in salesforce
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-        //initialze select inputs: https://materializecss.com/select.html
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            var options = {};
-            var instances = M.FormSelect.init(elems, options);
-        });
-    </script>
 
 
     <!-- Global Styles -->
     <style>
         :root {
             font-size: 16px;
-        }
-
-        .custom-reset-select-text {
-            color: #495057c7;
-            font-weight: 400;
         }
     </style>
 
@@ -2234,8 +2221,8 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
                 <!------------- Terms & Conditions ----------------->
                 <div class="input-field col s12">
-                    <div class="form-check">
 
+                    <p>
                         <label>
                             <input
                                 type="checkbox"
@@ -2248,10 +2235,10 @@ confirm all form fields are mapped to the correct field in salesforce
                                 <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
                             </span>
                         </label>
+                    </p>
 
-                        <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
@@ -2259,8 +2246,8 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
                 <!------------- Terms & Conditions HALF ----------------->
                 <div class="input-field col s12 m6">
-                    <div class="form-check">
 
+                    <p>
                         <label>
                             <input
                                 type="checkbox"
@@ -2273,10 +2260,9 @@ confirm all form fields are mapped to the correct field in salesforce
                                 <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
                             </span>
                         </label>
+                    </p>
 
-                        <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-
-                    </div>
+                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
                 </div>
                 %%[ENDIF]%%
 
@@ -2284,8 +2270,8 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
                 <!------------- Subscriber Opt In ----------------->
                 <div class="input-field col s12">
-                    <div class="form-check">
 
+                    <p>
                         <label>
                             <input
                                 type="checkbox"
@@ -2296,10 +2282,10 @@ confirm all form fields are mapped to the correct field in salesforce
                                 YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
                             </span>
                         </label>
+                    </p>
 
-                        <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
+                    <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
@@ -2307,8 +2293,8 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
                 <!------------- Subscriber Opt In HALF ----------------->
                 <div class="input-field col s12 m6">
-                    <div class="form-check">
 
+                    <p>
                         <label>
                             <input
                                 type="checkbox"
@@ -2319,10 +2305,10 @@ confirm all form fields are mapped to the correct field in salesforce
                                 YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
                             </span>
                         </label>
+                    </p>
 
-                        <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
+                    <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
 
-                    </div>
                 </div>
                 %%[ENDIF]%%
 
@@ -2402,6 +2388,158 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
     <!-- ===========================  JAVASCRIPT  =========================== -->
+
+
+    <!-- Materialize Autoinit All Components: https://materializecss.com/auto-init.html -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit();
+        });
+    </script>
+
+
+    <!-- Validation -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Get the form element
+            const form = document.querySelector('form');
+
+
+            // 1. Real-time validation on input blur
+            const inputs = form.querySelectorAll('input');
+            inputs.forEach(function(input) {
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                // Also validate on input for better UX
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('invalid') || this.classList.contains('valid')) {
+                        validateInput(this);
+                    }
+                });
+            });
+
+            // 2. Validate select elements
+            const selects = form.querySelectorAll('select');
+            selects.forEach(function(select) {
+                select.addEventListener('change', function() {
+                    validateSelect(this);
+                });
+            });
+
+            // 3. Form submission validation
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                let isValid = true;
+
+                // Validate all text inputs
+                inputs.forEach(function(input) {
+                    if (!validateInput(input)) {
+                        isValid = false;
+                    }
+                });
+
+                // Validate all selects
+                selects.forEach(function(select) {
+                    if (!validateSelect(select)) {
+                        isValid = false;
+                    }
+                });
+
+                // Validate checkboxes
+                const termsCheckbox = document.getElementById('terms');
+                if (!termsCheckbox.checked) {
+                    isValid = false;
+                    M.toast({
+                        html: 'Please agree to the Terms and Conditions',
+                        classes: 'red',
+                        displayLength: 4000
+                    });
+                }
+
+                if (isValid) {
+                    M.toast({
+                        html: 'Form submitted successfully!',
+                        classes: 'green',
+                        displayLength: 3000
+                    });
+
+                    // Here you would normally submit the form
+                    // form.submit();
+
+                    console.log('Form data:', new FormData(form));
+                } else {
+                    M.toast({
+                        html: 'Please fix all errors before submitting',
+                        classes: 'red',
+                        displayLength: 4000
+                    });
+
+                    // Scroll to first error
+                    const firstInvalid = form.querySelector('.invalid');
+                    if (firstInvalid) {
+                        firstInvalid.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                }
+            });
+
+
+            // VALIDATION FUNCTIONS
+
+            function validateInput(input) {
+                const value = input.value.trim();
+                const isRequired = input.hasAttribute('required');
+
+                // Check if empty and required
+                if (isRequired && value === '') {
+                    input.classList.add('invalid');
+                    input.classList.remove('valid');
+                    return false;
+                }
+
+                // Check HTML5 validation
+                if (!input.checkValidity()) {
+                    input.classList.add('invalid');
+                    input.classList.remove('valid');
+                    return false;
+                }
+
+                // If we get here, it's valid
+                if (value !== '' || isRequired) {
+                    input.classList.add('valid');
+                    input.classList.remove('invalid');
+                }
+
+                return true;
+            }
+
+            function validateSelect(select) {
+                const value = select.value;
+                const isRequired = select.hasAttribute('required');
+
+                if (isRequired && (value === '' || value === null)) {
+                    select.classList.add('invalid');
+                    select.classList.remove('valid');
+                    return false;
+                }
+
+                if (value !== '') {
+                    select.classList.add('valid');
+                    select.classList.remove('invalid');
+                }
+
+                return true;
+            }
+
+        });
+    </script>
 
 
 </body>
