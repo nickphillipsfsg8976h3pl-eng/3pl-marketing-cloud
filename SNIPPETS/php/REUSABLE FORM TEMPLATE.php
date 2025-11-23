@@ -468,6 +468,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         //initialze select inputs: https://materializecss.com/select.html
@@ -508,7 +509,7 @@ confirm all form fields are mapped to the correct field in salesforce
         method="POST">
 
 
-        <!------------- HIDDEN ----------------->
+        <!-- HIDDEN -->
 
         <div>
 
@@ -588,8 +589,8 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
         <!-- Wrapper -->
-        <div class=" container my-5">
-            <div class="row g-3">
+        <div class="container">
+            <div class="row">
 
 
                 %%[
@@ -602,7 +603,10 @@ confirm all form fields are mapped to the correct field in salesforce
                 ]%%
 
 
-                <!-- FILEDS -->
+                %%[IF (@FORM_COMPONENT == "DIVIDER") THEN]%%
+                <!----------------- Divider --------------------->
+                <div class="divider"></div>
+                %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST") THEN]%%
@@ -803,13 +807,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- First Name ----------------->
                 <div class="input-field col s12">
 
-                    <label for="_first_name">First Name</label>
                     <input
                         type="text"
                         id="_first_name"
                         name="_first_name"
                         placeholder="First Name"
                         required>
+                    <label for="_first_name">First Name</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -821,13 +825,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- First Name HALF ----------------->
                 <div class="input-field col s12 m6">
 
-                    <label for="_first_name">First Name</label>
                     <input
                         type="text"
                         id="_first_name"
                         name="_first_name"
                         placeholder="First Name"
                         required>
+                    <label for="_first_name">First Name</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -839,13 +843,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- Last Name ----------------->
                 <div class="input-field col s12">
 
-                    <label for="_last_name">Last Name</label>
                     <input
                         type="text"
                         id="_last_name"
                         name="_last_name"
                         placeholder="Last Name"
                         required>
+                    <label for="_last_name">Last Name</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -857,13 +861,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- Last Name HALF ----------------->
                 <div class="input-field col s12 m6">
 
-                    <label for="_last_name">Last Name</label>
                     <input
                         type="text"
                         id="_last_name"
                         name="_last_name"
                         placeholder="Last Name"
                         required>
+                    <label for="_last_name">Last Name</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -875,13 +879,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- Email Address----------------->
                 <div class="input-field col s12">
 
-                    <label for="_email_address">Email Address</label>
                     <input
                         type="email"
                         id="_email_address"
                         name="_email_address"
                         placeholder="Email Address"
                         required>
+                    <label for="_email_address">Email Address</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -893,13 +897,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- Email Address HALF ----------------->
                 <div class="input-field col s12 m6">
 
-                    <label for="_email_address">Email Address</label>
                     <input
                         type="email"
                         id="_email_address"
                         name="_email_address"
                         placeholder="Email Address"
                         required>
+                    <label for="_email_address">Email Address</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -911,13 +915,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- Phone Number ----------------->
                 <div class="input-field col s12">
 
-                    <label for="_phone_number">Mobile / Work Phone</label>
                     <input
                         type="text"
                         id="_phone_number"
                         name="_phone_number"
                         placeholder="Mobile / Work Phone"
                         required>
+                    <label for="_phone_number">Mobile / Work Phone</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -929,13 +933,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- Phone Number HALF ----------------->
                 <div class="input-field col s12 m6">
 
-                    <label for="_phone_number">Mobile / Work Phone</label>
                     <input
                         type="text"
                         id="_phone_number"
                         name="_phone_number"
                         placeholder="Mobile / Work Phone"
                         required>
+                    <label for="_phone_number">Mobile / Work Phone</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -1795,13 +1799,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- Postcode / Zipcode ----------------->
                 <div class="input-field col s12">
 
-                    <label for="_postcode_zipcode">Postcode / Zipcode</label>
                     <input
                         type="text"
                         id="_postcode_zipcode"
                         name="_postcode_zipcode"
                         placeholder="Postcode / Zipcode"
                         required>
+                    <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -1813,7 +1817,6 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- Postcode / Zipcode HALF ----------------->
                 <div class="input-field col s12 m6">
 
-                    <label for="_postcode_zipcode">Postcode / Zipcode</label>
                     <input
                         type="text"
                         id="_postcode_zipcode"
@@ -1821,6 +1824,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         placeholder="Postcode / Zipcode"
                         title="Postcode/Zipcode is 4 digits with no spaces"
                         required>
+                    <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -2155,13 +2159,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- School Name ----------------->
                 <div class="input-field col s12">
 
-                    <label for="_school_name">School or District Name</label>
                     <input
                         type="text"
                         id="_school_name"
                         name="_school_name"
                         placeholder="School or District Name"
                         required>
+                    <label for="_school_name">School or District Name</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -2173,13 +2177,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- School Name HALF----------------->
                 <div class="input-field col s12 m6">
 
-                    <label for="_school_name">School or District Name</label>
                     <input
                         type="text"
                         id="_school_name"
                         name="_school_name"
                         placeholder="School or District Name"
                         required>
+                    <label for="_school_name">School or District Name</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -2191,7 +2195,6 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- No. Of Licences  ----------------->
                 <div class="input-field col s12">
 
-                    <label for="_no_of_licences">Number of Student Licenses</label>
                     <input
                         type="number"
                         id="_no_of_licences"
@@ -2200,6 +2203,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required
                         min="20"
                         max="1000">
+                    <label for="_no_of_licences">Number of Student Licenses</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -2211,7 +2215,6 @@ confirm all form fields are mapped to the correct field in salesforce
                 <!------------- No. Of Licences HALF ----------------->
                 <div class="input-field col s12 m6">
 
-                    <label for="_no_of_licences">Number of Student Licenses</label>
                     <input
                         type="number"
                         id="_no_of_licences"
@@ -2220,6 +2223,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required
                         min="20"
                         max="1000">
+                    <label for="_no_of_licences">Number of Student Licenses</label>
 
                     <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 
@@ -2328,7 +2332,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 <div class="input-field col s12">
 
                     <button
-                        class="custom_submit_button"
+                        class="waves-effect waves-green btn-large"
                         type="submit"
                         id="_submit_button"
                         name="_submit_button">
