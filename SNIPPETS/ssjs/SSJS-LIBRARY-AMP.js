@@ -117,53 +117,57 @@
      * NOTE: Certain Salesforce objects enforce record-locking when a record is modified,
      *
      * @param  {string}    sObject          API name of the Salesforce object.
-     * @param  {string}    fieldNames       Array of field names to insert
-     * @param  {array}     fieldValues      Array of values to insert
+     * @param  {object}    fieldNames       Object of name-value pairs to insert
      *
      * @see {@link https://developer.salesforce.com/docs/marketing/marketing-cloud-ampscript/references/mc-ampscript-salesforce/mc-ampscript-reference-salesforce-create-object.html}
      */
-    function createSalesforceObject(sObject, fieldNames, fieldValues) {
+    function createSalesforceObject(sObject, parameters) {
         var varName = '@amp__CreateSalesforceObject';
+
+        // Count the number of parameters
+        var paramCount = 0;
+        for (var k in parameters) {
+            if (parameters.hasOwnProperty(k)) {
+                paramCount++;
+            }
+        }
 
         // AMP declaration
         var amp = "\%\%[ ";
 
-        // Set variables for each field value
-        for (var i = 0; i < fieldValues.length; i++) {
-            amp += "SET " + varName + "_val" + i + " = '" + String(fieldValues[i]).replace(/'/g, "''") + "' ";
+        // Set variables for each field value (to handle special characters)
+        var varIndex = 0;
+        for (var k in parameters) {
+            if (parameters.hasOwnProperty(k)) {
+                amp += "SET " + varName + "_val" + varIndex + " = '" + String(parameters[k]).replace(/'/g, "''") + "' ";
+                varIndex++;
+            }
         }
 
         // function open
         amp += "SET " + varName + " = CreateSalesforceObject(";
         // parameters
         amp += "'" + sObject + "'";
-        amp += "," + fieldNames.length;
+        amp += "," + paramCount;
 
         // add field name/value pairs
-        for (var i = 0; i < fieldNames.length; i++) {
-            amp += ",'" + fieldNames[i] + "'," + varName + "_val" + i;
+        varIndex = 0;
+        for (var k in parameters) {
+            if (parameters.hasOwnProperty(k)) {
+                amp += ",'" + k + "'," + varName + "_val" + varIndex;
+                varIndex++;
+            }
         }
 
         // function close
         amp += ") ";
 
-        // build json output
-        amp += "IF " + varName + " == 'OK' THEN ";
-        amp += "SET " + varName + "_output = '{\"Status\": \"OK\", \"Message\": \"Salesforce object created successfully\"}' ";
-        amp += "ELSE ";
-        amp += "SET " + varName + "_output = Concat('{\"Status\": \"Error\", \"Message\": \"', " + varName + ", '\"}') ";
-        amp += "ENDIF ";
-
         // output
-        amp += "Output(v(" + varName + "_output)) ";
+        amp += "Output(v(" + varName + ")) ";
         // end of AMP
         amp += "]\%\%";
 
-        try {
-            return Platform.Function.ParseJSON(Platform.Function.TreatAsContent(amp));
-        } catch (e) {
-            return Platform.Function.ParseJSON('{"Status": "Error", "Message": "Cannot create Salesforce Object", "Debug": ' + Platform.Function.Stringify(amp) + '}');
-        }
+        return Platform.Function.TreatAsContent(amp);
     }
 
     /**

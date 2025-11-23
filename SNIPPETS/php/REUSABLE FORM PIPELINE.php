@@ -607,28 +607,30 @@
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
 
 
-            //skip if already processed
-            if (QUEUED[i].queue_completed_date) continue nextItemInQueue;
+            //LOG FAILED 
+            if (
+                QUEUED[i].queue_error_message &&
+                QUEUED[i].queue_completed_date
+            ) {
 
 
-            //reset
-            var LEAD = {};
-            var METHOD; //CREATE OR UPDATE
 
 
-            //GET EXISTING LEAD
+                continue nextItemInQueue;
+            }
+
+            //GET LEAD
             var LEAD = retrieveSingleSaleforceObject(
                 "Lead",
                 [
                     "Id",
-                    "Email",
                     "Status"
                 ],
                 ["Email", '=', QUEUED[i].payload.email_address],
             );
 
 
-            //SYNC LEAD TO SALESFORCE
+            //UPSERT LEAD
             if (
                 LEAD &&
                 LEAD.status != 'Converted'
@@ -644,107 +646,78 @@
             } else {
                 //CREATE LEAD
                 CreateSaleforceObject(
-                    "Lead",
-                    [
-                        FirstName,
-                        LastName,
-                        Email,
-                        Phone,
-                        Grade_Level__c,
-                        Title,
-                        Country,
-                        PostalCode,
-                        Company,
-                        No_of_licences__c,
-                        UTM_Source__c,
-                        UTM_Medium__c,
-                        UTM_Campaign__c,
-                        UTM_Content__c,
-                        UTM_Term__c,
-                        GCLID__c,
-                        FBCLID__c,
-                        MSCLKID__c,
-                        Marketing_Interest__c,
-                        LeadSource,
-                        Status,
-                        Existing_Customer__c,
-                        Job_Function__c,
-                        Description,
-                        Enquiry_Summary__c,
-                        Enquiry_Type__c,
-                        State,
-                        State__c,
-                        Subject__c,
-                        Campaign_Name__c,
-                        Campaign_Code__c,
-                        Product_Interest__c,
-                        Marketing_Product_Interest__c,
-                        Territory__c,
-                        Invalid_Lead__c
-                    ], [
-                        QUEUED[i].payload.first_name,
-                        QUEUED[i].payload.last_name,
-                        QUEUED[i].payload.email_address,
-                        QUEUED[i].payload.phone_number,
-                        QUEUED[i].payload.grade_level,
-                        QUEUED[i].payload.job_title,
-                        QUEUED[i].payload.country,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                        QUEUED[i].payload.___________,
-                    ]
+                    "Lead", {
+                        FirstName: QUEUED[i].payload.first_name,
+                        LastName: QUEUED[i].payload.last_name,
+                        Email: QUEUED[i].payload.email_address,
+                        Phone: QUEUED[i].payload.phone_number,
+                        Grade_Level__c: QUEUED[i].payload.grade_level,
+                        Title: QUEUED[i].payload.title,
+                        Country: QUEUED[i].payload.country_code,
+                        PostalCode: QUEUED[i].payload.postal_code,
+                        Company: QUEUED[i].payload.school_name,
+                        No_of_licences__c: QUEUED[i].payload.no_of_licences,
+                        UTM_Source__c: QUEUED[i].paylaod.utm_source,
+                        UTM_Medium__c: QUEUED[i].paylaod.utm_medium,
+                        UTM_Campaign__c: QUEUED[i].paylaod.utm_campaign,
+                        UTM_Content__c: QUEUED[i].paylaod.utm_content,
+                        UTM_Term__c: QUEUED[i].paylaod.utm_term,
+                        GCLID__c: QUEUED[i].payload.gclid,
+                        FBCLID__c: QUEUED[i].payload.fbclid,
+                        MSCLKID__c: QUEUED[i].payload.msclkid,
+                        Marketing_Interest__c: QUEUED[i].payload.marketing_interest,
+                        LeadSource: QUEUED[i].payload.lead_source,
+                        Status: QUEUED[i].payload.status,
+                        Existing_Customer__c: QUEUED[i].payload.existing_customer,
+                        Job_Function__c: QUEUED[i].payload.job_function,
+                        Description: QUEUED[i].payload.description,
+                        Enquiry_Summary__c: QUEUED[i].payload.enquiry_summary,
+                        Enquiry_Type__c: QUEUED[i].payload.enquiry_type,
+                        State: QUEUED[i].payload.state,
+                        Subject__c: QUEUED[i].payload.subject,
+                        Product_Interest__c: QUEUED[i].payload.product_interest,
+                        Marketing_Product_Interest__c: QUEUED[i].payload.marketing_interest,
+                        Territory__c: QUEUED[i].payload.territory,
+                        Invalid_Lead__: QUEUED[i].payload.invalid_lead
+                    }
                 );
             }
 
 
+            //GET CAMPAIGN MEMBER
+            var CAMPAIGN_MEMBER = retrieveSingleSaleforceObject(
+                "CampaignMember",
+                [
+                    "Id"
+                ],
+                [
+                    "LeadId", '=', LEAD.Id,
+                    "CampaignId", '=', QUEUED[i].payload.campaign_id
+                ],
+            );
+
+
             //UPSERT CAMPAIGN MEMBER
             if (
-                QUEUED[i].payload.campaign_id &&
-                LEAD.record.id
+                CAMPAIGN_MEMBER
             ) {
-                var campaignMember = {
-                    CampaignId: QUEUED[i].payload.campaign_id,
-                    LeadId: LEAD.record.id,
-                    Status: "Sent"
-                };
-
-                var options = {
-                    SaveOptions: [{
-                        PropertyName: "*",
-                        SaveAction: "UpdateAdd" // upsert
-                    }]
-                };
-
-                var result = api.updateItem("CampaignMember", campaignMember, options);
-
-                if (result.Status == "OK") {
-                    QUEUED[i].queue_campaign_member_id = result.[0].Object.ID;
-                }
+                //UPDATE CAMPAIGN MEMBER
+                UpdateSingleSaleforceObject(
+                    "CampaignMember",
+                    LEAD.Id, {
+                        Status: "Qualified",
+                        Rating: "Hot"
+                    }
+                );
+            } else {
+                //CREATE CAMPAIGN MEMBER
+                CreateSaleforceObject(
+                    "CampaignMember", {
+                        FirstName: QUEUED[i].payload.first_name,
+                        LastName: QUEUED[i].payload.last_name,
+                        Email: QUEUED[i].payload.email_address
+                    }
+                );
             }
 
 
