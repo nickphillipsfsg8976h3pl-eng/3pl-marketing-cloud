@@ -599,10 +599,6 @@
         Platform.Function.ContentBlockByKey("ssjs-library-amp")
 
 
-        //create proxy
-        var api = new Script.Util.WSProxy();
-
-
         //loop
         nextItemInQueue: for (var i = 0; i < QUEUED.length; i++) {
 
