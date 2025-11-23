@@ -2228,10 +2228,9 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
                 <!------------- Terms & Conditions HALF ----------------->
-                <p class="">
+                <p>
                     <label>
                         <input
-                            class="filled-in"
                             type="checkbox"
                             id="_terms_and_conditions"
                             name="_terms_and_conditions"
@@ -2251,7 +2250,6 @@ confirm all form fields are mapped to the correct field in salesforce
                 <p>
                     <label>
                         <input
-                            class="filled-in"
                             type="checkbox"
                             id="_subscriber_opt_in"
                             name="_subscriber_opt_in"
