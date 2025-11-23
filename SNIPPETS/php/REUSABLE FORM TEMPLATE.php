@@ -466,9 +466,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
     <!-- Styles -->
@@ -613,14 +611,13 @@ confirm all form fields are mapped to the correct field in salesforce
                     <div class="form-group">
 
                         <select
-                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            class="form-control custom-reset-select-text"
                             id="_product_interest"
                             name="_product_interest"
                             multiple
-                            title="Product Interests"
-                            data-selected-text-format="values"
-                            data-actions-box="true"
                             required>
+
+                            <option value="" disabled selected>Product Interest</option>
 
                             SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc, "Active", "True")
                             FOR @i = 1 TO RowCount(@productsList) DO
@@ -631,7 +628,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         </select>
 
-                        <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
+                        <div class="invalid-feedback">Please select the products you are interested in</div>
 
                     </div>
                 </div>
@@ -644,14 +641,13 @@ confirm all form fields are mapped to the correct field in salesforce
                     <div class="form-group">
 
                         <select
-                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            class="form-control custom-reset-select-text"
                             id="_product_interest"
                             name="_product_interest"
                             multiple
-                            title="Product Interest"
-                            data-selected-text-format="values"
-                            data-actions-box="true"
                             required>
+
+                            <option value="" disabled selected>Product Interest</option>
 
                             SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc, "Active", "True")
                             FOR @i = 1 TO RowCount(@productsList) DO
@@ -662,7 +658,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         </select>
 
-                        <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
+                        <div class="invalid-feedback">Please select the products you are interested in</div>
 
                     </div>
                 </div>
@@ -675,13 +671,12 @@ confirm all form fields are mapped to the correct field in salesforce
                     <div class="form-group">
 
                         <select
-                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            class="form-control custom-reset-select-text"
                             id="_marketing_interest"
                             name="_marketing_interest"
-                            multiple
-                            title="Which marketing material would you be interested in?"
-                            data-selected-text-format="values"
-                            data-actions-box="true">
+                            multiple>
+
+                            <option value="" disabled selected>Marketing Interest</option>
 
                             <option value="Product Information">Product Information</option>
                             <option value="Newsletter">Newsletter</option>
@@ -689,7 +684,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         </select>
 
-                        <!-- <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div> -->
+                        <div class="invalid-feedback">Please select the marketing materials you are interested in</div>
 
                     </div>
                 </div>
@@ -702,13 +697,12 @@ confirm all form fields are mapped to the correct field in salesforce
                     <div class="form-group">
 
                         <select
-                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            class="form-control custom-reset-select-text"
                             id="_marketing_interest"
                             name="_marketing_interest"
-                            multiple
-                            title="Which marketing material would you be interested in?"
-                            data-selected-text-format="values"
-                            data-actions-box="true">
+                            multiple>
+
+                            <option value="" disabled selected>Marketing Interest</option>
 
                             <option value="Product Information">Product Information</option>
                             <option value="Newsletter">Newsletter</option>
@@ -716,7 +710,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         </select>
 
-                        <!-- <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div> -->
+                        <div class="invalid-feedback">Please select the marketing materials you are interested in</div>
 
                     </div>
                 </div>
@@ -743,7 +737,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         </select>
 
-                        <div class="invalid-feedback">Please select what you are interested in</div>
+                        <div class="invalid-feedback">Please select a type of enquiry</div>
 
                     </div>
                 </div>
@@ -770,7 +764,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         </select>
 
-                        <div class="invalid-feedback">Please select what you are interested in</div>
+                        <div class="invalid-feedback">Please select a type of enquiry</div>
 
                     </div>
                 </div>
@@ -783,13 +777,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     <div class="form-group">
 
                         <select
-                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            class="form-control custom-reset-select-text"
                             id="_subject"
                             name="_subject"
                             multiple
-                            title="Subject"
-                            data-selected-text-format="values"
-                            data-actions-box="true"
                             required>
 
                             <option value="" disabled selected>Subject</option>
@@ -799,7 +790,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         </select>
 
-                        <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
+                        <div class="invalid-feedback">Please select a subject</div>
 
                     </div>
                 </div>
@@ -812,13 +803,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     <div class="form-group">
 
                         <select
-                            class="form-control selectpicker show-tick custom-reset-select-text"
+                            class="form-control custom-reset-select-text"
                             id="_subject"
                             name="_subject"
                             multiple
-                            title="Subject"
-                            data-selected-text-format="values"
-                            data-actions-box="true"
                             required>
 
                             <option value="" disabled selected>Subject</option>
@@ -828,7 +816,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         </select>
 
-                        <div id="product_interest_invalid_feedback" class="invalid-feedback">Please select the products you are interested in</div>
+                        <div class="invalid-feedback">Please select a subject</div>
 
                     </div>
                 </div>
@@ -2589,10 +2577,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
-    <script src="https://web.my.3plearning.com/formFieldFunctions"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
     <!-- Validate Form Submission-->
@@ -2616,27 +2601,9 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     form.classList.add('was-validated');
 
-                    // manually configure custom validation fpr Bootstrap selectpicker library
-                    validateProductInterest();
-                    productInterestSelect.on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
-                        validateProductInterest();
-                    });
                 } //checkValidity
 
             }); //submit
-
-            //HANDLERS
-            function validateProductInterest() {
-                if (!productInterestSelect.selectpicker('val')) {
-                    productInterestFeedbackList.forEach((validationMessage) => {
-                        validationMessage.classList.add('d-block');
-                    })
-                } else {
-                    productInterestFeedbackList.forEach((validationMessage) => {
-                        validationMessage.classList.remove('d-block');
-                    })
-                }
-            }
 
         }); //DOMContentLoaded
     </script>
