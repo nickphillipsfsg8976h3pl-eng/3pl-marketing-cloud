@@ -230,7 +230,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
             //?template=test_full
-            test_full: [
+            test: [
                 "PRODUCT_INTEREST",
                 "MARKETING_INTEREST",
                 "ENQUIRY_TYPE",
@@ -253,7 +253,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
             //?template=test_full_half
-            test_full_half: [
+            test_half: [
                 "PRODUCT_INTEREST_HALF",
                 "MARKETING_INTEREST_HALF",
                 "ENQUIRY_TYPE_HALF",
@@ -272,6 +272,27 @@ confirm all form fields are mapped to the correct field in salesforce
                 "TERMS_AND_CONDITIONS_HALF",
                 "SUBSCRIBER_OPT_IN_HALF",
                 "SUBMIT_BUTTON"
+            ],
+
+            //?template=test_inputs
+            test_inputs: [
+
+            ],
+
+            //?template=test_selects
+            test_selects: [
+
+            ],
+
+            //?template=test_selects
+            test_multi_selects: [
+
+            ],
+
+            //?template=test_checkboxes
+            test_checkboxes: [
+                "TERMS_AND_CONDITIONS",
+                "SUBSCRIBER_OPT_IN"
             ],
 
             //?template=test_countries
@@ -617,7 +638,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -644,7 +665,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -667,7 +688,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -690,7 +711,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -714,7 +735,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -738,7 +759,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -761,7 +782,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -784,7 +805,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -798,11 +819,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_first_name"
                         name="_first_name"
-                        placeholder="First Name"
                         required>
                     <label for="_first_name">First Name</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -816,11 +836,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_first_name"
                         name="_first_name"
-                        placeholder="First Name"
                         required>
                     <label for="_first_name">First Name</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -834,11 +853,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_last_name"
                         name="_last_name"
-                        placeholder="Last Name"
                         required>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -852,11 +870,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_last_name"
                         name="_last_name"
-                        placeholder="Last Name"
                         required>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -870,11 +887,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="email"
                         id="_email_address"
                         name="_email_address"
-                        placeholder="Email Address"
                         required>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -888,11 +904,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="email"
                         id="_email_address"
                         name="_email_address"
-                        placeholder="Email Address"
                         required>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -906,11 +921,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_phone_number"
                         name="_phone_number"
-                        placeholder="Mobile / Work Phone"
                         required>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -924,11 +938,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_phone_number"
                         name="_phone_number"
-                        placeholder="Mobile / Work Phone"
                         required>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -962,7 +975,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -996,7 +1009,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1038,7 +1051,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1080,7 +1093,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1113,7 +1126,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1146,7 +1159,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1179,7 +1192,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1212,7 +1225,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1245,7 +1258,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1278,7 +1291,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1297,7 +1310,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
 
@@ -1376,7 +1389,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
 
@@ -1470,7 +1483,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1504,7 +1517,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1538,7 +1551,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1572,7 +1585,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1606,7 +1619,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1640,7 +1653,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1674,7 +1687,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1708,7 +1721,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1742,7 +1755,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1776,7 +1789,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1790,11 +1803,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_postcode_zipcode"
                         name="_postcode_zipcode"
-                        placeholder="Postcode / Zipcode"
                         required>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1813,7 +1825,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1832,7 +1844,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
 
@@ -1897,7 +1909,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
 
@@ -1975,7 +1987,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2008,7 +2020,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2040,7 +2052,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2072,7 +2084,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2104,7 +2116,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2136,7 +2148,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     </select>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2150,11 +2162,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_school_name"
                         name="_school_name"
-                        placeholder="School or District Name"
                         required>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2168,11 +2179,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_school_name"
                         name="_school_name"
-                        placeholder="School or District Name"
                         required>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2186,13 +2196,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="number"
                         id="_no_of_licences"
                         name="_no_of_licences"
-                        placeholder="Number of Student Licenses"
                         required
                         min="20"
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2206,110 +2215,52 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="number"
                         id="_no_of_licences"
                         name="_no_of_licences"
-                        placeholder="Number of Student Licenses"
                         required
                         min="20"
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="wrong"></span>
 
                 </div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
-                <!------------- Terms & Conditions ----------------->
-                <div class="input-field col s12">
-
-                    <p>
-                        <label>
-                            <input
-                                type="checkbox"
-                                id="_terms_and_conditions"
-                                name="_terms_and_conditions"
-                                checked
-                                required>
-                            <span>
-                                I agree to the 3P Learning
-                                <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
-                            </span>
-                        </label>
-                    </p>
-
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
                 <!------------- Terms & Conditions HALF ----------------->
-                <div class="input-field col s12 m6">
-
-                    <p>
-                        <label>
-                            <input
-                                type="checkbox"
-                                id="_terms_and_conditions"
-                                name="_terms_and_conditions"
-                                checked
-                                required>
-                            <span>
-                                I agree to the 3P Learning
-                                <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
-                            </span>
-                        </label>
-                    </p>
-
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-                </div>
+                <p class="">
+                    <label>
+                        <input
+                            class="filled-in"
+                            type="checkbox"
+                            id="_terms_and_conditions"
+                            name="_terms_and_conditions"
+                            checked
+                            required>
+                        <span>
+                            I agree to the 3P Learning
+                            <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
+                        </span>
+                    </label>
+                </p>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
-                <!------------- Subscriber Opt In ----------------->
-                <div class="input-field col s12">
-
-                    <p>
-                        <label>
-                            <input
-                                type="checkbox"
-                                id="_subscriber_opt_in"
-                                name="_subscriber_opt_in"
-                                checked>
-                            <span>
-                                YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
-                            </span>
-                        </label>
-                    </p>
-
-                    <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
-
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
                 <!------------- Subscriber Opt In HALF ----------------->
-                <div class="input-field col s12 m6">
-
-                    <p>
-                        <label>
-                            <input
-                                type="checkbox"
-                                id="_subscriber_opt_in"
-                                name="_subscriber_opt_in"
-                                checked>
-                            <span>
-                                YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
-                            </span>
-                        </label>
-                    </p>
-
-                    <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
-
-                </div>
+                <p>
+                    <label>
+                        <input
+                            class="filled-in"
+                            type="checkbox"
+                            id="_subscriber_opt_in"
+                            name="_subscriber_opt_in"
+                            checked>
+                        <span>
+                            YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
+                        </span>
+                    </label>
+                </p>
                 %%[ENDIF]%%
 
 
@@ -2318,7 +2269,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 <div class="input-field col s12">
 
                     <button
-                        class="waves-effect waves-green btn-large"
+                        class="custom_submit_button"
                         type="submit"
                         id="_submit_button"
                         name="_submit_button">
