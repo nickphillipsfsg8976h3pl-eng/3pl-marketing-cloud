@@ -501,7 +501,13 @@ confirm all form fields are mapped to the correct field in salesforce
             font-size: 16px;
         }
 
+        /* mui input placeholder color */
         input::placeholder {
+            color: rgb(0, 0, 0, 0.87) !important;
+        }
+
+        /* mui select options text color */
+        ul.dropdown-content.select-dropdown li span {
             color: rgb(0, 0, 0, 0.87) !important;
         }
     </style>
@@ -1123,7 +1129,8 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_country_code">Country</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Global
+                        <!-- helper text -->
+
                     </span>
 
                 </div>
@@ -1168,7 +1175,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_country_code">Country</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Global
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1204,7 +1211,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_country_code">Country</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Apac
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1240,7 +1247,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_country_code">Country</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Apac
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1276,7 +1283,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_country_code">Country</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Amer
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1312,7 +1319,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_country_code">Country</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Amer
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1348,7 +1355,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_country_code">Country</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Emea
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1384,7 +1391,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_country_code">Country</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Emea
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1406,7 +1413,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State / Province</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Global
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1488,7 +1495,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State / Province</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Global
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1585,7 +1592,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State</label>
 
                     <span class="helper-text" data-error="wrong">
-                        United States
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1622,7 +1629,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State</label>
 
                     <span class="helper-text" data-error="wrong">
-                        United States
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1659,7 +1666,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">Province</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Canada
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1696,7 +1703,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">Province</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Canada
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1733,7 +1740,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Australia
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1770,7 +1777,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Australia
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1807,7 +1814,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State</label>
 
                     <span class="helper-text" data-error="wrong">
-                        New Zealand
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1844,7 +1851,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State</label>
 
                     <span class="helper-text" data-error="wrong">
-                        New Zealand
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1881,7 +1888,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State</label>
 
                     <span class="helper-text" data-error="wrong">
-                        South Africa
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1918,7 +1925,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_state_code">State</label>
 
                     <span class="helper-text" data-error="wrong">
-                        South Africa
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -1981,7 +1988,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_job_title">Job Title</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Global
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -2049,7 +2056,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_job_title">Job Title</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Global
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -2130,7 +2137,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_job_title">Job Title</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Apac
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -2166,7 +2173,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_job_title">Job Title</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Apac
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -2201,7 +2208,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_job_title">Job Title</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Amer
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -2236,7 +2243,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_job_title">Job Title</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Amer
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -2271,7 +2278,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_job_title">Job Title</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Emea
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -2306,7 +2313,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <label for="_job_title">Job Title</label>
 
                     <span class="helper-text" data-error="wrong">
-                        Emea
+                        <!-- helper text -->
                     </span>
 
                 </div>
@@ -2607,7 +2614,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 });
 
                 // Validate checkboxes
-                const termsCheckbox = document.getElementById('terms');
+                const termsCheckbox = document.getElementById('_terms');
                 if (!termsCheckbox.checked) {
                     isValid = false;
                     M.toast({
