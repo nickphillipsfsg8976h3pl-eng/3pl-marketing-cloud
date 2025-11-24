@@ -3,17 +3,17 @@
 </script>
 
 
-<!-- 
- 
+<!--
 
-TODO: 
+
+TODO:
 
 Add active flag in search criteria for all lookups to they can be centrally managed
 
-Automatic redirect when a person enters “Parent” or “student” into 
+Automatic redirect when a person enters “Parent” or “student” into
 the Job Title form field, to the appropriate B2C landing page
 - What is the landing page based or region or query param
-- Is there a better way to do this 
+- Is there a better way to do this
         - "Are you a parent/student? Click here" link
         - optional popup?
 
@@ -221,7 +221,7 @@ confirm all form fields are mapped to the correct field in salesforce
         config.request_url = Request.URL();
 
 
-        /************************* 
+        /*************************
         -------- TEMPLATES -------
         **************************/
 
@@ -404,7 +404,7 @@ confirm all form fields are mapped to the correct field in salesforce
             for (var i = 0; i < singleInputList.length; i++) {
                 var singleInput = singleInputList[i];
                 config.FORM_COMPONENT_LIST.push(singleInput);
-            } //for    
+            } //for
         } //if
 
 
@@ -627,7 +627,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         multiple
                         required>
 
-                        <option value="" disabled selected>Product Interest</option>
+                        <option value="" disabled>Product Interest</option>
 
                         SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc", "Active", "True")
                         FOR @i = 1 TO RowCount(@productsList) DO
@@ -654,7 +654,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         multiple
                         required>
 
-                        <option value="" disabled selected>Product Interest</option>
+                        <option value="" disabled>Product Interest</option>
 
                         SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc", "Active", "True")
                         FOR @i = 1 TO RowCount(@productsList) DO
@@ -680,7 +680,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_marketing_interest"
                         multiple>
 
-                        <option value="" disabled selected>Marketing Interest</option>
+                        <option value="" disabled>Marketing Interest</option>
 
                         <option value="Product Information">Product Information</option>
                         <option value="Newsletter">Newsletter</option>
@@ -703,7 +703,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_marketing_interest"
                         multiple>
 
-                        <option value="" disabled selected>Marketing Interest</option>
+                        <option value="" disabled>Marketing Interest</option>
 
                         <option value="Product Information">Product Information</option>
                         <option value="Newsletter">Newsletter</option>
@@ -773,14 +773,16 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_subject"
                         name="_subject"
                         multiple
+
                         required>
 
-                        <option value="" disabled selected>Subject</option>
+                        <option value="" disabled>Select a subject</option>
 
                         <option value="literacy">Literacy</option>
                         <option value="mathematics">Mathematics</option>
 
                     </select>
+                    <label>Subject</label>
 
                     <span class="helper-text" data-error="wrong"></span>
 
@@ -798,7 +800,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         multiple
                         required>
 
-                        <option value="" disabled selected>Subject</option>
+                        <option value="" disabled>Subject</option>
 
                         <option value="literacy">Literacy</option>
                         <option value="mathematics">Mathematics</option>
@@ -819,6 +821,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_first_name"
                         name="_first_name"
+                        placeholder="First Name"
                         required>
                     <label for="_first_name">First Name</label>
 
@@ -974,6 +977,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="I do not teach specific grades">I do not teach specific grades</option>
 
                     </select>
+                    <label for="_grade_level">Grade Level</label>
 
                     <span class="helper-text" data-error="wrong"></span>
 
@@ -2516,7 +2520,7 @@ confirm all form fields are mapped to the correct field in salesforce
         // Platform.Response.SetResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
 
 
-        /************************* 
+        /*************************
         --------- PAYLOAD --------
         **************************/
 
@@ -2574,7 +2578,7 @@ confirm all form fields are mapped to the correct field in salesforce
         payload.subscriber_opt_in = Request.GetFormField("_subscriber_opt_in");
 
 
-        /************************* 
+        /*************************
         ---------- DEBUG ---------
         **************************/
 
@@ -2588,7 +2592,7 @@ confirm all form fields are mapped to the correct field in salesforce
         }
 
 
-        /************************* 
+        /*************************
         --------- SUBMIT --------
         **************************/
 
@@ -2611,7 +2615,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
 
-        /************************************ 
+        /************************************
         --------- TRIGGER AUTOMATION --------
         *************************************/
 
@@ -2626,7 +2630,7 @@ confirm all form fields are mapped to the correct field in salesforce
         proxy.triggerAutomationWait(config.AUTOMATION_NAME, config.NUMBER_OF_REPEATS, config.WAIT_MILLISECONDS)
 
 
-        /************************* 
+        /*************************
         -------- REDIRECT --------
         **************************/
 
@@ -2639,7 +2643,7 @@ confirm all form fields are mapped to the correct field in salesforce
         }
 
 
-        /************************* 
+        /*************************
         ------- ACKNOWLEDGE ------
         **************************/
 
