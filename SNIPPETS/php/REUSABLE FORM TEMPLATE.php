@@ -526,6 +526,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
     <form
+        novalidate
         method="POST">
 
 
@@ -656,7 +657,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_product_interest">Product Interest</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a product">
                         <!-- helper text -->
                     </span>
 
@@ -690,7 +691,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_product_interest">Product Interest</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a product">
                         <!-- helper text -->
                     </span>
 
@@ -705,10 +706,12 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_marketing_interest"
                         name="_marketing_interest"
-                        multiple>
+                        multiple
+                        required>
 
                         <option value="" disabled>Marketing Interest</option>
 
+                        <option value="Product Information">None</option>
                         <option value="Product Information">Product Information</option>
                         <option value="Newsletter">Newsletter</option>
                         <option value="Promotions">Promotions</option>
@@ -716,7 +719,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_marketing_interest">Marketing Interest</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a marketing interest">
                         <!-- helper text -->
                     </span>
 
@@ -742,7 +745,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_marketing_interest">Marketing Interest</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a marketing interest">
                         <!-- helper text -->
                     </span>
 
@@ -769,7 +772,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_enquiry_type">Equiry Type</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a enquiry type">
                         <!-- helper text -->
                     </span>
 
@@ -796,7 +799,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_enquiry_type">Equiry Type</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a enquiry type">
                         <!-- helper text -->
                     </span>
 
@@ -823,7 +826,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_subject">Subject</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a subject">
                         <!-- helper text -->
                     </span>
 
@@ -849,7 +852,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_subject">Subject</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a subject">
                         <!-- helper text -->
                     </span>
 
@@ -869,7 +872,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_first_name">First Name</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter your first name">
                         <!-- helper text -->
                     </span>
 
@@ -889,7 +892,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_first_name">First Name</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter your first name">
                         <!-- helper text -->
                     </span>
 
@@ -909,7 +912,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter your last name">
                         <!-- helper text -->
                     </span>
 
@@ -929,7 +932,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter your last name">
                         <!-- helper text -->
                     </span>
 
@@ -949,7 +952,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a valid email address">
                         <!-- helper text -->
                     </span>
 
@@ -969,7 +972,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a valid email address">
                         <!-- helper text -->
                     </span>
 
@@ -989,7 +992,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a valid phone number">
                         <!-- helper text -->
                     </span>
 
@@ -1009,7 +1012,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a valid phone number">
                         <!-- helper text -->
                     </span>
 
@@ -1046,7 +1049,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_grade_level">Grade Level</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a grade level">
                         <!-- helper text -->
                     </span>
 
@@ -1083,7 +1086,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_grade_level">Grade Level</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a grade level">
                         <!-- helper text -->
                     </span>
 
@@ -1128,7 +1131,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a country">
                         <!-- helper text -->
 
                     </span>
@@ -1174,7 +1177,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1210,7 +1213,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1246,7 +1249,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1282,7 +1285,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1318,7 +1321,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1354,7 +1357,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1390,7 +1393,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1412,7 +1415,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State / Province</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1494,7 +1497,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State / Province</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1591,7 +1594,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1628,7 +1631,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1665,7 +1668,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">Province</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a province">
                         <!-- helper text -->
                     </span>
 
@@ -1702,7 +1705,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">Province</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a province">
                         <!-- helper text -->
                     </span>
 
@@ -1739,7 +1742,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1776,7 +1779,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1813,7 +1816,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1850,7 +1853,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1887,7 +1890,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1924,7 +1927,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1944,7 +1947,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a valid postcode / zipcode">
                         <!-- helper text -->
                     </span>
 
@@ -1965,7 +1968,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a valid postcode / zipcode">
                         <!-- helper text -->
                     </span>
 
@@ -1987,7 +1990,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2055,7 +2058,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2136,7 +2139,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2172,7 +2175,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2207,7 +2210,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2242,7 +2245,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2277,7 +2280,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2312,7 +2315,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2332,7 +2335,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a school name">
                         <!-- helper text -->
                     </span>
 
@@ -2352,7 +2355,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a school name">
                         <!-- helper text -->
                     </span>
 
@@ -2374,7 +2377,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a number of licences">
                         <!-- helper text -->
                     </span>
 
@@ -2396,7 +2399,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="helper-text" data-error="wrong">
+                    <span class="helper-text" data-error="please enter a number of licences">
                         <!-- helper text -->
                     </span>
 
@@ -2562,147 +2565,46 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
     <!-- Validation -->
-
     <script>
+        // Simple Form Validation (Bootstrap-style)
         document.addEventListener('DOMContentLoaded', function() {
 
-            // Get the form element
+            let wasValidated = false;
+
             const form = document.querySelector('form');
 
-
-            // 1. Real-time validation on input blur
-            const inputs = form.querySelectorAll('input');
-            inputs.forEach(function(input) {
-                input.addEventListener('blur', function() {
-                    validateInput(this);
+            // Only validate after first submit attempt
+            form.querySelectorAll('input, select').forEach(field => {
+                field.addEventListener('blur', () => {
+                    if (wasValidated) validate(field);
                 });
-
-                // Also validate on input for better UX
-                input.addEventListener('input', function() {
-                    if (this.classList.contains('invalid') || this.classList.contains('valid')) {
-                        validateInput(this);
-                    }
+                field.addEventListener('input', () => {
+                    if (wasValidated) validate(field);
                 });
             });
 
-            // 2. Validate select elements
-            const selects = form.querySelectorAll('select');
-            selects.forEach(function(select) {
-                select.addEventListener('change', function() {
-                    validateSelect(this);
-                });
-            });
+            // Validate on submit
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                wasValidated = true;
+                let valid = true;
 
-            // 3. Form submission validation
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-
-                let isValid = true;
-
-                // Validate all text inputs
-                inputs.forEach(function(input) {
-                    if (!validateInput(input)) {
-                        isValid = false;
-                    }
+                form.querySelectorAll('input[required], select[required]').forEach(field => {
+                    if (!validate(field)) valid = false;
                 });
 
-                // Validate all selects
-                selects.forEach(function(select) {
-                    if (!validateSelect(select)) {
-                        isValid = false;
-                    }
-                });
-
-                // Validate checkboxes
-                const termsCheckbox = document.getElementById('_terms');
-                if (!termsCheckbox.checked) {
-                    isValid = false;
-                    M.toast({
-                        html: 'Please agree to the Terms and Conditions',
-                        classes: 'red',
-                        displayLength: 4000
-                    });
-                }
-
-                if (isValid) {
-                    M.toast({
-                        html: 'Form submitted successfully!',
-                        classes: 'green',
-                        displayLength: 3000
-                    });
-
-                    // Here you would normally submit the form
-                    // form.submit();
-
-                    console.log('Form data:', new FormData(form));
+                if (valid) {
+                    this.submit();
                 } else {
                     M.toast({
-                        html: 'Please fix all errors before submitting',
-                        classes: 'red',
-                        displayLength: 4000
+                        html: 'Please fix errors',
+                        classes: 'red'
                     });
-
-                    // Scroll to first error
-                    const firstInvalid = form.querySelector('.invalid');
-                    if (firstInvalid) {
-                        firstInvalid.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center'
-                        });
-                    }
                 }
             });
-
-
-            // VALIDATION FUNCTIONS
-
-            function validateInput(input) {
-                const value = input.value.trim();
-                const isRequired = input.hasAttribute('required');
-
-                // Check if empty and required
-                if (isRequired && value === '') {
-                    input.classList.add('invalid');
-                    input.classList.remove('valid');
-                    return false;
-                }
-
-                // Check HTML5 validation
-                if (!input.checkValidity()) {
-                    input.classList.add('invalid');
-                    input.classList.remove('valid');
-                    return false;
-                }
-
-                // If we get here, it's valid
-                if (value !== '' || isRequired) {
-                    input.classList.add('valid');
-                    input.classList.remove('invalid');
-                }
-
-                return true;
-            }
-
-            function validateSelect(select) {
-                const value = select.value;
-                const isRequired = select.hasAttribute('required');
-
-                if (isRequired && (value === '' || value === null)) {
-                    select.classList.add('invalid');
-                    select.classList.remove('valid');
-                    return false;
-                }
-
-                if (value !== '') {
-                    select.classList.add('valid');
-                    select.classList.remove('invalid');
-                }
-
-                return true;
-            }
-
         });
     </script>
+
 
 
 </body>
