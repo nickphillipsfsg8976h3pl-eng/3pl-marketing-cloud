@@ -2392,7 +2392,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="helper-text" data-error="please enter a number of licences">
+                    <span class="custom-validation-message" data-error="please enter a number of licences">
                         <!-- helper text -->
                     </span>
 
