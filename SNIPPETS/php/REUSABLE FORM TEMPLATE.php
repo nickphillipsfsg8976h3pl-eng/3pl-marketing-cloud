@@ -639,7 +639,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_product_interest"
                         name="_product_interest"
                         multiple
-                        required>
+                        data-custom-validation
 
                         <option value="" disabled>Product Interest</option>
 
@@ -673,7 +673,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_product_interest"
                         name="_product_interest"
                         multiple
-                        required>
+                        data-custom-validation
 
                         <option value="" disabled>Product Interest</option>
 
@@ -707,7 +707,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_marketing_interest"
                         name="_marketing_interest"
                         multiple
-                        required>
+                        data-custom-validation
 
                         <option value="" disabled>Marketing Interest</option>
 
@@ -760,7 +760,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_enquiry_type"
                         name="_enquiry_type"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Enquiry Type</option>
 
@@ -787,7 +787,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_enquiry_type"
                         name="_enquiry_type"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Enquiry Type</option>
 
@@ -816,7 +816,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_subject"
                         multiple
 
-                        required>
+                        data-custom-validation
 
                         <option value="" disabled>Subject</option>
 
@@ -842,7 +842,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_subject"
                         name="_subject"
                         multiple
-                        required>
+                        data-custom-validation
 
                         <option value="" disabled>Subject</option>
 
@@ -869,8 +869,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_first_name"
                         name="_first_name"
                         placeholder="First Name"
-                        required>
-                    <label for="_first_name">First Name</label>
+                        data-custom-validation
+                        <label for="_first_name">First Name</label>
 
                     <span class="helper-text" data-error="please enter your first name">
                         <!-- helper text -->
@@ -889,8 +889,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_first_name"
                         name="_first_name"
                         placeholder="First Name"
-                        required>
-                    <label for="_first_name">First Name</label>
+                        data-custom-validation
+                        <label for="_first_name">First Name</label>
 
                     <span class="helper-text" data-error="please enter your first name">
                         <!-- helper text -->
@@ -909,8 +909,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_last_name"
                         name="_last_name"
                         placeholder="Last Name"
-                        required>
-                    <label for="_last_name">Last Name</label>
+                        data-custom-validation
+                        <label for="_last_name">Last Name</label>
 
                     <span class="helper-text" data-error="please enter your last name">
                         <!-- helper text -->
@@ -929,8 +929,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_last_name"
                         name="_last_name"
                         placeholder="Last Name"
-                        required>
-                    <label for="_last_name">Last Name</label>
+                        data-custom-validation
+                        <label for="_last_name">Last Name</label>
 
                     <span class="helper-text" data-error="please enter your last name">
                         <!-- helper text -->
@@ -949,8 +949,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_email_address"
                         name="_email_address"
                         placeholder="Email Address"
-                        required>
-                    <label for="_email_address">Email Address</label>
+                        data-custom-validation
+                        <label for="_email_address">Email Address</label>
 
                     <span class="helper-text" data-error="please enter a valid email address">
                         <!-- helper text -->
@@ -969,8 +969,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_email_address"
                         name="_email_address"
                         placeholder="Email Address"
-                        required>
-                    <label for="_email_address">Email Address</label>
+                        data-custom-validation
+                        <label for="_email_address">Email Address</label>
 
                     <span class="helper-text" data-error="please enter a valid email address">
                         <!-- helper text -->
@@ -989,8 +989,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_phone_number"
                         name="_phone_number"
                         placeholder="Mobile / Work Phone"
-                        required>
-                    <label for="_phone_number">Mobile / Work Phone</label>
+                        data-custom-validation
+                        <label for="_phone_number">Mobile / Work Phone</label>
 
                     <span class="helper-text" data-error="please enter a valid phone number">
                         <!-- helper text -->
@@ -1009,8 +1009,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_phone_number"
                         name="_phone_number"
                         placeholder="Mobile / Work Phone"
-                        required>
-                    <label for="_phone_number">Mobile / Work Phone</label>
+                        data-custom-validation
+                        <label for="_phone_number">Mobile / Work Phone</label>
 
                     <span class="helper-text" data-error="please enter a valid phone number">
                         <!-- helper text -->
@@ -1027,7 +1027,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_grade_level"
                         name="_grade_level"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Grade Level</option>
 
@@ -1064,7 +1064,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_grade_level"
                         name="_grade_level"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Grade Level</option>
 
@@ -1101,7 +1101,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_country_code"
                         name="_country_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Country</option>
 
@@ -1147,7 +1147,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_country_code"
                         name="_country_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Country</option>
 
@@ -1192,7 +1192,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_country_code"
                         name="_country_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Country</option>
 
@@ -1228,7 +1228,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_country_code"
                         name="_country_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Country</option>
 
@@ -1264,7 +1264,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_country_code"
                         name="_country_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Country</option>
 
@@ -1300,7 +1300,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_country_code"
                         name="_country_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Country</option>
 
@@ -1336,7 +1336,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_country_code"
                         name="_country_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Country</option>
 
@@ -1372,7 +1372,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_country_code"
                         name="_country_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Country</option>
 
@@ -1408,7 +1408,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State / Province</option>
 
@@ -1490,7 +1490,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State / Province</option>
 
@@ -1572,7 +1572,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State</option>
 
@@ -1609,7 +1609,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State</option>
 
@@ -1646,7 +1646,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Province</option>
 
@@ -1683,7 +1683,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Province</option>
 
@@ -1720,7 +1720,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State</option>
 
@@ -1757,7 +1757,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State</option>
 
@@ -1794,7 +1794,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State</option>
 
@@ -1831,7 +1831,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State</option>
 
@@ -1868,7 +1868,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State</option>
 
@@ -1905,7 +1905,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_state_code"
                         name="_state_code"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>State</option>
 
@@ -1944,8 +1944,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_postcode_zipcode"
                         name="_postcode_zipcode"
                         placeholder="Postcode / Zipcode"
-                        required>
-                    <label for="_postcode_zipcode">Postcode / Zipcode</label>
+                        data-custom-validation
+                        <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
                     <span class="helper-text" data-error="please enter a valid postcode / zipcode">
                         <!-- helper text -->
@@ -1965,8 +1965,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_postcode_zipcode"
                         placeholder="Postcode / Zipcode"
                         title="Postcode/Zipcode is 4 digits with no spaces"
-                        required>
-                    <label for="_postcode_zipcode">Postcode / Zipcode</label>
+                        data-custom-validation
+                        <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
                     <span class="helper-text" data-error="please enter a valid postcode / zipcode">
                         <!-- helper text -->
@@ -1983,7 +1983,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_job_title"
                         name="_job_title"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2051,7 +2051,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_job_title"
                         name="_job_title"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2119,7 +2119,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_job_title"
                         name="_job_title"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2154,7 +2154,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_job_title"
                         name="_job_title"
-                        required>
+                        data-custom-validation
 
 
                         <option value="" selected disabled>Job Title</option>
@@ -2190,7 +2190,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_job_title"
                         name="_job_title"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2225,7 +2225,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_job_title"
                         name="_job_title"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2260,7 +2260,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_job_title"
                         name="_job_title"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2295,7 +2295,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     <select
                         id="_job_title"
                         name="_job_title"
-                        required>
+                        data-custom-validation
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2332,8 +2332,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_school_name"
                         name="_school_name"
                         placeholder="School or District Name"
-                        required>
-                    <label for="_school_name">School or District Name</label>
+                        data-custom-validation
+                        <label for="_school_name">School or District Name</label>
 
                     <span class="helper-text" data-error="please enter a school name">
                         <!-- helper text -->
@@ -2352,8 +2352,8 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_school_name"
                         name="_school_name"
                         placeholder="School or District Name"
-                        required>
-                    <label for="_school_name">School or District Name</label>
+                        data-custom-validation
+                        <label for="_school_name">School or District Name</label>
 
                     <span class="helper-text" data-error="please enter a school name">
                         <!-- helper text -->
@@ -2372,7 +2372,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_no_of_licences"
                         name="_no_of_licences"
                         placeholder="Number of Student Licences"
-                        required
+                        data-custom-validation
                         min="20"
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
@@ -2394,7 +2394,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         id="_no_of_licences"
                         name="_no_of_licences"
                         placeholder="Number of Student Licences"
-                        required
+                        data-custom-validation
                         min="20"
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
@@ -2416,12 +2416,17 @@ confirm all form fields are mapped to the correct field in salesforce
                             id="_terms_and_conditions"
                             name="_terms_and_conditions"
                             checked
-                            required>
-                        <span>
-                            I agree to the 3P Learning
-                            <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
+                            data-custom-validation
+                            <span>
+                        I agree to the 3P Learning
+                        <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
                         </span>
                     </label>
+
+                    <span class="helper-text" data-error="please agree to the terms and conditions">
+                        <!-- helper text -->
+                    </span>
+
                 </p>
                 %%[ENDIF]%%
 
@@ -2435,12 +2440,16 @@ confirm all form fields are mapped to the correct field in salesforce
                             id="_terms_and_conditions"
                             name="_terms_and_conditions"
                             checked
-                            required>
-                        <span>
-                            I agree to the 3P Learning
-                            <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
+                            data-custom-validation
+                            <span>
+                        I agree to the 3P Learning
+                        <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
                         </span>
                     </label>
+
+                    <span class="helper-text" data-error="please agree to the terms and conditions">
+                        <!-- helper text -->
+                    </span>
                 </p>
                 %%[ENDIF]%%
 
@@ -2455,7 +2464,7 @@ confirm all form fields are mapped to the correct field in salesforce
                             name="_subscriber_opt_in"
                             checked>
                         <span>
-                            YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
+                            Sign up to receive monthly newsletters, educational content, resources, and occasional promotional material.
                         </span>
                     </label>
                 </p>
@@ -2472,7 +2481,7 @@ confirm all form fields are mapped to the correct field in salesforce
                             name="_subscriber_opt_in"
                             checked>
                         <span>
-                            YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
+                            Sign up to receive monthly newsletters, educational content, resources, and occasional promotional material.
                         </span>
                     </label>
                 </p>
@@ -2481,7 +2490,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBMIT_BUTTON") THEN]%%
                 <!------------- Submit Button ----------------->
-                <div class="input-field col s12">
+                <div class="col s12">
 
                     <button
                         class="custom_submit_button"
@@ -2564,44 +2573,108 @@ confirm all form fields are mapped to the correct field in salesforce
     </script>
 
 
-    <!-- Validation -->
+    <!-- Simple Form Validation (Bootstrap-style) -->
     <script>
-        // Simple Form Validation (Bootstrap-style)
         document.addEventListener('DOMContentLoaded', function() {
 
-            let wasValidated = false;
+            // set flags
+            let hasFormSubmitted = false;
+            let isFormValid = true;
 
+            // get dom
             const form = document.querySelector('form');
+            const fieldsToValidate = form.querySelectorAll('[data-custom-validation]');
 
-            // Only validate after first submit attempt
-            form.querySelectorAll('input, select').forEach(field => {
-                field.addEventListener('blur', () => {
-                    if (wasValidated) validate(field);
-                });
-                field.addEventListener('input', () => {
-                    if (wasValidated) validate(field);
-                });
-            });
-
-            // Validate on submit
+            // on submit
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                wasValidated = true;
-                let valid = true;
+                hasFormSubmitted = true;
+                handleSubmit();
+            });
 
-                form.querySelectorAll('input[required], select[required]').forEach(field => {
-                    if (!validate(field)) valid = false;
+            // on change
+            fieldsToValidate.forEach(field => {
+                field.addEventListener('blur', handleChange(field));
+                field.addEventListener('input', handleChange(field));
+            });
+
+            // handle submit
+            function handleSubmit() {
+                fieldsToValidate.forEach(field => {
+                    if (!handleValidateEachField(field)) {
+                        isFormValid = false;
+                    }
                 });
-
-                if (valid) {
-                    this.submit();
+                if (isFormValid) {
+                    form.submit();
                 } else {
                     M.toast({
                         html: 'Please fix errors',
                         classes: 'red'
                     });
                 }
-            });
+            }
+
+            // handle change
+            function handleChange() {
+                if (hasFormSubmitted) {
+                    return handleValidateEachField(field);
+                }
+            }
+
+            // validate each field
+            function handleValidateEachField(field) {
+
+                if ((!field.value || !field.checked) && field.hasAttribute('required')) {
+                    showError(field);
+                    return false;
+                }
+
+                if (field.type === 'email' && field.value) {
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+                        showError(field);
+                        return false;
+                    }
+                }
+
+                hideError(field);
+                return true;
+            }
+
+            // show error
+            function showError(field) {
+                field.classList.add('invalid');
+                const wrapper = field.closest('.input-field') || field.closest('p');
+
+                // For select fields, target the select-wrapper
+                if (field.tagName === 'SELECT') {
+                    const selectWrapper = wrapper.querySelector('.select-wrapper');
+                    if (selectWrapper) selectWrapper.classList.add('invalid');
+                }
+            }
+
+            // hide error
+            function hideError(field) {
+                field.classList.remove('invalid');
+                field.classList.add('valid');
+                const wrapper = field.closest('.input-field') || field.closest('p');
+
+                // For select fields, target the select-wrapper
+                if (field.tagName === 'SELECT') {
+                    const selectWrapper = wrapper.querySelector('.select-wrapper');
+                    if (selectWrapper) {
+                        selectWrapper.classList.remove('invalid');
+                        selectWrapper.classList.add('valid');
+                    }
+                }
+            }
+
+
+
+
+
+
+
         });
     </script>
 
