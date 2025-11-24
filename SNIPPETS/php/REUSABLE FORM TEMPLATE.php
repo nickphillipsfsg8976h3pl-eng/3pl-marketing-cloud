@@ -637,8 +637,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         NEXT @i
 
                     </select>
+                    <label for="_product_interest">Product Interest</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -664,8 +667,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         NEXT @i
 
                     </select>
+                    <label for="_product_interest">Product Interest</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -687,8 +693,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="Promotions">Promotions</option>
 
                     </select>
+                    <label for="_marketing_interest">Marketing Interest</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -710,8 +719,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="Promotions">Promotions</option>
 
                     </select>
+                    <label for="_marketing_interest">Marketing Interest</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -734,8 +746,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="Information">Information</option>
 
                     </select>
+                    <label for="_enquiry_type">Equiry Type</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -758,8 +773,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="Information">Information</option>
 
                     </select>
+                    <label for="_enquiry_type">Equiry Type</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -782,9 +800,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="mathematics">Mathematics</option>
 
                     </select>
-                    <label>Subject</label>
+                    <label for="_subject">Subject</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -806,8 +826,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="mathematics">Mathematics</option>
 
                     </select>
+                    <label for="_subject">Subject</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -825,7 +848,9 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_first_name">First Name</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -839,10 +864,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_first_name"
                         name="_first_name"
+                        placeholder="First Name"
                         required>
                     <label for="_first_name">First Name</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -856,10 +884,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_last_name"
                         name="_last_name"
+                        placeholder="Last Name"
                         required>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -873,10 +904,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_last_name"
                         name="_last_name"
+                        placeholder="Last Name"
                         required>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -890,10 +924,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="email"
                         id="_email_address"
                         name="_email_address"
+                        placeholder="Email Address"
                         required>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -907,10 +944,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="email"
                         id="_email_address"
                         name="_email_address"
+                        placeholder="Email Address"
                         required>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -924,10 +964,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_phone_number"
                         name="_phone_number"
+                        placeholder="Mobile / Work Phone"
                         required>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -941,10 +984,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_phone_number"
                         name="_phone_number"
+                        placeholder="Mobile / Work Phone"
                         required>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -979,7 +1025,9 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_grade_level">Grade Level</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1012,8 +1060,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="I do not teach specific grades">I do not teach specific grades</option>
 
                     </select>
+                    <label for="_grade_level">Grade Level</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1028,7 +1079,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_country_code"
                         required>
 
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Country</option>
 
                         %%[
 
@@ -1054,8 +1105,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Global
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1070,7 +1124,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_country_code"
                         required>
 
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Country</option>
 
                         %%[
 
@@ -1096,8 +1150,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Global
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1112,7 +1169,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_country_code"
                         required>
 
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Country</option>
 
                         %%[
 
@@ -1129,8 +1186,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Apac
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1145,7 +1205,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_country_code"
                         required>
 
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Country</option>
 
                         %%[
 
@@ -1162,8 +1222,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Apac
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1178,7 +1241,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_country_code"
                         required>
 
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Country</option>
 
                         %%[
 
@@ -1195,8 +1258,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Amer
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1211,7 +1277,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_country_code"
                         required>
 
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Country</option>
 
                         %%[
 
@@ -1228,8 +1294,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Amer
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1244,7 +1313,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_country_code"
                         required>
 
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Country</option>
 
                         %%[
 
@@ -1261,8 +1330,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Emea
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1277,7 +1349,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_country_code"
                         required>
 
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>Country</option>
 
                         %%[
 
@@ -1294,8 +1366,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Emea
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1313,8 +1388,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
                     </select>
+                    <label for="_state_code">State / Province</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Global
+                    </span>
 
                 </div>
 
@@ -1392,8 +1470,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
 
                     </select>
+                    <label for="_state_code">State / Province</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Global
+                    </span>
 
                 </div>
 
@@ -1486,8 +1567,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        United States
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1520,8 +1604,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        United States
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1554,8 +1641,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">Province</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Canada
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1588,8 +1678,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">Province</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Canada
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1622,8 +1715,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Australia
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1656,8 +1752,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Australia
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1690,8 +1789,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        New Zealand
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1724,8 +1826,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        New Zealand
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1758,8 +1863,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        South Africa
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1792,8 +1900,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        South Africa
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1807,10 +1918,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_postcode_zipcode"
                         name="_postcode_zipcode"
+                        placeholder="Postcode / Zipcode"
                         required>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1829,7 +1943,9 @@ confirm all form fields are mapped to the correct field in salesforce
                         required>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -1847,8 +1963,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="" selected disabled>Job Title (Please select a country)</option>
 
                     </select>
+                    <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Global
+                    </span>
 
                 </div>
 
@@ -1912,8 +2031,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         <option value="" selected disabled>Job Title (Please select a country)</option>
 
                     </select>
+                    <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Global
+                    </span>
 
                 </div>
 
@@ -1990,8 +2112,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Apac
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2023,8 +2148,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Apac
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2055,8 +2183,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Amer
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2087,8 +2218,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Amer
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2119,8 +2253,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Emea
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2151,8 +2288,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         ]%%
 
                     </select>
+                    <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        Emea
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2166,10 +2306,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_school_name"
                         name="_school_name"
+                        placeholder="School or District Name"
                         required>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2183,10 +2326,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="text"
                         id="_school_name"
                         name="_school_name"
+                        placeholder="School or District Name"
                         required>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2200,12 +2346,15 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="number"
                         id="_no_of_licences"
                         name="_no_of_licences"
+                        placeholder="Number of Student Licences"
                         required
                         min="20"
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
@@ -2219,12 +2368,15 @@ confirm all form fields are mapped to the correct field in salesforce
                         type="number"
                         id="_no_of_licences"
                         name="_no_of_licences"
+                        placeholder="Number of Student Licences"
                         required
                         min="20"
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="helper-text" data-error="wrong"></span>
+                    <span class="helper-text" data-error="wrong">
+                        <!-- helper text -->
+                    </span>
 
                 </div>
                 %%[ENDIF]%%
