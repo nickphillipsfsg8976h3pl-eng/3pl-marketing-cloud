@@ -292,7 +292,9 @@ confirm all form fields are mapped to the correct field in salesforce
             //?template=test_checkboxes
             test_checkboxes: [
                 "TERMS_AND_CONDITIONS",
-                "SUBSCRIBER_OPT_IN"
+                "TERMS_AND_CONDITIONS_HALF",
+                "SUBSCRIBER_OPT_IN",
+                "SUBSCRIBER_OPT_IN_HALF"
             ],
 
             //?template=test_countries
@@ -629,12 +631,16 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         <option value="" disabled>Product Interest</option>
 
+                        %%[
+
                         SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc", "Active", "True")
                         FOR @i = 1 TO RowCount(@productsList) DO
                         SET @productName = field(row(@productsList, @i),"Name")
                         SET @productValue = field(row(@productsList, @i),"Value")
                         OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
                         NEXT @i
+
+                        ]%%
 
                     </select>
                     <label for="_product_interest">Product Interest</label>
@@ -648,7 +654,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST_HALF") THEN]%%
-                <!------------- Product Interest HALF ----------------->
+                <!------------- Product Interest  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -659,12 +665,16 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         <option value="" disabled>Product Interest</option>
 
+                        %%[
+
                         SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc", "Active", "True")
                         FOR @i = 1 TO RowCount(@productsList) DO
                         SET @productName = field(row(@productsList, @i),"Name")
                         SET @productValue = field(row(@productsList, @i),"Value")
                         OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
                         NEXT @i
+
+                        ]%%
 
                     </select>
                     <label for="_product_interest">Product Interest</label>
@@ -738,7 +748,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_enquiry_type"
                         required>
 
-                        <option value="" disabled selected>What would you like to enquire about?</option>
+                        <option value="" selected disabled>Enquiry Type</option>
 
                         <option value="Demo">Demonstration</option>
                         <option value="Quote">Quote</option>
@@ -757,7 +767,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "ENQUIRY_TYPE_HALF") THEN]%%
-                <!------------- User Interest HALF ----------------->
+                <!------------- User Interest  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -765,7 +775,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_enquiry_type"
                         required>
 
-                        <option value="" disabled selected>What would you like to enquire about?</option>
+                        <option value="" selected disabled>Enquiry Type</option>
 
                         <option value="Demo">Demonstration</option>
                         <option value="Quote">Quote</option>
@@ -857,7 +867,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "FIRST_NAME_HALF") THEN]%%
-                <!------------- First Name HALF ----------------->
+                <!------------- First Name  ----------------->
                 <div class="input-field col s12 m6">
 
                     <input
@@ -897,7 +907,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "LAST_NAME_HALF") THEN]%%
-                <!------------- Last Name HALF ----------------->
+                <!------------- Last Name  ----------------->
                 <div class="input-field col s12 m6">
 
                     <input
@@ -937,7 +947,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "EMAIL_ADDRESS_HALF") THEN]%%
-                <!------------- Email Address HALF ----------------->
+                <!------------- Email Address  ----------------->
                 <div class="input-field col s12 m6">
 
                     <input
@@ -977,7 +987,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "PHONE_NUMBER_HALF") THEN]%%
-                <!------------- Phone Number HALF ----------------->
+                <!------------- Phone Number  ----------------->
                 <div class="input-field col s12 m6">
 
                     <input
@@ -1005,7 +1015,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_grade_level"
                         required>
 
-                        <option value="" disabled selected>Grade Level</option>
+                        <option value="" selected disabled>Grade Level</option>
 
                         <option value="K/R">K/R</option>
                         <option value="1">1</option>
@@ -1034,7 +1044,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "GRADE_LEVEL_HALF") THEN]%%
-                <!------------- Grade Level HALF----------------->
+                <!------------- Grade Level  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1042,7 +1052,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_grade_level"
                         required>
 
-                        <option value="" disabled selected>Grade Level</option>
+                        <option value="" selected disabled>Grade Level</option>
 
                         <option value="K/R">K/R</option>
                         <option value="1">1</option>
@@ -1116,7 +1126,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL_HALF") THEN]%%
-                <!------------- Country Name HALF ----------------->
+                <!------------- Country Name  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1197,7 +1207,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_APAC_HALF") THEN]%%
-                <!------------- Country Name HALF ----------------->
+                <!------------- Country Name  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1269,7 +1279,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_AMER_HALF") THEN]%%
-                <!------------- Country Name HALF ----------------->
+                <!------------- Country Name  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1341,7 +1351,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA_HALF") THEN]%%
-                <!------------- Country Name HALF ----------------->
+                <!------------- Country Name  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1385,7 +1395,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
+                        <option value="" selected disabled>State / Province</option>
 
                     </select>
                     <label for="_state_code">State / Province</label>
@@ -1459,7 +1469,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL_HALF") THEN]%%
-                <!------------- State / Province Name HALF----------------->
+                <!------------- State / Province Name  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1467,7 +1477,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State / Province <small>&nbsp;(Please select a country first.)</small></option>
+                        <option value="" selected disabled>State / Province</option>
 
                     </select>
                     <label for="_state_code">State / Province</label>
@@ -1549,7 +1559,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State</option>
+                        <option value="" selected disabled>State</option>
 
                         %%[
 
@@ -1578,7 +1588,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US_HALF") THEN]%%
-                <!------------- State / Province Name (US) HALF ----------------->
+                <!------------- State / Province Name (US)  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1586,7 +1596,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State</option>
+                        <option value="" selected disabled>State</option>
 
                         %%[
 
@@ -1623,7 +1633,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>Province</option>
+                        <option value="" selected disabled>Province</option>
 
                         %%[
 
@@ -1652,7 +1662,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA_HALF") THEN]%%
-                <!------------- State / Province Name (CA) HALF ----------------->
+                <!------------- State / Province Name (CA)  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1660,7 +1670,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>Province</option>
+                        <option value="" selected disabled>Province</option>
 
                         %%[
 
@@ -1697,7 +1707,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State</option>
+                        <option value="" selected disabled>State</option>
 
                         %%[
 
@@ -1726,7 +1736,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU_HALF") THEN]%%
-                <!------------- State / Province Name (AU) HALF ----------------->
+                <!------------- State / Province Name (AU)  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1734,7 +1744,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State</option>
+                        <option value="" selected disabled>State</option>
 
                         %%[
 
@@ -1771,7 +1781,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State</option>
+                        <option value="" selected disabled>State</option>
 
                         %%[
 
@@ -1800,7 +1810,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ_HALF") THEN]%%
-                <!------------- State / Province Name (NZ) HALF ----------------->
+                <!------------- State / Province Name (NZ)  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1808,7 +1818,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State</option>
+                        <option value="" selected disabled>State</option>
 
                         %%[
 
@@ -1845,7 +1855,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State</option>
+                        <option value="" selected disabled>State</option>
 
                         %%[
 
@@ -1874,7 +1884,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA_HALF") THEN]%%
-                <!------------- State / Province Name (ZA) HALF ----------------->
+                <!------------- State / Province Name (ZA)  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -1882,7 +1892,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_state_code"
                         required>
 
-                        <option value="" disabled selected>State</option>
+                        <option value="" selected disabled>State</option>
 
                         %%[
 
@@ -1931,7 +1941,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "POSTCODE_ZIPCODE_HALF") THEN]%%
-                <!------------- Postcode / Zipcode HALF ----------------->
+                <!------------- Postcode / Zipcode  ----------------->
                 <div class="input-field col s12 m6">
 
                     <input
@@ -1960,7 +1970,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_job_title"
                         required>
 
-                        <option value="" selected disabled>Job Title (Please select a country)</option>
+                        <option value="" selected disabled>Job Title</option>
 
                     </select>
                     <label for="_job_title">Job Title</label>
@@ -2008,7 +2018,7 @@ confirm all form fields are mapped to the correct field in salesforce
                             //clear
                             jobTitleSelect.innerHTML = '';
                             //placeholder
-                            jobTitleSelect.innerHTML = '<option value="" disabled selected>Job Title</option>'
+                            jobTitleSelect.innerHTML = '<option value="" selected disabled>Job Title</option>'
                             //append
                             jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
                                 return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
@@ -2028,7 +2038,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_job_title"
                         required>
 
-                        <option value="" selected disabled>Job Title (Please select a country)</option>
+                        <option value="" selected disabled>Job Title</option>
 
                     </select>
                     <label for="_job_title">Job Title</label>
@@ -2076,7 +2086,7 @@ confirm all form fields are mapped to the correct field in salesforce
                             //clear
                             jobTitleSelect.innerHTML = '';
                             //placeholder
-                            jobTitleSelect.innerHTML = '<option value="" disabled selected>Job Title</option>'
+                            jobTitleSelect.innerHTML = '<option value="" selected disabled>Job Title</option>'
                             //append
                             jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
                                 return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
@@ -2123,7 +2133,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
-                <!------------- Job Title HALF ----------------->
+                <!------------- Job Title  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -2194,7 +2204,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER_HALF") THEN]%%
-                <!------------- Job Title HALF ----------------->
+                <!------------- Job Title  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -2264,7 +2274,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA_HALF") THEN]%%
-                <!------------- Job Title HALF ----------------->
+                <!------------- Job Title  ----------------->
                 <div class="input-field col s12 m6">
 
                     <select
@@ -2319,7 +2329,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "SCHOOL_NAME_HALF") THEN]%%
-                <!------------- School Name HALF----------------->
+                <!------------- School Name  ----------------->
                 <div class="input-field col s12 m6">
 
                     <input
@@ -2361,7 +2371,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "NO_OF_LICENCES_HALF") THEN]%%
-                <!------------- No. Of Licences HALF ----------------->
+                <!------------- No. Of Licences  ----------------->
                 <div class="input-field col s12 m6">
 
                     <input
@@ -2383,8 +2393,27 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
-                <!------------- Terms & Conditions HALF ----------------->
-                <p>
+                <!------------- Terms & Conditions ----------------->
+                <p class="col s12">
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="_terms_and_conditions"
+                            name="_terms_and_conditions"
+                            checked
+                            required>
+                        <span>
+                            I agree to the 3P Learning
+                            <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
+                        </span>
+                    </label>
+                </p>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
+                <!------------- Terms & Conditions ----------------->
+                <p class="col s12 m6">
                     <label>
                         <input
                             type="checkbox"
@@ -2402,8 +2431,25 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
-                <!------------- Subscriber Opt In HALF ----------------->
-                <p>
+                <!------------- Subscriber Opt In ----------------->
+                <p class="col s12">
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="_subscriber_opt_in"
+                            name="_subscriber_opt_in"
+                            checked>
+                        <span>
+                            YES! Sign me up to receive monthly newsletters, educational content, resources, and occasional promotional material.
+                        </span>
+                    </label>
+                </p>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
+                <!------------- Subscriber Opt In  ----------------->
+                <p class="col s12 m6">
                     <label>
                         <input
                             type="checkbox"
