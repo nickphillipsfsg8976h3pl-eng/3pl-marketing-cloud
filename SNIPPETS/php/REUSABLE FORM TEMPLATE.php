@@ -500,6 +500,10 @@ confirm all form fields are mapped to the correct field in salesforce
         :root {
             font-size: 16px;
         }
+
+        input::placeholder {
+            color: rgb(0, 0, 0, 0.87) !important;
+        }
     </style>
 
 
@@ -600,7 +604,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
         <!-- Wrapper -->
         <div class="container">
-            <div class="row">
+            <div class="row card-panel orange lighten-5">
 
 
                 %%[
@@ -624,6 +628,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 <div class="input-field col s12">
 
                     <select
+                        class="card-panel teal lighten-2 white-text"
                         id="_product_interest"
                         name="_product_interest"
                         multiple
@@ -804,7 +809,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         required>
 
-                        <option value="" disabled>Select a subject</option>
+                        <option value="" disabled>Subject</option>
 
                         <option value="literacy">Literacy</option>
                         <option value="mathematics">Mathematics</option>
