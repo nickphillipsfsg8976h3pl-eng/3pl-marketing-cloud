@@ -8,6 +8,8 @@
 
 TODO:
 
+Add text diplays for titles and subtitles
+
 Add active flag in search criteria for all lookups to they can be centrally managed
 
 Automatic redirect when a person enters “Parent” or “student” into
@@ -119,25 +121,25 @@ confirm all form fields are mapped to the correct field in salesforce
             'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: TOF Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE_GLOBAL,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: BOF Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE_GLOBAL,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Quote Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_GLOBAL,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: US Form Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_GLOBAL,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Trial Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_GLOBAL,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Info Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_GLOBAL,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Demo Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_GLOBAL,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '<br> ',
             '</div>'
@@ -240,7 +242,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 "PHONE_NUMBER",
                 "GRADE_LEVEL",
                 "SUBJECT",
-                "JOB_TITLE",
+                "JOB_TITLE_GLOBAL",
                 "COUNTRY_GLOBAL",
                 "STATE_PROVINCE_GLOBAL",
                 "POSTCODE_ZIPCODE",
@@ -263,7 +265,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 "PHONE_NUMBER_HALF",
                 "GRADE_LEVEL_HALF",
                 "SUBJECT_HALF",
-                "JOB_TITLE_HALF",
+                "JOB_TITLE_GLOBAL_HALF",
                 "COUNTRY_GLOBAL_HALF",
                 "STATE_PROVINCE_GLOBAL_HALF",
                 "POSTCODE_ZIPCODE_HALF",
@@ -361,8 +363,8 @@ confirm all form fields are mapped to the correct field in salesforce
                 "GRADE_LEVEL_HALF",
                 "SUBJECT",
                 "SUBJECT_HALF",
-                "JOB_TITLE",
-                "JOB_TITLE_HALF",
+                "JOB_TITLE_GLOBAL",
+                "JOB_TITLE_GLOBAL_HALF",
                 "COUNTRY_GLOBAL",
                 "COUNTRY_GLOBAL_HALF",
                 "STATE_PROVINCE_GLOBAL",
@@ -1148,7 +1150,6 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
-
                     </span>
 
                 </div>
