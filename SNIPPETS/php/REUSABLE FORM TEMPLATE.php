@@ -510,6 +510,21 @@ confirm all form fields are mapped to the correct field in salesforce
         ul.dropdown-content.select-dropdown li span {
             color: rgb(0, 0, 0, 0.87) !important;
         }
+
+        .custom-checkbox-helper-text {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #9e9e9e;
+        }
+
+        .custom-checkbox-helper-text.valid {
+            color: #4CAF50 !important;
+        }
+
+        .custom-checkbox-helper-text.invalid {
+            color: #f44336 !important;
+        }
     </style>
 
 
@@ -2423,10 +2438,9 @@ confirm all form fields are mapped to the correct field in salesforce
                         </span>
                     </label>
 
-                    <span class="helper-text" data-error="please agree to the terms and conditions">
+                    <span class="custom-checkbox-helper-text" data-error="please agree to the terms and conditions">
                         <!-- helper text -->
                     </span>
-
                 </p>
                 %%[ENDIF]%%
 
@@ -2447,7 +2461,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         </span>
                     </label>
 
-                    <span class="helper-text" data-error="please agree to the terms and conditions">
+                    <span class="custom-checkbox-helper-text" data-error="please agree to the terms and conditions">
                         <!-- helper text -->
                     </span>
                 </p>
@@ -2573,101 +2587,146 @@ confirm all form fields are mapped to the correct field in salesforce
     </script>
 
 
-    <!-- Simple Form Validation (Bootstrap-style) -->
+    <!-- Custom Form Validation (Shown only after first submit) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
             // set flags
-            let hasFormSubmitted = false;
-            let isFormValid = true;
+            let isValidationEnabled = false;
+            let isFormValidToSubmit = true;
 
-            // get dom
+            // get dom elements
             const form = document.querySelector('form');
             const fieldsToValidate = form.querySelectorAll('[data-custom-validation]');
 
-            // on submit
+            // on form submit
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                hasFormSubmitted = true;
-                // handleSubmit();
-            });
 
-            // on change
-            fieldsToValidate.forEach(field => {
-                field.addEventListener('blur', handleChange(field));
-                field.addEventListener('input', handleChange(field));
-            });
+                // enable validation
+                isValidationEnabled = true;
 
-            // handle submit
-            function handleSubmit() {
+                // reset flags
+                isFormValidToSubmit = true;
+
+                // validate all fields
                 fieldsToValidate.forEach(field => {
-                    if (!handleValidateEachField(field)) {
-                        isFormValid = false;
-                    }
+                    handleFieldValidation(field);
                 });
-                if (isFormValid) {
+
+                // if form is valid
+                if (isFormValidToSubmit) {
                     form.submit();
                 } else {
                     M.toast({
-                        html: 'Please fix errors',
+                        html: 'Please fix errors before continuing',
                         classes: 'red'
                     });
                 }
-            }
 
-            // handle change
-            function handleChange() {
-                if (hasFormSubmitted) {
-                    return handleValidateEachField(field);
-                }
-            }
+            });
 
-            // validate each field
-            function handleValidateEachField(field) {
+            // on field change
+            fieldsToValidate.forEach(field => {
 
-                if ((!field.value || !field.checked) && field.hasAttribute('required')) {
-                    showError(field);
-                    return false;
-                }
+                // on blur
+                field.addEventListener('blur', () => {
+                    if (isValidationEnabled) {
+                        handleFieldValidation(field);
+                    }
+                });
 
-                if (field.type === 'email' && field.value) {
-                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
-                        showError(field);
-                        return false;
+                // on input
+                field.addEventListener('input', () => {
+                    if (isValidationEnabled) {
+                        handleFieldValidation(field);
+                    }
+                });
+            });
+
+            function handleFieldValidation(field) {
+
+                // if single select field
+                if (field.tagName === "SELECT" && !field.multiple) {
+                    if (!field.value) {
+                        isFormValidToSubmit = false;
+                        const selectDropdown = field.parentElement.querySelector('.select-dropdown');
+                        selectDropdown.classList.add('invalid');
+                        selectDropdown.classList.remove('valid');
+                    } else {
+                        const selectDropdown = field.parentElement.querySelector('.select-dropdown');
+                        selectDropdown.classList.add('valid');
+                        selectDropdown.classList.remove('invalid');
+                    }
+
+                    // if a multiple select field
+                } else if (field.tagName === "SELECT" && field.multiple) {
+                    if (!field.value) {
+                        isFormValidToSubmit = false;
+                        field.classList.add('invalid');
+                        field.classList.remove('valid');
+                    } else {
+                        field.classList.remove('invalid');
+                        field.classList.add('valid');
+                    }
+
+                    // if an email input field
+                } else if (field.tagName === "INPUT" && field.type === "email") {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!field.value || !emailRegex.test(field.value)) {
+                        isFormValidToSubmit = false;
+                        field.classList.add('invalid');
+                        field.classList.remove('valid');
+                    } else {
+                        field.classList.remove('invalid');
+                        field.classList.add('valid');
+                    }
+
+                    // if a number nput field
+                } else if (field.tagName === "INPUT" && field.type === "number") {
+                    if (!field.value) {
+                        isFormValidToSubmit = false;
+                        field.classList.add('invalid');
+                        field.classList.remove('valid');
+                    } else {
+                        field.classList.remove('invalid');
+                        field.classList.add('valid');
+                    }
+
+                    // if a text input field
+                } else if (field.tagName === "INPUT" && field.type === "text") {
+                    if (!field.value) {
+                        isFormValidToSubmit = false;
+                        field.classList.add('invalid');
+                        field.classList.add('valid');
+                    } else {
+                        field.classList.remove('invalid');
+                        field.classList.add('valid');
+                    }
+
+                    // if a checkbox input field
+                } else if (field.tagName === "INPUT" && field.type === "checkbox") {
+                    const helperText = field.parentElement.parentElement.querySelector('.custom-checkbox-helper-text');
+                    if (!field.checked) {
+                        isFormValidToSubmit = false;
+                        if (helperText) {
+                            helperText.classList.add('invalid');
+                            helperText.classList.remove('valid');
+                            helperText.innerHTML = helperText.dataset.error || '';
+                        }
+                    } else {
+                        if (helperText) {
+                            helperText.classList.remove('invalid');
+                            helperText.classList.add('valid');
+                            helperText.innerHTML = helperText.dataset.success || '';
+                        }
                     }
                 }
 
-                hideError(field);
-                return true;
-            }
+            } //handleFieldValidation
 
-            // show error
-            function showError(field) {
-                field.classList.add('invalid');
-                const wrapper = field.closest('.input-field') || field.closest('p');
 
-                // For select fields, target the select-wrapper
-                if (field.tagName === 'SELECT') {
-                    const selectWrapper = wrapper.querySelector('.select-wrapper');
-                    if (selectWrapper) selectWrapper.classList.add('invalid');
-                }
-            }
 
-            // hide error
-            function hideError(field) {
-                field.classList.remove('invalid');
-                field.classList.add('valid');
-                const wrapper = field.closest('.input-field') || field.closest('p');
-
-                // For select fields, target the select-wrapper
-                if (field.tagName === 'SELECT') {
-                    const selectWrapper = wrapper.querySelector('.select-wrapper');
-                    if (selectWrapper) {
-                        selectWrapper.classList.remove('invalid');
-                        selectWrapper.classList.add('valid');
-                    }
-                }
-            }
 
 
 
