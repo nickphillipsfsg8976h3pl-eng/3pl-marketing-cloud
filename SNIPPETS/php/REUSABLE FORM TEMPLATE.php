@@ -511,18 +511,18 @@ confirm all form fields are mapped to the correct field in salesforce
             color: rgb(0, 0, 0, 0.87) !important;
         }
 
-        .custom-checkbox-helper-text {
+        .custom-validation-message {
             display: block;
-            margin-top: 5px;
+            padding-top: 5px;
             font-size: 12px;
             color: #9e9e9e;
         }
 
-        .custom-checkbox-helper-text.valid {
+        .custom-validation-message.valid {
             color: #4CAF50 !important;
         }
 
-        .custom-checkbox-helper-text.invalid {
+        .custom-validation-message.invalid {
             color: #f44336 !important;
         }
     </style>
@@ -647,14 +647,14 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST") THEN]%%
                 <!------------- Product Interest ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         class="card-panel teal lighten-2 white-text"
                         id="_product_interest"
                         name="_product_interest"
                         multiple
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" disabled>Product Interest</option>
 
@@ -672,7 +672,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_product_interest">Product Interest</label>
 
-                    <span class="helper-text" data-error="please select a product">
+                    <span class="custom-validation-message" data-error="please select a product">
                         <!-- helper text -->
                     </span>
 
@@ -682,13 +682,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST_HALF") THEN]%%
                 <!------------- Product Interest  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_product_interest"
                         name="_product_interest"
                         multiple
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" disabled>Product Interest</option>
 
@@ -706,7 +706,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_product_interest">Product Interest</label>
 
-                    <span class="helper-text" data-error="please select a product">
+                    <span class="custom-validation-message" data-error="please select a product">
                         <!-- helper text -->
                     </span>
 
@@ -716,13 +716,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "MARKETING_INTEREST") THEN]%%
                 <!------------- Product Interest ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_marketing_interest"
                         name="_marketing_interest"
                         multiple
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" disabled>Marketing Interest</option>
 
@@ -734,7 +734,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_marketing_interest">Marketing Interest</label>
 
-                    <span class="helper-text" data-error="please select a marketing interest">
+                    <span class="custom-validation-message" data-error="please select a marketing interest">
                         <!-- helper text -->
                     </span>
 
@@ -744,7 +744,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "MARKETING_INTEREST_HALF") THEN]%%
                 <!------------- Product Interest ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_marketing_interest"
@@ -760,7 +760,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_marketing_interest">Marketing Interest</label>
 
-                    <span class="helper-text" data-error="please select a marketing interest">
+                    <span class="custom-validation-message" data-error="please select a marketing interest">
                         <!-- helper text -->
                     </span>
 
@@ -770,12 +770,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "ENQUIRY_TYPE") THEN]%%
                 <!------------- User Interest ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_enquiry_type"
                         name="_enquiry_type"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Enquiry Type</option>
 
@@ -787,7 +787,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_enquiry_type">Equiry Type</label>
 
-                    <span class="helper-text" data-error="please select a enquiry type">
+                    <span class="custom-validation-message" data-error="please select a enquiry type">
                         <!-- helper text -->
                     </span>
 
@@ -797,12 +797,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "ENQUIRY_TYPE_HALF") THEN]%%
                 <!------------- User Interest  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_enquiry_type"
                         name="_enquiry_type"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Enquiry Type</option>
 
@@ -814,7 +814,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_enquiry_type">Equiry Type</label>
 
-                    <span class="helper-text" data-error="please select a enquiry type">
+                    <span class="custom-validation-message" data-error="please select a enquiry type">
                         <!-- helper text -->
                     </span>
 
@@ -824,14 +824,14 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBJECT") THEN]%%
                 <!------------- Subject ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_subject"
                         name="_subject"
                         multiple
 
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" disabled>Subject</option>
 
@@ -841,7 +841,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_subject">Subject</label>
 
-                    <span class="helper-text" data-error="please select a subject">
+                    <span class="custom-validation-message" data-error="please select a subject">
                         <!-- helper text -->
                     </span>
 
@@ -851,13 +851,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBJECT_HALF") THEN]%%
                 <!------------- Subject ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_subject"
                         name="_subject"
                         multiple
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" disabled>Subject</option>
 
@@ -867,7 +867,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_subject">Subject</label>
 
-                    <span class="helper-text" data-error="please select a subject">
+                    <span class="custom-validation-message" data-error="please select a subject">
                         <!-- helper text -->
                     </span>
 
@@ -877,17 +877,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "FIRST_NAME") THEN]%%
                 <!------------- First Name ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <input
                         type="text"
                         id="_first_name"
                         name="_first_name"
                         placeholder="First Name"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_first_name">First Name</label>
 
-                    <span class="helper-text" data-error="please enter your first name">
+                    <span class="custom-validation-message" data-error="please enter your first name">
                         <!-- helper text -->
                     </span>
 
@@ -897,17 +897,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "FIRST_NAME_HALF") THEN]%%
                 <!------------- First Name  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <input
                         type="text"
                         id="_first_name"
                         name="_first_name"
                         placeholder="First Name"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_first_name">First Name</label>
 
-                    <span class="helper-text" data-error="please enter your first name">
+                    <span class="custom-validation-message" data-error="please enter your first name">
                         <!-- helper text -->
                     </span>
 
@@ -917,17 +917,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "LAST_NAME") THEN]%%
                 <!------------- Last Name ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <input
                         type="text"
                         id="_last_name"
                         name="_last_name"
                         placeholder="Last Name"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="helper-text" data-error="please enter your last name">
+                    <span class="custom-validation-message" data-error="please enter your last name">
                         <!-- helper text -->
                     </span>
 
@@ -937,17 +937,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "LAST_NAME_HALF") THEN]%%
                 <!------------- Last Name  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <input
                         type="text"
                         id="_last_name"
                         name="_last_name"
                         placeholder="Last Name"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="helper-text" data-error="please enter your last name">
+                    <span class="custom-validation-message" data-error="please enter your last name">
                         <!-- helper text -->
                     </span>
 
@@ -957,17 +957,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "EMAIL_ADDRESS") THEN]%%
                 <!------------- Email Address----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <input
                         type="email"
                         id="_email_address"
                         name="_email_address"
                         placeholder="Email Address"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="helper-text" data-error="please enter a valid email address">
+                    <span class="custom-validation-message" data-error="please enter a valid email address">
                         <!-- helper text -->
                     </span>
 
@@ -977,17 +977,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "EMAIL_ADDRESS_HALF") THEN]%%
                 <!------------- Email Address  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <input
                         type="email"
                         id="_email_address"
                         name="_email_address"
                         placeholder="Email Address"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="helper-text" data-error="please enter a valid email address">
+                    <span class="custom-validation-message" data-error="please enter a valid email address">
                         <!-- helper text -->
                     </span>
 
@@ -997,17 +997,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "PHONE_NUMBER") THEN]%%
                 <!------------- Phone Number ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <input
                         type="text"
                         id="_phone_number"
                         name="_phone_number"
                         placeholder="Mobile / Work Phone"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="helper-text" data-error="please enter a valid phone number">
+                    <span class="custom-validation-message" data-error="please enter a valid phone number">
                         <!-- helper text -->
                     </span>
 
@@ -1017,17 +1017,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "PHONE_NUMBER_HALF") THEN]%%
                 <!------------- Phone Number  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <input
                         type="text"
                         id="_phone_number"
                         name="_phone_number"
                         placeholder="Mobile / Work Phone"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="helper-text" data-error="please enter a valid phone number">
+                    <span class="custom-validation-message" data-error="please enter a valid phone number">
                         <!-- helper text -->
                     </span>
 
@@ -1037,12 +1037,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "GRADE_LEVEL") THEN]%%
                 <!------------- Grade Level ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_grade_level"
                         name="_grade_level"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Grade Level</option>
 
@@ -1064,7 +1064,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_grade_level">Grade Level</label>
 
-                    <span class="helper-text" data-error="please select a grade level">
+                    <span class="custom-validation-message" data-error="please select a grade level">
                         <!-- helper text -->
                     </span>
 
@@ -1074,12 +1074,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "GRADE_LEVEL_HALF") THEN]%%
                 <!------------- Grade Level  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_grade_level"
                         name="_grade_level"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Grade Level</option>
 
@@ -1101,7 +1101,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_grade_level">Grade Level</label>
 
-                    <span class="helper-text" data-error="please select a grade level">
+                    <span class="custom-validation-message" data-error="please select a grade level">
                         <!-- helper text -->
                     </span>
 
@@ -1111,12 +1111,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL") THEN]%%
                 <!------------- Country Name ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_country_code"
                         name="_country_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Country</option>
 
@@ -1146,7 +1146,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="please select a country">
+                    <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
 
                     </span>
@@ -1157,12 +1157,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL_HALF") THEN]%%
                 <!------------- Country Name  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_country_code"
                         name="_country_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Country</option>
 
@@ -1192,7 +1192,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="please select a country">
+                    <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1202,12 +1202,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_APAC") THEN]%%
                 <!------------- Country Name ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_country_code"
                         name="_country_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Country</option>
 
@@ -1228,7 +1228,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="please select a country">
+                    <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1238,12 +1238,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_APAC_HALF") THEN]%%
                 <!------------- Country Name  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_country_code"
                         name="_country_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Country</option>
 
@@ -1264,7 +1264,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="please select a country">
+                    <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1274,12 +1274,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_AMER") THEN]%%
                 <!------------- Country Name ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_country_code"
                         name="_country_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Country</option>
 
@@ -1300,7 +1300,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="please select a country">
+                    <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1310,12 +1310,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_AMER_HALF") THEN]%%
                 <!------------- Country Name  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_country_code"
                         name="_country_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Country</option>
 
@@ -1336,7 +1336,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="please select a country">
+                    <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1346,12 +1346,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA") THEN]%%
                 <!------------- Country Name ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_country_code"
                         name="_country_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Country</option>
 
@@ -1372,7 +1372,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="please select a country">
+                    <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1382,12 +1382,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA_HALF") THEN]%%
                 <!------------- Country Name  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_country_code"
                         name="_country_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Country</option>
 
@@ -1408,7 +1408,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="helper-text" data-error="please select a country">
+                    <span class="custom-validation-message" data-error="please select a country">
                         <!-- helper text -->
                     </span>
 
@@ -1418,19 +1418,19 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL") THEN]%%
                 <!------------- State / Province Name ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State / Province</option>
 
                     </select>
                     <label for="_state_code">State / Province</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1500,19 +1500,19 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL_HALF") THEN]%%
                 <!------------- State / Province Name  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State / Province</option>
 
                     </select>
                     <label for="_state_code">State / Province</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1582,12 +1582,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US") THEN]%%
                 <!------------- State / Province Name (US) ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State</option>
 
@@ -1609,7 +1609,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1619,12 +1619,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US_HALF") THEN]%%
                 <!------------- State / Province Name (US)  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State</option>
 
@@ -1646,7 +1646,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1656,12 +1656,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA") THEN]%%
                 <!------------- State / Province Name (CA) ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Province</option>
 
@@ -1683,7 +1683,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">Province</label>
 
-                    <span class="helper-text" data-error="please select a province">
+                    <span class="custom-validation-message" data-error="please select a province">
                         <!-- helper text -->
                     </span>
 
@@ -1693,12 +1693,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA_HALF") THEN]%%
                 <!------------- State / Province Name (CA)  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Province</option>
 
@@ -1720,7 +1720,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">Province</label>
 
-                    <span class="helper-text" data-error="please select a province">
+                    <span class="custom-validation-message" data-error="please select a province">
                         <!-- helper text -->
                     </span>
 
@@ -1730,12 +1730,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU") THEN]%%
                 <!------------- State / Province Name (AU) ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State</option>
 
@@ -1757,7 +1757,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1767,12 +1767,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU_HALF") THEN]%%
                 <!------------- State / Province Name (AU)  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State</option>
 
@@ -1794,7 +1794,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1804,12 +1804,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ") THEN]%%
                 <!------------- State / Province Name (NZ) ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State</option>
 
@@ -1831,7 +1831,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1841,12 +1841,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ_HALF") THEN]%%
                 <!------------- State / Province Name (NZ)  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State</option>
 
@@ -1868,7 +1868,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1878,12 +1878,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA") THEN]%%
                 <!------------- State / Province Name (ZA) ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State</option>
 
@@ -1905,7 +1905,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1915,12 +1915,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA_HALF") THEN]%%
                 <!------------- State / Province Name (ZA)  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_state_code"
                         name="_state_code"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>State</option>
 
@@ -1942,7 +1942,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="helper-text" data-error="please select a state">
+                    <span class="custom-validation-message" data-error="please select a state">
                         <!-- helper text -->
                     </span>
 
@@ -1952,17 +1952,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "POSTCODE_ZIPCODE") THEN]%%
                 <!------------- Postcode / Zipcode ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <input
                         type="text"
                         id="_postcode_zipcode"
                         name="_postcode_zipcode"
                         placeholder="Postcode / Zipcode"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="helper-text" data-error="please enter a valid postcode / zipcode">
+                    <span class="custom-validation-message" data-error="please enter a valid postcode / zipcode">
                         <!-- helper text -->
                     </span>
 
@@ -1972,7 +1972,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "POSTCODE_ZIPCODE_HALF") THEN]%%
                 <!------------- Postcode / Zipcode  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <input
                         type="text"
@@ -1980,10 +1980,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         name="_postcode_zipcode"
                         placeholder="Postcode / Zipcode"
                         title="Postcode/Zipcode is 4 digits with no spaces"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="helper-text" data-error="please enter a valid postcode / zipcode">
+                    <span class="custom-validation-message" data-error="please enter a valid postcode / zipcode">
                         <!-- helper text -->
                     </span>
 
@@ -1993,19 +1993,19 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_job_title"
                         name="_job_title"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Job Title</option>
 
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="please select a job title">
+                    <span class="custom-validation-message" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2061,19 +2061,19 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL_HALF") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_job_title"
                         name="_job_title"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Job Title</option>
 
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="please select a job title">
+                    <span class="custom-validation-message" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2129,12 +2129,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_job_title"
                         name="_job_title"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2154,7 +2154,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="please select a job title">
+                    <span class="custom-validation-message" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2164,12 +2164,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC_HALF") THEN]%%
                 <!------------- Job Title  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_job_title"
                         name="_job_title"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
 
                         <option value="" selected disabled>Job Title</option>
@@ -2190,7 +2190,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="please select a job title">
+                    <span class="custom-validation-message" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2200,12 +2200,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_job_title"
                         name="_job_title"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2225,7 +2225,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="please select a job title">
+                    <span class="custom-validation-message" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2235,12 +2235,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_AMER_HALF") THEN]%%
                 <!------------- Job Title  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_job_title"
                         name="_job_title"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2260,7 +2260,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="please select a job title">
+                    <span class="custom-validation-message" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2270,12 +2270,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA") THEN]%%
                 <!------------- Job Title ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <select
                         id="_job_title"
                         name="_job_title"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2295,7 +2295,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="please select a job title">
+                    <span class="custom-validation-message" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2305,12 +2305,12 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_EMEA_HALF") THEN]%%
                 <!------------- Job Title  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
                         id="_job_title"
                         name="_job_title"
-                        data-custom-validation>
+                        data-custom-validation-field>
 
                         <option value="" selected disabled>Job Title</option>
 
@@ -2330,7 +2330,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="helper-text" data-error="please select a job title">
+                    <span class="custom-validation-message" data-error="please select a job title">
                         <!-- helper text -->
                     </span>
 
@@ -2340,17 +2340,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SCHOOL_NAME") THEN]%%
                 <!------------- School Name ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <input
                         type="text"
                         id="_school_name"
                         name="_school_name"
                         placeholder="School or District Name"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="helper-text" data-error="please enter a school name">
+                    <span class="custom-validation-message" data-error="please enter a school name">
                         <!-- helper text -->
                     </span>
 
@@ -2360,17 +2360,17 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SCHOOL_NAME_HALF") THEN]%%
                 <!------------- School Name  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <input
                         type="text"
                         id="_school_name"
                         name="_school_name"
                         placeholder="School or District Name"
-                        data-custom-validation>
+                        data-custom-validation-field>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="helper-text" data-error="please enter a school name">
+                    <span class="custom-validation-message" data-error="please enter a school name">
                         <!-- helper text -->
                     </span>
 
@@ -2380,14 +2380,14 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "NO_OF_LICENCES") THEN]%%
                 <!------------- No. Of Licences  ----------------->
-                <div class="input-field col s12">
+                <div data-custom-validation-container class="input-field col s12">
 
                     <input
                         type="number"
                         id="_no_of_licences"
                         name="_no_of_licences"
                         placeholder="Number of Student Licences"
-                        data-custom-validation
+                        data-custom-validation-field
                         min="20"
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
@@ -2402,19 +2402,19 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "NO_OF_LICENCES_HALF") THEN]%%
                 <!------------- No. Of Licences  ----------------->
-                <div class="input-field col s12 m6">
+                <div data-custom-validation-container class="input-field col s12 m6">
 
                     <input
                         type="number"
                         id="_no_of_licences"
                         name="_no_of_licences"
                         placeholder="Number of Student Licences"
-                        data-custom-validation
+                        data-custom-validation-field
                         min="20"
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="helper-text" data-error="please enter a number of licences">
+                    <span class="custom-validation-message" data-error="please enter a number of licences">
                         <!-- helper text -->
                     </span>
 
@@ -2424,21 +2424,21 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS") THEN]%%
                 <!------------- Terms & Conditions ----------------->
-                <p class="col s12">
+                <p data-custom-validation-container class="col s12">
                     <label>
                         <input
                             type="checkbox"
                             id="_terms_and_conditions"
                             name="_terms_and_conditions"
                             checked
-                            data-custom-validation>
+                            data-custom-validation-field>
                         <span>
                             I agree to the 3P Learning
                             <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
                         </span>
                     </label>
 
-                    <span class="custom-checkbox-helper-text" data-error="please agree to the terms and conditions">
+                    <span class="custom-validation-message" data-error="please agree to the terms and conditions">
                         <!-- helper text -->
                     </span>
                 </p>
@@ -2447,21 +2447,21 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "TERMS_AND_CONDITIONS_HALF") THEN]%%
                 <!------------- Terms & Conditions ----------------->
-                <p class="col s12 m6">
+                <p data-custom-validation-container class="col s12 m6">
                     <label>
                         <input
                             type="checkbox"
                             id="_terms_and_conditions"
                             name="_terms_and_conditions"
                             checked
-                            data-custom-validation>
+                            data-custom-validation-field>
                         <span>
                             I agree to the 3P Learning
                             <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
                         </span>
                     </label>
 
-                    <span class="custom-checkbox-helper-text" data-error="please agree to the terms and conditions">
+                    <span class="custom-validation-message" data-error="please agree to the terms and conditions">
                         <!-- helper text -->
                     </span>
                 </p>
@@ -2470,7 +2470,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN") THEN]%%
                 <!------------- Subscriber Opt In ----------------->
-                <p class="col s12">
+                <p data-custom-validation-container class="col s12">
                     <label>
                         <input
                             type="checkbox"
@@ -2487,7 +2487,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBSCRIBER_OPT_IN_HALF") THEN]%%
                 <!------------- Subscriber Opt In  ----------------->
-                <p class="col s12 m6">
+                <p data-custom-validation-container class="col s12 m6">
                     <label>
                         <input
                             type="checkbox"
@@ -2504,7 +2504,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "SUBMIT_BUTTON") THEN]%%
                 <!------------- Submit Button ----------------->
-                <div class="col s12">
+                <div data-custom-validation-container class="col s12">
 
                     <button
                         class="custom_submit_button"
@@ -2597,7 +2597,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
             // get dom elements
             const form = document.querySelector('form');
-            const fieldsToValidate = form.querySelectorAll('[data-custom-validation]');
+            const fieldsToValidate = form.querySelectorAll('[data-custom-validation-field]');
 
             // on form submit
             form.addEventListener('submit', function(e) {
@@ -2653,10 +2653,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         const selectDropdown = field.parentElement.querySelector('.select-dropdown');
                         selectDropdown.classList.add('invalid');
                         selectDropdown.classList.remove('valid');
+                        showValidationMessage(field, false);
                     } else {
                         const selectDropdown = field.parentElement.querySelector('.select-dropdown');
                         selectDropdown.classList.add('valid');
                         selectDropdown.classList.remove('invalid');
+                        showValidationMessage(field, true);
                     }
 
                     // if a multiple select field
@@ -2666,10 +2668,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         const selectDropdown = field.parentElement.querySelector('.select-dropdown');
                         selectDropdown.classList.add('invalid');
                         selectDropdown.classList.remove('valid');
+                        showValidationMessage(field, false);
                     } else {
                         const selectDropdown = field.parentElement.querySelector('.select-dropdown');
                         selectDropdown.classList.add('valid');
                         selectDropdown.classList.remove('invalid');
+                        showValidationMessage(field, true);
                     }
 
                     // if an email input field
@@ -2679,9 +2683,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         isFormValidToSubmit = false;
                         field.classList.add('invalid');
                         field.classList.remove('valid');
+                        showValidationMessage(field, false);
                     } else {
                         field.classList.remove('invalid');
                         field.classList.add('valid');
+                        showValidationMessage(field, true);
                     }
 
                     // if a number nput field
@@ -2690,9 +2696,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         isFormValidToSubmit = false;
                         field.classList.add('invalid');
                         field.classList.remove('valid');
+                        showValidationMessage(field, false);
                     } else {
                         field.classList.remove('invalid');
                         field.classList.add('valid');
+                        showValidationMessage(field, true);
                     }
 
                     // if a text input field
@@ -2701,31 +2709,42 @@ confirm all form fields are mapped to the correct field in salesforce
                         isFormValidToSubmit = false;
                         field.classList.add('invalid');
                         field.classList.add('valid');
+                        showValidationMessage(field, false);
                     } else {
                         field.classList.remove('invalid');
                         field.classList.add('valid');
+                        showValidationMessage(field, true);
                     }
 
                     // if a checkbox input field
                 } else if (field.tagName === "INPUT" && field.type === "checkbox") {
-                    const helperText = field.parentElement.parentElement.querySelector('.custom-checkbox-helper-text');
                     if (!field.checked) {
                         isFormValidToSubmit = false;
-                        if (helperText) {
-                            helperText.classList.add('invalid');
-                            helperText.classList.remove('valid');
-                            helperText.innerHTML = helperText.dataset.error || '';
-                        }
+                        showValidationMessage(field, false);
                     } else {
-                        if (helperText) {
-                            helperText.classList.remove('invalid');
-                            helperText.classList.add('valid');
-                            helperText.innerHTML = helperText.dataset.success || '';
-                        }
+                        showValidationMessage(field, true);
                     }
                 }
 
             } //handleFieldValidation
+
+
+            function showValidationMessage(field, isFieldValid) {
+                const validationMessage = field.closest('[data-custom-validation-container]').querySelector('.custom-validation-message');
+                if (validationMessage) {
+                    if (isFieldValid) {
+                        validationMessage.classList.remove('invalid');
+                        validationMessage.classList.add('valid');
+                        validationMessage.innerHTML = validationMessage.dataset.success || '';
+                    } else {
+                        validationMessage.classList.add('invalid');
+                        validationMessage.classList.remove('valid');
+                        validationMessage.innerHTML = validationMessage.dataset.error || '';
+                    }
+                }
+
+
+            }
 
 
 
