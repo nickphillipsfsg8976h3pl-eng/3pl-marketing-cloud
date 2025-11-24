@@ -2630,7 +2630,7 @@ confirm all form fields are mapped to the correct field in salesforce
             fieldsToValidate.forEach(field => {
 
                 // on blur
-                field.addEventListener('blur', () => {
+                field.addEventListener('change', () => {
                     if (isValidationEnabled) {
                         handleFieldValidation(field);
                     }
@@ -2663,11 +2663,13 @@ confirm all form fields are mapped to the correct field in salesforce
                 } else if (field.tagName === "SELECT" && field.multiple) {
                     if (!field.value) {
                         isFormValidToSubmit = false;
-                        field.classList.add('invalid');
-                        field.classList.remove('valid');
+                        const selectDropdown = field.parentElement.querySelector('.select-dropdown');
+                        selectDropdown.classList.add('invalid');
+                        selectDropdown.classList.remove('valid');
                     } else {
-                        field.classList.remove('invalid');
-                        field.classList.add('valid');
+                        const selectDropdown = field.parentElement.querySelector('.select-dropdown');
+                        selectDropdown.classList.add('valid');
+                        selectDropdown.classList.remove('invalid');
                     }
 
                     // if an email input field
