@@ -2865,6 +2865,12 @@ update internal documentation and create a confluence page
                         box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
                     }
 
+                    .custom_submit_button:disabled {
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                        filter: grayscale(50%);
+                    }
+
                     @media screen and (min-width: 767px) {
                         .custom_submit_button {
                             width: auto;
@@ -2875,11 +2881,91 @@ update internal documentation and create a confluence page
                 %%[ENDIF]%%
 
 
+                %%[IF (@FORM_COMPONENT == "CLOUDFLARE_TURNSTILE") THEN]%%
+                <!------------- Cloudflare Turnstile ----------------->
+                <div class="col s12">
+                    <div class="cf-turnstile"
+                        data-sitekey="0x4AAAAAAB_kEJTJ1CYWGwft"
+                        data-theme="auto"
+                        data-size="flexible"
+                        data-callback="onTurnstileSuccess"
+                        data-error-callback="onTurnstileErrorOrExpired"
+                        data-expired-callback="onTurnstileErrorOrExpired">
+                    </div>
+                </div>
 
 
+                <script>
+                    // Disable submit button on page load
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const submitButton = document.getElementById('_submit_button');
+                        if (submitButton) {
+                            submitButton.disabled = true;
+                        }
+                    });
+
+                    function onTurnstileSuccess(token) {
+                        const submitButton = document.getElementById('_submit_button');
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                        }
+                    }
+
+                    function onTurnstileErrorOrExpired() {
+                        const submitButton = document.getElementById('_submit_button');
+                        if (submitButton) {
+                            submitButton.disabled = true;
+                        }
+                    }
+                </script>
+
+                <link rel="preconnect" href="https://challenges.cloudflare.com">
+                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                %%[ENDIF]%%
 
 
+                %%[IF (@FORM_COMPONENT == "CLOUDFLARE_TURNSTILE_HALF") THEN]%%
+                <!------------- Cloudflare Turnstile ----------------->
+                <div class="col sm6">
+                    <div class="cf-turnstile"
+                        data-sitekey="0x4AAAAAAB_kEJTJ1CYWGwft"
+                        data-theme="auto"
+                        data-size="flexible"
+                        data-callback="onTurnstileSuccess"
+                        data-error-callback="onTurnstileErrorOrExpired"
+                        data-expired-callback="onTurnstileErrorOrExpired">
+                    </div>
+                </div>
 
+
+                <script>
+                    // Disable submit button on page load
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const submitButton = document.getElementById('_submit_button');
+                        if (submitButton) {
+                            submitButton.disabled = true;
+                        }
+                    });
+
+                    function onTurnstileSuccess(token) {
+                        const submitButton = document.getElementById('_submit_button');
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                        }
+                    }
+
+                    function onTurnstileErrorOrExpired() {
+                        const submitButton = document.getElementById('_submit_button');
+                        if (submitButton) {
+                            submitButton.disabled = true;
+                        }
+                    }
+                </script>
+
+
+                <link rel="preconnect" href="https://challenges.cloudflare.com">
+                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                %%[ENDIF]%%
 
 
                 %%[
