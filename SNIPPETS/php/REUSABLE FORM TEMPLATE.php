@@ -528,7 +528,6 @@ confirm all form fields are mapped to the correct field in salesforce
 
         /* mui center toast container */
         #toast-container {
-            top: 10% !important;
             left: 50% !important;
             transform: translateX(-50%) !important;
             min-width: 0 !important;
