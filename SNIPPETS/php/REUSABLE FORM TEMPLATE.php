@@ -8,8 +8,6 @@
 
 TODO:
 
-
-
 Automatic redirect when a person enters “Parent” or “student” into
 the Job Title form field, to the appropriate B2C landing page
 - What is the landing page based or region or query param
@@ -17,7 +15,13 @@ the Job Title form field, to the appropriate B2C landing page
         - "Are you a parent/student? Click here" link
         - optional popup?
 
-add a loading indicator on submit
+BACKGROUND 
+
+TEXT LARGE
+
+RECAPTURE!!!!!!
+
+ALL OVERRIDES FOR FORM FIELDS
 
 follow up on  missing EMEA mapping for job title -> job functions mappings
 
@@ -35,7 +39,9 @@ confirm a solid list of finalized form fields (and there overrides) with teams
 
 confirm all form fields are mapped to the correct field in salesforce
 
-overidde all displayed inputs and update here and pipeline
+overidde all displayed inputs and update here and 
+
+update internal documentation and create a confluence page
 
 -->
 
@@ -2867,6 +2873,13 @@ overidde all displayed inputs and update here and pipeline
                     }
                 </style>
                 %%[ENDIF]%%
+
+
+
+
+
+
+
 
 
                 %%[
