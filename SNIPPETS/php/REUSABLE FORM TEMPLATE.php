@@ -655,13 +655,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "SPACER") THEN]%%
-                <!----------------- Divider --------------------->
+                <!----------------- Spacer --------------------->
                 <div class="col s12"></div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "SPACER_HALF") THEN]%%
-                <!----------------- Divider --------------------->
+                <!----------------- Spacer --------------------->
                 <div class="col s12 m6"></div>
                 %%[ENDIF]%%
 
@@ -2699,7 +2699,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 <div data-custom-container class="col s12">
 
                     <button
-                        class="custom_submit_button"
+                        class="custom_submit_button scale-transition scale-out"
                         type="submit"
                         id="_submit_button"
                         name="_submit_button">
@@ -2707,6 +2707,16 @@ confirm all form fields are mapped to the correct field in salesforce
                     </button>
 
                 </div>
+
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // grow submit button
+                        const submitButton = document.getElementById("_submit_button");
+                        submitButton.classList.remove("scale-out");
+                        submitButton.classList.add("scale-in");
+                    })
+                </script>
 
 
                 <!-- custom_submit_button css -->
