@@ -603,39 +603,6 @@ confirm all form fields are mapped to the correct field in salesforce
                 document.querySelector('input[name="_document_referrer"]').value = document.referrer;
             </script>
 
-
-            <!-- Extract Marketing Tracking Parameters -->
-            <script>
-                document.addEventListener('DOMContentLoaded', () => {
-
-                    // Get cookie value
-                    function getCookie(name) {
-                        const value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-                        return value ? decodeURIComponent(value.pop()) : '';
-                    }
-
-                    // Get parameter from cookie URL
-                    function getParam(name) {
-                        const cookie = getCookie('setURLParamsCookie');
-                        const match = cookie.match(new RegExp('[?&]' + name + '=([^&#]*)'));
-                        return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
-                    }
-
-                    // Fill form fields if cookie exists
-                    if (document.cookie.includes('setURLParamsCookie')) {
-                        document.querySelector('input[name="_utm_source"]').value = getParam('utm_source');
-                        document.querySelector('input[name="_utm_medium"]').value = getParam('utm_medium');
-                        document.querySelector('input[name="_utm_campaign"]').value = getParam('utm_campaign');
-                        document.querySelector('input[name="_utm_content"]').value = getParam('utm_content');
-                        document.querySelector('input[name="_utm_term"]').value = getParam('utm_term');
-                        document.querySelector('input[name="_gclid"]').value = getParam('gclid');
-                        document.querySelector('input[name="_fbclid"]').value = getParam('fbclid');
-                        document.querySelector('input[name="_msclkid"]').value = getParam('msclkid');
-                    }
-
-                }); //DOMContentLoaded
-            </script>
-
         </div>
 
 
