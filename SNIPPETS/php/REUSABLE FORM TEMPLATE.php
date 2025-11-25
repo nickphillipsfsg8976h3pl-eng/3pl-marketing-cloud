@@ -118,28 +118,28 @@ confirm all form fields are mapped to the correct field in salesforce
             'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test_states <br>',
             '<br>',
             '@example: Basic Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3P_GREEN <br>',
             '<br>',
             '@example: TOF Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE_PER_COUNTRY,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE_PER_COUNTRY_CODE,SCHOOL_NAME,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3P_GREEN <br>',
             '<br>',
             '@example: BOF Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3P_GREEN <br>',
             '<br>',
             '@example: Quote Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3P_GREEN <br>',
             '<br>',
             '@example: US Form Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3P_GREEN <br>',
             '<br>',
             '@example: Trial Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3P_GREEN <br>',
             '<br>',
             '@example: Info Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3P_GREEN <br>',
             '<br>',
             '@example: Demo Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3P_GREEN <br>',
             '<br>',
             '<br> ',
             '</div>'
@@ -242,15 +242,15 @@ confirm all form fields are mapped to the correct field in salesforce
                 "PHONE_NUMBER",
                 "GRADE_LEVEL",
                 "SUBJECT",
-                "COUNTRY_GLOBAL",
-                "STATE_PROVINCE_GLOBAL",
+                "COUNTRY_CODE",
+                "STATE_CODE_PER_COUNTRY_CODE",
                 "POSTCODE_ZIPCODE",
                 "SCHOOL_NAME",
-                "JOB_TITLE_PER_COUNTRY",
+                "JOB_TITLE_PER_COUNTRY_CODE",
                 "NO_OF_LICENCES",
                 "TERMS_AND_CONDITIONS",
                 "SUBSCRIBER_OPT_IN",
-                "SUBMIT_BUTTON"
+                "SUBMIT_BUTTON_3P_GREEN"
             ],
 
 
@@ -265,15 +265,15 @@ confirm all form fields are mapped to the correct field in salesforce
                 "PHONE_NUMBER_HALF",
                 "GRADE_LEVEL_HALF",
                 "SUBJECT_HALF",
-                "COUNTRY_GLOBAL_HALF",
-                "STATE_PROVINCE_GLOBAL_HALF",
+                "COUNTRY_CODE_HALF",
+                "STATE_CODE_PER_COUNTRY_CODE_HALF",
                 "POSTCODE_ZIPCODE_HALF",
                 "SCHOOL_NAME_HALF",
                 "JOB_TITLE_PER_COUNTRY_HALF",
                 "NO_OF_LICENCES_HALF",
                 "TERMS_AND_CONDITIONS_HALF",
                 "SUBSCRIBER_OPT_IN_HALF",
-                "SUBMIT_BUTTON"
+                "SUBMIT_BUTTON_3P_GREEN"
             ],
 
             //?template=test_inputs
@@ -301,39 +301,39 @@ confirm all form fields are mapped to the correct field in salesforce
 
             //?template=test_countries
             test_countries: [
-                "COUNTRY_GLOBAL",
-                "COUNTRY_GLOBAL_HALF",
-                "COUNTRY_APAC",
-                "COUNTRY_APAC_HALF",
-                "COUNTRY_AMER",
-                "COUNTRY_AMER_HALF",
-                "COUNTRY_EMEA",
-                "COUNTRY_EMEA_HALF",
+                "COUNTRY_CODE",
+                "COUNTRY_CODE_HALF",
+                "COUNTRY_CODE_APAC",
+                "COUNTRY_CODE_APAC_HALF",
+                "COUNTRY_CODE_AMER",
+                "COUNTRY_CODE_AMER_HALF",
+                "COUNTRY_CODE_EMEA",
+                "COUNTRY_CODE_EMEA_HALF",
             ],
 
             //?template=test_states
             test_states: [
-                "COUNTRY_GLOBAL",
-                "COUNTRY_GLOBAL_HALF",
-                "STATE_PROVINCE_GLOBAL",
-                "STATE_PROVINCE_GLOBAL_HALF",
-                "STATE_PROVINCE_AU",
-                "STATE_PROVINCE_AU_HALF",
-                "STATE_PROVINCE_NZ",
-                "STATE_PROVINCE_NZ_HALF",
-                "STATE_PROVINCE_US",
-                "STATE_PROVINCE_US_HALF",
-                "STATE_PROVINCE_CA",
-                "STATE_PROVINCE_CA_HALF",
-                "STATE_PROVINCE_ZA",
-                "STATE_PROVINCE_ZA_HALF"
+                "COUNTRY_CODE",
+                "COUNTRY_CODE_HALF",
+                "STATE_CODE_PER_COUNTRY_CODE",
+                "STATE_CODE_PER_COUNTRY_CODE_HALF",
+                "STATE_CODE_AU",
+                "STATE_CODE_AU_HALF",
+                "STATE_CODE_NZ",
+                "STATE_CODE_NZ_HALF",
+                "STATE_CODE_US",
+                "STATE_CODE_US_HALF",
+                "STATE_CODE_CA",
+                "STATE_CODE_CA_HALF",
+                "STATE_CODE_ZA",
+                "STATE_CODE_ZA_HALF"
             ],
 
             //?template=job_titles
             test_job_titles: [
-                "COUNTRY_GLOBAL",
-                "COUNTRY_GLOBAL_HALF",
-                "JOB_TITLE_PER_COUNTRY",
+                "COUNTRY_CODE",
+                "COUNTRY_CODE_HALF",
+                "JOB_TITLE_PER_COUNTRY_CODE",
                 "JOB_TITLE_PER_COUNTRY_HALF",
                 "JOB_TITLE_APAC",
                 "JOB_TITLE_APAC_HALF",
@@ -363,12 +363,12 @@ confirm all form fields are mapped to the correct field in salesforce
                 "GRADE_LEVEL_HALF",
                 "SUBJECT",
                 "SUBJECT_HALF",
-                "JOB_TITLE_PER_COUNTRY",
+                "JOB_TITLE_PER_COUNTRY_CODE",
                 "JOB_TITLE_PER_COUNTRY_HALF",
-                "COUNTRY_GLOBAL",
-                "COUNTRY_GLOBAL_HALF",
-                "STATE_PROVINCE_GLOBAL",
-                "STATE_PROVINCE_GLOBAL_HALF",
+                "COUNTRY_CODE",
+                "COUNTRY_CODE_HALF",
+                "STATE_CODE_PER_COUNTRY_CODE",
+                "STATE_CODE_PER_COUNTRY_CODE_HALF",
                 "POSTCODE_ZIPCODE",
                 "POSTCODE_ZIPCODE_HALF",
                 "SCHOOL_NAME",
@@ -379,7 +379,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 "TERMS_AND_CONDITIONS_HALF",
                 "SUBSCRIBER_OPT_IN",
                 "SUBSCRIBER_OPT_IN_HALF",
-                "SUBMIT_BUTTON",
+                "SUBMIT_BUTTON_3P_GREEN",
                 "SUBMIT_BUTTO_HALF"
             ]
 
@@ -1111,7 +1111,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_CODE") THEN]%%
                 <!------------- Country Name ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1156,7 +1156,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_CODE_HALF") THEN]%%
                 <!------------- Country Name ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1202,7 +1202,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_APAC") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_CODE_APAC") THEN]%%
                 <!------------- Country Name ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1238,7 +1238,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_APAC_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_CODE_APAC_HALF") THEN]%%
                 <!------------- Country Name  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1274,7 +1274,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_AMER") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_CODE_AMER") THEN]%%
                 <!------------- Country Name ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1310,7 +1310,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_AMER_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_CODE_AMER_HALF") THEN]%%
                 <!------------- Country Name  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1346,7 +1346,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_CODE_EMEA") THEN]%%
                 <!------------- Country Name ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1382,7 +1382,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "COUNTRY_EMEA_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "COUNTRY_CODE_EMEA_HALF") THEN]%%
                 <!------------- Country Name  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1418,7 +1418,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_PER_COUNTRY_CODE") THEN]%%
                 <!------------- State / Province Name ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1500,7 +1500,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_GLOBAL_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_PER_COUNTRY_CODE_HALF") THEN]%%
                 <!------------- State / Province Name  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1582,7 +1582,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_US") THEN]%%
                 <!------------- State / Province Name (US) ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1619,7 +1619,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_US_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_US_HALF") THEN]%%
                 <!------------- State / Province Name (US)  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1656,7 +1656,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_CA") THEN]%%
                 <!------------- State / Province Name (CA) ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1693,7 +1693,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_CA_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_CA_HALF") THEN]%%
                 <!------------- State / Province Name (CA)  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1730,7 +1730,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_AU") THEN]%%
                 <!------------- State / Province Name (AU) ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1767,7 +1767,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_AU_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_AU_HALF") THEN]%%
                 <!------------- State / Province Name (AU)  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1804,7 +1804,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_NZ") THEN]%%
                 <!------------- State / Province Name (NZ) ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1841,7 +1841,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_NZ_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_NZ_HALF") THEN]%%
                 <!------------- State / Province Name (NZ)  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1878,7 +1878,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_ZA") THEN]%%
                 <!------------- State / Province Name (ZA) ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -1915,7 +1915,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_PROVINCE_ZA_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_ZA_HALF") THEN]%%
                 <!------------- State / Province Name (ZA)  ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -1993,7 +1993,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_PER_COUNTRY") THEN]%%
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_PER_COUNTRY_CODE") THEN]%%
                 <!------------- Job Title ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -2524,7 +2524,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "SUBMIT_BUTTON") THEN]%%
+                %%[IF (@FORM_COMPONENT == "SUBMIT_BUTTON_3P_GREEN") THEN]%%
                 <!------------- Submit Button ----------------->
                 <div data-custom-validation-container class="col s12">
 
