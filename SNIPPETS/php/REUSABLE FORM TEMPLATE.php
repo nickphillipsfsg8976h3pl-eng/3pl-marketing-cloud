@@ -233,6 +233,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
             //?template=test_full
             test: [
+                "PUSH",
                 "PRODUCT_INTEREST",
                 "MARKETING_INTEREST",
                 "ENQUIRY_TYPE",
@@ -271,6 +272,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 "SCHOOL_NAME_HALF",
                 "JOB_TITLE_PER_COUNTRY_CODE_HALF",
                 "NO_OF_LICENCES_HALF",
+                "PUSH_HALF",
                 "TERMS_AND_CONDITIONS_HALF",
                 "SUBSCRIBER_OPT_IN_HALF",
                 "SUBMIT_BUTTON_3PL"
@@ -532,16 +534,8 @@ confirm all form fields are mapped to the correct field in salesforce
             min-width: 0 !important;
         }
 
-        [data-custom-container] {
-            min-height: 75px !important;
-        }
-
-        p[data-custom-container] {
-            min-height: 75px !important;
-        }
-
         [data-custom-message] {
-            display: block;
+            display: inline-block;
             font-size: 12px;
             color: #039be5
         }
@@ -638,15 +632,15 @@ confirm all form fields are mapped to the correct field in salesforce
                 ]%%
 
 
-                %%[IF (@FORM_COMPONENT == "SPACER") THEN]%%
-                <!----------------- Spacer --------------------->
-                <div class="col s12"></div>
+                %%[IF (@FORM_COMPONENT == "PUSH") THEN]%%
+                <!------------------ Push --------------------->
+                <div class="col s12 hide-on-small-only" style="height: 20px;"></div>
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "SPACER_HALF") THEN]%%
-                <!----------------- Spacer --------------------->
-                <div class="col s12 m6"></div>
+                %%[IF (@FORM_COMPONENT == "PUSH_HALF") THEN]%%
+                <!------------------ Push ---------------------->
+                <div class="col s12 m6 hide-on-small-only" style="height: 20px;"></div>
                 %%[ENDIF]%%
 
 
@@ -2609,7 +2603,7 @@ confirm all form fields are mapped to the correct field in salesforce
                             checked
                             data-custom-field>
                         <span>
-                            I agree to the 3P Learning
+                            I understand and agree to the 3P Learning
                             <a tabindex="-1" target="_parent" href="https://www.3plearning.com/terms/" style="text-decoration: underline;">Terms and Conditions</a>.
                         </span>
                     </label>
