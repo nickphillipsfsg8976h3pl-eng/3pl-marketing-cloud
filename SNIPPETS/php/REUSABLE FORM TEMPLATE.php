@@ -23,6 +23,8 @@ RECAPTURE!!!!!!
 
 ALL OVERRIDES FOR FORM FIELDS
 
+UPDATE TEST TEMPLATES WITH ALL COMPONENTS
+
 follow up on  missing EMEA mapping for job title -> job functions mappings
 
 look into gclid, fbclid mscclid functionality and pass valus through perhaps
@@ -678,25 +680,25 @@ update internal documentation and create a confluence page
 
                 %%[IF (@FORM_COMPONENT == "PUSH") THEN]%%
                 <!------------------ Push --------------------->
-                <div class="col s12 hide-on-small-only" style="height: 115px;"></div>
+                <div class="col s12" style="height: 115px;"></div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "PUSH_HALF") THEN]%%
                 <!------------------ Push ---------------------->
-                <div class="col s12 m6 hide-on-small-only" style="height: 115px;"></div>
+                <div class="col s12 m6" style="height: 115px;"></div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "SPACER") THEN]%%
                 <!------------------ Push --------------------->
-                <div class="col s12 hide-on-small-only" style="height: 20px;"></div>
+                <div class="col s12" style="height: 20px;"></div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "SPACER_HALF") THEN]%%
                 <!------------------ Push ---------------------->
-                <div class="col s12 m6 hide-on-small-only" style="height: 20px;"></div>
+                <div class="col s12 m6" style="height: 20px;"></div>
                 %%[ENDIF]%%
 
 
