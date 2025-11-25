@@ -17,10 +17,9 @@ the Job Title form field, to the appropriate B2C landing page
         - "Are you a parent/student? Click here" link
         - optional popup?
 
+add a loading indicator on submit
 
 follow up on  missing EMEA mapping for job title -> job functions mappings
-
-create job title hidden override inputs (look at mapping for common values - teacher etc)
 
 look into gclid, fbclid mscclid functionality and pass valus through perhaps
 
@@ -35,6 +34,8 @@ test. test, test ===> batte-test for all variatioons and 150 form planned rollou
 confirm a solid list of finalized form fields (and there overrides) with teams
 
 confirm all form fields are mapped to the correct field in salesforce
+
+overidde all displayed inputs and update here and pipeline
 
 -->
 
@@ -2888,8 +2889,16 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 // if form is valid
                 if (isFormValidToSubmit) {
+
+                    //show loader
+                    const loader = document.createElement('div');
+                    loader.classList.add('loader');
+
+                    //submit form
                     form.submit();
+
                 } else {
+                    // notify of errors
                     M.toast({
                         html: 'Please fix errors before continuing',
                         classes: 'red'
