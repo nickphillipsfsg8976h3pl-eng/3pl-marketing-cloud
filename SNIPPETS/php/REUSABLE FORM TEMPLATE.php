@@ -118,28 +118,28 @@ confirm all form fields are mapped to the correct field in salesforce
             'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?template=test_states <br>',
             '<br>',
             '@example: Basic Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL_GREEN <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL <br>',
             '<br>',
             '@example: TOF Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE_PER_COUNTRY_CODE,SCHOOL_NAME,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL_GREEN <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE_PER_COUNTRY_CODE,SCHOOL_NAME,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL <br>',
             '<br>',
             '@example: BOF Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL_GREEN <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL <br>',
             '<br>',
             '@example: Quote Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL_GREEN <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL <br>',
             '<br>',
             '@example: US Form Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL_GREEN <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY_CODE,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL <br>',
             '<br>',
             '@example: Trial Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL_GREEN <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL <br>',
             '<br>',
             '@example: Info Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL_GREEN <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL <br>',
             '<br>',
             '@example: Demo Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL_GREEN <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY_CODE,COUNTRY_CODE,STATE_CODE_PER_COUNTRY_CODE,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON_3PL <br>',
             '<br>',
             '<br> ',
             '</div>'
@@ -250,7 +250,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 "NO_OF_LICENCES",
                 "TERMS_AND_CONDITIONS",
                 "SUBSCRIBER_OPT_IN",
-                "SUBMIT_BUTTON_3PL_GREEN"
+                "SUBMIT_BUTTON_3PL"
             ],
 
 
@@ -273,7 +273,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 "NO_OF_LICENCES_HALF",
                 "TERMS_AND_CONDITIONS_HALF",
                 "SUBSCRIBER_OPT_IN_HALF",
-                "SUBMIT_BUTTON_3PL_GREEN"
+                "SUBMIT_BUTTON_3PL"
             ],
 
             //?template=test_inputs
@@ -379,7 +379,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 "TERMS_AND_CONDITIONS_HALF",
                 "SUBSCRIBER_OPT_IN",
                 "SUBSCRIBER_OPT_IN_HALF",
-                "SUBMIT_BUTTON_3PL_GREEN",
+                "SUBMIT_BUTTON_3PL",
             ]
 
         } //config.TEMPLATES
@@ -524,7 +524,19 @@ confirm all form fields are mapped to the correct field in salesforce
             color: rgb(0, 0, 0, 0.87) !important;
         }
 
+        /* mui center toast container */
+        #toast-container {
+            top: 10% !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            min-width: 0 !important;
+        }
+
         [data-custom-container] {
+            min-height: 75px !important;
+        }
+
+        p[data-custom-container] {
             min-height: 75px !important;
         }
 
@@ -2690,7 +2702,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "SUBMIT_BUTTON_3PL_GREEN") THEN]%%
+                %%[IF (@FORM_COMPONENT == "SUBMIT_BUTTON_3PL") THEN]%%
                 <!------------- Submit Button ----------------->
                 <div data-custom-container class="col s12">
 
