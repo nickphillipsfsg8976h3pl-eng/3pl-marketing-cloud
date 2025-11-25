@@ -193,9 +193,11 @@ confirm all form fields are mapped to the correct field in salesforce
 
         config.rid = Request.GetQueryStringParameter("rid");
 
-        config.form_title = Request.GetQueryStringParameter("form_title");
         config.template = Request.GetQueryStringParameter("template");
         config.inputs = Request.GetQueryStringParameter("inputs");
+
+        config.text_heading_content = Request.GetQueryStringParameter("text_heading_content");
+        config.text_paragraph_content = Request.GetQueryStringParameter("text_paragraph_content");
 
         config.utm_source = Request.GetQueryStringParameter("utm_source");
         config.utm_medium = Request.GetQueryStringParameter("utm_medium");
@@ -545,10 +547,6 @@ confirm all form fields are mapped to the correct field in salesforce
         [data-custom-message].invalid {
             color: #f44336 !important;
         }
-
-        .custom-form-title {
-            margin-bottom: 30px;
-        }
     </style>
 
 
@@ -624,14 +622,6 @@ confirm all form fields are mapped to the correct field in salesforce
             <div class="row card-panel orange lighten-5">
 
 
-                %%[IF (@FORM_TITLE != "") THEN]%%
-                <!-- title -->
-                <div class="col s12">
-                    <h5 class="custom-form-title">%%=v(@FORM_TITLE)=%%</h5>
-                </div>
-                %%[ENDIF]%%
-
-
                 %%[
                 /************************************
                 START LOOPING OVER RENDER COMPONENTS
@@ -654,10 +644,55 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
+                %%[IF (@FORM_COMPONENT == "SPACER") THEN]%%
+                <!------------------ Push --------------------->
+                <div class="col s12 hide-on-small-only" style="height: 20px;"></div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "SPACER_HALF") THEN]%%
+                <!------------------ Push ---------------------->
+                <div class="col s12 m6 hide-on-small-only" style="height: 20px;"></div>
+                %%[ENDIF]%%
+
+
                 %%[IF (@FORM_COMPONENT == "DIVIDER") THEN]%%
                 <!----------------- Divider --------------------->
                 <div class="divider"></div>
                 %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "TEXT_HEADING") THEN]%%
+                <!----------------- Text Heading --------------------->
+                <div class="col s12">
+                    <h5>%%=v(@TEXT_HEADING_CONTENT)=%%</h5>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "TEXT_HEADING_HALF") THEN]%%
+                <!----------------- Text Heading --------------------->
+                <div class="col s12 m6">
+                    <h5>%%=v(@TEXT_HEADING_CONTENT)=%%</h5>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "TEXT_PARAGRAPH") THEN]%%
+                <!----------------- Text Paragraph --------------------->
+                <div class="col s12">
+                    <p>%%=v(@TEXT_PARAGRAPH_CONTENT)=%%</p>
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == " TEXT_PARAGRAPH_HALF") THEN]%%
+                <!----------------- Text Paragraph --------------------->
+                <div class="col s12 m6">
+                    <p>%%=v(@TEXT_PARAGRAPH_CONTENT)=%%</p>
+                </div>
+                %%[ENDIF]%%
+
 
 
                 %%[IF (@FORM_COMPONENT == "PRODUCT_INTEREST") THEN]%%
