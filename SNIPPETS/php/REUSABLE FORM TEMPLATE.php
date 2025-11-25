@@ -671,7 +671,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         %%[
 
-                        SET @productRecords = LookupOrderedRows("PRODUCT_REFERENCE", 0, "ProductName DESC", "Active", "True")
+                        SET @productRecords = LookupOrderedRows("PRODUCT_REFERENCE", 0, "ProductName ASC", "Active", "True")
                         FOR @i = 1 TO RowCount(@productRecords) DO
                         SET @productName = field(row(@productRecords, @i),"ProductName")
                         SET @productValue = field(row(@productRecords, @i),"ProductValue")
@@ -709,7 +709,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         %%[
 
-                        SET @productRecords = LookupOrderedRows("PRODUCT_REFERENCE", 0, "ProductName DESC", "Active", "True")
+                        SET @productRecords = LookupOrderedRows("PRODUCT_REFERENCE", 0, "ProductName ASC", "Active", "True")
                         FOR @i = 1 TO RowCount(@productRecords) DO
                         SET @productName = field(row(@productRecords, @i),"ProductName")
                         SET @productValue = field(row(@productRecords, @i),"ProductValue")
@@ -1192,7 +1192,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryMainRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry DESC, CountryName asc", "IsMainCountry", "True", "Active", "True")
+                        SET @countryMainRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry ASC, CountryName ASC", "IsMainCountry", "True", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryMainRecords) DO
                         SET @countryName = field(row(@countryMainRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryMainRecords, @i),"CountryCode")
@@ -1202,7 +1202,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
+                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName ASC", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryAllRecords) DO
                         SET @countryName = field(row(@countryAllRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryAllRecords, @i),"CountryCode")
@@ -1242,7 +1242,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryMainRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry DESC, CountryName asc", "IsMainCountry", "True", "Active", "True")
+                        SET @countryMainRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry ASC, CountryName ASC", "IsMainCountry", "True", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryMainRecords) DO
                         SET @countryName = field(row(@countryMainRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryMainRecords, @i),"CountryCode")
@@ -1252,7 +1252,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
-                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
+                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName ASC", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryAllRecords) DO
                         SET @countryName = field(row(@countryAllRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryAllRecords, @i),"CountryCode")
@@ -1293,7 +1293,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "APAC", "Active", "True")
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName ASC", "Region", "APAC", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryRecords) DO
                         SET @countryName = field(row(@countryRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
@@ -1333,7 +1333,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "APAC", "Active", "True")
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName ASC", "Region", "APAC", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryRecords) DO
                         SET @countryName = field(row(@countryRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
@@ -1372,7 +1372,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "AMER", "Active", "True")
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName ASC", "Region", "AMER", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryRecords) DO
                         SET @countryName = field(row(@countryRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
@@ -1412,7 +1412,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "AMER", "Active", "True")
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName ASC", "Region", "AMER", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryRecords) DO
                         SET @countryName = field(row(@countryRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
@@ -1452,7 +1452,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "EMEA", "Active", "True")
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName ASC", "Region", "EMEA", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryRecords) DO
                         SET @countryName = field(row(@countryRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
@@ -1491,7 +1491,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "EMEA", "Active", "True")
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName ASC", "Region", "EMEA", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryRecords) DO
                         SET @countryName = field(row(@countryRecords, @i),"CountryName")
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
@@ -2156,7 +2156,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL COUNTRY RECORDS
                      *****************************/
-                    var countryRecords = Platform.Function.LookupOrderedRows('COUNTRY_REFERENCE', 0, 'CountryName DESC', 'Active', true)
+                    var countryRecords = Platform.Function.LookupOrderedRows('COUNTRY_REFERENCE', 0, 'CountryName ASC', 'Active', true)
                     Write('<script>let countryRecords = ' + Stringify(countryRecords) + '</' + 'script>');
                 </script>
 
@@ -2237,7 +2237,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL COUNTRY RECORDS
                      *****************************/
-                    var countryRecords = Platform.Function.LookupOrderedRows('COUNTRY_REFERENCE', 0, 'CountryName DESC', 'Active', true)
+                    var countryRecords = Platform.Function.LookupOrderedRows('COUNTRY_REFERENCE', 0, 'CountryName ASC', 'Active', true)
                     Write('<script>let countryRecords = ' + Stringify(countryRecords) + '</' + 'script>');
                 </script>
 
@@ -3139,7 +3139,7 @@ ENDIF
 
         //navigate to redirect
         if (payload.rid) {
-            payload.lookupRedirectData = Platform.Function.LookupRows('REDIRECT_REFERENCE', 'Id', payload.rid);
+            payload.lookupRedirectData = Platform.Function.LookupOrderedRows('REDIRECT_REFERENCE', 0, 'Id ASC', 'Id', payload.rid);
             payload.redirect_url = payload.lookupRedirectData[0].Url;
             Redirect(payload.redirect_url);
         }
