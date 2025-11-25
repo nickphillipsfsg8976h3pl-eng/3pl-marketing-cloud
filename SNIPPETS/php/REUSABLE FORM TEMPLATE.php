@@ -2306,11 +2306,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                        FOR @i = 1 TO RowCount(@jobList) DO
-                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "APAC", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobRecords) DO
+                        SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                         NEXT @i
+                        VAR @jobRecords, @i, @jobTitle
 
                         ]%%
 
@@ -2345,11 +2346,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "APAC", "Active", "1")
-                        FOR @i = 1 TO RowCount(@jobList) DO
-                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "APAC", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobRecords) DO
+                        SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                         NEXT @i
+                        VAR @jobRecords, @i, @jobTitle
 
                         ]%%
 
@@ -2383,11 +2385,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
-                        FOR @i = 1 TO RowCount(@jobList) DO
-                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "AMER", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobRecords) DO
+                        SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                         NEXT @i
+                        VAR @jobRecords, @i, @jobTitle
 
                         ]%%
 
@@ -2421,11 +2424,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "AMER", "Active", "1")
-                        FOR @i = 1 TO RowCount(@jobList) DO
-                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "AMER", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobRecords) DO
+                        SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                         NEXT @i
+                        VAR @jobRecords, @i, @jobTitle
 
                         ]%%
 
@@ -2459,11 +2463,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
-                        FOR @i = 1 TO RowCount(@jobList) DO
-                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "EMEA", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobRecords) DO
+                        SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                         NEXT @i
+                        VAR @jobRecords, @i, @jobTitle
 
                         ]%%
 
@@ -2497,11 +2502,12 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobList = LookupRows("JOB_REFERENCE", "Region", "EMEA", "Active", "1")
-                        FOR @i = 1 TO RowCount(@jobList) DO
-                        SET @jobTitle = Field(Row(@jobList, @i), "JobTitle")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "EMEA", "Active", "1")
+                        FOR @i = 1 TO RowCount(@jobRecords) DO
+                        SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
                         NEXT @i
+                        VAR @jobRecords, @i, @jobTitle
 
                         ]%%
 
