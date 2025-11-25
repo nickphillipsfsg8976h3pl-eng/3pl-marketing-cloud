@@ -528,7 +528,7 @@ confirm all form fields are mapped to the correct field in salesforce
             display: block;
             padding-top: 5px;
             font-size: 12px;
-            color: #9e9e9e;
+            color: #039be5
         }
 
         .custom-validation-message.valid {
@@ -1539,7 +1539,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-message
                         data-error="please select a state / province"
                         class="custom-validation-message">
-                        <!-- helper text -->
+                        Please select a country first.
                     </span>
 
                 </div>
@@ -1561,6 +1561,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         // get elements
                         const countryCodeSelectElement = document.getElementById('_country_code');
                         const stateCodeSelectElement = document.getElementById('_state_code');
+                        const stateCodeCustomContainer = stateCodeSelectElement.closest('[data-custom-container]');
 
                         countryCodeSelectElement.addEventListener('change', (event) => {
 
