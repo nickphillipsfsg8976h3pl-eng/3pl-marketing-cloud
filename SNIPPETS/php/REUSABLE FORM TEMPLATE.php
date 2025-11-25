@@ -121,25 +121,25 @@ confirm all form fields are mapped to the correct field in salesforce
             'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: TOF Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE_GLOBAL,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,JOB_TITLE_PER_COUNTRY,SCHOOL_NAME,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: BOF Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE_GLOBAL,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Quote Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_GLOBAL,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: US Form Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_GLOBAL,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=PRODUCT_INTEREST,ENQUIRY_TYPE,FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,SCHOOL_NAME,PHONE_NUMBER,JOB_TITLE_PER_COUNTRY,GRADE_LEVEL,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Trial Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_GLOBAL,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Info Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_GLOBAL,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '@example: Demo Template <br>',
-            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_GLOBAL,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
+            'https://webform.my.3plearning.com/REUSABLE_FORM_TEMPLATE?inputs=FIRST_NAME,LAST_NAME,EMAIL_ADDRESS,PHONE_NUMBER,SCHOOL_NAME,JOB_TITLE_PER_COUNTRY,COUNTRY_GLOBAL,STATE_PROVINCE_GLOBAL,POSTCODE_ZIPCODE,NO_OF_LICENCES,TERMS_AND_CONDITIONS,SUBSCRIBER_OPT_IN,SUBMIT_BUTTON <br>',
             '<br>',
             '<br> ',
             '</div>'
@@ -242,11 +242,11 @@ confirm all form fields are mapped to the correct field in salesforce
                 "PHONE_NUMBER",
                 "GRADE_LEVEL",
                 "SUBJECT",
-                "JOB_TITLE_GLOBAL",
                 "COUNTRY_GLOBAL",
                 "STATE_PROVINCE_GLOBAL",
                 "POSTCODE_ZIPCODE",
                 "SCHOOL_NAME",
+                "JOB_TITLE_PER_COUNTRY",
                 "NO_OF_LICENCES",
                 "TERMS_AND_CONDITIONS",
                 "SUBSCRIBER_OPT_IN",
@@ -265,11 +265,11 @@ confirm all form fields are mapped to the correct field in salesforce
                 "PHONE_NUMBER_HALF",
                 "GRADE_LEVEL_HALF",
                 "SUBJECT_HALF",
-                "JOB_TITLE_GLOBAL_HALF",
                 "COUNTRY_GLOBAL_HALF",
                 "STATE_PROVINCE_GLOBAL_HALF",
                 "POSTCODE_ZIPCODE_HALF",
                 "SCHOOL_NAME_HALF",
+                "JOB_TITLE_PER_COUNTRY_HALF",
                 "NO_OF_LICENCES_HALF",
                 "TERMS_AND_CONDITIONS_HALF",
                 "SUBSCRIBER_OPT_IN_HALF",
@@ -333,8 +333,8 @@ confirm all form fields are mapped to the correct field in salesforce
             test_job_titles: [
                 "COUNTRY_GLOBAL",
                 "COUNTRY_GLOBAL_HALF",
-                "JOB_TITLE_GLOBAL",
-                "JOB_TITLE_GLOBAL_HALF",
+                "JOB_TITLE_PER_COUNTRY",
+                "JOB_TITLE_PER_COUNTRY_HALF",
                 "JOB_TITLE_APAC",
                 "JOB_TITLE_APAC_HALF",
                 "JOB_TITLE_AMER",
@@ -363,8 +363,8 @@ confirm all form fields are mapped to the correct field in salesforce
                 "GRADE_LEVEL_HALF",
                 "SUBJECT",
                 "SUBJECT_HALF",
-                "JOB_TITLE_GLOBAL",
-                "JOB_TITLE_GLOBAL_HALF",
+                "JOB_TITLE_PER_COUNTRY",
+                "JOB_TITLE_PER_COUNTRY_HALF",
                 "COUNTRY_GLOBAL",
                 "COUNTRY_GLOBAL_HALF",
                 "STATE_PROVINCE_GLOBAL",
@@ -1157,7 +1157,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_GLOBAL_HALF") THEN]%%
-                <!------------- Country Name  ----------------->
+                <!------------- Country Name ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
                     <select
@@ -1176,7 +1176,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         FOR @i = 1 to RowCount(@Countries_Main) Do
                         SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
                         SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
                         NEXT @i
 
                         OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
@@ -1185,7 +1185,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         FOR @i = 1 to RowCount(@Countries_All) Do
                         SET @Country_Name = field(row(@Countries_All, @i),"CountryName")
                         SET @Country_Code = field(row(@Countries_All, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Name,'"',' data-countrycode="',@Country_Code,'">',@Country_Name,'</option>'))
+                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
                         NEXT @i
 
                         ]%%
@@ -1199,6 +1199,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 </div>
                 %%[ENDIF]%%
+
 
 
                 %%[IF (@FORM_COMPONENT == "COUNTRY_APAC") THEN]%%
@@ -1992,7 +1993,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL") THEN]%%
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_PER_COUNTRY") THEN]%%
                 <!------------- Job Title ----------------->
                 <div data-custom-validation-container class="input-field col s12">
 
@@ -2017,8 +2018,8 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL COUNTRY RECORDS
                      *****************************/
-                    var countryRegionRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
-                    Write('<script>let countryRegionRecords = ' + Stringify(countryRegionRecords) + '</' + 'script>');
+                    var countryRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
+                    Write('<script>let countryRecords = ' + Stringify(countryRecords) + '</' + 'script>');
                 </script>
 
 
@@ -2026,41 +2027,51 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL JOB TITLE RECORDS
                      *****************************/
-                    var jobTitleRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
-                    Write('<script>let jobTitleRecords = ' + Stringify(jobTitleRecords) + '</' + 'script>');
+                    var jobRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
+                    Write('<script>let jobRecords = ' + Stringify(jobRecords) + '</' + 'script>');
                 </script>
 
 
                 <!-- On Country Change -->
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
+
+                        // get elements
                         const countrySelect = document.getElementById('_country_code');
-                        const jobTitleSelect = document.getElementById('_job_title');
+                        const jobSelectElement = document.getElementById('_job_title');
 
                         countrySelect.addEventListener('change', (event) => {
-                            //get selected country code
+
+                            // change options
                             const selectedCountryCode = event.target.value;
-                            //get region
-                            const selectedRegion = countryRegionRecords.find(i => {
-                                return i.CountryCode === selectedCountryCode
-                            }).Region;
-                            //filter
-                            const jobTitlesFiltered = jobTitleRecords.filter(i => i.Region === selectedRegion);
-                            //clear
-                            jobTitleSelect.innerHTML = '';
-                            //placeholder
-                            jobTitleSelect.innerHTML = '<option value="" selected disabled>Job Title</option>'
-                            //append
-                            jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
-                                return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
-                            }).join('');
+                            const selectedRegion = countryRecords.find(i => i.CountryCode === selectedCountryCode)?.Region;
+
+                            // Guard clause if region not found
+                            if (!selectedRegion) return;
+
+                            const jobRecordsFiltered = jobRecords.filter(i => i.Region === selectedRegion);
+
+                            // Build options more efficiently
+                            const options = ['<option value="" selected disabled>Job Title</option>']
+                                .concat(jobRecordsFiltered.map(i => `<option value="${i.JobTitle}">${i.JobTitle}</option>`))
+                                .join('');
+
+                            jobSelectElement.innerHTML = options;
+
+                            // Recreate Materialize instance
+                            const jobSelectInstance = M.FormSelect.getInstance(jobSelectElement);
+                            if (jobSelectInstance) {
+                                jobSelectInstance.destroy();
+                            }
+                            M.FormSelect.init(jobSelectElement);
+
                         });
                     });
                 </script>
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "JOB_TITLE_GLOBAL_HALF") THEN]%%
+                %%[IF (@FORM_COMPONENT == "JOB_TITLE_PER_COUNTRY_HALF") THEN]%%
                 <!------------- Job Title ----------------->
                 <div data-custom-validation-container class="input-field col s12 m6">
 
@@ -2085,8 +2096,8 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL COUNTRY RECORDS
                      *****************************/
-                    var countryRegionRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
-                    Write('<script>let countryRegionRecords = ' + Stringify(countryRegionRecords) + '</' + 'script>');
+                    var countryRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
+                    Write('<script>let countryRecords = ' + Stringify(countryRecords) + '</' + 'script>');
                 </script>
 
 
@@ -2094,34 +2105,44 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL JOB TITLE RECORDS
                      *****************************/
-                    var jobTitleRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
-                    Write('<script>let jobTitleRecords = ' + Stringify(jobTitleRecords) + '</' + 'script>');
+                    var jobRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
+                    Write('<script>let jobRecords = ' + Stringify(jobRecords) + '</' + 'script>');
                 </script>
 
 
                 <!-- On Country Change -->
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
+
+                        // get elements
                         const countrySelect = document.getElementById('_country_code');
-                        const jobTitleSelect = document.getElementById('_job_title');
+                        const jobSelectElement = document.getElementById('_job_title');
 
                         countrySelect.addEventListener('change', (event) => {
-                            //get selected country code
+
+                            // change options
                             const selectedCountryCode = event.target.value;
-                            //get region
-                            const selectedRegion = countryRegionRecords.find(i => {
-                                return i.CountryCode === selectedCountryCode
-                            }).Region;
-                            //filter
-                            const jobTitlesFiltered = jobTitleRecords.filter(i => i.Region === selectedRegion);
-                            //clear
-                            jobTitleSelect.innerHTML = '';
-                            //placeholder
-                            jobTitleSelect.innerHTML = '<option value="" selected disabled>Job Title</option>'
-                            //append
-                            jobTitleSelect.innerHTML += jobTitlesFiltered.map(i => {
-                                return `<option value="${i.JobTitle}">${i.JobTitle}</option>`
-                            }).join('');
+                            const selectedRegion = countryRecords.find(i => i.CountryCode === selectedCountryCode)?.Region;
+
+                            // Guard clause if region not found
+                            if (!selectedRegion) return;
+
+                            const jobRecordsFiltered = jobRecords.filter(i => i.Region === selectedRegion);
+
+                            // Build options more efficiently
+                            const options = ['<option value="" selected disabled>Job Title</option>']
+                                .concat(jobRecordsFiltered.map(i => `<option value="${i.JobTitle}">${i.JobTitle}</option>`))
+                                .join('');
+
+                            jobSelectElement.innerHTML = options;
+
+                            // Recreate Materialize instance
+                            const jobSelectInstance = M.FormSelect.getInstance(jobSelectElement);
+                            if (jobSelectInstance) {
+                                jobSelectInstance.destroy();
+                            }
+                            M.FormSelect.init(jobSelectElement);
+
                         });
                     });
                 </script>
