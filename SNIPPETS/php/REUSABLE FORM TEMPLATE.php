@@ -2156,7 +2156,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL COUNTRY RECORDS
                      *****************************/
-                    var countryRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
+                    var countryRecords = Platform.Function.LookupOrderedRows('COUNTRY_REFERENCE', 0, 'CountryName DESC', 'Active', true)
                     Write('<script>let countryRecords = ' + Stringify(countryRecords) + '</' + 'script>');
                 </script>
 
@@ -2165,7 +2165,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL JOB TITLE RECORDS
                      *****************************/
-                    var jobRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
+                    var jobRecords = Platform.Function.LookupOrderedRows('JOB_REFERENCE', 0, 'JobTitle ASC', 'Active', true)
                     Write('<script>let jobRecords = ' + Stringify(jobRecords) + '</' + 'script>');
                 </script>
 
@@ -2237,7 +2237,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL COUNTRY RECORDS
                      *****************************/
-                    var countryRecords = Platform.Function.LookupRows('COUNTRY_REFERENCE', 'Active', true)
+                    var countryRecords = Platform.Function.LookupOrderedRows('COUNTRY_REFERENCE', 0, 'CountryName DESC', 'Active', true)
                     Write('<script>let countryRecords = ' + Stringify(countryRecords) + '</' + 'script>');
                 </script>
 
@@ -2246,7 +2246,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL JOB TITLE RECORDS
                      *****************************/
-                    var jobRecords = Platform.Function.LookupRows('JOB_REFERENCE', 'Active', true)
+                    var jobRecords = Platform.Function.LookupOrderedRows('JOB_REFERENCE', 0, 'JobTitle ASC', 'Active', true)
                     Write('<script>let jobRecords = ' + Stringify(jobRecords) + '</' + 'script>');
                 </script>
 
@@ -2288,9 +2288,6 @@ confirm all form fields are mapped to the correct field in salesforce
                     });
                 </script>
                 %%[ENDIF]%%
-
-
-
 
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_APAC") THEN]%%
