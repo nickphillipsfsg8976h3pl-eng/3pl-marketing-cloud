@@ -599,8 +599,10 @@ confirm all form fields are mapped to the correct field in salesforce
 
             <!-- Assign client side location and referrer urls -->
             <script>
-                document.querySelector('input[name="_location_href"]').value = window.location.href;
-                document.querySelector('input[name="_document_referrer"]').value = document.referrer;
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelector('input[name="_location_href"]').value = window.location.href;
+                    document.querySelector('input[name="_document_referrer"]').value = document.referrer;
+                })
             </script>
 
         </div>
