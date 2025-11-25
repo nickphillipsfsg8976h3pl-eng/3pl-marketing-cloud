@@ -545,6 +545,10 @@ confirm all form fields are mapped to the correct field in salesforce
         [data-custom-message].invalid {
             color: #f44336 !important;
         }
+
+        .custom-form-title {
+            margin-bottom: 30px;
+        }
     </style>
 
 
@@ -623,7 +627,7 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[IF (@FORM_TITLE != "") THEN]%%
                 <!-- title -->
                 <div class="col s12">
-                    <h5>%%=v(@FORM_TITLE)=%%</h5>
+                    <h5 class="custom-form-title">%%=v(@FORM_TITLE)=%%</h5>
                 </div>
                 %%[ENDIF]%%
 
