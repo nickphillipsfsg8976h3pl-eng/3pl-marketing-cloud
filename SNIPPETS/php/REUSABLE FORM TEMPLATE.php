@@ -1535,7 +1535,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL STATE RECORDS
                      *****************************/
-                    var stateRecords = Platform.Function.LookupRows('STATE_REFERENCE', 'Active', true)
+                    var stateRecords = Platform.Function.LookupOrderedRows('STATE_REFERENCE', 0, 'StateName ASC', ['Active'], [true])
                     Write('<script>let stateRecords = ' + Stringify(stateRecords) + '</' + 'script>');
                 </script>
 
@@ -1566,7 +1566,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                             // populate options
                             const options = ['<option value="" selected disabled>State / Province</option>']
-                                .concat(stateRecordsFiltered.map(i => `<option value="${i.StateCode}">${i.Name}</option>`))
+                                .concat(stateRecordsFiltered.map(i => `<option value="${i.StateCode}">${i.StateName}</option>`))
                                 .join('');
 
                             stateCodeSelectElement.innerHTML = options;
@@ -1613,7 +1613,7 @@ confirm all form fields are mapped to the correct field in salesforce
                     /**
                      * GET ALL STATE RECORDS
                      *****************************/
-                    var stateRecords = Platform.Function.LookupRows('STATE_REFERENCE', 'Active', true)
+                    var stateRecords = Platform.Function.LookupOrderedRows('STATE_REFERENCE', 0, 'StateName ASC', ['Active'], [true])
                     Write('<script>let stateRecords = ' + Stringify(stateRecords) + '</' + 'script>');
                 </script>
 
@@ -1644,7 +1644,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                             // populate options
                             const options = ['<option value="" selected disabled>State / Province</option>']
-                                .concat(stateRecordsFiltered.map(i => `<option value="${i.StateCode}">${i.Name}</option>`))
+                                .concat(stateRecordsFiltered.map(i => `<option value="${i.StateCode}">${i.StateName}</option>`))
                                 .join('');
 
                             stateCodeSelectElement.innerHTML = options;
