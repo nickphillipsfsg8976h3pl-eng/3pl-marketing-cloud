@@ -1521,7 +1521,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     <span
                         data-custom-message
-                        data-error="please select a country first then select a state / province"
+                        data-error="Please select a country first then select a state / province"
                         class="custom-validation-message">
                         Please select a country first then select a state / province.
                     </span>
@@ -1599,7 +1599,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     <span
                         data-custom-message
-                        data-error="please select a country first then select a state / province"
+                        data-error="Please select a country first then select a state / province"
                         class="custom-validation-message">
                         Please select a country first then select a state / province.
                     </span>
@@ -2124,9 +2124,9 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     <span
                         data-custom-message
-                        data-error="please select a job title"
+                        data-error="Please select a country first then select a job title"
                         class="custom-validation-message">
-                        <!-- helper text -->
+                        Please select a country first then select a job title
                     </span>
 
                 </div>
@@ -2205,9 +2205,9 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     <span
                         data-custom-message
-                        data-error="please select a job title"
+                        data-error="Please select a country first then select a job title"
                         class="custom-validation-message">
-                        <!-- helper text -->
+                        Please select a country first then select a job title
                     </span>
 
                 </div>
