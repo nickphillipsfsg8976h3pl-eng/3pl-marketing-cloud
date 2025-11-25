@@ -671,12 +671,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         %%[
 
-                        SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc", "Active", "True")
-                        FOR @i = 1 TO RowCount(@productsList) DO
-                        SET @productName = field(row(@productsList, @i),"Name")
-                        SET @productValue = field(row(@productsList, @i),"Value")
+                        SET @productRecords = LookupOrderedRows("PRODUCT_REFERENCE", 0, "ProductName DESC", "Active", "True")
+                        FOR @i = 1 TO RowCount(@productRecords) DO
+                        SET @productName = field(row(@productRecords, @i),"ProductName")
+                        SET @productValue = field(row(@productRecords, @i),"ProductValue")
                         OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
                         NEXT @i
+                        VAR @productRecords, @i, @productName, @productValue
 
                         ]%%
 
@@ -708,12 +709,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         %%[
 
-                        SET @productsList = LookupOrderedRows("PRODUCT_REFERENCE", 0, "Name desc", "Active", "True")
-                        FOR @i = 1 TO RowCount(@productsList) DO
-                        SET @productName = field(row(@productsList, @i),"Name")
-                        SET @productValue = field(row(@productsList, @i),"Value")
+                        SET @productRecords = LookupOrderedRows("PRODUCT_REFERENCE", 0, "ProductName DESC", "Active", "True")
+                        FOR @i = 1 TO RowCount(@productRecords) DO
+                        SET @productName = field(row(@productRecords, @i),"ProductName")
+                        SET @productValue = field(row(@productRecords, @i),"ProductValue")
                         OutputLine(Concat('<option value="', @productValue,'">',@productName,'</option>'))
                         NEXT @i
+                        VAR @productRecords, @i, @productName, @productValue
 
                         ]%%
 
@@ -1190,7 +1192,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                        SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry DESC, CountryName asc", "Active", "True", "IsMainCountry", "True")
                         FOR @i = 1 to RowCount(@Countries_Main) Do
                         SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
                         SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
@@ -1238,7 +1240,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry desc, CountryName asc", "Active", "True", "IsMainCountry", "True")
+                        SET @Countries_Main = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry DESC, CountryName asc", "Active", "True", "IsMainCountry", "True")
                         FOR @i = 1 to RowCount(@Countries_Main) Do
                         SET @Country_Name = field(row(@Countries_Main, @i),"CountryName")
                         SET @Country_Code = field(row(@Countries_Main, @i),"CountryCode")
