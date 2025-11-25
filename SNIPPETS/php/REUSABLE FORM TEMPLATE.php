@@ -1198,6 +1198,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         SET @countryCode = field(row(@countryMainRecords, @i),"CountryCode")
                         OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
+                        VAR @countryMainRecords, @i, @countryName, @countryCode
 
                         OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
@@ -1207,6 +1208,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         SET @countryCode = field(row(@countryAllRecords, @i),"CountryCode")
                         OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
+                        VAR @countryAllRecords, @i, @countryName, @countryCode
 
                         ]%%
 
@@ -1246,6 +1248,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         SET @countryCode = field(row(@countryMainRecords, @i),"CountryCode")
                         OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
+                        VAR @countryMainRecords, @i, @countryName, @countryCode
 
                         OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
@@ -1255,6 +1258,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         SET @countryCode = field(row(@countryAllRecords, @i),"CountryCode")
                         OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
+                        VAR @countryAllRecords, @i, @countryName, @countryCode
 
                         ]%%
 
@@ -1295,6 +1299,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
                         OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
+                        VAR @countryRecords, @i, @countryName, @countryCode
 
                         ]%%
 
@@ -1373,6 +1378,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
                         OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
+                        VAR @countryRecords, @i, @countryName, @countryCode
 
                         ]%%
 
@@ -1412,6 +1418,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
                         OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
+                        VAR @countryRecords, @i, @countryName, @countryCode
 
                         ]%%
 
@@ -1490,6 +1497,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
                         OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
+                        VAR @countryRecords, @i, @countryName, @countryCode
 
                         ]%%
 
@@ -1663,166 +1671,6 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
-                %%[IF (@FORM_COMPONENT == "STATE_CODE_US") THEN]%%
-                <!------------- State / Province Name (US) ----------------->
-                <div data-custom-container class="input-field col s12">
-
-                    <select
-                        id="_state_code"
-                        name="_state_code"
-                        data-custom-field>
-
-                        <option value="" selected disabled>State</option>
-
-                        %%[
-
-                        /******************************
-                        POPULATE STATE/PROVINCE OPTIONS
-                        *******************************/
-
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                        NEXT @i
-                        VAR @data, @option
-
-                        ]%%
-
-                    </select>
-                    <label for="_state_code">State</label>
-
-                    <span
-                        data-custom-message
-                        data-error="please select a state"
-                        class="custom-validation-message">
-                        <!-- helper text -->
-                    </span>
-
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "STATE_CODE_US_HALF") THEN]%%
-                <!------------- State / Province Name (US)  ----------------->
-                <div data-custom-container class="input-field col s12 m6">
-
-                    <select
-                        id="_state_code"
-                        name="_state_code"
-                        data-custom-field>
-
-                        <option value="" selected disabled>State</option>
-
-                        %%[
-
-                        /******************************
-                        POPULATE STATE/PROVINCE OPTIONS
-                        *******************************/
-
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "US")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                        NEXT @i
-                        VAR @data, @option
-
-                        ]%%
-
-                    </select>
-                    <label for="_state_code">State</label>
-
-                    <span
-                        data-custom-message
-                        data-error="please select a state"
-                        class="custom-validation-message">
-                        <!-- helper text -->
-                    </span>
-
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "STATE_CODE_CA") THEN]%%
-                <!------------- State / Province Name (CA) ----------------->
-                <div data-custom-container class="input-field col s12">
-
-                    <select
-                        id="_state_code"
-                        name="_state_code"
-                        data-custom-field>
-
-                        <option value="" selected disabled>Province</option>
-
-                        %%[
-
-                        /******************************
-                        POPULATE STATE/PROVINCE OPTIONS
-                        *******************************/
-
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                        NEXT @i
-                        VAR @data, @option
-
-                        ]%%
-
-                    </select>
-                    <label for="_state_code">Province</label>
-
-                    <span
-                        data-custom-message
-                        data-error="please select a province"
-                        class="custom-validation-message">
-                        <!-- helper text -->
-                    </span>
-
-                </div>
-                %%[ENDIF]%%
-
-
-                %%[IF (@FORM_COMPONENT == "STATE_CODE_CA_HALF") THEN]%%
-                <!------------- State / Province Name (CA)  ----------------->
-                <div data-custom-container class="input-field col s12 m6">
-
-                    <select
-                        id="_state_code"
-                        name="_state_code"
-                        data-custom-field>
-
-                        <option value="" selected disabled>Province</option>
-
-                        %%[
-
-                        /******************************
-                        POPULATE STATE/PROVINCE OPTIONS
-                        *******************************/
-
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "CA")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
-                        NEXT @i
-                        VAR @data, @option
-
-                        ]%%
-
-                    </select>
-                    <label for="_state_code">Province</label>
-
-                    <span
-                        data-custom-message
-                        data-error="please select a province"
-                        class="custom-validation-message">
-                        <!-- helper text -->
-                    </span>
-
-                </div>
-                %%[ENDIF]%%
-
-
                 %%[IF (@FORM_COMPONENT == "STATE_CODE_AU") THEN]%%
                 <!------------- State / Province Name (AU) ----------------->
                 <div data-custom-container class="input-field col s12">
@@ -1840,12 +1688,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "AU")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
                         NEXT @i
-                        VAR @data, @option
+                        VAR @stateRecords, @i, @stateName, @stateCode
 
                         ]%%
 
@@ -1880,12 +1729,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "AU")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "AU")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
                         NEXT @i
-                        VAR @data, @option
+                        VAR @stateRecords, @i, @stateName, @stateCode
 
                         ]%%
 
@@ -1920,12 +1770,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "NZ")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
                         NEXT @i
-                        VAR @data, @option
+                        VAR @stateRecords, @i, @stateName, @stateCode
 
                         ]%%
 
@@ -1960,12 +1811,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "NZ")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "NZ")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
                         NEXT @i
-                        VAR @data, @option
+                        VAR @stateRecords, @i, @stateName, @stateCode
 
                         ]%%
 
@@ -1975,6 +1827,170 @@ confirm all form fields are mapped to the correct field in salesforce
                     <span
                         data-custom-message
                         data-error="please select a state"
+                        class="custom-validation-message">
+                        <!-- helper text -->
+                    </span>
+
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_US") THEN]%%
+                <!------------- State / Province Name (US) ----------------->
+                <div data-custom-container class="input-field col s12">
+
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        data-custom-field>
+
+                        <option value="" selected disabled>State</option>
+
+                        %%[
+
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
+
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "US")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
+                        NEXT @i
+                        VAR @stateRecords, @i, @stateName, @stateCode
+
+                        ]%%
+
+                    </select>
+                    <label for="_state_code">State</label>
+
+                    <span
+                        data-custom-message
+                        data-error="please select a state"
+                        class="custom-validation-message">
+                        <!-- helper text -->
+                    </span>
+
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_US_HALF") THEN]%%
+                <!------------- State / Province Name (US)  ----------------->
+                <div data-custom-container class="input-field col s12 m6">
+
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        data-custom-field>
+
+                        <option value="" selected disabled>State</option>
+
+                        %%[
+
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
+
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "US")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
+                        NEXT @i
+                        VAR @stateRecords, @i, @stateName, @stateCode
+
+                        ]%%
+
+                    </select>
+                    <label for="_state_code">State</label>
+
+                    <span
+                        data-custom-message
+                        data-error="please select a state"
+                        class="custom-validation-message">
+                        <!-- helper text -->
+                    </span>
+
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_CA") THEN]%%
+                <!------------- State / Province Name (CA) ----------------->
+                <div data-custom-container class="input-field col s12">
+
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        data-custom-field>
+
+                        <option value="" selected disabled>Province</option>
+
+                        %%[
+
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
+
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "CA")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
+                        NEXT @i
+                        VAR @stateRecords, @i, @stateName, @stateCode
+
+                        ]%%
+
+                    </select>
+                    <label for="_state_code">Province</label>
+
+                    <span
+                        data-custom-message
+                        data-error="please select a province"
+                        class="custom-validation-message">
+                        <!-- helper text -->
+                    </span>
+
+                </div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "STATE_CODE_CA_HALF") THEN]%%
+                <!------------- State / Province Name (CA)  ----------------->
+                <div data-custom-container class="input-field col s12 m6">
+
+                    <select
+                        id="_state_code"
+                        name="_state_code"
+                        data-custom-field>
+
+                        <option value="" selected disabled>Province</option>
+
+                        %%[
+
+                        /******************************
+                        POPULATE STATE/PROVINCE OPTIONS
+                        *******************************/
+
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "CA")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
+                        NEXT @i
+                        VAR @stateRecords, @i, @stateName, @stateCode
+
+                        ]%%
+
+                    </select>
+                    <label for="_state_code">Province</label>
+
+                    <span
+                        data-custom-message
+                        data-error="please select a province"
                         class="custom-validation-message">
                         <!-- helper text -->
                     </span>
@@ -2000,12 +2016,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "ZA")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
                         NEXT @i
-                        VAR @data, @option
+                        VAR @stateRecords, @i, @stateName, @stateCode
 
                         ]%%
 
@@ -2040,12 +2057,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @data = LookupOrderedRows("state",0,"State Name ASC", "Country Code", "ZA")
-                        FOR @i = 1 TO RowCount(@data) DO
-                        SET @option = Field(Row(@data, @i), "State Name")
-                        OutputLine(Concat('<option value="',@option,'">',@option,'</option>'))
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "ZA")
+                        FOR @i = 1 TO RowCount(@stateRecords) DO
+                        SET @stateName = Field(Row(@stateRecords, @i), "StateName")
+                        SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
+                        OutputLine(Concat('<option value="',@stateCode,'">',@stateName,'</option>'))
                         NEXT @i
-                        VAR @data, @option
+                        VAR @stateRecords, @i, @stateName, @stateCode
 
                         ]%%
 
