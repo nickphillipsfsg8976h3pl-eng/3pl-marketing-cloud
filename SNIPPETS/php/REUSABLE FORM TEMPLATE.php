@@ -1688,7 +1688,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "AU")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "AU", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -1729,7 +1729,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "AU")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "AU", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -1770,7 +1770,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "NZ")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "NZ", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -1811,7 +1811,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "NZ")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "NZ", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -1852,7 +1852,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "US")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "US", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -1893,7 +1893,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "US")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "US", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -1934,7 +1934,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "CA")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "CA", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -1975,7 +1975,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "CA")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "CA", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -2016,7 +2016,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "ZA")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "ZA", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -2057,7 +2057,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         POPULATE STATE/PROVINCE OPTIONS
                         *******************************/
 
-                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "ZA")
+                        SET @stateRecords = LookupOrderedRows("STATE_REFERENCE", 0,"StateName ASC", "CountryCode", "ZA", "Active", "True")
                         FOR @i = 1 TO RowCount(@stateRecords) DO
                         SET @stateName = Field(Row(@stateRecords, @i), "StateName")
                         SET @stateCode = Field(Row(@stateRecords, @i), "StateCode")
@@ -2306,7 +2306,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "APAC", "Active", "1")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "APAC", "Active", "True")
                         FOR @i = 1 TO RowCount(@jobRecords) DO
                         SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
@@ -2346,7 +2346,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "APAC", "Active", "1")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "APAC", "Active", "True")
                         FOR @i = 1 TO RowCount(@jobRecords) DO
                         SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
@@ -2385,7 +2385,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "AMER", "Active", "1")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "AMER", "Active", "True")
                         FOR @i = 1 TO RowCount(@jobRecords) DO
                         SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
@@ -2424,7 +2424,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "AMER", "Active", "1")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "AMER", "Active", "True")
                         FOR @i = 1 TO RowCount(@jobRecords) DO
                         SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
@@ -2463,7 +2463,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "EMEA", "Active", "1")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "EMEA", "Active", "True")
                         FOR @i = 1 TO RowCount(@jobRecords) DO
                         SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
@@ -2502,7 +2502,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* Populate Job Title Options
                         ********************************/
 
-                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "EMEA", "Active", "1")
+                        SET @jobRecords = LookupOrderedRows("JOB_REFERENCE", 0, "JobTitle ASC", "Region", "EMEA", "Active", "True")
                         FOR @i = 1 TO RowCount(@jobRecords) DO
                         SET @jobTitle = Field(Row(@jobRecords, @i), "JobTitle")
                         OutputLine(Concat('<option value="',@jobTitle,'">',@jobTitle,'</option>'))
@@ -3139,7 +3139,7 @@ ENDIF
 
         //navigate to redirect
         if (payload.rid) {
-            payload.lookupRedirectData = Platform.Function.LookupOrderedRows('REDIRECT_REFERENCE', 0, 'Id ASC', 'Id', payload.rid);
+            payload.lookupRedirectData = Platform.Function.LookupOrderedRows('REDIRECT_REFERENCE', 0, 'Id ASC', ['Id', 'Active'], [payload.rid, true]);
             payload.redirect_url = payload.lookupRedirectData[0].Url;
             Redirect(payload.redirect_url);
         }
