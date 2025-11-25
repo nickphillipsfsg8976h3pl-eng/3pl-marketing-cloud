@@ -526,7 +526,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
         .custom-validation-message {
             display: block;
-            padding-top: 5px;
+            min-height: 20px;
             font-size: 12px;
             color: #039be5
         }
@@ -1506,9 +1506,9 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     <span
                         data-custom-message
-                        data-error="please select a state / province"
+                        data-error="please select a country first then select a state / province"
                         class="custom-validation-message">
-                        Please select a country first.
+                        Please select a country first then select a state / province.
                     </span>
 
                 </div>
@@ -1539,8 +1539,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
                             const stateRecordsFiltered = stateRecords.filter(i => i.CountryCode === selectedCountryCode);
 
-                            // exit early
-                            if (!stateRecordsFiltered) return;
+                            // hide if no records
+                            if (stateRecordsFiltered.length === 0) {
+                                stateCodeCustomContainer.classList.add('hide');
+                                return;
+                            } else {
+                                stateCodeCustomContainer.classList.remove('hide');
+                            }
 
                             // populate options
                             const options = ['<option value="" selected disabled>State / Province</option>']
@@ -1557,12 +1562,10 @@ confirm all form fields are mapped to the correct field in salesforce
                             M.FormSelect.init(stateCodeSelectElement);
 
 
-
                         });
                     });
                 </script>
                 %%[ENDIF]%%
-
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_CODE_PER_COUNTRY_CODE_HALF") THEN]%%
@@ -1581,9 +1584,9 @@ confirm all form fields are mapped to the correct field in salesforce
 
                     <span
                         data-custom-message
-                        data-error="please select a state / province"
+                        data-error="please select a country first then select a state / province"
                         class="custom-validation-message">
-                        <!-- helper text -->
+                        Please select a country first then select a state / province.
                     </span>
 
                 </div>
@@ -1605,6 +1608,7 @@ confirm all form fields are mapped to the correct field in salesforce
                         // get elements
                         const countryCodeSelectElement = document.getElementById('_country_code');
                         const stateCodeSelectElement = document.getElementById('_state_code');
+                        const stateCodeCustomContainer = stateCodeSelectElement.closest('[data-custom-container]');
 
                         countryCodeSelectElement.addEventListener('change', (event) => {
 
@@ -1613,8 +1617,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
                             const stateRecordsFiltered = stateRecords.filter(i => i.CountryCode === selectedCountryCode);
 
-                            // exit early
-                            if (!stateRecordsFiltered) return;
+                            // hide if no records
+                            if (stateRecordsFiltered.length === 0) {
+                                stateCodeCustomContainer.classList.add('hide');
+                                return;
+                            } else {
+                                stateCodeCustomContainer.classList.remove('hide');
+                            }
 
                             // populate options
                             const options = ['<option value="" selected disabled>State / Province</option>']
@@ -1631,12 +1640,10 @@ confirm all form fields are mapped to the correct field in salesforce
                             M.FormSelect.init(stateCodeSelectElement);
 
 
-
                         });
                     });
                 </script>
                 %%[ENDIF]%%
-
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_CODE_US") THEN]%%
@@ -2643,6 +2650,14 @@ confirm all form fields are mapped to the correct field in salesforce
                             Sign up to receive monthly newsletters, educational content, resources, and occasional promotional material.
                         </span>
                     </label>
+
+                    <span
+                        data-custom-message
+                        data-error=""
+                        class="custom-validation-message">
+                        <!-- helper text -->
+                    </span>
+
                 </p>
                 %%[ENDIF]%%
 
@@ -2660,6 +2675,14 @@ confirm all form fields are mapped to the correct field in salesforce
                             Sign up to receive monthly newsletters, educational content, resources, and occasional promotional material.
                         </span>
                     </label>
+
+                    <span
+                        data-custom-message
+                        data-error=""
+                        class="custom-validation-message">
+                        <!-- helper text -->
+                    </span>
+
                 </p>
                 %%[ENDIF]%%
 
