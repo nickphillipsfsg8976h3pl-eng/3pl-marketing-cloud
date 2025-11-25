@@ -8,7 +8,6 @@
 
 TODO:
 
-Add text diplays for titles and subtitles
 
 Add active flag in search criteria for all lookups to they can be centrally managed
 
@@ -194,6 +193,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
         config.rid = Request.GetQueryStringParameter("rid");
 
+        config.form_title = Request.GetQueryStringParameter("form_title");
         config.template = Request.GetQueryStringParameter("template");
         config.inputs = Request.GetQueryStringParameter("inputs");
 
@@ -233,7 +233,6 @@ confirm all form fields are mapped to the correct field in salesforce
 
             //?template=test_full
             test: [
-                "PUSH",
                 "PRODUCT_INTEREST",
                 "MARKETING_INTEREST",
                 "ENQUIRY_TYPE",
@@ -621,6 +620,14 @@ confirm all form fields are mapped to the correct field in salesforce
             <div class="row card-panel orange lighten-5">
 
 
+                %%[IF (@FORM_TITLE != "") THEN]%%
+                <!-- title -->
+                <div class="col s12">
+                    <h5>%%=v(@FORM_TITLE)=%%</h5>
+                </div>
+                %%[ENDIF]%%
+
+
                 %%[
                 /************************************
                 START LOOPING OVER RENDER COMPONENTS
@@ -633,13 +640,13 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "PUSH") THEN]%%
                 <!------------------ Push --------------------->
-                <div class="col s12 hide-on-small-only" style="height: 20px;"></div>
+                <div class="col s12 hide-on-small-only" style="height: 115px;"></div>
                 %%[ENDIF]%%
 
 
                 %%[IF (@FORM_COMPONENT == "PUSH_HALF") THEN]%%
                 <!------------------ Push ---------------------->
-                <div class="col s12 m6 hide-on-small-only" style="height: 20px;"></div>
+                <div class="col s12 m6 hide-on-small-only" style="height: 115px;"></div>
                 %%[ENDIF]%%
 
 
