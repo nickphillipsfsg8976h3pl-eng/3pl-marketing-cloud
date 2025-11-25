@@ -9,7 +9,6 @@
 TODO:
 
 
-Add active flag in search criteria for all lookups to they can be centrally managed
 
 Automatic redirect when a person enters “Parent” or “student” into
 the Job Title form field, to the appropriate B2C landing page
@@ -18,7 +17,6 @@ the Job Title form field, to the appropriate B2C landing page
         - "Are you a parent/student? Click here" link
         - optional popup?
 
-implement job function region static and global dynamic values components
 
 follow up on  missing EMEA mapping for job title -> job functions mappings
 
@@ -214,6 +212,7 @@ confirm all form fields are mapped to the correct field in salesforce
         config.override_marketing_interest = Request.GetQueryStringParameter("override_marketing_interest");
         config.override_enquiry_type = Request.GetQueryStringParameter("override_enquiry_type");
         config.override_lead_status = Request.GetQueryStringParameter("override_lead_status");
+        config.override_job_title = Request.GetQueryStringParameter("override_job_title");
 
 
         /*******************************
@@ -604,6 +603,7 @@ confirm all form fields are mapped to the correct field in salesforce
             <input type="hidden" name="_override_marketing_interest" value="%%=v(@override_marketing_interest)=%%">
             <input type="hidden" name="_override_enquiry_type" value="%%=v(@override_enquiry_type)=%%">
             <input type="hidden" name="_override_lead_status" value="%%=v(@override_lead_status)=%%">
+            <input type="hidden" name="_override_job_title" value="%%=v(@override_job_title)=%%">
 
 
             <!-- Assign client side location and referrer urls -->
@@ -3099,6 +3099,9 @@ ENDIF
         payload.override_country_code = Request.GetFormField("_override_country_code");
         payload.override_product_interest = Request.GetFormField("_override_product_interest");
         payload.override_marketing_interest = Request.GetFormField("_override_marketing_interest");
+        payload.override_enquiry_type = Request.GetFormField("_override_enquiry_type");
+        payload.override_lead_status = Request.GetFormField("_override_lead_status");
+        payload.override_job_title = Request.GetFormField("_override_job_title");
 
         payload.product_interest = Request.GetFormField("_product_interest");
         payload._market_interest = Request.GetFormField("_market_interest");
