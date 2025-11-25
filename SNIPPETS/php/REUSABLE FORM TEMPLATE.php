@@ -654,6 +654,18 @@ confirm all form fields are mapped to the correct field in salesforce
                 ]%%
 
 
+                %%[IF (@FORM_COMPONENT == "SPACER") THEN]%%
+                <!----------------- Divider --------------------->
+                <div class="col s12"></div>
+                %%[ENDIF]%%
+
+
+                %%[IF (@FORM_COMPONENT == "SPACER_HALF") THEN]%%
+                <!----------------- Divider --------------------->
+                <div class="col s12 m6"></div>
+                %%[ENDIF]%%
+
+
                 %%[IF (@FORM_COMPONENT == "DIVIDER") THEN]%%
                 <!----------------- Divider --------------------->
                 <div class="divider"></div>
@@ -687,7 +699,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_product_interest">Product Interest</label>
 
-                    <span class="custom-validation-message" data-error="please select a product">
+                    <span
+                        data-custom-validation
+                        data-error="please select a product"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -721,7 +736,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_product_interest">Product Interest</label>
 
-                    <span class="custom-validation-message" data-error="please select a product">
+                    <span
+                        data-custom-validation
+                        data-error="please select a product"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -749,7 +767,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_marketing_interest">Marketing Interest</label>
 
-                    <span class="custom-validation-message" data-error="please select a marketing interest">
+                    <span
+                        data-custom-validation
+                        data-error="please select a marketing interest"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -775,7 +796,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_marketing_interest">Marketing Interest</label>
 
-                    <span class="custom-validation-message" data-error="please select a marketing interest">
+                    <span
+                        data-custom-validation
+                        data-error="please select a marketing interest"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -802,7 +826,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_enquiry_type">Equiry Type</label>
 
-                    <span class="custom-validation-message" data-error="please select a enquiry type">
+                    <span
+                        data-custom-validation
+                        data-error="please select a enquiry type"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -829,7 +856,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_enquiry_type">Equiry Type</label>
 
-                    <span class="custom-validation-message" data-error="please select a enquiry type">
+                    <span
+                        data-custom-validation
+                        data-error="please select a enquiry type"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -856,7 +886,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_subject">Subject</label>
 
-                    <span class="custom-validation-message" data-error="please select a subject">
+                    <span
+                        data-custom-validation
+                        data-error="please select a subject"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -882,7 +915,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_subject">Subject</label>
 
-                    <span class="custom-validation-message" data-error="please select a subject">
+                    <span
+                        data-custom-validation
+                        data-error="please select a subject"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -902,7 +938,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_first_name">First Name</label>
 
-                    <span class="custom-validation-message" data-error="please enter your first name">
+                    <span
+                        data-custom-validation
+                        data-error="please enter your first name"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -922,7 +961,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_first_name">First Name</label>
 
-                    <span class="custom-validation-message" data-error="please enter your first name">
+                    <span
+                        data-custom-validation
+                        data-error="please enter your first name"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -942,7 +984,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="custom-validation-message" data-error="please enter your last name">
+                    <span
+                        data-custom-validation
+                        data-error="please enter your last name"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -962,7 +1007,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_last_name">Last Name</label>
 
-                    <span class="custom-validation-message" data-error="please enter your last name">
+                    <span
+                        data-custom-validation
+                        data-error="please enter your last name"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -982,7 +1030,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="custom-validation-message" data-error="please enter a valid email address">
+                    <span
+                        data-custom-validation
+                        data-error="please enter a valid email address"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1002,7 +1053,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_email_address">Email Address</label>
 
-                    <span class="custom-validation-message" data-error="please enter a valid email address">
+                    <span
+                        data-custom-validation
+                        data-error="please enter a valid email address"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1022,7 +1076,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="custom-validation-message" data-error="please enter a valid phone number">
+                    <span
+                        data-custom-validation
+                        data-error="please enter a valid phone number"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1042,7 +1099,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_phone_number">Mobile / Work Phone</label>
 
-                    <span class="custom-validation-message" data-error="please enter a valid phone number">
+                    <span
+                        data-custom-validation
+                        data-error="please enter a valid phone number"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1079,7 +1139,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_grade_level">Grade Level</label>
 
-                    <span class="custom-validation-message" data-error="please select a grade level">
+                    <span
+                        data-custom-validation
+                        data-error="please select a grade level"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1116,7 +1179,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_grade_level">Grade Level</label>
 
-                    <span class="custom-validation-message" data-error="please select a grade level">
+                    <span
+                        data-custom-validation
+                        data-error="please select a grade level"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1161,7 +1227,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="custom-validation-message" data-error="please select a country">
+                    <span
+                        data-custom-validation
+                        data-error="please select a country"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1206,7 +1275,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="custom-validation-message" data-error="please select a country">
+                    <span
+                        data-custom-validation
+                        data-error="please select a country"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1243,7 +1315,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="custom-validation-message" data-error="please select a country">
+                    <span
+                        data-custom-validation
+                        data-error="please select a country"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1279,7 +1354,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="custom-validation-message" data-error="please select a country">
+                    <span
+                        data-custom-validation
+                        data-error="please select a country"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1315,7 +1393,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="custom-validation-message" data-error="please select a country">
+                    <span
+                        data-custom-validation
+                        data-error="please select a country"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1351,7 +1432,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="custom-validation-message" data-error="please select a country">
+                    <span
+                        data-custom-validation
+                        data-error="please select a country"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1387,7 +1471,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="custom-validation-message" data-error="please select a country">
+                    <span
+                        data-custom-validation
+                        data-error="please select a country"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1423,7 +1510,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_country_code">Country</label>
 
-                    <span class="custom-validation-message" data-error="please select a country">
+                    <span
+                        data-custom-validation
+                        data-error="please select a country"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1445,7 +1535,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State / Province</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state / province"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1454,7 +1547,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 <script runat="server">
                     /**
-                     * GET ALL JOB TITLE RECORDS
+                     * GET ALL STATE RECORDS
                      *****************************/
                     var stateRecords = Platform.Function.LookupRows('STATE_REFERENCE', 'Active', true)
                     Write('<script>let stateRecords = ' + Stringify(stateRecords) + '</' + 'script>');
@@ -1501,8 +1594,9 @@ confirm all form fields are mapped to the correct field in salesforce
                 %%[ENDIF]%%
 
 
+
                 %%[IF (@FORM_COMPONENT == "STATE_CODE_PER_COUNTRY_CODE_HALF") THEN]%%
-                <!------------- State / Province Name  ----------------->
+                <!------------- State / Province Name ----------------->
                 <div data-custom-container class="input-field col s12 m6">
 
                     <select
@@ -1515,72 +1609,64 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State / Province</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state / province"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
                 </div>
 
 
+                <script runat="server">
+                    /**
+                     * GET ALL STATE RECORDS
+                     *****************************/
+                    var stateRecords = Platform.Function.LookupRows('STATE_REFERENCE', 'Active', true)
+                    Write('<script>let stateRecords = ' + Stringify(stateRecords) + '</' + 'script>');
+                </script>
+
+
                 <!-- On Country Change -->
                 <script>
-                    try {
+                    document.addEventListener('DOMContentLoaded', () => {
 
-                        // CONSTANTS
-                        let statesData;
+                        // get elements
+                        const countryCodeSelectElement = document.getElementById('_country_code');
+                        const stateCodeSelectElement = document.getElementById('_state_code');
 
-                        // DOM ELEMENTS
-                        const countrySelect = document.getElementById('_country_code');
-                        const stateProvinceSelect = document.getElementById('_state_code');
+                        countryCodeSelectElement.addEventListener('change', (event) => {
 
-                        // EVENTS
-                        document.addEventListener('DOMContentLoaded', getStatesData);
-                        countrySelect.addEventListener('change', handleCountryChange);
+                            // change options
+                            const selectedCountryCode = event.target.value;
 
-                        // HANDLERS
-                        function getStatesData() {
-                            const getStatesApi = "/getStates";
+                            const stateRecordsFiltered = stateRecords.filter(i => i.CountryCode === selectedCountryCode);
 
-                            fetch(getStatesApi)
-                                .then(response => response.json())
-                                .then(data => {
-                                    statesData = data;
-                                })
-                                .catch(error => console.error(error));
-                        }
+                            // exit early
+                            if (!stateRecordsFiltered) return;
 
-                        function handleCountryChange(e) {
-                            // Choose states
-                            const selectedOption = e.target.options[e.target.selectedIndex];
-                            const countryCode = selectedOption.dataset.countrycode;
-                            const countryStateData = statesData.filter((option) => option["CountryCode"] === countryCode);
+                            // populate options
+                            const options = ['<option value="" selected disabled>State / Province</option>']
+                                .concat(stateRecordsFiltered.map(i => `<option value="${i.StateCode}">${i.Name}</option>`))
+                                .join('');
 
-                            // Reset options
-                            stateProvinceSelect.value = '';
-                            stateProvinceSelect.innerHTML = '';
+                            stateCodeSelectElement.innerHTML = options;
 
-                            const placeholderText = countryCode === "CA" ? 'Province' : 'State';
-                            const option = document.createElement('option');
-                            option.value = '';
-                            option.disabled = true;
-                            option.selected = true;
-                            option.textContent = placeholderText;
-                            stateProvinceSelect.appendChild(option);
+                            // recreate instance
+                            const stateCodeSelectInstance = M.FormSelect.getInstance(stateCodeSelectElement);
+                            if (stateCodeSelectInstance) {
+                                stateCodeSelectInstance.destroy();
+                            }
+                            M.FormSelect.init(stateCodeSelectElement);
 
-                            // Populate options
-                            countryStateData.forEach((state) => {
-                                const option = document.createElement('option');
-                                option.value = state['StateCode'];
-                                option.textContent = state['StateName'];
-                                stateProvinceSelect.appendChild(option);
-                            });
-                        }
 
-                    } catch (e) {
-                        console.error(e.message);
-                    }
+
+                        });
+                    });
                 </script>
                 %%[ENDIF]%%
+
 
 
                 %%[IF (@FORM_COMPONENT == "STATE_CODE_US") THEN]%%
@@ -1612,7 +1698,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1649,7 +1738,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1686,7 +1778,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">Province</label>
 
-                    <span class="custom-validation-message" data-error="please select a province">
+                    <span
+                        data-custom-validation
+                        data-error="please select a province"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1723,7 +1818,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">Province</label>
 
-                    <span class="custom-validation-message" data-error="please select a province">
+                    <span
+                        data-custom-validation
+                        data-error="please select a province"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1760,7 +1858,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1797,7 +1898,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1834,7 +1938,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1871,7 +1978,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1908,7 +2018,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1945,7 +2058,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_state_code">State</label>
 
-                    <span class="custom-validation-message" data-error="please select a state">
+                    <span
+                        data-custom-validation
+                        data-error="please select a state"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1965,7 +2081,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="custom-validation-message" data-error="please enter a valid postcode / zipcode">
+                    <span
+                        data-custom-validation
+                        data-error="please select a valid postcode / zipcode"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -1986,7 +2105,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_postcode_zipcode">Postcode / Zipcode</label>
 
-                    <span class="custom-validation-message" data-error="please enter a valid postcode / zipcode">
+                    <span
+                        data-custom-validation
+                        data-error="please select a valid postcode / zipcode"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2008,7 +2130,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="custom-validation-message" data-error="please select a job title">
+                    <span
+                        data-custom-validation
+                        data-error="please select a job title"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2074,7 +2199,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 %%[IF (@FORM_COMPONENT == "JOB_TITLE_PER_COUNTRY_CODE_HALF") THEN]%%
                 <!------------- Job Title ----------------->
-                <div data-custom-container class="input-field col s12">
+                <div data-custom-container class="input-field col s12 m6">
 
                     <select
                         id="_job_title"
@@ -2086,7 +2211,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="custom-validation-message" data-error="please select a job title">
+                    <span
+                        data-custom-validation
+                        data-error="please select a job title"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2180,7 +2308,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="custom-validation-message" data-error="please select a job title">
+                    <span
+                        data-custom-validation
+                        data-error="please select a job title"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2216,7 +2347,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="custom-validation-message" data-error="please select a job title">
+                    <span
+                        data-custom-validation
+                        data-error="please select a job title"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2251,7 +2385,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="custom-validation-message" data-error="please select a job title">
+                    <span
+                        data-custom-validation
+                        data-error="please select a job title"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2286,7 +2423,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="custom-validation-message" data-error="please select a job title">
+                    <span
+                        data-custom-validation
+                        data-error="please select a job title"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2321,7 +2461,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="custom-validation-message" data-error="please select a job title">
+                    <span
+                        data-custom-validation
+                        data-error="please select a job title"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2356,7 +2499,10 @@ confirm all form fields are mapped to the correct field in salesforce
                     </select>
                     <label for="_job_title">Job Title</label>
 
-                    <span class="custom-validation-message" data-error="please select a job title">
+                    <span
+                        data-custom-validation
+                        data-error="please select a job title"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2376,7 +2522,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="custom-validation-message" data-error="please enter a school name">
+                    <span
+                        data-custom-validation
+                        data-error="please enter a school name"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2396,7 +2545,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         data-custom-field>
                     <label for="_school_name">School or District Name</label>
 
-                    <span class="custom-validation-message" data-error="please enter a school name">
+                    <span
+                        data-custom-validation
+                        data-error="please enter a school name"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2418,7 +2570,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="custom-validation-message" data-error="please enter a number of licences">
+                    <span
+                        data-custom-validation
+                        data-error="please enter a number of licences"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2440,7 +2595,10 @@ confirm all form fields are mapped to the correct field in salesforce
                         max="1000">
                     <label for="_no_of_licences">Number of Student Licenses</label>
 
-                    <span class="custom-validation-message" data-error="please enter a number of licences">
+                    <span
+                        data-custom-validation
+                        data-error="please enter a number of licences"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
 
@@ -2464,9 +2622,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         </span>
                     </label>
 
-                    <span class="custom-validation-message" data-error="please agree to the terms and conditions">
+                    <span
+                        data-custom-validation
+                        data-error="please agree to the terms and conditions"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
+
                 </p>
                 %%[ENDIF]%%
 
@@ -2487,9 +2649,13 @@ confirm all form fields are mapped to the correct field in salesforce
                         </span>
                     </label>
 
-                    <span class="custom-validation-message" data-error="please agree to the terms and conditions">
+                    <span
+                        data-custom-validation
+                        data-error="please agree to the terms and conditions"
+                        class="custom-validation-message">
                         <!-- helper text -->
                     </span>
+
                 </p>
                 %%[ENDIF]%%
 
@@ -2756,7 +2922,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
 
             function showValidationMessage(field, isFieldValid) {
-                const validationMessage = field.closest('[data-custom-container]').querySelector('.custom-validation-message');
+                const validationMessage = field.closest('[data-custom-container]').querySelector('[data-custom-validation]');
                 if (validationMessage) {
                     if (isFieldValid) {
                         validationMessage.classList.remove('invalid');
