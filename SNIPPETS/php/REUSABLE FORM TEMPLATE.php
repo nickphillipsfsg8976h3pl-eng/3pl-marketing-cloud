@@ -1194,18 +1194,18 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         SET @countryMainRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry DESC, CountryName asc", "IsMainCountry", "True", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryMainRecords) DO
-                        SET @Country_Name = field(row(@countryMainRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryMainRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryName = field(row(@countryMainRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryMainRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
                         SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryAllRecords) DO
-                        SET @Country_Name = field(row(@countryAllRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryAllRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryName = field(row(@countryAllRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryAllRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         ]%%
@@ -1242,18 +1242,18 @@ confirm all form fields are mapped to the correct field in salesforce
 
                         SET @countryMainRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "IsMainCountry DESC, CountryName asc", "IsMainCountry", "True", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryMainRecords) DO
-                        SET @Country_Name = field(row(@countryMainRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryMainRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryName = field(row(@countryMainRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryMainRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         OutputLine(Concat('<option disabled>------------------------------------------------------</option>'))
 
                         SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True")
                         FOR @i = 1 TO RowCount(@countryAllRecords) DO
-                        SET @Country_Name = field(row(@countryAllRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryAllRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryName = field(row(@countryAllRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryAllRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         ]%%
@@ -1289,11 +1289,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "APAC")
-                        FOR @i = 1 TO RowCount(@countryAllRecords) DO
-                        SET @Country_Name = field(row(@countryAllRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryAllRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "APAC", "Active", "True")
+                        FOR @i = 1 TO RowCount(@countryRecords) DO
+                        SET @countryName = field(row(@countryRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         ]%%
@@ -1328,11 +1328,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "APAC")
-                        FOR @i = 1 TO RowCount(@countryAllRecords) DO
-                        SET @Country_Name = field(row(@countryAllRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryAllRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "APAC", "Active", "True")
+                        FOR @i = 1 TO RowCount(@countryRecords) DO
+                        SET @countryName = field(row(@countryRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         ]%%
@@ -1367,11 +1367,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "AMER")
-                        FOR @i = 1 TO RowCount(@countryAllRecords) DO
-                        SET @Country_Name = field(row(@countryAllRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryAllRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "AMER", "Active", "True")
+                        FOR @i = 1 TO RowCount(@countryRecords) DO
+                        SET @countryName = field(row(@countryRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         ]%%
@@ -1406,11 +1406,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "AMER")
-                        FOR @i = 1 TO RowCount(@countryAllRecords) DO
-                        SET @Country_Name = field(row(@countryAllRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryAllRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "AMER", "Active", "True")
+                        FOR @i = 1 TO RowCount(@countryRecords) DO
+                        SET @countryName = field(row(@countryRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         ]%%
@@ -1445,11 +1445,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "EMEA")
-                        FOR @i = 1 TO RowCount(@countryAllRecords) DO
-                        SET @Country_Name = field(row(@countryAllRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryAllRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "EMEA", "Active", "True")
+                        FOR @i = 1 TO RowCount(@countryRecords) DO
+                        SET @countryName = field(row(@countryRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         ]%%
@@ -1484,11 +1484,11 @@ confirm all form fields are mapped to the correct field in salesforce
                         /* POPULATE COUNTRY OPTIONS
                         ******************************/
 
-                        SET @countryAllRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Active", "True", "Region", "EMEA")
-                        FOR @i = 1 TO RowCount(@countryAllRecords) DO
-                        SET @Country_Name = field(row(@countryAllRecords, @i),"CountryName")
-                        SET @Country_Code = field(row(@countryAllRecords, @i),"CountryCode")
-                        OutputLine(Concat('<option value="', @Country_Code,'">',@Country_Name,'</option>'))
+                        SET @countryRecords = LookupOrderedRows("COUNTRY_REFERENCE", 0, "CountryName asc", "Region", "EMEA", "Active", "True")
+                        FOR @i = 1 TO RowCount(@countryRecords) DO
+                        SET @countryName = field(row(@countryRecords, @i),"CountryName")
+                        SET @countryCode = field(row(@countryRecords, @i),"CountryCode")
+                        OutputLine(Concat('<option value="', @countryCode,'">',@countryName,'</option>'))
                         NEXT @i
 
                         ]%%
