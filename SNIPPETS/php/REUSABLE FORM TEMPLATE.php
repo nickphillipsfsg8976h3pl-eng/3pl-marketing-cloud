@@ -524,18 +524,21 @@ confirm all form fields are mapped to the correct field in salesforce
             color: rgb(0, 0, 0, 0.87) !important;
         }
 
-        .custom-validation-message {
+        [data-custom-container] {
+            min-height: 75px !important;
+        }
+
+        [data-custom-message] {
             display: block;
-            min-height: 20px;
             font-size: 12px;
             color: #039be5
         }
 
-        .custom-validation-message.valid {
+        [data-custom-message].valid {
             color: #4CAF50 !important;
         }
 
-        .custom-validation-message.invalid {
+        [data-custom-message].invalid {
             color: #f44336 !important;
         }
     </style>
@@ -2704,7 +2707,7 @@ confirm all form fields are mapped to the correct field in salesforce
 
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
-                        // grow submit button
+                        // grow animate submit button
                         const submitButton = document.getElementById("_submit_button");
                         submitButton.classList.remove("scale-out");
                         submitButton.classList.add("scale-in");
