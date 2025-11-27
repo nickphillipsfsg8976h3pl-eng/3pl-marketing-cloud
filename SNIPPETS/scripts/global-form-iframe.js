@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function initGlobalForm() {
+
   //check if should use usercentrics
   const useUC = window?.globalFormData?.useUC ?? false;
   //iframeSelector
