@@ -1,3 +1,21 @@
+/**
+ * Example Configuration
+ *
+ * window.globalFormData = {
+    useUC: true,
+    iframeSelector: ".global-form-iframe",
+    iframeUrl: "https://3plearning--uat.sandbox.my.site.com/marketingcloudforms/s/?utm_campaign=gday",
+    ignoreHeight: false,
+    params: {
+      form: "trial",
+      cid: "701Mp00000ITj95IAD",
+    },
+  };
+ */
+
+
+
+
 //v1.8.0
 import { initialize as iframeResizeInitialize } from "https://cdn.jsdelivr.net/npm/@open-iframe-resizer/core@latest/dist/index.js";
 import lodashIsequal from "https://cdn.jsdelivr.net/npm/lodash.isequal@4.5.0/+esm";
