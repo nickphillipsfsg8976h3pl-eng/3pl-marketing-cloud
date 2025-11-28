@@ -199,6 +199,7 @@ update internal documentation and create a confluence page
         config.cid = Request.GetQueryStringParameter("cid");
 
         config.rid = Request.GetQueryStringParameter("rid");
+        config.b2c_rid = Request.GetQueryStringParameter("b2c_rid");
 
         config.template = Request.GetQueryStringParameter("template");
         config.inputs = Request.GetQueryStringParameter("inputs");
@@ -606,7 +607,7 @@ update internal documentation and create a confluence page
     </div>
 
 
-    <!------------- FORM ----------------->
+    <!------------- Form ----------------->
 
 
     <form
@@ -2236,6 +2237,18 @@ update internal documentation and create a confluence page
 
                 </div>
 
+                <!-- Modal -->
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Whoops! Are you a parent or student?</h4>
+                        <p>We have noticed you selected a job title of parent or student. Did you know we have a separate website for indivual customer sales and equiries, would you like to be redirected.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
+                        <a href="%%=RedirectTo(@b2c_red  )%%" class="modal-close waves-effect waves-green btn-flat">Yes</a>
+                    </div>
+                </div>
+
 
                 <script runat="server">
                     /**
@@ -2291,6 +2304,21 @@ update internal documentation and create a confluence page
                         });
                     });
                 </script>
+
+                <!-- On Job Title Change -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const jobTitleSelectElement = document.getElementById('_job_title');
+                        jobTitleSelectElement.addEventListener('change', (event) => {
+                            const selectedJobTitle = event.target.value;
+                            if (selectedJobTitle === 'Parent' || selectedJobTitle === 'Student') {
+
+                            }
+                        });
+                    });
+                </script>
+
+
                 %%[ENDIF]%%
 
 
